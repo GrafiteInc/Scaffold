@@ -1,0 +1,95 @@
+/*
+|--------------------------------------------------------------------------
+| Window
+|--------------------------------------------------------------------------
+*/
+
+html {
+    background-color: $html-bg;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Sidebar
+|--------------------------------------------------------------------------
+*/
+
+.sidebar {
+    background-color: $sidebar-bg;
+
+    .nav-item.active {
+        background-color: $white;
+    }
+
+    .nav-item {
+        a {
+            color: $slate-darkest;
+        }
+    }
+}
+
+.sidebar-header {
+    background-color: $sidebar-header;
+    color: $white;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Footer
+|--------------------------------------------------------------------------
+*/
+
+.footer {
+    background-color: $footer-bg;
+
+    span {
+        color: $white;
+    }
+
+    a {
+        color: $white;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Navbar
+|--------------------------------------------------------------------------
+*/
+
+.navbar-header {
+    background-color: $navbar-header;
+    color: $white;
+
+    .navbar-nav {
+        background-color: $navbar-header;
+    }
+
+    .btn-account {
+        color: $white;
+    }
+}
+
+.navbar-brand {
+    background-color: rgba(0, 0, 0, 0.15);
+    color: $white;
+
+    &:hover {
+        color: $off-white;
+    }
+}
+
+.nav-user {
+    margin-bottom: 16px;
+    .nav-item a {
+        color: $secondary;
+    }
+
+    .nav-link.active {
+        color: $primary;
+        &:hover {
+            color: $primary;
+        }
+    }
+}
+

@@ -1,0 +1,245 @@
+/*
+|--------------------------------------------------------------------------
+| Window
+|--------------------------------------------------------------------------
+*/
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: .875rem;
+}
+
+.sidebar {
+    width: 320px;
+    position: fixed;
+    top: 0;
+    bottom: 60px;
+    left: 0;
+    z-index: 100;
+    padding: 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    transition: all 0.3s;
+}
+
+.sidebar-sticky {
+    width: 320px;
+    position: fixed;
+    top: 60px;
+    height: calc(100vh - 103px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar .nav-item {
+    font-weight: bold;
+    width: 100%;
+    line-height: 45px;
+    font-size: 16px;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+.sidebar-header {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 48px;
+
+    span {
+        padding-left: 28px;
+    }
+}
+
+.sidebar-toggle {
+    display: none;
+}
+
+.main {
+    width: calc(100% - 320px);
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+}
+
+.alert {
+    width: 330px;
+    position: absolute;
+    bottom: 72px;
+    right: 24px;
+    z-index: 7500;
+}
+
+#app {
+    min-height: calc(100vh - 110px);
+}
+
+.form-container {
+    width: 348px;
+    margin: 0px auto;
+    padding-top: 48px;
+
+    .page-title {
+        font-size: 26px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 24px;
+    }
+}
+
+.profile-icon {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-position: center center;
+    line-height: 45px;
+    margin-bottom: -8px;
+    margin-right: 10px;
+}
+
+.table {
+    td {
+        vertical-align: middle;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Navbar
+|--------------------------------------------------------------------------
+*/
+
+.page-title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.navbar-header {
+    height: 60px;
+}
+
+.navbar-brand {
+    width: 320px;
+    padding: 0px 0px 0px 28px;
+    font-size: 22px;
+    font-weight: bold;
+    height: 60px;
+    line-height: 60px;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.navbar-nav {
+    .btn-account {
+        text-align: right;
+        width: 200px;
+        &:focus {
+            box-shadow: none;
+        }
+    }
+    .dropdown-menu {
+        position: absolute;
+        top: 44px;
+        left: 10px;
+        min-width: 200px;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Large Screen
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 992px) {
+    .sidebar-toggle {
+        display: inline-block;
+    }
+    .main {
+        width: 100%;
+    }
+    .sidebar {
+        margin-left: -320px;
+    }
+    .sidebar.toggled {
+        margin-left: 0;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Medium Screen
+|--------------------------------------------------------------------------
+*/
+
+@media (min-width: 576px) and (max-width: 748px) {
+    .navbar-nav {
+        .btn-account {
+            width: 55px;
+            height: 50px;
+            top: -24px;
+            right: -15px;
+            position: absolute;
+            span {
+                display: none;
+            }
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 24px;
+            left: -185px;
+            min-width: 200px;
+        }
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Mobile Tweaks
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 576px) {
+    #app.container-fluid {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .navbar-nav {
+        .btn-account {
+            width: 55px;
+            height: 50px;
+            top: -106px;
+            right: -15px;
+            position: absolute;
+            span {
+                display: none;
+            }
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: -54px;
+            left: 10px;
+            right: 10px;
+            min-width: 200px;
+        }
+    }
+    .sidebar-sticky {
+        margin-top: 50px;
+    }
+    .navbar-header {
+        .navbar-nav {
+            width: 100%;
+        }
+    }
+}
+
