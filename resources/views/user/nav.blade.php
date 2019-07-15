@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs nav-user">
+<ul class="nav nav-tabs nav-user d-none d-sm-none d-md-flex">
     <li class="nav-item">
         <a class="{{ route_link_class('user.settings') }}" href="{{ route('user.settings') }}">Account</a>
     </li>

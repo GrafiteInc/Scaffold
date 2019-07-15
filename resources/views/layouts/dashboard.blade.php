@@ -11,7 +11,9 @@
     </nav>
 
     <main class="ml-sm-auto pt-3 main">
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>
     </main>
 
 @stop

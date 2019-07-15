@@ -15674,6 +15674,10 @@ body {
     padding-left: 0px;
   }
 
+  .main {
+    margin-top: 48px;
+  }
+
   .navbar-nav .btn-account {
     width: 55px;
     height: 50px;
