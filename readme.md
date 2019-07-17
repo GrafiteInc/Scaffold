@@ -15,4 +15,3 @@ $notification = new StandardEmail('this is a test');
 
 auth()->user()->notify($notification);
 ```
-
