@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use DB;
 use Auth;
 use Session;
 use Exception;

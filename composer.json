@@ -36,8 +36,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "LaravelCollective\\Errors\\": "/Users/mlantz/Code/_open_source/LaravelCollective/errors/src/"
+            "App\\": "app/"
         },
         "classmap": [
             "database/seeds",

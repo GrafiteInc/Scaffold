@@ -38,7 +38,7 @@ class TeamsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new team.
      *
      * @return \Illuminate\Http\Response
      */
@@ -50,7 +50,7 @@ class TeamsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created team in storage.
      *
      * @param  \Illuminate\Http\TeamCreateRequest  $request
      * @return \Illuminate\Http\Response
@@ -88,14 +88,14 @@ class TeamsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified team.
      *
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
     public function edit(Team $team)
     {
-        if (!Gate::allows('admin-team', $team)) {
+        if (!Gate::allows('team-admin', $team)) {
             abort(403);
         }
 
@@ -109,7 +109,7 @@ class TeamsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified team in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -129,7 +129,7 @@ class TeamsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified team from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

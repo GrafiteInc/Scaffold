@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
@@ -13,11 +15,14 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         if (!User::where('name', 'user')->first()) {
-            User::create([
+            $user = User::create([
                 'name' => 'admin',
                 'email' => 'admin@example.com',
                 'password' => bcrypt('admin'),
+                'email_verified_at' => Carbon::now(),
             ]);
+
+            $user->roles()->attach(Role::where('name', 'admin')->first()->id);
         }
     }
 }

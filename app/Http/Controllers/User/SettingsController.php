@@ -26,7 +26,15 @@ class SettingsController extends Controller
 
         $form = app(UserForm::class)->edit($user);
 
-        return view('user.settings')->with('form', $form);
+        $deleteAccountForm = form()
+            ->confirm(trans('general.user.delete_account'))
+            ->action('delete', 'user.destroy', 'Delete My Account', [
+                'class' => 'btn btn-danger mt-4'
+            ]);
+
+        return view('user.settings')
+            ->with('form', $form)
+            ->with('deleteAccountForm', $deleteAccountForm);
     }
 
     /**

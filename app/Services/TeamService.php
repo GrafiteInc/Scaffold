@@ -94,7 +94,7 @@ class TeamService
      */
     public function remove($team, $user)
     {
-        if (Gate::allows('admin-team', $team)) {
+        if (Gate::allows('team-admin', $team)) {
             throw new Exception("You do not have permission to do this.", 1);
         }
 

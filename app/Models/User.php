@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Team;
+use App\Models\Concerns\HasRoles;
 use App\Models\Concerns\HasTeams;
+use App\Models\Concerns\HasActivity;
 use App\Notifications\ResetPassword;
+use App\Models\Concerns\HasPermissions;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +14,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable,
-        HasTeams;
+        HasTeams,
+        HasActivity,
+        HasRoles,
+        HasPermissions;
 
     /**
      * The database table used by the model.

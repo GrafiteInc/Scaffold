@@ -15,9 +15,9 @@ class CreateInvitesTable extends Migration
     {
         Schema::create('invites', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('relationship')->nullable();
-            $table->bigInteger('model_id')->nullable();
+            $table->unsignedBigInteger('model_id')->nullable();
             $table->string('email');
             $table->text('message');
             $table->string('token');

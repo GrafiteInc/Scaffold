@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home')->name('home');
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
         Route::get('settings', 'SettingsController@settings')->name('user.settings');
-        Route::delete('settings/{user}', 'SettingsController@settings')->name('user.destroy');
+        Route::delete('destroy', 'DestroyController@destroy')->name('user.destroy');
         Route::put('settings', 'SettingsController@update')->name('user.update');
 
         Route::get('security', 'SecurityController@get')->name('user.security');
@@ -92,4 +92,34 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::post('invites/{invite}/resend', 'InvitesController@resend')->name('invite.resend');
     Route::post('invites/{invite}/revoke', 'InvitesController@revoke')->name('invite.revoke');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin
+    |--------------------------------------------------------------------------
+    */
+
+    Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'permissions:roles|users'], function () {
+
+        Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Users
+        |--------------------------------------------------------------------------
+        */
+        Route::resource('users', 'UserController', ['except' => ['create', 'show'], 'as' => 'admin']);
+        // Route::post('users/search', 'UserController@search');
+        // Route::get('users/search', 'UserController@index');
+        // Route::get('users/invite', 'UserController@getInvite');
+        // Route::get('users/switch/{user}', 'UserController@switchToUser');
+        // Route::post('users/invite', 'UserController@postInvite');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Roles
+        |--------------------------------------------------------------------------
+        */
+        Route::resource('roles', 'RoleController', ['except' => ['show'], 'as' => 'admin']);
+    });
 });

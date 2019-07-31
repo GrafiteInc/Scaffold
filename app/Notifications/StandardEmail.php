@@ -11,7 +11,7 @@ class StandardEmail extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $user;
+    public $name;
 
     public $subject;
 
@@ -22,9 +22,9 @@ class StandardEmail extends Notification implements ShouldQueue
      *
      * @param string $token
      */
-    public function __construct($user, $subject, $message)
+    public function __construct($name, $subject, $message)
     {
-        $this->user = $user;
+        $this->name = $name;
         $this->subject = $subject;
         $this->message = $message;
     }
@@ -54,7 +54,7 @@ class StandardEmail extends Notification implements ShouldQueue
     {
         return (new MailMessage())
             ->subject($this->subject)
-            ->greeting('Hello '.$this->user)
+            ->greeting('Hello '.$this->name)
             ->line($this->message)
             ->action('Login', url('login'));
     }
