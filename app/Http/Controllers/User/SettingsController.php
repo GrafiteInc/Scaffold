@@ -3,18 +3,12 @@
 namespace App\Http\Controllers\User;
 
 use Exception;
-use App\Services\UserService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Forms\UserForm;
 
 class SettingsController extends Controller
 {
-    public function __construct(UserService $userService)
-    {
-        $this->service = $userService;
-    }
-
     /**
      * View current user's settings
      *
