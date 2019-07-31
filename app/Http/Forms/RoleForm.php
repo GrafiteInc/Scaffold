@@ -14,15 +14,15 @@ class RoleForm extends ModelForm
     public $routePrefix = 'admin.roles';
 
     public $buttons = [
-        'save' => 'Save',
+        'submit' => 'Save',
     ];
 
     public $columns = 2;
 
-    public $routes = [
-        'create' => '.store',
-        'update' => '.update',
-        'delete' => '.destroy',
+    public $buttonClasses = [
+        'submit' => 'btn btn-primary',
+        'cancel' => 'btn btn-secondary',
+        'delete' => 'btn btn-danger btn-sm',
     ];
 
     public function setSections()

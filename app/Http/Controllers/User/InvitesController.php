@@ -49,7 +49,7 @@ class InvitesController extends Controller
     public function reject(Invite $invite)
     {
         $subject = "Invitation Rejected";
-        $message = "{$invite->enail} politely rejected your inviation.";
+        $message = "{$invite->email} politely rejected your inviation.";
 
         Notification::route('mail', $invite->from->email)
             ->notify(new StandardEmail(

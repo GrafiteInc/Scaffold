@@ -46,7 +46,7 @@ class SettingsController extends Controller
     public function update(UserUpdateRequest $request)
     {
         try {
-            if ($this->service->update(auth()->user(), $request->all())) {
+            if (auth()->user()->update($request->all())) {
                 return back()->with('message', 'Settings updated successfully');
             }
 

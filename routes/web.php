@@ -42,6 +42,8 @@ Auth::routes([
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
+    Route::post('users/return-switch', 'Admin\UserController@switchBack')->name('users.return-switch');
+
     /*
     |--------------------------------------------------------------------------
     | Dashboard
@@ -109,11 +111,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         |--------------------------------------------------------------------------
         */
         Route::resource('users', 'UserController', ['except' => ['create', 'show'], 'as' => 'admin']);
-        // Route::post('users/search', 'UserController@search');
-        // Route::get('users/search', 'UserController@index');
-        // Route::get('users/invite', 'UserController@getInvite');
-        // Route::get('users/switch/{user}', 'UserController@switchToUser');
-        // Route::post('users/invite', 'UserController@postInvite');
+        // Route::get('users/search', 'UserController@index')->name('admin.users.search');
+        Route::post('users/search', 'UserController@search')->name('admin.users.search');
+
+        Route::get('users/invite', 'UserController@getInvite')->name('admin.users.invite');
+        Route::post('users/invite', 'UserController@postInvite')->name('admin.users.send-invite');
+
+        Route::post('users/switch/{user}', 'UserController@switchToUser')->name('admin.users.switch');
 
         /*
         |--------------------------------------------------------------------------

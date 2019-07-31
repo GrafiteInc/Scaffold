@@ -21,20 +21,6 @@ class UserService
         $this->model = $model;
     }
 
-    /**
-     * Update a user's profile
-     *
-     * @param  int $userId User Id
-     *
-     * @return User
-     */
-    public function update($user, $payload)
-    {
-        $user->update($payload);
-
-        return $user->fresh();
-    }
-
     // /**
     //  * Invite a new member
     //  * @param  array $info

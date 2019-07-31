@@ -14,7 +14,7 @@ class UserSecurityForm extends BaseForm
     public $orientation = 'horizontal';
 
     public $buttons = [
-        'save' => 'Save',
+        'submit' => 'Save',
     ];
 
     public $columns = 1;

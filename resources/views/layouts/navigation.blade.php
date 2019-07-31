@@ -11,7 +11,7 @@
             @if (auth()->user())
                 <div class="dropdown">
                     <button class="btn btn-text dropdown-toggle btn-account" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="profile-icon" style="background-image: url({{ auth()->user()->gravatar }});"></div>
+                        <div class="profile-icon" style="background-image: url({{ auth()->user()->avatar }});"></div>
                         <span>{{ auth()->user()->name }}</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

@@ -7,10 +7,8 @@ use Grafite\FormMaker\Forms\BaseForm;
 
 class TeamInviteForm extends BaseForm
 {
-    public $method = 'post';
-
     public $buttons = [
-        'save' => 'Invite',
+        'submit' => 'Invite',
     ];
 
     public $columns = 1;

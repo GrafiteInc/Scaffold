@@ -7,17 +7,17 @@
     <div class="row">
         <div class="col-md-12">
             <div class="btn-toolbar justify-content-between">
-                <form method="post" action="/admin/users/search">
+                <form method="post" action="{{ route('admin.users.search') }}">
                     {!! csrf_field() !!}
                     <input class="form-control" name="search"  value="{{ request('search') }}" placeholder="Search">
                 </form>
 
-                <a class="btn btn-primary" href="{{ url('admin/users/invite') }}">Invite New User</a>
+                <a class="btn btn-primary" href="{{ route('admin.users.invite') }}">Invite New User</a>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 mt-4">
+        <div class="col-md-12 mt-3">
             @if ($users->isEmpty())
                 <div class="card card-default text-center">
                     <div class="card-body">
@@ -32,19 +32,18 @@
                     </thead>
                     <tbody>
                         @foreach($users as $user)
-                            <tr>
-                                <td>{{ $user->email }}</td>
-                                <td>
-                                    <div class="btn-toolbar justify-content-between">
-                                        <a class="btn btn-outline-primary btn-sm raw-margin-right-8" href="{{ url('admin/users/'.$user->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
-                                        {{-- <form method="post" action="{!! url('admin/users/'.$user->id) !!}">
-                                            {!! csrf_field() !!}
-                                            {!! method_field('DELETE') !!}
-                                            <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure you want to delete this user?')"><i class="fa fa-trash"></i> Delete</button>
-                                        </form> --}}
-                                    </div>
-                                </td>
-                            </tr>
+                            @if ($user->id !== auth()->id())
+                                <tr>
+                                    <td>{{ $user->email }}</td>
+                                    <td>
+                                        <div class="btn-toolbar justify-content-between">
+                                            <a class="btn btn-outline-primary btn-sm raw-margin-right-8" href="{{ url('admin/users/'.$user->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
+
+                                            {!! app(\App\Http\Forms\AdminUserForm::class)->confirm('Are you sure you want to delete this user?')->delete($user) !!}
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

@@ -40,8 +40,11 @@
         @yield("alerts")
 
         <footer class="footer">
-            <div class="container-fluid">
+            <div class="container-fluid d-flex justify-content-between">
                 <span>&copy; {!! date('Y'); !!} <a href="">You</a></span>
+                @if (session('original_user'))
+                    {!! form()->action('post', 'users.return-switch', 'Switch Back', [ 'class' => 'btn btn-secondary' ]) !!}
+                @endif
             </div>
         </footer>
 

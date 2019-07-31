@@ -100,7 +100,9 @@ class TeamsController extends Controller
         }
 
         $form = app(TeamForm::class)->edit($team);
-        $inviteForm = app(TeamInviteForm::class)->setRoute('user.teams.invite', $team)->make();
+
+        $inviteForm = app(TeamInviteForm::class)
+            ->setRoute('user.teams.invite', $team)->make();
 
         return view('user.teams.edit')
             ->with('inviteForm', $inviteForm)

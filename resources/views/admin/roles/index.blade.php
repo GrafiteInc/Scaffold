@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    <div class="row mt-4">
+    <div class="row mt-3">
         <div class="col-md-12">
             @if ($roles->isEmpty())
                 <div class="card card-default text-center">
@@ -31,12 +31,9 @@
                                 <td>{{ $role->label }}</td>
                                 <td>
                                     <div class="btn-toolbar justify-content-between">
-                                        <a class="btn btn-outline-primary btn-sm raw-margin-right-8" href="{{ url('admin/roles/'.$role->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
-                                        <form method="post" action="{!! url('admin/roles/'.$role->id) !!}">
-                                            {!! csrf_field() !!}
-                                            {!! method_field('DELETE') !!}
-                                            <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure you want to delete this role?')"><i class="fa fa-trash"></i> Delete</button>
-                                        </form>
+                                        <a class="btn btn-outline-primary btn-sm" href="{{ url('admin/roles/'.$role->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
+
+                                        {!! app(\App\Http\Forms\RoleForm::class)->confirm('Are you sure you want to delete this role?')->delete($role) !!}
                                     </div>
                                 </td>
                             </tr>

@@ -4,20 +4,23 @@ namespace App\Models;
 
 use App\Models\Concerns\HasRoles;
 use App\Models\Concerns\HasTeams;
+use App\Models\Concerns\Searchable;
 use App\Models\Concerns\HasActivity;
 use App\Notifications\ResetPassword;
 use App\Models\Concerns\HasPermissions;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
     use Notifiable,
         HasTeams,
         HasActivity,
         HasRoles,
-        HasPermissions;
+        HasPermissions,
+        Searchable;
 
     /**
      * The database table used by the model.
@@ -59,7 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     public $appends = [
-        'gravatar',
+        'avatar',
     ];
 
     /**
@@ -78,11 +81,14 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return string
      */
-    public function getGravatarAttribute()
+    public function getAvatarAttribute()
     {
-        $hash = md5(strtolower(trim($this->email)));
+        // Create an image avatar
+        // Also allow profile pic uploads
 
-        return "https://www.gravatar.com/avatar/{$hash}&s=20";
+        // $hash = md5(strtolower(trim($this->email)));
+
+        // return "https://www.gravatar.com/avatar/{$hash}&s=20";
     }
 
     /**
@@ -95,6 +101,26 @@ class User extends Authenticatable implements MustVerifyEmail
     public function notifyPasswordReset($token)
     {
         $this->notify(new ResetPassword($token));
+    }
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 
     /**

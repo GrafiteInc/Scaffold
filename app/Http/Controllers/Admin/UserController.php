@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
-use App\Http\Forms\UserForm;
+use App\Models\Invite;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use App\Http\Forms\AdminUserForm;
+use App\Http\Forms\InviteUserForm;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserInviteRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\UserInviteEmail;
+use Illuminate\Support\Facades\Notification;
 
 class UserController extends Controller
 {
@@ -30,30 +35,31 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource searched.
+     * Search for a matching User.
      *
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request)
     {
-        // if (! $request->search) {
-        //     return redirect('admin/users');
-        // }
+        $users = app(User::class)
+            ->search($request->search)
+            ->get();
 
-        // $users = $this->service->search($request->search);
-
-        // return view('admin.users.index')
-        //     ->with('users', $users);
+        return view('admin.users.index')
+            ->with('users', $users);
     }
 
     /**
-     * Show the form for inviting a user.
+     * Show the form for inviting a User.
      *
      * @return \Illuminate\Http\Response
      */
     public function getInvite()
     {
-        return view('admin.users.invite');
+        $form = app(InviteUserForm::class)->make();
+
+        return view('admin.users.invite')
+            ->with('form', $form);
     }
 
     /**
@@ -61,29 +67,45 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function postInvite(UserInviteRequest $request)
+    public function postInvite(Request $request)
     {
-        $result = $this->service->invite($request->except(['_token', '_method']));
+        $message = trans('general.user.invite');
+        $token = Str::uuid();
 
-        if ($result) {
-            return redirect('admin/users')->with('message', 'Successfully invited');
+        $invite = Invite::firstOrCreate([
+            'user_id' => auth()->id(),
+            'email' => $request->email,
+            'message' => $message,
+            'token' => $token,
+        ]);
+
+        if ($invite) {
+            Notification::route('mail', $request->email)
+                ->notify(new UserInviteEmail(
+                    $request->email,
+                    auth()->user(),
+                    $message,
+                    $token
+                ));
+
+            return back()->with('message', 'Invitation was sent');
         }
 
-        return back()->with('errors', ['Failed to invite']);
+        return back()->withErrors(['Invitation was not sent']);
     }
 
     /**
-     * Switch to a different User profile
+     * Switch to a different User
      *
      * @return \Illuminate\Http\Response
      */
-    public function switchToUser($id)
+    public function switchToUser(User $user)
     {
-        if ($this->service->switchToUser($id)) {
-            return redirect('dashboard')->with('message', 'You\'ve switched users.');
-        }
+        session()->put('original_user', auth()->id());
 
-        return redirect('dashboard')->with('errors', ['Could not switch users']);
+        Auth::login($user);
+
+        return redirect(route('home'))->withMessage('You switched users!');
     }
 
     /**
@@ -91,24 +113,30 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function switchUserBack()
+    public function switchBack()
     {
-        if ($this->service->switchUserBack()) {
-            return back()->with('message', 'You\'ve switched back.');
+        if (! session('original_user')) {
+            abort(401);
         }
 
-        return back()->with('errors', ['Could not switch back']);
+        $user = User::find(session('original_user'));
+
+        session()->forget('original_user');
+
+        Auth::login($user);
+
+        return redirect(route('home'))->withMessage('You switched back!');
     }
 
     /**
-     * Show the form for editing the user.
+     * Show the form for editing the User.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
     {
-        $form = app(UserForm::class)->edit($user);
+        $form = app(AdminUserForm::class)->edit($user);
 
         return view('admin.users.edit')
             ->with('form', $form)
@@ -116,37 +144,38 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the User in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $result = $this->service->update($id, $request->except(['_token', '_method']));
+        try {
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
 
-        if ($result) {
+            $user->roles()->sync($request->roles);
+
             return back()->with('message', 'Successfully updated');
+        } catch (Exception $e) {
+            return back()->with('errors', ['Failed to update']);
         }
-
-        return back()->with('errors', ['Failed to update']);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the User from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $result = $this->service->destroy($id);
+        $user->delete();
 
-        if ($result) {
-            return redirect('admin/users')->with('message', 'Successfully deleted');
-        }
-
-        return redirect('admin/users')->with('errors', ['Failed to delete']);
+        return redirect(route('admin.users.index'));
     }
 }

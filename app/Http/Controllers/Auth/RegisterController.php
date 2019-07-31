@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use Validator;
+use App\Models\Role;
 use App\Models\User;
-use App\Services\InviteService;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Controllers\Auth\Concerns\RegisterViaInvites;
@@ -65,10 +65,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password'])
+            'password' => bcrypt($data['password']),
         ]);
+
+        $user->roles()->attach(Role::where('name', 'member')->first()->id);
+
+        return $user;
     }
 }
