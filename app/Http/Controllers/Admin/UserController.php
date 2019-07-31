@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Invite;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Services\UserService;
 use App\Http\Forms\AdminUserForm;
 use App\Http\Forms\InviteUserForm;
 use App\Http\Controllers\Controller;
@@ -16,11 +15,6 @@ use Illuminate\Support\Facades\Notification;
 
 class UserController extends Controller
 {
-    public function __construct(UserService $userService)
-    {
-        $this->service = $userService;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -37,6 +31,7 @@ class UserController extends Controller
     /**
      * Search for a matching User.
      *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request)
@@ -65,6 +60,7 @@ class UserController extends Controller
     /**
      * Show the form for inviting a customer.
      *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function postInvite(Request $request)
@@ -97,6 +93,7 @@ class UserController extends Controller
     /**
      * Switch to a different User
      *
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function switchToUser(User $user)

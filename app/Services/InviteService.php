@@ -14,7 +14,7 @@ class InviteService
     /**
      * Create an invite
      *
-     * @param string $relationship
+     * @param string $model
      * @param string $email
      * @param string $message
      * @return \App\Models\Invite

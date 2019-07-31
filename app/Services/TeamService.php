@@ -26,7 +26,7 @@ class TeamService
      *
      * @return \App\Models\Team
      */
-    public function create($payload)
+    public function create(array $payload)
     {
         return $this->model->create([
             'user_id' => auth()->user()->id,
