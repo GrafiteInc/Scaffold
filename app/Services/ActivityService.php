@@ -12,26 +12,10 @@ class ActivityService
     }
 
     /**
-     * All activities
-     *
-     * @return  Collection
-     */
-    public function getByUser($userId, $paginate = null)
-    {
-        $query = $this->model->where('user_id', $userId);
-
-        if (!is_null($paginate)) {
-            return $query->paginate($paginate);
-        }
-
-        return $query->get();
-    }
-
-    /**
      * Create an activity record
      *
      * @param  string $description
-     * @return  Activity
+     * @return  \App\Models\Activity
      */
     public function log($description = '')
     {

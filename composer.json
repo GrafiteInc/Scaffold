@@ -43,6 +43,7 @@
             "database/factories"
         ],
         "files": [
+            "app/Helpers/ActivityHelper.php",
             "app/Helpers/UserInterfaceHelper.php"
         ]
     },

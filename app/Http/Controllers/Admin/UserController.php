@@ -134,8 +134,10 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $form = app(AdminUserForm::class)->edit($user);
+        $activities = $user->activities()->limit(25)->get()->reverse();
 
         return view('admin.users.edit')
+            ->with('activities', $activities)
             ->with('form', $form)
             ->with('user', $user);
     }

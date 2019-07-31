@@ -40,7 +40,7 @@ Auth::routes([
 |--------------------------------------------------------------------------
 */
 
-Route::group(['middleware' => ['auth', 'verified']], function () {
+Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
 
     Route::post('users/return-switch', 'Admin\UserController@switchBack')->name('users.return-switch');
 

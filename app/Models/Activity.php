@@ -21,4 +21,8 @@ class Activity extends Model
     public static $rules = [
         'request' => 'required',
     ];
+
+    public $casts = [
+        'request' => 'json',
+    ];
 }

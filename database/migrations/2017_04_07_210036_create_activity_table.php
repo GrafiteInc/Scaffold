@@ -13,7 +13,7 @@ class CreateActivityTable extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->string('description');
+            $table->text('description');
             $table->text('request');
             $table->timestamps();
         });
