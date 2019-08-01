@@ -25,11 +25,13 @@
             <table class="table table-striped">
                 <tr>
                     <th>Description</th>
+                    <th>Route</th>
                     <th width="130px" class="text-right">Created At</th>
                 </tr>
                 @foreach($activities as $activity)
                     <tr>
-                        <td>{{ $activity->description }} ({{ $activity->request['url'] ?? 'unknown' }})</td>
+                        <td>{{ $activity->description }}</td>
+                        <td><b>{{ $activity->request['method'] }}:</b> {{ $activity->request['url'] }}</td>
                         <td class="text-right">{{ $activity->created_at->format('M d, Y') }}</td>
                     </tr>
                 @endforeach
