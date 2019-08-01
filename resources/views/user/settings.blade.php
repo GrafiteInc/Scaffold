@@ -6,8 +6,8 @@
 
     <div class="mt-3">
         <div class="row">
-            <div class="col-md-4">
-                <img class="img-fluid img-thumbnail" src="{{ auth()->user()->avatar_url }}" alt="">
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="user-avatar shadow-sm border" style="background-image: url({{ auth()->user()->avatar_url }})"></div>
             </div>
             <div class="col-md-8">
                 {!! $form !!}
