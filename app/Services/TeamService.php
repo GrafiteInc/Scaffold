@@ -116,7 +116,7 @@ class TeamService
             $notification->isImportant();
 
             $member->notify($notification);
-            $member->teamMemberships->detach($team->id);
+            $member->teamMemberships()->detach($team->id);
         });
 
         $team->invites()->delete();

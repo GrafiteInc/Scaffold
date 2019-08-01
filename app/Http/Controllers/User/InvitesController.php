@@ -31,6 +31,7 @@ class InvitesController extends Controller
     public function accept(Invite $invite)
     {
         $relationship = $invite->relationship;
+
         auth()->user()->$relationship()->attach($invite->model_id);
 
         if ($invite->delete()) {

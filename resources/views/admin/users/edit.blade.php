@@ -29,7 +29,7 @@
                 </tr>
                 @foreach($activities as $activity)
                     <tr>
-                        <td>{{ $activity->description }} ({{ $activity->request['url'] }})</td>
+                        <td>{{ $activity->description }} ({{ $activity->request['url'] ?? 'unknown' }})</td>
                         <td class="text-right">{{ $activity->created_at->format('M d, Y') }}</td>
                     </tr>
                 @endforeach

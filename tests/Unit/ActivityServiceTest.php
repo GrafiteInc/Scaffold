@@ -1,36 +1,25 @@
 <?php
 
-use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+namespace Tests\Unit;
+
 use Tests\TestCase;
-use App\Services\RoleService;
+use App\Models\Activity;
+use App\Services\ActivityService;
 
 class ActivityServiceTest extends TestCase
 {
-    protected $service;
-
-    // public function setUp()
-    // {
-    //     parent::setUp();
-    //     $this->service = $this->app->make(ActivityService::class);
-    // }
-
-    public function testGetByUser()
+    public function setUp(): void
     {
-        // $user = factory(User::class)->create();
+        parent::setUp();
 
-        // $response = $this->service->getByUser($user);
-        // $this->assertEquals(get_class($response), 'Illuminate\Database\Eloquent\Collection');
-        // $this->assertTrue(is_array($response->toArray()));
-        // $this->assertEquals(0, count($response->toArray()));
+        $this->service = $this->app->make(ActivityService::class);
     }
 
     public function testLog()
     {
-        // $user = factory(User::class)->create();
-        // $this->be($user);
+        $response = $this->service->log('this is a simple test');
 
-        // $response = $this->service->log('this is a simple test');
-        // $this->assertEquals(get_class($response), 'App\Models\Activity');
+        $this->assertEquals(get_class($response), 'App\Models\Activity');
+        $this->assertEquals('this is a simple test', Activity::first()->description);
     }
 }

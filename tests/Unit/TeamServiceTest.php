@@ -1,85 +1,124 @@
 <?php
 
+namespace Tests\Unit;
+
 use Tests\TestCase;
-use App\Services\RoleService;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Models\Team;
+use App\Models\User;
+use App\Services\TeamService;
+use App\Notifications\UserInviteEmail;
+use App\Notifications\InAppNotification;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Notifications\AnonymousNotifiable;
 
-class RoleServiceTest extends TestCase
+class TeamServiceTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
 
+        $this->service = $this->app->make(TeamService::class);
+    }
 
-    // protected $service;
-    // protected $originalArray;
-    // protected $editedArray;
-    // protected $searchTerm;
+    public function testCreate()
+    {
+        $result = $this->service->create([
+            'name' => 'Justice League'
+        ]);
 
-    // public function setUp()
-    // {
-    //     parent::setUp();
-    //     $this->service = $this->app->make(RoleService::class);
-    //     $this->originalArray = [
-    //         'id' => 1,
-    //         'name' => 'coders',
-    //         'label' => 'Coders',
-    //         'permissions' => ['super' => 'on'],
-    //     ];
-    //     $this->modifiedArray = [
-    //         'id' => 1,
-    //         'name' => 'hackers',
-    //         'label' => 'Hackers',
-    //         'permissions' => [],
-    //     ];
-    //     $this->editedArray = [
-    //         'id' => 1,
-    //         'name' => 'hackers',
-    //         'label' => 'Hackers',
-    //         'permissions' => '',
-    //     ];
-    //     $this->searchTerm = 'who';
-    // }
+        $this->assertEquals('Justice League', $result->name);
+    }
 
-    // public function testAll()
-    // {
-    //     $response = $this->service->all();
-    //     $this->assertEquals(get_class($response), 'Illuminate\Database\Eloquent\Collection');
-    //     $this->assertTrue(is_array($response->toArray()));
-    //     $this->assertEquals(0, count($response->toArray()));
-    // }
+    public function testUpdate()
+    {
+        $team = factory(Team::class)->create([
+            'name' => 'Avengers'
+        ]);
 
-    // public function testPaginated()
-    // {
-    //     $response = $this->service->paginated(1);
-    //     $this->assertEquals(get_class($response), 'Illuminate\Pagination\LengthAwarePaginator');
-    //     $this->assertEquals(0, $response->total());
-    // }
+        $result = $this->service->update($team, [
+            'name' => 'Justice League'
+        ]);
 
-    // public function testSearch()
-    // {
-    //     $response = $this->service->search($this->searchTerm, 25);
-    //     $this->assertEquals(get_class($response), 'Illuminate\Pagination\LengthAwarePaginator');
-    //     $this->assertEquals(0, $response->total());
-    // }
+        $this->assertEquals('Justice League', $result->name);
+    }
 
-    // public function testCreate()
-    // {
-    //     $response = $this->service->create($this->originalArray);
-    //     $this->assertEquals(get_class($response), 'App\Models\Role');
-    //     $this->assertEquals(1, $response->id);
-    // }
+    public function testInvite()
+    {
+        Notification::fake();
 
-    // public function testUpdate()
-    // {
-    //     $role = $this->service->create($this->originalArray);
-    //     $response = $this->service->update($role->id, $this->modifiedArray);
+        $team = factory(Team::class)->create([
+            'name' => 'Avengers'
+        ]);
 
-    //     $this->assertEquals($role->id, $response->id);
-    //     $this->assertDatabaseHas('roles', $this->editedArray);
-    // }
+        $result = $this->service->invite($team->id, 'someone@example.com');
 
-    // public function testDestroy()
-    // {
-    //     $role = $this->service->create($this->originalArray);
-    //     $response = $this->service->destroy($role->id);
-    //     $this->assertTrue($response);
-    // }
+        $this->assertStringContainsString('Avengers', $result->message);
+
+        Notification::assertSentTo(new AnonymousNotifiable, UserInviteEmail::class);
+    }
+
+    public function testLeaveTeam()
+    {
+        Notification::fake();
+
+        $teamAdmin = factory(User::class)->create([
+            'id' => 999,
+            'name' => 'Joe',
+        ]);
+
+        $team = factory(Team::class)->create([
+            'user_id' => 999,
+            'name' => 'Avengers',
+        ]);
+
+        $team->members()->attach($this->user->id);
+
+        $this->service->leave($team->id);
+
+        $this->assertEquals(0, $team->members()->count());
+
+        Notification::assertSentTo($teamAdmin, InAppNotification::class);
+    }
+
+    public function testRemoveMember()
+    {
+        $teamAdmin = factory(User::class)->create([
+            'id' => 999,
+            'name' => 'Joe',
+        ]);
+
+        $team = factory(Team::class)->create([
+            'user_id' => 999,
+            'name' => 'Avengers',
+        ]);
+
+        $team->members()->attach($this->user->id);
+
+        $this->service->remove($team, $this->user);
+
+        $this->assertEquals(0, $team->members()->count());
+    }
+
+    public function testDeleteTeam()
+    {
+        Notification::fake();
+
+        $teamAdmin = factory(User::class)->create([
+            'id' => 999,
+            'name' => 'Joe',
+        ]);
+
+        $team = factory(Team::class)->create([
+            'user_id' => 999,
+            'name' => 'Avengers',
+        ]);
+
+        $team->members()->attach($this->user->id);
+
+        $this->service->destroy($team);
+
+        $this->assertEquals(0, $team->members()->count());
+
+        Notification::assertSentTo($this->user, InAppNotification::class);
+    }
 }
