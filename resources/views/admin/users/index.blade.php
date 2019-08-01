@@ -28,7 +28,7 @@
                 <table class="table table-striped">
                     <thead>
                         <th>Email</th>
-                        <th class="text-right" width="165px">Actions</th>
+                        <th class="text-right" width="145px">Actions</th>
                     </thead>
                     <tbody>
                         @foreach($users as $user)
