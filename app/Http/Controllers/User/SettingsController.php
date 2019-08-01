@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use Exception;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UserUpdateRequest;
 use App\Http\Forms\UserForm;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UserUpdateRequest;
 
 class SettingsController extends Controller
 {
@@ -40,11 +41,19 @@ class SettingsController extends Controller
     public function update(UserUpdateRequest $request)
     {
         try {
-            if (auth()->user()->update($request->all())) {
-                return back()->with('message', 'Settings updated successfully');
+            if ($request->avatar) {
+                Storage::delete(auth()->user()->avatar);
             }
 
-            return back()->withErrors(['Could not update user']);
+            $path = Storage::putFile('public/avatars', $request->avatar, 'public');
+
+            auth()->user()->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'avatar' => $path,
+            ]);
+
+            return back()->with('message', 'Settings updated successfully');
         } catch (Exception $e) {
             return back()->withErrors($e->getMessage());
         }

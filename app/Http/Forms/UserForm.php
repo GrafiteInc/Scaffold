@@ -4,6 +4,7 @@ namespace App\Http\Forms;
 
 use App\Models\Role;
 use App\Models\User;
+use Grafite\FormMaker\Fields\File;
 use Grafite\FormMaker\Fields\Text;
 use Grafite\FormMaker\Fields\Email;
 use Grafite\FormMaker\Fields\HasMany;
@@ -19,7 +20,11 @@ class UserForm extends ModelForm
         'submit' => 'Save',
     ];
 
-    public $columns = 2;
+    public $columns = 1;
+
+    public $orientation = 'horizontal';
+
+    public $hasFiles = true;
 
     public function fields()
     {
@@ -29,6 +34,9 @@ class UserForm extends ModelForm
             ]),
             Email::make('email', [
                 'required' => true
+            ]),
+            File::make('avatar', [
+
             ]),
         ];
     }

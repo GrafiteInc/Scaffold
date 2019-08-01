@@ -8,10 +8,11 @@ use App\Models\Concerns\Searchable;
 use App\Models\Concerns\HasActivity;
 use App\Notifications\ResetPassword;
 use App\Models\Concerns\HasPermissions;
+use Illuminate\Support\Facades\Storage;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
@@ -36,6 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
      */
     protected $fillable = [
         'name',
+        'avatar',
         'email',
         'password',
     ];
@@ -62,7 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
      * @var array
      */
     public $appends = [
-        'avatar',
+        'avatar_url',
     ];
 
     /**
@@ -77,18 +79,13 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     }
 
     /**
-     * Gravatar Image
+     * Avatar Image Url
      *
      * @return string
      */
-    public function getAvatarAttribute()
+    public function getAvatarUrlAttribute()
     {
-        // Create an image avatar
-        // Also allow profile pic uploads
-
-        // $hash = md5(strtolower(trim($this->email)));
-
-        // return "https://www.gravatar.com/avatar/{$hash}&s=20";
+        return url(Storage::url($this->avatar));
     }
 
     /**
