@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-striped table-borderless m-0 p-0">
+                <table class="table table-borderless m-0 p-0">
                     <tbody>
                     @foreach ($notifications as $notification)
                         <tr @if ($notification->data['is_important']) class="text-warning" @endif>

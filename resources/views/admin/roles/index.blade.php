@@ -25,12 +25,12 @@
                         <h4 class="m-0">Roles</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless m-0 p-0">
+                        <table class="table table-borderless m-0 p-0">
                             <tbody>
                                 @foreach($roles as $role)
                                     <tr>
                                         <td>{{ $role->label }}</td>
-                                        <td width="145px" class="text-right">
+                                        <td width="140px" class="text-right">
                                             <div class="btn-toolbar justify-content-between">
                                                 <a class="btn btn-outline-primary btn-sm" href="{{ url('admin/roles/'.$role->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
 

@@ -34,7 +34,7 @@
                             <h4 class="m-0">Members</h4>
                         </div>
                         <div class="card-body">
-                            <table class="table p-0 m-0 table-borderless table-striped">
+                            <table class="table p-0 m-0 table-borderless">
                                 <tbody>
                                     @foreach($team->members as $member)
                                         <tr>
@@ -72,7 +72,7 @@
                         <h4 class="m-0">Invites</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless p-0 m-0">
+                        <table class="table table-borderless p-0 m-0">
                             <tbody>
                                 @foreach($team->invites as $invite)
                                     <tr>

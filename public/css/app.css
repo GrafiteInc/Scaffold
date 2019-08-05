@@ -15032,6 +15032,15 @@ body {
   vertical-align: middle;
 }
 
+.card-body .table {
+  width: calc(100% + 20px);
+  margin: -10px !important;
+}
+
+.card-body .table tr td {
+  padding: 0.55rem;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Navbar

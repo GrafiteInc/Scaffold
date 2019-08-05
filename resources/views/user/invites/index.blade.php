@@ -13,34 +13,37 @@
                     </div>
                 </div>
             @else
-                <table class="table table-striped">
-                    <thead>
-                        <th>Message</th>
-                        <th width="215px" class="text-right">Actions</th>
-                    </thead>
-                    <tbody>
-                        @foreach($invites as $invite)
-                            <tr>
-                                <td>{{ $invite->message }}</td>
-                                <td>
-                                    <div class="btn-toolbar justify-content-between">
-                                        {!! form()->action('post',
-                                            ['user.invites.accept', $invite],
-                                            'Accept Invite',
-                                            ['class' => 'btn btn-sm btn-outline-primary']
-                                        ) !!}
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h4 class="m-0">Available Invites</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-borderless m-0 p-0">
+                            <tbody>
+                                @foreach($invites as $invite)
+                                    <tr>
+                                        <td>{{ $invite->message }}</td>
+                                        <td width="205px">
+                                            <div class="btn-toolbar justify-content-between">
+                                                {!! form()->action('post',
+                                                    ['user.invites.accept', $invite],
+                                                    'Accept Invite',
+                                                    ['class' => 'btn btn-sm btn-outline-primary']
+                                                ) !!}
 
-                                        {!! form()->action('post',
-                                            ['user.invites.reject', $invite],
-                                            'Reject Invite',
-                                            ['class' => 'btn btn-sm btn-outline-warning']
-                                        ) !!}
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                                {!! form()->action('post',
+                                                    ['user.invites.reject', $invite],
+                                                    'Reject Invite',
+                                                    ['class' => 'btn btn-sm btn-outline-warning']
+                                                ) !!}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             @endif
         </div>
     </div>

@@ -29,7 +29,7 @@
                         <h4 class="m-0">Team Members</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless m-0 p-0">
+                        <table class="table table-borderless m-0 p-0">
                             <tbody>
                                 @foreach($team->members as $member)
                                     <tr>

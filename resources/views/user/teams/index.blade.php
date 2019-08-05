@@ -26,15 +26,15 @@
                         <h4 class="m-0">My Teams</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless m-0 p-0">
+                        <table class="table table-borderless m-0 p-0">
                             <tbody>
                                 @foreach($teams as $team)
                                     <tr>
                                         <td>{{ $team->name }}</td>
-                                        <td width="145px" class="text-right">
+                                        <td width="140px" class="text-right">
                                             <div class="btn-toolbar justify-content-between">
                                                 <a class="btn btn-outline-primary btn-sm" href="{!! route('user.teams.edit', $team) !!}"><i class="fa fa-edit"></i> Edit</a>
-                                                {!! app(\App\Http\Forms\TeamForm::class)->confirm('Are you sure you want to delete this Team?')->delete($team) !!}
+                                                {!! app(\App\Http\Forms\TeamForm::class)->confirm('Are you sure you want to delete '.$team->name.'?')->delete($team) !!}
                                             </div>
                                         </td>
                                     </tr>
@@ -61,7 +61,7 @@
                         <h4 class="m-0">Teams I've Joined</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless m-0 p-0">
+                        <table class="table table-borderless m-0 p-0">
                             <tbody>
                                 @foreach($memberships as $team)
                                     <tr>
@@ -69,7 +69,7 @@
                                         <td width="180px" class="text-right">
                                             <div class="btn-toolbar justify-content-between">
                                                 <a class="btn btn-outline-primary btn-sm" href="{!! route('user.teams.show', $team) !!}"><i class="fa fa-eye"></i> View</a>
-                                                {!! form()->confirm('Are you sure you want to leave this Team?')->action('post',
+                                                {!! form()->confirm('Are you sure you want to leave '.$team->name.'?')->action('post',
                                                     ['user.teams.leave', $team],
                                                     'Leave Team',
                                                     ['class' => 'btn btn-sm btn-outline-warning']) !!}

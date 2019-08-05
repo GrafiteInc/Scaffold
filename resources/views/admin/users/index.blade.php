@@ -30,13 +30,13 @@
                         <h4 class="m-0">Registered Users</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless m-0 p-0">
+                        <table class="table table-borderless m-0 p-0">
                             <tbody>
                                 @foreach($users as $user)
                                     @if ($user->id !== auth()->id())
                                         <tr>
                                             <td>{{ $user->email }}</td>
-                                            <td class="text-right" width="145px">
+                                            <td class="text-right" width="140px">
                                                 <div class="btn-toolbar justify-content-between">
                                                     <a class="btn btn-outline-primary btn-sm raw-margin-right-8" href="{{ url('admin/users/'.$user->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
 
