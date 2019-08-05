@@ -19,23 +19,30 @@
 
     <div class="row mt-4">
         <div class="col-md-12">
-            <h4>Activities</h4>
-        </div>
-        <div class="col-md-12 mt-2">
-            <table class="table table-striped">
-                <tr>
-                    <th>Description</th>
-                    <th>Route</th>
-                    <th width="130px" class="text-right">Created At</th>
-                </tr>
-                @foreach($activities as $activity)
-                    <tr>
-                        <td>{{ $activity->description }}</td>
-                        <td><b>{{ $activity->request['method'] }}:</b> {{ $activity->request['url'] }}</td>
-                        <td class="text-right">{{ $activity->created_at->format('M d, Y') }}</td>
-                    </tr>
-                @endforeach
-            </table>
+            @if ($activities->isEmpty())
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        No known activities
+                    </div>
+                </div>
+            @else
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h4 class="m-0">Activities <small>(Last 25)</small></h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-borderless p-0 m-0">
+                            @foreach($activities as $activity)
+                                <tr>
+                                    <td>{{ $activity->description }}</td>
+                                    <td><b>{{ $activity->request['method'] }}:</b> {{ $activity->request['url'] }}</td>
+                                    <td class="text-right">{{ $activity->created_at->format('M d, Y') }}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 

@@ -45,6 +45,7 @@
         ],
         "files": [
             "app/Helpers/ActivityHelper.php",
+            "app/Helpers/NotificationHelper.php",
             "app/Helpers/UserInterfaceHelper.php"
         ]
     },

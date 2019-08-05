@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
             Route::get('/', 'NotificationsController@index')->name('user.notifications');
             Route::post('{uuid}/read', 'NotificationsController@read')->name('user.notifications.read');
             Route::delete('{uuid}/delete', 'NotificationsController@delete')->name('user.notifications.destroy');
+            Route::delete('clear', 'NotificationsController@deleteAll')->name('user.notifications.clear');
         });
 
         Route::group(['prefix' => 'teams'], function () {

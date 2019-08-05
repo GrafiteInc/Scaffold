@@ -22,10 +22,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(24);
+        $users = User::get();
+        $invites = Invite::where([
+            'model_id' => null,
+        ])->get();
 
         return view('admin.users.index')
-            ->with('users', $users);
+            ->with(compact('users', 'invites'));
     }
 
     /**

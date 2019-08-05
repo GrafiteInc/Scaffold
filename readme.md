@@ -7,6 +7,10 @@ $notification->isImportant();
 
 auth()->user()->notify($notification);
 ```
+With the Helper!
+```
+app_notification('This is words from inside the app!', true)
+```
 
 ### Email based Notification
 

@@ -42,6 +42,19 @@ class NotificationsController extends Controller
     {
         auth()->user()->notifications->find($notification)->delete();
 
-        return back()->with('message', 'Deleted');
+        return back()->with('message', 'Deleted notification');
+    }
+
+    /**
+     * Delete all notfications for a user
+     *
+     * @param  string $notification
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteAll()
+    {
+        auth()->user()->notifications()->delete();
+
+        return back()->with('message', 'Deleted all notifications');
     }
 }
