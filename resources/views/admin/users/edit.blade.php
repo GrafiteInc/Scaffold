@@ -31,12 +31,12 @@
                         <h4 class="m-0">Activities <small>(Last 25)</small></h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless p-0 m-0">
+                        <table class="table table-borderless p-0 m-0">
                             @foreach($activities as $activity)
                                 <tr>
                                     <td>{{ $activity->description }}</td>
-                                    <td><b>{{ $activity->request['method'] }}:</b> {{ $activity->request['url'] }}</td>
-                                    <td class="text-right">{{ $activity->created_at->format('M d, Y') }}</td>
+                                    <td width="250px"><b>{{ $activity->request['method'] }}:</b> {{ Str::limit(str_replace(url('/'), '', $activity->request['url']), 20) }}</td>
+                                    <td width="110px" class="text-right">{{ $activity->created_at->format('M d, Y') }}</td>
                                 </tr>
                             @endforeach
                         </table>
