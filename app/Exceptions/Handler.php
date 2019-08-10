@@ -34,6 +34,12 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        if (request()->is('api/*')) {
+            return response()->json([
+                'status' => $exception->getMessage()
+            ], 500);
+        }
+
         parent::report($exception);
     }
 
@@ -46,6 +52,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if (request()->is('api/*')) {
+            return response()->json([
+                'status' => $exception->getMessage()
+            ], 500);
+        }
+
         return parent::render($request, $exception);
     }
 }

@@ -18,6 +18,8 @@ class DestroyController extends Controller
     {
         $user = auth()->user();
 
+        Storage::delete($user->avatar);
+
         $subject = 'Account Deletion.';
         $message = 'Your account has been deleted.';
 

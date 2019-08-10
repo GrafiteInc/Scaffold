@@ -41,11 +41,12 @@ class SettingsController extends Controller
     public function update(UserUpdateRequest $request)
     {
         try {
-            if ($request->avatar) {
-                Storage::delete(auth()->user()->avatar);
-            }
+            $path = auth()->user()->avatar;
 
-            $path = Storage::putFile('public/avatars', $request->avatar, 'public');
+            if (!is_null($request->avatar)) {
+                Storage::delete(auth()->user()->avatar);
+                $path = Storage::putFile('public/avatars', $request->avatar, 'public');
+            }
 
             auth()->user()->update([
                 'name' => $request->name,

@@ -2,67 +2,52 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Services\UserService;
-use Tymon\JWTAuth\Facades\JWTAuth;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateUserRequest;
 
 class UsersController extends ApiController
 {
-    public function __construct(UserService $userService)
+    /**
+     * Update the user profile
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
     {
-        $this->service = $userService;
+        if ($this->user->update([
+            'email' => $request->json('email'),
+            'name' => $request->json('name'),
+        ])) {
+            return response()->json([
+                'data' => $this->user,
+                'status' => 'Profile updated'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'Failed to update the profile.'
+        ], 500);
     }
 
     /**
-     * Get the user
+     * Delete the user profile
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAuthenticatedUser()
+    public function destroy()
     {
-        try {
-            if (! $user = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['user_not_found'], 404);
-            }
-        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-            return response()->json(['token_expired'], $e->getStatusCode());
-        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return response()->json(['token_invalid'], $e->getStatusCode());
-        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-            return response()->json(['token_absent'], $e->getStatusCode());
-        }
+        Storage::delete($this->user->avatar);
 
-        return $user;
-    }
+        $subject = 'Account Deletion.';
+        $message = 'Your account has been deleted.';
 
-    /**
-     * Get user profile
-     * @return JSON
-     */
-    public function getProfile()
-    {
-        $user = $this->getAuthenticatedUser();
+        Notification::route('mail', $this->user->email)
+            ->notify(new StandardEmail($this->user->name, $subject, $message));
 
-        return response()->json(compact('user'));
-    }
+        $this->user->delete();
 
-    /**
-     * Update the user
-     *
-     * @param  UpdateAccountRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function postProfile(Request $request)
-    {
-        $user = $this->getAuthenticatedUser();
-
-        if ($this->service->update($user->id, $request->all())) {
-            return response()->json(compact('user'));
-        }
-
-        return response()->json(['error' => 'Could not update user']);
+        return response()->json([
+            'status' => 'Profile deleted'
+        ]);
     }
 }
