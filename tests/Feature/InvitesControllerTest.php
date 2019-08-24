@@ -28,4 +28,24 @@ class InvitesControllerTest extends TestCase
         $response->assertStatus(302);
         $response->assertSessionHas('message', 'Invitation accepted');
     }
+
+    public function testReject()
+    {
+        $user = factory(User::class)->create();
+        $team = factory(Team::class)->create();
+
+        $invite = factory(Invite::class)->create([
+            'user_id' => $user->id,
+            'email' => $this->user->email,
+            'relationship' => 'teamMemberships',
+            'model_id' => $team->id,
+            'message' => 'new team!',
+            'token' => 'foo'
+        ]);
+
+        $response = $this->post(route('user.invites.reject', $invite));
+
+        $response->assertStatus(302);
+        $response->assertSessionHas('message', 'Invitation rejected');
+    }
 }
