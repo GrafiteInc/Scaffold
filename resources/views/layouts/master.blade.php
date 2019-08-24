@@ -27,6 +27,7 @@
 				version="{{ config('app.version', 'v1') }}"
 			></cookielaw>
 
+			<modal></modal>
 			<vue-snotify></vue-snotify>
 
             <session

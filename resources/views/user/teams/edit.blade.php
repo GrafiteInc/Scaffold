@@ -41,7 +41,12 @@
                                             <td>{{ $member->name }}</td>
                                             <td width="220px">
                                                 @if (Gate::forUser($member)->allows('admin-team', $team))
-                                                    <a class="btn btn-danger pull-right btn-sm" href="{{ url('teams/'.$team->id.'/remove/'.$member->id) }}" onclick="return confirm('Are you sure you want to remove this member?')">Remove</a>
+                                                    {!! form()->confirm('Are you sure you want to remove this member?', 'confirmation')
+                                                        ->action('delete',
+                                                        ['teams.remove', [$team, $member]],
+                                                        'Remove',
+                                                        ['class' => 'btn btn-sm btn-outline-danger pull-right']
+                                                    ) !!}
                                                 @endif
                                             </td>
                                         </tr>
@@ -84,7 +89,7 @@
                                                 ['class' => 'btn btn-sm btn-outline-primary']
                                             ) !!}
 
-                                            {!! form()->confirm('Are you sure you want to revoke this invite?')
+                                            {!! form()->confirm('Are you sure you want to revoke this invite?', 'confirmation')
                                                 ->action('post',
                                                 ['invite.revoke', $invite],
                                                 'Revoke Invite',

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use LasseRafn\InitialAvatarGenerator\InitialAvatar;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail, JWTSubject
@@ -85,7 +86,18 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
      */
     public function getAvatarUrlAttribute()
     {
-        return url(Storage::url($this->avatar));
+        if (!is_null($this->avatar)) {
+            return url(Storage::url($this->avatar));
+        }
+
+        return app(InitialAvatar::class)
+            ->name($this->name)
+            ->height(250)
+            ->width(250)
+            ->background('#eeeeee')
+            ->color('#464349')
+            ->generate()
+            ->encode('data-url');
     }
 
     /**

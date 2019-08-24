@@ -12,4 +12,14 @@ class NotificationControllerTest extends TestCase
 
         $response->assertOk();
     }
+
+    public function testMarkAsRead()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testDelete()
+    {
+        $this->markTestIncomplete();
+    }
 }

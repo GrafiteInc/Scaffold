@@ -13,4 +13,24 @@ class UserControllerTest extends TestCase
         $response->assertOk();
         $response->assertSee('Invite New User');
     }
+
+    public function testInvite()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testEdit()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testUpdate()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testDelete()
+    {
+        $this->markTestIncomplete();
+    }
 }

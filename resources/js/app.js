@@ -26,6 +26,7 @@ window.Vue.use(Snotify);
 
 Vue.component('cookielaw', require('./components/cookieLaw.vue').default);
 Vue.component('session', require('./components/session.vue').default);
+Vue.component('modal', require('./components/modal.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

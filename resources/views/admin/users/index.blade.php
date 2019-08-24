@@ -40,7 +40,7 @@
                                                 <div class="btn-toolbar justify-content-between">
                                                     <a class="btn btn-outline-primary btn-sm raw-margin-right-8" href="{{ url('admin/users/'.$user->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
 
-                                                    {!! app(\App\Http\Forms\AdminUserForm::class)->confirm('Are you sure you want to delete this user?')->delete($user) !!}
+                                                    {!! app(\App\Http\Forms\AdminUserForm::class)->confirm('Are you sure you want to delete this user?', 'confirmation')->delete($user) !!}
                                                 </div>
                                             </td>
                                         </tr>
@@ -80,7 +80,7 @@
                                                 ['class' => 'btn btn-sm btn-outline-primary']
                                             ) !!}
 
-                                            {!! form()->confirm('Are you sure you want to revoke this invite?')
+                                            {!! form()->confirm('Are you sure you want to revoke this invite?', 'confirmation')
                                                 ->action('post',
                                                 ['invite.revoke', $invite],
                                                 'Revoke Invite',

@@ -18,7 +18,7 @@
                         <h4 class="m-0">App Notifications</h4>
                     </div>
                     <div class="col-md-6 text-right">
-                        {!! form()->confirm('Are you sure you want to delete all notifications?')
+                        {!! form()->confirm('Are you sure you want to delete all notifications?', 'confirmation')
                             ->action('delete', 'user.notifications.clear',
                                 'Delete All',
                                 ['class' => 'btn btn-sm btn-outline-danger']
@@ -43,7 +43,7 @@
                                 @endif
 
                                 {!! form()
-                                    ->confirm('Are you sure you want to delete this?')
+                                    ->confirm('Are you sure you want to delete this?', 'confirmation')
                                     ->action('delete', ['user.notifications.destroy', $notification->id], 'Delete', ['class' => 'btn btn-sm btn-danger'])
                                 !!}
                             </td>

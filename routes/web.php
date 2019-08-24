@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
         Route::get('settings', 'SettingsController@settings')->name('user.settings');
         Route::delete('destroy', 'DestroyController@destroy')->name('user.destroy');
         Route::put('settings', 'SettingsController@update')->name('user.update');
+        Route::delete('avatar', 'SettingsController@destroyAvatar')->name('user.destroy.avatar');
 
         Route::get('security', 'SecurityController@get')->name('user.security');
         Route::put('security', 'SecurityController@update')->name('user.security.update');
@@ -83,6 +84,7 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
             Route::put('{team}/update', 'TeamsController@update')->name('user.teams.update');
             Route::post('{team}/invite', 'TeamsController@invite')->name('user.teams.invite');
             Route::post('{team}/leave', 'TeamsController@leave')->name('user.teams.leave');
+            Route::delete('{team}/remove/{member}', 'TeamsController@remove')->name('user.teams.remove');
         });
 
         Route::group(['prefix' => 'invites'], function () {

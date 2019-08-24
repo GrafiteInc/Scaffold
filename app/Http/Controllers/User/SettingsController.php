@@ -22,7 +22,7 @@ class SettingsController extends Controller
         $form = app(UserForm::class)->edit($user);
 
         $deleteAccountForm = form()
-            ->confirm(trans('general.user.delete_account'))
+            ->confirm(trans('general.user.delete_account'), 'confirmation')
             ->action('delete', 'user.destroy', 'Delete My Account', [
                 'class' => 'btn btn-danger mt-4'
             ]);
@@ -55,6 +55,26 @@ class SettingsController extends Controller
             ]);
 
             return back()->with('message', 'Settings updated successfully');
+        } catch (Exception $e) {
+            return back()->withErrors($e->getMessage());
+        }
+    }
+
+    /**
+     * Delete a user's avatar
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyAvatar()
+    {
+        try {
+            Storage::delete(auth()->user()->avatar);
+
+            auth()->user()->update([
+                'avatar' => null,
+            ]);
+
+            return back()->with('message', 'Avatar deleted successfully');
         } catch (Exception $e) {
             return back()->withErrors($e->getMessage());
         }

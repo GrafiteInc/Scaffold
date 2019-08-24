@@ -15,6 +15,7 @@
         "grafite/formmaker": "^2.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "lasserafn/php-initial-avatar-generator": "^4.0",
         "tymon/jwt-auth": "^1.0.0-rc.4.1"
     },
     "require-dev": {

@@ -12,7 +12,7 @@
                 <div class="dropdown">
                     <button class="btn btn-text dropdown-toggle btn-account" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="profile-icon" style="background-image: url({{ auth()->user()->avatar_url }});"></div>
-                        <span>{{ auth()->user()->name }}</span>
+                        <span>{{ Str::limit(auth()->user()->name, 16) }}</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="{{ route('user.settings') }}">Settings</a>
