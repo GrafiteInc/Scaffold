@@ -15074,6 +15074,7 @@ body {
 .navbar-nav .btn-account {
   text-align: right;
   width: 200px;
+  margin-top: -2px;
 }
 
 .navbar-nav .btn-account:focus {
@@ -15082,9 +15083,13 @@ body {
 
 .navbar-nav .dropdown-menu {
   position: absolute;
-  top: 44px;
-  left: 10px;
+  top: 40px;
+  left: 5px;
   min-width: 200px;
+}
+
+.navbar-nav .dropdown-toggle::after {
+  content: none;
 }
 
 /*

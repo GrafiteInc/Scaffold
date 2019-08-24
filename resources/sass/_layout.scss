@@ -162,15 +162,19 @@ body {
     .btn-account {
         text-align: right;
         width: 200px;
+        margin-top: -2px;
         &:focus {
             box-shadow: none;
         }
     }
     .dropdown-menu {
         position: absolute;
-        top: 44px;
-        left: 10px;
+        top: 40px;
+        left: 5px;
         min-width: 200px;
+    }
+    .dropdown-toggle::after {
+        content: none;
     }
 }
 
