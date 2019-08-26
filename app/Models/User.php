@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Laravel\Cashier\Billable;
 use App\Models\Concerns\HasRoles;
 use App\Models\Concerns\HasTeams;
 use App\Models\Concerns\Searchable;
@@ -17,7 +18,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
-    use Notifiable,
+    use Billable,
+        Notifiable,
         HasTeams,
         HasActivity,
         HasRoles,
@@ -149,5 +151,27 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
             ->filter(function ($value, $attribute) use ($visibleAttributes) {
                 return in_array($attribute, $visibleAttributes);
             }));
+    }
+
+    /**
+     * Check if the user has a subscription
+     * in any possible state
+     *
+     * @return boolean
+     */
+    public function hasActiveSubscription()
+    {
+        if ($this->subscription('main') && ! $this->subscription('main')->cancelled()) {
+            return true;
+        }
+
+        if ($this->subscription('main') &&
+            $this->subscription('main')->cancelled() &&
+            $this->subscription('main')->onGracePeriod()
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }

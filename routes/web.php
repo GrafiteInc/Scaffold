@@ -67,6 +67,17 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
         Route::get('security', 'SecurityController@get')->name('user.security');
         Route::put('security', 'SecurityController@update')->name('user.security.update');
 
+        Route::group(['prefix' => 'billing'], function () {
+            Route::get('/', 'BillingController@settings')->name('user.billing');
+
+            Route::group(['middleware' => 'has-subscription'], function () {
+                Route::post('update', 'BillingController@update')->name('user.billing.update');
+                Route::post('update', 'BillingController@update')->name('user.billing.update');
+                Route::post('update', 'BillingController@update')->name('user.billing.update');
+                Route::delete('cancel', 'BillingController@cancel')->name('user.billing.cancel');
+            });
+        });
+
         Route::group(['prefix' => 'notifications'], function () {
             Route::get('/', 'NotificationsController@index')->name('user.notifications');
             Route::post('{uuid}/read', 'NotificationsController@read')->name('user.notifications.read');
