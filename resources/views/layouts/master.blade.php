@@ -15,7 +15,7 @@
 
         <link rel="icon" type="image/ico" href="">
 
-        @if (auth()->user()->dark_mode)
+        @if (auth()->user() && auth()->user()->dark_mode)
             <link rel="stylesheet" type="text/css" href="/css/dark-app.css">
         @else
             <link rel="stylesheet" type="text/css" href="/css/light-app.css">
