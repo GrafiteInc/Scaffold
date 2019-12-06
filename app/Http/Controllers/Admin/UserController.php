@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Forms\AdminUserForm;
 use App\Http\Forms\InviteUserForm;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\UserInviteEmail;
@@ -164,6 +165,7 @@ class UserController extends Controller
 
             return back()->with('message', 'Successfully updated');
         } catch (Exception $e) {
+            Log::error($e);
             return back()->with('errors', ['Failed to update']);
         }
     }

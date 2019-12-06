@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Exception;
 use App\Http\Forms\UserForm;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
@@ -44,6 +45,10 @@ class SettingsController extends Controller
             $path = auth()->user()->avatar;
 
             if (!is_null($request->avatar)) {
+                if (($request->file('avatar')->getSize() / 1024) > 10000) {
+                    return back()->withErrors(['Avatar file is too big, must be below 10MB.']);
+                }
+
                 Storage::delete(auth()->user()->avatar);
                 $path = Storage::putFile('public/avatars', $request->avatar, 'public');
             }
@@ -56,6 +61,7 @@ class SettingsController extends Controller
 
             return back()->with('message', 'Settings updated successfully');
         } catch (Exception $e) {
+            Log::error($e);
             return back()->withErrors($e->getMessage());
         }
     }
@@ -76,6 +82,7 @@ class SettingsController extends Controller
 
             return back()->with('message', 'Avatar deleted successfully');
         } catch (Exception $e) {
+            Log::error($e);
             return back()->withErrors($e->getMessage());
         }
     }

@@ -82,6 +82,11 @@
                                 @foreach($team->invites as $invite)
                                     <tr>
                                         <td>{{ $invite->email }}</td>
+                                        <td>
+                                            @if ($invite->user)
+                                                <span class="badge badge-primary badge-pill">Registered User</span>
+                                            @endif
+                                        </td>
                                         <td width="220px" class="text-right">
                                             {!! form()->action('post',
                                                 ['invite.resend', $invite],

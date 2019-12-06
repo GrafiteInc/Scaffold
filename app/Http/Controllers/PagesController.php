@@ -13,6 +13,6 @@ class PagesController extends Controller
      */
     public function home()
     {
-        return view('pages.welcome');
+        return view('pages.home');
     }
 }

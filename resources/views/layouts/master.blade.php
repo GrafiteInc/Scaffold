@@ -18,7 +18,11 @@
         <link rel="stylesheet" type="text/css" href="/css/app.css">
     </head>
     <body>
-        @include("layouts.navigation")
+        @if (!request()->routeIs(['home']))
+            @include("layouts.app-nav")
+        @else
+            @include("layouts.home-nav")
+        @endif
 
         <div id="app" class="container-fluid">
             @yield("app-content")
