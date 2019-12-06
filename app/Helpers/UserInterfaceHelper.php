@@ -14,3 +14,10 @@ if (!function_exists('route_link_class')) {
         return $class;
     }
 }
+
+if (!function_exists('sessionErrorMessage')) {
+    function sessionErrorMessage()
+    {
+        return str_replace("'", '`', collect(optional(session('errors'))->toArray())->flatten()->implode(' '));
+    }
+}

@@ -15,7 +15,11 @@
 
         <link rel="icon" type="image/ico" href="">
 
-        <link rel="stylesheet" type="text/css" href="/css/app.css">
+        @if (auth()->user()->dark_mode)
+            <link rel="stylesheet" type="text/css" href="/css/dark-app.css">
+        @else
+            <link rel="stylesheet" type="text/css" href="/css/light-app.css">
+        @endif
     </head>
     <body>
         @if (!request()->routeIs(['home']))
@@ -37,8 +41,7 @@
             <session
                 user='{!! optional(auth()->user())->jsonSessionData() !!}'
                 message='{!! session('message') !!}'
-                errors='{!! session('errors') !!}'
-                error_message='{!! collect(optional(session('errors'))->toArray())->flatten()->implode(' ') !!}'
+                error_message='{!! sessionErrorMessage() !!}'
             ></session>
         </div>
 

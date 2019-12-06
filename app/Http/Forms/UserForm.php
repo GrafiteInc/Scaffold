@@ -7,6 +7,7 @@ use App\Models\User;
 use Grafite\FormMaker\Fields\File;
 use Grafite\FormMaker\Fields\Text;
 use Grafite\FormMaker\Fields\Email;
+use Grafite\FormMaker\Fields\Checkbox;
 use Grafite\FormMaker\Forms\ModelForm;
 
 class UserForm extends ModelForm
@@ -33,6 +34,9 @@ class UserForm extends ModelForm
             ]),
             Email::make('email', [
                 'required' => true
+            ]),
+            Checkbox::make('dark_mode', [
+                'legend' => 'Dark Mode'
             ]),
             File::make('avatar', [
 

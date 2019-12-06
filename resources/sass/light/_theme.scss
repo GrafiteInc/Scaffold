@@ -1,5 +1,23 @@
 /*
 |--------------------------------------------------------------------------
+| General
+|--------------------------------------------------------------------------
+*/
+
+$off-white: #EEEEEE;
+$slate:          #707587 !default;
+$slate-dark:     #5a5c6b !default;
+$slate-darkest:  #464349 !default;
+$slate-light:    #8c8b94 !default;
+$slate-lightest:  #d5d6db !default;
+$html-bg: $gray-900;
+$sidebar-bg: $slate-lightest;
+$sidebar-header: $slate-light;
+$navbar-header: $slate-dark;
+$footer-bg: $slate-darkest;
+
+/*
+|--------------------------------------------------------------------------
 | Window
 |--------------------------------------------------------------------------
 */
@@ -99,14 +117,22 @@ html {
     }
 }
 
-.delete-account {
-    margin-top: 360px;
+.user-avatar {
+    background-color: #EEE;
 }
 
-.user-avatar {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center center;
+.client-dashboard-avatar {
+    background-color: #EEE;
+}
+
+.profile-icon {
+    background-color: #EEE;
+}
+
+input.form-control, textarea.form-control, select.form-control {
+    color: #111 !important;
+    &:focus {
+        color: #111;
+        outline: 0 !important;
+    }
 }

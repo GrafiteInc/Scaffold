@@ -3,7 +3,7 @@
 | Pre Vendors
 |--------------------------------------------------------------------------
 */
-@import "variables";
+@import "dark/variables";
 @import '~animate.css';
 @import "~vue-snotify/styles/material";
 
@@ -13,7 +13,7 @@
 |--------------------------------------------------------------------------
 */
 @import '~bootstrap/scss/bootstrap';
-@import 'bootswatch';
+@import 'dark/bootswatch';
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +21,5 @@
 |--------------------------------------------------------------------------
 */
 @import "layout.scss";
-@import "theme.scss";
+@import "dark/theme.scss";
 @import "utilities.scss";

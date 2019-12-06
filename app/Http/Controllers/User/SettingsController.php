@@ -56,6 +56,7 @@ class SettingsController extends Controller
             auth()->user()->update([
                 'name' => $request->name,
                 'email' => $request->email,
+                'dark_mode' => $request->filled('dark_mode') ?? false,
                 'avatar' => $path,
             ]);
 

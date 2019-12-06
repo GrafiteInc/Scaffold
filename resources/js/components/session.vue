@@ -5,7 +5,6 @@
         mame: "session",
         props: [
             'user',
-            'errors',
             'message',
             'error_message'
         ],
@@ -13,7 +12,6 @@
             window.session = {
                 user: this.user,
                 message: this.message,
-                errors: this.errors,
                 error_message: this.error_message,
             }
 

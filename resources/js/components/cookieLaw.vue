@@ -42,7 +42,7 @@
 </script>
 
 <style lang="scss">
-    @import './../../sass/variables';
+    @import './../../sass/light/variables';
 
     .Cookie--basic {
         background-color: $light;

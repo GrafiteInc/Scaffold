@@ -1,11 +1,11 @@
-// Grafite
+// Flatly 4.3.1
+// Bootswatch
 
 //
 // Color system
 //
 
 $white:    #fff !default;
-$off-white: #eee !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #ecf0f1 !default;
 $gray-300: #dee2e6 !default;
@@ -28,13 +28,7 @@ $green:   #18BC9C !default;
 $teal:    #20c997 !default;
 $cyan:    #3498DB !default;
 
-$slate:          #707587 !default;
-$slate-dark:     #5a5c6b !default;
-$slate-darkest:  #464349 !default;
-$slate-light:    #8c8b94 !default;
-$slate-lightest:  #d5d6db !default;
-
-$primary:       $blue !default;
+$primary:       $purple !default;
 $secondary:     $gray-600 !default;
 $success:       $green !default;
 $info:          $cyan !default;
@@ -52,7 +46,9 @@ $link-color:                $success !default;
 // Fonts
 
 $font-family-sans-serif:      "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+
 $font-size-base:              0.9375rem !default;
+
 $h1-font-size:                3rem !default;
 $h2-font-size:                2.5rem !default;
 $h3-font-size:                2rem !default;
@@ -72,11 +68,13 @@ $dropdown-link-hover-bg:            $primary !default;
 $nav-link-padding-y:                .5rem !default !default;
 $nav-link-padding-x:                2rem !default;
 $nav-link-disabled-color:           $gray-600 !default !default;
+
 $nav-tabs-border-color:             $gray-200 !default;
 
 // Navbar
 
 $navbar-padding-y:                  1rem !default;
+
 $navbar-dark-color:                 $white !default;
 $navbar-dark-hover-color:           $success !default;
 
@@ -106,17 +104,10 @@ $progress-font-size:                0.625rem !default;
 // List group
 
 $list-group-hover-bg:               $gray-200 !default;
+
 $list-group-disabled-bg:            $gray-200 !default;
 
 // Close
 
 $close-color:                       $white !default;
 $close-text-shadow:                 none !default;
-
-// Theme
-
-$html-bg: $gray-900;
-$sidebar-bg: $slate-lightest;
-$sidebar-header: $slate-light;
-$navbar-header: $slate-dark;
-$footer-bg: $slate-darkest;
