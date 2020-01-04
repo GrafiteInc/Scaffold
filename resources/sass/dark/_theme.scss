@@ -208,3 +208,16 @@ input.form-control, textarea.form-control, select.form-control {
 .border-top, .border-left, .border-bottom, .border-right {
     border-color: $gray-300 !important;
 }
+
+.dashboardcode-bsmultiselect {
+    ul {
+        background-color: #111;
+        li {
+            color: #fff;
+            button.close {
+                margin-left: 4px;
+                color: #eee;
+            }
+        }
+    }
+}

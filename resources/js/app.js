@@ -8,10 +8,33 @@ require('./bootstrap');
 
 require('./sidebar');
 
+require('@dashboardcode/bsmultiselect');
+
 window.Vue = require('vue');
 
 import Snotify from 'vue-snotify';
 window.Vue.use(Snotify);
+
+window.ajax = (_event) => {
+    _event.preventDefault();
+
+    let _form = _event.target.parentNode.parentNode.parentNode;
+    let _method = _form.method.toLowerCase();
+    let _payloadArray = $(_form).serializeArray();
+    let _payload = {};
+
+    $.map(_payloadArray, function(n, i){
+        _payload[n['name']] = n['value'];
+    });
+
+    window.axios[_method](_form.action, _payload)
+        .then((response) => {
+            window.Snotify.success(response.data.message);
+        })
+        .catch((response) => {
+            window.Snotify.warning(response.data.message);
+        });
+}
 
 /**
  * The following block of code may be used to automatically register your
@@ -37,3 +60,5 @@ Vue.component('modal', require('./components/modal.vue').default);
 const app = new Vue({
     el: '#app',
 });
+
+$("select[multiple='multiple']").bsMultiSelect();

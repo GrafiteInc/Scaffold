@@ -15329,3 +15329,8 @@ select.form-control:focus {
   outline: 0 !important;
 }
 
+.dashboardcode-bsmultiselect ul li button.close {
+  margin-left: 4px;
+  color: #333;
+}
+

@@ -15397,3 +15397,16 @@ select.form-control:focus {
   border-color: #dee2e6 !important;
 }
 
+.dashboardcode-bsmultiselect ul {
+  background-color: #111;
+}
+
+.dashboardcode-bsmultiselect ul li {
+  color: #fff;
+}
+
+.dashboardcode-bsmultiselect ul li button.close {
+  margin-left: 4px;
+  color: #eee;
+}
+

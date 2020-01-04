@@ -136,3 +136,15 @@ input.form-control, textarea.form-control, select.form-control {
         outline: 0 !important;
     }
 }
+
+
+.dashboardcode-bsmultiselect {
+    ul {
+        li {
+            button.close {
+                margin-left: 4px;
+                color: #333;
+            }
+        }
+    }
+}
