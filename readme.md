@@ -1,4 +1,4 @@
-Scaffold
+![Grafite Scaffold](https:://docs.grafite.ca/grafite_scaffold.png)
 
 ### In App Notification
 ```

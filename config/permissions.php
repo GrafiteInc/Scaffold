@@ -6,7 +6,8 @@
 |--------------------------------------------------------------------------
 |
 | Permissions which pertain to roles, you can define access based on permissions
-| with the permission middleware
+| with the permission middleware, these don't have to relative to models
+|
 | ex. ['middleware' => ['permission:roles.create|users']]
 */
 
