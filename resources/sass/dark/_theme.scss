@@ -214,10 +214,17 @@ input.form-control, textarea.form-control, select.form-control {
         background-color: #111;
         li {
             color: #fff;
+
             button.close {
                 margin-left: 4px;
                 color: #eee;
             }
+        }
+        .badge {
+            padding-left: 4px !important;
+            padding-right: 4px !important;
+            border: 1px solid #444;
+            margin-right: 4px;
         }
     }
 }

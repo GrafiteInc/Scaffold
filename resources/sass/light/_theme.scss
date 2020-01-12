@@ -146,5 +146,11 @@ input.form-control, textarea.form-control, select.form-control {
                 color: #333;
             }
         }
+        .badge {
+            padding-left: 4px !important;
+            padding-right: 4px !important;
+            border: 1px solid #eee;
+            margin-right: 4px;
+        }
     }
 }

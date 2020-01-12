@@ -15334,3 +15334,10 @@ select.form-control:focus {
   color: #333;
 }
 
+.dashboardcode-bsmultiselect ul .badge {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+  border: 1px solid #eee;
+  margin-right: 4px;
+}
+
