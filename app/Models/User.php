@@ -10,13 +10,12 @@ use App\Models\Concerns\HasActivity;
 use App\Notifications\ResetPassword;
 use App\Models\Concerns\HasPermissions;
 use Illuminate\Support\Facades\Storage;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use LasseRafn\InitialAvatarGenerator\InitialAvatar;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail, JWTSubject
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Billable,
         Notifiable,
@@ -113,26 +112,6 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     public function notifyPasswordReset($token)
     {
         $this->notify(new ResetPassword($token));
-    }
-
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
     }
 
     /**

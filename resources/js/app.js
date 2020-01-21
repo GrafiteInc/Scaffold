@@ -6,14 +6,22 @@
 
 require('./bootstrap');
 
+// Our sidebar handling for varying screen sizes
 require('./sidebar');
 
+// A sleek component for handling multiselects
 require('@dashboardcode/bsmultiselect');
+
+// An elegant handling of checkboxes
+require('bootstrap4-toggle');
 
 window.Vue = require('vue');
 
 import Snotify from 'vue-snotify';
 window.Vue.use(Snotify);
+
+import VueClipboards from 'vue-clipboards';
+Vue.use(VueClipboards);
 
 window.ajax = (_event) => {
     _event.preventDefault();
@@ -50,6 +58,8 @@ window.ajax = (_event) => {
 Vue.component('cookielaw', require('./components/cookieLaw.vue').default);
 Vue.component('session', require('./components/session.vue').default);
 Vue.component('modal', require('./components/modal.vue').default);
+Vue.component('copy-button', require('./components/copy-button.vue').default);
+Vue.component('api-token', require('./components/api-token.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

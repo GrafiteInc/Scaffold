@@ -17,14 +17,8 @@ Route::group([
     'as' => 'api'
 ], function () {
 
-    Route::group(['prefix' => 'auth'], function () {
-        Route::post('login', 'AuthController@login')->name('.auth.login');
-        Route::post('logout', 'AuthController@logout')->name('.auth.logout');
-        Route::post('refresh', 'AuthController@refresh')->name('.auth.refresh');
-        Route::get('me', 'AuthController@me')->name('.auth.me');
-    });
-
     Route::group(['prefix' => 'users'], function () {
+        Route::get('me', 'UsersController@me')->name('.users.me');
         Route::put('update', 'UsersController@update')->name('.users.update');
         Route::delete('destroy', 'UsersController@destroy')->name('.users.destroy');
     });

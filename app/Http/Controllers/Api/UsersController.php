@@ -3,9 +3,22 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResponse;
 
 class UsersController extends ApiController
 {
+    /**
+     * Get the user data
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function me()
+    {
+        return response()->json([
+            'data' => new UserResponse($this->user)
+        ]);
+    }
+
     /**
      * Update the user profile
      *
@@ -19,7 +32,7 @@ class UsersController extends ApiController
             'name' => $request->json('name'),
         ])) {
             return response()->json([
-                'data' => $this->user,
+                'data' => new UserResponse($this->user),
                 'status' => 'Profile updated'
             ]);
         }

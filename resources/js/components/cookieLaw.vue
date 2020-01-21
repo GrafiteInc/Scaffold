@@ -21,7 +21,7 @@
         },
         methods: {
             accept () {
-                axios.post('/accept-cookie-policy', {
+                axios.post(route('ajax.accept-cookie-policy'), {
                     version: this.version,
                 })
                 .then(results => {

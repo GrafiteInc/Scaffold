@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PagesController@home')->name('home');
+Route::post('accept-cookie-policy', 'Ajax\CookiePolicyController@accept')->name('ajax.accept-cookie-policy');
 
 /*
 |--------------------------------------------------------------------------
@@ -108,6 +109,16 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
 
     Route::post('invites/{invite}/resend', 'InvitesController@resend')->name('invite.resend');
     Route::post('invites/{invite}/revoke', 'InvitesController@revoke')->name('invite.revoke');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Ajax calls (using normal auth)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax'], function () {
+        Route::post('token', 'ApiTokenController@reset')->name('ajax.reset-token');
+    });
 
     /*
     |--------------------------------------------------------------------------

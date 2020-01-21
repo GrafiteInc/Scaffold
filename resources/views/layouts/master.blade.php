@@ -56,6 +56,8 @@
             </div>
         </footer>
 
+        @routes
+
         <script src="https://kit.fontawesome.com/40ca63cf3f.js"></script>
         <script src="/js/app.js"></script>
 

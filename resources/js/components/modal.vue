@@ -34,11 +34,9 @@
 
                 $('#appModalMessage').html(_message);
 
-                $('#appModal').modal({
-                    show: true
-                });
+                $('#appModal').modal('show');
 
-                $('#appModalConfirmBtn').click(() => {
+                $('#appModalConfirmBtn').unbind().click(() => {
                     $(_event.target.parentNode)[0].submit();
                 });
 

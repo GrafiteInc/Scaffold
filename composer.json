@@ -15,13 +15,12 @@
         "grafite/formmaker": "^2.0",
         "intervention/image": "^2.5",
         "laravel/cashier": "^10.1",
-        "laravel/framework": "6.*",
+        "laravel/framework": "^6.0",
         "laravel/helpers": "^1.1",
         "laravel/tinker": "^1.0",
         "lasserafn/php-initial-avatar-generator": "^4.0",
         "meyfa/php-svg": "^0.9.1",
-        "redeyeventures/geopattern": "^1.1",
-        "tymon/jwt-auth": "^1.0.0-rc.4.1"
+        "tightenco/ziggy": "^0.8.1"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
