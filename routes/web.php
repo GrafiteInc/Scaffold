@@ -15,11 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Welcome Page
+| Public Pages
 |--------------------------------------------------------------------------
 */
 
 Route::get('/', 'PagesController@home')->name('home');
+Route::get('terms-of-service', 'PagesController@termsOfService')->name('terms-of-service');
+Route::get('privacy-policy', 'PagesController@privacyPolicy')->name('privacy-policy');
+Route::get('contact', 'PagesController@getContact')->name('contact');
+
 Route::post('accept-cookie-policy', 'Ajax\CookiePolicyController@accept')->name('ajax.accept-cookie-policy');
 
 /*
