@@ -13,7 +13,7 @@ class ApiTokenController extends Controller
         $token = Str::random(80);
 
         $request->user()->forceFill([
-            'api_token' => $token,
+            'api_token' => hash('sha256', $token),
         ])->save();
 
         return response()->json([

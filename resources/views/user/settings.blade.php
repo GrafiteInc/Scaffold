@@ -30,9 +30,7 @@
                     <h5 class="m-0">API Token</h5>
                 </div>
                 <div class="card-body">
-                    <api-token
-                        :token="'{{ auth()->user()->api_token }}'"
-                    ></api-token>
+                    <api-token></api-token>
                 </div>
             </div>
         </div>

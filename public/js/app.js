@@ -6209,13 +6209,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    token: String
-  },
+  props: {},
   created: function created() {
-    if (this.token == '') {
-      this.currentToken = 'Please click reset to set your API token.';
-    }
+    this.currentToken = 'Please click reset to set your API token. This token will only be displayed once. If you\'ve already generated a token it will no longer be functional.';
   },
   methods: {
     reset: function reset() {
