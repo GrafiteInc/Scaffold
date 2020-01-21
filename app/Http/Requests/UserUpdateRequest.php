@@ -26,6 +26,7 @@ class UserUpdateRequest extends FormRequest
         return [
             'email' => 'required',
             'name' => 'required',
+            'avatar' => 'image',
         ];
     }
 }
