@@ -15026,6 +15026,7 @@ body {
 .delete-avatar-btn {
   position: absolute;
   right: 60px;
+  top: -14px;
 }
 
 .profile-icon {
@@ -15078,6 +15079,13 @@ body {
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
 }
 
+.navbar-nav .notification-badge {
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  right: -4px;
+}
+
 .navbar-nav .btn-account {
   text-align: right;
   width: 200px;
@@ -15097,6 +15105,10 @@ body {
 
 .navbar-nav .dropdown-toggle::after {
   content: none;
+}
+
+input[type=file].form-control {
+  line-height: 1.2;
 }
 
 /*
@@ -15121,6 +15133,11 @@ body {
   .sidebar.toggled {
     margin-left: 0;
   }
+
+  .delete-avatar-btn {
+    right: 0px;
+    top: -14px;
+  }
 }
 
 .delete-account {
@@ -15142,6 +15159,12 @@ body {
 */
 
 @media (min-width: 576px) and (max-width: 748px) {
+  .navbar-nav .notification-badge {
+    top: 5px;
+    right: 21px;
+    z-index: 1000000;
+  }
+
   .navbar-nav .btn-account {
     width: 55px;
     height: 50px;
@@ -15160,6 +15183,11 @@ body {
     left: -185px;
     min-width: 200px;
   }
+
+  .delete-avatar-btn {
+    right: 0px;
+    top: -14px;
+  }
 }
 
 /*
@@ -15176,6 +15204,12 @@ body {
 
   .main {
     margin-top: 48px;
+  }
+
+  .navbar-nav .notification-badge {
+    top: -80px;
+    right: 21px;
+    z-index: 1000000;
   }
 
   .navbar-nav .btn-account {
@@ -15397,6 +15431,10 @@ select.form-control:focus {
 }
 
 .profile-icon {
+  background-color: #111;
+}
+
+.delete-avatar-btn {
   background-color: #111;
 }
 

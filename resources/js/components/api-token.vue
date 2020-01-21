@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="form-row align-items-center">
-            <div class="col-10">
-                <input type="text" class="form-control mb-2" disabled v-model="currentToken">
+            <div class="col-md-8">
+                <input type="text" class="form-control mb-2" readonly v-model="currentToken">
             </div>
-            <div class="col-2 d-flex justify-content-end">
+            <div class="col-md-4 d-flex justify-content-end">
                 <button
                     v-clipboard="currentToken"
                     @success="success"
@@ -41,6 +41,7 @@
                         this.currentToken = results.data.data.token;
                         $('#appModal').modal('hide');
                         window.Snotify.success('Token reset!');
+                        this.$event.fire('get-notifications');
                     })
                     .catch(err => {
                         //

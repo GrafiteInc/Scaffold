@@ -101,6 +101,7 @@ body {
 .delete-avatar-btn {
     position: absolute;
     right: 60px;
+    top: -14px;
 }
 
 .profile-icon {
@@ -159,6 +160,13 @@ body {
 }
 
 .navbar-nav {
+    .notification-badge {
+        display: inline-block;
+        position: absolute;
+        top: 2px;
+        right: -4px;
+    }
+
     .btn-account {
         text-align: right;
         width: 200px;
@@ -176,6 +184,10 @@ body {
     .dropdown-toggle::after {
         content: none;
     }
+}
+
+input[type="file"].form-control {
+    line-height: 1.2;
 }
 
 /*
@@ -196,6 +208,11 @@ body {
     }
     .sidebar.toggled {
         margin-left: 0;
+    }
+
+    .delete-avatar-btn {
+        right: 0px;
+        top: -14px;
     }
 }
 
@@ -219,6 +236,11 @@ body {
 
 @media (min-width: 576px) and (max-width: 748px) {
     .navbar-nav {
+        .notification-badge {
+            top: 5px;
+            right: 21px;
+            z-index: 1000000;
+        }
         .btn-account {
             width: 55px;
             height: 50px;
@@ -235,6 +257,11 @@ body {
             left: -185px;
             min-width: 200px;
         }
+    }
+
+    .delete-avatar-btn {
+        right: 0px;
+        top: -14px;
     }
 }
 
@@ -253,6 +280,11 @@ body {
         margin-top: 48px;
     }
     .navbar-nav {
+        .notification-badge {
+            top: -80px;
+            right: 21px;
+            z-index: 1000000;
+        }
         .btn-account {
             width: 55px;
             height: 50px;

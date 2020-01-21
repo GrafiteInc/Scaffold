@@ -118,6 +118,7 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
 
     Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax'], function () {
         Route::post('token', 'ApiTokenController@reset')->name('ajax.reset-token');
+        Route::get('notifications-count', 'NotificationsController@count')->name('ajax.notifications-count');
     });
 
     /*

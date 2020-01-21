@@ -10,6 +10,7 @@
         <li class="nav-item">
             @if (auth()->user())
                 <div class="dropdown">
+                    <notification-badge></notification-badge>
                     <button class="btn btn-text dropdown-toggle btn-account" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="profile-icon" style="background-image: url({{ auth()->user()->avatar_url }});"></div>
                         <span>{{ Str::limit(auth()->user()->name, 16) }}</span>
@@ -20,7 +21,7 @@
                         <a class="dropdown-item" href="{{ route('user.billing') }}">Billing</a>
                         <a class="dropdown-item" href="{{ route('user.teams') }}">Teams</a>
                         <a class="dropdown-item" href="{{ route('user.invites') }}">Invites</a>
-                        <a class="dropdown-item" href="{{ route('user.notifications') }}">Notifications</a>
+                        <a class="dropdown-item" href="{{ route('user.notifications') }}">Notifications <notification-marker></notification-marker></a>
 
                         @if (auth()->user()->hasRole('admin'))
                             <div class="dropdown-divider"></div>

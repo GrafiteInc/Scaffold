@@ -22,39 +22,41 @@
         @endif
     </head>
     <body>
-        @if (!request()->routeIs(['home']))
-            @include("layouts.app-nav")
-        @else
-            @include("layouts.home-nav")
-        @endif
+        <div id="app">
+            @if (!request()->routeIs(['home']))
+                @include("layouts.app-nav")
+            @else
+                @include("layouts.home-nav")
+            @endif
 
-        <div id="app" class="container-fluid">
-            @yield("app-content")
+            <div class="container-fluid">
+                @yield("app-content")
 
-            <cookielaw
-				version="{{ config('app.version', 'v1') }}"
-			></cookielaw>
+                <cookielaw
+                    version="{{ config('app.version', 'v1') }}"
+                ></cookielaw>
 
-			<modal></modal>
-			<vue-snotify></vue-snotify>
+                <modal></modal>
+                <vue-snotify></vue-snotify>
 
-            <session
-                user='{!! optional(auth()->user())->jsonSessionData() !!}'
-                message='{!! session('message') !!}'
-                error_message='{!! sessionErrorMessage() !!}'
-            ></session>
-        </div>
-
-        @yield("alerts")
-
-        <footer class="footer">
-            <div class="container-fluid d-flex justify-content-between">
-                <span>&copy; {!! date('Y'); !!} <a href="">You</a></span>
-                @if (session('original_user'))
-                    {!! form()->action('post', 'users.return-switch', 'Switch Back', [ 'class' => 'btn btn-secondary' ]) !!}
-                @endif
+                <session
+                    user='{!! optional(auth()->user())->jsonSessionData() !!}'
+                    message='{!! session('message') !!}'
+                    error_message='{!! sessionErrorMessage() !!}'
+                ></session>
             </div>
-        </footer>
+
+            @yield("alerts")
+
+            <footer class="footer">
+                <div class="container-fluid d-flex justify-content-between">
+                    <span>&copy; {!! date('Y'); !!} <a href="">You</a></span>
+                    @if (session('original_user'))
+                        {!! form()->action('post', 'users.return-switch', 'Switch Back', [ 'class' => 'btn btn-secondary' ]) !!}
+                    @endif
+                </div>
+            </footer>
+        </div>
 
         @routes
 

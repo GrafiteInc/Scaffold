@@ -60,6 +60,25 @@ Vue.component('session', require('./components/session.vue').default);
 Vue.component('modal', require('./components/modal.vue').default);
 Vue.component('copy-button', require('./components/copy-button.vue').default);
 Vue.component('api-token', require('./components/api-token.vue').default);
+Vue.component('notification-badge', require('./components/notification-badge.vue').default);
+Vue.component('notification-marker', require('./components/notification-marker.vue').default);
+
+/**
+ * The following component is a shared event system
+ * this means you can trigger events in one component
+ * and listen to them in another.
+ */
+
+Vue.prototype.$event = new Vue({
+    methods: {
+        fire (event, data = null) {
+            this.$emit(event, data);
+        },
+        listen (event, callback) {
+            this.$on(event, callback);
+        }
+    }
+});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

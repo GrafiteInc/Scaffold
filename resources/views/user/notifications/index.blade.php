@@ -38,7 +38,7 @@
                                     {!! form()->action('post',
                                         ['user.notifications.read', $notification->id],
                                         'Mark as Read',
-                                        ['class' => 'btn btn-sm btn-outline-primary']
+                                        ['class' => 'btn btn-sm btn-outline-primary mr-2']
                                     ) !!}
                                 @endif
 
