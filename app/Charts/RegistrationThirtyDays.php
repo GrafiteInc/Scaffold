@@ -30,7 +30,7 @@ class RegistrationThirtyDays extends Chart
                 'dates' => $date,
                 'registration_count' => $registration->count()
             ]);
-         }
+        }
 
         $labels = $registrationRecords->pluck('dates');
         $counts = $registrationRecords->pluck('registration_count');

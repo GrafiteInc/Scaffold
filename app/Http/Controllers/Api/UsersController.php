@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResponse;
+use App\Notifications\StandardEmail;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ApiUserUpdateRequest;
+use Illuminate\Support\Facades\Notification;
 
 class UsersController extends ApiController
 {
@@ -22,10 +26,10 @@ class UsersController extends ApiController
     /**
      * Update the user profile
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \App\Http\Requests\ApiUserUpdateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(ApiUserUpdateRequest $request)
     {
         if ($this->user->update([
             'email' => $request->json('email'),

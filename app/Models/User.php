@@ -43,6 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'dark_mode',
         'password',
+        'allow_email_based_notifications',
     ];
 
     /**

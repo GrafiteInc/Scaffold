@@ -84,6 +84,7 @@ class RoleController extends Controller
         try {
             $role = $role->update([
                 'label' => $request->label,
+                'name' => strtolower($request->label),
                 'permissions' => array_keys($request->permissions ?? [])
             ]);
 

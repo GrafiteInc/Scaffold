@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Team;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TeamUpdateRequest extends FormRequest
+class AdminUserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,9 +14,7 @@ class TeamUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        $team = Team::find($this->segment(3));
-
-        return Gate::allows('team-admin', $team);
+        return Gate::allows('admin');
     }
 
     /**
@@ -28,7 +25,9 @@ class TeamUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'email' => 'required',
+            'name' => 'required',
+            'avatar' => 'image',
         ];
     }
 }

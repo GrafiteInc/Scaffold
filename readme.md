@@ -9,7 +9,8 @@ auth()->user()->notify($notification);
 ```
 With the Helper!
 ```
-app_notification('This is words from inside the app!', true)
+app_notify('This is words from inside the app!', true)
+email_notify('subject', 'This is words from inside the app!')
 ```
 
 ### Email based Notification

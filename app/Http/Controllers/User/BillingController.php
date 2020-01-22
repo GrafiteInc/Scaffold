@@ -47,7 +47,8 @@ class BillingController extends Controller
         try {
             $payload = $request->all();
             $creditCardToken = $payload['stripeToken'];
-            auth()->user()->newSubscription(config('plans.subscription_name'), config('plans.subscription'))->create($creditCardToken);
+            auth()->user()->newSubscription(config('plans.subscription_name'), config('plans.subscription'))
+                ->create($creditCardToken);
             return redirect('user/billing/details')->with('message', 'You\'re now subscribed!');
         } catch (Exception $e) {
             Log::error($e->getMessage());
@@ -181,7 +182,8 @@ class BillingController extends Controller
             $invoice = $user->upcomingInvoice();
             $date = Carbon::createFromTimestamp($invoice->date);
             $user->subscription(config('plans.subscription_name'))->cancel();
-            return redirect('user/billing/details')->with('message', 'Your subscription has been cancelled! It will be availale until '.$date);
+            return redirect('user/billing/details')
+                ->with('message', 'Your subscription has been cancelled! It will be availale until '.$date);
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return back()->withErrors(['Could not process the cancellation please try again.']);

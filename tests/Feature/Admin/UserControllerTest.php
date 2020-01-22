@@ -3,34 +3,154 @@
 namespace Tests\Feature\Admin;
 
 use Tests\TestCase;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Invite;
 
 class UserControllerTest extends TestCase
 {
     public function testIndex()
     {
+        factory(User::class)->create([
+            'name' => 'Joe',
+            'email' => 'joe@grafite.ca',
+        ]);
+
         $response = $this->get(route('admin.users.index'));
 
         $response->assertOk();
         $response->assertSee('Invite New User');
+        $response->assertSee('joe@grafite.ca');
     }
 
-    public function testInvite()
+    public function testSearch()
     {
-        $this->markTestIncomplete();
+        factory(User::class)->create([
+            'name' => 'Joe',
+            'email' => 'joe@grafite.ca',
+        ]);
+
+        $response = $this->post(route('admin.users.search'), [
+            'search' => 'moe'
+        ]);
+
+        $response->assertOk();
+        $response->assertDontSee('joe@grafite.ca');
+    }
+
+    public function testGetInvite()
+    {
+        $response = $this->get(route('admin.users.invite'));
+
+        $response->assertOk();
+        $response->assertSee('Roles');
+        $response->assertSee('Email');
+        $response->assertSee('Send');
+    }
+
+    public function testPostInvite()
+    {
+        $response = $this->post(route('admin.users.invite'), [
+            'email' => 'jim@grafite.ca',
+            'roles' => 'admin'
+        ]);
+
+        $response->assertStatus(302);
+
+        $count = Invite::where('relationship', null)
+            ->where('model_id', null)
+            ->where('email', 'jim@grafite.ca')
+            ->count();
+        $this->assertEquals(1, $count);
     }
 
     public function testEdit()
     {
-        $this->markTestIncomplete();
+        $user = factory(User::class)->create([
+            'name' => 'Joe',
+            'email' => 'joe@grafite.ca',
+        ]);
+
+        $response = $this->get(route('admin.users.edit', [$user->id]));
+
+        $response->assertStatus(200);
+        $response->assertSee('No known activities');
+        $response->assertSee('Name');
+        $response->assertSee('Joe');
     }
 
     public function testUpdate()
     {
-        $this->markTestIncomplete();
+        $user = factory(User::class)->create([
+            'name' => 'Joe',
+            'email' => 'joe@grafite.ca',
+        ]);
+
+        $response = $this->put(route('admin.users.update', [$user->id]), [
+            'name' => 'Moe',
+            'email' => 'joe@grafite.ca',
+        ]);
+
+        $response->assertStatus(302);
+        $count = User::where('name', 'Moe')->count();
+        $this->assertEquals(1, $count);
+    }
+
+    public function testLoginAsUser()
+    {
+        $role = factory(Role::class)->create([
+            'name' => 'member',
+            'label' => 'Member',
+        ]);
+
+        $user = factory(User::class)->create([
+            'name' => 'Joe',
+            'email' => 'joe@grafite.ca',
+        ]);
+
+        $user->roles()->attach($role->id);
+
+        $response = $this->post(route('admin.users.switch', [$user->id]));
+
+        $response->assertStatus(302);
+        $response->assertSessionHas('original_user', $this->user->id);
+    }
+
+    public function testReturnToLoginFromUser()
+    {
+        $role = factory(Role::class)->create([
+            'name' => 'member',
+            'label' => 'Member',
+        ]);
+
+        $user = factory(User::class)->create([
+            'name' => 'Joe',
+            'email' => 'joe@grafite.ca',
+        ]);
+
+        $user->roles()->attach($role->id);
+
+        $response = $this->post(route('admin.users.switch', [$user->id]));
+
+        $response->assertStatus(302);
+        $response->assertSessionHas('original_user', $this->user->id);
+
+        $response = $this->post(route('users.return-switch'));
+        $response->assertStatus(302);
+        $response->assertRedirect(route('home'));
+        $response->assertSessionHasNoErrors();
     }
 
     public function testDelete()
     {
-        $this->markTestIncomplete();
+        $user = factory(User::class)->create([
+            'name' => 'Joe',
+            'email' => 'joe@grafite.ca',
+        ]);
+
+        $response = $this->delete(route('admin.users.destroy', [$user->id]));
+
+        $response->assertStatus(302);
+        $response->assertRedirect(route('admin.users.index'));
     }
 }

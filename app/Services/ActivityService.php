@@ -28,10 +28,27 @@ class ActivityService
                 'query' => request()->fullUrl(),
                 'secure' => request()->secure(),
                 'client_ip' => request()->ip(),
-                'payload' => request()->all(),
+                'payload' => $this->inputs(),
             ],
         ];
 
         return $this->model->create($payload);
+    }
+
+    /**
+     * We sort any objects as they can
+     * invalidate the storage.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function inputs()
+    {
+        return collect(request()->all())->filter(function ($item, $key) {
+            if (is_object($item)) {
+                return false;
+            }
+
+            return true;
+        });
     }
 }

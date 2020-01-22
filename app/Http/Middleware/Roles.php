@@ -13,7 +13,7 @@ class Roles
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, ... $roles)
+    public function handle($request, Closure $next, ...$roles)
     {
         foreach ($roles as $role) {
             if ($request->user()->hasRole($role)) {

@@ -12,7 +12,7 @@ class ApiController extends Controller
     {
         $this->user = auth('api')->user();
 
-        if (is_null($this->user)) {
+        if (is_null($this->user) && !app()->runningInConsole()) {
             abort(401, "Unauthorized.");
         }
     }

@@ -25,14 +25,23 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        /**
+         * Gateway for determining if user is admin
+         */
         Gate::define('admin', function ($user) {
             return $user->hasRole('admin');
         });
 
+        /**
+         * Gateway for determining team admin
+         */
         Gate::define('team-admin', function ($user, $team) {
             return $user->id == $team->user_id;
         });
 
+        /**
+         * Gateway for determining team members
+         */
         Gate::define('team-member', function ($user, $team) {
             return $team->members->contains($user->id);
         });

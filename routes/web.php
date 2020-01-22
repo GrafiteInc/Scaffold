@@ -141,7 +141,7 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
         |--------------------------------------------------------------------------
         */
         Route::resource('users', 'UserController', ['except' => ['create', 'show'], 'as' => 'admin']);
-        // Route::get('users/search', 'UserController@index')->name('admin.users.search');
+
         Route::post('users/search', 'UserController@search')->name('admin.users.search');
 
         Route::get('users/invite', 'UserController@getInvite')->name('admin.users.invite');

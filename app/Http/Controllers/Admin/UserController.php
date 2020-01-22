@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\UserInviteEmail;
 use Illuminate\Support\Facades\Notification;
+use App\Http\Requests\AdminUserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -44,8 +45,13 @@ class UserController extends Controller
             ->search($request->search)
             ->get();
 
+        $invites = Invite::where([
+            'model_id' => null,
+        ])->get();
+
         return view('admin.users.index')
-            ->with('users', $users);
+            ->with('users', $users)
+            ->with('invites', $invites);
     }
 
     /**
@@ -149,11 +155,11 @@ class UserController extends Controller
     /**
      * Update the User in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\AdminUserUpdateRequest  $request
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(AdminUserUpdateRequest $request, User $user)
     {
         try {
             $user->update([

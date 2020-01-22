@@ -58,6 +58,7 @@ class SettingsController extends Controller
                 'email' => $request->email,
                 'dark_mode' => $request->filled('dark_mode') ?? false,
                 'avatar' => $path,
+                'allow_email_based_notifications' => $request->filled('allow_email_based_notifications') ?? false,
             ]);
 
             return back()->with('message', 'Settings updated successfully');

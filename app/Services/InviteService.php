@@ -41,13 +41,15 @@ class InviteService
             'token' => $token,
         ]);
 
-        Notification::route('mail', $email)
-            ->notify(new UserInviteEmail(
-                $email,
-                $from,
-                $message,
-                $token
-            ));
+        if (($user && $user->allow_email_based_notifications) || !$user) {
+            Notification::route('mail', $email)
+                ->notify(new UserInviteEmail(
+                    $email,
+                    $from,
+                    $message,
+                    $token
+                ));
+        }
 
         return $invite;
     }

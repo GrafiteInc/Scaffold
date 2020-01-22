@@ -10,5 +10,9 @@ class CookiePolicyController extends Controller
     public function accept(Request $request)
     {
         // TODO: log this in a database or somewhere.
+
+        return response()->json([
+            'message' => 'success'
+        ]);
     }
 }

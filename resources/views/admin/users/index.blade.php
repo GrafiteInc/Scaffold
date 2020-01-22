@@ -77,7 +77,7 @@
                                             {!! form()->action('post',
                                                 ['invite.resend', $invite],
                                                 'Resend Invite',
-                                                ['class' => 'btn btn-sm btn-outline-primary']
+                                                ['class' => 'btn btn-sm btn-outline-primary mr-2']
                                             ) !!}
 
                                             {!! form()->confirm('Are you sure you want to revoke this invite?', 'confirmation')

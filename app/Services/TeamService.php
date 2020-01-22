@@ -88,17 +88,21 @@ class TeamService
     /**
      * Remove a team member
      *
-     * @param \App\Models\Team $team
      * @param \App\Models\User $user
+     * @param \App\Models\Team $team
      * @return bool
      */
-    public function remove($team, $user)
+    public function remove($user, $team)
     {
-        if (Gate::allows('team-admin', $team)) {
+        $team = $this->model->find($team);
+
+        if (!Gate::allows('team-admin', $team)) {
             throw new Exception("You do not have permission to do this.", 1);
         }
 
-        return $user->teamMemberships()->detach($team->id);
+        $user->teamMemberships()->detach($team->id);
+
+        return true;
     }
 
     /**

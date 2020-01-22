@@ -1,6 +1,8 @@
 <?php
 
+use App\Notifications\StandardEmail;
 use App\Notifications\InAppNotification;
+use Illuminate\Support\Facades\Notification;
 
 /*
  * --------------------------------------------------------------------------
@@ -8,15 +10,31 @@ use App\Notifications\InAppNotification;
  * --------------------------------------------------------------------------
 */
 
-if (!function_exists('app_notification')) {
-    function app_notification($description, $isImportant = false)
+if (!function_exists('app_notify')) {
+    function app_notify($message, $isImportant = false)
     {
-        $notification = new InAppNotification($description);
+        $notification = new InAppNotification($message);
 
         if ($isImportant) {
             $notification->isImportant();
         }
 
         auth()->user()->notify($notification);
+    }
+}
+
+if (!function_exists('email_notify')) {
+    function email_notify($subject, $message)
+    {
+        $user = auth()->user();
+
+        if ($user->allow_email_based_notifications) {
+            Notification::route('mail', $user->email)
+                ->notify(new StandardEmail(
+                    $user->name,
+                    $subject,
+                    $message
+                ));
+        }
     }
 }

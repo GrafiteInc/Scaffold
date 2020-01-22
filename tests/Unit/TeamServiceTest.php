@@ -82,19 +82,19 @@ class TeamServiceTest extends TestCase
 
     public function testRemoveMember()
     {
-        $teamAdmin = factory(User::class)->create([
+        $teamMember = factory(User::class)->create([
             'id' => 999,
             'name' => 'Joe',
         ]);
 
         $team = factory(Team::class)->create([
-            'user_id' => 999,
+            'user_id' => $this->user->id,
             'name' => 'Avengers',
         ]);
 
-        $team->members()->attach($this->user->id);
+        $team->members()->attach($teamMember);
 
-        $this->service->remove($team, $this->user);
+        $this->service->remove($teamMember, $team->id);
 
         $this->assertEquals(0, $team->members()->count());
     }

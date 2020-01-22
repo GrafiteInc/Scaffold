@@ -72,7 +72,7 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "check-style": "phpcs -p --standard=PSR2 --ignore=tests/dompdf_config.inc.php,tests/fixtures app tests/ --extensions=php",
+        "check-style": "phpcs -p --standard=PSR2 app tests/ --extensions=php",
         "fix-style": "phpcbf -p --standard=PSR2 app tests/ --extensions=php"
     }
 }

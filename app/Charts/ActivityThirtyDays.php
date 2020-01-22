@@ -30,7 +30,7 @@ class ActivityThirtyDays extends Chart
                 'dates' => $date,
                 'activity_count' => $activity->count()
             ]);
-         }
+        }
 
         $labels = $activityRecords->pluck('dates');
         $counts = $activityRecords->pluck('activity_count');

@@ -22,7 +22,7 @@ class AccountService
     {
         $this->user = auth()->user();
         $this->config = config('plans');
-        $this->subscription = $this->user->meta->subscription($this->config['subscription_name']);
+        $this->subscription = $this->user->subscription($this->config['subscription_name']);
         $this->inBillingCycle = false;
 
         Stripe::setApiKey(config('services.stripe.secret'));
@@ -113,8 +113,10 @@ class AccountService
             $customer = Customer::retrieve($this->user->meta->stripe_id);
             $stripeSubscription = $customer->subscriptions->retrieve($this->subscription->stripe_id);
 
-            $currentPeriodStart = Carbon::createFromTimestamp($stripeSubscription->current_period_start)->format('Y-m-d h:i:s');
-            $currentPeriodEnd = Carbon::createFromTimestamp($stripeSubscription->current_period_end)->format('Y-m-d h:i:s');
+            $currentPeriodStart = Carbon::createFromTimestamp($stripeSubscription->current_period_start)
+            ->format('Y-m-d h:i:s');
+            $currentPeriodEnd = Carbon::createFromTimestamp($stripeSubscription->current_period_end)
+            ->format('Y-m-d h:i:s');
 
             $countQuery
                 ->where('created_at', '>=', $currentPeriodStart)
@@ -151,8 +153,10 @@ class AccountService
             $customer = Customer::retrieve($this->user->meta->stripe_id);
             $stripeSubscription = $customer->subscriptions->retrieve($this->subscription->stripe_id);
 
-            $currentPeriodStart = Carbon::createFromTimestamp($stripeSubscription->current_period_start)->format('Y-m-d h:i:s');
-            $currentPeriodEnd = Carbon::createFromTimestamp($stripeSubscription->current_period_end)->format('Y-m-d h:i:s');
+            $currentPeriodStart = Carbon::createFromTimestamp($stripeSubscription->current_period_start)
+            ->format('Y-m-d h:i:s');
+            $currentPeriodEnd = Carbon::createFromTimestamp($stripeSubscription->current_period_end)
+            ->format('Y-m-d h:i:s');
 
             $creditQuery
                 ->where('created_at', '>=', $currentPeriodStart)
@@ -198,10 +202,13 @@ class AccountService
                 $customer = Customer::retrieve($this->user->meta->stripe_id);
                 $stripeSubscription = $customer->subscriptions->retrieve($this->subscription->stripe_id);
 
-                $currentPeriodStart = Carbon::createFromTimestamp($stripeSubscription->current_period_start)->format('Y-m-d h:i:s');
-                $currentPeriodEnd = Carbon::createFromTimestamp($stripeSubscription->current_period_end)->format('Y-m-d h:i:s');
+                $currentPeriodStart = Carbon::createFromTimestamp($stripeSubscription->current_period_start)
+                ->format('Y-m-d h:i:s');
+                $currentPeriodEnd = Carbon::createFromTimestamp($stripeSubscription->current_period_end)
+                ->format('Y-m-d h:i:s');
 
-                $query = $appModel->where('created_at', '>=', $currentPeriodStart)->where('created_at', '<=', $currentPeriodEnd);
+                $query = $appModel->where('created_at', '>=', $currentPeriodStart)
+                ->where('created_at', '<=', $currentPeriodEnd);
             }
         }
 

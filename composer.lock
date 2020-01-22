@@ -741,16 +741,16 @@
         },
         {
             "name": "grafite/formmaker",
-            "version": "v2.2.1",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/FormMaker.git",
-                "reference": "cb487fe992c90d45d96d831bfcaecfbe6d3f6c4a"
+                "reference": "57024bdb43b5729d8929ecca875ce015df4aef09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/FormMaker/zipball/cb487fe992c90d45d96d831bfcaecfbe6d3f6c4a",
-                "reference": "cb487fe992c90d45d96d831bfcaecfbe6d3f6c4a",
+                "url": "https://api.github.com/repos/GrafiteInc/FormMaker/zipball/57024bdb43b5729d8929ecca875ce015df4aef09",
+                "reference": "57024bdb43b5729d8929ecca875ce015df4aef09",
                 "shasum": ""
             },
             "require": {
@@ -792,7 +792,7 @@
                 }
             ],
             "description": "A remarkably magical form and input maker tool for Laravel.",
-            "time": "2020-01-21T18:05:47+00:00"
+            "time": "2020-01-22T17:27:29+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
