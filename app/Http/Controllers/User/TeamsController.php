@@ -120,7 +120,7 @@ class TeamsController extends Controller
     public function update(TeamUpdateRequest $request, Team $team)
     {
         try {
-            if ($team->update($request->except('_token'))) {
+            if ($this->service->update($team, $request->except('_token'))) {
                 return back()->with('message', 'Successfully updated');
             }
 
