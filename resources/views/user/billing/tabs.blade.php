@@ -8,7 +8,7 @@
                 <a class="{{ route_link_class('user.billing.payment-method') }}" href="{{ route('user.billing.payment-method') }}">Payment Method</a>
             </li>
             <li class="nav-item">
-                <a class="{{ route_link_class('user.billing.plan-change') }}" href="{{ route('user.billing.change-plan') }}">Change Plan</a>
+                <a class="{{ route_link_class('user.billing.change-plan') }}" href="{{ route('user.billing.change-plan') }}">Change Plan</a>
             </li>
             <li class="nav-item">
                 <a class="{{ route_link_class(['user.billing.coupons']) }}" href="{{ route('user.billing.coupons') }}">Coupon</a>

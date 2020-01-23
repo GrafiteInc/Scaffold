@@ -3,11 +3,71 @@
 namespace Tests\Feature\User;
 
 use Tests\TestCase;
+use Laravel\Cashier\Subscription;
 
 class BillingControllerTest extends TestCase
 {
     public function testBillingSubscribe()
     {
-        $this->markTestIncomplete();
+        $response = $this->get(route('user.billing'));
+
+        $response->assertOk();
+    }
+
+    public function testBillingGetDetails()
+    {
+        $this->markTestSkipped("Requires Stripe keys");
+
+        factory(Subscription::class)->create([
+            'user_id' => $this->user->id
+        ]);
+
+        $this->user->update([
+            'stripe_id' => 'foo_bar_01',
+            'card_brand' => 'visa',
+            'card_last_four' => '4242',
+        ]);
+
+        $response = $this->get(route('user.billing.details'));
+
+        $response->assertOk();
+    }
+
+    public function testBillingPaymentMethod()
+    {
+        $this->markTestSkipped("Requires Stripe keys");
+
+        factory(Subscription::class)->create([
+            'user_id' => $this->user->id
+        ]);
+
+        $this->user->update([
+            'stripe_id' => 'foo_bar_01',
+            'card_brand' => 'visa',
+            'card_last_four' => '4242',
+        ]);
+
+        $response = $this->get(route('user.billing.payment-method'));
+
+        $response->assertOk();
+    }
+
+    public function testBillingCoupon()
+    {
+        $this->markTestSkipped("Requires Stripe keys");
+
+        factory(Subscription::class)->create([
+            'user_id' => $this->user->id
+        ]);
+
+        $this->user->update([
+            'stripe_id' => 'foo_bar_01',
+            'card_brand' => 'visa',
+            'card_last_four' => '4242',
+        ]);
+
+        $response = $this->get(route('user.billing.coupons'));
+
+        $response->assertOk();
     }
 }
