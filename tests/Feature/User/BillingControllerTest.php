@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class BillingControllerTest extends TestCase
 {
-    public function testBillingSettings()
+    public function testBillingSubscribe()
     {
         $this->markTestIncomplete();
     }

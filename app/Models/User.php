@@ -7,6 +7,7 @@ use App\Models\Concerns\HasRoles;
 use App\Models\Concerns\HasTeams;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\HasActivity;
+use App\Models\Concerns\HasSubscription;
 use App\Notifications\ResetPassword;
 use App\Models\Concerns\HasPermissions;
 use Illuminate\Support\Facades\Storage;
@@ -21,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
         Notifiable,
         HasTeams,
         HasActivity,
+        HasSubscription,
         HasRoles,
         HasPermissions,
         Searchable;
@@ -41,9 +43,15 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'avatar',
         'email',
-        'dark_mode',
         'password',
+        'dark_mode',
         'allow_email_based_notifications',
+        'stripe_id',
+        'card_brand',
+        'card_last_four',
+        'trial_ends_at',
+        'state',
+        'country',
     ];
 
     /**
@@ -132,27 +140,5 @@ class User extends Authenticatable implements MustVerifyEmail
             ->filter(function ($value, $attribute) use ($visibleAttributes) {
                 return in_array($attribute, $visibleAttributes);
             }));
-    }
-
-    /**
-     * Check if the user has a subscription
-     * in any possible state
-     *
-     * @return boolean
-     */
-    public function hasActiveSubscription()
-    {
-        if ($this->subscription('main') && ! $this->subscription('main')->cancelled()) {
-            return true;
-        }
-
-        if ($this->subscription('main') &&
-            $this->subscription('main')->cancelled() &&
-            $this->subscription('main')->onGracePeriod()
-        ) {
-            return true;
-        }
-
-        return false;
     }
 }

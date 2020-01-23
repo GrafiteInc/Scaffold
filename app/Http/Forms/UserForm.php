@@ -29,7 +29,7 @@ class UserForm extends ModelForm
 
     public function fields()
     {
-        return [
+        return array_merge([
             Text::make('name', [
                 'required' => true,
             ]),
@@ -44,6 +44,18 @@ class UserForm extends ModelForm
             ]),
             File::make('avatar', [
 
+            ]),
+        ], $this->billingColumns());
+    }
+
+    public function billingColumns()
+    {
+        return [
+            Text::make('state', [
+                'required' => auth()->user()->hasActiveSubscription(),
+            ]),
+            Text::make('country', [
+                'required' => auth()->user()->hasActiveSubscription(),
             ]),
         ];
     }

@@ -16,81 +16,101 @@ class BillingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function settings()
+    public function subscribe()
     {
         $user = auth()->user();
 
-        dd($user->hasActiveSubscription());
-        $invoice = $user->upcomingInvoice();
-
-        dd($invoice);
-
-        // if ($user->subscribed(config('plans.subscription_name')) && ! is_null($invoice)) {
-        //     return view('billing.details')
-        //         ->with('invoice', $invoice)
-        //         ->with('invoiceDate', Carbon::createFromTimestamp($invoice->date))
-        //         ->with('user', $user);
-        // }
-
-        // return view('billing.subscribe')
-        //     ->with('user', $user);
-    }
-
-    /**
-     * Create a subscription
-     *
-     * @param  Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function postSubscribe(BillingRequest $request)
-    {
-        try {
-            $payload = $request->all();
-            $creditCardToken = $payload['stripeToken'];
-            auth()->user()->newSubscription(config('plans.subscription_name'), config('plans.subscription'))
-                ->create($creditCardToken);
-            return redirect('user/billing/details')->with('message', 'You\'re now subscribed!');
-        } catch (Exception $e) {
-            Log::error($e->getMessage());
-            return back()->withErrors(['Could not process the billing please try again.']);
+        if ($user->hasActiveSubscription()) {
+            return redirect(route('user.billing.details'));
         }
 
-        return back()->withErrors(['Could not complete billing, please try again.']);
+        return view('user.billing.subscribe', [
+            'user' => $user,
+            'intent' => $user->createSetupIntent()
+        ]);
     }
 
     /**
-     * change a credit card
+     * Billing renew
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function renewSubscription()
+    {
+        $user = auth()->user();
+
+        return view('user.billing.renew', [
+            'user' => $user,
+            'intent' => $user->createSetupIntent()
+        ]);
+    }
+
+    /**
+     * Get subscription details
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getSubscription()
+    {
+        $user = auth()->user();
+        $invoice = $user->upcomingInvoice();
+        $subscription = $user->subscription(config('billing.subscription_name'));
+
+        return view('user.billing.details', [
+            'user' => $user,
+            'invoice' => $invoice,
+            'subscription' => $subscription
+        ]);
+    }
+
+    /**
+     * Change the payment method
      *
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function getChangeCard(Request $request)
+    public function paymentMethod(Request $request)
     {
         $user = $request->user();
 
-        return view('billing.change-card')
-            ->with('user', $user);
+        return view('user.billing.payment-method', [
+            'user' => $user,
+            'intent' => $user->createSetupIntent()
+        ]);
     }
 
     /**
-     * Save new credit card
+     * Change subscription plan
      *
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function postChangeCard(BillingRequest $request)
+    public function getChangePlan(Request $request)
+    {
+        $user = $request->user();
+
+        return view('user.billing.change-plan', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * Swap subscription plans
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function swapPlan(Request $request)
     {
         try {
-            $payload = $request->all();
-            $creditCardToken = $payload['stripeToken'];
-            auth()->user()->updateCard($creditCardToken);
-            return redirect('user/billing/details')->with('message', 'Your subscription has been updated!');
+            auth()->user()->subscription(config('billing.subscription_name'))->swap($request->plan);
+
+            return redirect(route('user.billing.details'))->with('message', 'Your subscription was swapped!');
         } catch (Exception $e) {
             Log::error($e->getMessage());
-            return back()->withErrors(['Could not process the billing please try again.']);
         }
 
-        return back()->withErrors(['Could not complete billing, please try again.']);
+        return back()->withErrors(['Could not change your subscription, please try again.']);
     }
 
     /**
@@ -103,28 +123,27 @@ class BillingController extends Controller
     {
         $user = $request->user();
 
-        return view('billing.coupon')
+        return view('user.billing.coupon')
             ->with('user', $user);
     }
 
     /**
-     * Use a coupon
+     * Apply a coupon
      *
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function postCoupon(BillingRequest $request)
+    public function applyCoupon(Request $request)
     {
         try {
-            $payload = $request->all();
-            auth()->user()->applyCoupon($payload['coupon']);
-            return redirect('user/billing/details')->with('message', 'Your coupon was used!');
+            auth()->user()->applyCoupon($request->coupon);
+
+            return redirect(route('user.billing.details'))->with('message', 'Your coupon was used!');
         } catch (Exception $e) {
             Log::error($e->getMessage());
-            return back()->withErrors(['Could not process the coupon please try again.']);
         }
 
-        return back()->withErrors(['Could not add your coupon, please try again.']);
+        return back()->withErrors(['Could not process your coupon, please try again.']);
     }
 
     /**
@@ -136,9 +155,9 @@ class BillingController extends Controller
     public function getInvoices(Request $request)
     {
         $user = $request->user();
-        $invoices = $user->invoices(config('plans.subscription_name'));
+        $invoices = $user->invoices(config('billing.subscription_name'));
 
-        return view('billing.invoices')
+        return view('user.billing.invoices')
             ->with('invoices', $invoices)
             ->with('user', $user);
     }
@@ -153,13 +172,14 @@ class BillingController extends Controller
     {
         try {
             $user = $request->user();
+
             $response = $user->downloadInvoice($id, [
-                'vendor'    => config("invoice.company"),
-                'street'    => config("invoice.street"),
-                'location'  => config("invoice.location"),
-                'phone'     => config("invoice.phone"),
-                'url'       => config("invoice.url"),
-                'product'   => config("invoice.product"),
+                'vendor'    => config('billing.invoice.company'),
+                'street'    => config('billing.invoice.street'),
+                'location'  => config('billing.invoice.location'),
+                'phone'     => config('billing.invoice.phone'),
+                'url'       => config('billing.invoice.url'),
+                'product'   => config('billing.invoice.product'),
                 'description'   => 'Subscription',
             ]);
         } catch (Exception $e) {
@@ -180,13 +200,15 @@ class BillingController extends Controller
         try {
             $user = $request->user();
             $invoice = $user->upcomingInvoice();
-            $date = Carbon::createFromTimestamp($invoice->date);
-            $user->subscription(config('plans.subscription_name'))->cancel();
-            return redirect('user/billing/details')
-                ->with('message', 'Your subscription has been cancelled! It will be availale until '.$date);
+
+            $user->subscription(config('billing.subscription_name'))->cancel();
+
+            $date = $invoice->date()->format('Y-m-d');
+            $message = 'Your subscription has been cancelled! It will be availale until '.$date;
+
+            return redirect(route('user.billing.details'))->with('message', $message);
         } catch (Exception $e) {
             Log::error($e->getMessage());
-            return back()->withErrors(['Could not process the cancellation please try again.']);
         }
 
         return back()->withErrors(['Could not cancel billing, please try again.']);

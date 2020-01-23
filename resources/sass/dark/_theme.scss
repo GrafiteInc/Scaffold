@@ -129,11 +129,11 @@ html {
 }
 
 input.form-control, textarea.form-control, select.form-control {
-    background-color: #111 !important;
-    color: #EEE !important;
+    background-color: $input-bg !important;
+    color: $input-color !important;
     &:focus {
-        background-color: #000;
-        color: #fff;
+        background-color: $input-bg-dark;
+        color: $input-color;
         outline: 0 !important;
     }
 }

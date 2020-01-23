@@ -23,6 +23,11 @@ window.Vue.use(Snotify);
 import VueClipboards from 'vue-clipboards';
 Vue.use(VueClipboards);
 
+window.disableAndNotify = function (e, _message) {
+    e.disabled = true;
+    window.Snotify.info(_message)
+}
+
 window.ajax = (_event) => {
     _event.preventDefault();
 
@@ -91,3 +96,6 @@ const app = new Vue({
 });
 
 $("select[multiple='multiple']").bsMultiSelect();
+
+require("./subscription-create");
+require("./subscription-payment-method");

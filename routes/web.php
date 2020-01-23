@@ -26,6 +26,11 @@ Route::get('contact', 'PagesController@getContact')->name('contact');
 
 Route::post('accept-cookie-policy', 'Ajax\CookiePolicyController@accept')->name('ajax.accept-cookie-policy');
 
+Route::post(
+    'stripe/webhook',
+    '\App\Http\Controllers\WebhookController@handleWebhook'
+);
+
 /*
 |--------------------------------------------------------------------------
 | Auth
@@ -109,6 +114,22 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
             Route::post('{invite}/reject', 'InvitesController@reject')->name('user.invites.reject');
         });
 
+        Route::group(['prefix' => 'billing'], function () {
+            Route::get('subscribe', 'BillingController@subscribe')->name('user.billing');
+            Route::get('renew', 'BillingController@renewSubscription')->name('user.billing.renew');
+            Route::get('details', 'BillingController@getSubscription')->name('user.billing.details');
+            Route::group(['gateway' => 'subscribed'], function () {
+                Route::get('payment-method', 'BillingController@paymentMethod')->name('user.billing.payment-method');
+                Route::get('change-plan', 'BillingController@getChangePlan')->name('user.billing.change-plan');
+                Route::post('swap-plan', 'BillingController@swapPlan')->name('user.billing.swap-plan');
+                Route::post('cancellation', 'BillingController@cancelSubscription')->name('user.subscription.cancel');
+                Route::get('invoices', 'BillingController@getInvoices')->name('user.billing.invoices');
+                Route::get('invoice/{id}', 'BillingController@getInvoiceById')->name('user.billing.invoice');
+                Route::get('coupon', 'BillingController@getCoupon')->name('user.billing.coupons');
+                Route::post('apply-coupon', 'BillingController@applyCoupon')->name('user.billing.apply-coupon');
+            });
+        });
+
     });
 
     Route::post('invites/{invite}/resend', 'InvitesController@resend')->name('invite.resend');
@@ -123,6 +144,11 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
     Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax'], function () {
         Route::post('token', 'ApiTokenController@reset')->name('ajax.reset-token');
         Route::get('notifications-count', 'NotificationsController@count')->name('ajax.notifications-count');
+
+        Route::post('subscribe', 'BillingController@createSubscription')
+            ->name('ajax.billing.subscription.create');
+        Route::post('payment-method', 'BillingController@updatePaymentMethod')
+            ->name('ajax.billing.subscription.payment-method');
     });
 
     /*

@@ -45,5 +45,26 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('team-member', function ($user, $team) {
             return $team->members->contains($user->id);
         });
+
+        /**
+         * Gateway for determining subscribers
+         */
+        Gate::define('subscribed', function ($user) {
+            return $user->hasActiveSubscription();
+        });
+
+        /**
+         * Gateway for determining not cancelled subscribers
+         */
+        Gate::define('subscription-not-cancelled', function ($user) {
+            return !$user->hasCancelledSubscription();
+        });
+
+        /**
+         * Gateway for determining not cancelled subscribers
+         */
+        Gate::define('subscription-cancelled', function ($user) {
+            return $user->hasCancelledSubscription();
+        });
     }
 }

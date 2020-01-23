@@ -6,9 +6,6 @@
         <a class="{{ route_link_class('user.security') }}" href="{{ route('user.security') }}">Security</a>
     </li>
     <li class="nav-item">
-        <a class="{{ route_link_class(['user.billing', 'user.billing.*']) }}" href="{{ route('user.billing') }}">Billing</a>
-    </li>
-    <li class="nav-item">
         <a class="{{ route_link_class(['user.invites', 'user.invites.*']) }}" href="{{ route('user.invites') }}">Invites</a>
     </li>
     <li class="nav-item">
