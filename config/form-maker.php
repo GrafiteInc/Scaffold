@@ -26,6 +26,8 @@ return [
             'row-class' => 'row',
             'full-size-column' => 'col-md-12',
             'header-spacing' => 'mt-2 mb-2',
+            'row-alignment-between' => 'd-flex justify-content-between',
+            'row-alignment-end' => 'd-flex justify-content-end',
         ],
 
         /*
