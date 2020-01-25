@@ -29,24 +29,4 @@ class ToggleField extends Field
             'data-size' => 'sm'
         ];
     }
-
-    /**
-     * Field maker options
-     *
-     * @return array
-     */
-    protected static function getOptions()
-    {
-        return [];
-    }
-
-    /**
-     * View path for custom templates
-     *
-     * @return string
-     */
-    protected static function getView()
-    {
-        return null;
-    }
 }
