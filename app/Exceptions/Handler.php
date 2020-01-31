@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -48,13 +49,54 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if (request()->is('api/*')) {
-            $e = $this->prepareException($exception);
+            $this->handleJsonResponse($request, $exception);
+        }
 
-            if ($e instanceof NotFoundHttpException) {
-                $e = new NotFoundHttpException('Page not found', null, 404);
+        return $this->handleHtmlErrors($request, $exception);
+    }
+
+    /**
+     * Render an exception into an HTTP response for JSON requests.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Exception  $exception
+     * @return \Illuminate\Http\Response
+     */
+    public function handleJsonResponse($request, $exception)
+    {
+        $e = $this->prepareException($exception);
+
+        if ($e instanceof NotFoundHttpException) {
+            $e = new NotFoundHttpException('Page not found', null, 404);
+        }
+
+        return $this->prepareJsonResponse($request, $e);
+    }
+
+    /**
+     * Render an exception into an HTTP response for standard web requests.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Exception  $exception
+     * @return \Illuminate\Http\Response
+     */
+    public function handleHtmlErrors($request, $exception)
+    {
+        if ($exception instanceof ModelNotFoundException) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        // This is the primary reason for needing this
+        // Symfony's response is not visually pleasant.
+        if ($this->isHttpException($exception)) {
+            $response = $this->renderHttpException($exception);
+
+            if ($response instanceof SymfonyResponse) {
+                return response()->view('errors.general', [
+                    'code' => $exception->getStatusCode(),
+                    'message' => $exception->getMessage()
+                ], $exception->getStatusCode());
             }
-
-            return $this->prepareJsonResponse($request, $e);
         }
 
         return parent::render($request, $exception);
