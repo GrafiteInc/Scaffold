@@ -13,9 +13,9 @@ trait HasMembers
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function invite(Request $request, $model)
+    public function inviteMember(Request $request, $model)
     {
         try {
             if ($this->service->invite($model, $request->email)) {
@@ -32,7 +32,7 @@ trait HasMembers
      * Leave
      *
      * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function leave($model)
     {
@@ -52,9 +52,9 @@ trait HasMembers
      *
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function remove($model, User $user)
+    public function removeMember($model, User $user)
     {
         try {
             $result = $this->service->remove($user, $model);

@@ -13,7 +13,7 @@ class DestroyController extends Controller
     /**
      * Destroy a user account
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy()
     {

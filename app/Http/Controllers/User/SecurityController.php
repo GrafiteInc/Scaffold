@@ -19,6 +19,7 @@ class SecurityController extends Controller
     /**
      * User wants to change their password
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function get(Request $request)
@@ -32,8 +33,8 @@ class SecurityController extends Controller
     /**
      * Change the user's password and return
      *
-     * @param  PasswordUpdateRequest $request
-     * @return Response
+     * @param  \App\Http\Requests\PasswordUpdateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(PasswordUpdateRequest $request)
     {

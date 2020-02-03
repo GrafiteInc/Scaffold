@@ -26,7 +26,7 @@ class InvitesController extends Controller
      * Accept an invite
      *
      * @param \App\Models\Invite $invite
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function accept(Invite $invite)
     {
@@ -45,7 +45,7 @@ class InvitesController extends Controller
      * Reject an invite
      *
      * @param \App\Models\Invite $invite
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function reject(Invite $invite)
     {

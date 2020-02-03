@@ -23,7 +23,7 @@ class NotificationsController extends Controller
      * Display the specified resource.
      *
      * @param  string  $notification
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function read($notification)
     {
@@ -36,7 +36,7 @@ class NotificationsController extends Controller
      * Delete a notfication
      *
      * @param  string $notification
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function delete($notification)
     {
@@ -49,7 +49,7 @@ class NotificationsController extends Controller
      * Delete all notfications for a user
      *
      * @param  string $notification
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function deleteAll()
     {

@@ -98,7 +98,7 @@ class BillingController extends Controller
      * Swap subscription plans
      *
      * @param  Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function swapPlan(Request $request)
     {
@@ -131,7 +131,7 @@ class BillingController extends Controller
      * Apply a coupon
      *
      * @param  Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function applyCoupon(Request $request)
     {
@@ -193,7 +193,7 @@ class BillingController extends Controller
      * Cancel Subscription
      *
      * @param  Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function cancelSubscription(Request $request)
     {

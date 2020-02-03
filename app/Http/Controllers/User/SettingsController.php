@@ -37,7 +37,7 @@ class SettingsController extends Controller
      * Update the user
      *
      * @param  UpdateAccountRequest $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UserUpdateRequest $request)
     {
@@ -73,7 +73,7 @@ class SettingsController extends Controller
     /**
      * Delete a user's avatar
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroyAvatar()
     {

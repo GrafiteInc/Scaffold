@@ -71,7 +71,7 @@ class UserController extends Controller
      * Show the form for inviting a customer.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postInvite(Request $request)
     {
@@ -104,7 +104,7 @@ class UserController extends Controller
      * Switch to a different User
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function switchToUser(User $user)
     {
@@ -118,7 +118,7 @@ class UserController extends Controller
     /**
      * Switch back to your original user
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function switchBack()
     {
@@ -157,7 +157,7 @@ class UserController extends Controller
      *
      * @param  \App\Http\Requests\AdminUserUpdateRequest  $request
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(AdminUserUpdateRequest $request, User $user)
     {
@@ -180,7 +180,7 @@ class UserController extends Controller
      * Remove the User from storage.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(User $user)
     {

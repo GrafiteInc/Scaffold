@@ -14,7 +14,7 @@ class InvitesController extends Controller
      * Delete the invitation
      *
      * @param  \App\Models\Invite  $appModelsInvite
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function revoke(Invite $invite)
     {
@@ -38,7 +38,7 @@ class InvitesController extends Controller
      * Resend the invitation
      *
      * @param  \App\Models\Invite  $appModelsInvite
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function resend(Invite $invite)
     {
