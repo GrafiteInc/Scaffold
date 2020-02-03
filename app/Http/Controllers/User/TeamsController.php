@@ -11,12 +11,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\TeamCreateRequest;
 use App\Http\Requests\TeamUpdateRequest;
-use App\Http\Controllers\User\Concerns\HasMembers;
 
 class TeamsController extends Controller
 {
-    use HasMembers;
-
     public function __construct(TeamService $service)
     {
         $this->service = $service;
@@ -53,7 +50,7 @@ class TeamsController extends Controller
      * Store a newly created team in storage.
      *
      * @param  \Illuminate\Http\TeamCreateRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(TeamCreateRequest $request)
     {
@@ -72,22 +69,6 @@ class TeamsController extends Controller
     }
 
     /**
-     * Display the specified team.
-     *
-     * @param  Team  $team
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Team $team)
-    {
-        if (!Gate::allows('team-member', $team)) {
-            abort(403);
-        }
-
-        return view('user.teams.show')
-            ->with('team', $team);
-    }
-
-    /**
      * Show the form for editing the specified team.
      *
      * @param  \App\Models\Team  $team
@@ -102,7 +83,7 @@ class TeamsController extends Controller
         $form = app(TeamForm::class)->edit($team);
 
         $inviteForm = app(TeamInviteForm::class)
-            ->setRoute('user.teams.invite', $team)->make();
+            ->setRoute('teams.members.invite', $team)->make();
 
         return view('user.teams.edit')
             ->with('inviteForm', $inviteForm)
@@ -115,7 +96,7 @@ class TeamsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(TeamUpdateRequest $request, Team $team)
     {
@@ -134,7 +115,7 @@ class TeamsController extends Controller
      * Remove the specified team from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Team $team)
     {

@@ -31,9 +31,10 @@
                                 @foreach($teams as $team)
                                     <tr>
                                         <td>{{ $team->name }}</td>
-                                        <td width="140px" class="text-right">
-                                            <div class="btn-toolbar justify-content-between">
-                                                <a class="btn btn-outline-primary btn-sm" href="{!! route('user.teams.edit', $team) !!}"><i class="fa fa-edit"></i> Edit</a>
+                                        <td width="240px" class="text-right">
+                                            <div class="btn-toolbar justify-content-end">
+                                                <a class="btn btn-outline-secondary btn-sm mr-2" href="{!! route('teams.show', $team->uuid) !!}"><i class="fa fa-eye"></i> View</a>
+                                                <a class="btn btn-outline-primary btn-sm mr-2" href="{!! route('user.teams.edit', $team) !!}"><i class="fa fa-edit"></i> Edit</a>
                                                 {!! app(\App\Http\Forms\TeamForm::class)->confirm('Are you sure you want to delete '.$team->name.'?', 'confirmation')->delete($team) !!}
                                             </div>
                                         </td>
@@ -67,10 +68,10 @@
                                     <tr>
                                         <td>{{ $team->name }}</td>
                                         <td width="180px" class="text-right">
-                                            <div class="btn-toolbar justify-content-between">
-                                                <a class="btn btn-outline-primary btn-sm" href="{!! route('user.teams.show', $team) !!}"><i class="fa fa-eye"></i> View</a>
+                                            <div class="btn-toolbar justify-content-end">
+                                                <a class="btn btn-outline-primary btn-sm mr-2" href="{!! route('teams.show', $team->uuid) !!}"><i class="fa fa-eye"></i> View</a>
                                                 {!! form()->confirm('Are you sure you want to leave '.$team->name.'?', 'confirmation')->action('post',
-                                                    ['user.teams.leave', $team],
+                                                    ['teams.leave', $team],
                                                     'Leave Team',
                                                     ['class' => 'btn btn-sm btn-outline-warning']) !!}
                                             </div>

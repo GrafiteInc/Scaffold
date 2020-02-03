@@ -1,13 +1,18 @@
-@extends('layouts.user')
+@extends('layouts.dashboard')
 
 @section('page-title') Teams: View @stop
 
-@section('user_content')
+@section('content')
 
     <div class="row mt-3">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <h3>{{ $team->name }}</h3>
             <p class="lead">Created On: {{ $team->created_at->format('dS M, Y') }}</p>
+        </div>
+        <div class="col-md-6">
+            @if (Gate::allows('team-manager', $team))
+                {!! $inviteForm !!}
+            @endif
         </div>
     </div>
 
@@ -33,7 +38,14 @@
                             <tbody>
                                 @foreach($team->members as $member)
                                     <tr>
-                                        <td>{{ $member->name }}</td>
+                                        <td>{{ $member->name }} ({{ $member->email }})</td>
+                                        @if (Gate::allows('team-manager', $team))
+                                            <td width="200px">
+                                                <div class="btn-toolbar justify-content-end">
+                                                    <a href="{{ route('teams.members.edit', [$team, $member]) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                                                </div>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -42,5 +54,7 @@
                 </div>
             @endif
         </div>
+
+        @include('teams.invites')
     </div>
 @stop

@@ -40,9 +40,33 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         /**
+         * Gateway for determining team manager
+         */
+        Gate::define('team-manager', function ($user, $team) {
+            if ($user->id == $team->user_id) {
+                return true;
+            }
+
+            $member = $team->members->find($user->id);
+
+            // Membership levels
+            if (in_array($member->membership->team_role, [
+                'manager'
+            ])) {
+                return true;
+            }
+
+            return false;
+        });
+
+        /**
          * Gateway for determining team members
          */
         Gate::define('team-member', function ($user, $team) {
+            if ($user->id == $team->user_id) {
+                return true;
+            }
+
             return $team->members->contains($user->id);
         });
 

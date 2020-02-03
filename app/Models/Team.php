@@ -22,6 +22,7 @@ class Team extends Model
     public $fillable = [
         'user_id',
         'name',
+        'uuid',
     ];
 
     public static $rules = [
@@ -55,6 +56,8 @@ class Team extends Model
      */
     public function members()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)
+            ->as('membership')
+            ->withPivot('team_role');
     }
 }

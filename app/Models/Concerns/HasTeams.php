@@ -13,7 +13,9 @@ trait HasTeams
      */
     public function teamMemberships()
     {
-        return $this->belongsToMany(Team::class);
+        return $this->belongsToMany(Team::class)
+            ->as('membership')
+            ->withPivot('team_role');
     }
 
     /**
@@ -24,15 +26,5 @@ trait HasTeams
     public function teams()
     {
         return $this->hasMany(Team::class);
-    }
-
-    /**
-     * Get the members
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
-     */
-    public function members()
-    {
-        return $this->belongsToMany(User::class);
     }
 }

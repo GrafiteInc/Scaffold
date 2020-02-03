@@ -37,17 +37,6 @@ class TeamsControllerTest extends TestCase
         $response->assertSessionHas('message', 'Successfully created a team');
     }
 
-    public function testShow()
-    {
-        $team = factory(Team::class)->create([
-            'user_id' => $this->user->id
-        ]);
-
-        $response = $this->get(route('user.teams', [$team->uuid]));
-
-        $response->assertOk();
-    }
-
     public function testEdit()
     {
         $team = factory(Team::class)->create([
@@ -71,56 +60,6 @@ class TeamsControllerTest extends TestCase
 
         $response->assertStatus(302);
         $response->assertSessionHas('message', 'Successfully updated');
-    }
-
-    public function testInviteMember()
-    {
-        Notification::fake();
-
-        $team = factory(Team::class)->create([
-            'user_id' => $this->user->id
-        ]);
-
-        $response = $this->post(route('user.teams.invite', [$team->id]), [
-            'email' => 'burt@sterlingcooperdraperprice.com',
-        ]);
-
-        $response->assertStatus(302);
-        $response->assertSessionHas('message', 'Successfully sent invite');
-    }
-
-    public function testLeaveTeam()
-    {
-        Notification::fake();
-
-        $team = factory(Team::class)->create([
-            'user_id' => $this->user->id
-        ]);
-
-        $this->user->teamMemberships()->attach($team);
-
-        $response = $this->post(route('user.teams.leave', [$team->id]));
-
-        $response->assertStatus(302);
-        $response->assertSessionHas('message', 'Success, your membership was removed');
-    }
-
-    public function testRemoveTeamMember()
-    {
-        Notification::fake();
-
-        $user = factory(User::class)->create();
-
-        $team = factory(Team::class)->create([
-            'user_id' => $this->user->id
-        ]);
-
-        $user->teamMemberships()->attach($team);
-
-        $response = $this->delete(route('user.teams.remove', [$team->id, $user->id]));
-
-        $response->assertStatus(302);
-        $response->assertSessionHas('message', 'Success, the member was removed');
     }
 
     public function testDelete()

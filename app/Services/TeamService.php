@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Exception;
 use App\Models\Team;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Gate;
 use App\Notifications\InAppNotification;
 
@@ -22,6 +23,17 @@ class TeamService
     }
 
     /**
+     * Find a team by uuid
+     *
+     * @param string $uuid
+     * @return \App\Models\Team
+     */
+    public function findByUuid($uuid)
+    {
+        return $this->model->where('uuid', $uuid)->firstOrFail();
+    }
+
+    /**
      * Create a Team
      *
      * @return \App\Models\Team
@@ -30,6 +42,7 @@ class TeamService
     {
         return $this->model->create([
             'user_id' => auth()->user()->id,
+            'uuid' => Str::uuid(),
             'name' => $payload['name'],
         ]);
     }
@@ -62,7 +75,11 @@ class TeamService
 
         $message = "You've been invited to a team on {$app} called: {$team->name}!";
 
-        return $team->invite($email, $message);
+        if ($invite = $team->invite($email, $message)) {
+            app_notify('You invited '.$email.' to '.$team->name);
+        }
+
+        return $invite;
     }
 
     /**
@@ -126,5 +143,35 @@ class TeamService
         $team->invites()->delete();
 
         return $team->delete();
+    }
+
+    /**
+     * Update a members information
+     *
+     * @param \Illuminate\Database\Eloquent\Relations\Pivot $membership
+     * @param \App\Models\User $user
+     * @param \App\Models\Team $team
+     * @param array $payload
+     * @return \App\Models\User
+     */
+    public function updateMember($membership, $user, $team, $payload)
+    {
+        $originalRole = $membership->team_role;
+
+        if ($membership->forceFill([
+            'team_role' => $payload['team_role']
+        ])->save()) {
+            if ($originalRole  !== $payload['team_role']) {
+                $message = 'Your team role in '.$team->name.' has changed to: '.Str::title($payload['team_role']);
+                $notification = new InAppNotification($message);
+                $notification->isImportant();
+
+                $user->notify($notification);
+            }
+
+            return $user;
+        }
+
+        return false;
     }
 }

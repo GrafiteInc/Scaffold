@@ -100,12 +100,8 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
             Route::post('/', 'TeamsController@store')->name('user.teams.store');
             Route::get('create', 'TeamsController@create')->name('user.teams.create');
             Route::get('{team}/edit', 'TeamsController@edit')->name('user.teams.edit');
-            Route::get('{team}', 'TeamsController@show')->name('user.teams.show');
             Route::delete('{team}/delete', 'TeamsController@destroy')->name('user.teams.destroy');
             Route::put('{team}/update', 'TeamsController@update')->name('user.teams.update');
-            Route::post('{team}/invite', 'TeamsController@invite')->name('user.teams.invite');
-            Route::post('{team}/leave', 'TeamsController@leave')->name('user.teams.leave');
-            Route::delete('{team}/remove/{member}', 'TeamsController@remove')->name('user.teams.remove');
         });
 
         Route::group(['prefix' => 'invites'], function () {
@@ -134,6 +130,15 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
 
     Route::post('invites/{invite}/resend', 'InvitesController@resend')->name('invite.resend');
     Route::post('invites/{invite}/revoke', 'InvitesController@revoke')->name('invite.revoke');
+
+    Route::group(['prefix' => 'teams'], function () {
+        Route::get('{team}', 'TeamMembersController@show')->name('teams.show');
+        Route::post('{team}/leave', 'TeamMembersController@leave')->name('teams.leave');
+        Route::post('{team}/invite', 'TeamMembersController@inviteMember')->name('teams.members.invite');
+        Route::delete('{team}/remove/{member}', 'TeamMembersController@removeMember')->name('teams.members.remove');
+        Route::get('{team}/edit/{member}', 'TeamMembersController@editMember')->name('teams.members.edit');
+        Route::put('{team}/update/{member}', 'TeamMembersController@updateMember')->name('teams.members.update');
+    });
 
     /*
     |--------------------------------------------------------------------------
@@ -169,10 +174,8 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
         Route::resource('users', 'UserController', ['except' => ['create', 'show'], 'as' => 'admin']);
 
         Route::post('users/search', 'UserController@search')->name('admin.users.search');
-
         Route::get('users/invite', 'UserController@getInvite')->name('admin.users.invite');
         Route::post('users/invite', 'UserController@postInvite')->name('admin.users.send-invite');
-
         Route::post('users/switch/{user}', 'UserController@switchToUser')->name('admin.users.switch');
 
         /*
