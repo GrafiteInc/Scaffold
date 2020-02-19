@@ -18,14 +18,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Billable,
-        Notifiable,
-        HasTeams,
-        HasActivity,
-        HasSubscription,
-        HasRoles,
-        HasPermissions,
-        Searchable;
+    use Billable;
+    use Notifiable;
+    use HasTeams;
+    use HasActivity;
+    use HasSubscription;
+    use HasRoles;
+    use HasPermissions;
+    use Searchable;
 
     /**
      * The database table used by the model.

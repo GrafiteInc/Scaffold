@@ -52,7 +52,7 @@ class UsersControllerTest extends ApiTestCase
         $user = $this->user;
 
         Notification::assertSentTo(
-            new AnonymousNotifiable,
+            new AnonymousNotifiable(),
             StandardEmail::class,
             function ($notification, $channels, $notifiable) use ($user) {
                 return $notifiable->routes['mail'] === $user->email;

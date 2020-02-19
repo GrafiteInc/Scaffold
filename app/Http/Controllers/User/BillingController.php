@@ -204,7 +204,7 @@ class BillingController extends Controller
             $user->subscription(config('billing.subscription_name'))->cancel();
 
             $date = $invoice->date()->format('Y-m-d');
-            $message = 'Your subscription has been cancelled! It will be availale until '.$date;
+            $message = 'Your subscription has been cancelled! It will be availale until ' . $date;
 
             return redirect(route('user.billing.details'))->with('message', $message);
         } catch (Exception $e) {

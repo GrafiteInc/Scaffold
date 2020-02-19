@@ -31,10 +31,12 @@ class UsersController extends ApiController
      */
     public function update(ApiUserUpdateRequest $request)
     {
-        if ($this->user->update([
-            'email' => $request->json('email'),
-            'name' => $request->json('name'),
-        ])) {
+        if (
+            $this->user->update([
+                'email' => $request->json('email'),
+                'name' => $request->json('name'),
+            ])
+        ) {
             return response()->json([
                 'data' => new UserResponse($this->user),
                 'status' => 'Profile updated'

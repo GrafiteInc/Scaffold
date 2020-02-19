@@ -58,11 +58,11 @@ class UserInviteEmail extends Notification implements ShouldQueue
         $app = config('app.name');
 
         return (new MailMessage())
-            ->subject('You’ve Been Invited to Join '.$app)
-            ->greeting('Hello '.$this->user)
-            ->line($this->from->name.' has invited you to join '.$app.'!')
+            ->subject('You’ve Been Invited to Join ' . $app)
+            ->greeting('Hello ' . $this->user)
+            ->line($this->from->name . ' has invited you to join ' . $app . '!')
             ->line($this->message)
             ->line('Click the link below to create your account now!')
-            ->action('Login', url('register/invite?email='.urlencode($this->user).'&activate_token='.$this->token));
+            ->action('Login', url('register/invite?email=' . urlencode($this->user) . '&activate_token=' . $this->token));
     }
 }

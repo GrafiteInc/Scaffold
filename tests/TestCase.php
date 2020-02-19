@@ -13,8 +13,8 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication,
-        RefreshDatabase;
+    use CreatesApplication;
+    use RefreshDatabase;
 
     public $user;
 

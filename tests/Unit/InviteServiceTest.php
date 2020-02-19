@@ -35,11 +35,12 @@ class InviteServiceTest extends TestCase
         $this->assertEquals($user->email, $result->email);
 
         Notification::assertSentTo(
-            [$user], InAppNotification::class
+            [$user],
+            InAppNotification::class
         );
 
         Notification::assertSentTo(
-            new AnonymousNotifiable,
+            new AnonymousNotifiable(),
             UserInviteEmail::class,
             function ($notification, $channels, $notifiable) use ($user) {
                 return $notifiable->routes['mail'] === $user->email;

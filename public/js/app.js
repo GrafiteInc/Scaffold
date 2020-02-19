@@ -61218,13 +61218,15 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 window.onload = function () {
-  document.querySelector('.sidebar-toggle').onclick = function () {
-    document.querySelector('.sidebar').classList.toggle("toggled");
-  };
+  if (document.querySelector('.sidebar-toggle')) {
+    document.querySelector('.sidebar-toggle').onclick = function () {
+      document.querySelector('.sidebar').classList.toggle("toggled");
+    };
 
-  window.addEventListener("resize", function () {
-    document.querySelector('.sidebar').classList.remove('toggled');
-  });
+    window.addEventListener("resize", function () {
+      document.querySelector('.sidebar').classList.remove('toggled');
+    });
+  }
 };
 
 /***/ }),

@@ -21,9 +21,8 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
-    use RegistersUsers,
-        RegisterViaInvites;
+    use RegistersUsers;
+    use RegisterViaInvites;
 
     /**
      * Where to redirect users after login / registration.

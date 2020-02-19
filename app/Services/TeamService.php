@@ -76,7 +76,7 @@ class TeamService
         $message = "You've been invited to a team on {$app} called: {$team->name}!";
 
         if ($invite = $team->invite($email, $message)) {
-            app_notify('You invited '.$email.' to '.$team->name);
+            app_notify('You invited ' . $email . ' to ' . $team->name);
         }
 
         return $invite;
@@ -158,11 +158,13 @@ class TeamService
     {
         $originalRole = $membership->team_role;
 
-        if ($membership->forceFill([
-            'team_role' => $payload['team_role']
-        ])->save()) {
+        if (
+            $membership->forceFill([
+                'team_role' => $payload['team_role']
+            ])->save()
+        ) {
             if ($originalRole  !== $payload['team_role']) {
-                $message = 'Your team role in '.$team->name.' has changed to: '.Str::title($payload['team_role']);
+                $message = 'Your team role in ' . $team->name . ' has changed to: ' . Str::title($payload['team_role']);
                 $notification = new InAppNotification($message);
                 $notification->isImportant();
 

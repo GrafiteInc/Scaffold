@@ -17,7 +17,6 @@ class LoginController extends Controller
     | to conveniently provide this functionality to your appliations.
     |
     */
-
     use AuthenticatesUsers;
 
     /**

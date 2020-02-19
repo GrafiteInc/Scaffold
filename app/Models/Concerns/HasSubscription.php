@@ -16,7 +16,8 @@ trait HasSubscription
             return true;
         }
 
-        if ($this->subscription(config('billing.subscription_name')) &&
+        if (
+            $this->subscription(config('billing.subscription_name')) &&
             $this->subscription(config('billing.subscription_name'))->cancelled() &&
             $this->subscription(config('billing.subscription_name'))->onGracePeriod()
         ) {

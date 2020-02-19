@@ -10,7 +10,7 @@
                 <a class="btn btn-primary" href="{{ url('login') }}">Login</a>
             </div>
             <div class="col-md-6">
-                <a class="btn btn-primary" href="{{ url('register') }}">Regsiter</a>
+                <a class="btn btn-primary" href="{{ url('register') }}">Register</a>
             </div>
         </div>
     </div>

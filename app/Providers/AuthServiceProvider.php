@@ -50,9 +50,11 @@ class AuthServiceProvider extends ServiceProvider
             $member = $team->members->find($user->id);
 
             // Membership levels
-            if (in_array($member->membership->team_role, [
-                'manager'
-            ])) {
+            if (
+                in_array($member->membership->team_role, [
+                    'manager'
+                ])
+            ) {
                 return true;
             }
 

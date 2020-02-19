@@ -54,7 +54,7 @@ class TeamServiceTest extends TestCase
 
         $this->assertStringContainsString('Avengers', $result->message);
 
-        Notification::assertSentTo(new AnonymousNotifiable, UserInviteEmail::class);
+        Notification::assertSentTo(new AnonymousNotifiable(), UserInviteEmail::class);
     }
 
     public function testLeaveTeam()
