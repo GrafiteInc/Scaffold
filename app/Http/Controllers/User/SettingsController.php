@@ -59,6 +59,7 @@ class SettingsController extends Controller
                 'dark_mode' => $request->filled('dark_mode') ?? false,
                 'avatar' => $path,
                 'allow_email_based_notifications' => $request->filled('allow_email_based_notifications') ?? false,
+                'billing_email' => $request->billing_email,
                 'state' => $request->state,
                 'country' => $request->country,
             ]);

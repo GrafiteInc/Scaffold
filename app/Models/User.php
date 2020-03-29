@@ -46,6 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'dark_mode',
         'allow_email_based_notifications',
+        'billing_email',
         'stripe_id',
         'card_brand',
         'card_last_four',
@@ -109,6 +110,16 @@ class User extends Authenticatable implements MustVerifyEmail
             ->color('#464349')
             ->generate()
             ->encode('data-url');
+    }
+
+    /**
+     * Get the email address used to create the customer in Stripe.
+     *
+     * @return string|null
+     */
+    public function stripeEmail()
+    {
+        return $this->billing_email;
     }
 
     /**

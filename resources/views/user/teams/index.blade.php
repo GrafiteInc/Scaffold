@@ -30,7 +30,14 @@
                             <tbody>
                                 @foreach($teams as $team)
                                     <tr>
-                                        <td>{{ $team->name }}</td>
+                                        <td width="40%">
+                                            {{ $team->name }} <small>({{ $team->created_at->format('M dS, Y') }})</small>
+                                        </td>
+                                        <td width="40%">
+                                            @foreach ($team->members->take(5) as $member)
+                                                <div class="user-avatar-sm shadow-sm border" style="background-image: url({{ $member->avatar_url }})"></div>
+                                            @endforeach
+                                        </td>
                                         <td width="240px" class="text-right">
                                             <div class="btn-toolbar justify-content-end">
                                                 <a class="btn btn-outline-secondary btn-sm mr-2" href="{!! route('teams.show', $team->uuid) !!}"><i class="fa fa-eye"></i> View</a>

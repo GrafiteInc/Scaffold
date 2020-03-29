@@ -51,6 +51,10 @@ class UserForm extends ModelForm
     public function billingColumns()
     {
         return [
+            Email::make('billing_email', [
+                'label' => 'Billing Email',
+                'required' => true
+            ]),
             Text::make('state', [
                 'required' => auth()->user()->hasActiveSubscription(),
             ]),
