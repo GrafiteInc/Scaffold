@@ -60714,8 +60714,13 @@ window.ajax = function (_event) {
 
   window.axios[_method](_form.action, _payload).then(function (response) {
     window.Snotify.success(response.data.message);
-  })["catch"](function (response) {
-    window.Snotify.warning(response.data.message);
+  })["catch"](function (error) {
+    window.Snotify.warning(error.response.data.message);
+
+    for (var key in error.response.data.errors) {
+      $('input[name="' + key + '"]').addClass('border-danger');
+      window.Snotify.error(error.response.data.errors[key][0]);
+    }
   });
 };
 /**

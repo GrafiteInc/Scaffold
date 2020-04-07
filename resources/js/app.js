@@ -44,8 +44,13 @@ window.ajax = (_event) => {
         .then((response) => {
             window.Snotify.success(response.data.message);
         })
-        .catch((response) => {
-            window.Snotify.warning(response.data.message);
+        .catch((error) => {
+            window.Snotify.warning(error.response.data.message);
+
+            for (var key in error.response.data.errors) {
+                $('input[name="'+key+'"]').addClass('border-danger');
+                window.Snotify.error(error.response.data.errors[key][0]);
+            }
         });
 }
 
