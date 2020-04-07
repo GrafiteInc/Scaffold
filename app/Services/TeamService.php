@@ -73,6 +73,10 @@ class TeamService
 
         $app = config('app.name');
 
+        if ($team->members->pluck('email')->contains($email)) {
+            throw new Exception("This team already has this member", 1);
+        }
+
         $message = "You've been invited to a team on {$app} called: {$team->name}!";
 
         if ($invite = $team->invite($email, $message)) {
