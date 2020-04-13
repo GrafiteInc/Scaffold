@@ -42,9 +42,7 @@ class UserForm extends ModelForm
             ToggleField::make('allow_email_based_notifications', [
                 'legend' => 'Email Contact'
             ]),
-            File::make('avatar', [
-
-            ]),
+            File::make('avatar'),
         ], $this->billingColumns());
     }
 

@@ -17,6 +17,18 @@ class ToggleField extends Field
     }
 
     /**
+     * Input options
+     *
+     * @return array
+     */
+    protected static function getOptions()
+    {
+        return [
+            'label' => false
+        ];
+    }
+
+    /**
      * Input attributes
      *
      * @return array

@@ -8,12 +8,31 @@
 
 return [
 
+    'buttons' => [
+        'submit' => 'btn btn-primary',
+        'delete' => 'btn btn-danger',
+        'cancel' => 'btn btn-secondary',
+    ],
+
     'form' => [
+        'class' => 'form',
+        'delete-class' => 'form-inline',
+        'inline-class' => 'form d-inline',
+
         'group-class' => 'form-group',
+        'input-class' => 'form-control',
         'label-class' => 'control-label',
+        'label-check-class' => 'form-check-label',
         'before_after_input_wrapper' => 'input-group',
         'text-error' => 'text-danger',
         'error-class' => 'has-error',
+        'check-class' => 'form-check',
+
+        'check-input-class' => 'form-check-input',
+        'check-inline-class' => 'form-check form-check-inline',
+        'custom-file-label' => 'custom-file-label',
+        'custom-file-input-class' => 'custom-file-input',
+        'custom-file-wrapper-class' => 'custom-file',
 
         /*
         * --------------------------------------------------------------------------
@@ -40,7 +59,8 @@ return [
         */
 
         'orientation' => 'vertical',
-        'label-column' => 'col-md-2 col-form-label',
+        'horizontal-class' => 'form-horizontal',
+        'label-column' => 'col-md-2 col-form-label pt-0',
         'input-column' => 'col-md-10',
     ]
 
