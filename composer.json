@@ -13,7 +13,7 @@
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "grafite/database": "^1.0",
-        "grafite/formmaker": "^2.4.2",
+        "grafite/formmaker": "^2.6",
         "intervention/image": "^2.5",
         "laravel/cashier": "^10.1",
         "laravel/framework": "^7.0",
