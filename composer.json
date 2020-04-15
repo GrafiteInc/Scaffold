@@ -21,7 +21,6 @@
         "laravel/helpers": "^1.1",
         "laravel/ui": "^2.0",
         "lasserafn/php-initial-avatar-generator": "^4.0",
-        "meyfa/php-svg": "^0.9.1",
         "tightenco/ziggy": "^0.8.1"
     },
     "require-dev": {
