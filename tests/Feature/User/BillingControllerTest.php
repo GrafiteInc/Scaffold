@@ -9,6 +9,8 @@ class BillingControllerTest extends TestCase
 {
     public function testBillingSubscribe()
     {
+        $this->markTestSkipped("Requires Stripe keys");
+
         $response = $this->get(route('user.billing'));
 
         $response->assertOk();
