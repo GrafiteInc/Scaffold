@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\UserResponse;
+use App\Http\Resources\UserResource;
 use App\Notifications\StandardEmail;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ApiUserUpdateRequest;
@@ -19,7 +19,7 @@ class UsersController extends ApiController
     public function me()
     {
         return response()->json([
-            'data' => new UserResponse($this->user)
+            'data' => new UserResource($this->user)
         ]);
     }
 
@@ -38,7 +38,7 @@ class UsersController extends ApiController
             ])
         ) {
             return response()->json([
-                'data' => new UserResponse($this->user),
+                'data' => new UserResource($this->user),
                 'status' => 'Profile updated'
             ]);
         }
