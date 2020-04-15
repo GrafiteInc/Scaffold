@@ -4,7 +4,8 @@
     "description": "An opinionated Laravel boilerplate.",
     "keywords": [
         "boilerplate",
-        "laravel"
+        "laravel",
+        "grafite"
     ],
     "license": "MIT",
     "require": {

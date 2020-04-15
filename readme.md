@@ -1,22 +1,53 @@
 ![Grafite Scaffold](https://docs.grafite.ca/img/grafite_scaffold.png)
 
-### In App Notification
-```
-$notification = new InAppNotification('this is a test');
-$notification->isImportant();
+[![Build Status](https://travis-ci.org/GrafiteInc/scaffold.svg?branch=master)](https://travis-ci.org/GrafiteInc/scaffold)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8c00a046fec32d8b8ac7/maintainability)](https://codeclimate.com/github/GrafiteInc/scaffold/maintainability)
+[![Packagist](https://img.shields.io/packagist/dt/grafite/scaffold.svg)](https://packagist.org/packages/grafite/scaffold)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://packagist.org/packages/grafite/scaffold)
 
-auth()->user()->notify($notification);
+## About Grafite Scaffold
+Grafite Scaffold was created as a highly opinionated bootstrap of Laravel's base application structure. In comes loaded with a variety of packages for various needs including:
+
+- consoletvs/charts
+- grafite/formmaker
+- grafite/database
+- intervention/image
+- laravel/cashier
+- laravel/dusk
+- laravel/helpers
+- laravel/ui
+- lasserafn/php-initial-avatar-generator
+- nunomaduro/collision
+- tightenco/ziggy
+
+Scaffold is intended to be used to start a project and then be heavily altered.
+
+##### Author(s):
+* [Matt Lantz](https://github.com/mlantz) ([@mattylantz](http://twitter.com/mattylantz), mattlantz at gmail dot com)
+
+## Requirements
+
+1. PHP 7.2+
+
+## Compatibility and Support
+
+Since Grafite Scaffold is a starter project it offers no support, and no compatibily guarantees.
+
+## Installation
+
 ```
-With the Helper!
-```
-app_notify('This is words from inside the app!', true)
-email_notify('subject', 'This is words from inside the app!')
+composer create-project --prefer-dist grafite/scaffold {project-name}
 ```
 
-### Email based Notification
+## Documentation
 
-```
-$notification = new StandardEmail('this is a test');
+[https://docs.grafite.ca/scaffold/introduction](https://docs.grafite.ca/scaffold/introduction)
 
-auth()->user()->notify($notification);
-```
+## License
+Grafite Scaffold is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+## Bug Reporting and Feature Requests
+Please add as many details as possible regarding submission of issues and feature requests
+
+## Disclaimer
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

@@ -6,7 +6,11 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h3>Dashboard</h3>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3>Dashboard</h3>
+                </div>
+            </div>
         </div>
     </div>
 
