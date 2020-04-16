@@ -6,6 +6,7 @@
 @import "light/variables";
 @import '~animate.css';
 @import "~vue-snotify/styles/material";
+@import "utilities.scss";
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,4 @@
 */
 @import "layout.scss";
 @import "light/theme.scss";
-@import "utilities.scss";
 @import "stripe.scss";
