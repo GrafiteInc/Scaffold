@@ -77,6 +77,10 @@ class Role extends Model
             return $options;
         }
 
+        if (is_null($value)) {
+            return [];
+        }
+
         return json_decode($value);
     }
 }
