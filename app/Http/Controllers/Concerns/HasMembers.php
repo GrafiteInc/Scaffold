@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Concerns;
+namespace App\Http\Controllers\Concerns;
 
 use Exception;
 use App\Models\User;
