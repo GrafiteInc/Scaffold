@@ -3,7 +3,7 @@
     <ul class="navbar-nav mr-auto">
         <span class="navbar-text ml-4 page-title">
             <a class="sidebar-toggle text-light mr-3"><i class="fa fa-bars"></i></a>
-            <span class="text">@yield('page-title', 'Dashboard')</span>
+            <span class="navbar-text p-0">@yield('page-title', 'Dashboard')</span>
         </span>
     </ul>
     <ul class="navbar-nav px-3">
@@ -13,7 +13,7 @@
                     <notification-badge></notification-badge>
                     <button class="btn btn-text dropdown-toggle btn-account" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="profile-icon" style="background-image: url({{ auth()->user()->avatar_url }});"></div>
-                        <span>{{ Str::limit(auth()->user()->name, 16) }}</span>
+                        <span class="navbar-text">{{ Str::limit(auth()->user()->name, 16) }}</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="{{ route('user.settings') }}">Settings</a>

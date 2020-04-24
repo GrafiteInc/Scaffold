@@ -6,10 +6,10 @@
 
 $off-white: #EEEEEE;
 
-$slate:          #707587 !default;
-$slate-dark:     #5a5c6b !default;
-$slate-darkest:  #464349 !default;
-$slate-light:    #8c8b94 !default;
+$slate:           #707587 !default;
+$slate-dark:      #5a5c6b !default;
+$slate-darkest:   #464349 !default;
+$slate-light:     #8c8b94 !default;
 $slate-lightest:  #d5d6db !default;
 
 $html-bg: $gray-900;
@@ -19,6 +19,8 @@ $sidebar-color: $gray-200;
 $sidebar-header: $slate-light;
 
 $navbar-header: $slate-dark;
+$navbar-bg: $slate-dark;
+$navbar-text-color: $white;
 
 $footer-bg: $slate-darkest;
 
@@ -92,6 +94,10 @@ html {
     .btn-account {
         color: $white;
     }
+}
+
+.navbar-text {
+    color: $navbar-text-color;
 }
 
 .navbar-brand {

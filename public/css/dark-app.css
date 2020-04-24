@@ -15568,6 +15568,10 @@ html {
   color: #fff;
 }
 
+.navbar-text {
+  color: #fff;
+}
+
 .navbar-brand {
   background-color: rgba(0, 0, 0, 0.15);
   color: #fff;
