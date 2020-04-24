@@ -10,7 +10,10 @@
 
                     <div class="card-body">
                         {{ __('Before proceeding, please check your email for a verification link.') }}
-                        {{ __('If you did not receive the email') }}, <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>.
+                        {{ __('If you did not receive the email') }}:
+                        <br>
+                        <br>
+                        {!! form()->action('post', 'verification.resend', 'click here to request another') !!}
                     </div>
                 </div>
             </div>

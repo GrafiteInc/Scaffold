@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth\Concerns;
 use Validator;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Services\InviteService;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -41,7 +42,11 @@ trait RegisterViaInvites
             ]);
         }
 
-        $user = $this->create($request->all());
+        $payload = $request->all();
+
+        $payload['email_verified_at'] = Carbon::now();
+
+        $user = $this->create($payload);
 
         $this->guard()->login($user);
 

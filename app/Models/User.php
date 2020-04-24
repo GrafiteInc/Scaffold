@@ -7,10 +7,10 @@ use App\Models\Concerns\HasRoles;
 use App\Models\Concerns\HasTeams;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\HasActivity;
-use App\Models\Concerns\HasSubscription;
 use App\Notifications\ResetPassword;
 use App\Models\Concerns\HasPermissions;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Concerns\HasSubscription;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use LasseRafn\InitialAvatarGenerator\InitialAvatar;
@@ -46,6 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'dark_mode',
         'allow_email_based_notifications',
+        'email_verified_at',
         'billing_email',
         'stripe_id',
         'card_brand',
