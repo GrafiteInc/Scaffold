@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get();
+        $users = User::whereNotIn('id', [auth()->id()])->get();
         $invites = Invite::where([
             'model_id' => null,
         ])->get();

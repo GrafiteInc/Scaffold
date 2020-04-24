@@ -12,7 +12,7 @@ use App\Http\Forms\TeamInviteForm;
 use App\Http\Forms\TeamMemberForm;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
-use App\Http\Controllers\User\Concerns\HasMembers;
+use App\Http\Controllers\Concerns\HasMembers;
 
 class TeamMembersController extends Controller
 {
