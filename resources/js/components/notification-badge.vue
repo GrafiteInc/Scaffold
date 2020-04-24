@@ -25,7 +25,7 @@
         },
         data () {
             return {
-                notificationCount: 9,
+                notificationCount: 0,
             }
         }
     }
