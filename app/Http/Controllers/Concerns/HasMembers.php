@@ -51,13 +51,13 @@ trait HasMembers
      * Remove member
      *
      * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $member
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function removeMember($model, User $user)
+    public function removeMember($model, User $member)
     {
         try {
-            $result = $this->service->remove($user, $model);
+            $result = $this->service->remove($member, $model);
 
             if ($result) {
                 return back()->with('message', 'Success, the member was removed');
