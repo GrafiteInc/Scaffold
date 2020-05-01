@@ -17,8 +17,8 @@ trait Invitable
      */
     public function invite($email, $message)
     {
-        if (!property_exists($this, 'relationship')) {
-            throw new Exception("The model must have a relationship property that connects the user for attaching.", 1);
+        if (! property_exists($this, 'relationship')) {
+            throw new Exception('The model must have a relationship property that connects the user for attaching.', 1);
         }
 
         return app(InviteService::class)->create($this, $email, $message);

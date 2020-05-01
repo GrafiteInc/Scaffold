@@ -26,7 +26,7 @@ class TeamMemberForm extends BaseForm
             Email::make('email', [
                 'label' => 'Email',
                 'value' => $this->email,
-                'disabled' => 'disabled'
+                'disabled' => 'disabled',
             ]),
             Select::make('team_role', [
                 'required' => true,
@@ -35,8 +35,8 @@ class TeamMemberForm extends BaseForm
                     'Manager' => 'manager',
                     'Member' => 'member',
                 ],
-                'value' => $this->membership
-            ])
+                'value' => $this->membership,
+            ]),
         ];
     }
 

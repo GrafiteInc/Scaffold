@@ -12,7 +12,7 @@ class CookiePolicyController extends Controller
         // TODO: log this in a database or somewhere.
 
         return response()->json([
-            'message' => 'success'
+            'message' => 'success',
         ]);
     }
 }

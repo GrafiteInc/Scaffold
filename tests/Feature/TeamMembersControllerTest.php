@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\Team;
 use App\Models\User;
-use App\Notifications\InAppNotification;
 use Illuminate\Support\Facades\Notification;
 
 class TeamMembersControllerTest extends TestCase
@@ -14,7 +13,7 @@ class TeamMembersControllerTest extends TestCase
     {
         $team = factory(Team::class)->create([
             'name' => 'Avengers',
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $response = $this->get(route('teams.show', [$team->uuid]));
@@ -26,7 +25,7 @@ class TeamMembersControllerTest extends TestCase
     {
         $team = factory(Team::class)->create([
             'name' => 'Avengers',
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $member = factory(User::class)->create();
@@ -42,7 +41,7 @@ class TeamMembersControllerTest extends TestCase
     {
         $team = factory(Team::class)->create([
             'name' => 'Avengers',
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $member = factory(User::class)->create();
@@ -50,7 +49,7 @@ class TeamMembersControllerTest extends TestCase
         $team->members()->attach($member);
 
         $response = $this->put(route('teams.members.update', [$team->id, $member->id]), [
-            'team_role' => 'manager'
+            'team_role' => 'manager',
         ]);
 
         $response->assertStatus(302);
@@ -62,7 +61,7 @@ class TeamMembersControllerTest extends TestCase
         Notification::fake();
 
         $team = factory(Team::class)->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $response = $this->post(route('teams.members.invite', [$team->id]), [
@@ -78,7 +77,7 @@ class TeamMembersControllerTest extends TestCase
         Notification::fake();
 
         $team = factory(Team::class)->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $this->user->teamMemberships()->attach($team);
@@ -96,7 +95,7 @@ class TeamMembersControllerTest extends TestCase
         $user = factory(User::class)->create();
 
         $team = factory(Team::class)->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $user->teamMemberships()->attach($team);

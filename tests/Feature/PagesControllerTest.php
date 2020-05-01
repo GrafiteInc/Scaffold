@@ -3,9 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Models\Team;
-use App\Models\User;
-use App\Models\Invite;
 
 class PagesControllerTest extends TestCase
 {

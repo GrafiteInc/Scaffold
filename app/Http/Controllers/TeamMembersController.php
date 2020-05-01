@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Team;
 use App\Models\User;
-use App\Http\Forms\TeamForm;
 use Illuminate\Http\Request;
 use App\Services\TeamService;
 use App\Http\Forms\TeamInviteForm;
 use App\Http\Forms\TeamMemberForm;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Concerns\HasMembers;
 
@@ -33,7 +31,7 @@ class TeamMembersController extends Controller
     {
         $team = $this->service->findByUuid($uuid);
 
-        if (!Gate::allows('team-member', $team)) {
+        if (! Gate::allows('team-member', $team)) {
             abort(403);
         }
 
@@ -42,7 +40,7 @@ class TeamMembersController extends Controller
 
         return view('teams.show')->with([
             'team' => $team,
-            'inviteForm' => $inviteForm
+            'inviteForm' => $inviteForm,
         ]);
     }
 
@@ -55,7 +53,7 @@ class TeamMembersController extends Controller
      */
     public function editMember(Team $team, User $member)
     {
-        if (!Gate::allows('team-manager', $team)) {
+        if (! Gate::allows('team-manager', $team)) {
             return redirect(route('teams.show', $team->id));
         }
 

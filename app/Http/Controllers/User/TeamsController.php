@@ -76,7 +76,7 @@ class TeamsController extends Controller
      */
     public function edit(Team $team)
     {
-        if (!Gate::allows('team-admin', $team)) {
+        if (! Gate::allows('team-admin', $team)) {
             abort(403);
         }
 

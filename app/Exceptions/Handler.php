@@ -15,7 +15,6 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
     ];
 
     /**
@@ -94,7 +93,7 @@ class Handler extends ExceptionHandler
             if ($response instanceof SymfonyResponse) {
                 return response()->view('errors.general', [
                     'code' => $exception->getStatusCode(),
-                    'message' => $exception->getMessage()
+                    'message' => $exception->getMessage(),
                 ], $exception->getStatusCode());
             }
         }

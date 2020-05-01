@@ -28,7 +28,7 @@ class InviteUserForm extends BaseForm
      * @var array
      */
     public $buttons = [
-        'submit' => 'Send'
+        'submit' => 'Send',
     ];
 
     /**
@@ -44,7 +44,7 @@ class InviteUserForm extends BaseForm
             ]),
             HasMany::make('roles', [
                 'model' => Role::class,
-                'required' => true
+                'required' => true,
             ]),
         ];
     }

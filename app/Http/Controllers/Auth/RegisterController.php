@@ -68,7 +68,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'email_verified_at' => $data['email_verified_at'] ?? null
+            'email_verified_at' => $data['email_verified_at'] ?? null,
         ]);
 
         $user->roles()->attach(Role::where('name', 'member')->first()->id);

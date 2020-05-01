@@ -24,8 +24,8 @@ class ApiTokenController extends Controller
 
         return response()->json([
             'data' => [
-                'token' => $token
-            ]
+                'token' => $token,
+            ],
         ]);
     }
 }

@@ -2,13 +2,11 @@
 
 namespace App\Http\Forms;
 
-use App\Models\Role;
 use App\Models\User;
 use Grafite\FormMaker\Fields\File;
 use Grafite\FormMaker\Fields\Text;
 use Grafite\FormMaker\Fields\Email;
 use App\Http\Forms\Fields\ToggleField;
-use Grafite\FormMaker\Fields\Checkbox;
 use Grafite\FormMaker\Forms\ModelForm;
 
 class UserForm extends ModelForm
@@ -34,13 +32,13 @@ class UserForm extends ModelForm
                 'required' => true,
             ]),
             Email::make('email', [
-                'required' => true
+                'required' => true,
             ]),
             ToggleField::make('dark_mode', [
-                'legend' => 'Dark Mode'
+                'legend' => 'Dark Mode',
             ]),
             ToggleField::make('allow_email_based_notifications', [
-                'legend' => 'Email Contact'
+                'legend' => 'Email Contact',
             ]),
             File::make('avatar'),
         ], $this->billingColumns());
@@ -51,7 +49,7 @@ class UserForm extends ModelForm
         return [
             Email::make('billing_email', [
                 'label' => 'Billing Email',
-                'required' => true
+                'required' => true,
             ]),
             Text::make('state', [
                 'required' => auth()->user()->hasActiveSubscription(),

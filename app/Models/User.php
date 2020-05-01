@@ -99,7 +99,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function getAvatarUrlAttribute()
     {
-        if (!is_null($this->avatar)) {
+        if (! is_null($this->avatar)) {
             return url(Storage::url($this->avatar));
         }
 
@@ -145,7 +145,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $visibleAttributes = [
             'id',
             'name',
-            'email'
+            'email',
         ];
 
         return json_encode(collect($this->toArray())

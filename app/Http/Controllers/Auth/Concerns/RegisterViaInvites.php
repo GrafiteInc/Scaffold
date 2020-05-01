@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Services\InviteService;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 trait RegisterViaInvites
 {
@@ -38,7 +37,7 @@ trait RegisterViaInvites
 
         if (! $inviteIsValid) {
             return back()->withErrors([
-                'Could not validate your invite registration, please try again.'
+                'Could not validate your invite registration, please try again.',
             ]);
         }
 

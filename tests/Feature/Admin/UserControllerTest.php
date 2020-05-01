@@ -31,7 +31,7 @@ class UserControllerTest extends TestCase
         ]);
 
         $response = $this->post(route('admin.users.search'), [
-            'search' => 'moe'
+            'search' => 'moe',
         ]);
 
         $response->assertOk();
@@ -52,7 +52,7 @@ class UserControllerTest extends TestCase
     {
         $response = $this->post(route('admin.users.invite'), [
             'email' => 'jim@grafite.ca',
-            'roles' => 'admin'
+            'roles' => 'admin',
         ]);
 
         $response->assertStatus(302);

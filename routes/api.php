@@ -14,13 +14,11 @@
 Route::group([
     'middleware' => 'api',
     'namespace' => 'Api',
-    'as' => 'api'
+    'as' => 'api',
 ], function () {
-
     Route::group(['prefix' => 'users'], function () {
         Route::get('me', 'UsersController@me')->name('.users.me');
         Route::put('update', 'UsersController@update')->name('.users.update');
         Route::delete('destroy', 'UsersController@destroy')->name('.users.destroy');
     });
-
 });

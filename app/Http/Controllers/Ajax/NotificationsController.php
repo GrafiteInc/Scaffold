@@ -10,7 +10,7 @@ class NotificationsController extends Controller
     public function count(Request $request)
     {
         return response()->json([
-            'data' => $request->user()->unreadNotifications->count()
+            'data' => $request->user()->unreadNotifications->count(),
         ]);
     }
 }

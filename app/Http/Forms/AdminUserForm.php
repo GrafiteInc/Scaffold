@@ -34,14 +34,14 @@ class AdminUserForm extends ModelForm
                 'required' => true,
             ]),
             Email::make('email', [
-                'required' => true
+                'required' => true,
             ]),
             HasMany::make('roles', [
                 'required' => true,
                 'model' => Role::class,
                 'model_options' => [
-                    'label' => 'label'
-                ]
+                    'label' => 'label',
+                ],
             ]),
         ];
     }

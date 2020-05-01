@@ -20,7 +20,7 @@ class TeamInviteForm extends BaseForm
                 'required' => true,
                 'label' => 'Invite a new member',
                 'placeholder' => 'Email Address',
-            ])
+            ]),
         ];
     }
 }

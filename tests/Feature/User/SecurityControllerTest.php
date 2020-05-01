@@ -17,7 +17,7 @@ class SecurityControllerTest extends TestCase
     public function testUpdatePassword()
     {
         $this->user->update([
-            'password' => Hash::make('admin')
+            'password' => Hash::make('admin'),
         ]);
 
         $response = $this->put(route('user.security.update'), [

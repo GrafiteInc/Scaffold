@@ -24,7 +24,7 @@ class ToggleField extends Field
     protected static function getOptions()
     {
         return [
-            'label' => false
+            'label' => false,
         ];
     }
 
@@ -38,7 +38,7 @@ class ToggleField extends Field
         return [
             'data-toggle' => 'toggle',
             'data-offstyle' => (auth()->user()->dark_mode) ? 'dark' : 'light',
-            'data-size' => 'sm'
+            'data-size' => 'sm',
         ];
     }
 }

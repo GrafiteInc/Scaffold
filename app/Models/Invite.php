@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invite extends Model
 {
-    public $table = "invites";
+    public $table = 'invites';
 
-    public $primaryKey = "id";
+    public $primaryKey = 'id';
 
     public $timestamps = true;
 

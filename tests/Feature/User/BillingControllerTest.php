@@ -9,7 +9,7 @@ class BillingControllerTest extends TestCase
 {
     public function testBillingSubscribe()
     {
-        $this->markTestSkipped("Requires Stripe keys");
+        $this->markTestSkipped('Requires Stripe keys');
 
         $response = $this->get(route('user.billing'));
 
@@ -18,10 +18,10 @@ class BillingControllerTest extends TestCase
 
     public function testBillingGetDetails()
     {
-        $this->markTestSkipped("Requires Stripe keys");
+        $this->markTestSkipped('Requires Stripe keys');
 
         factory(Subscription::class)->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $this->user->update([
@@ -37,10 +37,10 @@ class BillingControllerTest extends TestCase
 
     public function testBillingPaymentMethod()
     {
-        $this->markTestSkipped("Requires Stripe keys");
+        $this->markTestSkipped('Requires Stripe keys');
 
         factory(Subscription::class)->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $this->user->update([
@@ -56,10 +56,10 @@ class BillingControllerTest extends TestCase
 
     public function testBillingCoupon()
     {
-        $this->markTestSkipped("Requires Stripe keys");
+        $this->markTestSkipped('Requires Stripe keys');
 
         factory(Subscription::class)->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $this->user->update([
