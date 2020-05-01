@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
-use App\Http\Requests\BillingRequest;
 
 class BillingController extends Controller
 {
@@ -26,7 +23,7 @@ class BillingController extends Controller
 
         return view('user.billing.subscribe', [
             'user' => $user,
-            'intent' => $user->createSetupIntent()
+            'intent' => $user->createSetupIntent(),
         ]);
     }
 
@@ -41,7 +38,7 @@ class BillingController extends Controller
 
         return view('user.billing.renew', [
             'user' => $user,
-            'intent' => $user->createSetupIntent()
+            'intent' => $user->createSetupIntent(),
         ]);
     }
 
@@ -59,7 +56,7 @@ class BillingController extends Controller
         return view('user.billing.details', [
             'user' => $user,
             'invoice' => $invoice,
-            'subscription' => $subscription
+            'subscription' => $subscription,
         ]);
     }
 
@@ -75,7 +72,7 @@ class BillingController extends Controller
 
         return view('user.billing.payment-method', [
             'user' => $user,
-            'intent' => $user->createSetupIntent()
+            'intent' => $user->createSetupIntent(),
         ]);
     }
 
@@ -174,13 +171,13 @@ class BillingController extends Controller
             $user = $request->user();
 
             $response = $user->downloadInvoice($id, [
-                'vendor'    => config('billing.invoice.company'),
-                'street'    => config('billing.invoice.street'),
-                'location'  => config('billing.invoice.location'),
-                'phone'     => config('billing.invoice.phone'),
-                'url'       => config('billing.invoice.url'),
-                'product'   => config('billing.invoice.product'),
-                'description'   => 'Subscription',
+                'vendor' => config('billing.invoice.company'),
+                'street' => config('billing.invoice.street'),
+                'location' => config('billing.invoice.location'),
+                'phone' => config('billing.invoice.phone'),
+                'url' => config('billing.invoice.url'),
+                'product' => config('billing.invoice.product'),
+                'description' => 'Subscription',
             ]);
         } catch (Exception $e) {
             $response = back()->withErrors(['Could not find this invoice, please try again.']);

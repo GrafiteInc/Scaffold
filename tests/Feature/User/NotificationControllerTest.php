@@ -19,20 +19,20 @@ class NotificationControllerTest extends TestCase
     {
         $notification = factory(DatabaseNotification::class)->create([
             'notifiable_id' => $this->user->id,
-            'notifiable_type' => User::class
+            'notifiable_type' => User::class,
         ]);
 
         $response = $this->post(route('user.notifications.read', [$notification->id]));
 
         $response->assertStatus(302);
-        $this->assertTrue(!is_null($notification->fresh()->read_at));
+        $this->assertTrue(! is_null($notification->fresh()->read_at));
     }
 
     public function testDelete()
     {
         $notification = factory(DatabaseNotification::class)->create([
             'notifiable_id' => $this->user->id,
-            'notifiable_type' => User::class
+            'notifiable_type' => User::class,
         ]);
 
         $response = $this->delete(route('user.notifications.destroy', [$notification->id]));
@@ -45,7 +45,7 @@ class NotificationControllerTest extends TestCase
     {
         $notification = factory(DatabaseNotification::class, 4)->create([
             'notifiable_id' => $this->user->id,
-            'notifiable_type' => User::class
+            'notifiable_type' => User::class,
         ]);
 
         $response = $this->delete(route('user.notifications.clear'));

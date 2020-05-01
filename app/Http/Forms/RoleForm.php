@@ -31,7 +31,7 @@ class RoleForm extends ModelForm
             [
                 'label',
             ],
-            'Permissions' => $this->permissionOptionKeys()
+            'Permissions' => $this->permissionOptionKeys(),
         ];
     }
 
@@ -39,7 +39,7 @@ class RoleForm extends ModelForm
     {
         return array_merge([
             Text::make('label', [
-                'required' => true
+                'required' => true,
             ]),
         ], $this->permissionOptions());
     }
@@ -51,7 +51,7 @@ class RoleForm extends ModelForm
 
         foreach ($permissions as $model => $action) {
             foreach ($action as $name => $label) {
-                $options[] = "permissions[$model.$name]";
+                $options[] = "permissions[${model}.${name}]";
             }
         }
 
@@ -65,8 +65,8 @@ class RoleForm extends ModelForm
 
         foreach ($permissions as $model => $action) {
             foreach ($action as $name => $label) {
-                $options[] = Checkbox::make("permissions[$model.$name]", [
-                    'label' => $label
+                $options[] = Checkbox::make("permissions[${model}.${name}]", [
+                    'label' => $label,
                 ]);
             }
         }

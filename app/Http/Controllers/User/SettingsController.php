@@ -25,7 +25,7 @@ class SettingsController extends Controller
         $deleteAccountForm = form()
             ->confirm(trans('general.user.delete_account'), 'confirmation')
             ->action('delete', 'user.destroy', 'Delete My Account', [
-                'class' => 'btn btn-danger mt-4'
+                'class' => 'btn btn-danger mt-4',
             ]);
 
         return view('user.settings')
@@ -44,7 +44,7 @@ class SettingsController extends Controller
         try {
             $path = auth()->user()->avatar;
 
-            if (!is_null($request->avatar)) {
+            if (! is_null($request->avatar)) {
                 if (($request->file('avatar')->getSize() / 1024) > 10000) {
                     return back()->withErrors(['Avatar file is too big, must be below 10MB.']);
                 }
@@ -67,6 +67,7 @@ class SettingsController extends Controller
             return back()->with('message', 'Settings updated successfully');
         } catch (Exception $e) {
             Log::error($e);
+
             return back()->withErrors($e->getMessage());
         }
     }
@@ -88,6 +89,7 @@ class SettingsController extends Controller
             return back()->with('message', 'Avatar deleted successfully');
         } catch (Exception $e) {
             Log::error($e);
+
             return back()->withErrors($e->getMessage());
         }
     }

@@ -27,7 +27,7 @@ class InvitesControllerTest extends TestCase
             'relationship' => 'teamMemberships',
             'model_id' => $team->id,
             'message' => 'new team!',
-            'token' => 'foo'
+            'token' => 'foo',
         ]);
 
         $response = $this->post(route('user.invites.accept', $invite));
@@ -47,7 +47,7 @@ class InvitesControllerTest extends TestCase
             'relationship' => 'teamMemberships',
             'model_id' => $team->id,
             'message' => 'new team!',
-            'token' => 'foo'
+            'token' => 'foo',
         ]);
 
         $response = $this->post(route('user.invites.reject', $invite));

@@ -40,7 +40,7 @@ class TeamsControllerTest extends TestCase
     public function testEdit()
     {
         $team = factory(Team::class)->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $response = $this->get(route('user.teams.edit', [$team->id]));
@@ -51,11 +51,11 @@ class TeamsControllerTest extends TestCase
     public function testUpdate()
     {
         $team = factory(Team::class)->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $response = $this->put(route('user.teams.update', [$team->id]), [
-            'name' => 'Avengers'
+            'name' => 'Avengers',
         ]);
 
         $response->assertStatus(302);
@@ -69,7 +69,7 @@ class TeamsControllerTest extends TestCase
         $user = factory(User::class)->create();
 
         $team = factory(Team::class)->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $user->teamMemberships()->attach($team);

@@ -11,9 +11,7 @@
 | ex. ['middleware' => ['permission:roles.create|users']]
 */
 
-
 return [
-
     'roles' => [
         'create' => 'Create Roles',
         'update' => 'Update Roles',
@@ -26,5 +24,4 @@ return [
         'update' => 'Update Users',
         'delete' => 'Delete Users',
     ],
-
 ];

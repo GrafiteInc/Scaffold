@@ -20,7 +20,7 @@ class SettingsControllerTest extends TestCase
         $response = $this->put(route('user.update'), [
             'name' => 'Burt Cooper',
             'email' => 'burt@sterlingcooperdraperprice.com',
-            'dark_mode' => true
+            'dark_mode' => true,
         ]);
 
         $response->assertStatus(302);
@@ -36,12 +36,12 @@ class SettingsControllerTest extends TestCase
         $response = $this->put(route('user.update'), [
             'name' => 'Burt Cooper',
             'email' => 'burt@sterlingcooperdraperprice.com',
-            'avatar' => $file
+            'avatar' => $file,
         ]);
 
         $response->assertStatus(302);
 
         $this->assertEquals('Burt Cooper', $this->user->fresh()->name);
-        $this->assertTrue(!is_null($this->user->fresh()->avatar));
+        $this->assertTrue(! is_null($this->user->fresh()->avatar));
     }
 }

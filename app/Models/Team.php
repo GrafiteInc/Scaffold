@@ -2,20 +2,18 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use App\Models\Concerns\Invitable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Team extends Model
 {
     use Invitable;
 
-    public $table = "teams";
+    public $table = 'teams';
 
-    public $relationship = "teamMemberships";
+    public $relationship = 'teamMemberships';
 
-    public $primaryKey = "id";
+    public $primaryKey = 'id';
 
     public $timestamps = true;
 
@@ -26,7 +24,7 @@ class Team extends Model
     ];
 
     public static $rules = [
-        'name' => 'required|unique:teams'
+        'name' => 'required|unique:teams',
     ];
 
     /**

@@ -28,7 +28,7 @@ class RegistrationThirtyDays extends Chart
         foreach ($registrations as $date => $registration) {
             $registrationRecords->push([
                 'dates' => $date,
-                'registration_count' => $registration->count()
+                'registration_count' => $registration->count(),
             ]);
         }
 
@@ -36,9 +36,9 @@ class RegistrationThirtyDays extends Chart
         $counts = $registrationRecords->pluck('registration_count');
 
         $this->dataset('User Registrations Per Day', 'line', $counts)
-        ->options([
-            'borderColor' => '#6f42c1',
-        ]);
+            ->options([
+                'borderColor' => '#6f42c1',
+            ]);
 
         $this->displayLegend(false);
 

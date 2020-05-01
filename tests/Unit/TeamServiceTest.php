@@ -23,7 +23,7 @@ class TeamServiceTest extends TestCase
     public function testCreate()
     {
         $result = $this->service->create([
-            'name' => 'Justice League'
+            'name' => 'Justice League',
         ]);
 
         $this->assertEquals('Justice League', $result->name);
@@ -32,11 +32,11 @@ class TeamServiceTest extends TestCase
     public function testUpdate()
     {
         $team = factory(Team::class)->create([
-            'name' => 'Avengers'
+            'name' => 'Avengers',
         ]);
 
         $result = $this->service->update($team, [
-            'name' => 'Justice League'
+            'name' => 'Justice League',
         ]);
 
         $this->assertEquals('Justice League', $result->name);
@@ -47,7 +47,7 @@ class TeamServiceTest extends TestCase
         Notification::fake();
 
         $team = factory(Team::class)->create([
-            'name' => 'Avengers'
+            'name' => 'Avengers',
         ]);
 
         $result = $this->service->invite($team->id, 'someone@example.com');

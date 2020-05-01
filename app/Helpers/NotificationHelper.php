@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Notification;
  * --------------------------------------------------------------------------
 */
 
-if (!function_exists('app_notify')) {
+if (! function_exists('app_notify')) {
     function app_notify($message, $isImportant = false)
     {
         $notification = new InAppNotification($message);
@@ -23,7 +23,7 @@ if (!function_exists('app_notify')) {
     }
 }
 
-if (!function_exists('app_notify_user')) {
+if (! function_exists('app_notify_user')) {
     function app_notify_user($user, $message, $isImportant = false)
     {
         $notification = new InAppNotification($message);
@@ -36,7 +36,7 @@ if (!function_exists('app_notify_user')) {
     }
 }
 
-if (!function_exists('email_notify')) {
+if (! function_exists('email_notify')) {
     function email_notify($subject, $message)
     {
         $user = auth()->user();
@@ -52,7 +52,7 @@ if (!function_exists('email_notify')) {
     }
 }
 
-if (!function_exists('email_notify_user')) {
+if (! function_exists('email_notify_user')) {
     function email_notify_user($user, $subject, $message)
     {
         if ($user->allow_email_based_notifications) {

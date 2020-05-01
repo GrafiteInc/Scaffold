@@ -52,7 +52,7 @@ class AuthServiceProvider extends ServiceProvider
             // Membership levels
             if (
                 in_array($member->membership->team_role, [
-                    'manager'
+                    'manager',
                 ])
             ) {
                 return true;
@@ -83,7 +83,7 @@ class AuthServiceProvider extends ServiceProvider
          * Gateway for determining not cancelled subscribers
          */
         Gate::define('subscription-not-cancelled', function ($user) {
-            return !$user->hasCancelledSubscription();
+            return ! $user->hasCancelledSubscription();
         });
 
         /**

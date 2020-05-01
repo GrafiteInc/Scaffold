@@ -14,7 +14,7 @@ trait Searchable
 
         foreach ($columns as $attribute) {
             $query->orWhere($attribute, 'LIKE', "%{$payload}%");
-        };
+        }
 
         return $query;
     }

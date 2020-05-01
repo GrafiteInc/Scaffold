@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
-
     /**
      * Display a listing of the roles.
      *
@@ -51,7 +50,7 @@ class RoleController extends Controller
         $role = Role::create([
             'name' => strtolower($request->label),
             'label' => $request->label,
-            'permissions' => array_keys($request->permissions ?? [])
+            'permissions' => array_keys($request->permissions ?? []),
         ]);
 
         return redirect(route('admin.roles.edit', $role->id))->with('message', 'Role Created');
@@ -85,7 +84,7 @@ class RoleController extends Controller
             $role = $role->update([
                 'label' => $request->label,
                 'name' => strtolower($request->label),
-                'permissions' => array_keys($request->permissions ?? [])
+                'permissions' => array_keys($request->permissions ?? []),
             ]);
 
             return back()->with('message', 'Successfully updated');

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
@@ -24,7 +23,7 @@ class Role extends Model
     protected $fillable = [
         'name',
         'label',
-        'permissions'
+        'permissions',
     ];
 
     /**
@@ -43,7 +42,7 @@ class Role extends Model
      */
     public static $rules = [
         'name' => 'required|unique:roles',
-        'label' => 'required'
+        'label' => 'required',
     ];
 
     /**
@@ -70,7 +69,7 @@ class Role extends Model
 
             foreach ($permissions as $model => $action) {
                 foreach ($action as $name => $label) {
-                    $options[] = "$model.$name";
+                    $options[] = "${model}.${name}";
                 }
             }
 

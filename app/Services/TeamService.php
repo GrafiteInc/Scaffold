@@ -74,7 +74,7 @@ class TeamService
         $app = config('app.name');
 
         if ($team->members->pluck('email')->contains($email)) {
-            throw new Exception("This team already has this member", 1);
+            throw new Exception('This team already has this member', 1);
         }
 
         $message = "You've been invited to a team on {$app} called: {$team->name}!";
@@ -117,8 +117,8 @@ class TeamService
     {
         $team = $this->model->find($team);
 
-        if (!Gate::allows('team-admin', $team)) {
-            throw new Exception("You do not have permission to do this.", 1);
+        if (! Gate::allows('team-admin', $team)) {
+            throw new Exception('You do not have permission to do this.', 1);
         }
 
         $user->teamMemberships()->detach($team->id);
@@ -164,10 +164,10 @@ class TeamService
 
         if (
             $membership->forceFill([
-                'team_role' => $payload['team_role']
+                'team_role' => $payload['team_role'],
             ])->save()
         ) {
-            if ($originalRole  !== $payload['team_role']) {
+            if ($originalRole !== $payload['team_role']) {
                 $message = 'Your team role in ' . $team->name . ' has changed to: ' . Str::title($payload['team_role']);
                 $notification = new InAppNotification($message);
                 $notification->isImportant();

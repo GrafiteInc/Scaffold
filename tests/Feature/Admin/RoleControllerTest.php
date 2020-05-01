@@ -33,14 +33,14 @@ class RoleControllerTest extends TestCase
             'permissions' => [
                 'users.invite' => true,
                 'users.activity' => true,
-            ]
+            ],
         ]);
 
         $response->assertStatus(302);
         $this->assertTrue(Role::where('name', 'subscriber')->count() > 0);
         $this->assertEquals([
             'users.invite',
-            'users.activity'
+            'users.activity',
         ], Role::where('name', 'subscriber')->first()->permissions);
     }
 
@@ -63,7 +63,7 @@ class RoleControllerTest extends TestCase
             'label' => 'Subscriber',
             'permissions' => [
                 'users.invite' => true,
-            ]
+            ],
         ]);
 
         $response->assertStatus(302);

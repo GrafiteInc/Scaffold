@@ -28,7 +28,7 @@ class ActivityThirtyDays extends Chart
         foreach ($activities as $date => $activity) {
             $activityRecords->push([
                 'dates' => $date,
-                'activity_count' => $activity->count()
+                'activity_count' => $activity->count(),
             ]);
         }
 
@@ -36,9 +36,9 @@ class ActivityThirtyDays extends Chart
         $counts = $activityRecords->pluck('activity_count');
 
         $this->dataset('User Activities Per Day', 'line', $counts)
-        ->options([
-            'borderColor' => '#6f42c1',
-        ]);
+            ->options([
+                'borderColor' => '#6f42c1',
+            ]);
 
         $this->displayLegend(false);
 

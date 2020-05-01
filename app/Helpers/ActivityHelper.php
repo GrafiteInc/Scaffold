@@ -8,7 +8,7 @@ use App\Services\ActivityService;
  * --------------------------------------------------------------------------
 */
 
-if (!function_exists('activity')) {
+if (! function_exists('activity')) {
     function activity($description)
     {
         return app(ActivityService::class)->log($description);

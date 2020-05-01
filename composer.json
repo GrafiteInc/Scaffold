@@ -73,7 +73,7 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "check-style": "phpcs -p --standard=PSR12 app tests/ --extensions=php",
-        "fix-style": "phpcbf -p --standard=PSR12 app tests/ --extensions=php"
+        "check-style": "php-cs-fixer fix --dry-run",
+        "fix-style": "php-cs-fixer fix"
     }
 }

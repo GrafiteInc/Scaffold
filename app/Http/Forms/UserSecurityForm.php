@@ -24,15 +24,15 @@ class UserSecurityForm extends BaseForm
         return [
             Password::make('old_password', [
                 'required' => true,
-                'label' => 'Current Password'
+                'label' => 'Current Password',
             ]),
             Password::make('new_password', [
                 'required' => true,
-                'label' => 'New Password'
+                'label' => 'New Password',
             ]),
             Password::make('new_password_confirmation', [
                 'required' => true,
-                'label' => 'Confirm New Password'
+                'label' => 'Confirm New Password',
             ]),
         ];
     }

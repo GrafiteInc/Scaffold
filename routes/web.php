@@ -42,7 +42,7 @@ Route::get('register/invite', 'Auth\RegisterController@showRegistrationInviteFor
 Route::post('register/invite', 'Auth\RegisterController@registerViaInvite');
 
 Auth::routes([
-    'verify' => true
+    'verify' => true,
 ]);
 
 /*
@@ -52,7 +52,6 @@ Auth::routes([
 */
 
 Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
-
     Route::post('users/return-switch', 'Admin\UserController@switchBack')->name('users.return-switch');
 
     /*
@@ -124,7 +123,6 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
                 Route::post('apply-coupon', 'BillingController@applyCoupon')->name('user.billing.apply-coupon');
             });
         });
-
     });
 
     Route::post('invites/{invite}/resend', 'InvitesController@resend')->name('invite.resend');
@@ -162,7 +160,6 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
     */
 
     Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'permissions:roles|users'], function () {
-
         Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
 
         /*

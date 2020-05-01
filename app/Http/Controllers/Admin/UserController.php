@@ -172,6 +172,7 @@ class UserController extends Controller
             return back()->with('message', 'Successfully updated');
         } catch (Exception $e) {
             Log::error($e);
+
             return back()->with('errors', ['Failed to update']);
         }
     }

@@ -34,7 +34,7 @@ class TeamForm extends ModelForm
         return [
             Text::make('name', [
                 'required' => true,
-            ])
+            ]),
         ];
     }
 }

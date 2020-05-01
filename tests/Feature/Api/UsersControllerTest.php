@@ -13,7 +13,7 @@ class UsersControllerTest extends ApiTestCase
     public function testMe()
     {
         $response = $this->get(route('api.users.me'), [
-            'Authorization' => 'Bearer foo_bar_token'
+            'Authorization' => 'Bearer foo_bar_token',
         ]);
 
         $content = json_decode($response->content());
@@ -25,9 +25,9 @@ class UsersControllerTest extends ApiTestCase
     {
         $response = $this->putJson(route('api.users.update'), [
             'name' => 'Burt Cooper',
-            'email' => $this->user->email
+            'email' => $this->user->email,
         ], [
-            'Authorization' => 'Bearer foo_bar_token'
+            'Authorization' => 'Bearer foo_bar_token',
         ]);
 
         $content = json_decode($response->content());
@@ -42,7 +42,7 @@ class UsersControllerTest extends ApiTestCase
         Notification::fake();
 
         $response = $this->delete(route('api.users.destroy'), [], [
-            'Authorization' => 'Bearer foo_bar_token'
+            'Authorization' => 'Bearer foo_bar_token',
         ]);
 
         $response->assertJson([
