@@ -5,13 +5,13 @@ namespace App\Models;
 use Laravel\Cashier\Billable;
 use App\Models\Concerns\HasRoles;
 use App\Models\Concerns\HasTeams;
-use App\Models\Concerns\Searchable;
 use App\Models\Concerns\HasActivity;
 use App\Notifications\ResetPassword;
 use App\Models\Concerns\HasPermissions;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Concerns\HasSubscription;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Concerns\DatabaseSearchable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use LasseRafn\InitialAvatarGenerator\InitialAvatar;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -25,7 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasSubscription;
     use HasRoles;
     use HasPermissions;
-    use Searchable;
+    use DatabaseSearchable;
 
     /**
      * The database table used by the model.
