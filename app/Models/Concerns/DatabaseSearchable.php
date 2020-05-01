@@ -4,7 +4,7 @@ namespace App\Models\Concerns;
 
 use Illuminate\Support\Facades\Schema;
 
-trait Searchable
+trait DatabaseSearchable
 {
     public function search($payload)
     {
