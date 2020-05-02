@@ -80,7 +80,7 @@ class TeamService
         $message = "You've been invited to a team on {$app} called: {$team->name}!";
 
         if ($invite = $team->invite($email, $message)) {
-            app_notify('You invited ' . $email . ' to ' . $team->name);
+            app_notify('You sent an invite to ' . $email . ' for ' . $team->name);
         }
 
         return $invite;

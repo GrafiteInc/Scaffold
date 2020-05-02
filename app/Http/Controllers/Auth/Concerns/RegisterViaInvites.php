@@ -15,7 +15,7 @@ trait RegisterViaInvites
      *
      * @return Response
      */
-    public function showRegistrationInviteForm()
+    public function showRegistrationInviteForm(Request $request)
     {
         return view('auth.register_invite');
     }
@@ -49,7 +49,7 @@ trait RegisterViaInvites
 
         $this->guard()->login($user);
 
-        return redirect($this->redirectPath());
+        return redirect(route('user.invites'));
     }
 
     /**
