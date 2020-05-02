@@ -159,7 +159,7 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'permissions:roles|users'], function () {
+    Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'roles:admin'], function () {
         Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
 
         /*
