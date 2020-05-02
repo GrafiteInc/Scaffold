@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f7b524eee740d0a1cc3170d3a1aca9f",
+    "content-hash": "ae11a273d7f215f3c51d3f536bc4615f",
     "packages": [
         {
             "name": "balping/json-raw-encoder",
@@ -821,16 +821,16 @@
         },
         {
             "name": "grafite/formmaker",
-            "version": "v2.6.2",
+            "version": "v2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/FormMaker.git",
-                "reference": "aa445300302c1c16a27841105b8e1ed76d4f4ea0"
+                "reference": "f652e0c44bfac049c4abcfdc793229ddab41125a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/FormMaker/zipball/aa445300302c1c16a27841105b8e1ed76d4f4ea0",
-                "reference": "aa445300302c1c16a27841105b8e1ed76d4f4ea0",
+                "url": "https://api.github.com/repos/GrafiteInc/FormMaker/zipball/f652e0c44bfac049c4abcfdc793229ddab41125a",
+                "reference": "f652e0c44bfac049c4abcfdc793229ddab41125a",
                 "shasum": ""
             },
             "require": {
@@ -872,7 +872,7 @@
                 }
             ],
             "description": "A remarkably magical form and input maker tool for Laravel.",
-            "time": "2020-04-16T03:58:31+00:00"
+            "time": "2020-04-22T06:08:32+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -2756,16 +2756,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.30.0",
+            "version": "v7.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "ea0586669c4fc82cd7a718526604b2c01cb40c77"
+                "reference": "993b58f73572b415c476548134e71e07d96ac3f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/ea0586669c4fc82cd7a718526604b2c01cb40c77",
-                "reference": "ea0586669c4fc82cd7a718526604b2c01cb40c77",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/993b58f73572b415c476548134e71e07d96ac3f0",
+                "reference": "993b58f73572b415c476548134e71e07d96ac3f0",
                 "shasum": ""
             },
             "require": {
@@ -2809,7 +2809,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2020-04-29T19:45:07+00:00"
+            "time": "2020-05-01T19:45:41+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
