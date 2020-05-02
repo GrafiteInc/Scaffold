@@ -32,7 +32,15 @@ class InviteService
             $user->notify($notification);
         }
 
-        $invite = Invite::firstOrCreate([
+        $this->deleteUnfulfilledInvites([
+            'user_id' => auth()->id(),
+            'relationship' => $model->relationship,
+            'model_id' => $model->id,
+            'email' => $email,
+            'message' => $message,
+        ]);
+
+        $invite = Invite::create([
             'user_id' => auth()->id(),
             'relationship' => $model->relationship,
             'model_id' => $model->id,
@@ -55,7 +63,19 @@ class InviteService
     }
 
     /**
-     * Find by the user meta activation token.
+     * Delete all invites that match this since their
+     * tokens will now be invalid
+     *
+     * @param array $payload
+     * @return void
+     */
+    public function deleteUnfulfilledInvites($payload)
+    {
+        Invite::where($payload)->delete();
+    }
+
+    /**
+     * Find by the user activation token.
      *
      * @param string $token
      * @param string $email

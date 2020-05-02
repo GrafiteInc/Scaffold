@@ -65,7 +65,7 @@ window.ajax = (_event) => {
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('cookie-law', require('./components/cookie-law.vue').default);
+Vue.component('cookielaw', require('./components/cookie-law.vue').default);
 Vue.component('session', require('./components/session.vue').default);
 Vue.component('modal', require('./components/modal.vue').default);
 Vue.component('copy-button', require('./components/copy-button.vue').default);

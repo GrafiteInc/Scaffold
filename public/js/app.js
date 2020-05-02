@@ -6279,7 +6279,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mame: "cookie-law",
+  mame: "cookielaw",
   props: ['version'],
   components: {
     CookieLaw: vue_cookie_law__WEBPACK_IMPORTED_MODULE_0___default.a
@@ -59650,7 +59650,7 @@ window.ajax = function (_event) {
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 
-Vue.component('cookie-law', __webpack_require__(/*! ./components/cookie-law.vue */ "./resources/js/components/cookie-law.vue")["default"]);
+Vue.component('cookielaw', __webpack_require__(/*! ./components/cookie-law.vue */ "./resources/js/components/cookie-law.vue")["default"]);
 Vue.component('session', __webpack_require__(/*! ./components/session.vue */ "./resources/js/components/session.vue")["default"]);
 Vue.component('modal', __webpack_require__(/*! ./components/modal.vue */ "./resources/js/components/modal.vue")["default"]);
 Vue.component('copy-button', __webpack_require__(/*! ./components/copy-button.vue */ "./resources/js/components/copy-button.vue")["default"]);

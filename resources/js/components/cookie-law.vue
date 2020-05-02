@@ -12,7 +12,7 @@
 <script>
     import CookieLaw from 'vue-cookie-law'
     export default {
-        mame: "cookie-law",
+        mame: "cookielaw",
         props: [
             'version'
         ],
