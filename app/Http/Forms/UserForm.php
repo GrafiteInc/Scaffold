@@ -6,8 +6,9 @@ use App\Models\User;
 use Grafite\FormMaker\Fields\File;
 use Grafite\FormMaker\Fields\Text;
 use Grafite\FormMaker\Fields\Email;
-use App\Http\Forms\Fields\ToggleField;
 use Grafite\FormMaker\Forms\ModelForm;
+use Grafite\FormMaker\Fields\Datepicker;
+use Grafite\FormMaker\Fields\Bootstrap\Toggle;
 
 class UserForm extends ModelForm
 {
@@ -34,10 +35,11 @@ class UserForm extends ModelForm
             Email::make('email', [
                 'required' => true,
             ]),
-            ToggleField::make('dark_mode', [
+            Toggle::make('dark_mode', [
                 'legend' => 'Dark Mode',
+                'theme' => (auth()->user()->dark_mode) ? 'dark' : 'light',
             ]),
-            ToggleField::make('allow_email_based_notifications', [
+            Toggle::make('allow_email_based_notifications', [
                 'legend' => 'Email Contact',
             ]),
             File::make('avatar'),

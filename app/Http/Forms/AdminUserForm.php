@@ -6,8 +6,8 @@ use App\Models\Role;
 use App\Models\User;
 use Grafite\FormMaker\Fields\Text;
 use Grafite\FormMaker\Fields\Email;
-use Grafite\FormMaker\Fields\HasMany;
 use Grafite\FormMaker\Forms\ModelForm;
+use Grafite\FormMaker\Fields\Bootstrap\HasMany;
 
 class AdminUserForm extends ModelForm
 {

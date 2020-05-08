@@ -10,14 +10,12 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "@dashboardcode/bsmultiselect": "^0.4.33",
         "@grafite/helpers": "1.0.0",
         "animate.css": "^3.7.2",
         "axios": "^0.18",
         "bootstrap": "^4.4.1",
-        "bootstrap4-toggle": "^3.6.1",
         "cross-env": "^5.2.1",
-        "jquery": "^3.5.0",
+        "jquery": "^3.5.1",
         "laravel-mix": "^5.0.4",
         "lodash": "^4.17.15",
         "popper.js": "^1.16.1",
