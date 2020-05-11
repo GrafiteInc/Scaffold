@@ -10,7 +10,7 @@ jobs:
   laravel-tests:
 
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v2
     - name: Copy .env
@@ -25,3 +25,8 @@ jobs:
       env:
         DB_CONNECTION: test
       run: vendor/bin/phpunit
+    # - name: Invoke deployment hook
+    #   uses: distributhor/workflow-webhook@v1
+    #   env:
+    #     webhook_url: ${{ secrets.WEBHOOK_URL }}
+    #     webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
