@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.2.0] - 2020-05-11
+
+### Added
+- Github actions config for webhooks
+
+### Changed
+- Upgraded FormMaker for better forms
+- Improved UI for mobile
+
 ## [v1.1.0] - 2020-05-02
 
 ### Changed
