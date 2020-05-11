@@ -2,7 +2,7 @@
 
 @section('app-content')
 
-    <div class="form-container">
+    <div class="form-container mt-4">
 
         <h2 class="page-title">Invite Registeration</h2>
 

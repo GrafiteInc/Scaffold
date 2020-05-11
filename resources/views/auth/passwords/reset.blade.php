@@ -2,11 +2,11 @@
 
 @section('app-content')
 
-    <div class="form-small">
+    <div class="form-container mt-4">
 
-        <h1 class="text-center">Password Reset</h1>
+        <h2 class="page-title">Password Reset</h2>
 
-        <form method="POST" action="/password/reset">
+        <form method="POST" action="{{ route('password.reset') }}">
             {!! csrf_field() !!}
             <input type="hidden" name="token" value="{{ $token }}">
 

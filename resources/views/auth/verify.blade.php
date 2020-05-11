@@ -2,7 +2,7 @@
 
 @section('app-content')
 
-    <div class="form-container">
+    <div class="form-container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
