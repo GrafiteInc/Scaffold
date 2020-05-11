@@ -2,9 +2,9 @@
 
 @section('app-content')
 
-    <div class="form-container">
+    <div class="form-container mt-4">
 
-        <h2 class="page-title">Please sign in</h2>
+        <h2 class="page-title">Please Sign In</h2>
 
         <form method="POST" action="{{ url('login') }}">
             {!! csrf_field() !!}
