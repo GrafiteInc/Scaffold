@@ -7,7 +7,6 @@ use Grafite\FormMaker\Fields\File;
 use Grafite\FormMaker\Fields\Text;
 use Grafite\FormMaker\Fields\Email;
 use Grafite\FormMaker\Forms\ModelForm;
-use Grafite\FormMaker\Fields\Datepicker;
 use Grafite\FormMaker\Fields\Bootstrap\Toggle;
 
 class UserForm extends ModelForm
