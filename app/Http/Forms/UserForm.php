@@ -3,10 +3,11 @@
 namespace App\Http\Forms;
 
 use App\Models\User;
-use Grafite\FormMaker\Fields\File;
 use Grafite\FormMaker\Fields\Text;
 use Grafite\FormMaker\Fields\Email;
 use Grafite\FormMaker\Forms\ModelForm;
+use Grafite\FormMaker\Fields\Typeahead;
+use Grafite\FormMaker\Fields\FileWithPreview;
 use Grafite\FormMaker\Fields\Bootstrap\Toggle;
 
 class UserForm extends ModelForm
@@ -41,7 +42,10 @@ class UserForm extends ModelForm
             Toggle::make('allow_email_based_notifications', [
                 'legend' => 'Email Contact',
             ]),
-            File::make('avatar'),
+            FileWithPreview::make('avatar', [
+                'preview_identifier' => '.user-avatar',
+                'preview_as_background_image' => true,
+            ]),
         ], $this->billingColumns());
     }
 
