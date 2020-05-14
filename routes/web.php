@@ -151,6 +151,8 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
             ->name('ajax.billing.subscription.create');
         Route::post('payment-method', 'BillingController@updatePaymentMethod')
             ->name('ajax.billing.subscription.payment-method');
+
+        Route::post('file-upload', 'FileUploadController@upload')->name('ajax.files-upload');
     });
 
     /*
