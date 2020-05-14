@@ -1,6 +1,6 @@
 ![Grafite Scaffold](https://docs.grafite.ca/img/grafite_scaffold.png)
 
-[![Build Status](https://travis-ci.org/GrafiteInc/scaffold.svg?branch=master)](https://travis-ci.org/GrafiteInc/scaffold)
+[![Laravel Tests](https://github.com/grafiteinc/scaffold/workflows/Laravel%20Tests/badge.svg)](https://github.com/grafiteinc/scaffold/actions?query=workflow%3A%22Laravel+Tests%22)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8c00a046fec32d8b8ac7/maintainability)](https://codeclimate.com/github/GrafiteInc/scaffold/maintainability)
 [![Packagist](https://img.shields.io/packagist/dt/grafite/scaffold.svg)](https://packagist.org/packages/grafite/scaffold)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://packagist.org/packages/grafite/scaffold)
