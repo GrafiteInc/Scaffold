@@ -35,7 +35,7 @@
                                         </td>
                                         <td width="40%">
                                             @foreach ($team->members->take(5) as $member)
-                                                <div class="user-avatar-sm shadow-sm border" style="background-image: url({{ $member->avatar_url }})"></div>
+                                                <div class="avatar-sm shadow-sm border" style="background-image: url({{ $member->avatar_url }})"></div>
                                             @endforeach
                                         </td>
                                         <td width="240px" class="text-right">

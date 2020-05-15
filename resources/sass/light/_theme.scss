@@ -4,12 +4,12 @@
 |--------------------------------------------------------------------------
 */
 
-$off-white:       #EEEEEE;
-$slate:           #707587 !default;
-$slate-dark:      #5a5c6b !default;
-$slate-darkest:   #464349 !default;
-$slate-light:     #8c8b94 !default;
-$slate-lightest:  #d5d6db !default;
+$off-white: #EEEEEE;
+$slate: #707587 !default;
+$slate-dark: #5a5c6b !default;
+$slate-darkest: #464349 !default;
+$slate-light: #8c8b94 !default;
+$slate-lightest: #d5d6db !default;
 
 $html-bg: $gray-900;
 
@@ -21,6 +21,9 @@ $navbar-bg: $slate-dark;
 $navbar-text-color: $white;
 
 $footer-bg: $slate-darkest;
+
+$navbar-dark-toggler-icon-bg: none;
+$navbar-light-toggler-icon-bg: none;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,10 +91,6 @@ html {
     .navbar-nav {
         background-color: $navbar-header;
     }
-
-    .btn-account {
-        color: $white;
-    }
 }
 
 .navbar-text {
@@ -113,8 +112,7 @@ html {
 |--------------------------------------------------------------------------
 */
 
-.nav-user {
-    margin-bottom: 16px;
+.user-tabs {
     .nav-item a {
         color: $secondary;
     }
@@ -127,48 +125,10 @@ html {
     }
 }
 
-.user-avatar {
-    background-color: #EEE;
-}
-
-.client-dashboard-avatar {
-    background-color: #EEE;
-}
-
-.profile-icon {
-    background-color: #EEE;
-}
-
-.delete-avatar-btn {
-    background-color: #EEE;
-}
-
 input.form-control, textarea.form-control, select.form-control {
     color: #111 !important;
     &:focus {
         color: #111;
         outline: 0 !important;
     }
-}
-
-
-.dashboardcode-bsmultiselect {
-    ul {
-        li {
-            button.close {
-                margin-left: 4px;
-                color: #333;
-            }
-        }
-        .badge {
-            padding-left: 4px !important;
-            padding-right: 4px !important;
-            border: 1px solid #eee;
-            margin-right: 4px;
-        }
-    }
-}
-
-.toggle {
-    margin-left: -20px;
 }

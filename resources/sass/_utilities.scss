@@ -1,2 +1,65 @@
-$navbar-dark-toggler-icon-bg: none;
-$navbar-light-toggler-icon-bg: none;
+/*
+ * --------------------------------------------------------------------------
+ * Text
+ * --------------------------------------------------------------------------
+ */
+
+.text-lg {
+    font-size: 1.4rem;
+}
+
+.text-md {
+    font-size: 1.1rem;
+}
+
+.text-sm {
+    font-size: 0.6rem;
+}
+
+.text-b {
+    font-weight: bold;
+}
+
+.text-lead {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+/*
+ * --------------------------------------------------------------------------
+ * Margins
+ * --------------------------------------------------------------------------
+ */
+
+.mt-6 {
+    margin-top: 6rem !important;
+}
+
+.mb-6 {
+    margin-bottom: 6rem !important;
+}
+
+.mt-8 {
+    margin-top: 8rem !important;
+}
+
+.mb-8 {
+    margin-bottom: 8rem !important;
+}
+
+.pt-6 {
+    padding-top: 6rem !important;
+}
+
+.pb-6 {
+    padding-bottom: 6rem !important;
+}
+
+.pt-8 {
+    padding-top: 8rem !important;
+}
+
+.pb-8 {
+    padding-bottom: 8rem !important;
+}

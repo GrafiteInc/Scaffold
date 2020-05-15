@@ -2,9 +2,9 @@
 
 @section('app-content')
 
-    <div class="form-container mt-4">
+    <div class="content-sm mt-4">
 
-        <h2 class="page-title">Forgot Password</h2>
+        <h3 class="text-center mb-5">Forgot Password</h3>
 
         <form method="POST" action="{{ route('password.email') }}">
             {!! csrf_field() !!}

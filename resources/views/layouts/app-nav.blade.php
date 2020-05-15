@@ -1,9 +1,9 @@
 <nav class="navbar navbar-header sticky-top flex-md-nowrap p-0">
     <a class="navbar-brand mr-0" href="/"><span class="fa fa-cogs"></span> Brand</a>
     <ul class="navbar-nav mr-auto">
-        <span class="navbar-text ml-4 page-title">
+        <span class="navbar-text ml-4">
             <a class="sidebar-toggle text-light mr-3"><i class="fa fa-bars"></i></a>
-            <span class="navbar-text p-0">@yield('page-title', 'Dashboard')</span>
+            <span class="navbar-text navbar-title p-0">@yield('page-title', 'Dashboard')</span>
         </span>
     </ul>
     <ul class="navbar-nav px-3">
@@ -11,8 +11,8 @@
             @if (auth()->user())
                 <div class="dropdown">
                     <notification-badge></notification-badge>
-                    <button class="btn btn-text dropdown-toggle btn-account" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="profile-icon" style="background-image: url({{ auth()->user()->avatar_url }});"></div>
+                    <button class="btn btn-text nav-user-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="nav-avatar" style="background-image: url({{ auth()->user()->avatar_url }});"></div>
                         <span class="navbar-text">{{ Str::limit(auth()->user()->name, 16) }}</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

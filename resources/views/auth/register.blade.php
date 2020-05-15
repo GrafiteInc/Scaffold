@@ -2,9 +2,9 @@
 
 @section('app-content')
 
-    <div class="form-container mt-4">
+    <div class="content-sm mt-4">
 
-        <h2 class="page-title">Register</h2>
+        <h3 class="text-center mb-5">Register</h3>
 
         <form method="POST" action="{{ url('register') }}">
             {!! csrf_field() !!}

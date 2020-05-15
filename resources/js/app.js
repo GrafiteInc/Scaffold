@@ -67,13 +67,6 @@ Vue.component('api-token', require('./components/api-token.vue').default);
 Vue.component('notification-badge', require('./components/notification-badge.vue').default);
 Vue.component('notification-marker', require('./components/notification-marker.vue').default);
 
-import Calendar from 'v-calendar/lib/components/calendar.umd'
-import DatePicker from 'v-calendar/lib/components/date-picker.umd'
-
-// Register components in your 'main.js'
-Vue.component('calendar', Calendar)
-Vue.component('v-date-picker', DatePicker)
-
 /**
  * The following component is a shared event system
  * this means you can trigger events in one component

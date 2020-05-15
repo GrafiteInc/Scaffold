@@ -4037,6 +4037,72 @@
 }
 
 /*
+ * --------------------------------------------------------------------------
+ * Text
+ * --------------------------------------------------------------------------
+ */
+
+.text-lg {
+  font-size: 1.4rem;
+}
+
+.text-md {
+  font-size: 1.1rem;
+}
+
+.text-sm {
+  font-size: 0.6rem;
+}
+
+.text-b {
+  font-weight: bold;
+}
+
+.text-lead {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+/*
+ * --------------------------------------------------------------------------
+ * Margins
+ * --------------------------------------------------------------------------
+ */
+
+.mt-6 {
+  margin-top: 6rem !important;
+}
+
+.mb-6 {
+  margin-bottom: 6rem !important;
+}
+
+.mt-8 {
+  margin-top: 8rem !important;
+}
+
+.mb-8 {
+  margin-bottom: 8rem !important;
+}
+
+.pt-6 {
+  padding-top: 6rem !important;
+}
+
+.pb-6 {
+  padding-bottom: 6rem !important;
+}
+
+.pt-8 {
+  padding-top: 8rem !important;
+}
+
+.pb-8 {
+  padding-bottom: 8rem !important;
+}
+
+/*
 |--------------------------------------------------------------------------
 | Vendors
 |--------------------------------------------------------------------------
@@ -8931,7 +8997,7 @@ input[type=button].btn-block {
 }
 
 .navbar-light .navbar-toggler-icon {
-  background-image: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 .navbar-light .navbar-text {
@@ -8982,7 +9048,7 @@ input[type=button].btn-block {
 }
 
 .navbar-dark .navbar-toggler-icon {
-  background-image: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='%23fff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 .navbar-dark .navbar-text {
@@ -15239,35 +15305,10 @@ body {
   padding-bottom: 60px;
 }
 
-.form-container {
+.content-sm {
   width: 348px;
   margin: 0px auto;
   padding-top: 48px;
-}
-
-.form-container .page-title {
-  font-size: 26px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.delete-avatar-btn {
-  position: absolute;
-  right: 60px;
-  top: -14px;
-}
-
-.profile-icon {
-  display: inline-block;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background-position: center center;
-  background-size: cover;
-  line-height: 45px;
-  margin-bottom: -8px;
-  margin-right: 10px;
 }
 
 .table td {
@@ -15289,13 +15330,9 @@ body {
 |--------------------------------------------------------------------------
 */
 
-.page-title {
+.navbar-title {
   font-size: 22px;
   font-weight: bold;
-}
-
-.navbar-header {
-  height: 60px;
 }
 
 .navbar-brand {
@@ -15308,6 +15345,18 @@ body {
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
 }
 
+.nav-avatar {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-position: center center;
+  background-size: cover;
+  line-height: 45px;
+  margin-bottom: -8px;
+  margin-right: 10px;
+}
+
 .navbar-nav .notification-badge {
   display: inline-block;
   position: absolute;
@@ -15315,13 +15364,13 @@ body {
   right: -4px;
 }
 
-.navbar-nav .btn-account {
+.navbar-nav .nav-user-dropdown {
   text-align: right;
   width: 200px;
   margin-top: -2px;
 }
 
-.navbar-nav .btn-account:focus {
+.navbar-nav .nav-user-dropdown:focus {
   box-shadow: none;
 }
 
@@ -15338,6 +15387,26 @@ body {
 
 input[type=file].form-control {
   line-height: 1.2;
+}
+
+.toggle {
+  margin-left: -20px;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.avatar-sm {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center center;
 }
 
 /*
@@ -15362,31 +15431,6 @@ input[type=file].form-control {
   .sidebar.toggled {
     margin-left: 0;
   }
-
-  .delete-avatar-btn {
-    right: 0px;
-    top: -14px;
-  }
-}
-
-.delete-account {
-  margin-top: 360px;
-}
-
-.user-avatar {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center center;
-}
-
-.user-avatar-sm {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center center;
 }
 
 /*
@@ -15402,7 +15446,7 @@ input[type=file].form-control {
     z-index: 1000000;
   }
 
-  .navbar-nav .btn-account {
+  .navbar-nav .nav-user-dropdown {
     width: 55px;
     height: 50px;
     top: -24px;
@@ -15410,7 +15454,7 @@ input[type=file].form-control {
     position: absolute;
   }
 
-  .navbar-nav .btn-account span {
+  .navbar-nav .nav-user-dropdown span {
     display: none;
   }
 
@@ -15419,11 +15463,6 @@ input[type=file].form-control {
     top: 24px;
     left: -185px;
     min-width: 200px;
-  }
-
-  .delete-avatar-btn {
-    right: 0px;
-    top: -14px;
   }
 }
 
@@ -15453,7 +15492,7 @@ input[type=file].form-control {
     z-index: 1000000;
   }
 
-  .navbar-nav .btn-account {
+  .navbar-nav .nav-user-dropdown {
     width: 55px;
     height: 50px;
     top: -106px;
@@ -15461,7 +15500,7 @@ input[type=file].form-control {
     position: absolute;
   }
 
-  .navbar-nav .btn-account span {
+  .navbar-nav .nav-user-dropdown span {
     display: none;
   }
 
@@ -15554,10 +15593,6 @@ html {
   background-color: #5a5c6b;
 }
 
-.navbar-header .btn-account {
-  color: #fff;
-}
-
 .navbar-text {
   color: #fff;
 }
@@ -15577,36 +15612,16 @@ html {
 |--------------------------------------------------------------------------
 */
 
-.nav-user {
-  margin-bottom: 16px;
-}
-
-.nav-user .nav-item a {
+.user-tabs .nav-item a {
   color: #95a5a6;
 }
 
-.nav-user .nav-link.active {
+.user-tabs .nav-link.active {
   color: #6f42c1;
 }
 
-.nav-user .nav-link.active:hover {
+.user-tabs .nav-link.active:hover {
   color: #6f42c1;
-}
-
-.user-avatar {
-  background-color: #EEE;
-}
-
-.client-dashboard-avatar {
-  background-color: #EEE;
-}
-
-.profile-icon {
-  background-color: #EEE;
-}
-
-.delete-avatar-btn {
-  background-color: #EEE;
 }
 
 input.form-control,
@@ -15620,22 +15635,6 @@ textarea.form-control:focus,
 select.form-control:focus {
   color: #111;
   outline: 0 !important;
-}
-
-.dashboardcode-bsmultiselect ul li button.close {
-  margin-left: 4px;
-  color: #333;
-}
-
-.dashboardcode-bsmultiselect ul .badge {
-  padding-left: 4px !important;
-  padding-right: 4px !important;
-  border: 1px solid #eee;
-  margin-right: 4px;
-}
-
-.toggle {
-  margin-left: -20px;
 }
 
 /**
