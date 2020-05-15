@@ -14,7 +14,7 @@ class DashboardController extends Controller
      */
     public function get()
     {
-        $images = Storage::allFiles('public/uploads');
+        $images = Storage::allFiles('public/uploads', false);
 
         foreach ($images as &$image) {
             $image = str_replace('public', 'storage', $image);
