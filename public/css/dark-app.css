@@ -15523,18 +15523,29 @@ input[type=file].form-control {
 
 /*
 |--------------------------------------------------------------------------
-| General
+| Variables
 |--------------------------------------------------------------------------
 */
 
 /*
 |--------------------------------------------------------------------------
-| Window
+| General
 |--------------------------------------------------------------------------
 */
 
 html {
   background-color: #222;
+}
+
+.border-top,
+.border-left,
+.border-bottom,
+.border-right {
+  border-color: #dee2e6 !important;
+}
+
+hr {
+  background-color: #444;
 }
 
 /*
@@ -15610,23 +15621,23 @@ html {
   color: #EEEEEE;
 }
 
-/*
-|--------------------------------------------------------------------------
-| User Settings
-|--------------------------------------------------------------------------
-*/
-
-.user-tabs .nav-item a {
+.nav-tabs .nav-item a {
   color: #adb5bd;
 }
 
-.user-tabs .nav-link.active {
+.nav-tabs .nav-link.active {
   color: #8558da;
 }
 
-.user-tabs .nav-link.active:hover {
+.nav-tabs .nav-link.active:hover {
   color: #8558da;
 }
+
+/*
+|--------------------------------------------------------------------------
+| Forms
+|--------------------------------------------------------------------------
+*/
 
 input.form-control,
 textarea.form-control,
@@ -15641,17 +15652,6 @@ select.form-control:focus {
   background-color: #000;
   color: #FFF;
   outline: 0 !important;
-}
-
-.border-top,
-.border-left,
-.border-bottom,
-.border-right {
-  border-color: #dee2e6 !important;
-}
-
-hr {
-  background-color: #444;
 }
 
 /**

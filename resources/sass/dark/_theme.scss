@@ -1,16 +1,16 @@
 /*
 |--------------------------------------------------------------------------
-| General
+| Variables
 |--------------------------------------------------------------------------
 */
 
 $off-white: #EEEEEE;
 
-$slate:           #707587 !default;
-$slate-dark:      #5a5c6b !default;
-$slate-darkest:   #464349 !default;
-$slate-light:     #8c8b94 !default;
-$slate-lightest:  #d5d6db !default;
+$slate: #707587 !default;
+$slate-dark: #5a5c6b !default;
+$slate-darkest: #464349 !default;
+$slate-light: #8c8b94 !default;
+$slate-lightest: #d5d6db !default;
 
 $html-bg: $gray-900;
 
@@ -29,12 +29,20 @@ $navbar-light-toggler-icon-bg: none;
 
 /*
 |--------------------------------------------------------------------------
-| Window
+| General
 |--------------------------------------------------------------------------
 */
 
 html {
     background-color: $html-bg;
+}
+
+.border-top, .border-left, .border-bottom, .border-right {
+    border-color: $gray-300 !important;
+}
+
+hr {
+    background-color: #444;
 }
 
 /*
@@ -112,13 +120,7 @@ html {
     }
 }
 
-/*
-|--------------------------------------------------------------------------
-| User Settings
-|--------------------------------------------------------------------------
-*/
-
-.user-tabs {
+.nav-tabs {
     .nav-item a {
         color: $secondary;
     }
@@ -131,6 +133,12 @@ html {
     }
 }
 
+/*
+|--------------------------------------------------------------------------
+| Forms
+|--------------------------------------------------------------------------
+*/
+
 input.form-control, textarea.form-control, select.form-control {
     background-color: $input-bg !important;
     color: $input-color !important;
@@ -139,12 +147,4 @@ input.form-control, textarea.form-control, select.form-control {
         color: $input-color;
         outline: 0 !important;
     }
-}
-
-.border-top, .border-left, .border-bottom, .border-right {
-    border-color: $gray-300 !important;
-}
-
-hr {
-    background-color: #444;
 }
