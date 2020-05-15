@@ -15637,6 +15637,17 @@ select.form-control:focus {
   outline: 0 !important;
 }
 
+.bootstrap-select button.dropdown-toggle,
+.bootstrap-select button.dropdown-toggle:active {
+  color: #111 !important;
+  border: 1px solid #ced4da !important;
+  background-color: #fff !important;
+}
+
+.bootstrap-select .dropdown-menu li a.dropdown-item:hover {
+  color: #fff !important;
+}
+
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
  * how you can use CSS to style your Element's container.

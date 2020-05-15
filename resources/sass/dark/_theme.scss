@@ -148,3 +148,18 @@ input.form-control, textarea.form-control, select.form-control {
         outline: 0 !important;
     }
 }
+
+.bootstrap-select {
+    button.dropdown-toggle, button.dropdown-toggle:active {
+        color: $input-color !important;
+        border: 1px solid $input-bg !important;
+        background-color: $input-bg !important;
+    }
+    .dropdown-menu {
+        li {
+            a.dropdown-item:hover {
+                color: $white !important;
+            }
+        }
+    }
+}

@@ -45,6 +45,9 @@ class InviteUserForm extends BaseForm
             HasMany::make('roles', [
                 'model' => Role::class,
                 'required' => true,
+                'model_options' => [
+                    'label' => 'label',
+                ]
             ]),
         ];
     }
