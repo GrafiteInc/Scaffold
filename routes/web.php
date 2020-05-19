@@ -43,6 +43,8 @@ Route::post('register/invite', 'Auth\RegisterController@registerViaInvite');
 
 Auth::routes([
     'verify' => true,
+    'register' => true,
+    'reset' => true,
 ]);
 
 /*
