@@ -43,7 +43,7 @@ class UserForm extends ModelForm
                 'legend' => 'Email Contact',
             ]),
             FileWithPreview::make('avatar', [
-                'preview_identifier' => '.user-avatar',
+                'preview_identifier' => '.avatar',
                 'preview_as_background_image' => true,
             ]),
         ], $this->billingColumns());
