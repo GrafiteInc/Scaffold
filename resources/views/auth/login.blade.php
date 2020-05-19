@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('page-title') Login @stop
+
 @section('app-content')
 
     <div class="content-sm mt-4">
@@ -11,13 +13,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <label>Email</label>
-                    <input class="form-control" type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                    <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ old('email') }}">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <label>Password</label>
-                    <input class="form-control" type="password" name="password" placeholder="Password" id="password">
+                    <input class="form-control" type="password" required name="password" placeholder="Password" id="password">
                 </div>
             </div>
             <div class="row">

@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('page-title') Verify @stop
+
 @section('app-content')
 
     <div class="content-sm mt-4">
