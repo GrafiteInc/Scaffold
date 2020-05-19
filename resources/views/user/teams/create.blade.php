@@ -4,6 +4,8 @@
 
 @section('user_content')
 
-    {!! $form !!}
+    <div class="content-sm pt-0">
+        {!! $form !!}
+    </div>
 
 @stop

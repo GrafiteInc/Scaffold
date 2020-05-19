@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title') Verify @stop
+@section('page-title') Verify Email Address @stop
 
 @section('app-content')
 
@@ -15,7 +15,7 @@
                         {{ __('If you did not receive the email') }}:
                         <br>
                         <br>
-                        {!! form()->action('post', 'verification.resend', 'click here to request another') !!}
+                        {!! form()->action('post', 'verification.resend', 'Click here to request another') !!}
                     </div>
                 </div>
             </div>
