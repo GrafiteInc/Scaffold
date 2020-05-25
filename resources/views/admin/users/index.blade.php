@@ -5,13 +5,14 @@
 @section('admin_content')
 
     <div class="row">
-        <div class="col-md-12">
-            <div class="btn-toolbar justify-content-between">
-                <form method="post" action="{{ route('admin.users.search') }}">
-                    {!! csrf_field() !!}
-                    <input class="form-control" name="search"  value="{{ request('search') }}" placeholder="Search">
-                </form>
-
+        <div class="col-md-6">
+            <form method="post" action="{{ route('admin.users.search') }}">
+                {!! csrf_field() !!}
+                <input class="form-control" name="search"  value="{{ request('search') }}" placeholder="Search">
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="btn-toolbar justify-content-end">
                 <a class="btn btn-primary" href="{{ route('admin.users.invite') }}">Invite New User</a>
             </div>
         </div>

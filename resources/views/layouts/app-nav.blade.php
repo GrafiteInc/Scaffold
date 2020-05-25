@@ -12,7 +12,7 @@
                 <div class="dropdown">
                     <notification-badge></notification-badge>
                     <button class="btn btn-text nav-user-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="nav-avatar" style="background-image: url({{ auth()->user()->avatar_url }});"></div>
+                        <div class="nav-avatar border border-primary shadow-sm" style="background-image: url({{ auth()->user()->avatar_url }});"></div>
                         <span class="navbar-text">{{ Str::limit(auth()->user()->name, 16) }}</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
