@@ -9,13 +9,7 @@ class Team extends Model
 {
     use Invitable;
 
-    public $table = 'teams';
-
     public $relationship = 'teamMemberships';
-
-    public $primaryKey = 'id';
-
-    public $timestamps = true;
 
     public $fillable = [
         'user_id',
