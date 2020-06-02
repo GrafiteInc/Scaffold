@@ -19,7 +19,7 @@ class ActivityServiceTest extends TestCase
     {
         $response = $this->service->log('this is a simple test');
 
-        $this->assertEquals(get_class($response), 'App\Models\Activity');
+        $this->assertEquals(get_class($response), \App\Models\Activity::class);
         $this->assertEquals('this is a simple test', Activity::first()->description);
     }
 }
