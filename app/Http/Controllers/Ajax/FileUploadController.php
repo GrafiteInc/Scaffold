@@ -16,7 +16,7 @@ class FileUploadController extends Controller
         return response()->json([
             'data' => [
                 'success' => true,
-                'paths' => $paths
+                'paths' => $paths,
             ],
         ]);
     }

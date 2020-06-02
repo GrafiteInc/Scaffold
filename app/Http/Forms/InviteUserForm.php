@@ -47,7 +47,7 @@ class InviteUserForm extends BaseForm
                 'required' => true,
                 'model_options' => [
                     'label' => 'label',
-                ]
+                ],
             ]),
         ];
     }
