@@ -6,7 +6,6 @@ use App\Models\User;
 use Grafite\FormMaker\Fields\Text;
 use Grafite\FormMaker\Fields\Email;
 use Grafite\FormMaker\Forms\ModelForm;
-use Grafite\FormMaker\Fields\Typeahead;
 use Grafite\FormMaker\Fields\FileWithPreview;
 use Grafite\FormMaker\Fields\Bootstrap\Toggle;
 

@@ -19,7 +19,7 @@ class ImageUploadForm extends BaseForm
             Dropzone::make('pics', [
                 'label' => 'Upload Images',
                 'route' => $this->route,
-                'theme' => (auth()->user()->dark_mode) ? 'dark' : 'light'
+                'theme' => (auth()->user()->dark_mode) ? 'dark' : 'light',
             ]),
         ];
     }
