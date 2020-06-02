@@ -3,6 +3,7 @@
 namespace App\Http\Forms;
 
 use App\Models\User;
+use Grafite\FormMaker\Html\HrTag;
 use Grafite\FormMaker\Fields\Text;
 use Grafite\FormMaker\Fields\Email;
 use Grafite\FormMaker\Forms\ModelForm;
@@ -51,14 +52,19 @@ class UserForm extends ModelForm
     public function billingColumns()
     {
         return [
+            HrTag::make([
+                'class' => 'mt-4 mb-4'
+            ]),
             Email::make('billing_email', [
                 'label' => 'Billing Email',
                 'required' => true,
             ]),
             Text::make('state', [
+                'label' => 'Billing State',
                 'required' => auth()->user()->hasActiveSubscription(),
             ]),
             Text::make('country', [
+                'label' => 'Billing Country',
                 'required' => auth()->user()->hasActiveSubscription(),
             ]),
         ];
