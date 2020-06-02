@@ -27,7 +27,7 @@ Scaffold is intended to be used to start a project and then be heavily altered.
 
 ## Requirements
 
-1. PHP 7.2+
+1. PHP 7.3+
 
 ## Compatibility and Support
 
