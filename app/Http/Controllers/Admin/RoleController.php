@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\StoreRoleRequest;
 use Exception;
 use App\Models\Role;
 use App\Http\Forms\RoleForm;
@@ -41,11 +42,8 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
-        $request->validate([
-            'label' => 'required',
-        ]);
 
         $role = Role::create([
             'name' => strtolower($request->label),
