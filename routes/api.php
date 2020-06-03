@@ -11,12 +11,8 @@
 |
 */
 
-Route::group([
-    'middleware' => 'api',
-    'namespace' => 'Api',
-    'as' => 'api',
-], function () {
-    Route::group(['prefix' => 'users'], function () {
+Route::middleware('api')->namespace('Api')->name('api')->group(function () {
+    Route::prefix('users')->group(function () {
         Route::get('me', 'UsersController@me')->name('.users.me');
         Route::put('update', 'UsersController@update')->name('.users.update');
         Route::delete('destroy', 'UsersController@destroy')->name('.users.destroy');
