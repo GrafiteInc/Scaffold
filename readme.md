@@ -36,7 +36,7 @@ Since Grafite Scaffold is a starter project it offers no support, and no compati
 ## Installation
 
 ```
-composer create-project --prefer-dist grafite/scaffold {project-name}
+composer create-project grafite/scaffold {project-name} --prefer-dist
 ```
 
 ## Documentation
