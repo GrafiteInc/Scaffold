@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\User;
 
-use Tests\TestCase;
+use App\Models\Invite;
 use App\Models\Team;
 use App\Models\User;
-use App\Models\Invite;
+use Tests\TestCase;
 
 class InvitesControllerTest extends TestCase
 {

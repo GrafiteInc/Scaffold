@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Ajax;
 
+use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
 
 class BillingController extends Controller
 {

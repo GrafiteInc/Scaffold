@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Concerns;
 
-use Exception;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 trait HasMembers
 {
     /**
-     * Invite a member
+     * Invite a member.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Database\Eloquent\Model  $model
@@ -29,7 +29,7 @@ trait HasMembers
     }
 
     /**
-     * Leave
+     * Leave.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return \Illuminate\Http\RedirectResponse
@@ -48,7 +48,7 @@ trait HasMembers
     }
 
     /**
-     * Remove member
+     * Remove member.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @param  \App\Models\User  $member

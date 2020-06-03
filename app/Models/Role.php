@@ -9,7 +9,7 @@ class Role extends Model
     public $timestamps = false;
 
     /**
-     * Fillable fields
+     * Fillable fields.
      *
      * @var array
      */
@@ -20,7 +20,7 @@ class Role extends Model
     ];
 
     /**
-     * Field casts
+     * Field casts.
      *
      * @var array
      */
@@ -29,7 +29,7 @@ class Role extends Model
     ];
 
     /**
-     * Rules
+     * Rules.
      *
      * @var array
      */
@@ -39,7 +39,7 @@ class Role extends Model
     ];
 
     /**
-     * A Role's users
+     * A Role's users.
      *
      * @return Relationship
      */
@@ -49,7 +49,7 @@ class Role extends Model
     }
 
     /**
-     * Get the permissions - and overide all in the case of `admin`
+     * Get the permissions - and overide all in the case of `admin`.
      *
      * @param string $value
      * @return array

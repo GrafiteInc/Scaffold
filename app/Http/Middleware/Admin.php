@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Gate;
 use Closure;
+use Gate;
 use Illuminate\Contracts\Auth\Guard;
 
 class Admin

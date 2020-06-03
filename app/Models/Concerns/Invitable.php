@@ -8,7 +8,7 @@ use App\Services\InviteService;
 trait Invitable
 {
     /**
-     * Invite a user to this
+     * Invite a user to this.
      *
      * @param string $email
      * @param string $message
@@ -25,7 +25,7 @@ trait Invitable
     }
 
     /**
-     * Model Invites
+     * Model Invites.
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */

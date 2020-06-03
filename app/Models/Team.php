@@ -22,7 +22,7 @@ class Team extends Model
     ];
 
     /**
-     * The creator of the team is the true admin
+     * The creator of the team is the true admin.
      *
      * @return int
      */
@@ -32,7 +32,7 @@ class Team extends Model
     }
 
     /**
-     * Team members
+     * Team members.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -42,7 +42,7 @@ class Team extends Model
     }
 
     /**
-     * Team members
+     * Team members.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Models\Invite;
 use App\Notifications\StandardEmail;
 use App\Notifications\UserInviteEmail;
+use Exception;
 use Illuminate\Support\Facades\Notification;
 
 class InvitesController extends Controller
 {
     /**
-     * Delete the invitation
+     * Delete the invitation.
      *
      * @param  \App\Models\Invite  $appModelsInvite
      * @return \Illuminate\Http\RedirectResponse
@@ -35,7 +35,7 @@ class InvitesController extends Controller
     }
 
     /**
-     * Resend the invitation
+     * Resend the invitation.
      *
      * @param  \App\Models\Invite  $appModelsInvite
      * @return \Illuminate\Http\RedirectResponse

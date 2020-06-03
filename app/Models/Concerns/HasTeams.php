@@ -7,7 +7,7 @@ use App\Models\Team;
 trait HasTeams
 {
     /**
-     * User Team memberships
+     * User Team memberships.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -19,7 +19,7 @@ trait HasTeams
     }
 
     /**
-     * User Teams
+     * User Teams.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

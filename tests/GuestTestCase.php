@@ -5,8 +5,8 @@ namespace Tests;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\Permissions;
 use App\Http\Middleware\VerifyCsrfToken;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class GuestTestCase extends BaseTestCase

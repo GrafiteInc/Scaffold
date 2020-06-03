@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\User;
 
-use Exception;
-use App\Http\Forms\UserForm;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Forms\UserForm;
 use App\Http\Requests\UserUpdateRequest;
+use Exception;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class SettingsController extends Controller
 {
     /**
-     * View current user's settings
+     * View current user's settings.
      *
      * @return \Illuminate\Http\Response
      */
@@ -34,7 +34,7 @@ class SettingsController extends Controller
     }
 
     /**
-     * Update the user
+     * Update the user.
      *
      * @param  UpdateAccountRequest $request
      * @return \Illuminate\Http\RedirectResponse
@@ -73,7 +73,7 @@ class SettingsController extends Controller
     }
 
     /**
-     * Delete a user's avatar
+     * Delete a user's avatar.
      *
      * @return \Illuminate\Http\RedirectResponse
      */

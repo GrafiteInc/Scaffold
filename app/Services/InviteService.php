@@ -2,17 +2,17 @@
 
 namespace App\Services;
 
-use App\Models\User;
 use App\Models\Invite;
-use Illuminate\Support\Str;
-use App\Notifications\UserInviteEmail;
+use App\Models\User;
 use App\Notifications\InAppNotification;
+use App\Notifications\UserInviteEmail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 
 class InviteService
 {
     /**
-     * Create an invite
+     * Create an invite.
      *
      * @param string $model
      * @param string $email
@@ -64,7 +64,7 @@ class InviteService
 
     /**
      * Delete all invites that match this since their
-     * tokens will now be invalid
+     * tokens will now be invalid.
      *
      * @param array $payload
      * @return void

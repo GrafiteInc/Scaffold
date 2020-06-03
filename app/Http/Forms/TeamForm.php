@@ -19,7 +19,7 @@ class TeamForm extends ModelForm
     public $columns = 1;
 
     /**
-     * Form button classes
+     * Form button classes.
      *
      * @var array
      */

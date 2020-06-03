@@ -14,7 +14,7 @@ return [
 
     'user' => [
         'delete_account' => 'You cannot undo this action. All your data will be deleted. Are you sure you want to delete your account?',
-        'invite' => 'You\'ve been invited to sign up on '.config('app.name').'! Click the link below to join.'
-    ]
+        'invite' => 'You\'ve been invited to sign up on '.config('app.name').'! Click the link below to join.',
+    ],
 
 ];

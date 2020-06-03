@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class PagesController extends Controller
 {
     /**
-     * Homepage
+     * Homepage.
      *
      * @return \Illuminate\Http\Response
      */
@@ -15,7 +15,7 @@ class PagesController extends Controller
     }
 
     /**
-     * Privacy Policy page
+     * Privacy Policy page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -25,7 +25,7 @@ class PagesController extends Controller
     }
 
     /**
-     * Terms of Service page
+     * Terms of Service page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -35,7 +35,7 @@ class PagesController extends Controller
     }
 
     /**
-     * Contact page
+     * Contact page.
      *
      * @return \Illuminate\Http\Response
      */

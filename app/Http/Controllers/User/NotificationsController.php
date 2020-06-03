@@ -33,7 +33,7 @@ class NotificationsController extends Controller
     }
 
     /**
-     * Delete a notfication
+     * Delete a notfication.
      *
      * @param  string $notification
      * @return \Illuminate\Http\RedirectResponse
@@ -46,7 +46,7 @@ class NotificationsController extends Controller
     }
 
     /**
-     * Delete all notfications for a user
+     * Delete all notfications for a user.
      *
      * @param  string $notification
      * @return \Illuminate\Http\RedirectResponse

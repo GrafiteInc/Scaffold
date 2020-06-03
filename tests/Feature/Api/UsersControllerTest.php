@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Api;
 
-use Tests\ApiTestCase;
 use App\Notifications\StandardEmail;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Notifications\AnonymousNotifiable;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
+use Tests\ApiTestCase;
 
 class UsersControllerTest extends ApiTestCase
 {

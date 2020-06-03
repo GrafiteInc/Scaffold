@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 trait HasPermissions
 {
     /**
-     * User Permissions
+     * User Permissions.
      *
      * @return \Illuminate\Support\Collection
      */

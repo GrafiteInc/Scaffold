@@ -3,13 +3,13 @@
 namespace App\Http\Forms;
 
 use App\Models\User;
-use Grafite\FormMaker\Html\HrTag;
-use Grafite\FormMaker\Fields\Text;
-use Grafite\FormMaker\Fields\Email;
-use Grafite\FormMaker\Html\Heading;
-use Grafite\FormMaker\Forms\ModelForm;
-use Grafite\FormMaker\Fields\FileWithPreview;
 use Grafite\FormMaker\Fields\Bootstrap\Toggle;
+use Grafite\FormMaker\Fields\Email;
+use Grafite\FormMaker\Fields\FileWithPreview;
+use Grafite\FormMaker\Fields\Text;
+use Grafite\FormMaker\Forms\ModelForm;
+use Grafite\FormMaker\Html\Heading;
+use Grafite\FormMaker\Html\HrTag;
 
 class UserForm extends ModelForm
 {

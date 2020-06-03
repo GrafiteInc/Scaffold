@@ -7,7 +7,7 @@ use App\Models\Role;
 trait HasRoles
 {
     /**
-     * User Roles
+     * User Roles.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -17,10 +17,10 @@ trait HasRoles
     }
 
     /**
-     * Check if the user has a Role
+     * Check if the user has a Role.
      *
      * @param string $role
-     * @return boolean
+     * @return bool
      */
     public function hasRole($role)
     {

@@ -7,14 +7,14 @@ use Illuminate\Notifications\Notification;
 class InAppNotification extends Notification
 {
     /**
-     * Mark as important
+     * Mark as important.
      *
      * @var string
      */
     public $is_important;
 
     /**
-     * Message for the notification
+     * Message for the notification.
      *
      * @var string
      */
@@ -32,7 +32,7 @@ class InAppNotification extends Notification
     }
 
     /**
-     * Mark as important
+     * Mark as important.
      *
      * @return void
      */

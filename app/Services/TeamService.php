@@ -2,16 +2,16 @@
 
 namespace App\Services;
 
-use Exception;
 use App\Models\Team;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Gate;
 use App\Notifications\InAppNotification;
+use Exception;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 
 class TeamService
 {
     /**
-     * Team model
+     * Team model.
      *
      * @var Team
      */
@@ -23,7 +23,7 @@ class TeamService
     }
 
     /**
-     * Find a team by uuid
+     * Find a team by uuid.
      *
      * @param string $uuid
      * @return \App\Models\Team
@@ -34,7 +34,7 @@ class TeamService
     }
 
     /**
-     * Create a Team
+     * Create a Team.
      *
      * @return \App\Models\Team
      */
@@ -48,7 +48,7 @@ class TeamService
     }
 
     /**
-     * Update a Team
+     * Update a Team.
      *
      * @return \App\Models\Team
      */
@@ -60,7 +60,7 @@ class TeamService
     }
 
     /**
-     * Invite a user to a team
+     * Invite a user to a team.
      *
      * @param \App\Models\Team $team
      * @param string $email
@@ -80,14 +80,14 @@ class TeamService
         $message = "You've been invited to a team on {$app} called: {$team->name}!";
 
         if ($invite = $team->invite($email, $message)) {
-            app_notify('You sent an invite to ' . $email . ' for ' . $team->name);
+            app_notify('You sent an invite to '.$email.' for '.$team->name);
         }
 
         return $invite;
     }
 
     /**
-     * Leave a team
+     * Leave a team.
      *
      * @param int $teamId
      * @return bool
@@ -107,7 +107,7 @@ class TeamService
     }
 
     /**
-     * Remove a team member
+     * Remove a team member.
      *
      * @param \App\Models\User $user
      * @param \App\Models\Team $team
@@ -127,7 +127,7 @@ class TeamService
     }
 
     /**
-     * Delete a team
+     * Delete a team.
      *
      * @param Team $team
      *
@@ -150,7 +150,7 @@ class TeamService
     }
 
     /**
-     * Update a members information
+     * Update a members information.
      *
      * @param \Illuminate\Database\Eloquent\Relations\Pivot $membership
      * @param \App\Models\User $user
@@ -168,7 +168,7 @@ class TeamService
             ])->save()
         ) {
             if ($originalRole !== $payload['team_role']) {
-                $message = 'Your team role in ' . $team->name . ' has changed to: ' . Str::title($payload['team_role']);
+                $message = 'Your team role in '.$team->name.' has changed to: '.Str::title($payload['team_role']);
                 $notification = new InAppNotification($message);
                 $notification->isImportant();
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Team;
+use Illuminate\Foundation\Http\FormRequest;
 
 class TeamCreateRequest extends FormRequest
 {

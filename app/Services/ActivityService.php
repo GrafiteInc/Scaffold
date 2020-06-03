@@ -12,7 +12,7 @@ class ActivityService
     }
 
     /**
-     * Create an activity record
+     * Create an activity record.
      *
      * @param  string $description
      * @return  \App\Models\Activity

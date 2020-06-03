@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\ApiUserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Notifications\StandardEmail;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\ApiUserUpdateRequest;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends ApiController
 {
     /**
-     * Get the user data
+     * Get the user data.
      *
      * @return \Illuminate\Http\Response
      */
@@ -23,7 +23,7 @@ class UsersController extends ApiController
     }
 
     /**
-     * Update the user profile
+     * Update the user profile.
      *
      * @param \App\Http\Requests\ApiUserUpdateRequest $request
      * @return \Illuminate\Http\Response
@@ -48,7 +48,7 @@ class UsersController extends ApiController
     }
 
     /**
-     * Delete the user profile
+     * Delete the user profile.
      *
      * @return \Illuminate\Http\Response
      */

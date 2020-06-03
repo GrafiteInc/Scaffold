@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Ajax;
 
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Notifications\InAppNotification;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ApiTokenController extends Controller
 {

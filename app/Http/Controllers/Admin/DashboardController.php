@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Charts\ActivityThirtyDays;
-use App\Http\Controllers\Controller;
 use App\Charts\RegistrationThirtyDays;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
     /**
-     * Dashboard
+     * Dashboard.
      *
      * @return \Illuminate\Http\Response
      */

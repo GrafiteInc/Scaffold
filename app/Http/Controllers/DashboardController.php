@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 class DashboardController extends Controller
 {
     /**
-     * Display the Dashboard
+     * Display the Dashboard.
      *
      * @return \Illuminate\Http\Response
      */

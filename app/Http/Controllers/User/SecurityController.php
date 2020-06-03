@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\User;
 
-use Hash;
-use Auth;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PasswordUpdateRequest;
-use Illuminate\Foundation\Auth\ResetsPasswords;
 use App\Http\Forms\UserSecurityForm;
+use App\Http\Requests\PasswordUpdateRequest;
+use Auth;
+use Hash;
+use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 
 class SecurityController extends Controller
 {
@@ -17,7 +17,7 @@ class SecurityController extends Controller
     protected $redirectPath = '/user/security';
 
     /**
-     * User wants to change their password
+     * User wants to change their password.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -31,7 +31,7 @@ class SecurityController extends Controller
     }
 
     /**
-     * Change the user's password and return
+     * Change the user's password and return.
      *
      * @param  \App\Http\Requests\PasswordUpdateRequest $request
      * @return \Illuminate\Http\RedirectResponse

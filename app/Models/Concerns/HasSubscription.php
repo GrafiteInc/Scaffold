@@ -6,9 +6,9 @@ trait HasSubscription
 {
     /**
      * Check if the user has an active subscription
-     * in any possible state
+     * in any possible state.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasActiveSubscription()
     {
@@ -28,9 +28,9 @@ trait HasSubscription
     }
 
     /**
-     * Check if the user subscription has been cancelled
+     * Check if the user subscription has been cancelled.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasCancelledSubscription()
     {
@@ -38,7 +38,7 @@ trait HasSubscription
     }
 
     /**
-     * Get the users subscription plan
+     * Get the users subscription plan.
      *
      * @param string $key
      * @return mixed

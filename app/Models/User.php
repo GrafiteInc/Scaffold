@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
-use Laravel\Cashier\Billable;
-use App\Models\Concerns\HasRoles;
-use App\Models\Concerns\HasTeams;
-use App\Models\Concerns\HasActivity;
-use App\Notifications\ResetPassword;
-use App\Models\Concerns\HasPermissions;
-use Illuminate\Support\Facades\Storage;
-use App\Models\Concerns\HasSubscription;
-use Illuminate\Notifications\Notifiable;
 use App\Models\Concerns\DatabaseSearchable;
+use App\Models\Concerns\HasActivity;
+use App\Models\Concerns\HasPermissions;
+use App\Models\Concerns\HasRoles;
+use App\Models\Concerns\HasSubscription;
+use App\Models\Concerns\HasTeams;
+use App\Notifications\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use LasseRafn\InitialAvatarGenerator\InitialAvatar;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
+use Laravel\Cashier\Billable;
+use LasseRafn\InitialAvatarGenerator\InitialAvatar;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -76,7 +76,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * Appends
+     * Appends.
      *
      * @var array
      */
@@ -85,7 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * User Invites
+     * User Invites.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -96,7 +96,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Avatar Image Url
+     * Avatar Image Url.
      *
      * @return string
      */
@@ -139,7 +139,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Prepare a payload for the JS session data
+     * Prepare a payload for the JS session data.
      *
      * @return array
      */

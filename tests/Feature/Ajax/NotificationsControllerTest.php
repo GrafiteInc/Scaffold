@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Ajax;
 
-use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Notifications\DatabaseNotification;
+use Tests\TestCase;
 
 class NotificationsControllerTest extends TestCase
 {

@@ -3,14 +3,14 @@
 namespace App\Http\Forms;
 
 use App\Models\Role;
+use Grafite\FormMaker\Fields\Bootstrap\HasMany;
 use Grafite\FormMaker\Fields\Email;
 use Grafite\FormMaker\Forms\BaseForm;
-use Grafite\FormMaker\Fields\Bootstrap\HasMany;
 
 class InviteUserForm extends BaseForm
 {
     /**
-     * The form route
+     * The form route.
      *
      * If you need to inject a parameter
      * to the route, then use the `setRoute`
@@ -23,7 +23,7 @@ class InviteUserForm extends BaseForm
     public $orientation = 'horizontal';
 
     /**
-     * Buttons and values
+     * Buttons and values.
      *
      * @var array
      */
@@ -32,7 +32,7 @@ class InviteUserForm extends BaseForm
     ];
 
     /**
-     * Set the desired fields for the form
+     * Set the desired fields for the form.
      *
      * @return array
      */

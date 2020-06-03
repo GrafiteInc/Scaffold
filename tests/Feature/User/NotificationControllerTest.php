@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\User;
 
-use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Notifications\DatabaseNotification;
+use Tests\TestCase;
 
 class NotificationControllerTest extends TestCase
 {

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use App\Models\Invite;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Forms\AdminUserForm;
 use App\Http\Forms\InviteUserForm;
-use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Notifications\UserInviteEmail;
-use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\AdminUserUpdateRequest;
+use App\Models\Invite;
+use App\Models\User;
+use App\Notifications\UserInviteEmail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -101,7 +101,7 @@ class UserController extends Controller
     }
 
     /**
-     * Switch to a different User
+     * Switch to a different User.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\RedirectResponse
@@ -116,7 +116,7 @@ class UserController extends Controller
     }
 
     /**
-     * Switch back to your original user
+     * Switch back to your original user.
      *
      * @return \Illuminate\Http\RedirectResponse
      */

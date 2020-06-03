@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
 
 class BillingController extends Controller
 {
     /**
-     * Billing settings
+     * Billing settings.
      *
      * @return \Illuminate\Http\Response
      */
@@ -28,7 +28,7 @@ class BillingController extends Controller
     }
 
     /**
-     * Billing renew
+     * Billing renew.
      *
      * @return \Illuminate\Http\Response
      */
@@ -43,7 +43,7 @@ class BillingController extends Controller
     }
 
     /**
-     * Get subscription details
+     * Get subscription details.
      *
      * @return \Illuminate\Http\Response
      */
@@ -61,7 +61,7 @@ class BillingController extends Controller
     }
 
     /**
-     * Change the payment method
+     * Change the payment method.
      *
      * @param  Request $request
      * @return \Illuminate\Http\Response
@@ -77,7 +77,7 @@ class BillingController extends Controller
     }
 
     /**
-     * Change subscription plan
+     * Change subscription plan.
      *
      * @param  Request $request
      * @return \Illuminate\Http\Response
@@ -92,7 +92,7 @@ class BillingController extends Controller
     }
 
     /**
-     * Swap subscription plans
+     * Swap subscription plans.
      *
      * @param  Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -111,7 +111,7 @@ class BillingController extends Controller
     }
 
     /**
-     * Add a coupon
+     * Add a coupon.
      *
      * @param  Request $request
      * @return \Illuminate\Http\Response
@@ -125,7 +125,7 @@ class BillingController extends Controller
     }
 
     /**
-     * Apply a coupon
+     * Apply a coupon.
      *
      * @param  Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -144,7 +144,7 @@ class BillingController extends Controller
     }
 
     /**
-     * Get invoices
+     * Get invoices.
      *
      * @param  Request $request
      * @return \Illuminate\Http\Response
@@ -160,7 +160,7 @@ class BillingController extends Controller
     }
 
     /**
-     * Get one invoice
+     * Get one invoice.
      *
      * @param  Request $request
      * @return \Illuminate\Http\Response
@@ -187,7 +187,7 @@ class BillingController extends Controller
     }
 
     /**
-     * Cancel Subscription
+     * Cancel Subscription.
      *
      * @param  Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -201,7 +201,7 @@ class BillingController extends Controller
             $user->subscription(config('billing.subscription_name'))->cancel();
 
             $date = $invoice->date()->format('Y-m-d');
-            $message = 'Your subscription has been cancelled! It will be availale until ' . $date;
+            $message = 'Your subscription has been cancelled! It will be availale until '.$date;
 
             return redirect(route('user.billing.details'))->with('message', $message);
         } catch (Exception $e) {

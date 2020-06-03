@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Auth\Concerns;
 
-use Validator;
 use App\Models\User;
+use App\Services\InviteService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use App\Services\InviteService;
+use Validator;
 
 trait RegisterViaInvites
 {
     /**
-     * Show the invite registration form
+     * Show the invite registration form.
      *
      * @return Response
      */
@@ -21,7 +21,7 @@ trait RegisterViaInvites
     }
 
     /**
-     * Register a user via an invite
+     * Register a user via an invite.
      *
      * @param  Request $request
      * @return Response
@@ -53,7 +53,7 @@ trait RegisterViaInvites
     }
 
     /**
-     * Validate the invite
+     * Validate the invite.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator

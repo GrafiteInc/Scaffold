@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,21 +25,21 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        /**
+        /*
          * Gateway for determining if user is admin
          */
         Gate::define('admin', function ($user) {
             return $user->hasRole('admin');
         });
 
-        /**
+        /*
          * Gateway for determining team admin
          */
         Gate::define('team-admin', function ($user, $team) {
             return $user->id == $team->user_id;
         });
 
-        /**
+        /*
          * Gateway for determining team manager
          */
         Gate::define('team-manager', function ($user, $team) {
@@ -61,7 +61,7 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-        /**
+        /*
          * Gateway for determining team members
          */
         Gate::define('team-member', function ($user, $team) {
@@ -72,21 +72,21 @@ class AuthServiceProvider extends ServiceProvider
             return $team->members->contains($user->id);
         });
 
-        /**
+        /*
          * Gateway for determining subscribers
          */
         Gate::define('subscribed', function ($user) {
             return $user->hasActiveSubscription();
         });
 
-        /**
+        /*
          * Gateway for determining not cancelled subscribers
          */
         Gate::define('subscription-not-cancelled', function ($user) {
             return ! $user->hasCancelledSubscription();
         });
 
-        /**
+        /*
          * Gateway for determining not cancelled subscribers
          */
         Gate::define('subscription-cancelled', function ($user) {

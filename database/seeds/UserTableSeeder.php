@@ -2,8 +2,8 @@
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 
 class UserTableSeeder extends Seeder
 {

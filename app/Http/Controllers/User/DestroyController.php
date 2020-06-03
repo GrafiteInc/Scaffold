@@ -5,13 +5,13 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Notifications\StandardEmail;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 
 class DestroyController extends Controller
 {
     /**
-     * Destroy a user account
+     * Destroy a user account.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
