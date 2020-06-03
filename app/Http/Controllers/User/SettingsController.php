@@ -47,7 +47,7 @@ class SettingsController extends Controller
 
             if (! is_null($request->avatar)) {
                 if (($request->file('avatar')->getSize() / 1024) > 10000) {
-                    return back()->withErrors(['Avatar file is too big, must be below 10MB.']);
+                    return redirect()->back()->withErrors(['Avatar file is too big, must be below 10MB.']);
                 }
 
                 Storage::delete($request->user()->avatar);
@@ -65,11 +65,11 @@ class SettingsController extends Controller
                 'country' => $request->country,
             ]);
 
-            return back()->with('message', 'Settings updated successfully');
+            return redirect()->back()->with('message', 'Settings updated successfully');
         } catch (Exception $e) {
             Log::error($e);
 
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
@@ -87,11 +87,11 @@ class SettingsController extends Controller
                 'avatar' => null,
             ]);
 
-            return back()->with('message', 'Avatar deleted successfully');
+            return redirect()->back()->with('message', 'Avatar deleted successfully');
         } catch (Exception $e) {
             Log::error($e);
 
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 }

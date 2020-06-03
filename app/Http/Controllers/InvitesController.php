@@ -28,9 +28,9 @@ class InvitesController extends Controller
 
             $invite->delete();
 
-            return back()->with('message', 'Invitation was revoked');
+            return redirect()->back()->with('message', 'Invitation was revoked');
         } catch (Exception $e) {
-            return back()->withErrors(['Invitation was unable to be revoked']);
+            return redirect()->back()->withErrors(['Invitation was unable to be revoked']);
         }
     }
 
@@ -51,9 +51,9 @@ class InvitesController extends Controller
                     $invite->token
                 ));
 
-            return back()->with('message', 'Invitation was resent');
+            return redirect()->back()->with('message', 'Invitation was resent');
         } catch (Exception $e) {
-            return back()->withErrors(['Invitation was unable to be resent']);
+            return redirect()->back()->withErrors(['Invitation was unable to be resent']);
         }
     }
 }
