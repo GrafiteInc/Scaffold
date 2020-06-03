@@ -13,9 +13,9 @@ class BillingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function subscribe()
+    public function subscribe(Request $request)
     {
-        $user = auth()->user();
+        $user = $request->user();
 
         if ($user->hasActiveSubscription()) {
             return redirect(route('user.billing.details'));
@@ -32,9 +32,9 @@ class BillingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function renewSubscription()
+    public function renewSubscription(Request $request)
     {
-        $user = auth()->user();
+        $user = $request->user();
 
         return view('user.billing.renew', [
             'user' => $user,
@@ -47,9 +47,9 @@ class BillingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getSubscription()
+    public function getSubscription(Request $request)
     {
-        $user = auth()->user();
+        $user = $request->user();
         $invoice = $user->upcomingInvoice();
         $subscription = $user->subscription(config('billing.subscription_name'));
 
@@ -100,7 +100,7 @@ class BillingController extends Controller
     public function swapPlan(Request $request)
     {
         try {
-            auth()->user()->subscription(config('billing.subscription_name'))->swap($request->plan);
+            $request->user()->subscription(config('billing.subscription_name'))->swap($request->plan);
 
             return redirect(route('user.billing.details'))->with('message', 'Your subscription was swapped!');
         } catch (Exception $e) {
@@ -133,7 +133,7 @@ class BillingController extends Controller
     public function applyCoupon(Request $request)
     {
         try {
-            auth()->user()->applyCoupon($request->coupon);
+            $request->user()->applyCoupon($request->coupon);
 
             return redirect(route('user.billing.details'))->with('message', 'Your coupon was used!');
         } catch (Exception $e) {

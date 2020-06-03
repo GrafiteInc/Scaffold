@@ -12,7 +12,7 @@ class BillingController extends Controller
     public function createSubscription(Request $request)
     {
         try {
-            $user = auth()->user();
+            $user = $request->user();
 
             $user->update([
                 'state' => $request->state,
@@ -37,7 +37,7 @@ class BillingController extends Controller
     public function updatePaymentMethod(Request $request)
     {
         try {
-            $user = auth()->user();
+            $user = $request->user();
 
             $user->updateDefaultPaymentMethod($request->payment_method);
 
