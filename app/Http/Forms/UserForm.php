@@ -56,7 +56,7 @@ class UserForm extends ModelForm
             Heading::make([
                 'class' => 'mt-4 mb-1',
                 'content' => 'Billing Details',
-                'level' => 4
+                'level' => 4,
             ]),
             HrTag::make(),
             Email::make('billing_email', [

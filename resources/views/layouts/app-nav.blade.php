@@ -27,6 +27,7 @@
 
                         @if (auth()->user()->hasRole('admin'))
                             <div class="dropdown-divider"></div>
+                            <h5 class="dropdown-header">Admin</h5>
                             <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a>
                             <a class="dropdown-item" href="{{ route('admin.users.index') }}">Users</a>
                             <a class="dropdown-item" href="{{ route('admin.roles.index') }}">Roles</a>
