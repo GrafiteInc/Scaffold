@@ -32,7 +32,6 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var string
      */
-    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.

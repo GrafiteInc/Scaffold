@@ -9,8 +9,6 @@ class Team extends Model
 {
     use Invitable;
 
-    public $table = 'teams';
-
     public $relationship = 'teamMemberships';
 
     public $primaryKey = 'id';

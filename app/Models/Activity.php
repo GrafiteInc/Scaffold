@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
-    public $table = 'activities';
 
     public $primaryKey = 'id';
 
