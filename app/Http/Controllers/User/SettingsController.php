@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Forms\UserForm;
 use App\Http\Requests\UserUpdateRequest;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,9 +17,9 @@ class SettingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function settings()
+    public function settings(Request $request)
     {
-        $user = auth()->user();
+        $user = $request->user();
 
         $form = app(UserForm::class)->edit($user);
 
@@ -42,18 +43,18 @@ class SettingsController extends Controller
     public function update(UserUpdateRequest $request)
     {
         try {
-            $path = auth()->user()->avatar;
+            $path = $request->user()->avatar;
 
             if (! is_null($request->avatar)) {
                 if (($request->file('avatar')->getSize() / 1024) > 10000) {
-                    return back()->withErrors(['Avatar file is too big, must be below 10MB.']);
+                    return redirect()->back()->withErrors(['Avatar file is too big, must be below 10MB.']);
                 }
 
-                Storage::delete(auth()->user()->avatar);
+                Storage::delete($request->user()->avatar);
                 $path = Storage::putFile('public/avatars', $request->avatar, 'public');
             }
 
-            auth()->user()->update([
+            $request->user()->update([
                 'name' => $request->name,
                 'email' => $request->email,
                 'dark_mode' => $request->filled('dark_mode') ?? false,
@@ -64,11 +65,11 @@ class SettingsController extends Controller
                 'country' => $request->country,
             ]);
 
-            return back()->with('message', 'Settings updated successfully');
+            return redirect()->back()->with('message', 'Settings updated successfully');
         } catch (Exception $e) {
             Log::error($e);
 
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
@@ -77,20 +78,20 @@ class SettingsController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroyAvatar()
+    public function destroyAvatar(Request $request)
     {
         try {
-            Storage::delete(auth()->user()->avatar);
+            Storage::delete($request->user()->avatar);
 
-            auth()->user()->update([
+            $request->user()->update([
                 'avatar' => null,
             ]);
 
-            return back()->with('message', 'Avatar deleted successfully');
+            return redirect()->back()->with('message', 'Avatar deleted successfully');
         } catch (Exception $e) {
             Log::error($e);
 
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 }

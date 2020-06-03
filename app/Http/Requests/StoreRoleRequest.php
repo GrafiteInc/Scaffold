@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ApiUserUpdateRequest extends FormRequest
+class StoreRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ApiUserUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth('api')->user();
+        return true;
     }
 
     /**
@@ -23,13 +23,16 @@ class ApiUserUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'email' => [
-                'required',
-            ],
-            'name' => [
-                'required',
-            ],
-        ];
+        return ['label' => 'required'];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class NotificationsController extends Controller
 {
@@ -11,9 +12,9 @@ class NotificationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $notifications = auth()->user()->notifications;
+        $notifications = $request->user()->notifications;
 
         return view('user.notifications.index')
             ->with('notifications', $notifications);
@@ -25,11 +26,11 @@ class NotificationsController extends Controller
      * @param  string  $notification
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function read($notification)
+    public function read(Request $request, $notification)
     {
-        auth()->user()->notifications->find($notification)->markAsRead();
+        $request->user()->notifications->find($notification)->markAsRead();
 
-        return back()->with('message', 'Marked as read');
+        return redirect()->back()->with('message', 'Marked as read');
     }
 
     /**
@@ -38,11 +39,11 @@ class NotificationsController extends Controller
      * @param  string $notification
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete($notification)
+    public function delete(Request $request, $notification)
     {
-        auth()->user()->notifications->find($notification)->delete();
+        $request->user()->notifications->find($notification)->delete();
 
-        return back()->with('message', 'Deleted notification');
+        return redirect()->back()->with('message', 'Deleted notification');
     }
 
     /**
@@ -51,10 +52,10 @@ class NotificationsController extends Controller
      * @param  string $notification
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function deleteAll()
+    public function deleteAll(Request $request)
     {
-        auth()->user()->notifications()->delete();
+        $request->user()->notifications()->delete();
 
-        return back()->with('message', 'Deleted all notifications');
+        return redirect()->back()->with('message', 'Deleted all notifications');
     }
 }

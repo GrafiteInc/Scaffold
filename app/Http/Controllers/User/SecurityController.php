@@ -5,10 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Forms\UserSecurityForm;
 use App\Http\Requests\PasswordUpdateRequest;
-use Auth;
-use Hash;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class SecurityController extends Controller
 {
@@ -40,13 +40,13 @@ class SecurityController extends Controller
     {
         $password = $request->new_password;
 
-        if (Hash::check($request->old_password, Auth::user()->password)) {
-            $this->resetPassword(Auth::user(), $password);
+        if (Hash::check($request->old_password, $request->user()->password)) {
+            $this->resetPassword($request->user(), $password);
 
-            return redirect('user/settings')
+            return redirect()->to('user/settings')
                 ->with('message', 'Password updated successfully');
         }
 
-        return back()->withErrors(['Password could not be updated']);
+        return redirect()->back()->withErrors(['Password could not be updated']);
     }
 }

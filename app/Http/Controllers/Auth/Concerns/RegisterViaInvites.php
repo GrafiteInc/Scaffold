@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Services\InviteService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 trait RegisterViaInvites
 {
@@ -36,7 +36,7 @@ trait RegisterViaInvites
         );
 
         if (! $inviteIsValid) {
-            return back()->withErrors([
+            return redirect()->back()->withErrors([
                 'Could not validate your invite registration, please try again.',
             ]);
         }
@@ -49,7 +49,7 @@ trait RegisterViaInvites
 
         $this->guard()->login($user);
 
-        return redirect(route('user.invites'));
+        return redirect()->route('user.invites');
     }
 
     /**

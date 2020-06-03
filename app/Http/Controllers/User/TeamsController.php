@@ -10,6 +10,7 @@ use App\Http\Requests\TeamUpdateRequest;
 use App\Models\Team;
 use App\Services\TeamService;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class TeamsController extends Controller
@@ -24,10 +25,10 @@ class TeamsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $teams = auth()->user()->teams;
-        $memberships = auth()->user()->teamMemberships;
+        $teams = $request->user()->teams;
+        $memberships = $request->user()->teamMemberships;
 
         return view('user.teams.index')
             ->with('memberships', $memberships)
@@ -58,13 +59,13 @@ class TeamsController extends Controller
             $team = $this->service->create($request->except('_token'));
 
             if ($team) {
-                return redirect(route('user.teams.edit', $team->id))
+                return redirect()->route('user.teams.edit', $team->id)
                     ->with('message', 'Successfully created a team');
             }
 
-            return redirect(route('user.teams'))->with('message', 'Failed to create a team');
+            return redirect()->route('user.teams')->with('message', 'Failed to create a team');
         } catch (Exception $e) {
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
@@ -102,12 +103,12 @@ class TeamsController extends Controller
     {
         try {
             if ($this->service->update($team, $request->except('_token'))) {
-                return back()->with('message', 'Successfully updated');
+                return redirect()->back()->with('message', 'Successfully updated');
             }
 
-            return back()->with('message', 'Failed to update');
+            return redirect()->back()->with('message', 'Failed to update');
         } catch (Exception $e) {
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
@@ -123,12 +124,12 @@ class TeamsController extends Controller
             $result = $this->service->destroy($team);
 
             if ($result) {
-                return redirect(route('user.teams'))->with('message', 'Successfully deleted');
+                return redirect()->route('user.teams')->with('message', 'Successfully deleted');
             }
 
-            return redirect(route('user.teams'))->with('message', 'Failed to delete the team');
+            return redirect()->route('user.teams')->with('message', 'Failed to delete the team');
         } catch (Exception $e) {
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 }
