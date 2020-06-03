@@ -24,8 +24,12 @@ class ApiUserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required',
-            'name' => 'required',
+            'email' => [
+                'required',
+            ],
+            'name' => [
+                'required',
+            ],
         ];
     }
 }
