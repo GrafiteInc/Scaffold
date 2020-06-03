@@ -25,11 +25,11 @@ Route::get('terms-of-service', 'PagesController@termsOfService')->name('terms-of
 Route::get('privacy-policy', 'PagesController@privacyPolicy')->name('privacy-policy');
 Route::get('contact', 'PagesController@getContact')->name('contact');
 
-Route::post('accept-cookie-policy', 'Ajax\CookiePolicyController@accept')->name('ajax.accept-cookie-policy');
+Route::post('accept-cookie-policy', 'Ajax\\CookiePolicyController@accept')->name('ajax.accept-cookie-policy');
 
 Route::post(
     'stripe/webhook',
-    '\App\Http\Controllers\WebhookController@handleWebhook'
+    '\\App\\Http\\Controllers\\WebhookController@handleWebhook'
 );
 
 /*
@@ -38,8 +38,8 @@ Route::post(
 |--------------------------------------------------------------------------
 */
 
-Route::get('register/invite', 'Auth\RegisterController@showRegistrationInviteForm');
-Route::post('register/invite', 'Auth\RegisterController@registerViaInvite');
+Route::get('register/invite', 'Auth\\RegisterController@showRegistrationInviteForm');
+Route::post('register/invite', 'Auth\\RegisterController@registerViaInvite');
 
 Auth::routes([
     'verify' => true,
@@ -54,7 +54,7 @@ Auth::routes([
 */
 
 Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
-    Route::post('users/return-switch', 'Admin\UserController@switchBack')->name('users.return-switch');
+    Route::post('users/return-switch', 'Admin\\UserController@switchBack')->name('users.return-switch');
 
     /*
     |--------------------------------------------------------------------------
