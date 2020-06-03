@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
