@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Services\InviteService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 trait RegisterViaInvites
 {

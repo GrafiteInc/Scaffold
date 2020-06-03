@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Invite;
 use App\Notifications\StandardEmail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 
 class InvitesController extends Controller
@@ -14,9 +15,9 @@ class InvitesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $invites = auth()->user()->invites;
+        $invites = $request->user()->invites;
 
         return view('user.invites.index')
             ->with('invites', $invites);
@@ -28,17 +29,17 @@ class InvitesController extends Controller
      * @param \App\Models\Invite $invite
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function accept(Invite $invite)
+    public function accept(Request $request, Invite $invite)
     {
         $relationship = $invite->relationship;
 
-        auth()->user()->$relationship()->attach($invite->model_id);
+        $request->user()->$relationship()->attach($invite->model_id);
 
         if ($invite->delete()) {
-            return back()->with('message', 'Invitation accepted');
+            return redirect()->back()->with('message', 'Invitation accepted');
         }
 
-        return back()->withErrors(['Unable to accept the inviation']);
+        return redirect()->back()->withErrors(['Unable to accept the inviation']);
     }
 
     /**
@@ -60,9 +61,9 @@ class InvitesController extends Controller
             ));
 
         if ($invite->delete()) {
-            return back()->with('message', 'Invitation rejected');
+            return redirect()->back()->with('message', 'Invitation rejected');
         }
 
-        return back()->withErrors(['Unable to reject the inviation']);
+        return redirect()->back()->withErrors(['Unable to reject the inviation']);
     }
 }

@@ -25,9 +25,15 @@ class AdminUserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required',
-            'name' => 'required',
-            'avatar' => 'image',
+            'email' => [
+                'required',
+            ],
+            'name' => [
+                'required',
+            ],
+            'avatar' => [
+                'image',
+            ],
         ];
     }
 }

@@ -89,15 +89,15 @@ class UserController extends Controller
             Notification::route('mail', $request->email)
                 ->notify(new UserInviteEmail(
                     $request->email,
-                    auth()->user(),
+                    $request->user(),
                     $message,
                     $token
                 ));
 
-            return back()->with('message', 'Invitation was sent');
+            return redirect()->back()->with('message', 'Invitation was sent');
         }
 
-        return back()->withErrors(['Invitation was not sent']);
+        return redirect()->back()->withErrors(['Invitation was not sent']);
     }
 
     /**
@@ -106,13 +106,13 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function switchToUser(User $user)
+    public function switchToUser(Request $request, User $user)
     {
-        session()->put('original_user', auth()->id());
+        $request->session()->put('original_user', auth()->id());
 
         Auth::login($user);
 
-        return redirect(route('home'))->withMessage('You switched users!');
+        return redirect()->route('home')->withMessage('You switched users!');
     }
 
     /**
@@ -120,7 +120,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function switchBack()
+    public function switchBack(Request $request)
     {
         if (! session('original_user')) {
             abort(401);
@@ -128,11 +128,11 @@ class UserController extends Controller
 
         $user = User::find(session('original_user'));
 
-        session()->forget('original_user');
+        $request->session()->forget('original_user');
 
         Auth::login($user);
 
-        return redirect(route('home'))->withMessage('You switched back!');
+        return redirect()->route('home')->withMessage('You switched back!');
     }
 
     /**
@@ -169,11 +169,11 @@ class UserController extends Controller
 
             $user->roles()->sync($request->roles);
 
-            return back()->with('message', 'Successfully updated');
+            return redirect()->back()->with('message', 'Successfully updated');
         } catch (Exception $e) {
             Log::error($e);
 
-            return back()->with('errors', ['Failed to update']);
+            return redirect()->back()->with('errors', ['Failed to update']);
         }
     }
 
@@ -187,6 +187,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect(route('admin.users.index'));
+        return redirect()->route('admin.users.index');
     }
 }

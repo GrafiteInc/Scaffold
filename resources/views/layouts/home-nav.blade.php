@@ -2,7 +2,7 @@
     <a class="navbar-brand mr-0" href="/"><span class="fa fa-cogs"></span> Brand</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item">
-            @if (!auth()->check())
+            @guest
                 <a href="{{ route('login') }}" class="nav-link text-white">
                     <span class="fas fa-sign-in-alt"></span>
                     Login
@@ -12,7 +12,7 @@
                     <span class="fas fa-tachometer-alt"></span>
                     Dashboard
                 </a>
-            @endif
+            @endguest
         </li>
     </ul>
 </nav>

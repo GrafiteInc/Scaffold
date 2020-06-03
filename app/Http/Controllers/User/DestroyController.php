@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Notifications\StandardEmail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
@@ -15,9 +16,9 @@ class DestroyController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy()
+    public function destroy(Request $request)
     {
-        $user = auth()->user();
+        $user = $request->user();
 
         Storage::delete($user->avatar);
 
@@ -31,6 +32,6 @@ class DestroyController extends Controller
 
         Auth::logout();
 
-        return redirect(route('home'))->with('message', 'Your account was deleted');
+        return redirect()->route('home')->with('message', 'Your account was deleted');
     }
 }

@@ -25,11 +25,11 @@ Route::get('terms-of-service', 'PagesController@termsOfService')->name('terms-of
 Route::get('privacy-policy', 'PagesController@privacyPolicy')->name('privacy-policy');
 Route::get('contact', 'PagesController@getContact')->name('contact');
 
-Route::post('accept-cookie-policy', 'Ajax\CookiePolicyController@accept')->name('ajax.accept-cookie-policy');
+Route::post('accept-cookie-policy', 'Ajax\\CookiePolicyController@accept')->name('ajax.accept-cookie-policy');
 
 Route::post(
     'stripe/webhook',
-    '\App\Http\Controllers\WebhookController@handleWebhook'
+    '\\App\\Http\\Controllers\\WebhookController@handleWebhook'
 );
 
 /*
@@ -38,8 +38,8 @@ Route::post(
 |--------------------------------------------------------------------------
 */
 
-Route::get('register/invite', 'Auth\RegisterController@showRegistrationInviteForm');
-Route::post('register/invite', 'Auth\RegisterController@registerViaInvite');
+Route::get('register/invite', 'Auth\\RegisterController@showRegistrationInviteForm');
+Route::post('register/invite', 'Auth\\RegisterController@registerViaInvite');
 
 Auth::routes([
     'verify' => true,
@@ -53,8 +53,8 @@ Auth::routes([
 |--------------------------------------------------------------------------
 */
 
-Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
-    Route::post('users/return-switch', 'Admin\UserController@switchBack')->name('users.return-switch');
+Route::middleware('auth', 'verified', 'activity')->group(function () {
+    Route::post('users/return-switch', 'Admin\\UserController@switchBack')->name('users.return-switch');
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
+    Route::prefix('user')->namespace('User')->group(function () {
         Route::get('settings', 'SettingsController@settings')->name('user.settings');
         Route::delete('destroy', 'DestroyController@destroy')->name('user.destroy');
         Route::put('settings', 'SettingsController@update')->name('user.update');
@@ -79,8 +79,8 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
         Route::get('security', 'SecurityController@get')->name('user.security');
         Route::put('security', 'SecurityController@update')->name('user.security.update');
 
-        Route::group(['prefix' => 'billing'], function () {
-            Route::group(['middleware' => 'has-subscription'], function () {
+        Route::prefix('billing')->group(function () {
+            Route::middleware('has-subscription')->group(function () {
                 Route::post('update', 'BillingController@update')->name('user.billing.update');
                 Route::post('update', 'BillingController@update')->name('user.billing.update');
                 Route::post('update', 'BillingController@update')->name('user.billing.update');
@@ -88,14 +88,14 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
             });
         });
 
-        Route::group(['prefix' => 'notifications'], function () {
+        Route::prefix('notifications')->group(function () {
             Route::get('/', 'NotificationsController@index')->name('user.notifications');
             Route::post('{uuid}/read', 'NotificationsController@read')->name('user.notifications.read');
             Route::delete('{uuid}/delete', 'NotificationsController@delete')->name('user.notifications.destroy');
             Route::delete('clear', 'NotificationsController@deleteAll')->name('user.notifications.clear');
         });
 
-        Route::group(['prefix' => 'teams'], function () {
+        Route::prefix('teams')->group(function () {
             Route::get('/', 'TeamsController@index')->name('user.teams');
             Route::post('/', 'TeamsController@store')->name('user.teams.store');
             Route::get('create', 'TeamsController@create')->name('user.teams.create');
@@ -104,13 +104,13 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
             Route::put('{team}/update', 'TeamsController@update')->name('user.teams.update');
         });
 
-        Route::group(['prefix' => 'invites'], function () {
+        Route::prefix('invites')->group(function () {
             Route::get('/', 'InvitesController@index')->name('user.invites');
             Route::post('{invite}/accept', 'InvitesController@accept')->name('user.invites.accept');
             Route::post('{invite}/reject', 'InvitesController@reject')->name('user.invites.reject');
         });
 
-        Route::group(['prefix' => 'billing'], function () {
+        Route::prefix('billing')->group(function () {
             Route::get('subscribe', 'BillingController@subscribe')->name('user.billing');
             Route::get('renew', 'BillingController@renewSubscription')->name('user.billing.renew');
             Route::get('details', 'BillingController@getSubscription')->name('user.billing.details');
@@ -130,7 +130,7 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
     Route::post('invites/{invite}/resend', 'InvitesController@resend')->name('invite.resend');
     Route::post('invites/{invite}/revoke', 'InvitesController@revoke')->name('invite.revoke');
 
-    Route::group(['prefix' => 'teams'], function () {
+    Route::prefix('teams')->group(function () {
         Route::get('{team}', 'TeamMembersController@show')->name('teams.show');
         Route::post('{team}/leave', 'TeamMembersController@leave')->name('teams.leave');
         Route::post('{team}/invite', 'TeamMembersController@inviteMember')->name('teams.members.invite');
@@ -145,7 +145,7 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax'], function () {
+    Route::prefix('ajax')->namespace('Ajax')->group(function () {
         Route::post('token', 'ApiTokenController@reset')->name('ajax.reset-token');
         Route::get('notifications-count', 'NotificationsController@count')->name('ajax.notifications-count');
 
@@ -163,7 +163,7 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'roles:admin'], function () {
+    Route::prefix('admin')->namespace('Admin')->middleware('roles:admin')->group(function () {
         Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
 
         /*
@@ -171,7 +171,7 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
         | Users
         |--------------------------------------------------------------------------
         */
-        Route::resource('users', 'UserController', ['except' => ['create', 'show'], 'as' => 'admin']);
+        Route::resource('users', 'UserController', ['as' => 'admin']);
 
         Route::post('users/search', 'UserController@search')->name('admin.users.search');
         Route::get('users/invite', 'UserController@getInvite')->name('admin.users.invite');
@@ -183,6 +183,6 @@ Route::group(['middleware' => ['auth', 'verified', 'activity']], function () {
         | Roles
         |--------------------------------------------------------------------------
         */
-        Route::resource('roles', 'RoleController', ['except' => ['show'], 'as' => 'admin']);
+        Route::resource('roles', 'RoleController', ['as' => 'admin']);
     });
 });

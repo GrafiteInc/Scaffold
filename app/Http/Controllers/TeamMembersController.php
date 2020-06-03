@@ -54,7 +54,7 @@ class TeamMembersController extends Controller
     public function editMember(Team $team, User $member)
     {
         if (! Gate::allows('team-manager', $team)) {
-            return redirect(route('teams.show', $team->id));
+            return redirect()->route('teams.show', $team->id);
         }
 
         $teamLink = route('teams.show', $team->uuid);
@@ -95,12 +95,12 @@ class TeamMembersController extends Controller
 
         try {
             if ($this->service->updateMember($membership, $member, $team, $request->except('_token'))) {
-                return back()->with('message', 'Successfully updated');
+                return redirect()->back()->with('message', 'Successfully updated');
             }
 
-            return back()->with('message', 'Failed to update');
+            return redirect()->back()->with('message', 'Failed to update');
         } catch (Exception $e) {
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 }
