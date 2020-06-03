@@ -171,7 +171,7 @@ Route::middleware('auth', 'verified', 'activity')->group(function () {
         | Users
         |--------------------------------------------------------------------------
         */
-        Route::resource('users', 'UserController', [ 'as' => 'admin']);
+        Route::resource('users', 'UserController', ['as' => 'admin']);
 
         Route::post('users/search', 'UserController@search')->name('admin.users.search');
         Route::get('users/invite', 'UserController@getInvite')->name('admin.users.invite');
@@ -183,6 +183,6 @@ Route::middleware('auth', 'verified', 'activity')->group(function () {
         | Roles
         |--------------------------------------------------------------------------
         */
-        Route::resource('roles', 'RoleController', [ 'as' => 'admin']);
+        Route::resource('roles', 'RoleController', ['as' => 'admin']);
     });
 });

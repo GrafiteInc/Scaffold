@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Gate;
 
 class Subscription
 {

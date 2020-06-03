@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreRoleRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Forms\RoleForm;
+use App\Http\Requests\StoreRoleRequest;
 use App\Models\Role;
 use Exception;
 use Illuminate\Http\Request;
@@ -44,7 +44,6 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-
         $role = Role::create([
             'name' => strtolower($request->label),
             'label' => $request->label,
