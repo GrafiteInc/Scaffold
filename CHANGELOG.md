@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v1.5.0] - 2020-06-03
+
+### Changed
+- Style changes
+- Applied Laravel Shifts
+- Updated dependencies
+- General Improvements
+
 ## [v1.4.0] - 2020-05-15
 
 ### Changed
