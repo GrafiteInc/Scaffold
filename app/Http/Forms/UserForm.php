@@ -6,6 +6,7 @@ use App\Models\User;
 use Grafite\FormMaker\Html\HrTag;
 use Grafite\FormMaker\Fields\Text;
 use Grafite\FormMaker\Fields\Email;
+use Grafite\FormMaker\Html\Heading;
 use Grafite\FormMaker\Forms\ModelForm;
 use Grafite\FormMaker\Fields\FileWithPreview;
 use Grafite\FormMaker\Fields\Bootstrap\Toggle;
@@ -52,19 +53,22 @@ class UserForm extends ModelForm
     public function billingColumns()
     {
         return [
-            HrTag::make([
-                'class' => 'mt-4 mb-4'
+            Heading::make([
+                'class' => 'mt-4 mb-1',
+                'content' => 'Billing Details',
+                'level' => 4
             ]),
+            HrTag::make(),
             Email::make('billing_email', [
-                'label' => 'Billing Email',
+                'label' => 'Email',
                 'required' => true,
             ]),
             Text::make('state', [
-                'label' => 'Billing State',
+                'label' => 'State',
                 'required' => auth()->user()->hasActiveSubscription(),
             ]),
             Text::make('country', [
-                'label' => 'Billing Country',
+                'label' => 'Country',
                 'required' => auth()->user()->hasActiveSubscription(),
             ]),
         ];

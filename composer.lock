@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6285b90e04d6ac298ae6bfaea2256689",
+    "content-hash": "06bfeb530d81361d7bad216d0232a099",
     "packages": [
         {
             "name": "balping/json-raw-encoder",
@@ -822,16 +822,16 @@
         },
         {
             "name": "grafite/database",
-            "version": "v1.0.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Database.git",
-                "reference": "c43b16c6a1836c0ed8a03a17fbc70c7f9644e598"
+                "reference": "01b16f469a43d5f37c03bd1f3b76c2fd0c716e9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Database/zipball/c43b16c6a1836c0ed8a03a17fbc70c7f9644e598",
-                "reference": "c43b16c6a1836c0ed8a03a17fbc70c7f9644e598",
+                "url": "https://api.github.com/repos/GrafiteInc/Database/zipball/01b16f469a43d5f37c03bd1f3b76c2fd0c716e9f",
+                "reference": "01b16f469a43d5f37c03bd1f3b76c2fd0c716e9f",
                 "shasum": ""
             },
             "require": {
@@ -869,20 +869,20 @@
                 }
             ],
             "description": "A handy set of commands for MySQL databases",
-            "time": "2020-04-06T21:31:03+00:00"
+            "time": "2020-06-03T13:54:53+00:00"
         },
         {
             "name": "grafite/formmaker",
-            "version": "v2.12.0",
+            "version": "v2.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/FormMaker.git",
-                "reference": "7557d022c6a52da6bc6609bdf49e978f4e1c63d1"
+                "reference": "84ec84d644a71ed99d34eb228de9f43beaf30789"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/FormMaker/zipball/7557d022c6a52da6bc6609bdf49e978f4e1c63d1",
-                "reference": "7557d022c6a52da6bc6609bdf49e978f4e1c63d1",
+                "url": "https://api.github.com/repos/GrafiteInc/FormMaker/zipball/84ec84d644a71ed99d34eb228de9f43beaf30789",
+                "reference": "84ec84d644a71ed99d34eb228de9f43beaf30789",
                 "shasum": ""
             },
             "require": {
@@ -924,7 +924,7 @@
                 }
             ],
             "description": "A remarkably magical form and input maker tool for Laravel.",
-            "time": "2020-05-29T02:52:48+00:00"
+            "time": "2020-06-03T15:11:19+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1143,16 +1143,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.14.0",
+            "version": "v7.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "abe085c497851c4e22f56b22ed1cdc2ff2de3342"
+                "reference": "469b7719a8dca40841a74f59f2e9f30f01d3a106"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/abe085c497851c4e22f56b22ed1cdc2ff2de3342",
-                "reference": "abe085c497851c4e22f56b22ed1cdc2ff2de3342",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/469b7719a8dca40841a74f59f2e9f30f01d3a106",
+                "reference": "469b7719a8dca40841a74f59f2e9f30f01d3a106",
                 "shasum": ""
             },
             "require": {
@@ -1295,7 +1295,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-06-02T14:25:23+00:00"
+            "time": "2020-06-02T22:34:18+00:00"
         },
         {
             "name": "laravel/helpers",
