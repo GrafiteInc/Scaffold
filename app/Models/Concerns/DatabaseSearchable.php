@@ -10,7 +10,7 @@ trait DatabaseSearchable
     {
         $query = $this->orderBy('created_at', 'desc');
 
-        $columns = Schema::getColumnListing($this->table);
+        $columns = Schema::getColumnListing($this->getTable());
 
         foreach ($columns as $attribute) {
             $query->orWhere($attribute, 'LIKE', "%{$payload}%");
