@@ -94,10 +94,10 @@ class UserController extends Controller
                     $token
                 ));
 
-            return back()->with('message', 'Invitation was sent');
+            return redirect()->back()->with('message', 'Invitation was sent');
         }
 
-        return back()->withErrors(['Invitation was not sent']);
+        return redirect()->back()->withErrors(['Invitation was not sent']);
     }
 
     /**
@@ -112,7 +112,7 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('home'))->withMessage('You switched users!');
+        return redirect()->route('home')->withMessage('You switched users!');
     }
 
     /**
@@ -132,7 +132,7 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('home'))->withMessage('You switched back!');
+        return redirect()->route('home')->withMessage('You switched back!');
     }
 
     /**
@@ -169,11 +169,11 @@ class UserController extends Controller
 
             $user->roles()->sync($request->roles);
 
-            return back()->with('message', 'Successfully updated');
+            return redirect()->back()->with('message', 'Successfully updated');
         } catch (Exception $e) {
             Log::error($e);
 
-            return back()->with('errors', ['Failed to update']);
+            return redirect()->back()->with('errors', ['Failed to update']);
         }
     }
 
@@ -187,6 +187,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect(route('admin.users.index'));
+        return redirect()->route('admin.users.index');
     }
 }

@@ -42,6 +42,6 @@ class LoginController extends Controller
      */
     public function authenticated()
     {
-        return redirect('dashboard');
+        return redirect()->to('dashboard');
     }
 }

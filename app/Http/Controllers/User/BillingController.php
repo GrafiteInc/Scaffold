@@ -18,7 +18,7 @@ class BillingController extends Controller
         $user = $request->user();
 
         if ($user->hasActiveSubscription()) {
-            return redirect(route('user.billing.details'));
+            return redirect()->route('user.billing.details');
         }
 
         return view('user.billing.subscribe', [
@@ -102,12 +102,12 @@ class BillingController extends Controller
         try {
             $request->user()->subscription(config('billing.subscription_name'))->swap($request->plan);
 
-            return redirect(route('user.billing.details'))->with('message', 'Your subscription was swapped!');
+            return redirect()->route('user.billing.details')->with('message', 'Your subscription was swapped!');
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
 
-        return back()->withErrors(['Could not change your subscription, please try again.']);
+        return redirect()->back()->withErrors(['Could not change your subscription, please try again.']);
     }
 
     /**
@@ -135,12 +135,12 @@ class BillingController extends Controller
         try {
             $request->user()->applyCoupon($request->coupon);
 
-            return redirect(route('user.billing.details'))->with('message', 'Your coupon was used!');
+            return redirect()->route('user.billing.details')->with('message', 'Your coupon was used!');
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
 
-        return back()->withErrors(['Could not process your coupon, please try again.']);
+        return redirect()->back()->withErrors(['Could not process your coupon, please try again.']);
     }
 
     /**
@@ -203,11 +203,11 @@ class BillingController extends Controller
             $date = $invoice->date()->format('Y-m-d');
             $message = 'Your subscription has been cancelled! It will be availale until '.$date;
 
-            return redirect(route('user.billing.details'))->with('message', $message);
+            return redirect()->route('user.billing.details')->with('message', $message);
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
 
-        return back()->withErrors(['Could not cancel billing, please try again.']);
+        return redirect()->back()->withErrors(['Could not cancel billing, please try again.']);
     }
 }

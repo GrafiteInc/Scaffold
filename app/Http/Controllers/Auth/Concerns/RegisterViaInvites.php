@@ -36,7 +36,7 @@ trait RegisterViaInvites
         );
 
         if (! $inviteIsValid) {
-            return back()->withErrors([
+            return redirect()->back()->withErrors([
                 'Could not validate your invite registration, please try again.',
             ]);
         }
@@ -49,7 +49,7 @@ trait RegisterViaInvites
 
         $this->guard()->login($user);
 
-        return redirect(route('user.invites'));
+        return redirect()->route('user.invites');
     }
 
     /**

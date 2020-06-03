@@ -19,12 +19,12 @@ trait HasMembers
     {
         try {
             if ($this->service->invite($model, $request->email)) {
-                return back()->with('message', 'Successfully sent invite');
+                return redirect()->back()->with('message', 'Successfully sent invite');
             }
 
-            return back()->withErrors(['Failed to send invite']);
+            return redirect()->back()->withErrors(['Failed to send invite']);
         } catch (Exception $e) {
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
@@ -38,12 +38,12 @@ trait HasMembers
     {
         try {
             if ($this->service->leave($model)) {
-                return back()->with('message', 'Success, your membership was removed');
+                return redirect()->back()->with('message', 'Success, your membership was removed');
             }
 
-            return back()->withErrors(['Failed to remove membership']);
+            return redirect()->back()->withErrors(['Failed to remove membership']);
         } catch (Exception $e) {
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
@@ -60,12 +60,12 @@ trait HasMembers
             $result = $this->service->remove($member, $model);
 
             if ($result) {
-                return back()->with('message', 'Success, the member was removed');
+                return redirect()->back()->with('message', 'Success, the member was removed');
             }
 
-            return back()->withErrors(['Failed to remove member']);
+            return redirect()->back()->withErrors(['Failed to remove member']);
         } catch (Exception $e) {
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 }

@@ -51,7 +51,7 @@ class RoleController extends Controller
             'permissions' => array_keys($request->permissions ?? []),
         ]);
 
-        return redirect(route('admin.roles.edit', $role->id))->with('message', 'Role Created');
+        return redirect()->route('admin.roles.edit', $role->id)->with('message', 'Role Created');
     }
 
     /**
@@ -85,9 +85,9 @@ class RoleController extends Controller
                 'permissions' => array_keys($request->permissions ?? []),
             ]);
 
-            return back()->with('message', 'Successfully updated');
+            return redirect()->back()->with('message', 'Successfully updated');
         } catch (Exception $e) {
-            return back()->with('errors', ['Failed to update']);
+            return redirect()->back()->with('errors', ['Failed to update']);
         }
     }
 
@@ -102,13 +102,13 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         if ($role->name === 'admin') {
-            return back()->withErrors('Cannot delete admin.');
+            return redirect()->back()->withErrors('Cannot delete admin.');
         }
 
         $role->users()->detach();
 
         $role->delete();
 
-        return redirect(route('admin.roles.index'))->with('message', 'Successfully deleted');
+        return redirect()->route('admin.roles.index')->with('message', 'Successfully deleted');
     }
 }

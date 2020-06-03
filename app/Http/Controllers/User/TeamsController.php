@@ -59,13 +59,13 @@ class TeamsController extends Controller
             $team = $this->service->create($request->except('_token'));
 
             if ($team) {
-                return redirect(route('user.teams.edit', $team->id))
+                return redirect()->route('user.teams.edit', $team->id)
                     ->with('message', 'Successfully created a team');
             }
 
-            return redirect(route('user.teams'))->with('message', 'Failed to create a team');
+            return redirect()->route('user.teams')->with('message', 'Failed to create a team');
         } catch (Exception $e) {
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
@@ -103,12 +103,12 @@ class TeamsController extends Controller
     {
         try {
             if ($this->service->update($team, $request->except('_token'))) {
-                return back()->with('message', 'Successfully updated');
+                return redirect()->back()->with('message', 'Successfully updated');
             }
 
-            return back()->with('message', 'Failed to update');
+            return redirect()->back()->with('message', 'Failed to update');
         } catch (Exception $e) {
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
@@ -124,12 +124,12 @@ class TeamsController extends Controller
             $result = $this->service->destroy($team);
 
             if ($result) {
-                return redirect(route('user.teams'))->with('message', 'Successfully deleted');
+                return redirect()->route('user.teams')->with('message', 'Successfully deleted');
             }
 
-            return redirect(route('user.teams'))->with('message', 'Failed to delete the team');
+            return redirect()->route('user.teams')->with('message', 'Failed to delete the team');
         } catch (Exception $e) {
-            return back()->withErrors($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 }

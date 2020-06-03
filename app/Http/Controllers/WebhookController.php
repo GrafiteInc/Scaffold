@@ -14,6 +14,6 @@ class WebhookController extends CashierController
      */
     public function handleInvoicePaymentSucceeded($payload)
     {
-        return redirect(route('user.billing.details'));
+        return redirect()->route('user.billing.details');
     }
 }

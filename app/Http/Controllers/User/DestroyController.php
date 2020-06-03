@@ -32,6 +32,6 @@ class DestroyController extends Controller
 
         Auth::logout();
 
-        return redirect(route('home'))->with('message', 'Your account was deleted');
+        return redirect()->route('home')->with('message', 'Your account was deleted');
     }
 }
