@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Forms\TeamForm;
 use App\Http\Forms\TeamInviteForm;
@@ -24,10 +25,10 @@ class TeamsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $teams = auth()->user()->teams;
-        $memberships = auth()->user()->teamMemberships;
+        $teams = $request->user()->teams;
+        $memberships = $request->user()->teamMemberships;
 
         return view('user.teams.index')
             ->with('memberships', $memberships)

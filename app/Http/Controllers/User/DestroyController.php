@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Notifications\StandardEmail;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,9 @@ class DestroyController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy()
+    public function destroy(Request $request)
     {
-        $user = auth()->user();
+        $user = $request->user();
 
         Storage::delete($user->avatar);
 

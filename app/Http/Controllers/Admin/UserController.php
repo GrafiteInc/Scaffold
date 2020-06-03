@@ -89,7 +89,7 @@ class UserController extends Controller
             Notification::route('mail', $request->email)
                 ->notify(new UserInviteEmail(
                     $request->email,
-                    auth()->user(),
+                    $request->user(),
                     $message,
                     $token
                 ));
@@ -106,9 +106,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function switchToUser(User $user)
+    public function switchToUser(Request $request, User $user)
     {
-        session()->put('original_user', auth()->id());
+        $request->session()->put('original_user', auth()->id());
 
         Auth::login($user);
 
@@ -120,7 +120,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function switchBack()
+    public function switchBack(Request $request)
     {
         if (! session('original_user')) {
             abort(401);
@@ -128,7 +128,7 @@ class UserController extends Controller
 
         $user = User::find(session('original_user'));
 
-        session()->forget('original_user');
+        $request->session()->forget('original_user');
 
         Auth::login($user);
 

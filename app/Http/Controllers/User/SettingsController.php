@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Forms\UserForm;
 use App\Http\Requests\UserUpdateRequest;
@@ -16,9 +17,9 @@ class SettingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function settings()
+    public function settings(Request $request)
     {
-        $user = auth()->user();
+        $user = $request->user();
 
         $form = app(UserForm::class)->edit($user);
 
@@ -42,18 +43,18 @@ class SettingsController extends Controller
     public function update(UserUpdateRequest $request)
     {
         try {
-            $path = auth()->user()->avatar;
+            $path = $request->user()->avatar;
 
             if (! is_null($request->avatar)) {
                 if (($request->file('avatar')->getSize() / 1024) > 10000) {
                     return back()->withErrors(['Avatar file is too big, must be below 10MB.']);
                 }
 
-                Storage::delete(auth()->user()->avatar);
+                Storage::delete($request->user()->avatar);
                 $path = Storage::putFile('public/avatars', $request->avatar, 'public');
             }
 
-            auth()->user()->update([
+            $request->user()->update([
                 'name' => $request->name,
                 'email' => $request->email,
                 'dark_mode' => $request->filled('dark_mode') ?? false,
@@ -77,12 +78,12 @@ class SettingsController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroyAvatar()
+    public function destroyAvatar(Request $request)
     {
         try {
-            Storage::delete(auth()->user()->avatar);
+            Storage::delete($request->user()->avatar);
 
-            auth()->user()->update([
+            $request->user()->update([
                 'avatar' => null,
             ]);
 
