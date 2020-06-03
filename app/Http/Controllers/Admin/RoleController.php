@@ -44,7 +44,6 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-
         $role = Role::create([
             'name' => strtolower($request->label),
             'label' => $request->label,
