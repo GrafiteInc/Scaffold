@@ -4,51 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06bfeb530d81361d7bad216d0232a099",
+    "content-hash": "d8d03bce00ed4b7611fbd425810204e2",
     "packages": [
-        {
-            "name": "balping/json-raw-encoder",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://gitlab.com/balping/json-raw-encoder.git",
-                "reference": "e2b0ab888342b0716f1f0628e2fa13b345c5f276"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/balping%2Fjson-raw-encoder/repository/archive.zip?sha=e2b0ab888342b0716f1f0628e2fa13b345c5f276",
-                "reference": "e2b0ab888342b0716f1f0628e2fa13b345c5f276",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Balping\\JsonRaw\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0-only"
-            ],
-            "authors": [
-                {
-                    "name": "Balázs Dura-Kovács"
-                }
-            ],
-            "description": "Encode arrays to json with raw JS objects (eg. callbacks) in them",
-            "keywords": [
-                "callback",
-                "encode",
-                "json"
-            ],
-            "time": "2020-06-06T16:24:31+00:00"
-        },
         {
             "name": "brick/math",
             "version": "0.8.15",
@@ -96,24 +53,62 @@
             "time": "2020-04-15T15:59:35+00:00"
         },
         {
-            "name": "consoletvs/charts",
-            "version": "6.5.4",
+            "name": "chartisan/php",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ConsoleTVs/Charts.git",
-                "reference": "524257b5d525666385bd2e91b06e376994a7b683"
+                "url": "https://github.com/Chartisan/PHP.git",
+                "reference": "078c417200657837057c5a76b01764b2d5ac00e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/524257b5d525666385bd2e91b06e376994a7b683",
-                "reference": "524257b5d525666385bd2e91b06e376994a7b683",
+                "url": "https://api.github.com/repos/Chartisan/PHP/zipball/078c417200657837057c5a76b01764b2d5ac00e0",
+                "reference": "078c417200657837057c5a76b01764b2d5ac00e0",
                 "shasum": ""
             },
             "require": {
-                "balping/json-raw-encoder": "^1.0",
-                "illuminate/console": "^5.0|^6.0|^7.0",
-                "illuminate/support": "^5.0|^6.0|^7.0",
-                "php": ">=7.0"
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Chartisan\\PHP\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Èrik Campobadal Forés",
+                    "email": "soc@erik.cat"
+                }
+            ],
+            "description": "Chartisan's PHP backend",
+            "time": "2020-02-10T09:22:27+00:00"
+        },
+        {
+            "name": "consoletvs/charts",
+            "version": "7.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ConsoleTVs/Charts.git",
+                "reference": "897b72544012452b77392ac4069683a8068886de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/897b72544012452b77392ac4069683a8068886de",
+                "reference": "897b72544012452b77392ac4069683a8068886de",
+                "shasum": ""
+            },
+            "require": {
+                "chartisan/php": "^1.2.0",
+                "illuminate/console": "^7.14.1",
+                "illuminate/contracts": "^7.14.1",
+                "illuminate/http": "^7.14.1",
+                "illuminate/support": "^7.14.1",
+                "php": ">=7.4"
             },
             "type": "library",
             "extra": {
@@ -134,12 +129,22 @@
             ],
             "authors": [
                 {
-                    "name": "Èrik Campobadal Forés",
+                    "name": "Èrik C. Forés",
                     "email": "soc@erik.cat"
                 }
             ],
-            "description": "The laravel charting package",
-            "time": "2020-03-03T23:16:14+00:00"
+            "description": "The missing charting library on laravel, powered by Chartisan",
+            "funding": [
+                {
+                    "url": "https://github.com/ConsoleTVs",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/ErikCampobadal",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-06-13T02:26:54+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -1069,40 +1074,40 @@
         },
         {
             "name": "laravel/cashier",
-            "version": "v10.7.1",
+            "version": "v12.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/cashier.git",
-                "reference": "80eac34ae0db3dcd922278f981c403f1e271bd25"
+                "reference": "e3479f548a7d167ff1c241e718041162e66306a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/cashier/zipball/80eac34ae0db3dcd922278f981c403f1e271bd25",
-                "reference": "80eac34ae0db3dcd922278f981c403f1e271bd25",
+                "url": "https://api.github.com/repos/laravel/cashier/zipball/e3479f548a7d167ff1c241e718041162e66306a5",
+                "reference": "e3479f548a7d167ff1c241e718041162e66306a5",
                 "shasum": ""
             },
             "require": {
                 "dompdf/dompdf": "^0.8.0",
                 "ext-json": "*",
-                "illuminate/contracts": "~5.8.0|^6.0|^7.0",
-                "illuminate/database": "~5.8.0|^6.0|^7.0",
-                "illuminate/http": "~5.8.0|^6.0|^7.0",
-                "illuminate/log": "~5.8.0|^6.0|^7.0",
-                "illuminate/notifications": "~5.8.0|^6.0|^7.0",
-                "illuminate/routing": "~5.8.0|^6.0|^7.0",
-                "illuminate/support": "~5.8.0|^6.0|^7.0",
-                "illuminate/view": "~5.8.0|^6.0|^7.0",
+                "illuminate/contracts": "^6.0|^7.0",
+                "illuminate/database": "^6.0|^7.0",
+                "illuminate/http": "^6.0|^7.0",
+                "illuminate/log": "^6.0|^7.0",
+                "illuminate/notifications": "^6.0|^7.0",
+                "illuminate/routing": "^6.0|^7.0",
+                "illuminate/support": "^6.0|^7.0",
+                "illuminate/view": "^6.0|^7.0",
                 "moneyphp/money": "^3.2",
                 "nesbot/carbon": "^2.0",
-                "php": "^7.1.3",
+                "php": "^7.2",
                 "stripe/stripe-php": "^7.0",
                 "symfony/http-kernel": "^4.3|^5.0",
                 "symfony/intl": "^4.3|^5.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^3.8|^4.0|^5.0",
-                "phpunit/phpunit": "^7.5|^8.0"
+                "orchestra/testbench": "^4.0|^5.0",
+                "phpunit/phpunit": "^8.0|^9.0"
             },
             "suggest": {
                 "ext-intl": "Allows for more locales besides the default \"en\" when formatting money values."
@@ -1110,7 +1115,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "10.x-dev"
+                    "dev-master": "12.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -1139,7 +1144,7 @@
                 "laravel",
                 "stripe"
             ],
-            "time": "2020-03-24T16:10:05+00:00"
+            "time": "2020-06-16T18:54:05+00:00"
         },
         {
             "name": "laravel/framework",
@@ -5120,24 +5125,23 @@
         },
         {
             "name": "tightenco/ziggy",
-            "version": "v0.8.1",
+            "version": "0.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/ziggy.git",
-                "reference": "4c4b29bc658153f0771b0a145173ce83a7b6b885"
+                "reference": "82ea6ec6cb6ab3545b0245310b2a424316fe48d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/ziggy/zipball/4c4b29bc658153f0771b0a145173ce83a7b6b885",
-                "reference": "4c4b29bc658153f0771b0a145173ce83a7b6b885",
+                "url": "https://api.github.com/repos/tightenco/ziggy/zipball/82ea6ec6cb6ab3545b0245310b2a424316fe48d8",
+                "reference": "82ea6ec6cb6ab3545b0245310b2a424316fe48d8",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": ">=5.4@dev"
             },
             "require-dev": {
-                "mikey179/vfsstream": "^1.6",
-                "orchestra/testbench": "~3.6"
+                "orchestra/testbench": "^5.0"
             },
             "type": "library",
             "extra": {
@@ -5162,12 +5166,19 @@
                     "email": "daniel@tighten.co"
                 },
                 {
-                    "name": "Matt Stauffer",
-                    "email": "matt@tighten.co"
+                    "name": "Jake Bathman",
+                    "email": "jake@tighten.co"
                 }
             ],
             "description": "Generates a Blade directive exporting all of your named Laravel routes. Also provides a nice route() helper function in JavaScript.",
-            "time": "2019-10-18T22:42:36+00:00"
+            "homepage": "https://github.com/tightenco/ziggy",
+            "keywords": [
+                "Ziggy",
+                "javascript",
+                "laravel",
+                "routes"
+            ],
+            "time": "2020-06-05T14:42:41+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -7733,7 +7744,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3"
+        "php": "^7.4"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"

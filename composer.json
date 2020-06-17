@@ -9,19 +9,19 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3",
-        "consoletvs/charts": "^6.5.4",
+        "php": "^7.4",
+        "consoletvs/charts": "^7.0",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "grafite/database": "^2.0",
-        "grafite/formmaker": "^2.9",
+        "grafite/formmaker": "^2.12",
         "intervention/image": "^2.5",
-        "laravel/cashier": "^10.1",
-        "laravel/framework": "^7.0",
+        "laravel/cashier": "^12.0",
+        "laravel/framework": "^7.16",
         "laravel/helpers": "^1.1",
         "laravel/ui": "^2.0",
         "lasserafn/php-initial-avatar-generator": "^4.0",
-        "tightenco/ziggy": "^0.8.1"
+        "tightenco/ziggy": "^0.9.4"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
