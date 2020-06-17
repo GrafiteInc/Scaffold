@@ -24,9 +24,10 @@
             </div>
             <div class="row">
                 <div class="col-md-12 mt-2">
-                    <label>
-                        Remember Me <input type="checkbox" name="remember">
-                    </label>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                        <label class="form-check-label" for="remember">Remember Me </label>
+                    </div>
                 </div>
             </div>
             <div class="row">
