@@ -36,14 +36,14 @@ class AuthServiceProvider extends ServiceProvider
          * Gateway for determining team admin
          */
         Gate::define('team-admin', function ($user, $team) {
-            return $user->id == $team->user_id;
+            return $user->id === $team->user_id;
         });
 
         /*
          * Gateway for determining team manager
          */
         Gate::define('team-manager', function ($user, $team) {
-            if ($user->id == $team->user_id) {
+            if ($user->id === $team->user_id) {
                 return true;
             }
 
@@ -65,7 +65,7 @@ class AuthServiceProvider extends ServiceProvider
          * Gateway for determining team members
          */
         Gate::define('team-member', function ($user, $team) {
-            if ($user->id == $team->user_id) {
+            if ($user->id === $team->user_id) {
                 return true;
             }
 
