@@ -3,10 +3,20 @@
 namespace App\Charts;
 
 use App\Models\User;
-use ConsoleTVs\Charts\Classes\Chartjs\Chart;
+use Grafite\Charts\Builder\Chart;
 
 class RegistrationThirtyDays extends Chart
 {
+    public $height = 250;
+
+    public $title = 'User Activities';
+
+    public $displayTitle = false;
+
+    public $borderWidth = 4;
+
+    public $activityRecords;
+
     /**
      * Initializes the chart.
      *
@@ -14,8 +24,6 @@ class RegistrationThirtyDays extends Chart
      */
     public function __construct()
     {
-        parent::__construct();
-
         $registrations = User::where('created_at', '<', now())
             ->where('created_at', '>', now()->subDays(30))
             ->get()
@@ -23,27 +31,32 @@ class RegistrationThirtyDays extends Chart
                 return $user->created_at->format('d-m-Y');
             });
 
-        $registrationRecords = collect([]);
+        $this->registrationRecords = collect([]);
 
         foreach ($registrations as $date => $registration) {
-            $registrationRecords->push([
+            $this->registrationRecords->push([
                 'dates' => $date,
                 'registration_count' => $registration->count(),
             ]);
         }
+    }
 
-        $labels = $registrationRecords->pluck('dates');
-        $counts = $registrationRecords->pluck('registration_count');
+    public function labels()
+    {
+        return $this->registrationRecords->pluck('dates');
+    }
 
-        $this->dataset('User Registrations Per Day', 'line', $counts)
+    public function datasets()
+    {
+        $counts = $this->registrationRecords->pluck('registration_count');
+
+        $dataset = $this->makeDataset('User Registrations Per Day', $counts)
             ->options([
                 'borderColor' => '#6f42c1',
             ]);
 
-        $this->displayLegend(false);
-
-        $this->labels($labels);
-
-        $this->height(250);
+        return [
+            $dataset
+        ];
     }
 }

@@ -19,7 +19,7 @@
                     User Registrations (30 Days)
                 </div>
                 <div class="card-body">
-                    {!! $registrationChart->container() !!}
+                    {!! $registrationChart->html() !!}
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                     User Activities (30 Days)
                 </div>
                 <div class="card-body">
-                    {!! $activityChart->container() !!}
+                    {!! $activityChart->html() !!}
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
 @stop
 
 @section('javascript')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+    {!! $registrationChart->cdn() !!}
     {!! $registrationChart->script() !!}
     {!! $activityChart->script() !!}
 @stop
