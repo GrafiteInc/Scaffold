@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.1.0] - 2020-06-18
+
+### Changed
+- Chart package dependency
+
 ## [v2.0.0] - 2020-06-17
 
 ### Added
