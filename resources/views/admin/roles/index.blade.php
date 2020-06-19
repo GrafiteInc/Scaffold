@@ -30,9 +30,9 @@
                                 @foreach($roles as $role)
                                     <tr>
                                         <td>{{ $role->label }}</td>
-                                        <td width="140px" class="text-right">
-                                            <div class="btn-toolbar justify-content-between">
-                                                <a class="btn btn-outline-primary btn-sm" href="{{ url('admin/roles/'.$role->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
+                                        <td width="160px" class="text-right">
+                                            <div class="btn-toolbar justify-content-end">
+                                                <a class="btn btn-outline-primary btn-sm mr-2" href="{{ url('admin/roles/'.$role->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
 
                                                 {!! app(\App\Http\Forms\RoleForm::class)->confirm('Are you sure you want to delete this role?', 'confirmation')->delete($role) !!}
                                             </div>

@@ -37,9 +37,9 @@
                                     @if ($user->id !== auth()->id())
                                         <tr>
                                             <td>{{ $user->email }}</td>
-                                            <td class="text-right" width="140px">
-                                                <div class="btn-toolbar justify-content-between">
-                                                    <a class="btn btn-outline-primary btn-sm raw-margin-right-8" href="{{ url('admin/users/'.$user->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
+                                            <td class="text-right" width="160px">
+                                                <div class="btn-toolbar justify-content-end">
+                                                    <a class="btn btn-outline-primary btn-sm mr-2" href="{{ url('admin/users/'.$user->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
 
                                                     {!! app(\App\Http\Forms\AdminUserForm::class)->confirm('Are you sure you want to delete this user?', 'confirmation')->delete($user) !!}
                                                 </div>
@@ -74,7 +74,7 @@
                                 @foreach($invites as $invite)
                                     <tr>
                                         <td>{{ $invite->email }}</td>
-                                        <td class="text-right" width="225px">
+                                        <td class="text-right" width="250px">
                                             {!! form()->action('post',
                                                 ['invite.resend', $invite],
                                                 'Resend Invite',
@@ -84,7 +84,7 @@
                                             {!! form()->confirm('Are you sure you want to revoke this invite?', 'confirmation')
                                                 ->action('post',
                                                 ['invite.revoke', $invite],
-                                                'Revoke Invite',
+                                                '<span class="fas fa-fw fa-undo"></span> Revoke Invite',
                                                 ['class' => 'btn btn-sm btn-outline-warning']
                                             ) !!}
                                         </td>

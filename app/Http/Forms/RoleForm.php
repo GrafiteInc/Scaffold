@@ -15,6 +15,7 @@ class RoleForm extends ModelForm
 
     public $buttons = [
         'submit' => 'Save',
+        'delete' => '<span class="fas fa-fw fa-trash"></span> Delete'
     ];
 
     public $columns = 2;
@@ -22,7 +23,7 @@ class RoleForm extends ModelForm
     public $buttonClasses = [
         'submit' => 'btn btn-primary',
         'cancel' => 'btn btn-secondary',
-        'delete' => 'btn btn-danger btn-sm',
+        'delete' => 'btn btn-outline-danger btn-sm',
     ];
 
     public function setSections()

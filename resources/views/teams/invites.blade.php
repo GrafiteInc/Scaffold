@@ -36,7 +36,7 @@
                                     {!! form()->confirm('Are you sure you want to revoke this invite?', 'confirmation')
                                         ->action('post',
                                         ['invite.revoke', $invite],
-                                        'Revoke Invite',
+                                        '<span class="fas fa-fw fa-undo"></span> Revoke Invite',
                                         ['class' => 'btn btn-sm btn-outline-warning']
                                     ) !!}
                                 </td>

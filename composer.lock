@@ -783,16 +783,16 @@
         },
         {
             "name": "grafite/database",
-            "version": "v2.0.0",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Database.git",
-                "reference": "01b16f469a43d5f37c03bd1f3b76c2fd0c716e9f"
+                "reference": "e2a8226736175dc59f24d9771f1216f0a2375fc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Database/zipball/01b16f469a43d5f37c03bd1f3b76c2fd0c716e9f",
-                "reference": "01b16f469a43d5f37c03bd1f3b76c2fd0c716e9f",
+                "url": "https://api.github.com/repos/GrafiteInc/Database/zipball/e2a8226736175dc59f24d9771f1216f0a2375fc8",
+                "reference": "e2a8226736175dc59f24d9771f1216f0a2375fc8",
                 "shasum": ""
             },
             "require": {
@@ -830,20 +830,20 @@
                 }
             ],
             "description": "A handy set of commands for MySQL databases",
-            "time": "2020-06-03T13:54:53+00:00"
+            "time": "2020-06-19T04:15:17+00:00"
         },
         {
             "name": "grafite/formmaker",
-            "version": "v2.12.5",
+            "version": "v2.12.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/FormMaker.git",
-                "reference": "a1ee534ac784ad58e79774685ab123e45e7e9b26"
+                "reference": "5c608a61b95547728e5fd1750868802cb0d271eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/FormMaker/zipball/a1ee534ac784ad58e79774685ab123e45e7e9b26",
-                "reference": "a1ee534ac784ad58e79774685ab123e45e7e9b26",
+                "url": "https://api.github.com/repos/GrafiteInc/FormMaker/zipball/5c608a61b95547728e5fd1750868802cb0d271eb",
+                "reference": "5c608a61b95547728e5fd1750868802cb0d271eb",
                 "shasum": ""
             },
             "require": {
@@ -885,7 +885,7 @@
                 }
             ],
             "description": "A remarkably magical form and input maker tool for Laravel.",
-            "time": "2020-06-17T21:49:33+00:00"
+            "time": "2020-06-19T14:53:15+00:00"
         },
         {
             "name": "guzzlehttp/psr7",

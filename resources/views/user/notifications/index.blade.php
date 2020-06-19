@@ -44,7 +44,7 @@
 
                                 {!! form()
                                     ->confirm('Are you sure you want to delete this?', 'confirmation')
-                                    ->action('delete', ['user.notifications.destroy', $notification->id], 'Delete', ['class' => 'btn btn-sm btn-danger'])
+                                    ->action('delete', ['user.notifications.destroy', $notification->id], '<span class="fas fa-fw fa-trash"></span>Delete', ['class' => 'btn btn-sm btn-outline-danger'])
                                 !!}
                             </td>
                         </tr>
