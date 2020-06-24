@@ -24,13 +24,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::whereNotIn('id', [auth()->id()])->get();
+        $index = app(AdminUserForm::class)->index();
+
         $invites = Invite::where([
             'model_id' => null,
         ])->get();
 
         return view('admin.users.index')
-            ->with(compact('users', 'invites'));
+            ->with(compact('index', 'invites'));
     }
 
     /**
@@ -41,17 +42,15 @@ class UserController extends Controller
      */
     public function search(Request $request)
     {
-        $users = app(User::class)
-            ->search($request->search)
-            ->get();
+        $query = app(User::class)->search($request->search);
+        $index = app(AdminUserForm::class)->index($query);
 
         $invites = Invite::where([
             'model_id' => null,
         ])->get();
 
         return view('admin.users.index')
-            ->with('users', $users)
-            ->with('invites', $invites);
+            ->with(compact('index', 'invites'));
     }
 
     /**

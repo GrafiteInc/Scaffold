@@ -6,6 +6,11 @@ use App\Models\Role;
 
 trait HasRoles
 {
+    public function getRoleAttribute()
+    {
+        return $this->roles()->first()->label;
+    }
+
     /**
      * User Roles.
      *

@@ -6,10 +6,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <form method="post" action="{{ route('admin.users.search') }}">
-                {!! csrf_field() !!}
-                <input class="form-control" name="search"  value="{{ request('search') }}" placeholder="Search">
-            </form>
+            {!! $index->search('admin.users.search', 'Search Users', '<span class="fas fa-search"></span>') !!}
         </div>
         <div class="col-md-6">
             <div class="btn-toolbar justify-content-end">
@@ -19,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 mt-3">
-            @if ($users->isEmpty())
+            @if ($index->items->isEmpty())
                 <div class="card card-default text-center">
                     <div class="card-body">
                         <span>No users found.</span>
@@ -31,24 +28,7 @@
                         <h4 class="m-0">Registered Users</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-borderless m-0 p-0">
-                            <tbody>
-                                @foreach($users as $user)
-                                    @if ($user->id !== auth()->id())
-                                        <tr>
-                                            <td>{{ $user->email }}</td>
-                                            <td class="text-right" width="160px">
-                                                <div class="btn-toolbar justify-content-end">
-                                                    <a class="btn btn-outline-primary btn-sm mr-2" href="{{ url('admin/users/'.$user->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
-
-                                                    {!! app(\App\Http\Forms\AdminUserForm::class)->confirm('Are you sure you want to delete this user?', 'confirmation')->delete($user) !!}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            </tbody>
-                        </table>
+                        {!! $index !!}
                     </div>
                 </div>
             @endif

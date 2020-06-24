@@ -9,8 +9,17 @@
 return [
     'buttons' => [
         'submit' => 'btn btn-primary',
+        'edit' => 'btn btn-outline-primary',
         'delete' => 'btn btn-danger',
         'cancel' => 'btn btn-secondary',
+    ],
+
+    'html' => [
+        'pagination' => 'd-flex justify-content-center mt-4 mb-0',
+        'table' => 'table table-borderless m-0 p-0',
+        'table-head' => 'thead border-bottom',
+        'table-actions-header' => '<th class="text-right">Actions</th>',
+        'sortable-icon' => '<span class="fas fa-fw fa-arrows-alt-v"></span>',
     ],
 
     'form' => [
@@ -32,6 +41,10 @@ return [
         'custom-file-label' => 'custom-file-label',
         'custom-file-input-class' => 'custom-file-input',
         'custom-file-wrapper-class' => 'custom-file',
+
+        'input-group-text' => 'input-group-text',
+        'input-group-before' => 'input-group-prepend',
+        'input-group-after' => 'input-group-append',
 
         /*
         * --------------------------------------------------------------------------
@@ -59,7 +72,7 @@ return [
 
         'orientation' => 'vertical',
         'horizontal-class' => 'form-horizontal',
-        'label-column' => 'col-md-2 col-form-label',
+        'label-column' => 'col-md-2 col-form-label pt-0',
         'input-column' => 'col-md-10',
     ],
 ];
