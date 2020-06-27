@@ -8,9 +8,9 @@
 ## About Grafite Scaffold
 Grafite Scaffold was created as a highly opinionated boilerplate of Laravel's base application structure. In comes loaded with a variety of packages for various needs including:
 
-- consoletvs/charts
-- grafite/formmaker
+- grafite/charts
 - grafite/database
+- grafite/formmaker
 - intervention/image
 - laravel/cashier
 - laravel/dusk
