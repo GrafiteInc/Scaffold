@@ -11,10 +11,14 @@ class UserControllerTest extends TestCase
 {
     public function testIndex()
     {
-        factory(User::class)->create([
+        $user = factory(User::class)->create([
             'name' => 'Joe',
             'email' => 'joe@grafite.ca',
         ]);
+
+        $role = factory(Role::class)->create();
+
+        $user->roles()->attach($role);
 
         $response = $this->get(route('admin.users.index'));
 
@@ -25,10 +29,14 @@ class UserControllerTest extends TestCase
 
     public function testSearch()
     {
-        factory(User::class)->create([
+        $user = factory(User::class)->create([
             'name' => 'Joe',
             'email' => 'joe@grafite.ca',
         ]);
+
+        $role = factory(Role::class)->create();
+
+        $user->roles()->attach($role);
 
         $response = $this->post(route('admin.users.search'), [
             'search' => 'moe',
@@ -70,6 +78,10 @@ class UserControllerTest extends TestCase
             'name' => 'Joe',
             'email' => 'joe@grafite.ca',
         ]);
+
+        $role = factory(Role::class)->create();
+
+        $user->roles()->attach($role);
 
         $response = $this->get(route('admin.users.edit', [$user->id]));
 
