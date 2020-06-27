@@ -19,8 +19,7 @@ class InvitesController extends Controller
     {
         $invites = $request->user()->invites;
 
-        return view('user.invites.index')
-            ->with('invites', $invites);
+        return view('user.invites.index')->with(compact('invites'));
     }
 
     /**
@@ -36,7 +35,7 @@ class InvitesController extends Controller
         $request->user()->$relationship()->attach($invite->model_id);
 
         if ($invite->delete()) {
-            return redirect()->back()->with('message', 'Invitation accepted');
+            return redirect()->back()->withMessage('Invitation accepted');
         }
 
         return redirect()->back()->withErrors(['Unable to accept the inviation']);
@@ -61,7 +60,7 @@ class InvitesController extends Controller
             ));
 
         if ($invite->delete()) {
-            return redirect()->back()->with('message', 'Invitation rejected');
+            return redirect()->back()->withMessage('Invitation rejected');
         }
 
         return redirect()->back()->withErrors(['Unable to reject the inviation']);

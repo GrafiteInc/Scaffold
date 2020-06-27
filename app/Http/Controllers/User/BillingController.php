@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
 class BillingController extends Controller
 {
@@ -21,10 +22,9 @@ class BillingController extends Controller
             return redirect()->route('user.billing.details');
         }
 
-        return view('user.billing.subscribe', [
-            'user' => $user,
-            'intent' => $user->createSetupIntent(),
-        ]);
+        $intent = $user->createSetupIntent();
+
+        return view('user.billing.subscribe')->with(compact('user', 'intent'));
     }
 
     /**
@@ -35,11 +35,9 @@ class BillingController extends Controller
     public function renewSubscription(Request $request)
     {
         $user = $request->user();
+        $intent = $user->createSetupIntent();
 
-        return view('user.billing.renew', [
-            'user' => $user,
-            'intent' => $user->createSetupIntent(),
-        ]);
+        return view('user.billing.renew')->with(compact('user', 'intent'));
     }
 
     /**
@@ -53,11 +51,7 @@ class BillingController extends Controller
         $invoice = $user->upcomingInvoice();
         $subscription = $user->subscription(config('billing.subscription_name'));
 
-        return view('user.billing.details', [
-            'user' => $user,
-            'invoice' => $invoice,
-            'subscription' => $subscription,
-        ]);
+        return view('user.billing.details')->with(compact('user', 'invoice', 'subscription'));
     }
 
     /**
@@ -69,11 +63,9 @@ class BillingController extends Controller
     public function paymentMethod(Request $request)
     {
         $user = $request->user();
+        $intent = $user->createSetupIntent();
 
-        return view('user.billing.payment-method', [
-            'user' => $user,
-            'intent' => $user->createSetupIntent(),
-        ]);
+        return view('user.billing.payment-method')->with(compact('user', 'intent'));
     }
 
     /**
@@ -86,9 +78,7 @@ class BillingController extends Controller
     {
         $user = $request->user();
 
-        return view('user.billing.change-plan', [
-            'user' => $user,
-        ]);
+        return view('user.billing.change-plan')->with(compact('user'));
     }
 
     /**
@@ -102,7 +92,7 @@ class BillingController extends Controller
         try {
             $request->user()->subscription(config('billing.subscription_name'))->swap($request->plan);
 
-            return redirect()->route('user.billing.details')->with('message', 'Your subscription was swapped!');
+            return redirect()->route('user.billing.details')->withMessage('Your subscription was swapped!');
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
@@ -120,8 +110,7 @@ class BillingController extends Controller
     {
         $user = $request->user();
 
-        return view('user.billing.coupon')
-            ->with('user', $user);
+        return view('user.billing.coupon')->with(compact('user'));
     }
 
     /**
@@ -135,7 +124,7 @@ class BillingController extends Controller
         try {
             $request->user()->applyCoupon($request->coupon);
 
-            return redirect()->route('user.billing.details')->with('message', 'Your coupon was used!');
+            return redirect()->route('user.billing.details')->withMessage('Your coupon was used!');
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
@@ -154,9 +143,7 @@ class BillingController extends Controller
         $user = $request->user();
         $invoices = $user->invoices(config('billing.subscription_name'));
 
-        return view('user.billing.invoices')
-            ->with('invoices', $invoices)
-            ->with('user', $user);
+        return view('user.billing.invoices')->with(compact('user', 'invoices'));
     }
 
     /**
@@ -203,7 +190,7 @@ class BillingController extends Controller
             $date = $invoice->date()->format('Y-m-d');
             $message = 'Your subscription has been cancelled! It will be availale until '.$date;
 
-            return redirect()->route('user.billing.details')->with('message', $message);
+            return redirect()->route('user.billing.details')->withMessage($message);
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }

@@ -29,9 +29,7 @@ class SettingsController extends Controller
                 'class' => 'btn btn-danger mt-4',
             ]);
 
-        return view('user.settings')
-            ->with('form', $form)
-            ->with('deleteAccountForm', $deleteAccountForm);
+        return view('user.settings')->with(compact('form', 'deleteAccountForm'));
     }
 
     /**
@@ -65,7 +63,7 @@ class SettingsController extends Controller
                 'country' => $request->country,
             ]);
 
-            return redirect()->back()->with('message', 'Settings updated successfully');
+            return redirect()->back()->withMessage('Settings updated successfully');
         } catch (Exception $e) {
             Log::error($e);
 
@@ -87,7 +85,7 @@ class SettingsController extends Controller
                 'avatar' => null,
             ]);
 
-            return redirect()->back()->with('message', 'Avatar deleted successfully');
+            return redirect()->back()->withMessage('Avatar deleted successfully');
         } catch (Exception $e) {
             Log::error($e);
 

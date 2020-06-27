@@ -38,10 +38,7 @@ class TeamMembersController extends Controller
         $inviteForm = app(TeamInviteForm::class)
             ->setRoute('teams.members.invite', $team)->make();
 
-        return view('teams.show')->with([
-            'team' => $team,
-            'inviteForm' => $inviteForm,
-        ]);
+        return view('teams.show')->with(compact('team', 'inviteForm'));
     }
 
     /**
@@ -69,12 +66,7 @@ class TeamMembersController extends Controller
             $teamLink = route('user.teams.edit', $team->id);
         }
 
-        return view('teams.member-edit')->with([
-            'teamLink' => $teamLink,
-            'form' => $form,
-            'member' => $member,
-            'team' => $team,
-        ]);
+        return view('teams.member-edit')->with(compact('teamLink', 'form', 'member', 'team'));
     }
 
     /**
@@ -89,16 +81,17 @@ class TeamMembersController extends Controller
     {
         $membership = $team->members->find($member->id)->membership;
 
+        //TODO -> whats up with this?
         if (Gate::allows('team-manager', $team)) {
             $teamLink = route('user.teams.edit', $team->id);
         }
 
         try {
             if ($this->service->updateMember($membership, $member, $team, $request->except('_token'))) {
-                return redirect()->back()->with('message', 'Successfully updated');
+                return redirect()->back()->withMessage('Successfully updated');
             }
 
-            return redirect()->back()->with('message', 'Failed to update');
+            return redirect()->back()->withMessage('Failed to update');
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }

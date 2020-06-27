@@ -16,8 +16,7 @@ class NotificationsController extends Controller
     {
         $notifications = $request->user()->notifications;
 
-        return view('user.notifications.index')
-            ->with('notifications', $notifications);
+        return view('user.notifications.index')->with(compact('notifications'));
     }
 
     /**
@@ -30,7 +29,7 @@ class NotificationsController extends Controller
     {
         $request->user()->notifications->find($notification)->markAsRead();
 
-        return redirect()->back()->with('message', 'Marked as read');
+        return redirect()->back()->withMessage('Marked as read');
     }
 
     /**
@@ -43,7 +42,7 @@ class NotificationsController extends Controller
     {
         $request->user()->notifications->find($notification)->delete();
 
-        return redirect()->back()->with('message', 'Deleted notification');
+        return redirect()->back()->withMessage('Deleted notification');
     }
 
     /**
@@ -56,6 +55,6 @@ class NotificationsController extends Controller
     {
         $request->user()->notifications()->delete();
 
-        return redirect()->back()->with('message', 'Deleted all notifications');
+        return redirect()->back()->withMessage('Deleted all notifications');
     }
 }

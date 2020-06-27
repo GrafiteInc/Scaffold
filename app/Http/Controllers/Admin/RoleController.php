@@ -21,7 +21,7 @@ class RoleController extends Controller
         $roles = Role::all();
 
         return view('admin.roles.index')
-            ->with('roles', $roles);
+            ->with(compact('roles'));
     }
 
     /**
@@ -34,7 +34,7 @@ class RoleController extends Controller
         $form = app(RoleForm::class)->create();
 
         return view('admin.roles.create')
-            ->with('form', $form);
+            ->with(compact('form'));
     }
 
     /**
@@ -64,8 +64,7 @@ class RoleController extends Controller
         $form = app(RoleForm::class)->edit($role);
 
         return view('admin.roles.edit')
-            ->with('form', $form)
-            ->with('role', $role);
+            ->with(compact('form', 'role'));
     }
 
     /**

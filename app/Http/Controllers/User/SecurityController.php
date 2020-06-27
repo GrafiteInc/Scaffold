@@ -7,7 +7,6 @@ use App\Http\Forms\UserSecurityForm;
 use App\Http\Requests\PasswordUpdateRequest;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class SecurityController extends Controller
@@ -26,8 +25,7 @@ class SecurityController extends Controller
     {
         $form = app(UserSecurityForm::class)->make();
 
-        return view('user.password')
-            ->with('form', $form);
+        return view('user.password')->with(compact('form'));
     }
 
     /**
@@ -44,7 +42,7 @@ class SecurityController extends Controller
             $this->resetPassword($request->user(), $password);
 
             return redirect()->to('user/settings')
-                ->with('message', 'Password updated successfully');
+                ->withMessage('Password updated successfully');
         }
 
         return redirect()->back()->withErrors(['Password could not be updated']);

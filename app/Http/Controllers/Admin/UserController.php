@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use Exception;
+use App\Models\User;
+use App\Models\Invite;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Http\Forms\AdminUserForm;
 use App\Http\Forms\InviteUserForm;
-use App\Http\Requests\AdminUserUpdateRequest;
-use App\Models\Invite;
-use App\Models\User;
-use App\Notifications\UserInviteEmail;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\UserInviteEmail;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Str;
+use App\Http\Requests\AdminUserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -63,7 +64,7 @@ class UserController extends Controller
         $form = app(InviteUserForm::class)->make();
 
         return view('admin.users.invite')
-            ->with('form', $form);
+            ->with(compact('form'));
     }
 
     /**
@@ -146,9 +147,7 @@ class UserController extends Controller
         $activities = $user->activities()->limit(25)->get()->reverse();
 
         return view('admin.users.edit')
-            ->with('activities', $activities)
-            ->with('form', $form)
-            ->with('user', $user);
+            ->with(compact('activities', 'form', 'user'));
     }
 
     /**
