@@ -37,7 +37,7 @@
                 $('#appModal').modal('show');
 
                 $('#appModalConfirmBtn').unbind().click(() => {
-                    $(_event.target.parentNode)[0].submit();
+                    $(_event.target).closest('form')[0].submit();
                 });
 
                 return false;
