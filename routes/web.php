@@ -173,7 +173,7 @@ Route::middleware('auth', 'activity')->group(function () {
             | Users
             |--------------------------------------------------------------------------
             */
-            Route::post('users/search', 'UserController@search')->name('admin.users.search');
+            Route::get('users/search', 'UserController@search')->name('admin.users.search');
             Route::get('users/invite', 'UserController@getInvite')->name('admin.users.invite');
             Route::post('users/invite', 'UserController@postInvite')->name('admin.users.send-invite');
             Route::post('users/switch/{user}', 'UserController@switchToUser')->name('admin.users.switch');

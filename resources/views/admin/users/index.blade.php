@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            {!! $index->search('admin.users.search', 'Search Users', '<span class="fas fa-search"></span>') !!}
+            {!! $index->search('admin.users.search', 'Search Users', '<span class="fas fa-search"></span>', 'get') !!}
         </div>
         <div class="col-md-6">
             <div class="btn-toolbar justify-content-end">
