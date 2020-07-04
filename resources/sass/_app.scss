@@ -16,8 +16,7 @@ body {
 .sidebar {
     width: 320px;
     position: fixed;
-    top: 0;
-    bottom: 60px;
+    top: 60px;
     left: 0;
     z-index: 100;
     padding: 0;
@@ -27,10 +26,7 @@ body {
 
 .sidebar-sticky {
     width: 320px;
-    position: fixed;
-    top: 60px;
-    height: calc(100vh - 103px);
-    overflow-x: hidden;
+    height: calc(100vh - 120px);
     overflow-y: auto;
 }
 
@@ -210,6 +206,9 @@ input[type="file"].form-control {
     .sidebar {
         margin-left: -320px;
     }
+    .sidebar-sticky {
+        height: calc(100vh - 120px);
+    }
     .sidebar.toggled {
         margin-left: 0;
     }
@@ -285,8 +284,11 @@ input[type="file"].form-control {
             min-width: 200px;
         }
     }
+    .sidebar {
+        top: 106px;
+    }
     .sidebar-sticky {
-        margin-top: 50px;
+        height: calc(100vh - 164px);
     }
     .navbar-header {
         .navbar-nav {

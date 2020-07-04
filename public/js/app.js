@@ -1897,7 +1897,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#appModalMessage').html(_message);
       $('#appModal').modal('show');
       $('#appModalConfirmBtn').unbind().click(function () {
-        $(_event.target.parentNode)[0].submit();
+        $(_event.target).closest('form')[0].submit();
       });
       return false;
     };
@@ -41257,7 +41257,7 @@ var staticRenderFns = [
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-secondary",
+                    staticClass: "btn btn-outline-secondary",
                     attrs: { type: "button", "data-dismiss": "modal" }
                   },
                   [_vm._v("Close")]
