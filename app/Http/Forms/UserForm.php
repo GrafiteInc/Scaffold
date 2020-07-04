@@ -17,6 +17,8 @@ class UserForm extends ModelForm
 
     public $routePrefix = 'user';
 
+    public $withJsValidation = true;
+
     public $buttons = [
         'submit' => 'Save',
         'delete' => '<span class="fas fa-fw fa-trash"></span> Delete'

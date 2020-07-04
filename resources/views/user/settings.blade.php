@@ -16,7 +16,7 @@
                 <div class="avatar shadow-sm border" style="background-image: url({{ auth()->user()->avatar_url }})"></div>
             </div>
             <div class="col-md-8">
-                {!! $form !!}
+                <x-fm :content="$form"></x-fm>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@
 
     <div class="row mt-8">
         <div class="col-md-4 offset-md-4 border-top text-center">
-            {!! $deleteAccountForm !!}
+            <x-fm :content="$deleteAccountForm"></x-fm>
         </div>
     </div>
 
