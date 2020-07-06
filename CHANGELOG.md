@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.1.5] - 2020-07-06
+
+### Fixed
+- Issues with the sidebar in small screens
+
 ## [v2.1.4] - 2020-07-04
 
 ### Changed
