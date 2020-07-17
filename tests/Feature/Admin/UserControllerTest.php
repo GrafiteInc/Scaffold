@@ -34,13 +34,16 @@ class UserControllerTest extends TestCase
             'email' => 'joe@grafite.ca',
         ]);
 
-        $role = factory(Role::class)->create();
+        $role = factory(Role::class)->create([
+            'name' => 'admin',
+            'label' => 'Admin'
+        ]);
 
         $user->roles()->attach($role);
 
-        $response = $this->post(route('admin.users.search'), [
-            'search' => 'moe',
-        ]);
+        $response = $this->get(route('admin.users.search', [
+            'search' => 'moe'
+        ]));
 
         $response->assertOk();
         $response->assertDontSee('joe@grafite.ca');
