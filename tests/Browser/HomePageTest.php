@@ -2,19 +2,13 @@
 
 namespace Tests\Browser;
 
-use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 class HomePageTest extends DuskTestCase
 {
-    /**
-     * A basic browser test example.
-     *
-     * @return void
-     */
     public function testHomePage()
     {
-        $this->browse(function (Browser $browser) {
+        $this->browse(function ($browser) {
             $browser->visit('/')
                 ->assertSee('Login')
                 ->assertSee('Register');
@@ -23,8 +17,9 @@ class HomePageTest extends DuskTestCase
 
     public function testDashboardAccess()
     {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/dashboard')
+        $this->browse(function ($browser) {
+            $browser->loginAs($this->user)
+                ->visit('/dashboard')
                 ->assertSee('Dashboard');
         });
     }
