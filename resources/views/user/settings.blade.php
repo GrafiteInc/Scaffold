@@ -8,10 +8,16 @@
         <div class="row">
             <div class="col-md-4 d-flex justify-content-center">
                 @if (auth()->user()->avatar)
-                    {!! form()
-                        ->confirm('Are you sure you want to delete your avatar?', 'confirmation')
-                        ->action('delete', 'user.destroy.avatar', '<span class="fas fa-trash"></span>', ['class' => 'btn btn-sm btn-outline-secondary'])
-                    !!}
+                    <x-fm-action
+                        confirmMessage="Are you sure you want to delete your avatar?"
+                        confirmMethod="confirmation"
+                        method="delete"
+                        route="user.destroy.avatar"
+                        content="<span class='fas fa-trash'></span>"
+                        :confirm="true"
+                        :payload="['user' => auth()->user()]"
+                        :options="['class' => 'btn btn-sm btn-outline-secondary']"
+                    ></x-fm-action>
                 @endif
                 <div class="avatar shadow-sm border" style="background-image: url({{ auth()->user()->avatar_url }})"></div>
             </div>
