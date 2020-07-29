@@ -258,7 +258,20 @@ input[type="file"].form-control {
         padding-left: 0px;
     }
     .main {
-        margin-top: 48px;
+        // margin-top: 48px;
+    }
+    .nav-tabs-custom {
+        border: none;
+        .nav-item {
+            border: solid 1px $primary;
+            margin-bottom: 2px !important;
+            &:hover {
+                background-color: $primary;
+            }
+            .nav-link:hover, .nav-link.active, .nav-link.active:hover {
+                border: 1px solid transparent;
+            }
+        }
     }
     .navbar-nav {
         .notification-badge {
