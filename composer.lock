@@ -739,16 +739,16 @@
         },
         {
             "name": "grafite/charts",
-            "version": "v0.4.4",
+            "version": "v0.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Charts.git",
-                "reference": "a002d8015a828fe0d342dbfd8dffc642a3ded4ee"
+                "reference": "a772d14c7f8727c6f6211cc2ceb21f45342288b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Charts/zipball/a002d8015a828fe0d342dbfd8dffc642a3ded4ee",
-                "reference": "a002d8015a828fe0d342dbfd8dffc642a3ded4ee",
+                "url": "https://api.github.com/repos/GrafiteInc/Charts/zipball/a772d14c7f8727c6f6211cc2ceb21f45342288b5",
+                "reference": "a772d14c7f8727c6f6211cc2ceb21f45342288b5",
                 "shasum": ""
             },
             "require": {
@@ -785,7 +785,7 @@
                 }
             ],
             "description": "An easy way to integrate Charts in Laravel",
-            "time": "2020-07-29T12:45:09+00:00"
+            "time": "2020-07-29T13:00:23+00:00"
         },
         {
             "name": "grafite/database",
@@ -840,16 +840,16 @@
         },
         {
             "name": "grafite/formmaker",
-            "version": "v3.1.1",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/FormMaker.git",
-                "reference": "6e3d2a1e6bb745f8bc80f4c20bfd2a4c772bb2cf"
+                "reference": "c579cf551d0c8549ebe2084d0d5e2cc58c269d4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/FormMaker/zipball/6e3d2a1e6bb745f8bc80f4c20bfd2a4c772bb2cf",
-                "reference": "6e3d2a1e6bb745f8bc80f4c20bfd2a4c772bb2cf",
+                "url": "https://api.github.com/repos/GrafiteInc/FormMaker/zipball/c579cf551d0c8549ebe2084d0d5e2cc58c269d4a",
+                "reference": "c579cf551d0c8549ebe2084d0d5e2cc58c269d4a",
                 "shasum": ""
             },
             "require": {
@@ -893,7 +893,7 @@
                 }
             ],
             "description": "A remarkably magical form and input maker tool for Laravel.",
-            "time": "2020-07-22T23:02:30+00:00"
+            "time": "2020-07-29T13:30:17+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
