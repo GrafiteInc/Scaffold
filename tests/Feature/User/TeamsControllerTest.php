@@ -12,7 +12,7 @@ class TeamsControllerTest extends TestCase
 {
     public function testIndex()
     {
-        $response = $this->get(route('user.teams'));
+        $response = $this->get(route('teams'));
 
         $response->assertOk();
         $response->assertSee('Create Team');
@@ -20,7 +20,7 @@ class TeamsControllerTest extends TestCase
 
     public function testCreate()
     {
-        $response = $this->get(route('user.teams.create'));
+        $response = $this->get(route('teams.create'));
 
         $response->assertOk();
         $response->assertSee('Teams: Create');
@@ -29,7 +29,7 @@ class TeamsControllerTest extends TestCase
 
     public function testStore()
     {
-        $response = $this->post(route('user.teams.store'), [
+        $response = $this->post(route('teams.store'), [
             'name' => 'Avengers',
         ]);
 
@@ -43,7 +43,7 @@ class TeamsControllerTest extends TestCase
             'user_id' => $this->user->id,
         ]);
 
-        $response = $this->get(route('user.teams.edit', [$team->id]));
+        $response = $this->get(route('teams.edit', [$team->id]));
 
         $response->assertOk();
     }
@@ -54,7 +54,7 @@ class TeamsControllerTest extends TestCase
             'user_id' => $this->user->id,
         ]);
 
-        $response = $this->put(route('user.teams.update', [$team->id]), [
+        $response = $this->put(route('teams.update', [$team->id]), [
             'name' => 'Avengers',
         ]);
 
@@ -74,7 +74,7 @@ class TeamsControllerTest extends TestCase
 
         $user->teamMemberships()->attach($team);
 
-        $response = $this->delete(route('user.teams.destroy', [$team->id]));
+        $response = $this->delete(route('teams.destroy', [$team->id]));
 
         Notification::assertSentTo($user, InAppNotification::class);
 

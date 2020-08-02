@@ -1,20 +1,20 @@
-@extends('layouts.user')
+@extends('layouts.dashboard')
 
-@section('page-title') Teams: Edit @stop
+@section('page-title') Teams: {{ $team->name }} Members @stop
 
-@section('user_content')
+@section('content')
+
+    @include('teams.nav')
 
     <div class="row">
-        <div class="col-md-6 mb-4">
-            <div>
-                {!! $form !!}
-            </div>
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="avatar shadow-sm border" style="background-image: url({{ $team->avatar_url }})"></div>
         </div>
-        <div class="col-md-6 mb-4">
+        <div class="col-md-8 mb-4">
             {!! $inviteForm !!}
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12 mt-6">
             @if ($team->members->isEmpty())
                 <div class="row">
                     <div class="col-md-12">

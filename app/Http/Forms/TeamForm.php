@@ -5,12 +5,15 @@ namespace App\Http\Forms;
 use App\Models\Team;
 use Grafite\FormMaker\Fields\Text;
 use Grafite\FormMaker\Forms\ModelForm;
+use Grafite\FormMaker\Fields\FileWithPreview;
 
 class TeamForm extends ModelForm
 {
     public $model = Team::class;
 
-    public $routePrefix = 'user.teams';
+    public $hasFiles = true;
+
+    public $routePrefix = 'teams';
 
     public $buttons = [
         'submit' => 'Save',
@@ -35,6 +38,10 @@ class TeamForm extends ModelForm
         return [
             Text::make('name', [
                 'required' => true,
+            ]),
+            FileWithPreview::make('avatar', [
+                'preview_identifier' => '.avatar',
+                'preview_as_background_image' => true,
             ]),
         ];
     }

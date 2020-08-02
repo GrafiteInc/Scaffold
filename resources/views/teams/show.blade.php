@@ -1,22 +1,35 @@
 @extends('layouts.dashboard')
 
-@section('page-title') Teams: View @stop
+@section('page-title') Teams: {{ $team->name }} @stop
 
 @section('content')
 
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <h3>{{ $team->name }}</h3>
-            <p class="lead">Created On: {{ $team->created_at->format('dS M, Y') }}</p>
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="btn-toolbar justify-content-beginning">
+                <a class="btn btn-outline-secondary" href="{{ route('teams') }}">
+                    <span class="fas fa-arrow-left"></span> Back to Teams
+                </a>
+            </div>
         </div>
-        <div class="col-md-6">
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-4 d-flex justify-content-left">
+            <div class="avatar shadow-sm border" style="background-image: url({{ $team->avatar_url }})"></div>
+        </div>
+        <div class="col-md-4">
+            <h3>{{ $team->name }}</h3>
+            <p>Created On: {{ $team->created_at->format('M jS, Y') }}</p>
+        </div>
+        <div class="col-md-4">
             @if (Gate::allows('team-manager', $team))
                 {!! $inviteForm !!}
             @endif
         </div>
     </div>
 
-    <div class="row mt-3">
+    <div class="row mt-6">
         <div class="col-md-12">
             @if ($team->members->isEmpty())
                 <div class="row">

@@ -63,7 +63,7 @@ class TeamMembersController extends Controller
             ->make();
 
         if (Gate::allows('team-admin', $team)) {
-            $teamLink = route('user.teams.edit', $team->id);
+            $teamLink = route('teams.edit', $team->id);
         }
 
         return view('teams.member-edit')->with(compact('teamLink', 'form', 'member', 'team'));
@@ -83,7 +83,7 @@ class TeamMembersController extends Controller
 
         //TODO -> whats up with this?
         if (Gate::allows('team-manager', $team)) {
-            $teamLink = route('user.teams.edit', $team->id);
+            $teamLink = route('teams.edit', $team->id);
         }
 
         try {

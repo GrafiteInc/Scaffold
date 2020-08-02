@@ -2,18 +2,21 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\Invitable;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
     use Invitable;
+    use HasAvatar;
 
     public $relationship = 'teamMemberships';
 
     public $fillable = [
         'user_id',
         'name',
+        'avatar',
         'uuid',
     ];
 

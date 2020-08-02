@@ -2,11 +2,12 @@
 
 namespace App\Services;
 
-use App\Models\Team;
-use App\Notifications\InAppNotification;
 use Exception;
-use Illuminate\Support\Facades\Gate;
+use App\Models\Team;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
+use App\Notifications\InAppNotification;
 
 class TeamService
 {
@@ -52,8 +53,24 @@ class TeamService
      *
      * @return \App\Models\Team
      */
-    public function update($team, $payload)
+    public function update($team, $request)
     {
+        $path = $team->avatar;
+
+        if (! is_null($request->avatar)) {
+            if (($request->file('avatar')->getSize() / 1024) > 10000) {
+                return redirect()->back()->withErrors(['Avatar file is too big, must be below 10MB.']);
+            }
+
+            Storage::delete($team->avatar);
+            $path = Storage::putFile('public/avatars', $request->avatar, 'public');
+        }
+
+        $payload = [
+            'name' => $request->name,
+            'avatar' => $path,
+        ];
+
         $team->update($payload);
 
         return $team->fresh();

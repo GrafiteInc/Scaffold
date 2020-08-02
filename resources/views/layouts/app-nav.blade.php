@@ -18,7 +18,6 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="{{ route('user.settings') }}">Settings</a>
                         <a class="dropdown-item" href="{{ route('user.security') }}">Security</a>
-                        <a class="dropdown-item" href="{{ route('user.teams') }}">Teams</a>
                         <a class="dropdown-item" href="{{ route('user.invites') }}">Invites</a>
                         <a class="dropdown-item" href="{{ route('user.notifications') }}">Notifications <notification-marker></notification-marker></a>
 

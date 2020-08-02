@@ -35,9 +35,11 @@ class TeamServiceTest extends TestCase
             'name' => 'Avengers',
         ]);
 
-        $result = $this->service->update($team, [
+        $request = new \Illuminate\Http\Request([
             'name' => 'Justice League',
         ]);
+
+        $result = $this->service->update($team, $request);
 
         $this->assertEquals('Justice League', $result->name);
     }

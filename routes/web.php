@@ -97,15 +97,6 @@ Route::middleware('auth', 'activity')->group(function () {
                 Route::delete('clear', 'NotificationsController@deleteAll')->name('user.notifications.clear');
             });
 
-            Route::prefix('teams')->group(function () {
-                Route::get('/', 'TeamsController@index')->name('user.teams');
-                Route::post('/', 'TeamsController@store')->name('user.teams.store');
-                Route::get('create', 'TeamsController@create')->name('user.teams.create');
-                Route::get('{team}/edit', 'TeamsController@edit')->name('user.teams.edit');
-                Route::delete('{team}/delete', 'TeamsController@destroy')->name('user.teams.destroy');
-                Route::put('{team}/update', 'TeamsController@update')->name('user.teams.update');
-            });
-
             Route::prefix('invites')->group(function () {
                 Route::get('/', 'InvitesController@index')->name('user.invites');
                 Route::post('{invite}/accept', 'InvitesController@accept')->name('user.invites.accept');
@@ -133,6 +124,15 @@ Route::middleware('auth', 'activity')->group(function () {
         Route::post('invites/{invite}/revoke', 'InvitesController@revoke')->name('invite.revoke');
 
         Route::prefix('teams')->group(function () {
+            Route::get('/', 'TeamsController@index')->name('teams');
+            Route::post('/', 'TeamsController@store')->name('teams.store');
+            Route::get('create', 'TeamsController@create')->name('teams.create');
+            Route::get('{team}/edit', 'TeamsController@edit')->name('teams.edit');
+            Route::get('{team}/members', 'TeamsController@members')->name('teams.members');
+            Route::delete('{team}/delete', 'TeamsController@destroy')->name('teams.destroy');
+            Route::put('{team}/update', 'TeamsController@update')->name('teams.update');
+            Route::delete('avatar', 'TeamsController@destroyAvatar')->name('team.destroy.avatar');
+
             Route::get('{team}', 'TeamMembersController@show')->name('teams.show');
             Route::post('{team}/leave', 'TeamMembersController@leave')->name('teams.leave');
             Route::post('{team}/invite', 'TeamMembersController@inviteMember')->name('teams.members.invite');

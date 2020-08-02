@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Team;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Gate;
 
 class TeamUpdateRequest extends FormRequest
 {
@@ -15,9 +13,7 @@ class TeamUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        $team = Team::find($this->segment(3));
-
-        return Gate::allows('team-admin', $team);
+        return true;
     }
 
     /**

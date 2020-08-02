@@ -1,13 +1,13 @@
-@extends('layouts.user')
+@extends('layouts.dashboard')
 
 @section('page-title') Teams @stop
 
-@section('user_content')
+@section('content')
 
     <div class="row">
         <div class="col-md-12">
             <div class="btn-toolbar justify-content-end">
-                <a class="btn btn-primary" href="{{ route('user.teams.create') }}">Create Team</a>
+                <a class="btn btn-primary" href="{{ route('teams.create') }}">Create Team</a>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
                                         <td width="20%" class="text-right">
                                             <div class="btn-toolbar justify-content-end">
                                                 <a class="btn btn-outline-secondary btn-sm mr-2" href="{!! route('teams.show', $team->uuid) !!}"><i class="fa fa-eye"></i> View</a>
-                                                <a class="btn btn-outline-primary btn-sm mr-2" href="{!! route('user.teams.edit', $team) !!}"><i class="fa fa-edit"></i> Edit</a>
+                                                <a class="btn btn-outline-primary btn-sm mr-2" href="{!! route('teams.edit', $team) !!}"><i class="fa fa-edit"></i> Edit</a>
                                                 {!! app(\App\Http\Forms\TeamForm::class)->confirm('Are you sure you want to delete '.$team->name.'?', 'confirmation')->delete($team) !!}
                                             </div>
                                         </td>
