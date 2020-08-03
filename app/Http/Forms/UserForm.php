@@ -64,7 +64,7 @@ class UserForm extends ModelForm
             HrTag::make(),
             Email::make('billing_email', [
                 'label' => 'Email',
-                'required' => true,
+                'required' => auth()->user()->hasActiveSubscription(),
             ]),
             Text::make('state', [
                 'label' => 'State',

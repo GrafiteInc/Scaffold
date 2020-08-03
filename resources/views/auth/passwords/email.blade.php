@@ -9,6 +9,7 @@
         <h3 class="text-center mb-5">Forgot Password</h3>
 
         <form method="POST" action="{{ route('password.email') }}">
+            @honeypot
             {!! csrf_field() !!}
 
             <div class="row">

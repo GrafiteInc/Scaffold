@@ -9,6 +9,7 @@
         <h3 class="text-center mb-5">Please Sign In</h3>
 
         <form method="POST" action="{{ url('login') }}">
+            @honeypot
             {!! csrf_field() !!}
             <div class="row">
                 <div class="col-md-12">

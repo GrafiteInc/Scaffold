@@ -21,6 +21,7 @@
         "laravel/helpers": "^1.1",
         "laravel/ui": "^2.0",
         "lasserafn/php-initial-avatar-generator": "^4.0",
+        "spatie/laravel-honeypot": "^2.2",
         "tightenco/ziggy": "^0.9.4"
     },
     "require-dev": {

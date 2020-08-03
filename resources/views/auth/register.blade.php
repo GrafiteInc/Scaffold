@@ -9,6 +9,7 @@
         <h3 class="text-center mb-5">Register</h3>
 
         <form method="POST" action="{{ url('register') }}">
+            @honeypot
             {!! csrf_field() !!}
             <div class="row">
                 <div class="col-md-12 mt-2">

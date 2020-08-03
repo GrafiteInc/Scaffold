@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,11 +42,13 @@ Route::post(
 Route::get('register/invite', 'Auth\\RegisterController@showRegistrationInviteForm');
 Route::post('register/invite', 'Auth\\RegisterController@registerViaInvite');
 
-Auth::routes([
-    'verify' => true,
-    'register' => true,
-    'reset' => true,
-]);
+Route::middleware(ProtectAgainstSpam::class)->group(function () {
+    Auth::routes([
+        'verify' => true,
+        'register' => true,
+        'reset' => true,
+    ]);
+});
 
 /*
 |--------------------------------------------------------------------------
