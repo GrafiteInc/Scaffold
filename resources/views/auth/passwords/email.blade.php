@@ -6,7 +6,13 @@
 
     <div class="content-sm mt-4">
 
-        <h3 class="text-center mb-5">Forgot Password</h3>
+        <h3 class="text-center mb-5">Forgot your password?</h3>
+
+        <div class="card mt-5 mb-4 border-0">
+            <div class="card-body bg-light border-left border-secondary">
+                <p class="lead m-0">It happens to the best of us, we'll get you back in ASAP!</p>
+            </div>
+        </div>
 
         <form method="POST" action="{{ route('password.email') }}">
             @honeypot

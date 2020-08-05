@@ -6,7 +6,13 @@
 
     <div class="content-sm mt-4">
 
-        <h3 class="text-center mb-5">Please Sign In</h3>
+        <h3 class="text-center mb-5">Please sign in</h3>
+
+        <div class="card mt-5 mb-4 border-0">
+            <div class="card-body bg-light border-left border-secondary">
+                <p class="lead m-0">After all it's way more fun on the inside!</p>
+            </div>
+        </div>
 
         <form method="POST" action="{{ url('login') }}">
             @honeypot
