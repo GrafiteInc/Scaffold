@@ -9,12 +9,10 @@ use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\HasActivity;
 use App\Notifications\ResetPassword;
 use App\Models\Concerns\HasPermissions;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Concerns\HasSubscription;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Concerns\DatabaseSearchable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use LasseRafn\InitialAvatarGenerator\InitialAvatar;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
