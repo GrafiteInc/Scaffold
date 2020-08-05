@@ -48,7 +48,7 @@
 
             @yield("alerts")
 
-            <footer class="footer">
+            <footer class="footer d-none d-md-block">
                 <div class="container-fluid d-flex justify-content-between">
                     <span>&copy; {!! date('Y'); !!} <a href="">You</a></span>
                     <div>
