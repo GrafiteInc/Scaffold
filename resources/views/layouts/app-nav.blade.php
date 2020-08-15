@@ -33,6 +33,8 @@
                         @endif
 
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('contact') }}">Contact</a>
+                        <div class="dropdown-divider"></div>
                         {!! form()->action('post', 'logout', 'Logout', ['class' => 'dropdown-item']) !!}
                     </div>
                 </div>

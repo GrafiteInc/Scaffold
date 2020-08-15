@@ -13,14 +13,15 @@ $slate-lightest: #d5d6db !default;
 
 $html-bg: $gray-900;
 
-$sidebar-bg: $slate-lightest;
+$sidebar-bg: $off-white;
 $sidebar-header: $slate-light;
 
-$navbar-header: $slate-dark;
+$navbar-header: $slate-lightest;
 $navbar-bg: $slate-dark;
-$navbar-text-color: $white;
+$navbar-text-color: $slate-dark;
 
-$footer-bg: $slate-darkest;
+$footer-bg: $off-white;
+$footer-text-color: $slate-dark;
 
 $navbar-dark-toggler-icon-bg: none;
 $navbar-light-toggler-icon-bg: none;
@@ -70,11 +71,11 @@ html {
     background-color: $footer-bg;
 
     span {
-        color: $white;
+        color: $footer-text-color;
     }
 
     a {
-        color: $white;
+        color: $footer-text-color;
     }
 }
 

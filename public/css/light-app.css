@@ -16263,8 +16263,6 @@ body {
 }
 
 .footer {
-  position: fixed;
-  bottom: 0;
   width: 100%;
   height: 60px;
   line-height: 60px;
@@ -16279,7 +16277,7 @@ body {
 }
 
 #app {
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh);
   padding-bottom: 60px;
 }
 
@@ -16545,7 +16543,7 @@ html {
 */
 
 .sidebar {
-  background-color: #d5d6db;
+  background-color: #EEEEEE;
 }
 
 .sidebar .nav-item.active {
@@ -16568,15 +16566,15 @@ html {
 */
 
 .footer {
-  background-color: #464349;
+  background-color: #EEEEEE;
 }
 
 .footer span {
-  color: #fff;
+  color: #5a5c6b;
 }
 
 .footer a {
-  color: #fff;
+  color: #5a5c6b;
 }
 
 /*
@@ -16586,16 +16584,16 @@ html {
 */
 
 .navbar-header {
-  background-color: #5a5c6b;
+  background-color: #d5d6db;
   color: #fff;
 }
 
 .navbar-header .navbar-nav {
-  background-color: #5a5c6b;
+  background-color: #d5d6db;
 }
 
 .navbar-text {
-  color: #fff;
+  color: #5a5c6b;
 }
 
 .navbar-brand {

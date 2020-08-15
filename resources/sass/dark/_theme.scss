@@ -5,6 +5,7 @@
 */
 
 $off-white: #EEEEEE;
+$off-black: #121212;
 
 $slate: #707587 !default;
 $slate-dark: #5a5c6b !default;
@@ -18,11 +19,11 @@ $sidebar-bg: $gray-800;
 $sidebar-color: $gray-200;
 $sidebar-header: $slate-light;
 
-$navbar-header: $slate-dark;
+$navbar-header: $off-black;
 $navbar-bg: $slate-dark;
 $navbar-text-color: $white;
 
-$footer-bg: $slate-darkest;
+$footer-bg: $gray-800;
 
 $navbar-dark-toggler-icon-bg: none;
 $navbar-light-toggler-icon-bg: none;

@@ -47,21 +47,6 @@
             </div>
 
             @yield("alerts")
-
-            <footer class="footer d-none d-md-block">
-                <div class="container-fluid d-flex justify-content-between">
-                    <span>&copy; {!! date('Y'); !!} <a href="">You</a></span>
-                    <div>
-                        <a class="mr-2" href="{{ route('terms-of-service') }}">Terms of Service</a>
-                        <a class="mr-2" href="{{ route('privacy-policy') }}">Privacy Policy</a>
-                        <a class="mr-2" href="{{ route('contact') }}">Contact</a>
-
-                        @if (session('original_user'))
-                            {!! form()->action('post', 'users.return-switch', 'Switch Back', [ 'class' => 'btn btn-secondary' ]) !!}
-                        @endif
-                    </div>
-                </div>
-            </footer>
         </div>
 
         @routes

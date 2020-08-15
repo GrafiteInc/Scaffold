@@ -16263,8 +16263,6 @@ body {
 }
 
 .footer {
-  position: fixed;
-  bottom: 0;
   width: 100%;
   height: 60px;
   line-height: 60px;
@@ -16279,7 +16277,7 @@ body {
 }
 
 #app {
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh);
   padding-bottom: 60px;
 }
 
@@ -16579,7 +16577,7 @@ hr {
 */
 
 .footer {
-  background-color: #464349;
+  background-color: #303030;
 }
 
 .footer span {
@@ -16597,12 +16595,12 @@ hr {
 */
 
 .navbar-header {
-  background-color: #5a5c6b;
+  background-color: #121212;
   color: #fff;
 }
 
 .navbar-header .navbar-nav {
-  background-color: #5a5c6b;
+  background-color: #121212;
 }
 
 .navbar-header .btn-account {
