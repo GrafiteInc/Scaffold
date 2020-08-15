@@ -1,5 +1,5 @@
 <nav class="navbar navbar-header sticky-top flex-md-nowrap p-0">
-    <a class="navbar-brand mr-0" href="/"><span class="fa fa-cogs"></span> Brand</a>
+    <a class="navbar-brand bg-primary mr-0" href="/"><span class="fa fa-cogs"></span> Brand</a>
     <ul class="navbar-nav mr-auto">
         <span class="navbar-text ml-4">
             <a class="sidebar-toggle text-light mr-3"><i class="fa fa-bars"></i></a>

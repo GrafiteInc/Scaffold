@@ -16226,15 +16226,16 @@ body {
 }
 
 .sidebar-sticky {
+  margin-top: 20px;
   width: 320px;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 140px);
   overflow-y: auto;
 }
 
 .sidebar .nav-item {
   font-weight: bold;
   width: 100%;
-  line-height: 45px;
+  line-height: 32px;
   font-size: 16px;
 }
 
@@ -16543,11 +16544,11 @@ html {
 */
 
 .sidebar {
-  background-color: #EEEEEE;
+  background-color: #f8f9fa;
 }
 
-.sidebar .nav-item.active {
-  background-color: #fff;
+.sidebar .nav-item.active a {
+  color: #6f42c1;
 }
 
 .sidebar .nav-item a {
@@ -16566,7 +16567,7 @@ html {
 */
 
 .footer {
-  background-color: #EEEEEE;
+  background-color: #f8f9fa;
 }
 
 .footer span {
@@ -16584,12 +16585,12 @@ html {
 */
 
 .navbar-header {
-  background-color: #d5d6db;
+  background-color: #f8f9fa;
   color: #fff;
 }
 
 .navbar-header .navbar-nav {
-  background-color: #d5d6db;
+  background-color: #f8f9fa;
 }
 
 .navbar-text {

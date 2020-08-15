@@ -13,14 +13,14 @@ $slate-lightest: #d5d6db !default;
 
 $html-bg: $gray-900;
 
-$sidebar-bg: $off-white;
+$sidebar-bg: $gray-100;
 $sidebar-header: $slate-light;
 
-$navbar-header: $slate-lightest;
+$navbar-header: $gray-100;
 $navbar-bg: $slate-dark;
 $navbar-text-color: $slate-dark;
 
-$footer-bg: $off-white;
+$footer-bg: $gray-100;
 $footer-text-color: $slate-dark;
 
 $navbar-dark-toggler-icon-bg: none;
@@ -45,8 +45,8 @@ html {
 .sidebar {
     background-color: $sidebar-bg;
 
-    .nav-item.active {
-        background-color: $white;
+    .nav-item.active a {
+        color: $primary;
     }
 
     .nav-item {

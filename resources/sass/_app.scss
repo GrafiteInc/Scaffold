@@ -25,15 +25,16 @@ body {
 }
 
 .sidebar-sticky {
+    margin-top: 20px;
     width: 320px;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 140px);
     overflow-y: auto;
 }
 
 .sidebar .nav-item {
     font-weight: bold;
     width: 100%;
-    line-height: 45px;
+    line-height: 32px;
     font-size: 16px;
 }
 

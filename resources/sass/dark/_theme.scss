@@ -55,8 +55,8 @@ hr {
 .sidebar {
     background-color: $sidebar-bg;
 
-    .nav-item.active {
-        background-color: $gray-900;
+    .nav-item.active a {
+        color: $primary;
     }
 
     .nav-item {
