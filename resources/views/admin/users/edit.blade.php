@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12 text-right">
             @if (! session('original_user'))
-                {!! form()->action('post', ['admin.users.switch', $user->id], 'Login as this User', [ 'class' => 'btn btn-secondary' ]) !!}
+                {!! form()->action('post', ['admin.users.switch', $user->id], 'Login as this User', [ 'class' => 'btn btn-outline-secondary' ]) !!}
             @endif
         </div>
     </div>
