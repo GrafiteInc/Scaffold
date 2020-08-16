@@ -14,7 +14,7 @@
         "fideloper/proxy": "^4.0",
         "grafite/charts": "^0.4.1",
         "grafite/database": "^2.0",
-        "grafite/formmaker": "^3.0",
+        "grafite/forms": "^4.0",
         "intervention/image": "^2.5",
         "laravel/cashier": "^12.0",
         "laravel/framework": "^7.17",

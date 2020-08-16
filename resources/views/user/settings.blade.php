@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-4 d-flex justify-content-center">
                 @if (auth()->user()->avatar)
-                    <x-fm-action
+                    <x-f-action
                         confirmMessage="Are you sure you want to delete your avatar?"
                         confirmMethod="confirmation"
                         method="delete"
@@ -17,12 +17,12 @@
                         :confirm="true"
                         :payload="['user' => auth()->user()]"
                         :options="['class' => 'btn btn-sm btn-outline-secondary']"
-                    ></x-fm-action>
+                    ></x-f-action>
                 @endif
                 <div class="avatar shadow-sm border" style="background-image: url({{ auth()->user()->avatar_url }})"></div>
             </div>
             <div class="col-md-8">
-                <x-fm :content="$form"></x-fm>
+                <x-f :content="$form"></x-f>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@
 
     <div class="row mt-8">
         <div class="col-md-4 offset-md-4 border-top text-center">
-            <x-fm :content="$deleteAccountForm"></x-fm>
+            <x-f :content="$deleteAccountForm"></x-f>
         </div>
     </div>
 

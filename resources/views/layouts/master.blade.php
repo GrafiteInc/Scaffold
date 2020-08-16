@@ -58,6 +58,6 @@
 
         @yield('javascript')
 
-        @formMaker
+        @forms
     </body>
 </html>

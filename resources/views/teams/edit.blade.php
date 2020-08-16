@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-4 d-flex justify-content-center">
             @if (auth()->user()->avatar)
-                <x-fm-action
+                <x-f-action
                     confirmMessage="Are you sure you want to delete this team's avatar?"
                     confirmMethod="confirmation"
                     method="delete"
@@ -18,7 +18,7 @@
                     :confirm="true"
                     :payload="['team' => $team->id]"
                     :options="['class' => 'btn btn-sm btn-outline-secondary']"
-                ></x-fm-action>
+                ></x-f-action>
             @endif
             <div class="avatar shadow-sm border" style="background-image: url({{ $team->avatar_url }})"></div>
         </div>

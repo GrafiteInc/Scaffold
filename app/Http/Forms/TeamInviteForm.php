@@ -2,8 +2,8 @@
 
 namespace App\Http\Forms;
 
-use Grafite\FormMaker\Fields\Email;
-use Grafite\FormMaker\Forms\BaseForm;
+use Grafite\Forms\Fields\Email;
+use Grafite\Forms\Forms\BaseForm;
 
 class TeamInviteForm extends BaseForm
 {

@@ -2,9 +2,9 @@
 
 namespace App\Http\Forms;
 
-use Grafite\FormMaker\Fields\Email;
-use Grafite\FormMaker\Fields\Select;
-use Grafite\FormMaker\Forms\BaseForm;
+use Grafite\Forms\Fields\Email;
+use Grafite\Forms\Fields\Select;
+use Grafite\Forms\Forms\BaseForm;
 
 class TeamMemberForm extends BaseForm
 {

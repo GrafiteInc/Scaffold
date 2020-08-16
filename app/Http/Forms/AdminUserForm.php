@@ -4,11 +4,11 @@ namespace App\Http\Forms;
 
 use App\Models\Role;
 use App\Models\User;
-use Grafite\FormMaker\Fields\Text;
-use Grafite\FormMaker\Fields\Email;
-use Grafite\FormMaker\Fields\Hidden;
-use Grafite\FormMaker\Forms\ModelForm;
-use Grafite\FormMaker\Fields\Bootstrap\HasMany;
+use Grafite\Forms\Fields\Text;
+use Grafite\Forms\Fields\Email;
+use Grafite\Forms\Fields\Hidden;
+use Grafite\Forms\Forms\ModelForm;
+use Grafite\Forms\Fields\Bootstrap\HasMany;
 
 class AdminUserForm extends ModelForm
 {

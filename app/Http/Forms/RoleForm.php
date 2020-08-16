@@ -3,9 +3,9 @@
 namespace App\Http\Forms;
 
 use App\Models\Role;
-use Grafite\FormMaker\Fields\Text;
-use Grafite\FormMaker\Fields\Checkbox;
-use Grafite\FormMaker\Forms\ModelForm;
+use Grafite\Forms\Fields\Text;
+use Grafite\Forms\Fields\Checkbox;
+use Grafite\Forms\Forms\ModelForm;
 
 class RoleForm extends ModelForm
 {

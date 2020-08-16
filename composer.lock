@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cfd057b9eba2c59a59cb74903be568a4",
+    "content-hash": "2590a6ffc95096e3600a9d68c0933f93",
     "packages": [
         {
             "name": "brick/math",
@@ -853,17 +853,17 @@
             "time": "2020-06-19T04:15:17+00:00"
         },
         {
-            "name": "grafite/formmaker",
-            "version": "v3.1.5",
+            "name": "grafite/forms",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/GrafiteInc/FormMaker.git",
-                "reference": "d59f2e4c802c491b950487aa2ab5d53bae0b716a"
+                "url": "https://github.com/GrafiteInc/Forms.git",
+                "reference": "281af9dbcfbf797ae9c99edc20960c6534b0566b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/FormMaker/zipball/d59f2e4c802c491b950487aa2ab5d53bae0b716a",
-                "reference": "d59f2e4c802c491b950487aa2ab5d53bae0b716a",
+                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/281af9dbcfbf797ae9c99edc20960c6534b0566b",
+                "reference": "281af9dbcfbf797ae9c99edc20960c6534b0566b",
                 "shasum": ""
             },
             "require": {
@@ -884,13 +884,13 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Grafite\\FormMaker\\FormMakerProvider"
+                        "Grafite\\Forms\\FormsProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Grafite\\FormMaker\\": "src/"
+                    "Grafite\\Forms\\": "src/"
                 },
                 "files": [
                     "src/Helpers/form.php"
@@ -906,8 +906,14 @@
                     "email": "mattlantz@gmail.com"
                 }
             ],
-            "description": "A remarkably magical form and input maker tool for Laravel.",
-            "time": "2020-08-12T13:48:34+00:00"
+            "description": "A remarkably magical form package for Laravel.",
+            "keywords": [
+                "Forms",
+                "Laravel Forms",
+                "LaravelCollective HTML",
+                "laravel"
+            ],
+            "time": "2020-08-16T18:14:29+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -7160,6 +7166,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {
