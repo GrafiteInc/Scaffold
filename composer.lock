@@ -854,16 +854,16 @@
         },
         {
             "name": "grafite/forms",
-            "version": "v4.0.0",
+            "version": "v4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Forms.git",
-                "reference": "281af9dbcfbf797ae9c99edc20960c6534b0566b"
+                "reference": "d3d4b668ef474ba3cc31eec820471ddd1b659c38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/281af9dbcfbf797ae9c99edc20960c6534b0566b",
-                "reference": "281af9dbcfbf797ae9c99edc20960c6534b0566b",
+                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/d3d4b668ef474ba3cc31eec820471ddd1b659c38",
+                "reference": "d3d4b668ef474ba3cc31eec820471ddd1b659c38",
                 "shasum": ""
             },
             "require": {
@@ -913,7 +913,7 @@
                 "LaravelCollective HTML",
                 "laravel"
             ],
-            "time": "2020-08-16T18:14:29+00:00"
+            "time": "2020-08-17T18:49:01+00:00"
         },
         {
             "name": "guzzlehttp/psr7",

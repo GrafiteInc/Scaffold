@@ -1,6 +1,14 @@
 // Darkly 4.3.1
 // Bootswatch
 
+// Additions
+
+$input-border-color: #333;
+$input-bg: #1F1F1F;
+$input-bg-dark: #111;
+$input-border: 2px solid $input-border-color;
+$input-color: #FFF;
+
 //
 // Color system
 //
@@ -73,11 +81,6 @@ $input-group-addon-bg:                  $gray-700 !default;
 
 $custom-file-color:                 $gray-500 !default;
 $custom-file-border-color:          $gray-700 !default;
-
-$input-bg: #111;
-$input-bg-dark: #000;
-$input-border: #000;
-$input-color: #FFF;
 
 // Dropdowns
 
