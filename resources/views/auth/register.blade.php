@@ -20,25 +20,25 @@
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <label>Name</label>
-                    <input class="form-control" type="text" name="name" value="{{ old('name') }}" placeholder="Name">
+                    <input class="form-control" type="text" name="name" value="{{ old('name') }}" required placeholder="Name">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <label>Email</label>
-                    <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
+                    <input class="form-control" type="email" name="email" value="{{ old('email') }}" required placeholder="Email">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <label>Password</label>
-                    <input class="form-control" type="password" name="password" placeholder="Password">
+                    <input class="form-control" type="password" name="password" required placeholder="Password">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mt-2">
                     <label>Confirm Password</label>
-                    <input class="form-control" type="password" name="password_confirmation" placeholder="Password Confirmation">
+                    <input class="form-control" type="password" name="password_confirmation" required placeholder="Password Confirmation">
                 </div>
             </div>
             <div class="row">
