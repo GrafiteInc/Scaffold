@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title') Terms of Service @stop
+@section('page-title', 'Terms of Service')
 
 @section('app-content')
 

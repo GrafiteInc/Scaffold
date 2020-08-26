@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title') Contact @stop
+@section('page-title', 'Contact')
 
 @section('app-content')
 

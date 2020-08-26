@@ -11,13 +11,13 @@
                 </div>
             </div>
         @else
-        <div class="card shadow-sm">
-            <div class="card-header">
-                <h4 class="m-0">Invites</h4>
-            </div>
-            <div class="card-body">
-                <table class="table table-borderless p-0 m-0">
-                    <tbody>
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h4 class="m-0">Invites</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless p-0 m-0">
+                        <tbody>
                         @foreach($team->invites as $invite)
                             <tr>
                                 <td>{{ $invite->email }}</td>
@@ -42,8 +42,10 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
-            </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         @endif
     </div>
 @endif

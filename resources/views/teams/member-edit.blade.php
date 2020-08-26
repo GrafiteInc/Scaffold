@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('page-title') Teams: Edit Member @stop
+@section('page-title', 'Teams: Edit Member')
 
 @section('content')
 

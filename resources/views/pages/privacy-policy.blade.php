@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title') Privacy Policy @stop
+@section('page-title', 'Privacy Policy')
 
 @section('app-content')
 

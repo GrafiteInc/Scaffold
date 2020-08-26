@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('page-title') Teams: {{ $team->name }} @stop
+@section('page-title', "Teams: {$team->name}")
 
 @section('content')
 

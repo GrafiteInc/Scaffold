@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title') Home Page @stop
+@section('page-title', 'Home')
 
 @section('app-content')
 
