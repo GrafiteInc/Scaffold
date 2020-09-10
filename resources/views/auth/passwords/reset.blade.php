@@ -8,7 +8,7 @@
 
         <h3 class="text-center mb-5">Password Reset</h3>
 
-        <form method="POST" action="{{ route('password.reset') }}">
+        <form method="POST" action="{{ route('password.reset', $token) }}">
             {!! csrf_field() !!}
             <input type="hidden" name="token" value="{{ $token }}">
 
