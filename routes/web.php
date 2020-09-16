@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+use Collective\Auth\Facades\CollectiveAuth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
@@ -43,10 +43,13 @@ Route::get('register/invite', 'Auth\\RegisterController@showRegistrationInviteFo
 Route::post('register/invite', 'Auth\\RegisterController@registerViaInvite');
 
 Route::middleware(ProtectAgainstSpam::class)->group(function () {
-    Auth::routes([
-        'verify' => true,
+    CollectiveAuth::routes([
+        'login' => true,
+        'logout' => true,
         'register' => true,
         'reset' => true,
+        'confirm' => true,
+        'verify' => true,
     ]);
 });
 
@@ -168,7 +171,7 @@ Route::middleware('auth', 'activity')->group(function () {
         |--------------------------------------------------------------------------
         */
 
-        Route::prefix('admin')->namespace('Admin')->middleware('roles:admin')->group(function () {
+        Route::prefix('admin')->namespace('Admin')->middleware(['roles:admin', 'password.confirm'])->group(function () {
             Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
 
             /*

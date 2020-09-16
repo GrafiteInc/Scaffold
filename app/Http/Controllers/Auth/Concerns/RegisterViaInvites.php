@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth\Concerns;
 
-use App\Models\User;
 use App\Services\InviteService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;

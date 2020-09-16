@@ -8,6 +8,12 @@
         "grafite"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/laravelcollective/auth"
+        }
+    ],
     "require": {
         "php": "^7.4",
         "doctrine/dbal": "^2.9",
@@ -19,7 +25,7 @@
         "laravel/cashier": "^12.0",
         "laravel/framework": "^7.17",
         "laravel/helpers": "^1.1",
-        "laravel/ui": "^2.0",
+        "laravelcollective/auth": "dev-master",
         "lasserafn/php-initial-avatar-generator": "^4.0",
         "spatie/laravel-honeypot": "^2.2",
         "tightenco/ziggy": "^0.9.4"
