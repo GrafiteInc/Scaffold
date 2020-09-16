@@ -28,8 +28,11 @@ jobs:
       env:
         DB_CONNECTION: test
       run: vendor/bin/phpunit
-    # - name: Invoke deployment hook
-    #   uses: distributhor/workflow-webhook@v1
-    #   env:
-    #     webhook_url: ${{ secrets.WEBHOOK_URL }}
-    #     webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+
+    - name: checkbranchname
+      id: checkbranch
+      run: echo "::set-output name=BRANCHNAME::${GITHUB_REF##*/}"
+
+    - name: Deploy to Laravel Forge
+      if: steps.checkbranch.outputs.BRANCHNAME == 'develop'
+      run: curl ${{ secrets.FORGE_DEPLOYMENT_WEBHOOK }}
