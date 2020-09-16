@@ -1,4 +1,4 @@
-name: Laravel Tests
+name: Tests
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  laravel-tests:
+  tests:
 
     runs-on: ubuntu-latest
     strategy:

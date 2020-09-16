@@ -1,0 +1,17 @@
+name: Linters
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  linters:
+
+    steps:
+    - name: Invoke linter hook
+      uses: distributhor/workflow-webhook@v1
+      env:
+        webhook_url: ${{ secrets.SHIFT_URL }}
+        data: '{ "code": "LF" }'
