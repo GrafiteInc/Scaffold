@@ -9,6 +9,11 @@ on:
 jobs:
   linters:
 
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['7.4']
+
     steps:
     - name: Invoke linter hook
       uses: distributhor/workflow-webhook@v1
