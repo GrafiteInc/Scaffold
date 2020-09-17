@@ -29,6 +29,7 @@
         "laravel/sanctum": "^2.6",
         "laravelcollective/auth": "dev-master",
         "lasserafn/php-initial-avatar-generator": "^4.0",
+        "livewire/livewire": "^2.2",
         "spatie/laravel-honeypot": "^2.2",
         "tightenco/ziggy": "^0.9.4"
     },

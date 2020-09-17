@@ -20,6 +20,7 @@
         @else
             <link rel="stylesheet" type="text/css" href="/css/light-app.css">
         @endif
+        @livewireStyles
     </head>
     <body>
         <div id="app">
@@ -60,6 +61,7 @@
 
         @yield('javascript')
 
+        @livewireScripts
         @forms
     </body>
 </html>
