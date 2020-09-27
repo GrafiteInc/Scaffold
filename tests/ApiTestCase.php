@@ -36,11 +36,5 @@ abstract class ApiTestCase extends BaseTestCase
 
         $this->user = factory(User::class)->create();
         $this->user->roles()->attach($role->id);
-
-        $this->user->forceFill([
-            'api_token' => hash('sha256', 'foo_bar_token'),
-        ])->save();
-
-        $this->be($this->user);
     }
 }

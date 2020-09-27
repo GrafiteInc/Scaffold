@@ -6,11 +6,11 @@ use Tests\TestCase;
 
 class ApiTokenControllerTest extends TestCase
 {
-    public function testReset()
+    public function testCreate()
     {
-        $token = $this->user->api_token;
-
-        $response = $this->post(route('ajax.reset-token'), []);
+        $response = $this->post(route('ajax.create-token'), [
+            'name' => 'testing'
+        ]);
 
         $response->assertStatus(200)
             ->assertJsonStructure([
@@ -18,7 +18,5 @@ class ApiTokenControllerTest extends TestCase
                     'token',
                 ],
             ]);
-
-        $this->assertTrue($token != $this->user->fresh()->api_token);
     }
 }

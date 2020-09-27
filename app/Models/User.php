@@ -5,6 +5,7 @@ namespace App\Models;
 use Laravel\Cashier\Billable;
 use App\Models\Concerns\HasRoles;
 use App\Models\Concerns\HasTeams;
+use Laravel\Sanctum\HasApiTokens;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\HasActivity;
 use App\Notifications\ResetPassword;
@@ -22,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasTeams;
     use HasActivity;
     use HasAvatar;
+    use HasApiTokens;
     use HasSubscription;
     use HasRoles;
     use HasPermissions;

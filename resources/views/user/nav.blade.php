@@ -11,4 +11,7 @@
     <li class="nav-item">
         <a class="{{ route_link_class('user.notifications') }}" href="{{ route('user.notifications') }}">Notifications</a>
     </li>
+    <li class="nav-item">
+        <a class="{{ route_link_class('user.api-tokens') }}" href="{{ route('user.api-tokens') }}">API Tokens</a>
+    </li>
 </ul>

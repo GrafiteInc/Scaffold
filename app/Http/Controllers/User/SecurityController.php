@@ -21,7 +21,7 @@ class SecurityController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function get(Request $request)
+    public function index(Request $request)
     {
         $form = app(UserSecurityForm::class)->make();
 

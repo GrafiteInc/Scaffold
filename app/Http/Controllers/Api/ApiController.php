@@ -10,7 +10,7 @@ class ApiController extends Controller
 
     public function __construct()
     {
-        $this->user = auth('api')->user();
+        $this->user = auth('sanctum')->user();
 
         if (is_null($this->user) && ! app()->runningInConsole()) {
             abort(401, 'Unauthorized.');

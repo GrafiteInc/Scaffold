@@ -87,6 +87,8 @@ Route::middleware('auth', 'activity')->group(function () {
             Route::get('security', 'SecurityController@get')->name('user.security');
             Route::put('security', 'SecurityController@update')->name('user.security.update');
 
+            Route::get('api-tokens', 'ApiTokenController@index')->name('user.api-tokens');
+
             Route::prefix('billing')->group(function () {
                 Route::middleware('has-subscription')->group(function () {
                     Route::post('update', 'BillingController@update')->name('user.billing.update');
@@ -154,7 +156,10 @@ Route::middleware('auth', 'activity')->group(function () {
         */
 
         Route::prefix('ajax')->namespace('Ajax')->group(function () {
-            Route::post('token', 'ApiTokenController@reset')->name('ajax.reset-token');
+            Route::get('tokens', 'ApiTokenController@index')->name('ajax.tokens');
+            Route::post('token', 'ApiTokenController@create')->name('ajax.create-token');
+            Route::delete('token/{token}/destroy', 'ApiTokenController@destroy')->name('ajax.destroy-token');
+
             Route::get('notifications-count', 'NotificationsController@count')->name('ajax.notifications-count');
 
             Route::post('subscribe', 'BillingController@createSubscription')

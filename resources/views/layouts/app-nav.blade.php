@@ -20,6 +20,7 @@
                         <a class="dropdown-item" href="{{ route('user.security') }}">Security</a>
                         <a class="dropdown-item" href="{{ route('user.invites') }}">Invites</a>
                         <a class="dropdown-item" href="{{ route('user.notifications') }}">Notifications <notification-marker></notification-marker></a>
+                        <a class="dropdown-item" href="{{ route('user.api-tokens') }}">API Tokens</a>
 
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('user.billing') }}">Billing</a>

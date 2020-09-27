@@ -27,19 +27,6 @@
         </div>
     </div>
 
-    <div class="row mt-4">
-        <div class="col-md-12">
-            <div class="card shadow-sm">
-                <div class="card-header">
-                    <h5 class="m-0">API Token</h5>
-                </div>
-                <div class="card-body">
-                    <api-token></api-token>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="row mt-8">
         <div class="col-md-4 offset-md-4 border-top text-center">
             <x-f :content="$deleteAccountForm"></x-f>

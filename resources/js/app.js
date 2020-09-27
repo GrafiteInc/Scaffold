@@ -63,7 +63,8 @@ Vue.component('cookielaw', require('./components/cookie-law.vue').default);
 Vue.component('session', require('./components/session.vue').default);
 Vue.component('modal', require('./components/modal.vue').default);
 Vue.component('copy-button', require('./components/copy-button.vue').default);
-Vue.component('api-token', require('./components/api-token.vue').default);
+Vue.component('api-tokens', require('./components/api-tokens.vue').default);
+Vue.component('api-token-create', require('./components/api-token-create.vue').default);
 Vue.component('notification-badge', require('./components/notification-badge.vue').default);
 Vue.component('notification-marker', require('./components/notification-marker.vue').default);
 

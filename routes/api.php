@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -11,7 +13,9 @@
 |
 */
 
-Route::middleware('api')->namespace('Api')->name('api')->group(function () {
+Route::post('device-login', 'ApiDeviceLoginController@create')->name('device.login');
+
+Route::middleware('auth:sanctum')->namespace('Api')->name('api')->group(function () {
     Route::prefix('users')->group(function () {
         Route::get('me', 'UsersController@me')->name('.users.me');
         Route::put('update', 'UsersController@update')->name('.users.update');

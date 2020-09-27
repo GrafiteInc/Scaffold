@@ -86,19 +86,6 @@ class Handler extends ExceptionHandler
             return response()->view('errors.404', [], 404);
         }
 
-        // This is the primary reason for needing this
-        // Symfony's response is not visually pleasant.
-        if ($this->isHttpException($exception)) {
-            $response = $this->renderHttpException($exception);
-
-            if ($response instanceof SymfonyResponse) {
-                return response()->view('errors.general', [
-                    'code' => $exception->getStatusCode(),
-                    'message' => $exception->getMessage(),
-                ], $exception->getStatusCode());
-            }
-        }
-
         return parent::render($request, $exception);
     }
 }

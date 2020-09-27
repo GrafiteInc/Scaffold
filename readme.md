@@ -10,17 +10,18 @@ Grafite Scaffold was created as a highly opinionated boilerplate of Laravel's ba
 
 - grafite/charts
 - grafite/database
-- grafite/formmaker
+- grafite/forms
 - intervention/image
 - laravel/cashier
 - laravel/dusk
 - laravel/helpers
-- laravel/ui
+- laravelcollective/auth
+- laravel/sanctum
 - lasserafn/php-initial-avatar-generator
 - nunomaduro/collision
 - tightenco/ziggy
 
-Scaffold is intended to be used to start a project and then be heavily altered.
+Scaffold is *intended* to be used to start a project and then be heavily altered.
 
 ##### Author(s):
 * [Matt Lantz](https://github.com/mlantz) ([@mattylantz](http://twitter.com/mattylantz), mattlantz at gmail dot com)

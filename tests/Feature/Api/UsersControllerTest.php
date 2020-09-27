@@ -2,18 +2,32 @@
 
 namespace Tests\Feature\Api;
 
-use App\Notifications\StandardEmail;
-use Illuminate\Notifications\AnonymousNotifiable;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Storage;
 use Tests\ApiTestCase;
+use Laravel\Sanctum\Sanctum;
+use App\Notifications\StandardEmail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Notifications\AnonymousNotifiable;
 
 class UsersControllerTest extends ApiTestCase
 {
     public function testMe()
     {
+        Sanctum::actingAs($this->user);
+
+        $response = $this->get(route('api.users.me'));
+
+        $content = json_decode($response->content());
+
+        $this->assertEquals($this->user->name, $content->data->name);
+    }
+
+    public function testMeWithBearerToken()
+    {
+        $token = $this->user->createToken('test-token')->plainTextToken;
+
         $response = $this->get(route('api.users.me'), [
-            'Authorization' => 'Bearer foo_bar_token',
+            'Authorization' => "Bearer {$token}"
         ]);
 
         $content = json_decode($response->content());
@@ -23,11 +37,11 @@ class UsersControllerTest extends ApiTestCase
 
     public function testUpdate()
     {
+        Sanctum::actingAs($this->user);
+
         $response = $this->putJson(route('api.users.update'), [
             'name' => 'Burt Cooper',
             'email' => $this->user->email,
-        ], [
-            'Authorization' => 'Bearer foo_bar_token',
         ]);
 
         $content = json_decode($response->content());
@@ -38,12 +52,11 @@ class UsersControllerTest extends ApiTestCase
 
     public function testDestroy()
     {
+        Sanctum::actingAs($this->user);
         Storage::fake();
         Notification::fake();
 
-        $response = $this->delete(route('api.users.destroy'), [], [
-            'Authorization' => 'Bearer foo_bar_token',
-        ]);
+        $response = $this->delete(route('api.users.destroy'), []);
 
         $response->assertJson([
             'status' => 'Profile deleted',
