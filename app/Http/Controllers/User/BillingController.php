@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Notifications\InAppNotification;
 
 class BillingController extends Controller
 {
@@ -189,6 +190,10 @@ class BillingController extends Controller
 
             $date = $invoice->date()->format('Y-m-d');
             $message = 'Your subscription has been cancelled! It will be availale until '.$date;
+
+            $notification = new InAppNotification($message);
+            $notification->isImportant();
+            $user->notify($notification);
 
             return redirect()->route('user.billing.details')->withMessage($message);
         } catch (Exception $e) {

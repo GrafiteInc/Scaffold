@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Ajax;
 
-use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use App\Notifications\InAppNotification;
 
 class BillingController extends Controller
 {
@@ -21,6 +22,11 @@ class BillingController extends Controller
 
             $user->newSubscription(config('billing.subscription_name'), $request->plan)
                 ->create($request->payment_method);
+
+            $plan = config("billing.plans.{$request->plan}.name");
+            $notification = new InAppNotification("You're now subscribed on the {$plan} plan.");
+            $notification->isImportant();
+            $user->notify($notification);
 
             return response()->json([
                 'message' => 'You\'re now subscribed!',
