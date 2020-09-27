@@ -4,7 +4,7 @@
 
 @section('user_content')
 
-    <div class="row mt-3">
+    <div class="row mt-2">
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-body">
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="row mt-3">
+    <div class="row mt-4">
         <div class="col-md-12">
             <api-tokens
                 :tokens="{{ $tokens }}"

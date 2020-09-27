@@ -41282,7 +41282,7 @@ var render = function() {
   return _c(
     "div",
     _vm._l(_vm.api_tokens, function(token) {
-      return _c("div", { key: token.id, staticClass: "card mb-4" }, [
+      return _c("div", { key: token.id, staticClass: "card mb-2" }, [
         _c("div", { staticClass: "card-body" }, [
           _c("div", { staticClass: "d-flex justify-content-between" }, [
             _c("div", { staticClass: "col-3" }, [

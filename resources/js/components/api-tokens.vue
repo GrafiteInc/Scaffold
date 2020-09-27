@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card mb-4" v-for="token in api_tokens" v-bind:key="token.id">
+        <div class="card mb-2" v-for="token in api_tokens" v-bind:key="token.id">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div class="col-3">
