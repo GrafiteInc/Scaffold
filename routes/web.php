@@ -79,12 +79,12 @@ Route::middleware('auth', 'activity')->group(function () {
         */
 
         Route::prefix('user')->namespace('User')->group(function () {
-            Route::get('settings', 'SettingsController@settings')->name('user.settings');
+            Route::get('settings', 'SettingsController@index')->name('user.settings');
             Route::delete('destroy', 'DestroyController@destroy')->name('user.destroy');
             Route::put('settings', 'SettingsController@update')->name('user.update');
             Route::delete('avatar', 'SettingsController@destroyAvatar')->name('user.destroy.avatar');
 
-            Route::get('security', 'SecurityController@get')->name('user.security');
+            Route::get('security', 'SecurityController@index')->name('user.security');
             Route::put('security', 'SecurityController@update')->name('user.security.update');
 
             Route::get('api-tokens', 'ApiTokenController@index')->name('user.api-tokens');

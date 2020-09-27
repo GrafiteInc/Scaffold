@@ -16259,7 +16259,13 @@ body {
 }
 
 .content-sm {
-  max-width: 548px;
+  width: 348px;
+  margin: 0px auto;
+  padding-top: 48px;
+}
+
+.content-md {
+  width: 548px;
   margin: 0px auto;
   padding-top: 48px;
 }

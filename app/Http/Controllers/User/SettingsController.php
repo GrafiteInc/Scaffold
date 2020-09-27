@@ -17,7 +17,7 @@ class SettingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function settings(Request $request)
+    public function index(Request $request)
     {
         $user = $request->user();
 

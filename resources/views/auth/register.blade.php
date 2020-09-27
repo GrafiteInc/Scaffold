@@ -14,42 +14,46 @@
             </div>
         </div>
 
-        <form method="POST" action="{{ url('register') }}">
-            @honeypot
-            {!! csrf_field() !!}
-            <div class="row">
-                <div class="col-md-12 mt-2">
-                    <label>Name</label>
-                    <input class="form-control" type="text" name="name" value="{{ old('name') }}" required placeholder="Name">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mt-2">
-                    <label>Email</label>
-                    <input class="form-control" type="email" name="email" value="{{ old('email') }}" required placeholder="Email">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mt-2">
-                    <label>Password</label>
-                    <input class="form-control" type="password" name="password" required placeholder="Password">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mt-2">
-                    <label>Confirm Password</label>
-                    <input class="form-control" type="password" name="password_confirmation" required placeholder="Password Confirmation">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mt-4">
-                    <div class="btn-toolbar justify-content-between">
-                        <a class="btn btn-secondary" href="{{ route('login') }}">Login</a>
-                        <button class="btn btn-primary" type="submit">Register</button>
+        <div class="card shadow">
+            <div class="card-body">
+                <form method="POST" action="{{ url('register') }}">
+                    @honeypot
+                    {!! csrf_field() !!}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Name</label>
+                            <input class="form-control" type="text" name="name" value="{{ old('name') }}" required placeholder="Full name">
+                        </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-2">
+                            <label>Email</label>
+                            <input class="form-control" type="email" name="email" value="{{ old('email') }}" required placeholder="Email address">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-2">
+                            <label>Password</label>
+                            <input class="form-control" type="password" name="password" required placeholder="At least 8 characters">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-2">
+                            <label>Confirm Password</label>
+                            <input class="form-control" type="password" name="password_confirmation" required placeholder="Password Confirmation">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-4">
+                            <div class="btn-toolbar justify-content-between">
+                                <a class="btn btn-text" href="{{ route('login') }}">Already resgitered?</a>
+                                <button class="btn btn-primary" type="submit">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
 
     </div>
 

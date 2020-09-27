@@ -6,7 +6,8 @@
 
     <div class="content-sm mt-4">
 
-        <h3 class="text-center mb-5">Please sign in</h3>
+        <h3 class="text-center">Sign into your account</h3>
+        <p class="text-center">Or <a href="{{ route('register') }}">create a new account</a></p>
 
         <div class="card mt-5 mb-4 border-0">
             <div class="card-body bg-light border-left border-secondary">
@@ -14,43 +15,44 @@
             </div>
         </div>
 
-        <form method="POST" action="{{ url('login') }}">
-            @honeypot
-            {!! csrf_field() !!}
-            <div class="row">
-                <div class="col-md-12">
-                    <label>Email</label>
-                    <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ old('email') }}">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mt-2">
-                    <label>Password</label>
-                    <input class="form-control" type="password" required name="password" placeholder="Password" id="password">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mt-2">
-                    <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember">
-                        <label class="form-check-label" for="remember">Remember Me </label>
+        <div class="card shadow">
+            <div class="card-body">
+                <form method="POST" action="{{ url('login') }}">
+                    @honeypot
+                    {!! csrf_field() !!}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Email</label>
+                            <input class="form-control" type="email" required name="email" value="{{ old('email') }}">
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mt-4">
-                    <div class="btn-toolbar justify-content-between">
-                        <a class="btn btn-secondary" href="{{ route('password.request') }}">Forgot Password</a>
-                        <button class="btn btn-primary" type="submit">Login</button>
+                    <div class="row">
+                        <div class="col-md-12 mt-2">
+                            <label>Password</label>
+                            <input class="form-control" type="password" required name="password" id="password">
+                        </div>
                     </div>
-                </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6 mt-2">
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                                <label class="form-check-label" for="remember">Remember Me </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a class="d-block mt-3" href="{{ route('password.request') }}">Forgot Password?</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-4">
+                            <div class="btn-toolbar justify-content-end">
+                                <button class="btn btn-block btn-primary" type="submit">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="row">
-                <div class="col-md-12 mt-2">
-                    <a class="btn btn-block btn-info" href="{{ route('register') }}">Register</a>
-                </div>
-            </div>
-        </form>
+        </div>
 
     </div>
 

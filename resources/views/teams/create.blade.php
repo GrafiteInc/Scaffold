@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="content-sm pt-0">
+    <div class="content-md pt-0">
         <div class="row">
             <div class="col-md-12 mb-4">
                 <div class="btn-toolbar justify-content-beginning">
