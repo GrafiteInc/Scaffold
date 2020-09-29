@@ -32,7 +32,7 @@ if (subscriptionForm) {
         }
 
         cardButton.disabled = true;
-        window.Snotify.info('Processing.');
+        window.Snotify.info('Processing.', null, { timeout: 0 });
 
         const { setupIntent, error } = await stripe.confirmCardSetup(
             clientSecret, {

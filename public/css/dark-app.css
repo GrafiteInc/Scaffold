@@ -1,8 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic);
-@charset "UTF-8";
-/*!
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic);@charset "UTF-8";/*!
  * animate.css - https://animate.style/
- * Version - 4.1.0
+ * Version - 4.1.1
  * Licensed under the MIT license - http://opensource.org/licenses/MIT
  *
  * Copyright (c) 2020 Animate.css
@@ -7193,22 +7191,12 @@ pre code {
   box-shadow: 0 0 0 0.2rem rgba(133, 88, 218, 0.25);
 }
 
-.form-control::-webkit-input-placeholder {
-  color: #999;
-  opacity: 1;
-}
-
 .form-control::-moz-placeholder {
   color: #999;
   opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-  color: #999;
-  opacity: 1;
-}
-
-.form-control::-ms-input-placeholder {
   color: #999;
   opacity: 1;
 }

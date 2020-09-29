@@ -42,6 +42,8 @@
                 <session
                     user='{!! optional(auth()->user())->jsonSessionData() !!}'
                     message='{!! session('message') !!}'
+                    info='{!! session('info') !!}'
+                    warning='{!! session('warning') !!}'
                     error_message='{!! sessionErrorMessage() !!}'
                 ></session>
             </div>

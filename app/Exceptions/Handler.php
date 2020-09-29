@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Throwable;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
@@ -84,6 +85,10 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof ModelNotFoundException) {
             return response()->view('errors.404', [], 404);
+        }
+
+        if ($exception instanceof TokenMismatchException) {
+            return redirect()->back()->withInfo('The page expired, please try again.');
         }
 
         return parent::render($request, $exception);
