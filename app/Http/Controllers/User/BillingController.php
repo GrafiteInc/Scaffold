@@ -202,4 +202,12 @@ class BillingController extends Controller
 
         return redirect()->back()->withErrors(['Could not cancel billing, please try again.']);
     }
+
+    public function checkout(Request $request)
+    {
+        $user = $request->user();
+        $intent = $user->createSetupIntent();
+
+        return view('user.billing.payment')->with(compact('user', 'intent'));
+    }
 }

@@ -58,4 +58,35 @@ class BillingController extends Controller
             'message' => 'Card change failed',
         ], 409);
     }
+
+    public function payment(Request $request)
+    {
+        try {
+            $user = $request->user();
+
+            $user->update([
+                'state' => $request->state,
+                'country' => $request->country,
+            ]);
+
+            $cents = 0; // get purchase price for payment.
+
+            $user->charge($cents, $request->payment_method);
+
+            // $plan = config("billing.plans.{$request->plan}.name");
+            // $notification = new InAppNotification("You're now subscribed on the {$plan} plan.");
+            // $notification->isImportant();
+            // $user->notify($notification);
+
+            return response()->json([
+                'message' => 'Payment successful!',
+            ]);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
+
+        return response()->json([
+            'message' => 'Payment failed',
+        ], 409);
+    }
 }

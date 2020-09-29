@@ -74,6 +74,14 @@ Route::middleware('auth', 'activity')->group(function () {
 
         /*
         |--------------------------------------------------------------------------
+        | Checkout
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('checkout', 'BillingController@checkout')->name('checkout');
+
+        /*
+        |--------------------------------------------------------------------------
         | User
         |--------------------------------------------------------------------------
         */
@@ -166,6 +174,8 @@ Route::middleware('auth', 'activity')->group(function () {
                 ->name('ajax.billing.subscription.create');
             Route::post('payment-method', 'BillingController@updatePaymentMethod')
                 ->name('ajax.billing.subscription.payment-method');
+            Route::post('payment', 'BillingController@payment')
+                ->name('ajax.billing.payment');
 
             Route::post('file-upload', 'FileUploadController@upload')->name('ajax.files-upload');
         });
