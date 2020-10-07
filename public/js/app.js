@@ -55241,7 +55241,14 @@ __webpack_require__(/*! ./sidebar */ "./resources/js/sidebar.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
-window.Vue.use(vue_snotify__WEBPACK_IMPORTED_MODULE_0__["default"]);
+var _options = {
+  toast: {
+    timeout: 3000,
+    showProgressBar: false,
+    position: vue_snotify__WEBPACK_IMPORTED_MODULE_0__["SnotifyPosition"].rightTop
+  }
+};
+window.Vue.use(vue_snotify__WEBPACK_IMPORTED_MODULE_0__["default"], _options);
 
 Vue.use(vue_clipboards__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
@@ -56051,7 +56058,9 @@ if (subscriptionForm) {
 
             case 3:
               cardButton.disabled = true;
-              window.Snotify.info('Processing.');
+              window.Snotify.info('Processing.', null, {
+                timeout: 0
+              });
               _context.next = 7;
               return stripe.confirmCardSetup(clientSecret, {
                 payment_method: {
@@ -56143,7 +56152,9 @@ if (paymentMethodForm) {
           switch (_context.prev = _context.next) {
             case 0:
               cardButton.disabled = true;
-              window.Snotify.info('Processing.');
+              window.Snotify.info('Processing.', null, {
+                timeout: 0
+              });
               _context.next = 4;
               return stripe.confirmCardSetup(clientSecret, {
                 payment_method: {

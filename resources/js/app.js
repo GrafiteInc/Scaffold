@@ -11,8 +11,15 @@ require('./sidebar');
 
 window.Vue = require('vue');
 
-import Snotify from 'vue-snotify';
-window.Vue.use(Snotify);
+import Snotify, { SnotifyPosition } from 'vue-snotify'
+let _options = {
+    toast: {
+        timeout: 3000,
+        showProgressBar: false,
+        position: SnotifyPosition.rightTop
+    }
+};
+window.Vue.use(Snotify, _options);
 
 import VueClipboards from 'vue-clipboards';
 Vue.use(VueClipboards);
