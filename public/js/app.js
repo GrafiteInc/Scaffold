@@ -55218,45 +55218,16 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./resources/js/ajax-forms.js":
+/*!************************************!*\
+  !*** ./resources/js/ajax-forms.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_snotify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-snotify */ "./node_modules/vue-snotify/vue-snotify.esm.js");
-/* harmony import */ var vue_clipboards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-clipboards */ "./node_modules/vue-clipboards/dist/vue-clipboards.es.js");
 /**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
+ * This is an example of how we can handle ajax based form submissions.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Our sidebar handling for varying screen sizes
-
-
-__webpack_require__(/*! ./sidebar */ "./resources/js/sidebar.js");
-
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-
-var _options = {
-  toast: {
-    timeout: 3000,
-    showProgressBar: false,
-    position: vue_snotify__WEBPACK_IMPORTED_MODULE_0__["SnotifyPosition"].rightTop
-  }
-};
-window.Vue.use(vue_snotify__WEBPACK_IMPORTED_MODULE_0__["default"], _options);
-
-Vue.use(vue_clipboards__WEBPACK_IMPORTED_MODULE_1__["default"]);
-
-window.disableAndNotify = function (e, _message) {
-  e.disabled = true;
-  window.Snotify.info(_message);
-};
-
 window.ajax = function (_event) {
   _event.preventDefault();
 
@@ -55282,17 +55253,48 @@ window.ajax = function (_event) {
     }
   });
 };
+
+/***/ }),
+
+/***/ "./resources/js/app.js":
+/*!*****************************!*\
+  !*** ./resources/js/app.js ***!
+  \*****************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_snotify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-snotify */ "./node_modules/vue-snotify/vue-snotify.esm.js");
+/* harmony import */ var vue_clipboards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-clipboards */ "./node_modules/vue-clipboards/dist/vue-clipboards.es.js");
 /**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
  */
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/** Notification for loss of connection. */
+
+window.addEventListener('offline', function (event) {
+  window.Snotify.info("The network connection has been lost.");
+});
+/**
+ * The following is where we load any Vue components we need.
+ */
 
 
+var _options = {
+  toast: {
+    timeout: 3000,
+    showProgressBar: false,
+    position: vue_snotify__WEBPACK_IMPORTED_MODULE_0__["SnotifyPosition"].rightTop
+  }
+};
+window.Vue.use(vue_snotify__WEBPACK_IMPORTED_MODULE_0__["default"], _options);
+
+Vue.use(vue_clipboards__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Vue.component('cookielaw', __webpack_require__(/*! ./components/cookie-law.vue */ "./resources/js/components/cookie-law.vue")["default"]);
 Vue.component('session', __webpack_require__(/*! ./components/session.vue */ "./resources/js/components/session.vue")["default"]);
 Vue.component('modal', __webpack_require__(/*! ./components/modal.vue */ "./resources/js/components/modal.vue")["default"]);
@@ -55331,6 +55333,10 @@ var app = new Vue({
 __webpack_require__(/*! ./subscription-create */ "./resources/js/subscription-create.js");
 
 __webpack_require__(/*! ./subscription-payment-method */ "./resources/js/subscription-payment-method.js");
+
+__webpack_require__(/*! ./ajax-forms */ "./resources/js/ajax-forms.js");
+
+__webpack_require__(/*! ./sidebar */ "./resources/js/sidebar.js");
 
 /***/ }),
 
