@@ -23,11 +23,6 @@
             </div>
             <div class="col-md-8">
                 <x-f :content="$form"></x-f>
-                {{-- <forms
-                    :settings="{{ $form->vueSettings() }}"
-                    :data={{ $form->vueData() }}
-                    :fields="{{ $form->vueFields() }}"
-                ></forms> --}}
             </div>
         </div>
     </div>

@@ -75,9 +75,6 @@ Vue.component('api-token-create', require('./components/api-token-create.vue').d
 Vue.component('notification-badge', require('./components/notification-badge.vue').default);
 Vue.component('notification-marker', require('./components/notification-marker.vue').default);
 
-Vue.component('forms', require('./components/forms.vue').default);
-Vue.component('form-input', require('./components/form-input.vue').default);
-
 /**
  * The following component is a shared event system
  * this means you can trigger events in one component

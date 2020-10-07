@@ -4,7 +4,12 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Http\Forms\UserForm;
-use Illuminate\View\View;
+
+/**
+ * NOT IN USE
+ * This is a PoC of how to implement the Grafite Forms with Livewire Components
+ * which adds a more real time flow to an application.
+ */
 
 class UserSettings extends Component
 {
@@ -12,7 +17,6 @@ class UserSettings extends Component
 
     public function mount()
     {
-        // convert the model to an array
         $user = request()->user();
 
         $this->data['name'] = $user->name;
