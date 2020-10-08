@@ -856,16 +856,16 @@
         },
         {
             "name": "grafite/forms",
-            "version": "v4.1.4",
+            "version": "v4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Forms.git",
-                "reference": "95eef0c208449ddcf5f0f069c0902ecef209fb9a"
+                "reference": "a64001402b23ce26aa1b0bdf35f874796476f582"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/95eef0c208449ddcf5f0f069c0902ecef209fb9a",
-                "reference": "95eef0c208449ddcf5f0f069c0902ecef209fb9a",
+                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/a64001402b23ce26aa1b0bdf35f874796476f582",
+                "reference": "a64001402b23ce26aa1b0bdf35f874796476f582",
                 "shasum": ""
             },
             "require": {
@@ -915,7 +915,7 @@
                 "LaravelCollective HTML",
                 "laravel"
             ],
-            "time": "2020-09-17T22:20:04+00:00"
+            "time": "2020-10-08T02:19:04+00:00"
         },
         {
             "name": "graham-campbell/result-type",

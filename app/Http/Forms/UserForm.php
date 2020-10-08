@@ -7,9 +7,9 @@ use Grafite\Forms\Html\HrTag;
 use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Email;
 use Grafite\Forms\Html\Heading;
+use Grafite\Forms\Fields\Toggled;
 use Grafite\Forms\Forms\ModelForm;
 use Grafite\Forms\Fields\FileWithPreview;
-use Grafite\Forms\Fields\Bootstrap\Toggle;
 
 class UserForm extends ModelForm
 {
@@ -18,6 +18,9 @@ class UserForm extends ModelForm
     public $routePrefix = 'user';
 
     public $withJsValidation = true;
+
+    public $withLivewire = false;
+    public $livewireOnKeydown = false;
 
     public $buttons = [
         'submit' => 'Save',
@@ -39,12 +42,14 @@ class UserForm extends ModelForm
             Email::make('email', [
                 'required' => true,
             ]),
-            Toggle::make('dark_mode', [
+            Toggled::make('dark_mode', [
                 'legend' => 'Dark Mode',
                 'theme' => (auth()->user()->dark_mode) ? 'dark' : 'light',
+                'color' => '#6610f2',
             ]),
-            Toggle::make('allow_email_based_notifications', [
+            Toggled::make('allow_email_based_notifications', [
                 'legend' => 'Email Contact',
+                'color' => '#6610f2',
             ]),
             FileWithPreview::make('avatar', [
                 'preview_identifier' => '.avatar',
