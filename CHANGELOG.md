@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.5.1] - 2020-10-10
+
+### Added
+- Example with LivewireForm
+
 ## [v2.5.0] - 2020-10-08
 
 ### Added
