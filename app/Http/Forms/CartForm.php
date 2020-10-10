@@ -21,7 +21,7 @@ class CartForm extends LivewireForm
             Number::make('count', [
                 'required' => true,
                 'label' => false,
-                // 'wrapper' => false
+                'wrapper' => false
             ]),
             Button::make([
                 'wire:click.prevent' => 'setNumber',
