@@ -856,16 +856,16 @@
         },
         {
             "name": "grafite/forms",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Forms.git",
-                "reference": "a64001402b23ce26aa1b0bdf35f874796476f582"
+                "reference": "53b6c04982d5e86b1f142f8cf460878ffc1ecac2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/a64001402b23ce26aa1b0bdf35f874796476f582",
-                "reference": "a64001402b23ce26aa1b0bdf35f874796476f582",
+                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/53b6c04982d5e86b1f142f8cf460878ffc1ecac2",
+                "reference": "53b6c04982d5e86b1f142f8cf460878ffc1ecac2",
                 "shasum": ""
             },
             "require": {
@@ -915,7 +915,7 @@
                 "LaravelCollective HTML",
                 "laravel"
             ],
-            "time": "2020-10-08T02:19:04+00:00"
+            "time": "2020-10-09T03:55:43+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -2359,16 +2359,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.41.0",
+            "version": "2.41.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "8690b13ad4da6d54d692afea15aab30b36fee52e"
+                "reference": "91d8d8dca31936a137213d7c48f8ac981e501ff4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/8690b13ad4da6d54d692afea15aab30b36fee52e",
-                "reference": "8690b13ad4da6d54d692afea15aab30b36fee52e",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/91d8d8dca31936a137213d7c48f8ac981e501ff4",
+                "reference": "91d8d8dca31936a137213d7c48f8ac981e501ff4",
                 "shasum": ""
             },
             "require": {
@@ -2444,7 +2444,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-04T09:11:05+00:00"
+            "time": "2020-10-10T11:06:56+00:00"
         },
         {
             "name": "opis/closure",
