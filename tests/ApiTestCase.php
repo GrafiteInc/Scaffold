@@ -29,12 +29,12 @@ abstract class ApiTestCase extends BaseTestCase
             Permissions::class,
         ]);
 
-        $role = factory(Role::class)->create([
+        $role = Role::factory()->create([
             'name' => 'admin',
             'label' => 'Admin',
         ]);
 
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         $this->user->roles()->attach($role->id);
     }
 }

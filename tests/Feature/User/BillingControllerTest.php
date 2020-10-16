@@ -20,7 +20,7 @@ class BillingControllerTest extends TestCase
     {
         $this->markTestSkipped('Requires Stripe keys');
 
-        factory(Subscription::class)->create([
+        Subscription::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
@@ -39,7 +39,7 @@ class BillingControllerTest extends TestCase
     {
         $this->markTestSkipped('Requires Stripe keys');
 
-        factory(Subscription::class)->create([
+        Subscription::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
@@ -58,7 +58,7 @@ class BillingControllerTest extends TestCase
     {
         $this->markTestSkipped('Requires Stripe keys');
 
-        factory(Subscription::class)->create([
+        Subscription::factory()->create([
             'user_id' => $this->user->id,
         ]);
 

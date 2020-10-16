@@ -2,15 +2,15 @@
 
 namespace Tests\Feature\Ajax;
 
-use App\Models\User;
-use Illuminate\Notifications\DatabaseNotification;
 use Tests\TestCase;
+use App\Models\User;
+use App\Models\DatabaseNotification;
 
 class NotificationsControllerTest extends TestCase
 {
     public function testGetCount()
     {
-        $notification = factory(DatabaseNotification::class, 4)->create([
+        DatabaseNotification::factory(4)->create([
             'notifiable_id' => $this->user->id,
             'notifiable_type' => User::class,
         ]);

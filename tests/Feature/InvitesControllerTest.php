@@ -15,7 +15,7 @@ class InvitesControllerTest extends TestCase
     {
         Notification::fake();
 
-        $invite = factory(Invite::class)->create();
+        $invite = Invite::factory()->create();
 
         $response = $this->post(route('invite.resend', [$invite->id]));
 
@@ -35,7 +35,7 @@ class InvitesControllerTest extends TestCase
     {
         Notification::fake();
 
-        $invite = factory(Invite::class)->create();
+        $invite = Invite::factory()->create();
 
         $response = $this->post(route('invite.revoke', [$invite->id]));
 

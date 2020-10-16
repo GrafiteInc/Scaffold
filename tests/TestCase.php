@@ -31,12 +31,12 @@ abstract class TestCase extends BaseTestCase
             RequirePassword::class,
         ]);
 
-        $role = factory(Role::class)->create([
+        $role = Role::factory()->create([
             'name' => 'admin',
             'label' => 'Admin',
         ]);
 
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         $this->user->roles()->attach($role->id);
 
         $this->be($this->user);

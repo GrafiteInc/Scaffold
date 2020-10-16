@@ -11,7 +11,7 @@ class TeamMembersControllerTest extends TestCase
 {
     public function testShow()
     {
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'name' => 'Avengers',
             'user_id' => $this->user->id,
         ]);
@@ -23,12 +23,12 @@ class TeamMembersControllerTest extends TestCase
 
     public function testEditMember()
     {
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'name' => 'Avengers',
             'user_id' => $this->user->id,
         ]);
 
-        $member = factory(User::class)->create();
+        $member = User::factory()->create();
 
         $team->members()->attach($member);
 
@@ -39,12 +39,12 @@ class TeamMembersControllerTest extends TestCase
 
     public function testUpdateMember()
     {
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'name' => 'Avengers',
             'user_id' => $this->user->id,
         ]);
 
-        $member = factory(User::class)->create();
+        $member = User::factory()->create();
 
         $team->members()->attach($member);
 
@@ -60,7 +60,7 @@ class TeamMembersControllerTest extends TestCase
     {
         Notification::fake();
 
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
@@ -76,7 +76,7 @@ class TeamMembersControllerTest extends TestCase
     {
         Notification::fake();
 
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
@@ -92,9 +92,9 @@ class TeamMembersControllerTest extends TestCase
     {
         Notification::fake();
 
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'user_id' => $this->user->id,
         ]);
 

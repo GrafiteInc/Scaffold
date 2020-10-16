@@ -14,6 +14,7 @@ use App\Models\Concerns\HasSubscription;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Concerns\DatabaseSearchable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -27,6 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasSubscription;
     use HasRoles;
     use HasPermissions;
+    use HasFactory;
     use DatabaseSearchable;
 
     /**

@@ -18,10 +18,10 @@ class InvitesControllerTest extends TestCase
 
     public function testAccept()
     {
-        $user = factory(User::class)->create();
-        $team = factory(Team::class)->create();
+        $user = User::factory()->create();
+        $team = Team::factory()->create();
 
-        $invite = factory(Invite::class)->create([
+        $invite = Invite::factory()->create([
             'user_id' => $user->id,
             'email' => $this->user->email,
             'relationship' => 'teamMemberships',
@@ -38,10 +38,10 @@ class InvitesControllerTest extends TestCase
 
     public function testReject()
     {
-        $user = factory(User::class)->create();
-        $team = factory(Team::class)->create();
+        $user = User::factory()->create();
+        $team = Team::factory()->create();
 
-        $invite = factory(Invite::class)->create([
+        $invite = Invite::factory()->create([
             'user_id' => $user->id,
             'email' => $this->user->email,
             'relationship' => 'teamMemberships',

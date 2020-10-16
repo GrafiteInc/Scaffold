@@ -31,7 +31,7 @@ class TeamServiceTest extends TestCase
 
     public function testUpdate()
     {
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'name' => 'Avengers',
         ]);
 
@@ -48,7 +48,7 @@ class TeamServiceTest extends TestCase
     {
         Notification::fake();
 
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'name' => 'Avengers',
         ]);
 
@@ -63,12 +63,12 @@ class TeamServiceTest extends TestCase
     {
         Notification::fake();
 
-        $teamAdmin = factory(User::class)->create([
+        $teamAdmin = User::factory()->create([
             'id' => 999,
             'name' => 'Joe',
         ]);
 
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'user_id' => 999,
             'name' => 'Avengers',
         ]);
@@ -84,12 +84,12 @@ class TeamServiceTest extends TestCase
 
     public function testRemoveMember()
     {
-        $teamMember = factory(User::class)->create([
+        $teamMember = User::factory()->create([
             'id' => 999,
             'name' => 'Joe',
         ]);
 
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'user_id' => $this->user->id,
             'name' => 'Avengers',
         ]);
@@ -105,12 +105,12 @@ class TeamServiceTest extends TestCase
     {
         Notification::fake();
 
-        $teamAdmin = factory(User::class)->create([
+        $teamAdmin = User::factory()->create([
             'id' => 999,
             'name' => 'Joe',
         ]);
 
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'user_id' => 999,
             'name' => 'Avengers',
         ]);

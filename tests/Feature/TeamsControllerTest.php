@@ -39,7 +39,7 @@ class TeamsControllerTest extends TestCase
 
     public function testEdit()
     {
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
@@ -50,7 +50,7 @@ class TeamsControllerTest extends TestCase
 
     public function testUpdate()
     {
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'user_id' => $this->user->id,
         ]);
 
@@ -66,9 +66,9 @@ class TeamsControllerTest extends TestCase
     {
         Notification::fake();
 
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
-        $team = factory(Team::class)->create([
+        $team = Team::factory()->create([
             'user_id' => $this->user->id,
         ]);
 

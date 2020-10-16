@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\User;
 
-use App\Models\User;
-use Illuminate\Notifications\DatabaseNotification;
 use Tests\TestCase;
+use App\Models\User;
+use App\Models\DatabaseNotification;
 
 class NotificationControllerTest extends TestCase
 {
@@ -17,7 +17,7 @@ class NotificationControllerTest extends TestCase
 
     public function testMarkAsRead()
     {
-        $notification = factory(DatabaseNotification::class)->create([
+        $notification = DatabaseNotification::factory()->create([
             'notifiable_id' => $this->user->id,
             'notifiable_type' => User::class,
         ]);
@@ -30,7 +30,7 @@ class NotificationControllerTest extends TestCase
 
     public function testDelete()
     {
-        $notification = factory(DatabaseNotification::class)->create([
+        $notification = DatabaseNotification::factory()->create([
             'notifiable_id' => $this->user->id,
             'notifiable_type' => User::class,
         ]);
@@ -43,7 +43,7 @@ class NotificationControllerTest extends TestCase
 
     public function testDeleteAll()
     {
-        $notification = factory(DatabaseNotification::class, 4)->create([
+        $notification = DatabaseNotification::factory(4)->create([
             'notifiable_id' => $this->user->id,
             'notifiable_type' => User::class,
         ]);

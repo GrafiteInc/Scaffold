@@ -25,10 +25,10 @@ class InviteServiceTest extends TestCase
     {
         Notification::fake();
 
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $message = 'This is a test message';
 
-        $model = factory(Team::class)->create();
+        $model = Team::factory()->create();
 
         $result = $this->service->create($model, $user->email, $message);
 
@@ -50,8 +50,8 @@ class InviteServiceTest extends TestCase
 
     public function testValidateInvitation()
     {
-        $user = factory(User::class)->create();
-        $invite = factory(Invite::class)->create([
+        $user = User::factory()->create();
+        $invite = Invite::factory()->create([
             'email' => $user->email,
         ]);
 

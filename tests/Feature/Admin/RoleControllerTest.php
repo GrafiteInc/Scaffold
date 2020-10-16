@@ -46,7 +46,7 @@ class RoleControllerTest extends TestCase
 
     public function testEdit()
     {
-        $role = factory(Role::class)->create();
+        $role = Role::factory()->create();
 
         $response = $this->get(route('admin.roles.edit', [$role->id]));
 
@@ -57,7 +57,7 @@ class RoleControllerTest extends TestCase
 
     public function testUpdate()
     {
-        $role = factory(Role::class)->create();
+        $role = Role::factory()->create();
 
         $response = $this->put(route('admin.roles.update', [$role->id]), [
             'label' => 'Subscriber',
@@ -73,7 +73,7 @@ class RoleControllerTest extends TestCase
 
     public function testDelete()
     {
-        $role = factory(Role::class)->create([
+        $role = Role::factory()->create([
             'label' => 'Subscriber',
         ]);
 

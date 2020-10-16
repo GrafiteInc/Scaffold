@@ -11,12 +11,12 @@ class UserControllerTest extends TestCase
 {
     public function testIndex()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'name' => 'Joe',
             'email' => 'joe@grafite.ca',
         ]);
 
-        $role = factory(Role::class)->create();
+        $role = Role::factory()->create();
 
         $user->roles()->attach($role);
 
@@ -29,12 +29,12 @@ class UserControllerTest extends TestCase
 
     public function testSearch()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'name' => 'Joe',
             'email' => 'joe@grafite.ca',
         ]);
 
-        $role = factory(Role::class)->create([
+        $role = Role::factory()->create([
             'name' => 'admin',
             'label' => 'Admin'
         ]);
@@ -77,12 +77,12 @@ class UserControllerTest extends TestCase
 
     public function testEdit()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'name' => 'Joe',
             'email' => 'joe@grafite.ca',
         ]);
 
-        $role = factory(Role::class)->create();
+        $role = Role::factory()->create();
 
         $user->roles()->attach($role);
 
@@ -96,7 +96,7 @@ class UserControllerTest extends TestCase
 
     public function testUpdate()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'name' => 'Joe',
             'email' => 'joe@grafite.ca',
         ]);
@@ -113,12 +113,12 @@ class UserControllerTest extends TestCase
 
     public function testLoginAsUser()
     {
-        $role = factory(Role::class)->create([
+        $role = Role::factory()->create([
             'name' => 'member',
             'label' => 'Member',
         ]);
 
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'name' => 'Joe',
             'email' => 'joe@grafite.ca',
         ]);
@@ -133,12 +133,12 @@ class UserControllerTest extends TestCase
 
     public function testReturnToLoginFromUser()
     {
-        $role = factory(Role::class)->create([
+        $role = Role::factory()->create([
             'name' => 'member',
             'label' => 'Member',
         ]);
 
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'name' => 'Joe',
             'email' => 'joe@grafite.ca',
         ]);
@@ -158,7 +158,7 @@ class UserControllerTest extends TestCase
 
     public function testDelete()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'name' => 'Joe',
             'email' => 'joe@grafite.ca',
         ]);
