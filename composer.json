@@ -28,7 +28,7 @@
     },
     "require-dev": {
         "facade/ignition": "^2.0",
-        "fzaninotto/faker": "^1.9",
+        "fakerphp/faker": "^1.10",
         "itsgoingd/clockwork": "^4.1",
         "laravel/dusk": "^6.0",
         "mockery/mockery": "^1.3",
