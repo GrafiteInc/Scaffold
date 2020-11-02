@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('page-title') Settings @stop
+@section('page-title', 'API Tokens')
 
 @section('user_content')
 

@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('page-title') Billing: Subscribe @stop
+@section('page-title', 'Billing: Subscribe')
 
 @section('content')
 

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title') Register @stop
+@section('page-title', 'Register')
 
 @section('app-content')
 

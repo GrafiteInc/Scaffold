@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title') Verify Email Address @stop
+@section('page-title', 'Verify Email Address')
 
 @section('app-content')
 

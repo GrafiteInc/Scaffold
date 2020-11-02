@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('page-title') Billing: Invoices @stop
+@section('page-title', 'Billing: Invoices')
 
 @section('content')
 

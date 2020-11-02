@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('page-title') Notifications @stop
+@section('page-title', 'Notifications')
 
 @section('user_content')
 

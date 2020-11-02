@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title') Login @stop
+@section('page-title', 'Login')
 
 @section('app-content')
 

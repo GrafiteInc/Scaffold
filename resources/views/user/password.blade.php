@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('page-title') Security @stop
+@section('page-title', 'Security')
 
 @section('user_content')
 

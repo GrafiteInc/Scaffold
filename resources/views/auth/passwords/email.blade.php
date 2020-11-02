@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('page-title') Forgot Password @stop
+@section('page-title', 'Forgot Password')
 
 @section('app-content')
 

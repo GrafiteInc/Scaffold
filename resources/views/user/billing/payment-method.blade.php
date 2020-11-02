@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('page-title') Billing: Payment Method @stop
+@section('page-title', 'Billing: Payment Method')
 
 @section('content')
 
