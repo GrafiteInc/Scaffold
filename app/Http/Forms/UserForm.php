@@ -20,6 +20,7 @@ class UserForm extends ModelForm
     public $withJsValidation = true;
 
     public $withLivewire = false;
+
     public $livewireOnKeydown = false;
 
     public $buttons = [

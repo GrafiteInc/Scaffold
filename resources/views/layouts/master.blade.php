@@ -38,6 +38,7 @@
                 ></cookielaw>
 
                 <modal></modal>
+                <pending-modal></pending-modal>
                 <vue-snotify></vue-snotify>
 
                 <session
