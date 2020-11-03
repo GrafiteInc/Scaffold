@@ -17,7 +17,7 @@
         "grafite/forms": "^4.0",
         "intervention/image": "^2.5",
         "laravel/cashier": "^12.0",
-        "laravel/framework": "^8.0",
+        "laravel/framework": "^8.13",
         "laravel/helpers": "^1.1",
         "laravel/sanctum": "^2.6",
         "laravelcollective/auth": "^1.0",
