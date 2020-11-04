@@ -19,7 +19,11 @@
 
                 <div class="row text-right">
                     <div class="col-md-12">
-                        <button class="btn btn-primary" onclick="window.pending()" type="submit">Change Plan</button>
+                        <button
+                            class="btn btn-primary"
+                            onclick="window.pendingModal(this)"
+                            type="submit"
+                        >Change Plan</button>
                     </div>
                 </div>
             </form>

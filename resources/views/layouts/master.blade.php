@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="version" content="1">
 
         <meta property="og:description" content="">
         <meta property="og:title" content="">
@@ -16,11 +17,12 @@
         <link rel="icon" type="image/ico" href="">
 
         @if (auth()->user() && auth()->user()->dark_mode)
-            <link rel="stylesheet" type="text/css" href="/css/dark-app.css">
+            <link rel="stylesheet" type="text/css" href="{{ mix('css/dark-app.css') }}">
         @else
-            <link rel="stylesheet" type="text/css" href="/css/light-app.css">
+            <link rel="stylesheet" type="text/css" href="{{ mix('css/light-app.css') }}">
         @endif
         @livewireStyles
+        @laravelPWA
     </head>
     <body>
         <div id="app">
@@ -49,7 +51,6 @@
                     error_message='{!! sessionErrorMessage() !!}'
                 ></session>
             </div>
-
             @yield("alerts")
         </div>
 
@@ -58,7 +59,7 @@
         @yield('pre-app-js')
 
         <script src="https://kit.fontawesome.com/40ca63cf3f.js"></script>
-        <script src="/js/app.js"></script>
+        <script src="{{ mix('/js/app.js') }}"></script>
 
         @yield('javascript')
 

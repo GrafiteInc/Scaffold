@@ -31,7 +31,11 @@
 
                 <div class="row text-right mt-4">
                     <div class="col-md-12">
-                        <button class="btn btn-primary" type="submit">Apply Coupon</button>
+                        <button
+                            class="btn btn-primary"
+                            onclick="window.pendingModal(this)"
+                            type="submit"
+                        >Apply Coupon</button>
                     </div>
                 </div>
             </form>

@@ -16025,334 +16025,6 @@ a.text-dark:focus {
 
 /*
 |--------------------------------------------------------------------------
-| Window
-|--------------------------------------------------------------------------
-*/
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  font-size: 0.875rem;
-}
-
-.sidebar {
-  width: 320px;
-  position: fixed;
-  top: 60px;
-  left: 0;
-  z-index: 100;
-  padding: 0;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
-  transition: all 0.3s;
-}
-
-.sidebar-sticky {
-  margin-top: 20px;
-  width: 320px;
-  height: calc(100vh - 140px);
-  overflow-y: auto;
-}
-
-.sidebar .nav-item {
-  font-weight: bold;
-  width: 100%;
-  line-height: 32px;
-  font-size: 16px;
-}
-
-.sidebar-heading {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-}
-
-.sidebar-header {
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 48px;
-}
-
-.sidebar-header span {
-  padding-left: 28px;
-}
-
-.sidebar-toggle {
-  display: none;
-}
-
-.main {
-  width: calc(100% - 320px);
-  padding-bottom: 84px;
-}
-
-.footer {
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
-}
-
-.alert {
-  width: 330px;
-  position: absolute;
-  bottom: 72px;
-  right: 24px;
-  z-index: 7500;
-}
-
-#app {
-  min-height: calc(100vh);
-  padding-bottom: 60px;
-}
-
-.content-sm {
-  width: 348px;
-  margin: 0px auto;
-  padding-top: 48px;
-}
-
-.content-md {
-  width: 548px;
-  margin: 0px auto;
-  padding-top: 48px;
-}
-
-.table td {
-  vertical-align: middle;
-}
-
-.card-body .table {
-  width: calc(100% + 20px);
-  margin: -10px !important;
-}
-
-.card-body .table tr td {
-  padding: 0.55rem;
-}
-
-/*
-|--------------------------------------------------------------------------
-| Navbar
-|--------------------------------------------------------------------------
-*/
-
-.navbar-title {
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.navbar-brand {
-  width: 320px;
-  padding: 0px 0px 0px 28px;
-  font-size: 22px;
-  font-weight: bold;
-  height: 60px;
-  line-height: 60px;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
-}
-
-.nav-avatar {
-  display: inline-block;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background-position: center center;
-  background-size: cover;
-  line-height: 45px;
-  margin-bottom: -8px;
-  margin-right: 10px;
-}
-
-.navbar-nav .notification-badge {
-  display: inline-block;
-  position: absolute;
-  top: 2px;
-  right: -4px;
-}
-
-.navbar-nav .nav-user-dropdown {
-  text-align: right;
-  width: 200px;
-  margin-top: -2px;
-}
-
-.navbar-nav .nav-user-dropdown:focus {
-  box-shadow: none;
-}
-
-.navbar-nav .dropdown-menu {
-  position: absolute;
-  top: 40px;
-  left: 5px;
-  min-width: 200px;
-}
-
-.navbar-nav .dropdown-toggle::after {
-  content: none;
-}
-
-input[type=file].form-control {
-  line-height: 1.2;
-}
-
-.toggle {
-  margin-left: -20px;
-}
-
-.avatar {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center center;
-}
-
-.avatar-sm {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center center;
-}
-
-/*
-|--------------------------------------------------------------------------
-| Large Screen
-|--------------------------------------------------------------------------
-*/
-
-@media (max-width: 992px) {
-  .sidebar-toggle {
-    display: inline-block;
-  }
-
-  .main {
-    width: 100%;
-  }
-
-  .sidebar {
-    margin-left: -320px;
-  }
-
-  .sidebar-sticky {
-    height: calc(100vh - 120px);
-  }
-
-  .sidebar.toggled {
-    margin-left: 0;
-  }
-}
-
-/*
-|--------------------------------------------------------------------------
-| Medium Screen
-|--------------------------------------------------------------------------
-*/
-
-@media (min-width: 576px) and (max-width: 748px) {
-  .navbar-nav .notification-badge {
-    top: 5px;
-    right: 21px;
-    z-index: 1000000;
-  }
-
-  .navbar-nav .nav-user-dropdown {
-    width: 55px;
-    height: 50px;
-    top: -24px;
-    right: -15px;
-    position: absolute;
-  }
-
-  .navbar-nav .nav-user-dropdown span {
-    display: none;
-  }
-
-  .navbar-nav .dropdown-menu {
-    position: absolute;
-    top: 24px;
-    left: -185px;
-    min-width: 200px;
-  }
-}
-
-/*
-|--------------------------------------------------------------------------
-| Mobile Tweaks
-|--------------------------------------------------------------------------
-*/
-
-@media (max-width: 576px) {
-  #app.container-fluid,
-  #app.container-sm,
-  #app.container-md,
-  #app.container-lg,
-  #app.container-xl {
-    padding-right: 0px;
-    padding-left: 0px;
-  }
-
-  .nav-tabs-custom {
-    border: none;
-  }
-
-  .nav-tabs-custom .nav-item {
-    border: solid 1px #8558da;
-    margin-bottom: 2px !important;
-  }
-
-  .nav-tabs-custom .nav-item:hover {
-    background-color: #8558da;
-  }
-
-  .nav-tabs-custom .nav-item .nav-link:hover,
-  .nav-tabs-custom .nav-item .nav-link.active,
-  .nav-tabs-custom .nav-item .nav-link.active:hover {
-    border: 1px solid transparent;
-  }
-
-  .navbar-nav .notification-badge {
-    top: -80px;
-    right: 21px;
-    z-index: 1000000;
-  }
-
-  .navbar-nav .nav-user-dropdown {
-    width: 55px;
-    height: 50px;
-    top: -106px;
-    right: -15px;
-    position: absolute;
-  }
-
-  .navbar-nav .nav-user-dropdown span {
-    display: none;
-  }
-
-  .navbar-nav .dropdown-menu {
-    position: absolute;
-    top: -54px;
-    left: 10px;
-    right: 10px;
-    min-width: 200px;
-  }
-
-  .sidebar {
-    top: 106px;
-  }
-
-  .sidebar-sticky {
-    height: calc(100vh - 106px);
-  }
-
-  .navbar-header .navbar-nav {
-    width: 100%;
-  }
-}
-
-/*
-|--------------------------------------------------------------------------
 | Variables
 |--------------------------------------------------------------------------
 */
@@ -16649,6 +16321,345 @@ pre {
 
 .snotifyToast .snotifyToast__inner .snotifyToast__body {
   color: #fff !important;
+}
+
+.sidebar-toggle {
+  color: #fff;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Window
+|--------------------------------------------------------------------------
+*/
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-size: 0.875rem;
+}
+
+.sidebar {
+  width: 320px;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 100;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+.sidebar-sticky {
+  margin-top: 20px;
+  width: 320px;
+  height: calc(100vh - 140px);
+  overflow-y: auto;
+}
+
+.sidebar .nav-item {
+  font-weight: bold;
+  width: 100%;
+  line-height: 32px;
+  font-size: 16px;
+}
+
+.sidebar-heading {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.sidebar-header {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 48px;
+}
+
+.sidebar-header span {
+  padding-left: 28px;
+}
+
+.sidebar-toggle {
+  display: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.main {
+  width: calc(100% - 320px);
+  padding-bottom: 84px;
+}
+
+.footer {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+}
+
+.alert {
+  margin-left: 326px;
+  width: calc(100% - 360px);
+  position: fixed;
+  top: 75px;
+  z-index: 7500;
+}
+
+#app {
+  min-height: calc(100vh);
+  padding-bottom: 60px;
+}
+
+.content-sm {
+  width: 348px;
+  margin: 0px auto;
+  padding-top: 48px;
+}
+
+.content-md {
+  width: 548px;
+  margin: 0px auto;
+  padding-top: 48px;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.card-body .table {
+  width: calc(100% + 20px);
+  margin: -10px !important;
+}
+
+.card-body .table tr td {
+  padding: 0.55rem;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Navbar
+|--------------------------------------------------------------------------
+*/
+
+.navbar-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.navbar-brand {
+  width: 320px;
+  padding: 0px 0px 0px 28px;
+  font-size: 22px;
+  font-weight: bold;
+  height: 60px;
+  line-height: 60px;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.nav-avatar {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-position: center center;
+  background-size: cover;
+  line-height: 45px;
+  margin-bottom: -8px;
+  margin-right: 10px;
+}
+
+.navbar-nav .notification-badge {
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  right: -4px;
+}
+
+.navbar-nav .nav-user-dropdown {
+  text-align: right;
+  width: 200px;
+  margin-top: -2px;
+}
+
+.navbar-nav .nav-user-dropdown:focus {
+  box-shadow: none;
+}
+
+.navbar-nav .dropdown-menu {
+  position: absolute;
+  top: 40px;
+  left: 5px;
+  min-width: 200px;
+}
+
+.navbar-nav .dropdown-toggle::after {
+  content: none;
+}
+
+input[type=file].form-control {
+  line-height: 1.2;
+}
+
+.toggle {
+  margin-left: -20px;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.avatar-sm {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center center;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Large Screen
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 992px) {
+  .sidebar-toggle {
+    display: inline-block;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  .alert {
+    margin-left: 2%;
+    width: 96%;
+  }
+
+  .sidebar {
+    margin-left: -320px;
+    box-shadow: 0 5px 5px #303030;
+  }
+
+  .sidebar-sticky {
+    height: calc(100vh - 60px);
+  }
+
+  .sidebar.toggled {
+    margin-left: 0;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Medium Screen
+|--------------------------------------------------------------------------
+*/
+
+@media (min-width: 576px) and (max-width: 748px) {
+  .navbar-nav .notification-badge {
+    top: 5px;
+    right: 21px;
+    z-index: 1000000;
+  }
+
+  .navbar-nav .nav-user-dropdown {
+    width: 55px;
+    height: 50px;
+    top: -24px;
+    right: -15px;
+    position: absolute;
+  }
+
+  .navbar-nav .nav-user-dropdown span {
+    display: none;
+  }
+
+  .navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 24px;
+    left: -185px;
+    min-width: 200px;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Mobile Tweaks
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 576px) {
+  #app.container-fluid,
+  #app.container-sm,
+  #app.container-md,
+  #app.container-lg,
+  #app.container-xl {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+  .nav-tabs-custom {
+    border: none;
+  }
+
+  .nav-tabs-custom .nav-item {
+    border: solid 1px #8558da;
+    margin-bottom: 2px !important;
+  }
+
+  .nav-tabs-custom .nav-item:hover {
+    background-color: #8558da;
+  }
+
+  .nav-tabs-custom .nav-item .nav-link:hover,
+  .nav-tabs-custom .nav-item .nav-link.active,
+  .nav-tabs-custom .nav-item .nav-link.active:hover {
+    border: 1px solid transparent;
+  }
+
+  .navbar-nav .notification-badge {
+    top: -80px;
+    right: 21px;
+    z-index: 1000000;
+  }
+
+  .navbar-nav .nav-user-dropdown {
+    width: 55px;
+    height: 50px;
+    top: -106px;
+    right: -15px;
+    position: absolute;
+  }
+
+  .navbar-nav .nav-user-dropdown span {
+    display: none;
+  }
+
+  .navbar-nav .dropdown-menu {
+    position: absolute;
+    top: -54px;
+    left: 10px;
+    right: 10px;
+    min-width: 200px;
+  }
+
+  .sidebar {
+    top: 106px;
+  }
+
+  .sidebar-sticky {
+    height: calc(100vh - 106px);
+  }
+
+  .navbar-header .navbar-nav {
+    width: 100%;
+  }
 }
 
 /**

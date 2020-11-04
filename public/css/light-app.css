@@ -16025,6 +16025,141 @@ a.text-dark:focus {
 
 /*
 |--------------------------------------------------------------------------
+| Variables
+|--------------------------------------------------------------------------
+*/
+
+/*
+|--------------------------------------------------------------------------
+| General
+|--------------------------------------------------------------------------
+*/
+
+html {
+  background-color: #212529;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Sidebar
+|--------------------------------------------------------------------------
+*/
+
+.sidebar {
+  background-color: #f8f9fa;
+}
+
+.sidebar .nav-item.active a {
+  color: #6f42c1;
+}
+
+.sidebar .nav-item a {
+  color: #464349;
+}
+
+.sidebar-header {
+  background-color: #8c8b94;
+  color: #fff;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Footer
+|--------------------------------------------------------------------------
+*/
+
+.footer {
+  background-color: #f8f9fa;
+}
+
+.footer span {
+  color: #5a5c6b;
+}
+
+.footer a {
+  color: #5a5c6b;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Navbar
+|--------------------------------------------------------------------------
+*/
+
+.navbar-header {
+  background-color: #f8f9fa;
+  color: #fff;
+}
+
+.navbar-header .navbar-nav {
+  background-color: #f8f9fa;
+}
+
+.navbar-text {
+  color: #5a5c6b;
+}
+
+.navbar-brand {
+  background-color: rgba(0, 0, 0, 0.15);
+  color: #fff;
+}
+
+.navbar-brand:hover {
+  color: #EEEEEE;
+}
+
+.nav-tabs .nav-item a {
+  color: #95a5a6;
+}
+
+.nav-tabs .nav-link.active {
+  color: #6f42c1;
+}
+
+.nav-tabs .nav-link.active:hover {
+  color: #6f42c1;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Forms
+|--------------------------------------------------------------------------
+*/
+
+input.form-control,
+textarea.form-control,
+select.form-control {
+  color: #111 !important;
+}
+
+input.form-control:focus,
+textarea.form-control:focus,
+select.form-control:focus {
+  color: #111;
+  outline: 0 !important;
+}
+
+.bootstrap-select button.dropdown-toggle,
+.bootstrap-select button.dropdown-toggle:active {
+  color: #111 !important;
+  border: 1px solid #ced4da !important;
+  background-color: #fff !important;
+}
+
+.bootstrap-select .dropdown-menu li a.dropdown-item:hover {
+  color: #fff !important;
+}
+
+.snotifyToast {
+  box-shadow: 0px 0px 5px #dee2e6;
+}
+
+.sidebar-toggle {
+  color: #343a40;
+}
+
+/*
+|--------------------------------------------------------------------------
 | Window
 |--------------------------------------------------------------------------
 */
@@ -16045,7 +16180,6 @@ body {
   left: 0;
   z-index: 100;
   padding: 0;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
 }
 
@@ -16080,6 +16214,8 @@ body {
 
 .sidebar-toggle {
   display: none;
+  cursor: pointer;
+  padding: 4px;
 }
 
 .main {
@@ -16094,10 +16230,10 @@ body {
 }
 
 .alert {
-  width: 330px;
-  position: absolute;
-  bottom: 72px;
-  right: 24px;
+  margin-left: 326px;
+  width: calc(100% - 360px);
+  position: fixed;
+  top: 75px;
   z-index: 7500;
 }
 
@@ -16231,12 +16367,18 @@ input[type=file].form-control {
     width: 100%;
   }
 
+  .alert {
+    margin-left: 2%;
+    width: 96%;
+  }
+
   .sidebar {
     margin-left: -320px;
+    box-shadow: 0 5px 5px #dee2e6;
   }
 
   .sidebar-sticky {
-    height: calc(100vh - 120px);
+    height: calc(100vh - 60px);
   }
 
   .sidebar.toggled {
@@ -16349,137 +16491,6 @@ input[type=file].form-control {
   .navbar-header .navbar-nav {
     width: 100%;
   }
-}
-
-/*
-|--------------------------------------------------------------------------
-| Variables
-|--------------------------------------------------------------------------
-*/
-
-/*
-|--------------------------------------------------------------------------
-| General
-|--------------------------------------------------------------------------
-*/
-
-html {
-  background-color: #212529;
-}
-
-/*
-|--------------------------------------------------------------------------
-| Sidebar
-|--------------------------------------------------------------------------
-*/
-
-.sidebar {
-  background-color: #f8f9fa;
-}
-
-.sidebar .nav-item.active a {
-  color: #6f42c1;
-}
-
-.sidebar .nav-item a {
-  color: #464349;
-}
-
-.sidebar-header {
-  background-color: #8c8b94;
-  color: #fff;
-}
-
-/*
-|--------------------------------------------------------------------------
-| Footer
-|--------------------------------------------------------------------------
-*/
-
-.footer {
-  background-color: #f8f9fa;
-}
-
-.footer span {
-  color: #5a5c6b;
-}
-
-.footer a {
-  color: #5a5c6b;
-}
-
-/*
-|--------------------------------------------------------------------------
-| Navbar
-|--------------------------------------------------------------------------
-*/
-
-.navbar-header {
-  background-color: #f8f9fa;
-  color: #fff;
-}
-
-.navbar-header .navbar-nav {
-  background-color: #f8f9fa;
-}
-
-.navbar-text {
-  color: #5a5c6b;
-}
-
-.navbar-brand {
-  background-color: rgba(0, 0, 0, 0.15);
-  color: #fff;
-}
-
-.navbar-brand:hover {
-  color: #EEEEEE;
-}
-
-.nav-tabs .nav-item a {
-  color: #95a5a6;
-}
-
-.nav-tabs .nav-link.active {
-  color: #6f42c1;
-}
-
-.nav-tabs .nav-link.active:hover {
-  color: #6f42c1;
-}
-
-/*
-|--------------------------------------------------------------------------
-| Forms
-|--------------------------------------------------------------------------
-*/
-
-input.form-control,
-textarea.form-control,
-select.form-control {
-  color: #111 !important;
-}
-
-input.form-control:focus,
-textarea.form-control:focus,
-select.form-control:focus {
-  color: #111;
-  outline: 0 !important;
-}
-
-.bootstrap-select button.dropdown-toggle,
-.bootstrap-select button.dropdown-toggle:active {
-  color: #111 !important;
-  border: 1px solid #ced4da !important;
-  background-color: #fff !important;
-}
-
-.bootstrap-select .dropdown-menu li a.dropdown-item:hover {
-  color: #fff !important;
-}
-
-.snotifyToast {
-  box-shadow: 0px 0px 5px #dee2e6;
 }
 
 /**

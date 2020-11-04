@@ -20,7 +20,6 @@ body {
     left: 0;
     z-index: 100;
     padding: 0;
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
     transition: all 0.3s;
 }
 
@@ -55,6 +54,8 @@ body {
 
 .sidebar-toggle {
     display: none;
+    cursor: pointer;
+    padding: 4px;
 }
 
 .main {
@@ -69,10 +70,10 @@ body {
 }
 
 .alert {
-    width: 330px;
-    position: absolute;
-    bottom: 72px;
-    right: 24px;
+    margin-left: 326px;
+    width: calc(100% - 360px);
+    position: fixed;
+    top: 75px;
     z-index: 7500;
 }
 
@@ -208,11 +209,16 @@ input[type="file"].form-control {
     .main {
         width: 100%;
     }
+    .alert {
+        margin-left: 2%;
+        width: 96%;
+    }
     .sidebar {
         margin-left: -320px;
+        box-shadow: 0 5px 5px $sidebar-shadow;
     }
     .sidebar-sticky {
-        height: calc(100vh - 120px);
+        height: calc(100vh - 60px);
     }
     .sidebar.toggled {
         margin-left: 0;
@@ -261,9 +267,6 @@ input[type="file"].form-control {
     #app.container-fluid {
         padding-right: 0px;
         padding-left: 0px;
-    }
-    .main {
-        // margin-top: 48px;
     }
     .nav-tabs-custom {
         border: none;

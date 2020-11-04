@@ -17,12 +17,13 @@
     export default {
         mame: "pending-modal",
         props: [
-            //
+
         ],
         mounted () {
+            window.pendingModal = (button) => {
+                button.form.submit();
+                button.disabled = true;
 
-            // Custom window modal
-            window.pending = () => {
                 $('#appPendingModal').modal('show');
 
                 return false;

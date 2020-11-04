@@ -12,6 +12,7 @@ $slate-light: #8c8b94 !default;
 $slate-lightest: #d5d6db !default;
 
 $html-bg: $gray-900;
+$sidebar-shadow: $gray-300;
 
 $sidebar-bg: $gray-100;
 $sidebar-header: $slate-light;
@@ -151,4 +152,8 @@ input.form-control, textarea.form-control, select.form-control {
 
 .snotifyToast {
     box-shadow: 0px 0px 5px $gray-300;
+}
+
+.sidebar-toggle {
+    color: $gray-800;
 }
