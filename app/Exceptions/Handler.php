@@ -87,10 +87,6 @@ class Handler extends ExceptionHandler
             return response()->view('errors.404', [], 404);
         }
 
-        if ($exception instanceof TokenMismatchException) {
-            return redirect()->back()->withInfo('The page expired, please try again.');
-        }
-
         return parent::render($request, $exception);
     }
 }
