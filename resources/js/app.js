@@ -19,7 +19,7 @@ window.addEventListener('offline', (event) => {
 import Snotify, { SnotifyPosition } from 'vue-snotify'
 let _options = {
     toast: {
-        timeout: 300000,
+        timeout: 4000,
         showProgressBar: false,
         position: SnotifyPosition.rightTop
     }

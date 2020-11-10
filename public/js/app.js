@@ -55386,7 +55386,7 @@ window.addEventListener('offline', function (event) {
 
 var _options = {
   toast: {
-    timeout: 300000,
+    timeout: 4000,
     showProgressBar: false,
     position: vue_snotify__WEBPACK_IMPORTED_MODULE_0__["SnotifyPosition"].rightTop
   }
