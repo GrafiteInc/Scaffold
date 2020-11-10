@@ -21,10 +21,15 @@
         ],
         mounted () {
             window.pendingModal = (button) => {
-                button.form.submit();
-                button.disabled = true;
+                if (button && button.form.checkValidity()) {
+                    button.form.submit();
+                    button.disabled = true;
+                    $('#appPendingModal').modal('show');
+                }
 
-                $('#appPendingModal').modal('show');
+                if (! button) {
+                    $('#appPendingModal').modal('show');
+                }
 
                 return false;
             }

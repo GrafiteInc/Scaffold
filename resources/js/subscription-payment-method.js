@@ -17,8 +17,6 @@ if (paymentMethodForm) {
 
     cardButton.addEventListener('click', async (e) => {
         cardButton.disabled = true;
-        window.pending();
-        // window.Snotify.info('Processing.', null, { timeout: 0 });
 
         const { setupIntent, error } = await stripe.confirmCardSetup(
             clientSecret, {
@@ -32,6 +30,7 @@ if (paymentMethodForm) {
             window.Snotify.warning(error.message);
             cardButton.disabled = false;
         } else {
+            window.pendingModal();
             window.axios.post(route('ajax.billing.subscription.payment-method'), {
                 payment_method: setupIntent.payment_method
             })

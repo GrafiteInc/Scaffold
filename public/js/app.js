@@ -2096,9 +2096,16 @@ __webpack_require__.r(__webpack_exports__);
   props: [],
   mounted: function mounted() {
     window.pendingModal = function (button) {
-      button.form.submit();
-      button.disabled = true;
-      $('#appPendingModal').modal('show');
+      if (button && button.form.checkValidity()) {
+        button.form.submit();
+        button.disabled = true;
+        $('#appPendingModal').modal('show');
+      }
+
+      if (!button) {
+        $('#appPendingModal').modal('show');
+      }
+
       return false;
     };
   }
@@ -56232,8 +56239,7 @@ if (subscriptionForm) {
 
             case 3:
               cardButton.disabled = true;
-              window.pending();
-              _context.next = 7;
+              _context.next = 6;
               return stripe.confirmCardSetup(clientSecret, {
                 payment_method: {
                   card: cardElement,
@@ -56243,7 +56249,7 @@ if (subscriptionForm) {
                 }
               });
 
-            case 7:
+            case 6:
               _yield$stripe$confirm = _context.sent;
               setupIntent = _yield$stripe$confirm.setupIntent;
               error = _yield$stripe$confirm.error;
@@ -56252,6 +56258,7 @@ if (subscriptionForm) {
                 window.Snotify.warning(error.message);
                 cardButton.disabled = false;
               } else {
+                window.pendingModal();
                 window.axios.post(route('ajax.billing.subscription.create'), {
                   plan: cardHolderPlan.value,
                   name: cardHolderName.value,
@@ -56265,7 +56272,7 @@ if (subscriptionForm) {
                 });
               }
 
-            case 11:
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -56325,16 +56332,14 @@ if (paymentMethodForm) {
           switch (_context.prev = _context.next) {
             case 0:
               cardButton.disabled = true;
-              window.pending(); // window.Snotify.info('Processing.', null, { timeout: 0 });
-
-              _context.next = 4;
+              _context.next = 3;
               return stripe.confirmCardSetup(clientSecret, {
                 payment_method: {
                   card: cardElement
                 }
               });
 
-            case 4:
+            case 3:
               _yield$stripe$confirm = _context.sent;
               setupIntent = _yield$stripe$confirm.setupIntent;
               error = _yield$stripe$confirm.error;
@@ -56343,6 +56348,7 @@ if (paymentMethodForm) {
                 window.Snotify.warning(error.message);
                 cardButton.disabled = false;
               } else {
+                window.pendingModal();
                 window.axios.post(route('ajax.billing.subscription.payment-method'), {
                   payment_method: setupIntent.payment_method
                 }).then(function (results) {
@@ -56352,7 +56358,7 @@ if (paymentMethodForm) {
                 });
               }
 
-            case 8:
+            case 7:
             case "end":
               return _context.stop();
           }

@@ -22,7 +22,14 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group mb-0">
-                                    <input class="form-control" type="text" name="coupon" id="coupon" required placeholder="Code">
+                                    <input
+                                        class="form-control"
+                                        type="text"
+                                        name="coupon"
+                                        id="coupon"
+                                        required
+                                        placeholder="Code"
+                                    >
                                 </div>
                             </div>
                         </div>

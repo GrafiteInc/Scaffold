@@ -7,7 +7,7 @@
             <div class="card-body">
                 <div class="form-group mb-0">
                     @if (!isset($unlabelled)) <label for="name">Plan</label> @endif
-                    <select name="plan" id="card-holder-plan" class="form-control">
+                    <select name="plan" id="card-holder-plan" class="form-control" required>
                         <option value="">Select a Plan</option>
                         @foreach(config('billing.plans') as $stripe_id => $plan)
                             <option value="{{ $stripe_id }}">{{ $plan['name'] }} (${{ $plan['price'] }} {{ $plan['frequency'] }})</option>

@@ -32,7 +32,6 @@ if (subscriptionForm) {
         }
 
         cardButton.disabled = true;
-        window.pending();
 
         const { setupIntent, error } = await stripe.confirmCardSetup(
             clientSecret, {
@@ -49,6 +48,7 @@ if (subscriptionForm) {
             window.Snotify.warning(error.message);
             cardButton.disabled = false;
         } else {
+            window.pendingModal();
             window.axios.post(route('ajax.billing.subscription.create'), {
                 plan: cardHolderPlan.value,
                 name: cardHolderName.value,
