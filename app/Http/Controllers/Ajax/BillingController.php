@@ -47,8 +47,12 @@ class BillingController extends Controller
 
             $user->updateDefaultPaymentMethod($request->payment_method);
 
+            $notification = new InAppNotification("Your payment method has been updated to a card ending in {$user->card_last_four}.");
+            $notification->isImportant();
+            $user->notify($notification);
+
             return response()->json([
-                'message' => 'Your payment method has been changed!',
+                'message' => 'Your payment method has been updated!',
             ]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
