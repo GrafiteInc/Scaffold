@@ -3,6 +3,17 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.6.0] - 2020-11-10
+
+### Added
+- PWA support
+
+### Changed
+- Factories and seeders
+
+### Fixed
+- various UI/UX issues
+
 ## [v2.5.1] - 2020-10-10
 
 ### Added
