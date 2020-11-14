@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Notifications\InAppNotification;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 
 class BillingController extends Controller
 {
     public function createSubscription(Request $request)
     {
+        $message = 'Subscription failed';
+
         try {
             $user = $request->user();
 
@@ -31,12 +34,19 @@ class BillingController extends Controller
             return response()->json([
                 'message' => 'You\'re now subscribed!',
             ]);
+        } catch (IncompletePayment $exception) {
+            $message = 'Subscription requires extra steps.';
+            $redirect = route(
+                'cashier.payment',
+                [$exception->payment->id, 'redirect' => route('home')]
+            );
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
 
         return response()->json([
-            'message' => 'Subscription failed',
+            'message' => $message,
+            'redirect' => $redirect
         ], 409);
     }
 

@@ -11,6 +11,8 @@ class TeamMembersControllerTest extends TestCase
 {
     public function testShow()
     {
+        $this->withSubscription();
+
         $team = Team::factory()->create([
             'name' => 'Avengers',
             'user_id' => $this->user->id,
@@ -23,6 +25,8 @@ class TeamMembersControllerTest extends TestCase
 
     public function testEditMember()
     {
+        $this->withSubscription();
+
         $team = Team::factory()->create([
             'name' => 'Avengers',
             'user_id' => $this->user->id,
@@ -39,6 +43,8 @@ class TeamMembersControllerTest extends TestCase
 
     public function testUpdateMember()
     {
+        $this->withSubscription();
+
         $team = Team::factory()->create([
             'name' => 'Avengers',
             'user_id' => $this->user->id,
@@ -58,6 +64,8 @@ class TeamMembersControllerTest extends TestCase
 
     public function testInviteMember()
     {
+        $this->withSubscription();
+
         Notification::fake();
 
         $team = Team::factory()->create([
@@ -74,6 +82,8 @@ class TeamMembersControllerTest extends TestCase
 
     public function testLeaveTeam()
     {
+        $this->withSubscription();
+
         Notification::fake();
 
         $team = Team::factory()->create([
@@ -90,6 +100,8 @@ class TeamMembersControllerTest extends TestCase
 
     public function testRemoveTeamMember()
     {
+        $this->withSubscription();
+
         Notification::fake();
 
         $user = User::factory()->create();

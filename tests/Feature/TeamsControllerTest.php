@@ -15,11 +15,22 @@ class TeamsControllerTest extends TestCase
         $response = $this->get(route('teams'));
 
         $response->assertOk();
+    }
+
+    public function testIndexWithSubcription()
+    {
+        $this->withSubscription();
+
+        $response = $this->get(route('teams'));
+
+        $response->assertOk();
         $response->assertSee('Create Team');
     }
 
     public function testCreate()
     {
+        $this->withSubscription();
+
         $response = $this->get(route('teams.create'));
 
         $response->assertOk();
@@ -29,6 +40,8 @@ class TeamsControllerTest extends TestCase
 
     public function testStore()
     {
+        $this->withSubscription();
+
         $response = $this->post(route('teams.store'), [
             'name' => 'Avengers',
         ]);
@@ -39,6 +52,8 @@ class TeamsControllerTest extends TestCase
 
     public function testEdit()
     {
+        $this->withSubscription();
+
         $team = Team::factory()->create([
             'user_id' => $this->user->id,
         ]);
@@ -50,6 +65,8 @@ class TeamsControllerTest extends TestCase
 
     public function testUpdate()
     {
+        $this->withSubscription();
+
         $team = Team::factory()->create([
             'user_id' => $this->user->id,
         ]);
@@ -64,6 +81,8 @@ class TeamsControllerTest extends TestCase
 
     public function testDelete()
     {
+        $this->withSubscription();
+
         Notification::fake();
 
         $user = User::factory()->create();
