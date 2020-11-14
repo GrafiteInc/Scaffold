@@ -61,6 +61,10 @@ if (subscriptionForm) {
             })
             .catch(err => {
                 window.Snotify.warning(err.data.data.message);
+
+                if (err.data.data.redirect) {
+                    window.location = err.data.data.redirect;
+                }
             });
         }
     });
