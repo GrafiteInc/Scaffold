@@ -31,6 +31,8 @@ class TeamMembersController extends Controller
     {
         $team = $this->service->findByUuid($uuid);
 
+        abort_unless($team->hasActiveSubscription(), 403, 'Team does not have an active subscription.');
+
         if (! Gate::allows('team-member', $team)) {
             abort(403);
         }
@@ -50,6 +52,8 @@ class TeamMembersController extends Controller
      */
     public function editMember(Team $team, User $member)
     {
+        abort_unless($team->hasActiveSubscription(), 403, 'Team does not have an active subscription.');
+
         if (! Gate::allows('team-manager', $team)) {
             return redirect()->route('teams.show', $team->id);
         }
@@ -79,6 +83,8 @@ class TeamMembersController extends Controller
      */
     public function updateMember(Request $request, Team $team, User $member)
     {
+        abort_unless($team->hasActiveSubscription(), 403, 'Team does not have an active subscription.');
+
         $membership = $team->members->find($member->id)->membership;
 
         //TODO -> whats up with this?

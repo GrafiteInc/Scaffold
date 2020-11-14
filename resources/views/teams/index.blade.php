@@ -4,13 +4,15 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="btn-toolbar justify-content-end">
-                <a class="btn btn-primary" href="{{ route('teams.create') }}">Create Team</a>
+    @can('subscribed')
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-toolbar justify-content-end">
+                    <a class="btn btn-primary" href="{{ route('teams.create') }}">Create Team</a>
+                </div>
             </div>
         </div>
-    </div>
+    @endcan
 
     <div class="row">
         <div class="col-md-12 mt-3">
@@ -39,12 +41,14 @@
                                             @endforeach
                                         </td>
                                         <td width="50%" class="text-right">
-                                            <div class="btn-toolbar justify-content-end">
-                                                <a class="btn btn-outline-primary btn-sm mr-2" href="{!! route('teams.edit', $team) !!}">
-                                                    <i class="fas fa-fw fa-cogs"></i> Settings
-                                                </a>
-                                                {!! app(\App\Http\Forms\TeamForm::class)->confirm('Are you sure you want to delete '.$team->name.'?', 'confirmation')->delete($team) !!}
-                                            </div>
+                                            @can('subscribed')
+                                                <div class="btn-toolbar justify-content-end">
+                                                    <a class="btn btn-outline-primary btn-sm mr-2" href="{!! route('teams.edit', $team) !!}">
+                                                        <i class="fas fa-fw fa-cogs"></i> Settings
+                                                    </a>
+                                                    {!! app(\App\Http\Forms\TeamForm::class)->confirm('Are you sure you want to delete '.$team->name.'?', 'confirmation')->delete($team) !!}
+                                                </div>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

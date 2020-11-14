@@ -41,6 +41,8 @@ class TeamsController extends Controller
      */
     public function create()
     {
+        abort_unless(Gate::allows('subscribed'), 403, 'Subscription is required.');
+
         $form = app(TeamForm::class)->create();
 
         return view('teams.create')->with(compact('form'));
@@ -54,6 +56,8 @@ class TeamsController extends Controller
      */
     public function store(TeamCreateRequest $request)
     {
+        abort_unless(Gate::allows('subscribed'), 403, 'Subscription is required.');
+
         try {
             $team = $this->service->create($request->except('_token'));
 
@@ -76,6 +80,8 @@ class TeamsController extends Controller
      */
     public function edit(Team $team)
     {
+        abort_unless($team->hasActiveSubscription(), 403, 'Subscription is required.');
+
         if (! Gate::allows('team-admin', $team)) {
             abort(403);
         }
@@ -96,6 +102,8 @@ class TeamsController extends Controller
      */
     public function members(Team $team)
     {
+        abort_unless($team->hasActiveSubscription(), 403, 'Subscription is required.');
+
         if (! Gate::allows('team-admin', $team)) {
             abort(403);
         }
@@ -116,6 +124,8 @@ class TeamsController extends Controller
      */
     public function update(TeamUpdateRequest $request, Team $team)
     {
+        abort_unless($team->hasActiveSubscription(), 403, 'Subscription is required.');
+
         if (Gate::denies('team-admin', $team)) {
             return redirect()->back()->withErrors(['You do not have permission to do this.']);
         }
@@ -139,6 +149,8 @@ class TeamsController extends Controller
      */
     public function destroy(Team $team)
     {
+        abort_unless($team->hasActiveSubscription(), 403, 'Subscription is required.');
+
         if (Gate::denies('team-admin', $team)) {
             return redirect()->back()->withErrors(['You do not have permission to do this.']);
         }
@@ -164,6 +176,8 @@ class TeamsController extends Controller
      */
     public function destroyAvatar(Request $request)
     {
+        abort_unless($team->hasActiveSubscription(), 403, 'Subscription is required.');
+
         $team = Team::find($request->team);
 
         if (Gate::denies('team-admin', $team)) {

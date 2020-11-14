@@ -7,6 +7,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="version" content="1">
 
+        {{-- Helps prevent 419 issues --}}
+        <meta http-equiv="refresh" content="{{ config('session.lifetime') * 60 }}">
+
         <meta property="og:description" content="">
         <meta property="og:title" content="">
         <meta property="og:image" content="">
@@ -21,12 +24,13 @@
         @else
             <link rel="stylesheet" type="text/css" href="{{ mix('css/light-app.css') }}">
         @endif
+
         @livewireStyles
         @laravelPWA
     </head>
     <body>
         <div id="app">
-            @if (!request()->routeIs(['home']))
+            @if (! request()->routeIs(['home']))
                 @include("layouts.app-nav")
             @else
                 @include("layouts.home-nav")
@@ -51,6 +55,7 @@
                     error_message='{!! sessionErrorMessage() !!}'
                 ></session>
             </div>
+
             @yield("alerts")
         </div>
 

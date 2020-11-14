@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\Invitable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use App\Models\Concerns\HasSubscribedUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Team extends Model
@@ -12,6 +15,7 @@ class Team extends Model
     use Invitable;
     use HasAvatar;
     use HasFactory;
+    use HasSubscribedUser;
 
     public $relationship = 'teamMemberships';
 
