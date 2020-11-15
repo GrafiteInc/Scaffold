@@ -47,9 +47,9 @@ abstract class TestCase extends BaseTestCase
 
     public function withSubscription()
     {
-        return $this->user->subscriptions()->create([
-            'name' => 'main',
-            'stripe_id' => Str::random(),
+        return $this->user->subscriptions()->firstOrCreate([
+            'name' => config('billing.subscription_name'),
+            'stripe_id' => 'foo-bar-test-subscription-id',
             'stripe_status' => 'active',
             'stripe_plan' => 'foo-bar',
             'quantity' => 1,
