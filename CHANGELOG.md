@@ -3,6 +3,17 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.6.1] - 2020-11-16
+
+### Added
+- More billing controls
+
+### Changed
+- General improvements
+
+### Fixed
+- Code styles
+
 ## [v2.6.0] - 2020-11-10
 
 ### Added
