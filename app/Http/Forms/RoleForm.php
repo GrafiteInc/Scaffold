@@ -3,8 +3,8 @@
 namespace App\Http\Forms;
 
 use App\Models\Role;
-use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Checkbox;
+use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Forms\ModelForm;
 
 class RoleForm extends ModelForm
@@ -15,7 +15,7 @@ class RoleForm extends ModelForm
 
     public $buttons = [
         'submit' => 'Save',
-        'delete' => '<span class="fas fa-fw fa-trash"></span> Delete'
+        'delete' => '<span class="fas fa-fw fa-trash"></span> Delete',
     ];
 
     public $columns = 2;

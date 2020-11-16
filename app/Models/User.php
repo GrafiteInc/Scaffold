@@ -2,20 +2,20 @@
 
 namespace App\Models;
 
-use Laravel\Cashier\Billable;
-use App\Models\Concerns\HasRoles;
-use App\Models\Concerns\HasTeams;
-use Laravel\Sanctum\HasApiTokens;
-use App\Models\Concerns\HasAvatar;
-use App\Models\Concerns\HasActivity;
-use App\Notifications\ResetPassword;
-use App\Models\Concerns\HasPermissions;
-use App\Models\Concerns\HasSubscription;
-use Illuminate\Notifications\Notifiable;
 use App\Models\Concerns\DatabaseSearchable;
+use App\Models\Concerns\HasActivity;
+use App\Models\Concerns\HasAvatar;
+use App\Models\Concerns\HasPermissions;
+use App\Models\Concerns\HasRoles;
+use App\Models\Concerns\HasSubscription;
+use App\Models\Concerns\HasTeams;
+use App\Notifications\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Cashier\Billable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {

@@ -2,17 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Http\Forms\UserForm;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 /**
  * NOT IN USE
  * This is a PoC of how to implement the Grafite Forms with Livewire Components
  * which adds a more real time flow to an application.
  */
-
 class UserSettings extends Component
 {
     use WithFileUploads;

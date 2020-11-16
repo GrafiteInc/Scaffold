@@ -9,7 +9,7 @@ class ApiTokenControllerTest extends TestCase
     public function testCreate()
     {
         $response = $this->post(route('ajax.create-token'), [
-            'name' => 'testing'
+            'name' => 'testing',
         ]);
 
         $response->assertStatus(200)

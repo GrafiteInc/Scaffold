@@ -2,18 +2,18 @@
 
 namespace Tests;
 
-use Mockery;
-use App\Models\Role;
-use App\Models\User;
-use Illuminate\Support\Str;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\Permissions;
 use App\Http\Middleware\VerifyCsrfToken;
-use Laravel\Cashier\SubscriptionBuilder;
+use App\Models\Role;
+use App\Models\User;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Str;
+use Laravel\Cashier\SubscriptionBuilder;
+use Mockery;
 
 abstract class TestCase extends BaseTestCase
 {

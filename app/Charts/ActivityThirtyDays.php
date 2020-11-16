@@ -56,7 +56,7 @@ class ActivityThirtyDays extends Chart
             ]);
 
         return [
-            $dataset
+            $dataset,
         ];
     }
 }

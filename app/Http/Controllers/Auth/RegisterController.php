@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Auth\Concerns\RegisterViaInvites;
+use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Validator;
 use Collective\Auth\Foundation\RegistersUsers;
-use App\Http\Controllers\Auth\Concerns\RegisterViaInvites;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {

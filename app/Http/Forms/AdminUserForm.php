@@ -4,11 +4,11 @@ namespace App\Http\Forms;
 
 use App\Models\Role;
 use App\Models\User;
-use Grafite\Forms\Fields\Text;
+use Grafite\Forms\Fields\Bootstrap\HasMany;
 use Grafite\Forms\Fields\Email;
 use Grafite\Forms\Fields\Hidden;
+use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Forms\ModelForm;
-use Grafite\Forms\Fields\Bootstrap\HasMany;
 
 class AdminUserForm extends ModelForm
 {
@@ -17,7 +17,7 @@ class AdminUserForm extends ModelForm
     public $routePrefix = 'admin.users';
 
     public $with = [
-        'roles'
+        'roles',
     ];
 
     public $confirmMessage = 'Are you sure you want to delete this user?';
@@ -27,7 +27,7 @@ class AdminUserForm extends ModelForm
     public $buttons = [
         'submit' => 'Save',
         'edit' => '<span class="fas fa-fw fa-pencil-alt"></span> Edit',
-        'delete' => '<span class="fas fa-fw fa-trash"></span> Delete'
+        'delete' => '<span class="fas fa-fw fa-trash"></span> Delete',
     ];
 
     public $columns = 2;

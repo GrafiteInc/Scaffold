@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use App\Models\Team;
-use App\Http\Forms\TeamForm;
-use Illuminate\Http\Request;
-use App\Services\TeamService;
-use App\Http\Forms\TeamInviteForm;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Forms\TeamForm;
+use App\Http\Forms\TeamInviteForm;
 use App\Http\Requests\TeamCreateRequest;
 use App\Http\Requests\TeamUpdateRequest;
+use App\Models\Team;
+use App\Services\TeamService;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class TeamsController extends Controller
 {
@@ -113,7 +113,6 @@ class TeamsController extends Controller
 
         return view('teams.members')->with(compact('inviteForm', 'team'));
     }
-
 
     /**
      * Update the specified team in storage.

@@ -56,7 +56,7 @@ class RegistrationThirtyDays extends Chart
             ]);
 
         return [
-            $dataset
+            $dataset,
         ];
     }
 }

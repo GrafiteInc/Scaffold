@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use Exception;
 use App\Models\Team;
-use Illuminate\Support\Str;
+use App\Notifications\InAppNotification;
+use Exception;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
-use App\Notifications\InAppNotification;
+use Illuminate\Support\Str;
 
 class TeamService
 {

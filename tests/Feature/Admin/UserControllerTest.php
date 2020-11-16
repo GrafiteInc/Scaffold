@@ -36,13 +36,13 @@ class UserControllerTest extends TestCase
 
         $role = Role::factory()->create([
             'name' => 'admin',
-            'label' => 'Admin'
+            'label' => 'Admin',
         ]);
 
         $user->roles()->attach($role);
 
         $response = $this->get(route('admin.users.search', [
-            'search' => 'moe'
+            'search' => 'moe',
         ]));
 
         $response->assertOk();

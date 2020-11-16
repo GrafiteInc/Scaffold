@@ -3,13 +3,13 @@
 namespace App\Http\Forms;
 
 use App\Models\User;
-use Grafite\Forms\Html\HrTag;
-use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Html\Heading;
+use Grafite\Forms\Fields\FileWithPreview;
+use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Toggled;
 use Grafite\Forms\Forms\ModelForm;
-use Grafite\Forms\Fields\FileWithPreview;
+use Grafite\Forms\Html\Heading;
+use Grafite\Forms\Html\HrTag;
 
 class UserForm extends ModelForm
 {
@@ -25,7 +25,7 @@ class UserForm extends ModelForm
 
     public $buttons = [
         'submit' => 'Save',
-        'delete' => '<span class="fas fa-fw fa-trash"></span> Delete'
+        'delete' => '<span class="fas fa-fw fa-trash"></span> Delete',
     ];
 
     public $columns = 1;

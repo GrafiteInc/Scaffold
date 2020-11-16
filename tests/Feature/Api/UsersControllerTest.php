@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Api;
 
-use Tests\ApiTestCase;
-use Laravel\Sanctum\Sanctum;
 use App\Notifications\StandardEmail;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Notifications\AnonymousNotifiable;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\Sanctum;
+use Tests\ApiTestCase;
 
 class UsersControllerTest extends ApiTestCase
 {
@@ -27,7 +27,7 @@ class UsersControllerTest extends ApiTestCase
         $token = $this->user->createToken('test-token')->plainTextToken;
 
         $response = $this->get(route('api.users.me'), [
-            'Authorization' => "Bearer {$token}"
+            'Authorization' => "Bearer {$token}",
         ]);
 
         $content = json_decode($response->content());

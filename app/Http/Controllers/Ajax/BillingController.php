@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Ajax;
 
+use App\Http\Controllers\Controller;
+use App\Notifications\InAppNotification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
-use App\Notifications\InAppNotification;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 
 class BillingController extends Controller
@@ -46,7 +46,7 @@ class BillingController extends Controller
 
         return response()->json([
             'message' => $message,
-            'redirect' => $redirect
+            'redirect' => $redirect,
         ], 409);
     }
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\File;
-use Illuminate\Support\Str;
 use App\Http\Forms\ImageUploadForm;
+use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class DashboardController extends Controller
 {
@@ -18,7 +18,7 @@ class DashboardController extends Controller
     {
         $images = collect(Storage::allFiles('public/uploads'))
             ->filter(function ($file) {
-                return !Str::startsWith(str_replace('public/uploads/', '', $file), '.');
+                return ! Str::startsWith(str_replace('public/uploads/', '', $file), '.');
             })->map(function ($file) {
                 return str_replace('public', 'storage', $file);
             });
