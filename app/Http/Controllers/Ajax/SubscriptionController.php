@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Notifications\InAppNotification;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 
-class BillingController extends Controller
+class SubscriptionController extends Controller
 {
     public function createSubscription(Request $request)
     {

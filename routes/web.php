@@ -1,27 +1,30 @@
 <?php
 
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin;
-use App\Http\Controllers\Ajax;
-use App\Http\Controllers\ApiTokenController;
 use App\Http\Controllers\Auth;
-use App\Http\Controllers\BillingController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DestroyController;
-use App\Http\Controllers\FileUploadController;
-use App\Http\Controllers\InvitesController;
-use App\Http\Controllers\NotificationsController;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\SecurityController;
-use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\TeamMembersController;
-use App\Http\Controllers\TeamsController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\TeamsController;
 use Collective\Auth\Facades\CollectiveAuth;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\TeamMembersController;
+use App\Http\Controllers\ResendInviteController;
+use App\Http\Controllers\RevokeInviteController;
+use App\Http\Controllers\User\BillingController;
+use App\Http\Controllers\User\DestroyController;
+use App\Http\Controllers\User\InvitesController;
+use App\Http\Controllers\Ajax\ApiTokenController;
+use App\Http\Controllers\User\SecurityController;
+use App\Http\Controllers\User\SettingsController;
+use App\Http\Controllers\Ajax\CookiePolicyController;
+use App\Http\Controllers\Ajax\SubscriptionController;
+use App\Http\Controllers\User\ApiTokenIndexController;
+use App\Http\Controllers\User\NotificationsController;
+use App\Http\Controllers\Ajax\NotificationCountController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +48,7 @@ Route::get('terms-of-service', [PagesController::class, 'termsOfService'])->name
 Route::get('privacy-policy', [PagesController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('contact', [PagesController::class, 'getContact'])->name('contact');
 
-Route::post('accept-cookie-policy', [Ajax\CookiePolicyController::class, 'accept'])->name('ajax.accept-cookie-policy');
+Route::post('accept-cookie-policy', [CookiePolicyController::class, 'accept'])->name('ajax.accept-cookie-policy');
 
 Route::post(
     'stripe/webhook',
@@ -79,7 +82,7 @@ Route::middleware(ProtectAgainstSpam::class)->group(function () {
 */
 
 Route::middleware('auth', 'activity')->group(function () {
-    Route::post('users/return-switch', [Admin\UserController::class, 'switchBack'])->name('users.return-switch');
+    Route::post('users/return-switch', [UserController::class, 'switchBack'])->name('users.return-switch');
 
     Route::middleware('verified')->group(function () {
         /*
@@ -105,13 +108,13 @@ Route::middleware('auth', 'activity')->group(function () {
             Route::get('security', [SecurityController::class, 'index'])->name('user.security');
             Route::put('security', [SecurityController::class, 'update'])->name('user.security.update');
 
-            Route::get('api-tokens', [ApiTokenController::class, 'index'])->name('user.api-tokens');
+            Route::get('api-tokens', ApiTokenIndexController::class)->name('user.api-tokens');
 
             Route::prefix('billing')->group(function () {
                 Route::middleware('has-subscription')->group(function () {
                     Route::post('update', [BillingController::class, 'update'])->name('user.billing.update');
-                    Route::post('update', [BillingController::class, 'update'])->name('user.billing.update');
-                    Route::post('update', [BillingController::class, 'update'])->name('user.billing.update');
+                    // Route::post('update', [BillingController::class, 'update'])->name('user.billing.update');
+                    // Route::post('update', [BillingController::class, 'update'])->name('user.billing.update');
                     Route::delete('cancel', [BillingController::class, 'cancel'])->name('user.billing.cancel');
                 });
             });
@@ -146,8 +149,8 @@ Route::middleware('auth', 'activity')->group(function () {
             });
         });
 
-        Route::post('invites/{invite}/resend', [InvitesController::class, 'resend'])->name('invite.resend');
-        Route::post('invites/{invite}/revoke', [InvitesController::class, 'revoke'])->name('invite.revoke');
+        Route::post('invites/{invite}/resend', ResendInviteController::class)->name('invite.resend');
+        Route::post('invites/{invite}/revoke', RevokeInviteController::class)->name('invite.revoke');
 
         Route::prefix('teams')->group(function () {
             Route::get('/', [TeamsController::class, 'index'])->name('teams');
@@ -178,11 +181,11 @@ Route::middleware('auth', 'activity')->group(function () {
             Route::post('token', [ApiTokenController::class, 'create'])->name('ajax.create-token');
             Route::delete('token/{token}/destroy', [ApiTokenController::class, 'destroy'])->name('ajax.destroy-token');
 
-            Route::get('notifications-count', [NotificationsController::class, 'count'])->name('ajax.notifications-count');
+            Route::get('notifications-count', NotificationCountController::class)->name('ajax.notifications-count');
 
-            Route::post('subscribe', [BillingController::class, 'createSubscription'])
+            Route::post('subscribe', [SubscriptionController::class, 'createSubscription'])
                 ->name('ajax.billing.subscription.create');
-            Route::post('payment-method', [BillingController::class, 'updatePaymentMethod'])
+            Route::post('payment-method', [SubscriptionController::class, 'updatePaymentMethod'])
                 ->name('ajax.billing.subscription.payment-method');
 
             Route::post('file-upload', [FileUploadController::class, 'upload'])->name('ajax.files-upload');
@@ -195,7 +198,7 @@ Route::middleware('auth', 'activity')->group(function () {
         */
 
         Route::prefix('admin')->middleware(['roles:admin', 'password.confirm'])->group(function () {
-            Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+            Route::get('dashboard', AdminDashboardController::class)->name('admin.dashboard');
 
             /*
             |--------------------------------------------------------------------------

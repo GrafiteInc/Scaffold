@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Invite;
 use App\Notifications\StandardEmail;
-use App\Notifications\UserInviteEmail;
 use Illuminate\Support\Facades\Notification;
 
-class InvitesController extends Controller
+class RevokeInviteController extends Controller
 {
     /**
      * Delete the invitation.
@@ -16,7 +15,7 @@ class InvitesController extends Controller
      * @param  \App\Models\Invite  $appModelsInvite
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function revoke(Invite $invite)
+    public function __invoke(Invite $invite)
     {
         try {
             $email = $invite->email;
@@ -31,29 +30,6 @@ class InvitesController extends Controller
             return redirect()->back()->withMessage('Invitation was revoked');
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['Invitation was unable to be revoked']);
-        }
-    }
-
-    /**
-     * Resend the invitation.
-     *
-     * @param  \App\Models\Invite  $appModelsInvite
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function resend(Invite $invite)
-    {
-        try {
-            Notification::route('mail', $invite->email)
-                ->notify(new UserInviteEmail(
-                    $invite->email,
-                    $invite->from,
-                    $invite->message,
-                    $invite->token
-                ));
-
-            return redirect()->back()->withMessage('Invitation was resent');
-        } catch (Exception $e) {
-            return redirect()->back()->withErrors(['Invitation was unable to be resent']);
         }
     }
 }

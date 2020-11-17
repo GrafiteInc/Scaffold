@@ -10,7 +10,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
-        "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "grafite/charts": "^0.5.0",
         "grafite/database": "^2.3",
@@ -24,8 +23,8 @@
         "lasserafn/php-initial-avatar-generator": "^4.0",
         "livewire/livewire": "^2.2",
         "silviolleite/laravelpwa": "^2.0",
-        "spatie/laravel-honeypot": "^2.2",
-        "tightenco/ziggy": "^0.9.4"
+        "spatie/laravel-honeypot": "^3.0",
+        "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

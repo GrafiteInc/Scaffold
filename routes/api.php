@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\ApiDeviceLoginController;
-use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\Api\ApiDeviceLoginController;
 
 /*
 |--------------------------------------------------------------------------
