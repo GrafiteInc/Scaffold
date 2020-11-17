@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Models\Role;
 use Tests\TestCase;
+use App\Models\Role;
 
 class RoleControllerTest extends TestCase
 {

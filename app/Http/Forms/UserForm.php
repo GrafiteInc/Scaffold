@@ -3,13 +3,13 @@
 namespace App\Http\Forms;
 
 use App\Models\User;
-use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Fields\FileWithPreview;
+use Grafite\Forms\Html\HrTag;
 use Grafite\Forms\Fields\Text;
+use Grafite\Forms\Fields\Email;
+use Grafite\Forms\Html\Heading;
 use Grafite\Forms\Fields\Toggled;
 use Grafite\Forms\Forms\ModelForm;
-use Grafite\Forms\Html\Heading;
-use Grafite\Forms\Html\HrTag;
+use Grafite\Forms\Fields\FileWithPreview;
 
 class UserForm extends ModelForm
 {

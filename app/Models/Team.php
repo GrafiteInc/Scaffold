@@ -3,12 +3,10 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasAvatar;
-use App\Models\Concerns\HasSubscribedUser;
 use App\Models\Concerns\Invitable;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Concerns\HasSubscribedUser;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Team extends Model
 {

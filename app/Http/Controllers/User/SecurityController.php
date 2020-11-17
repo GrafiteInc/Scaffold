@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Forms\UserSecurityForm;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\PasswordUpdateRequest;
 use Collective\Auth\Foundation\ResetsPasswords;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class SecurityController extends Controller
 {

@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use App\Models\Team;
-use App\Notifications\InAppNotification;
 use Exception;
+use App\Models\Team;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+use App\Notifications\InAppNotification;
 
 class TeamService
 {
@@ -97,7 +97,7 @@ class TeamService
         $message = "You've been invited to a team on {$app} called: {$team->name}!";
 
         if ($invite = $team->invite($email, $message)) {
-            app_notify('You sent an invite to '.$email.' for '.$team->name);
+            app_notify('You sent an invite to ' . $email . ' for ' . $team->name);
         }
 
         return $invite;
@@ -185,7 +185,7 @@ class TeamService
             ])->save()
         ) {
             if ($originalRole !== $payload['team_role']) {
-                $message = 'Your team role in '.$team->name.' has changed to: '.Str::title($payload['team_role']);
+                $message = 'Your team role in ' . $team->name . ' has changed to: ' . Str::title($payload['team_role']);
                 $notification = new InAppNotification($message);
                 $notification->isImportant();
 

@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\User;
 
-use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Hash;
 
 class SecurityControllerTest extends TestCase
 {

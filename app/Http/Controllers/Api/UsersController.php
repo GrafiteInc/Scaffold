@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\ApiUserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Notifications\StandardEmail;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ApiUserUpdateRequest;
+use Illuminate\Support\Facades\Notification;
 
 class UsersController extends ApiController
 {

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Invite;
 use App\Notifications\StandardEmail;
 use App\Notifications\UserInviteEmail;
-use Exception;
 use Illuminate\Support\Facades\Notification;
 
 class InvitesController extends Controller

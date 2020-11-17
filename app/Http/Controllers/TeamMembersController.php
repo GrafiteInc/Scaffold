@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Concerns\HasMembers;
-use App\Http\Forms\TeamInviteForm;
-use App\Http\Forms\TeamMemberForm;
+use Exception;
 use App\Models\Team;
 use App\Models\User;
-use App\Services\TeamService;
-use Exception;
 use Illuminate\Http\Request;
+use App\Services\TeamService;
+use App\Http\Forms\TeamInviteForm;
+use App\Http\Forms\TeamMemberForm;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Controllers\Concerns\HasMembers;
 
 class TeamMembersController extends Controller
 {

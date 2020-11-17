@@ -2,7 +2,6 @@
 
 namespace App\Models\Concerns;
 
-use App\Models\Activity;
 use Illuminate\Support\Facades\Storage;
 use LasseRafn\InitialAvatarGenerator\InitialAvatar;
 

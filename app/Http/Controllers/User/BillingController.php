@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Notifications\InAppNotification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use App\Notifications\InAppNotification;
 
 class BillingController extends Controller
 {
@@ -189,7 +189,7 @@ class BillingController extends Controller
             $user->subscription(config('billing.subscription_name'))->cancel();
 
             $date = $invoice->date()->format('Y-m-d');
-            $message = 'Your subscription has been cancelled! It will be availale until '.$date;
+            $message = 'Your subscription has been cancelled! It will be availale until ' . $date;
 
             $notification = new InAppNotification($message);
             $notification->isImportant();

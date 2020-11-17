@@ -2,9 +2,9 @@
 
 namespace App\Http\Forms;
 
+use Grafite\Forms\Html\Button;
 use Grafite\Forms\Fields\Number;
 use Grafite\Forms\Forms\LivewireForm;
-use Grafite\Forms\Html\Button;
 
 class CartForm extends LivewireForm
 {

@@ -3,9 +3,9 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class StandardEmail extends Notification implements ShouldQueue
 {
@@ -54,7 +54,7 @@ class StandardEmail extends Notification implements ShouldQueue
     {
         return (new MailMessage())
             ->subject($this->subject)
-            ->greeting('Hello '.$this->name)
+            ->greeting('Hello ' . $this->name)
             ->line($this->message)
             ->action('Login', url('login'));
     }

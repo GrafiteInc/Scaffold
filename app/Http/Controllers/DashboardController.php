@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Forms\ImageUploadForm;
-use Illuminate\Http\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Http\Forms\ImageUploadForm;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {

@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\Models\Team;
 use App\Models\User;
 use App\Notifications\InAppNotification;
 use Illuminate\Support\Facades\Notification;
-use Tests\TestCase;
 
 class TeamsControllerTest extends TestCase
 {

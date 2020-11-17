@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\User;
 
-use Laravel\Cashier\Subscription;
 use Tests\TestCase;
+use Laravel\Cashier\Subscription;
 
 class BillingControllerTest extends TestCase
 {

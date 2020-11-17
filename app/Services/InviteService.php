@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use App\Models\Invite;
 use App\Models\User;
-use App\Notifications\InAppNotification;
-use App\Notifications\UserInviteEmail;
-use Illuminate\Support\Facades\Notification;
+use App\Models\Invite;
 use Illuminate\Support\Str;
+use App\Notifications\UserInviteEmail;
+use App\Notifications\InAppNotification;
+use Illuminate\Support\Facades\Notification;
 
 class InviteService
 {

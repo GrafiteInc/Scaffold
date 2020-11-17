@@ -4,9 +4,9 @@ namespace App\Notifications;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class UserInviteEmail extends Notification implements ShouldQueue
 {
@@ -57,16 +57,16 @@ class UserInviteEmail extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         $app = config('app.name');
-        $endpoint = url('register/invite?email='.urlencode($this->user).'&activate_token='.$this->token);
+        $endpoint = url('register/invite?email=' . urlencode($this->user) . '&activate_token=' . $this->token);
 
         if (User::where('email', $this->user)->first()) {
             $endpoint = route('user.invites');
         }
 
         return (new MailMessage())
-            ->subject('You’ve Been Invited to Join '.$app)
-            ->greeting('Hello '.$this->user)
-            ->line($this->from->name.' has invited you to join '.$app.'!')
+            ->subject('You’ve Been Invited to Join ' . $app)
+            ->greeting('Hello ' . $this->user)
+            ->line($this->from->name . ' has invited you to join ' . $app . '!')
             ->line($this->message)
             ->line('Click the link below to accept your invite!')
             ->action('Login', $endpoint);

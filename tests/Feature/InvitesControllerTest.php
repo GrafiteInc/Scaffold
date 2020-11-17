@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\Models\Invite;
 use App\Notifications\StandardEmail;
 use App\Notifications\UserInviteEmail;
-use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
-use Tests\TestCase;
+use Illuminate\Notifications\AnonymousNotifiable;
 
 class InvitesControllerTest extends TestCase
 {

@@ -3,9 +3,9 @@
 namespace App\Http\Forms;
 
 use App\Models\Team;
-use Grafite\Forms\Fields\FileWithPreview;
 use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Forms\ModelForm;
+use Grafite\Forms\Fields\FileWithPreview;
 
 class TeamForm extends ModelForm
 {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Forms;
 
-use Grafite\Forms\Fields\Password;
 use Grafite\Forms\Forms\BaseForm;
+use Grafite\Forms\Fields\Password;
 
 class UserSecurityForm extends BaseForm
 {

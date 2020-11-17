@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Forms\CartForm;
 use Livewire\Component;
+use App\Http\Forms\CartForm;
 
 class Cart extends Component
 {

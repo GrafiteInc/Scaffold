@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Concerns;
 
-use App\Models\User;
 use Exception;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 trait HasMembers

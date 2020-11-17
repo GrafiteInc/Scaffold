@@ -3,9 +3,9 @@
 namespace App\Http\Forms;
 
 use App\Models\Role;
-use Grafite\Forms\Fields\Bootstrap\HasMany;
 use Grafite\Forms\Fields\Email;
 use Grafite\Forms\Forms\BaseForm;
+use Grafite\Forms\Fields\Bootstrap\HasMany;
 
 class InviteUserForm extends BaseForm
 {

@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\User;
 
+use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Tests\TestCase;
 
 class SettingsControllerTest extends TestCase
 {

@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Forms\TeamForm;
-use App\Http\Forms\TeamInviteForm;
-use App\Http\Requests\TeamCreateRequest;
-use App\Http\Requests\TeamUpdateRequest;
-use App\Models\Team;
-use App\Services\TeamService;
 use Exception;
+use App\Models\Team;
+use App\Http\Forms\TeamForm;
 use Illuminate\Http\Request;
+use App\Services\TeamService;
+use App\Http\Forms\TeamInviteForm;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\TeamCreateRequest;
+use App\Http\Requests\TeamUpdateRequest;
 
 class TeamsController extends Controller
 {

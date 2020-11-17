@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth\Concerns;
 
-use App\Services\InviteService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Services\InviteService;
 use Illuminate\Support\Facades\Validator;
 
 trait RegisterViaInvites

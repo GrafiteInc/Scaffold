@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Forms\RoleForm;
-use App\Http\Requests\StoreRoleRequest;
-use App\Models\Role;
 use Exception;
+use App\Models\Role;
+use App\Http\Forms\RoleForm;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRoleRequest;
 
 class RoleController extends Controller
 {

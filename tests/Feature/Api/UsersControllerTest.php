@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Api;
 
-use App\Notifications\StandardEmail;
-use Illuminate\Notifications\AnonymousNotifiable;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Storage;
-use Laravel\Sanctum\Sanctum;
 use Tests\ApiTestCase;
+use Laravel\Sanctum\Sanctum;
+use App\Notifications\StandardEmail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Notifications\AnonymousNotifiable;
 
 class UsersControllerTest extends ApiTestCase
 {

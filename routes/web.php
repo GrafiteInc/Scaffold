@@ -1,8 +1,8 @@
 <?php
 
-use Collective\Auth\Facades\CollectiveAuth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
+use Collective\Auth\Facades\CollectiveAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +63,6 @@ Route::middleware('auth', 'activity')->group(function () {
     Route::post('users/return-switch', 'Admin\\UserController@switchBack')->name('users.return-switch');
 
     Route::middleware('verified')->group(function () {
-
         /*
         |--------------------------------------------------------------------------
         | Dashboard

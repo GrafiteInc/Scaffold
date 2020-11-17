@@ -1,7 +1,7 @@
 <?php
 
-use App\Notifications\InAppNotification;
 use App\Notifications\StandardEmail;
+use App\Notifications\InAppNotification;
 use Illuminate\Support\Facades\Notification;
 
 /*

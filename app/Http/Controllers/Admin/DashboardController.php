@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Charts\ActivityThirtyDays;
-use App\Charts\RegistrationThirtyDays;
 use App\Http\Controllers\Controller;
+use App\Charts\RegistrationThirtyDays;
 
 class DashboardController extends Controller
 {
