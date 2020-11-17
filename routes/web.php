@@ -2,6 +2,23 @@
 
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin;
+use App\Http\Controllers\Ajax;
+use App\Http\Controllers\ApiTokenController;
+use App\Http\Controllers\Auth;
+use App\Http\Controllers\BillingController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DestroyController;
+use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\InvitesController;
+use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\SecurityController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\TeamMembersController;
+use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
 use Collective\Auth\Facades\CollectiveAuth;
@@ -23,16 +40,16 @@ use Collective\Auth\Facades\CollectiveAuth;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', 'PagesController@home')->name('home');
-Route::get('terms-of-service', 'PagesController@termsOfService')->name('terms-of-service');
-Route::get('privacy-policy', 'PagesController@privacyPolicy')->name('privacy-policy');
-Route::get('contact', 'PagesController@getContact')->name('contact');
+Route::get('/', [PagesController::class, 'home'])->name('home');
+Route::get('terms-of-service', [PagesController::class, 'termsOfService'])->name('terms-of-service');
+Route::get('privacy-policy', [PagesController::class, 'privacyPolicy'])->name('privacy-policy');
+Route::get('contact', [PagesController::class, 'getContact'])->name('contact');
 
-Route::post('accept-cookie-policy', 'Ajax\\CookiePolicyController@accept')->name('ajax.accept-cookie-policy');
+Route::post('accept-cookie-policy', [Ajax\CookiePolicyController::class, 'accept'])->name('ajax.accept-cookie-policy');
 
 Route::post(
     'stripe/webhook',
-    '\\App\\Http\\Controllers\\WebhookController@handleWebhook'
+    [\App\Http\Controllers\WebhookController::class, 'handleWebhook']
 );
 
 /*
@@ -41,8 +58,8 @@ Route::post(
 |--------------------------------------------------------------------------
 */
 
-Route::get('register/invite', 'Auth\\RegisterController@showRegistrationInviteForm');
-Route::post('register/invite', 'Auth\\RegisterController@registerViaInvite');
+Route::get('register/invite', [Auth\RegisterController::class, 'showRegistrationInviteForm']);
+Route::post('register/invite', [Auth\RegisterController::class, 'registerViaInvite']);
 
 Route::middleware(ProtectAgainstSpam::class)->group(function () {
     CollectiveAuth::routes([
@@ -62,7 +79,7 @@ Route::middleware(ProtectAgainstSpam::class)->group(function () {
 */
 
 Route::middleware('auth', 'activity')->group(function () {
-    Route::post('users/return-switch', 'Admin\\UserController@switchBack')->name('users.return-switch');
+    Route::post('users/return-switch', [Admin\UserController::class, 'switchBack'])->name('users.return-switch');
 
     Route::middleware('verified')->group(function () {
         /*
@@ -71,7 +88,7 @@ Route::middleware('auth', 'activity')->group(function () {
         |--------------------------------------------------------------------------
         */
 
-        Route::get('dashboard', 'DashboardController@get')->name('dashboard');
+        Route::get('dashboard', [DashboardController::class, 'get'])->name('dashboard');
 
         /*
         |--------------------------------------------------------------------------
@@ -80,74 +97,74 @@ Route::middleware('auth', 'activity')->group(function () {
         */
 
         Route::prefix('user')->group(function () {
-            Route::get('settings', 'SettingsController@index')->name('user.settings');
-            Route::delete('destroy', 'DestroyController@destroy')->name('user.destroy');
-            Route::put('settings', 'SettingsController@update')->name('user.update');
-            Route::delete('avatar', 'SettingsController@destroyAvatar')->name('user.destroy.avatar');
+            Route::get('settings', [SettingsController::class, 'index'])->name('user.settings');
+            Route::delete('destroy', [DestroyController::class, 'destroy'])->name('user.destroy');
+            Route::put('settings', [SettingsController::class, 'update'])->name('user.update');
+            Route::delete('avatar', [SettingsController::class, 'destroyAvatar'])->name('user.destroy.avatar');
 
-            Route::get('security', 'SecurityController@index')->name('user.security');
-            Route::put('security', 'SecurityController@update')->name('user.security.update');
+            Route::get('security', [SecurityController::class, 'index'])->name('user.security');
+            Route::put('security', [SecurityController::class, 'update'])->name('user.security.update');
 
-            Route::get('api-tokens', 'ApiTokenController@index')->name('user.api-tokens');
+            Route::get('api-tokens', [ApiTokenController::class, 'index'])->name('user.api-tokens');
 
             Route::prefix('billing')->group(function () {
                 Route::middleware('has-subscription')->group(function () {
-                    Route::post('update', 'BillingController@update')->name('user.billing.update');
-                    Route::post('update', 'BillingController@update')->name('user.billing.update');
-                    Route::post('update', 'BillingController@update')->name('user.billing.update');
-                    Route::delete('cancel', 'BillingController@cancel')->name('user.billing.cancel');
+                    Route::post('update', [BillingController::class, 'update'])->name('user.billing.update');
+                    Route::post('update', [BillingController::class, 'update'])->name('user.billing.update');
+                    Route::post('update', [BillingController::class, 'update'])->name('user.billing.update');
+                    Route::delete('cancel', [BillingController::class, 'cancel'])->name('user.billing.cancel');
                 });
             });
 
             Route::prefix('notifications')->group(function () {
-                Route::get('/', 'NotificationsController@index')->name('user.notifications');
-                Route::post('{uuid}/read', 'NotificationsController@read')->name('user.notifications.read');
-                Route::delete('{uuid}/delete', 'NotificationsController@delete')->name('user.notifications.destroy');
-                Route::delete('clear', 'NotificationsController@deleteAll')->name('user.notifications.clear');
+                Route::get('/', [NotificationsController::class, 'index'])->name('user.notifications');
+                Route::post('{uuid}/read', [NotificationsController::class, 'read'])->name('user.notifications.read');
+                Route::delete('{uuid}/delete', [NotificationsController::class, 'delete'])->name('user.notifications.destroy');
+                Route::delete('clear', [NotificationsController::class, 'deleteAll'])->name('user.notifications.clear');
             });
 
             Route::prefix('invites')->group(function () {
-                Route::get('/', 'InvitesController@index')->name('user.invites');
-                Route::post('{invite}/accept', 'InvitesController@accept')->name('user.invites.accept');
-                Route::post('{invite}/reject', 'InvitesController@reject')->name('user.invites.reject');
+                Route::get('/', [InvitesController::class, 'index'])->name('user.invites');
+                Route::post('{invite}/accept', [InvitesController::class, 'accept'])->name('user.invites.accept');
+                Route::post('{invite}/reject', [InvitesController::class, 'reject'])->name('user.invites.reject');
             });
 
             Route::prefix('billing')->group(function () {
-                Route::get('subscribe', 'BillingController@subscribe')->name('user.billing');
-                Route::get('renew', 'BillingController@renewSubscription')->name('user.billing.renew');
-                Route::get('details', 'BillingController@getSubscription')->name('user.billing.details');
+                Route::get('subscribe', [BillingController::class, 'subscribe'])->name('user.billing');
+                Route::get('renew', [BillingController::class, 'renewSubscription'])->name('user.billing.renew');
+                Route::get('details', [BillingController::class, 'getSubscription'])->name('user.billing.details');
                 Route::group(['gateway' => 'subscribed'], function () {
-                    Route::get('payment-method', 'BillingController@paymentMethod')->name('user.billing.payment-method');
-                    Route::get('change-plan', 'BillingController@getChangePlan')->name('user.billing.change-plan');
-                    Route::post('swap-plan', 'BillingController@swapPlan')->name('user.billing.swap-plan');
-                    Route::post('cancellation', 'BillingController@cancelSubscription')->name('user.subscription.cancel');
-                    Route::get('invoices', 'BillingController@getInvoices')->name('user.billing.invoices');
-                    Route::get('invoice/{id}', 'BillingController@getInvoiceById')->name('user.billing.invoice');
-                    Route::get('coupon', 'BillingController@getCoupon')->name('user.billing.coupons');
-                    Route::post('apply-coupon', 'BillingController@applyCoupon')->name('user.billing.apply-coupon');
+                    Route::get('payment-method', [BillingController::class, 'paymentMethod'])->name('user.billing.payment-method');
+                    Route::get('change-plan', [BillingController::class, 'getChangePlan'])->name('user.billing.change-plan');
+                    Route::post('swap-plan', [BillingController::class, 'swapPlan'])->name('user.billing.swap-plan');
+                    Route::post('cancellation', [BillingController::class, 'cancelSubscription'])->name('user.subscription.cancel');
+                    Route::get('invoices', [BillingController::class, 'getInvoices'])->name('user.billing.invoices');
+                    Route::get('invoice/{id}', [BillingController::class, 'getInvoiceById'])->name('user.billing.invoice');
+                    Route::get('coupon', [BillingController::class, 'getCoupon'])->name('user.billing.coupons');
+                    Route::post('apply-coupon', [BillingController::class, 'applyCoupon'])->name('user.billing.apply-coupon');
                 });
             });
         });
 
-        Route::post('invites/{invite}/resend', 'InvitesController@resend')->name('invite.resend');
-        Route::post('invites/{invite}/revoke', 'InvitesController@revoke')->name('invite.revoke');
+        Route::post('invites/{invite}/resend', [InvitesController::class, 'resend'])->name('invite.resend');
+        Route::post('invites/{invite}/revoke', [InvitesController::class, 'revoke'])->name('invite.revoke');
 
         Route::prefix('teams')->group(function () {
-            Route::get('/', 'TeamsController@index')->name('teams');
-            Route::post('/', 'TeamsController@store')->name('teams.store');
-            Route::get('create', 'TeamsController@create')->name('teams.create');
-            Route::get('{team}/edit', 'TeamsController@edit')->name('teams.edit');
-            Route::get('{team}/members', 'TeamsController@members')->name('teams.members');
-            Route::delete('{team}/delete', 'TeamsController@destroy')->name('teams.destroy');
-            Route::put('{team}/update', 'TeamsController@update')->name('teams.update');
-            Route::delete('avatar', 'TeamsController@destroyAvatar')->name('team.destroy.avatar');
+            Route::get('/', [TeamsController::class, 'index'])->name('teams');
+            Route::post('/', [TeamsController::class, 'store'])->name('teams.store');
+            Route::get('create', [TeamsController::class, 'create'])->name('teams.create');
+            Route::get('{team}/edit', [TeamsController::class, 'edit'])->name('teams.edit');
+            Route::get('{team}/members', [TeamsController::class, 'members'])->name('teams.members');
+            Route::delete('{team}/delete', [TeamsController::class, 'destroy'])->name('teams.destroy');
+            Route::put('{team}/update', [TeamsController::class, 'update'])->name('teams.update');
+            Route::delete('avatar', [TeamsController::class, 'destroyAvatar'])->name('team.destroy.avatar');
 
-            Route::get('{team}', 'TeamMembersController@show')->name('teams.show');
-            Route::post('{team}/leave', 'TeamMembersController@leave')->name('teams.leave');
-            Route::post('{team}/invite', 'TeamMembersController@inviteMember')->name('teams.members.invite');
-            Route::delete('{team}/remove/{member}', 'TeamMembersController@removeMember')->name('teams.members.remove');
-            Route::get('{team}/edit/{member}', 'TeamMembersController@editMember')->name('teams.members.edit');
-            Route::put('{team}/update/{member}', 'TeamMembersController@updateMember')->name('teams.members.update');
+            Route::get('{team}', [TeamMembersController::class, 'show'])->name('teams.show');
+            Route::post('{team}/leave', [TeamMembersController::class, 'leave'])->name('teams.leave');
+            Route::post('{team}/invite', [TeamMembersController::class, 'inviteMember'])->name('teams.members.invite');
+            Route::delete('{team}/remove/{member}', [TeamMembersController::class, 'removeMember'])->name('teams.members.remove');
+            Route::get('{team}/edit/{member}', [TeamMembersController::class, 'editMember'])->name('teams.members.edit');
+            Route::put('{team}/update/{member}', [TeamMembersController::class, 'updateMember'])->name('teams.members.update');
         });
 
         /*
@@ -157,18 +174,18 @@ Route::middleware('auth', 'activity')->group(function () {
         */
 
         Route::prefix('ajax')->group(function () {
-            Route::get('tokens', 'ApiTokenController@index')->name('ajax.tokens');
-            Route::post('token', 'ApiTokenController@create')->name('ajax.create-token');
-            Route::delete('token/{token}/destroy', 'ApiTokenController@destroy')->name('ajax.destroy-token');
+            Route::get('tokens', [ApiTokenController::class, 'index'])->name('ajax.tokens');
+            Route::post('token', [ApiTokenController::class, 'create'])->name('ajax.create-token');
+            Route::delete('token/{token}/destroy', [ApiTokenController::class, 'destroy'])->name('ajax.destroy-token');
 
-            Route::get('notifications-count', 'NotificationsController@count')->name('ajax.notifications-count');
+            Route::get('notifications-count', [NotificationsController::class, 'count'])->name('ajax.notifications-count');
 
-            Route::post('subscribe', 'BillingController@createSubscription')
+            Route::post('subscribe', [BillingController::class, 'createSubscription'])
                 ->name('ajax.billing.subscription.create');
-            Route::post('payment-method', 'BillingController@updatePaymentMethod')
+            Route::post('payment-method', [BillingController::class, 'updatePaymentMethod'])
                 ->name('ajax.billing.subscription.payment-method');
 
-            Route::post('file-upload', 'FileUploadController@upload')->name('ajax.files-upload');
+            Route::post('file-upload', [FileUploadController::class, 'upload'])->name('ajax.files-upload');
         });
 
         /*
@@ -178,17 +195,17 @@ Route::middleware('auth', 'activity')->group(function () {
         */
 
         Route::prefix('admin')->middleware(['roles:admin', 'password.confirm'])->group(function () {
-            Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
+            Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
             /*
             |--------------------------------------------------------------------------
             | Users
             |--------------------------------------------------------------------------
             */
-            Route::get('users/search', 'UserController@search')->name('admin.users.search');
-            Route::get('users/invite', 'UserController@getInvite')->name('admin.users.invite');
-            Route::post('users/invite', 'UserController@postInvite')->name('admin.users.send-invite');
-            Route::post('users/switch/{user}', 'UserController@switchToUser')->name('admin.users.switch');
+            Route::get('users/search', [UserController::class, 'search'])->name('admin.users.search');
+            Route::get('users/invite', [UserController::class, 'getInvite'])->name('admin.users.invite');
+            Route::post('users/invite', [UserController::class, 'postInvite'])->name('admin.users.send-invite');
+            Route::post('users/switch/{user}', [UserController::class, 'switchToUser'])->name('admin.users.switch');
 
             Route::resource('users', UserController::class, ['as' => 'admin']);
 
