@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
 use Collective\Auth\Facades\CollectiveAuth;
@@ -77,7 +79,7 @@ Route::middleware('auth', 'activity')->group(function () {
         |--------------------------------------------------------------------------
         */
 
-        Route::prefix('user')->namespace('User')->group(function () {
+        Route::prefix('user')->group(function () {
             Route::get('settings', 'SettingsController@index')->name('user.settings');
             Route::delete('destroy', 'DestroyController@destroy')->name('user.destroy');
             Route::put('settings', 'SettingsController@update')->name('user.update');
@@ -154,7 +156,7 @@ Route::middleware('auth', 'activity')->group(function () {
         |--------------------------------------------------------------------------
         */
 
-        Route::prefix('ajax')->namespace('Ajax')->group(function () {
+        Route::prefix('ajax')->group(function () {
             Route::get('tokens', 'ApiTokenController@index')->name('ajax.tokens');
             Route::post('token', 'ApiTokenController@create')->name('ajax.create-token');
             Route::delete('token/{token}/destroy', 'ApiTokenController@destroy')->name('ajax.destroy-token');
@@ -175,7 +177,7 @@ Route::middleware('auth', 'activity')->group(function () {
         |--------------------------------------------------------------------------
         */
 
-        Route::prefix('admin')->namespace('Admin')->middleware(['roles:admin', 'password.confirm'])->group(function () {
+        Route::prefix('admin')->middleware(['roles:admin', 'password.confirm'])->group(function () {
             Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
 
             /*
@@ -188,14 +190,14 @@ Route::middleware('auth', 'activity')->group(function () {
             Route::post('users/invite', 'UserController@postInvite')->name('admin.users.send-invite');
             Route::post('users/switch/{user}', 'UserController@switchToUser')->name('admin.users.switch');
 
-            Route::resource('users', 'UserController', ['as' => 'admin']);
+            Route::resource('users', UserController::class, ['as' => 'admin']);
 
             /*
             |--------------------------------------------------------------------------
             | Roles
             |--------------------------------------------------------------------------
             */
-            Route::resource('roles', 'RoleController', ['as' => 'admin']);
+            Route::resource('roles', RoleController::class, ['as' => 'admin']);
         });
     });
 });
