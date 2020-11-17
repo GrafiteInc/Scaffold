@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ApiDeviceLoginController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('device-login', 'ApiDeviceLoginController@create')->name('device.login');
+Route::post('device-login', [ApiDeviceLoginController::class, 'create'])->name('device.login');
 
-Route::middleware('auth:sanctum')->namespace('Api')->name('api')->group(function () {
+Route::middleware('auth:sanctum')->name('api')->group(function () {
     Route::prefix('users')->group(function () {
-        Route::get('me', 'UsersController@me')->name('.users.me');
-        Route::put('update', 'UsersController@update')->name('.users.update');
-        Route::delete('destroy', 'UsersController@destroy')->name('.users.destroy');
+        Route::get('me', [UsersController::class, 'me'])->name('.users.me');
+        Route::put('update', [UsersController::class, 'update'])->name('.users.update');
+        Route::delete('destroy', [UsersController::class, 'destroy'])->name('.users.destroy');
     });
 });
