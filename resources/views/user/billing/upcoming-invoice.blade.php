@@ -14,6 +14,8 @@
                     <td class="text-right">&dollar;{{ $invoice->total/100 }}</td>
                 </tr>
             </table>
+        @else
+            Next scheduled payment will appear here, please check again later.
         @endif
     </div>
 </div>

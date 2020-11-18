@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use Exception;
+use Throwable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
@@ -23,7 +24,11 @@ class BillingController extends Controller
             return redirect()->route('user.billing.details');
         }
 
-        $intent = $user->createSetupIntent();
+        try {
+            $intent = $user->createSetupIntent();
+        } catch (Throwable $th) {
+            $intent = null;
+        }
 
         return view('user.billing.subscribe')->with(compact('user', 'intent'));
     }
@@ -36,7 +41,12 @@ class BillingController extends Controller
     public function renewSubscription(Request $request)
     {
         $user = $request->user();
-        $intent = $user->createSetupIntent();
+
+        try {
+            $intent = $user->createSetupIntent();
+        } catch (Throwable $th) {
+            $intent = null;
+        }
 
         return view('user.billing.renew')->with(compact('user', 'intent'));
     }
@@ -49,7 +59,13 @@ class BillingController extends Controller
     public function getSubscription(Request $request)
     {
         $user = $request->user();
-        $invoice = $user->upcomingInvoice();
+
+        try {
+            $invoice = $user->upcomingInvoice();
+        } catch (Throwable $th) {
+            $invoice = null;
+        }
+
         $subscription = $user->subscription(config('billing.subscription_name'));
 
         return view('user.billing.details')->with(compact('user', 'invoice', 'subscription'));
@@ -64,7 +80,12 @@ class BillingController extends Controller
     public function paymentMethod(Request $request)
     {
         $user = $request->user();
-        $intent = $user->createSetupIntent();
+
+        try {
+            $intent = $user->createSetupIntent();
+        } catch (Throwable $th) {
+            $intent = null;
+        }
 
         return view('user.billing.payment-method')->with(compact('user', 'intent'));
     }
@@ -142,7 +163,12 @@ class BillingController extends Controller
     public function getInvoices(Request $request)
     {
         $user = $request->user();
-        $invoices = $user->invoices(config('billing.subscription_name'));
+
+        try {
+            $invoices = $user->invoices(config('billing.subscription_name'));
+        } catch (Throwable $th) {
+            $invoices = null;
+        }
 
         return view('user.billing.invoices')->with(compact('user', 'invoices'));
     }

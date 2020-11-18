@@ -20,18 +20,24 @@
                             Payment Information
                         </div>
                         <div class="card-body">
-                            <!-- Stripe Elements Placeholder -->
-                            <div id="card-element"></div>
+                            @if (! is_null($intent))
+                                <!-- Stripe Elements Placeholder -->
+                                <div id="card-element"></div>
+                            @else
+                                Unable to update your Payment Method at this time, please try again later.
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row text-right">
-                <div class="col-md-12">
-                    <button class="btn btn-primary" id="card-button" data-secret="{{ $intent->client_secret }}" type="submit">Update Payment Method</button>
+            @if (! is_null($intent))
+                <div class="row text-right">
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" id="card-button" data-secret="{{ $intent->client_secret }}" type="submit">Update Payment Method</button>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 

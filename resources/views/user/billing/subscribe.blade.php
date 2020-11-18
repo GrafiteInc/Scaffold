@@ -21,18 +21,24 @@
                             Payment Information
                         </div>
                         <div class="card-body">
-                            <!-- Stripe Elements Placeholder -->
-                            <div id="card-element"></div>
+                            @if (is_null($intent))
+                                Unable to process subscriptions, please try again later.
+                            @else
+                                <!-- Stripe Elements Placeholder -->
+                                <div id="card-element"></div>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row text-right">
-                <div class="col-md-12">
-                    <button class="btn btn-primary" id="card-button" data-secret="{{ $intent->client_secret }}" type="submit">Subscribe</button>
+            @if (! is_null($intent))
+                <div class="row text-right">
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" id="card-button" data-secret="{{ $intent->client_secret }}" type="submit">Subscribe</button>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 
