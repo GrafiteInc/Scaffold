@@ -56269,6 +56269,10 @@ if (subscriptionForm) {
                   window.location = route('user.billing.details');
                 })["catch"](function (err) {
                   window.Snotify.warning(err.data.data.message);
+
+                  if (err.data.data.redirect) {
+                    window.location = err.data.data.redirect;
+                  }
                 });
               }
 
