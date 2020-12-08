@@ -16441,11 +16441,18 @@ input[type=file].form-control {
 
   .nav-tabs-custom .nav-item {
     border: solid 1px #6f42c1;
-    margin-bottom: 2px !important;
+    margin: 2px !important;
+    flex: 1 1 auto;
+    text-align: center;
+    border-radius: 4px;
   }
 
-  .nav-tabs-custom .nav-item:hover {
-    background-color: #6f42c1;
+  .nav-tabs-custom .nav-item .nav-link.active {
+    border: none !important;
+  }
+
+  .nav-tabs-custom .nav-item .nav-link.active:hover {
+    border: none !important;
   }
 
   .nav-tabs-custom .nav-item .nav-link:hover,

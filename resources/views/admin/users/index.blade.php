@@ -5,17 +5,17 @@
 @section('admin_content')
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
             {!! $index->search('admin.users.search', 'Search Users', '<span class="fas fa-search"></span>', 'get') !!}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
             <div class="btn-toolbar justify-content-end">
                 <a class="btn btn-primary" href="{{ route('admin.users.invite') }}">Invite New User</a>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 mt-3">
+        <div class="col-md-12">
             @if ($index->items->isEmpty())
                 <div class="card card-default text-center">
                     <div class="card-body">

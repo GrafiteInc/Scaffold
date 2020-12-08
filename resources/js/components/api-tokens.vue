@@ -3,13 +3,13 @@
         <div class="card mb-2" v-for="token in api_tokens" v-bind:key="token.id">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <div class="col-3">
+                    <div class="col-md-3 col-sm-6">
                         <b class="mt-1 d-block">{{ token.name }}</b>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3 d-none d-md-block">
                         <span class="mt-1 d-block" v-html="tokenDate(token)"></span>
                     </div>
-                    <div class="col-3 d-flex justify-content-end">
+                    <div class="col-md-3 col-sm-6 d-flex justify-content-end">
                         <button
                             class="btn btn-sm btn-outline-danger"
                             @click="revokeToken(token)"

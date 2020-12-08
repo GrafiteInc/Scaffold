@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('page-title', 'Password Reset')
 
@@ -8,7 +8,7 @@
 
         <h3 class="text-center mb-5">Password Reset</h3>
 
-        <form method="POST" action="{{ route('password.reset', $token) }}">
+        <form method="POST" action="{{ route('password.update') }}">
             {!! csrf_field() !!}
             <input type="hidden" name="token" value="{{ $token }}">
 

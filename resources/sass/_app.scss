@@ -272,9 +272,15 @@ input[type="file"].form-control {
         border: none;
         .nav-item {
             border: solid 1px $primary;
-            margin-bottom: 2px !important;
-            &:hover {
-                background-color: $primary;
+            margin: 2px !important;
+            flex: 1 1 auto;
+            text-align: center;
+            border-radius: 4px;
+            .nav-link.active {
+                border: none !important;
+                &:hover {
+                    border: none !important;
+                }
             }
             .nav-link:hover, .nav-link.active, .nav-link.active:hover {
                 border: 1px solid transparent;

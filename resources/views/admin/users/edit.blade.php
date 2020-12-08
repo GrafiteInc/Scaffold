@@ -35,7 +35,7 @@
                             @foreach($activities as $activity)
                                 <tr>
                                     <td>{{ $activity->description }}</td>
-                                    <td width="250px"><b>{{ $activity->request['method'] }}:</b> {{ Str::limit(str_replace(url('/'), '', $activity->request['url']), 20) }}</td>
+                                    <td width="250px" class="d-none d-sm-table-cell"><b>{{ $activity->request['method'] }}:</b> {{ Str::limit(str_replace(url('/'), '', $activity->request['url']), 20) }}</td>
                                     <td width="110px" class="text-right">{{ $activity->created_at->format('M d, Y') }}</td>
                                 </tr>
                             @endforeach

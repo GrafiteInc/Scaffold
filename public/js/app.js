@@ -41360,37 +41360,41 @@ var render = function() {
       return _c("div", { key: token.id, staticClass: "card mb-2" }, [
         _c("div", { staticClass: "card-body" }, [
           _c("div", { staticClass: "d-flex justify-content-between" }, [
-            _c("div", { staticClass: "col-3" }, [
+            _c("div", { staticClass: "col-md-3 col-sm-6" }, [
               _c("b", { staticClass: "mt-1 d-block" }, [
                 _vm._v(_vm._s(token.name))
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-3" }, [
+            _c("div", { staticClass: "col-md-3 d-none d-md-block" }, [
               _c("span", {
                 staticClass: "mt-1 d-block",
                 domProps: { innerHTML: _vm._s(_vm.tokenDate(token)) }
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-3 d-flex justify-content-end" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-sm btn-outline-danger",
-                  on: {
-                    click: function($event) {
-                      return _vm.revokeToken(token)
+            _c(
+              "div",
+              { staticClass: "col-md-3 col-sm-6 d-flex justify-content-end" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-outline-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.revokeToken(token)
+                      }
                     }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                        Revoke Token\n                    "
-                  )
-                ]
-              )
-            ])
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Revoke Token\n                    "
+                    )
+                  ]
+                )
+              ]
+            )
           ])
         ])
       ])
