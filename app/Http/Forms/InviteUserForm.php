@@ -5,7 +5,7 @@ namespace App\Http\Forms;
 use App\Models\Role;
 use Grafite\Forms\Fields\Email;
 use Grafite\Forms\Forms\BaseForm;
-use Grafite\Forms\Fields\Bootstrap\HasMany;
+use Grafite\Forms\Fields\Bootstrap\HasOne;
 
 class InviteUserForm extends BaseForm
 {
@@ -42,7 +42,7 @@ class InviteUserForm extends BaseForm
             Email::make('email', [
                 'required' => true,
             ]),
-            HasMany::make('roles', [
+            HasOne::make('roles', [
                 'model' => Role::class,
                 'required' => true,
                 'model_options' => [
