@@ -174,9 +174,9 @@ class TeamsController extends Controller
      */
     public function destroyAvatar(Request $request)
     {
-        abort_unless($team->hasActiveSubscription(), 403, 'Subscription is required.');
-
         $team = Team::find($request->team);
+
+        abort_unless($team->hasActiveSubscription(), 403, 'Subscription is required.');
 
         if (Gate::denies('team-admin', $team)) {
             return redirect()->back()->withErrors(['You do not have permission to do this.']);

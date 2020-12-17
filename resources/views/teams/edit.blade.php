@@ -10,7 +10,7 @@
         <div class="col-md-4 d-flex justify-content-center">
             @if (auth()->user()->avatar)
                 <x-f-action
-                    confirmMessage="Are you sure you want to delete this team's avatar?"
+                    confirmMessage="Are you sure you want to delete this team avatar?"
                     confirmMethod="confirmation"
                     method="delete"
                     route="team.destroy.avatar"
