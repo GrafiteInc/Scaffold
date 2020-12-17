@@ -3,6 +3,7 @@
 namespace App\Models\Concerns;
 
 use App\Models\Role;
+use Illuminate\Database\Eloquent\Builder;
 
 trait HasRoles
 {
@@ -30,5 +31,21 @@ trait HasRoles
     public function hasRole($role)
     {
         return $this->roles()->where('name', $role)->count() === 1;
+    }
+
+    /**
+     * Scope users by thier given roles
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $roleName
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByRole($query, $roleName)
+    {
+        $role = Role::where('name', $roleName)->first();
+
+        return $query->whereHas('roles', function (Builder $subQuery) use ($role) {
+            $subQuery->where('role_id', $role->id);
+        });
     }
 }
