@@ -15,7 +15,7 @@
                         route="user.destroy.avatar"
                         content="<span class='fas fa-trash'></span>"
                         :confirm="true"
-                        :payload="['user' => auth()->user()]"
+                        :payload="['user' => auth()->id()]"
                         :options="['class' => 'btn btn-sm btn-outline-secondary']"
                     ></x-f-action>
                 @endif
