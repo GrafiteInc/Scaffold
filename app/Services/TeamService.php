@@ -41,10 +41,17 @@ class TeamService
      */
     public function create(array $payload)
     {
+        $path = null;
+
+        if (isset($payload['avatar'])) {
+            $path = Storage::putFile('public/avatars', $payload['avatar'], 'public');
+        }
+
         return $this->model->create([
             'user_id' => auth()->user()->id,
             'uuid' => Str::uuid(),
             'name' => $payload['name'],
+            'avatar' => $path,
         ]);
     }
 
