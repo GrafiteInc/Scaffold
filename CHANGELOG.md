@@ -3,6 +3,17 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.7.0] - 2020-12-19
+
+### Changed
+- Improved code quality
+- Better pattern use
+
+### Fixed
+- Issue with team avatars
+- Github Action configs
+- mobile UI issues
+
 ## [v2.6.1] - 2020-11-16
 
 ### Added
