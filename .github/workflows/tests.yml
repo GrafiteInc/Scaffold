@@ -43,6 +43,6 @@ jobs:
       id: checkbranch
       run: echo "::set-output name=BRANCHNAME::${GITHUB_REF##*/}"
 
-    - name: Deploy to Laravel Forge
-      if: steps.checkbranch.outputs.BRANCHNAME == 'develop'
-      run: curl ${{ secrets.FORGE_DEPLOYMENT_WEBHOOK }}
+    # - name: Deploy to Laravel Forge
+    #   if: steps.checkbranch.outputs.BRANCHNAME == 'develop'
+    #   run: curl ${{ secrets.FORGE_DEPLOYMENT_WEBHOOK }}
