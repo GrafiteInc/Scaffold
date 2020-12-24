@@ -46,8 +46,14 @@ trait HasSubscription
     public function subscriptionPlan($key)
     {
         $plans = config('billing.plans');
-        $plan = $this->subscription(config('billing.subscription_name'))->stripe_plan;
+        $plan = $this->subscription(config('billing.subscription_name'));
 
-        return $plans[$plan][$key];
+        if (! is_null($plan)) {
+            $plan = $plan->stripe_plan;
+
+            return $plans[$plan][$key];
+        }
+
+        return null;
     }
 }
