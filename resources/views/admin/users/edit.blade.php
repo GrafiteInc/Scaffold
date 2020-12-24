@@ -31,11 +31,13 @@
                         <h4 class="m-0">Activities <small>(Last 25)</small></h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-borderless p-0 m-0">
+                        <table class="table table-borderless table-hover p-0 m-0">
                             @foreach($activities as $activity)
-                                <tr>
+                                <tr onclick="window.modal('Activity', '{{ $activity->forModal() }}')">
                                     <td>{{ $activity->description }}</td>
-                                    <td width="250px" class="d-none d-sm-table-cell"><b>{{ $activity->request['method'] }}:</b> {{ Str::limit(str_replace(url('/'), '', $activity->request['url']), 20) }}</td>
+                                    <td width="250px" class="d-none d-sm-table-cell">
+                                        <b>{{ $activity->request['method'] }}:</b> {{ Str::limit(str_replace(url('/'), '', $activity->request['url']), 20) }}
+                                    </td>
                                     <td width="110px" class="text-right">{{ $activity->created_at->format('M d, Y') }}</td>
                                 </tr>
                             @endforeach

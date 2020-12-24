@@ -31,6 +31,7 @@ Vue.use(VueClipboards);
 
 Vue.component('cookielaw', require('./components/cookie-law.vue').default);
 Vue.component('session', require('./components/session.vue').default);
+Vue.component('content-modal', require('./components/content-modal.vue').default);
 Vue.component('modal', require('./components/modal.vue').default);
 Vue.component('pending-modal', require('./components/pending-modal.vue').default);
 Vue.component('copy-button', require('./components/copy-button.vue').default);

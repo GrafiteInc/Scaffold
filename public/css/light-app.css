@@ -4898,7 +4898,7 @@
 */
 
 /*!
- * Bootstrap v4.5.2 (https://getbootstrap.com/)
+ * Bootstrap v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
@@ -5130,6 +5130,7 @@ caption {
 
 th {
   text-align: inherit;
+  text-align: -webkit-match-parent;
 }
 
 label {
@@ -8836,6 +8837,8 @@ input[type=button].btn-block {
   display: block;
   min-height: 1.40625rem;
   padding-left: 1.5rem;
+  -webkit-print-color-adjust: exact;
+          color-adjust: exact;
 }
 
 .custom-control-inline {
@@ -10415,6 +10418,7 @@ a.badge-dark.focus {
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 2;
   padding: 0.75rem 1.25rem;
   color: inherit;
 }
@@ -10974,13 +10978,13 @@ a.badge-dark.focus {
   font-size: 1.40625rem;
   font-weight: 700;
   line-height: 1;
-  color: #fff;
+  color: #7b8a8b;
   text-shadow: none;
   opacity: 0.5;
 }
 
 .close:hover {
-  color: #fff;
+  color: #7b8a8b;
   text-decoration: none;
 }
 
@@ -15683,7 +15687,7 @@ a.text-dark:focus {
 
 .text-break {
   word-break: break-word !important;
-  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
 }
 
 .text-reset {
@@ -16258,6 +16262,10 @@ body {
   vertical-align: middle;
 }
 
+.modal-body .table tbody {
+  min-width: 100%;
+}
+
 .card-body .table {
   width: calc(100% + 20px);
   margin: -10px !important;
@@ -16265,6 +16273,10 @@ body {
 
 .card-body .table tr td {
   padding: 0.55rem;
+}
+
+.table-hover tr:hover {
+  cursor: pointer;
 }
 
 /*
