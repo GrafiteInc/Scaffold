@@ -81,7 +81,7 @@ Route::middleware(ProtectAgainstSpam::class)->group(function () {
 |--------------------------------------------------------------------------
 */
 
-Route::middleware('auth', 'activity')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::post('users/return-switch', [UserController::class, 'switchBack'])->name('users.return-switch');
 
     Route::middleware('verified')->group(function () {

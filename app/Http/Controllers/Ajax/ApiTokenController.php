@@ -26,6 +26,8 @@ class ApiTokenController extends Controller
         $notification = new InAppNotification('You have a new API token.');
         $notification->isImportant();
 
+        activity("API token {$request->name} created.");
+
         $request->user()->notify($notification);
 
         return response()->json([
@@ -37,7 +39,12 @@ class ApiTokenController extends Controller
 
     public function destroy(Request $request, $token)
     {
-        $request->user()->tokens()->where('id', $token)->delete();
+        $token = $request->user()->tokens()
+            ->where('id', $token)->get()->first();
+
+        activity("API token {$token->name} deleted.");
+
+        $token->delete();
 
         return response()->json([
             'message' => 'success',

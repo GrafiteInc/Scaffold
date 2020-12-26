@@ -63,6 +63,8 @@ class SettingsController extends Controller
                 'country' => $request->country,
             ]);
 
+            activity('Settings updated.');
+
             return redirect()->back()->withMessage('Settings updated successfully');
         } catch (Exception $e) {
             Log::error($e);

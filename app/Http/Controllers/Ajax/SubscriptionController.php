@@ -31,6 +31,8 @@ class SubscriptionController extends Controller
             $notification->isImportant();
             $user->notify($notification);
 
+            activity("Subscribed to {$plan} plan.");
+
             return response()->json([
                 'message' => 'You\'re now subscribed!',
             ]);
@@ -60,6 +62,8 @@ class SubscriptionController extends Controller
             $notification = new InAppNotification("Your payment method has been updated to a card ending in {$user->card_last_four}.");
             $notification->isImportant();
             $user->notify($notification);
+
+            activity("Payment method updated to card ending in {$user->card_last_four}.");
 
             return response()->json([
                 'message' => 'Your payment method has been updated!',

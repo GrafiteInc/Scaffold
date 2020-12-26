@@ -34,6 +34,8 @@ class InvitesController extends Controller
 
         $request->user()->$relationship()->attach($invite->model_id);
 
+        activity('Invite accepted.');
+
         if ($invite->delete()) {
             return redirect()->back()->withMessage('Invitation accepted');
         }
@@ -51,6 +53,8 @@ class InvitesController extends Controller
     {
         $subject = 'Invitation Rejected';
         $message = "{$invite->email} politely rejected your inviation.";
+
+        activity($message);
 
         Notification::route('mail', $invite->from->email)
             ->notify(new StandardEmail(

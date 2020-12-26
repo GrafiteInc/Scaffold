@@ -41,7 +41,9 @@ class SecurityController extends Controller
         if (Hash::check($request->old_password, $request->user()->password)) {
             $this->resetPassword($request->user(), $password);
 
-            return redirect()->to('user/settings')
+            activity('Password updated');
+
+            return redirect()->route('user.settings')
                 ->withMessage('Password updated successfully');
         }
 

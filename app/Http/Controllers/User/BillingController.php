@@ -114,6 +114,8 @@ class BillingController extends Controller
         try {
             $request->user()->subscription(config('billing.subscription_name'))->swap($request->plan);
 
+            activity("Switched to {$request->plan} subscription plan.");
+
             return redirect()->route('user.billing.details')->withMessage('Your subscription was swapped!');
         } catch (Exception $e) {
             Log::error($e->getMessage());
@@ -145,6 +147,8 @@ class BillingController extends Controller
     {
         try {
             $request->user()->applyCoupon($request->coupon);
+
+            activity("Used coupon: {$request->coupon}.");
 
             return redirect()->route('user.billing.details')->withMessage('Your coupon was used!');
         } catch (Exception $e) {
@@ -216,6 +220,8 @@ class BillingController extends Controller
 
             $date = $invoice->date()->format('Y-m-d');
             $message = 'Your subscription has been cancelled! It will be availale until ' . $date;
+
+            activity($message);
 
             $notification = new InAppNotification($message);
             $notification->isImportant();
