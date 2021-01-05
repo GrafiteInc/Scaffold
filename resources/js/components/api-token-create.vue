@@ -34,7 +34,7 @@
                 .then(results => {
                     this.currentToken = results.data.data.token;
                     this.name = null;
-                    window.Snotify.success('Token created!');
+                    this.$snotify.success('Token created!');
                     this.$event.fire('get-notifications');
                     this.$event.fire('new-api-token');
                 })
@@ -43,7 +43,7 @@
                 });
             },
             success () {
-                window.Snotify.success('Copied!');
+                this.$snotify.success('Copied!');
                 this.currentToken = false;
             }
         },

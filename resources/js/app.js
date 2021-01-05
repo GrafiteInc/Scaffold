@@ -1,22 +1,9 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+import Vue from 'vue'
+import VueClipboards from 'vue-clipboards';
+import Snotify, { SnotifyPosition } from 'vue-snotify';
 
 require('./bootstrap');
 
-window.Vue = require('vue');
-
-/** Notification for loss of connection. */
-window.addEventListener('offline', (event) => {
-    window.Snotify.info("The network connection has been lost.")
-});
-
-/**
- * The following is where we load any Vue components we need.
- */
-import Snotify, { SnotifyPosition } from 'vue-snotify'
 let _options = {
     toast: {
         timeout: 4000,
@@ -24,9 +11,8 @@ let _options = {
         position: SnotifyPosition.rightTop
     }
 };
-window.Vue.use(Snotify, _options);
 
-import VueClipboards from 'vue-clipboards';
+Vue.use(Snotify, _options);
 Vue.use(VueClipboards);
 
 Vue.component('cookielaw', require('./components/cookie-law.vue').default);

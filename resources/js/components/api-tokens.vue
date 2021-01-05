@@ -56,7 +56,7 @@
                     axios.delete(route('ajax.destroy-token', token.id))
                     .then(results => {
                         $('#appModal').modal('hide');
-                        window.Snotify.success('Revoked!');
+                        this.$snotify.success('Revoked!');
                         this.getTokens();
                     })
                 });

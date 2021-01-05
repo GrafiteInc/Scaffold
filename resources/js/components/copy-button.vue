@@ -15,7 +15,7 @@
         },
         methods: {
             success () {
-                window.Snotify.success('Copied!');
+                this.$snotify.success('Copied!');
             }
         },
         data() {

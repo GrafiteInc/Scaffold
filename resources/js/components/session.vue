@@ -19,20 +19,26 @@
                 error_message: this.error_message,
             }
 
+            window.snotify = this.$snotify;
+
+            window.addEventListener('offline', (event) => {
+                this.$snotify.info("The network connection has been lost.");
+            });
+
             if (window.session.message) {
-                window.Snotify.success(window.session.message);
+                this.$snotify.success(window.session.message);
             }
 
             if (window.session.info) {
-                window.Snotify.info(window.session.info);
+                this.$snotify.info(window.session.info);
             }
 
             if (window.session.warning) {
-                window.Snotify.warning(window.session.warning);
+                this.$snotify.warning(window.session.warning);
             }
 
             if (window.session.error_message) {
-                window.Snotify.warning(window.session.error_message);
+                this.$snotify.warning(window.session.error_message);
             }
         }
     }

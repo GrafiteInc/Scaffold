@@ -26,7 +26,7 @@ if (subscriptionForm) {
             || cardHolderState.value == ''
             || cardHolderCountry.value == ''
         ) {
-            window.Snotify.warning("Please complete all fields.");
+            window.snotify.warning("Please complete all fields.");
 
             return false;
         }
@@ -45,7 +45,7 @@ if (subscriptionForm) {
         );
 
         if (error) {
-            window.Snotify.warning(error.message);
+            window.snotify.warning(error.message);
             cardButton.disabled = false;
         } else {
             window.pendingModal();
@@ -60,7 +60,7 @@ if (subscriptionForm) {
                 window.location = route('user.billing.details');
             })
             .catch(err => {
-                window.Snotify.warning(err.data.data.message);
+                window.snotify.warning(err.data.data.message);
 
                 if (err.data.data.redirect) {
                     window.location = err.data.data.redirect;
