@@ -20,9 +20,9 @@
         <link rel="icon" type="image/ico" href="">
 
         @if (auth()->user() && auth()->user()->dark_mode)
-            <link rel="stylesheet" type="text/css" href="{{ mix('css/dark-app.css') }}">
+            <link title="dark" rel="stylesheet" type="text/css" href="{{ mix('css/dark-app.css') }}">
         @else
-            <link rel="stylesheet" type="text/css" href="{{ mix('css/light-app.css') }}">
+            <link title="light" rel="stylesheet" type="text/css" href="{{ mix('css/light-app.css') }}">
         @endif
 
         @livewireStyles
@@ -43,7 +43,7 @@
                     version="{{ config('app.version', 'v1') }}"
                 ></cookielaw>
 
-                <modal></modal>
+                <confirmation-modal></confirmation-modal>
                 <content-modal></content-modal>
                 <pending-modal></pending-modal>
                 <vue-snotify></vue-snotify>

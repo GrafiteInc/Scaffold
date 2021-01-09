@@ -76,6 +76,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'dark_mode' => 'boolean',
     ];
 
     /**
@@ -131,6 +132,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'id',
             'name',
             'email',
+            'dark_mode',
         ];
 
         return json_encode(collect($this->toArray())

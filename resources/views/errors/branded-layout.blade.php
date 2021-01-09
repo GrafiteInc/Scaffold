@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="mt-8">
-                    <h1 class="text-huge">@yield('code', __('Oh no'))</h1>
+                    <h1 class="text-huge">@yield('title', __('Error'))</h1>
                     <p class="lead">@yield('message', __('Something clearly didn\'t work, we\'re as suprised as you are.'))</p>
                 </div>
             </div>

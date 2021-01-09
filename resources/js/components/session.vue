@@ -12,7 +12,7 @@
         ],
         mounted () {
             window.session = {
-                user: this.user,
+                user: JSON.parse(this.user),
                 message: this.message,
                 info: this.info,
                 warning: this.warning,
