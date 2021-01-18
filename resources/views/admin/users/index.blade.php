@@ -10,7 +10,10 @@
         </div>
         <div class="col-md-6 mb-3">
             <div class="btn-toolbar justify-content-end">
-                <a class="btn btn-primary" href="{{ route('admin.users.invite') }}">Invite New User</a>
+                <a class="btn btn-primary" href="{{ route('admin.users.invite') }}">
+                    <span class="fas fa-fw fa-envelope"></span>
+                    Invite New User
+                </a>
             </div>
         </div>
     </div>

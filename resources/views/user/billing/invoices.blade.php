@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 
 @section('page-title', 'Billing: Invoices')
 
@@ -17,7 +17,7 @@
             <table class="table table-striped">
                 <thead>
                     <th>Date</th>
-                    <th>Identifier</th>
+                    <th class="d-none d-md-table-cell">Identifier</th>
                     <th class="text-right">Dollars</th>
                 </thead>
                 <tbody>
@@ -29,7 +29,7 @@
                                     {{ $invoice->date()->format('Y-m-d') }}
                                 </a>
                             </td>
-                            <td>{{ $invoice->id }}</td>
+                            <td class="d-none d-md-table-cell">{{ $invoice->id }}</td>
                             <td class="text-right">${{ ($invoice->total / 100) }}</td>
                         </tr>
                     @endforeach

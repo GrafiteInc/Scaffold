@@ -14,6 +14,7 @@ class SubscriptionController extends Controller
     public function createSubscription(Request $request)
     {
         $message = 'Subscription failed';
+        $redirect = null;
 
         try {
             $user = $request->user();

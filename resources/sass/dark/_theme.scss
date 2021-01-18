@@ -21,7 +21,7 @@ $sidebar-bg: $gray-800;
 $sidebar-color: $gray-200;
 $sidebar-header: $slate-light;
 
-$navbar-header: #333;
+$navbar-header: #222;
 $navbar-bg: $slate-dark;
 $navbar-text-color: $white;
 
@@ -70,6 +70,14 @@ hr {
 
 .sidebar-header {
     background-color: $sidebar-header;
+    color: $white;
+}
+
+.sidebar-toggle {
+    color: $white;
+}
+
+.sidebar-toggle:hover {
     color: $white;
 }
 
@@ -148,6 +156,10 @@ hr {
             color: $primary;
         }
     }
+}
+
+.app-nav {
+    border-bottom: 1px solid $gray-700;
 }
 
 /*
@@ -312,12 +324,4 @@ pre {
             color: $white !important;
         }
     }
-}
-
-.sidebar-toggle {
-    color: $white;
-}
-
-.sidebar-toggle:hover {
-    color: $white;
 }

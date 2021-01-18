@@ -9,7 +9,12 @@
             <div class="col-md-12 mt-4 mb-4">
                 <div class="card card-default shadow-sm">
                     <div class="card-header">
-                        <h4>Terms of Service</h4>
+                        <h4 class="m-0">
+                            <a href="{{ url()->previous() }}">
+                                <span class="fas fa-arrow-left"></span>
+                            </a>
+                            Terms of Service
+                        </h4>
                     </div>
                     <div class="card-body">
 <p>Last updated: January 21, 2020</p>

@@ -1,13 +1,16 @@
 @extends('layouts.admin')
 
-@section('page-title') Admin: Roles @stop
+@section('page-title', 'Admin: Roles')
 
 @section('admin_content')
 
     <div class="row">
         <div class="col-md-12">
             <div class="btn-toolbar justify-content-end">
-                <a class="btn btn-primary" href="{{ url('admin/roles/create') }}">Create Role</a>
+                <a class="btn btn-primary" href="{{ url('admin/roles/create') }}">
+                    <span class="fas fa-fw fa-plus"></span>
+                    Create Role
+                </a>
             </div>
         </div>
     </div>
@@ -30,9 +33,11 @@
                                 @foreach($roles as $role)
                                     <tr>
                                         <td>{{ $role->label }}</td>
-                                        <td width="160px" class="text-right">
+                                        <td width="180px" class="text-right">
                                             <div class="btn-toolbar justify-content-end">
-                                                <a class="btn btn-outline-primary btn-sm mr-2" href="{{ url('admin/roles/'.$role->id.'/edit') }}"><span class="fa fa-edit"></span> Edit</a>
+                                                <a class="btn btn-outline-primary btn-sm mr-2" href="{{ url('admin/roles/'.$role->id.'/edit') }}">
+                                                    <span class="fas fa-fw fa-pencil-alt"></span> Edit
+                                                </a>
 
                                                 {!! app(\App\Http\Forms\RoleForm::class)->confirm('Are you sure you want to delete this role?', 'confirmation')->delete($role) !!}
                                             </div>

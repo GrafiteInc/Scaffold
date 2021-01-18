@@ -9,9 +9,9 @@ window.onload = () => {
         });
     }
 
-    if (window.innerWidth < 990) {
-        document.querySelector('.main').onclick = () => {
-            document.querySelector('.sidebar').classList.remove("toggled");
-        };
-    }
+    // if (window.innerWidth < 990) {
+    //     document.querySelector('.main').onclick = () => {
+    //         document.querySelector('.sidebar').classList.remove("toggled");
+    //     };
+    // }
 }

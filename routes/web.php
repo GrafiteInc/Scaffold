@@ -44,9 +44,9 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 */
 
 Route::get('/', [PagesController::class, 'home'])->name('home');
+Route::get('support', [PagesController::class, 'getSupport'])->name('support');
 Route::get('terms-of-service', [PagesController::class, 'termsOfService'])->name('terms-of-service');
 Route::get('privacy-policy', [PagesController::class, 'privacyPolicy'])->name('privacy-policy');
-Route::get('contact', [PagesController::class, 'getContact'])->name('contact');
 
 Route::post('accept-cookie-policy', [CookiePolicyController::class, 'accept'])->name('ajax.accept-cookie-policy');
 

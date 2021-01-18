@@ -3,13 +3,13 @@
 <script>
     export default {
         mame: "session",
-        props: [
-            'user',
-            'message',
-            'info',
-            'warning',
-            'error_message'
-        ],
+        props: {
+            user: String,
+            message: String,
+            info: String,
+            warning: String,
+            error_message: String,
+        },
         mounted () {
             window.session = {
                 user: JSON.parse(this.user),
@@ -23,6 +23,10 @@
 
             window.addEventListener('offline', (event) => {
                 this.$snotify.info("The network connection has been lost.");
+            });
+
+            window.addEventListener('online', (event) => {
+                this.$snotify.success("The network connection has been restored.");
             });
 
             if (window.session.message) {

@@ -35,12 +35,12 @@ class PagesController extends Controller
     }
 
     /**
-     * Contact page.
+     * Support page.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getContact()
+    public function getSupport()
     {
-        return view('pages.contact');
+        return view('pages.support');
     }
 }

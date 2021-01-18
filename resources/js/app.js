@@ -24,7 +24,6 @@ Vue.component('copy-button', require('./components/copy-button.vue').default);
 Vue.component('api-tokens', require('./components/api-tokens.vue').default);
 Vue.component('api-token-create', require('./components/api-token-create.vue').default);
 Vue.component('notification-badge', require('./components/notification-badge.vue').default);
-Vue.component('notification-marker', require('./components/notification-marker.vue').default);
 
 /**
  * The following component is a shared event system

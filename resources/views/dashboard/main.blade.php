@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 
 @section('page-title', 'Dashboard')
 
@@ -8,8 +8,6 @@
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h3>Dashboard</h3>
-
                     {!! $form !!}
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs d-none d-sm-none d-md-flex">
+<ul class="nav nav-pills">
     <li class="nav-item">
         <a class="{{ route_link_class(['user.billing', 'user.billing.details']) }}" href="{{ route('user.billing') }}">Billing</a>
     </li>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('page-title', $title ?? 'Error')
 
@@ -9,6 +9,10 @@
                 <div class="mt-8">
                     <h1 class="text-huge">@yield('title', __('Error'))</h1>
                     <p class="lead">@yield('message', __('Something clearly didn\'t work, we\'re as suprised as you are.'))</p>
+                    <a href="{{ route('dashboard') }}" class="btn btn-primary mt-6">
+                        <span class="fas fa-fw fa-home"></span>
+                        Home
+                    </a>
                 </div>
             </div>
             <div class="col-md-6">

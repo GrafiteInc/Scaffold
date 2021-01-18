@@ -46,11 +46,11 @@ class UserForm extends ModelForm
             Toggled::make('dark_mode', [
                 'legend' => 'Dark Mode',
                 'theme' => (auth()->user()->dark_mode) ? 'dark' : 'light',
-                'color' => '#6610f2',
+                'color' => '#8558da',
             ]),
             Toggled::make('allow_email_based_notifications', [
                 'legend' => 'Email Contact',
-                'color' => '#6610f2',
+                'color' => '#8558da',
             ]),
             FileWithPreview::make('avatar', [
                 'preview_identifier' => '.avatar',

@@ -4,7 +4,6 @@
 |--------------------------------------------------------------------------
 */
 @import "light/variables";
-@import '~animate.css';
 @import "~vue-snotify/styles/simple";
 @import "utilities.scss";
 
@@ -14,7 +13,7 @@
 |--------------------------------------------------------------------------
 */
 @import '~bootstrap/scss/bootstrap';
-@import 'dark/bootswatch';
+@import 'light/bootswatch';
 
 /*
 |--------------------------------------------------------------------------

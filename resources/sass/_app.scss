@@ -16,7 +16,6 @@ body {
 .sidebar {
     width: 320px;
     position: fixed;
-    top: 60px;
     left: 0;
     z-index: 100;
     padding: 0;
@@ -24,9 +23,8 @@ body {
 }
 
 .sidebar-sticky {
-    margin-top: 20px;
     width: 320px;
-    height: calc(100vh - 140px);
+    height: calc(100vh - 0px);
     overflow-y: auto;
 }
 
@@ -60,13 +58,7 @@ body {
 
 .main {
     width: calc(100% - 320px);
-    padding-bottom: 84px;
-}
-
-.footer {
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
+    padding-bottom: 48px;
 }
 
 .alert {
@@ -79,7 +71,6 @@ body {
 
 #app {
     min-height: calc(100vh);
-    padding-bottom: 60px;
 }
 
 .content-sm {
@@ -132,19 +123,15 @@ body {
 |--------------------------------------------------------------------------
 */
 
+.app-nav {
+    height: 60px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
 .navbar-title {
     font-size: 22px;
     font-weight: bold;
-}
-
-.navbar-brand {
-    width: 320px;
-    padding: 0px 0px 0px 28px;
-    font-size: 22px;
-    font-weight: bold;
-    height: 60px;
-    line-height: 60px;
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
 
 .nav-avatar {
@@ -163,23 +150,20 @@ body {
     .notification-badge {
         display: inline-block;
         position: absolute;
-        top: 2px;
-        right: -4px;
+        top: 12px;
+        right: 80px;
     }
 
     .nav-user-dropdown {
-        text-align: right;
-        width: 200px;
-        margin-top: -2px;
         &:focus {
             box-shadow: none;
         }
     }
     .dropdown-menu {
         position: absolute;
-        top: 48px;
-        left: 5px;
-        min-width: 200px;
+        top: 42px;
+        left: -164px;
+        width: 220px;
     }
     .dropdown-toggle::after {
         content: none;
@@ -228,6 +212,7 @@ input[type="file"].form-control {
         width: 96%;
     }
     .sidebar {
+        margin-top: 60px;
         margin-left: -320px;
         box-shadow: 0 5px 5px $sidebar-shadow;
     }
@@ -246,29 +231,7 @@ input[type="file"].form-control {
 */
 
 @media (min-width: 576px) and (max-width: 748px) {
-    .navbar-nav {
-        .notification-badge {
-            top: 5px;
-            right: 21px;
-            z-index: 1000000;
-        }
-        .nav-user-dropdown {
-            width: 55px;
-            height: 50px;
-            top: -24px;
-            right: -15px;
-            position: absolute;
-            span {
-                display: none;
-            }
-        }
-        .dropdown-menu {
-            position: absolute;
-            top: 24px;
-            left: -185px;
-            min-width: 200px;
-        }
-    }
+    // nothing needed here
 }
 
 /*
@@ -282,57 +245,9 @@ input[type="file"].form-control {
         padding-right: 0px;
         padding-left: 0px;
     }
-    .nav-tabs-custom {
-        border: none;
+
+    .nav-pills {
         .nav-item {
-            border: solid 1px $primary;
-            margin: 2px !important;
-            flex: 1 1 auto;
-            text-align: center;
-            border-radius: 4px;
-            .nav-link.active {
-                border: none !important;
-                &:hover {
-                    border: none !important;
-                }
-            }
-            .nav-link:hover, .nav-link.active, .nav-link.active:hover {
-                border: 1px solid transparent;
-            }
-        }
-    }
-    .navbar-nav {
-        .notification-badge {
-            top: -80px;
-            right: 21px;
-            z-index: 1000000;
-        }
-        .nav-user-dropdown {
-            width: 55px;
-            height: 50px;
-            top: -106px;
-            right: -15px;
-            position: absolute;
-            span {
-                display: none;
-            }
-        }
-        .dropdown-menu {
-            position: absolute;
-            top: -54px;
-            left: 10px;
-            right: 10px;
-            min-width: 200px;
-        }
-    }
-    .sidebar {
-        top: 106px;
-    }
-    .sidebar-sticky {
-        height: calc(100vh - 106px);
-    }
-    .navbar-header {
-        .navbar-nav {
             width: 100%;
         }
     }
