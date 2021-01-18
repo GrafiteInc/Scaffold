@@ -30,8 +30,6 @@
     </head>
     <body>
         <div id="app">
-            @includeWhen(request()->routeIs(['home']), "layouts.home-nav")
-
             <div class="container-fluid">
                 @yield("app-content")
 

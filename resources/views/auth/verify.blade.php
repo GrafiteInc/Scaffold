@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('page-title', 'Verify Email Address')
 
-@section('app-content')
+@section('content')
 
     <div class="content-sm mt-4">
         <div class="row justify-content-center">

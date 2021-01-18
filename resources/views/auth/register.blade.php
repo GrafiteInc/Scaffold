@@ -1,9 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('page-title', 'Register')
 
-@section('app-content')
-
+@section('content')
     <div class="content-sm mt-4">
 
         <h3 class="text-center mb-5">Create your account</h3>

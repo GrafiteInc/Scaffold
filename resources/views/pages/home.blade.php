@@ -1,13 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('page-title', 'Home')
 
-@section('app-content')
-
+@section('content')
     <div class="container">
-        <div class="row mt-5">
+        <div class="row">
             <div class="col-md-12 text-center">
-                <div class="card">
+                <div class="card mt-5">
                     <div class="card-body">
                         <span>Make sure you set <code>SESSION_DOMAIN</code> and <code>SANCTUM_STATEFUL_DOMAINS</code> with your local domain for sessions to function correctly.</span>
                     </div>

@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>{{ $member->name }} ({{ $member->email }})</td>
                                         <td>{{ ucfirst($member->membership->team_role) }}</td>
-                                        <td width="220px" class="text-right">
+                                        <td width="250px" class="text-right">
                                             @if (Gate::allows('team-admin', $team))
                                                 <a href="{{ route('teams.members.edit', [$team->id, $member->id]) }}" class="btn btn-sm btn-outline-primary mr-2">Edit</a>
                                             @endif

@@ -16,7 +16,7 @@ trait RegisterViaInvites
      */
     public function showRegistrationInviteForm(Request $request)
     {
-        return view('auth.register_invite');
+        return view('auth.register-invite');
     }
 
     /**

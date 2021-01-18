@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('page-title', 'Forgot Password')
 
-@section('app-content')
+@section('content')
 
     <div class="content-sm mt-4">
 

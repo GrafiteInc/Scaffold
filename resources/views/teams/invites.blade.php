@@ -26,7 +26,7 @@
                                         <span class="badge badge-primary badge-pill">Registered User</span>
                                     @endif
                                 </td>
-                                <td width="240px" class="text-right">
+                                <td width="290px" class="text-right">
                                     {!! form()->action('post',
                                         ['invite.resend', $invite],
                                         'Resend Invite',

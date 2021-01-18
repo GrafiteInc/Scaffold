@@ -61,8 +61,10 @@ Route::post(
 |--------------------------------------------------------------------------
 */
 
-Route::get('register/invite', [Auth\RegisterController::class, 'showRegistrationInviteForm']);
-Route::post('register/invite', [Auth\RegisterController::class, 'registerViaInvite']);
+Route::get('register/invite', [Auth\RegisterController::class, 'showRegistrationInviteForm'])
+    ->name('register.with-invite');
+Route::post('register/invite', [Auth\RegisterController::class, 'registerViaInvite'])
+    ->name('register.invite');
 
 Route::middleware(ProtectAgainstSpam::class)->group(function () {
     CollectiveAuth::routes([

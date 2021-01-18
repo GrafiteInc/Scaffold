@@ -1,14 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('page-title', 'Register')
 
-@section('app-content')
-
+@section('content')
     <div class="content-sm mt-4">
 
         <h3 class="text-center mb-5">Invite Registration</h3>
 
-        <form method="POST" action="{{ url('register/invite') }}">
+        <form method="POST" action="{{ route('register.invite') }}">
             {!! csrf_field() !!}
 
             <input name="activation_token" type="hidden" value="{{ request('activate_token') }}">
@@ -41,7 +40,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 mt-4">
-                    <div class="btn-toolbar justify-content-between">
+                    <div class="btn-toolbar justify-content-end">
                         <button class="btn btn-primary" type="submit">Register</button>
                     </div>
                 </div>

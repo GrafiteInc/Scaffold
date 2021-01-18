@@ -1,9 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('page-title', 'Login')
 
-@section('app-content')
-
+@section('content')
     <div class="content-sm mt-4">
 
         <h3 class="text-center">Sign into your account</h3>

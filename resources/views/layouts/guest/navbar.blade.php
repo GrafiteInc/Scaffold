@@ -1,5 +1,7 @@
-<nav class="navbar bg-dark sticky-top flex-md-nowrap p-0">
-    <a class="navbar-brand mr-0" href="/"><span class="fa fa-cogs"></span> Brand</a>
+<nav class="navbar bg-primary sticky-top p-0 mx-n3">
+    <a class="navbar-brand m-2 text-white" href="/">
+        <span class="fas fa-fw fa-cogs"></span> {{ config('app.name') }}
+    </a>
     <ul class="navbar-nav px-3">
         <li class="nav-item">
             @guest
@@ -9,7 +11,7 @@
                 </a>
             @else
                 <a href="{{ route('dashboard') }}" class="nav-link text-white">
-                    <span class="fas fa-tachometer-alt"></span>
+                    <span class="fas fa-fw fa-tachometer-alt"></span>
                     Dashboard
                 </a>
             @endguest
