@@ -15,6 +15,9 @@ if (! function_exists('route_link_class')) {
     }
 }
 
+/**
+ * Compile the session errors into a single message.
+ */
 if (! function_exists('sessionErrorMessage')) {
     function sessionErrorMessage()
     {

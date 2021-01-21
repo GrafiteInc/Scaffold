@@ -2,6 +2,7 @@
 
 return [
     'name' => env('APP_NAME', 'Scaffold'),
+    'version' => env('APP_VERSION', '1'),
     'manifest' => [
         'name' => env('APP_NAME', 'Scaffold'),
         'short_name' => 'Scaffold',

@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
-@section('app-content')
+@section('content')
 
     <div class="container">
         <div class="card mt-5">

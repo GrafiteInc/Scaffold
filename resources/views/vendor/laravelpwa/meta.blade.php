@@ -42,5 +42,12 @@
             // registration failed :(
             console.log('Laravel PWA: ServiceWorker registration failed: ', err);
         });
+        {{-- // In case you need to force delete the serviceworker.
+        navigator.serviceWorker.getRegistrations()
+            .then(function(registrations) {
+                for (let registration of registrations) {
+                    registration.unregister(); console.log('bye')
+                }
+            }); --}}
     }
 </script>

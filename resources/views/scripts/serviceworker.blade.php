@@ -1,9 +1,9 @@
-var staticCacheName = "pwa-v" + new Date().getTime();
+var staticCacheName = "{{ $version }}"
 var filesToCache = [
     '/offline',
-    // '/css/dark-app.css', //optional
-    // '/css/light-app.css', //optional
-    // '/js/app.js', //optional
+    '/css/dark-app.css',
+    '/css/light-app.css',
+    '/js/app.js',
     '/images/icons/icon-72x72.png',
     '/images/icons/icon-96x96.png',
     '/images/icons/icon-128x128.png',

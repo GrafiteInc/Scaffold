@@ -42,7 +42,6 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 | Public Pages
 |--------------------------------------------------------------------------
 */
-
 Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('support', [PagesController::class, 'getSupport'])->name('support');
 Route::get('terms-of-service', [PagesController::class, 'termsOfService'])->name('terms-of-service');
@@ -220,4 +219,19 @@ Route::middleware('auth')->group(function () {
             Route::resource('roles', RoleController::class, ['as' => 'admin']);
         });
     });
+});
+
+/*
+|--------------------------------------------------------------------------
+| Scripts
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/serviceworker.js', function () {
+    $version = 'pwa-v' . config('laravelpwa.version');
+    // Here is where you could control version releases by
+    // something content or database driven.
+    $response = view('scripts.serviceworker')->withVersion($version)->render();
+
+    return response($response)->header('Content-Type', 'application/javascript');
 });

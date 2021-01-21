@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="version" content="1">
+        <meta name="version" content="v{{ config('laravelpwa.version', '1') }}">
 
         {{-- Helps prevent 419 issues --}}
         <meta http-equiv="refresh" content="{{ config('session.lifetime') * 60 }}">
