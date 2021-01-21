@@ -5,6 +5,9 @@ import Snotify, { SnotifyPosition } from 'vue-snotify';
 require('./bootstrap');
 
 let _options = {
+    global: {
+        preventDuplicates: true,
+    },
     toast: {
         timeout: 4000,
         showProgressBar: false,

@@ -2407,6 +2407,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var _options = {
+  global: {
+    preventDuplicates: true
+  },
   toast: {
     timeout: 4000,
     showProgressBar: false,
