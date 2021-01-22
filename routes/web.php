@@ -113,7 +113,6 @@ Route::middleware('auth')->group(function () {
 
             Route::prefix('billing')->group(function () {
                 Route::middleware('has-subscription')->group(function () {
-                    Route::post('update', [BillingController::class, 'update'])->name('user.billing.update');
                     Route::delete('cancel', [BillingController::class, 'cancel'])->name('user.billing.cancel');
                 });
             });
