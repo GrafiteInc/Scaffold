@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        if (request()->is('api/*')) {
+        if (request()->is('api/*') || request()->is('ajax/*')) {
             $this->handleJsonResponse($request, $exception);
         }
 

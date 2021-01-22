@@ -48,7 +48,7 @@ class RoleForm extends ModelForm
     public function permissionOptionKeys()
     {
         $options = [];
-        $permissions = config('permissions');
+        $permissions = config('permissions', []);
 
         foreach ($permissions as $model => $action) {
             foreach ($action as $name => $label) {
@@ -62,7 +62,7 @@ class RoleForm extends ModelForm
     public function permissionOptions()
     {
         $options = [];
-        $permissions = config('permissions');
+        $permissions = config('permissions', []);
 
         foreach ($permissions as $model => $action) {
             foreach ($action as $name => $label) {

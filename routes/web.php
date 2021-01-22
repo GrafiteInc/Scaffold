@@ -9,7 +9,6 @@ use Collective\Auth\Facades\CollectiveAuth;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\TeamMembersController;
 use App\Http\Controllers\ResendInviteController;
 use App\Http\Controllers\RevokeInviteController;
@@ -19,6 +18,7 @@ use App\Http\Controllers\User\InvitesController;
 use App\Http\Controllers\Ajax\ApiTokenController;
 use App\Http\Controllers\User\SecurityController;
 use App\Http\Controllers\User\SettingsController;
+use App\Http\Controllers\Ajax\FileUploadController;
 use App\Http\Controllers\Ajax\CookiePolicyController;
 use App\Http\Controllers\Ajax\SubscriptionController;
 use App\Http\Controllers\User\ApiTokenIndexController;
@@ -219,19 +219,4 @@ Route::middleware('auth')->group(function () {
             Route::resource('roles', RoleController::class, ['as' => 'admin']);
         });
     });
-});
-
-/*
-|--------------------------------------------------------------------------
-| Scripts
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/serviceworker.js', function () {
-    $version = 'pwa-v' . config('laravelpwa.version');
-    // Here is where you could control version releases by
-    // something content or database driven.
-    $response = view('scripts.serviceworker')->withVersion($version)->render();
-
-    return response($response)->header('Content-Type', 'application/javascript');
 });

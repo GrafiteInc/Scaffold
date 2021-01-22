@@ -7,7 +7,6 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 
 class RouteServiceProvider extends ServiceProvider
 {
-
     /**
      * The path to the "home" route for your application.
      *
@@ -35,6 +34,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+
+        $this->mapScriptRoutes();
     }
 
     /**
@@ -62,5 +63,18 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('api')
             ->middleware('api')
             ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * Define the "script" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapScriptRoutes()
+    {
+        Route::prefix('scripts')
+            ->group(base_path('routes/scripts.php'));
     }
 }

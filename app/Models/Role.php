@@ -61,7 +61,7 @@ class Role extends Model
     {
         if ($this->name === 'admin') {
             $options = [];
-            $permissions = config('permissions');
+            $permissions = config('permissions', []);
 
             foreach ($permissions as $model => $action) {
                 foreach ($action as $name => $label) {

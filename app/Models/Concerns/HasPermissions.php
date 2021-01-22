@@ -23,7 +23,7 @@ trait HasPermissions
 
         // Here we're ensuring that if a user has all the permissions
         // of a group of permissions then they have the plain worded permission.
-        foreach (config('permissions') as $group => $permissions) {
+        foreach (config('permissions', []) as $group => $permissions) {
             $count = $userPermissions->filter(function ($key) use ($group) {
                 return Str::contains($key, $group);
             })->count();
