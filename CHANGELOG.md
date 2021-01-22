@@ -3,6 +3,17 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.8.0] - 2021-01-22
+
+### Added
+- PWA version controls
+
+### Changed
+- Laravel Mix 6
+- Activity details
+- UI overhaul
+- Security updates
+
 ## [v2.7.0] - 2020-12-19
 
 ### Changed
