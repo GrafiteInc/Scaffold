@@ -13,9 +13,9 @@ class PagesControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testContact()
+    public function testSupport()
     {
-        $response = $this->get(route('contact'));
+        $response = $this->get(route('support'));
 
         $response->assertOk();
     }
