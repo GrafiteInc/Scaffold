@@ -31,6 +31,7 @@ class TeamMemberForm extends BaseForm
             ]),
             Select::make('team_role', [
                 'required' => true,
+                'multiple' => false,
                 'label' => 'Select a Team Role',
                 'options' => [
                     'Manager' => 'manager',

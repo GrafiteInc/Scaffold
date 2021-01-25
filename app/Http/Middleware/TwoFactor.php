@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use PragmaRX\Google2FALaravel\Support\Authenticator;
+
+class TwoFactor
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @return mixed
+     */
+    public function handle(Request $request, Closure $next)
+    {
+        $user = auth()->user();
+
+        if ($user->two_factor_platform === 'email') {
+            if (auth()->check() && ! $user->hasValidTwoFactorCode()) {
+                return redirect(route('verification.two-factor'));
+            }
+        }
+
+        if ($user->two_factor_platform === 'authenticator') {
+            $authenticator = app(Authenticator::class)->boot($request);
+
+            if (! $authenticator->isAuthenticated()) {
+                return redirect(route('verification.two-factor'));
+            }
+        }
+
+        return $next($request);
+    }
+}

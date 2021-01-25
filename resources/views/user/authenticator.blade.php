@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('page-title', 'Change Password')
+@section('page-title', 'Authenticator QR Code')
 
 @section('user_content')
 
@@ -18,7 +18,17 @@
             </div>
         </div>
         <div class="col-md-8">
-            {!! $form !!}
+            <p>Please scan the following QR code with your authenticator App of choice, or enter in this code manually.</p>
+
+            <div class="row">
+                <div class="col-md-12 mt-5">
+                    <input readonly value="{{ $manual }}" type="text">
+                </div>
+            </div>
+
+            <div class="mt-5 d-flex justify-content-center">
+                <img src="{{ $code }}">
+            </div>
         </div>
     </div>
 

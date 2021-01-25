@@ -4,16 +4,16 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Forms\UserSecurityForm;
+use App\Http\Forms\UserPasswordForm;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\PasswordUpdateRequest;
 use Collective\Auth\Foundation\ResetsPasswords;
 
-class SecurityController extends Controller
+class ChangePasswordController extends Controller
 {
     use ResetsPasswords;
 
-    protected $redirectPath = '/user/security';
+    protected $redirectPath = '/user/settings/password';
 
     /**
      * User wants to change their password.
@@ -23,7 +23,7 @@ class SecurityController extends Controller
      */
     public function index(Request $request)
     {
-        $form = app(UserSecurityForm::class)->make();
+        $form = app(UserPasswordForm::class)->make();
 
         return view('user.password')->with(compact('form'));
     }

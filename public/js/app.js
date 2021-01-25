@@ -2408,10 +2408,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var _options = {
   global: {
-    preventDuplicates: true
+    maxOnScreen: 4
   },
   toast: {
-    timeout: 4000,
+    timeout: 2000,
     showProgressBar: false,
     position: vue_snotify__WEBPACK_IMPORTED_MODULE_1__.SnotifyPosition.rightTop
   }

@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         // Non-Standard Laravel
+        'two-factor' => \App\Http\Middleware\TwoFactor::class,
         'admin' => \App\Http\Middleware\Admin::class,
         'activity' => \App\Http\Middleware\Activity::class,
         'permissions' => \App\Http\Middleware\Permissions::class,

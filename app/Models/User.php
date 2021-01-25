@@ -9,6 +9,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\HasActivity;
 use App\Notifications\ResetPassword;
+use App\Models\Concerns\HasTwoFactor;
 use App\Models\Concerns\HasPermissions;
 use App\Models\Concerns\HasSubscription;
 use Illuminate\Notifications\Notifiable;
@@ -25,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasActivity;
     use HasAvatar;
     use HasApiTokens;
+    use HasTwoFactor;
     use HasSubscription;
     use HasRoles;
     use HasPermissions;
@@ -57,6 +59,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'trial_ends_at',
         'state',
         'country',
+        'two_factor_platform',
+        'two_factor_code',
+        'two_factor_expires_at',
     ];
 
     /**
@@ -67,6 +72,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_platform',
+        'two_factor_code',
+        'two_factor_expires_at',
     ];
 
     /**
@@ -77,6 +85,15 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
         'dark_mode' => 'boolean',
+    ];
+
+    /**
+     * The attributes that should be cast to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'two_factor_expires_at',
     ];
 
     /**

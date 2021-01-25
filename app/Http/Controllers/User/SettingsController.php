@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
+use App\Notifications\TwoFactorNotification;
 
 class SettingsController extends Controller
 {
@@ -26,7 +27,7 @@ class SettingsController extends Controller
         $deleteAccountForm = form()
             ->confirm(trans('general.user.delete_account'), 'confirmation')
             ->action('delete', 'user.destroy', 'Delete My Account', [
-                'class' => 'btn btn-danger mt-4',
+                'class' => 'btn btn-block btn-danger mb-6',
             ]);
 
         return view('user.settings')->with(compact('form', 'deleteAccountForm'));
@@ -61,15 +62,41 @@ class SettingsController extends Controller
                 'billing_email' => $request->billing_email,
                 'state' => $request->state,
                 'country' => $request->country,
+                'two_factor_platform' => $request->two_factor_platform,
             ]);
 
             activity('Settings updated.');
 
-            return redirect()->back()->withMessage('Settings updated successfully');
+            if (! is_null($request->user()->two_factor_platform)) {
+                activity('Enabled Two Factor Authenticator.');
+
+                $request->user()->setTwoFactorCode();
+
+                if ($request->user()->two_factor_platform === 'email') {
+                    $request->user()->notify(new TwoFactorNotification);
+                }
+
+                if ($request->user()->two_factor_platform === 'authenticator') {
+                    $google2fa = app('pragmarx.google2fa');
+                    // log in the user automatically
+                    $google2fa->login();
+                    // Show them the QR or manual code
+                    return view('user.authenticator', [
+                        'manual' => $request->user()->two_factor_code,
+                        'code' => $google2fa->getQRCodeInline(
+                            config('app.name'),
+                            $request->user()->email,
+                            $request->user()->two_factor_code,
+                        ),
+                    ]);
+                }
+            }
+
+            return redirect()->route('user.settings')->withMessage('Settings updated successfully');
         } catch (Exception $e) {
             Log::error($e);
 
-            return redirect()->back()->withErrors($e->getMessage());
+            return redirect()->route('user.settings')->withErrors($e->getMessage());
         }
     }
 

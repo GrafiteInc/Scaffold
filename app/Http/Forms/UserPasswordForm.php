@@ -5,13 +5,11 @@ namespace App\Http\Forms;
 use Grafite\Forms\Forms\BaseForm;
 use Grafite\Forms\Fields\Password;
 
-class UserSecurityForm extends BaseForm
+class UserPasswordForm extends BaseForm
 {
-    public $route = 'user.security';
+    public $route = 'user.settings.password.update';
 
     public $method = 'put';
-
-    public $orientation = 'horizontal';
 
     public $buttons = [
         'submit' => 'Save',
