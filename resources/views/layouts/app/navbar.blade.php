@@ -1,7 +1,7 @@
 <nav class="navbar navbar-header navbar-expand sticky-top flex-md-nowrap app-nav p-0">
     <span class="navbar-text ml-4">
         <a class="sidebar-toggle mr-3">
-            <i class="fa fa-bars"></i>
+            <i class="fas fa-bars"></i>
         </a>
         <span class="navbar-text navbar-title p-0">@yield('page-title', 'Dashboard')</span>
     </span>

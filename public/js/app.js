@@ -2526,22 +2526,26 @@ if (token) {
   \*********************************/
 /***/ (() => {
 
-window.onload = function () {
+document.addEventListener('DOMContentLoaded', function (event) {
   if (document.querySelector('.sidebar-toggle')) {
     document.querySelector('.sidebar-toggle').onclick = function () {
       document.querySelector('.sidebar').classList.toggle("toggled");
+      document.querySelector('.sidebar-toggle i').classList.toggle("fa-times");
     };
 
     window.addEventListener("resize", function () {
       document.querySelector('.sidebar').classList.remove('toggled');
+      document.querySelector('.sidebar-toggle i').classList.remove("fa-times");
     });
-  } // if (window.innerWidth < 990) {
-  //     document.querySelector('.main').onclick = () => {
-  //         document.querySelector('.sidebar').classList.remove("toggled");
-  //     };
-  // }
+  }
 
-};
+  if (window.innerWidth < 990) {
+    document.querySelector('.main .container').onclick = function () {
+      document.querySelector('.sidebar').classList.remove("toggled");
+      document.querySelector('.sidebar-toggle i').classList.remove("fa-times");
+    };
+  }
+});
 
 /***/ }),
 
