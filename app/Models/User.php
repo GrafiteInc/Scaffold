@@ -33,11 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     use DatabaseSearchable;
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+    public $form = UserForm::class;
 
     /**
      * The attributes that are mass assignable.
