@@ -10,10 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <p id="appModalMessage"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button id="appModalConfirmBtn" type="button" class="btn btn-outline-primary">Confirm</button>
+                    <button id="appModalConfirmBtn" type="button" class="btn btn-outline-primary float-right">Confirm</button>
                 </div>
             </div>
         </div>
@@ -22,7 +19,7 @@
 
 <script>
     export default {
-        mame: "modal",
+        mame: "confirmation-modal",
         props: [
             //
         ],

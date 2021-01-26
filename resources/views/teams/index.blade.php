@@ -40,13 +40,13 @@
                                                 <div class="avatar-sm shadow-sm border" style="background-image: url({{ $member->avatar_url }})"></div>
                                             @endforeach
                                         </td>
-                                        <td width="50%" class="text-right">
+                                        <td width="50%">
                                             @can('subscribed')
                                                 <div class="btn-toolbar justify-content-end">
                                                     <a class="btn btn-outline-primary btn-sm mr-2" href="{!! route('teams.edit', $team) !!}">
                                                         <i class="fas fa-fw fa-cogs"></i> Settings
                                                     </a>
-                                                    {!! app(\App\Http\Forms\TeamForm::class)->confirm('Are you sure you want to delete '.$team->name.'?', 'confirmation')->delete($team) !!}
+                                                    {!! $team->form()->delete() !!}
                                                 </div>
                                             @endcan
                                         </td>

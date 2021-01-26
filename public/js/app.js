@@ -2033,11 +2033,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mame: "modal",
+  mame: "confirmation-modal",
   props: [//
   ],
   mounted: function mounted() {
@@ -2087,7 +2084,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mame: "modal",
+  mame: "content-modal",
   props: [//
   ],
   data: function data() {
@@ -42186,23 +42183,12 @@ var staticRenderFns = [
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _c("p", { attrs: { id: "appModalMessage" } })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_vm._v("Close")]
-                ),
+                _c("p", { attrs: { id: "appModalMessage" } }),
                 _vm._v(" "),
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-outline-primary",
+                    staticClass: "btn btn-outline-primary float-right",
                     attrs: { id: "appModalConfirmBtn", type: "button" }
                   },
                   [_vm._v("Confirm")]

@@ -1,4 +1,4 @@
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', (event) => {
     if (document.querySelector('.sidebar-toggle')) {
         document.querySelector('.sidebar-toggle').onclick = () => {
             document.querySelector('.sidebar').classList.toggle("toggled");
@@ -14,4 +14,4 @@ window.onload = () => {
     //         document.querySelector('.sidebar').classList.remove("toggled");
     //     };
     // }
-}
+});

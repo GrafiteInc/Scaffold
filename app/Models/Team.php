@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Forms\TeamForm;
+use Grafite\Forms\Traits\HasForm;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\Invitable;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +15,10 @@ class Team extends Model
     use Invitable;
     use HasAvatar;
     use HasFactory;
+    use HasForm;
     use HasSubscribedUser;
+
+    public $form = TeamForm::class;
 
     public $relationship = 'teamMemberships';
 

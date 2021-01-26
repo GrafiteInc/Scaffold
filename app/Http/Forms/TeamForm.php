@@ -33,6 +33,10 @@ class TeamForm extends ModelForm
         'delete' => 'btn btn-sm btn-outline-danger',
     ];
 
+    public $confirmMessage = 'Are you sure you want to delete this team?';
+
+    public $confirmMethod = 'confirmation';
+
     public function fields()
     {
         return [
