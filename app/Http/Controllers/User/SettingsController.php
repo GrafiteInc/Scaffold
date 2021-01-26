@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Exception;
 use App\Http\Forms\UserForm;
 use Illuminate\Http\Request;
+use App\Http\Forms\LogoutForm;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -23,6 +24,7 @@ class SettingsController extends Controller
         $user = $request->user();
 
         $form = app(UserForm::class)->edit($user);
+        $logoutForm = app(LogoutForm::class)->make();
 
         $deleteAccountForm = form()
             ->confirm(trans('general.user.delete_account'), 'confirmation')
@@ -30,7 +32,7 @@ class SettingsController extends Controller
                 'class' => 'btn btn-block btn-danger mb-6',
             ]);
 
-        return view('user.settings')->with(compact('form', 'deleteAccountForm'));
+        return view('user.settings')->with(compact('form', 'deleteAccountForm', 'logoutForm'));
     }
 
     /**

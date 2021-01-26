@@ -13,18 +13,22 @@
                             <div class="mb-4 d-flex justify-content-center">
                                 <div class="avatar shadow-sm border" style="background-image: url({{ auth()->user()->avatar_url }})"></div>
                             </div>
-                            <x-f-action
-                                confirmMessage="Are you sure you want to delete your avatar?"
-                                confirmMethod="confirmation"
+                            <x-f-modal
+                                message='<p class="mb-4">Are you sure you want to delete your avatar?</p>'
+                                content="Confirm"
                                 method="delete"
                                 route="user.destroy.avatar"
-                                content="<span class='fas fa-trash'></span> Delete Avatar"
-                                :confirm="true"
+                                triggerContent="<span class='fas fa-fw fa-trash'></span> Delete Avatar"
+                                triggerClass="btn btn-block btn-outline-danger mb-3"
                                 :payload="['user' => auth()->id()]"
-                                :options="['class' => 'btn btn-block btn-outline-danger mb-3']"
-                            ></x-f-action>
+                                :options="['class' => 'btn btn-outline-primary float-right']"
+                            ></x-f-modal>
                         @endif
-                        <a class="btn btn-block btn-outline-secondary mb-3" href="{{ route('user.settings.password') }}">Change Password</a>
+                        {!! $logoutForm !!}
+                        <a class="btn btn-block btn-outline-secondary mb-3" href="{{ route('user.settings.password') }}">
+                            <span class="fas fa-fw fa-lock"></span>
+                            Change Password
+                        </a>
                         <hr class="mt-6 mb-4">
                         <x-f :content="$deleteAccountForm"></x-f>
                     </div>

@@ -24,6 +24,7 @@ use App\Http\Controllers\Ajax\SubscriptionController;
 use App\Http\Controllers\User\ApiTokenIndexController;
 use App\Http\Controllers\User\NotificationsController;
 use App\Http\Controllers\User\ChangePasswordController;
+use App\Http\Controllers\User\LogoutSessionsController;
 use App\Http\Controllers\Ajax\NotificationCountController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
@@ -108,6 +109,8 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('user')->group(function () {
             Route::get('settings', [SettingsController::class, 'index'])->name('user.settings');
+            Route::post('logout', LogoutSessionsController::class)->name('user.logout');
+
             Route::delete('destroy', [DestroyController::class, 'destroy'])->name('user.destroy');
             Route::put('settings', [SettingsController::class, 'update'])->name('user.update');
             Route::delete('avatar', [SettingsController::class, 'destroyAvatar'])->name('user.destroy.avatar');
