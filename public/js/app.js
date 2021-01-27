@@ -2141,12 +2141,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     accept: function accept() {
-      axios.post(route('ajax.accept-cookie-policy'), {
-        version: this.version
-      }).then(function (results) {// Will be a statement that its logged
-        // results.data.data
-      })["catch"](function (err) {//
-      });
+      // If they have not accepted it yet, lets log it
+      if (!window.localStorage.getItem(this.cookieName)) {
+        axios.post(route('ajax.accept-cookie-policy'), {
+          version: this.version
+        }).then(function (results) {// Will be a statement that its logged
+          // results.data.data
+        })["catch"](function (err) {//
+        });
+      }
     }
   },
   data: function data() {

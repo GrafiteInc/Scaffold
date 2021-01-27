@@ -21,19 +21,22 @@
         },
         methods: {
             accept () {
-                axios.post(route('ajax.accept-cookie-policy'), {
-                    version: this.version,
-                })
-                .then(results => {
-                    // Will be a statement that its logged
-                    // results.data.data
-                })
-                .catch(err => {
-                    //
-                });
+                // If they have not accepted it yet, lets log it
+                if (! window.localStorage.getItem(this.cookieName)) {
+                    axios.post(route('ajax.accept-cookie-policy'), {
+                        version: this.version,
+                    })
+                    .then(results => {
+                        // Will be a statement that its logged
+                        // results.data.data
+                    })
+                    .catch(err => {
+                        //
+                    });
+                }
             }
         },
-        data() {
+        data () {
             return {
                 cookieName: 'cookie:accepted:'+this.version
             }
