@@ -15,6 +15,8 @@ use App\Http\Requests\TeamUpdateRequest;
 
 class TeamsController extends Controller
 {
+    public $service;
+
     public function __construct(TeamService $service)
     {
         $this->service = $service;
@@ -23,7 +25,7 @@ class TeamsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -36,7 +38,7 @@ class TeamsController extends Controller
     /**
      * Show the form for creating a new team.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -50,7 +52,7 @@ class TeamsController extends Controller
     /**
      * Store a newly created team in storage.
      *
-     * @param  \Illuminate\Http\TeamCreateRequest  $request
+     * @param  \App\Http\Requests\TeamCreateRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(TeamCreateRequest $request)
@@ -75,7 +77,7 @@ class TeamsController extends Controller
      * Show the form for editing the specified team.
      *
      * @param  \App\Models\Team  $team
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Team $team)
     {
@@ -88,7 +90,7 @@ class TeamsController extends Controller
         $form = app(TeamForm::class)->edit($team);
 
         $inviteForm = app(TeamInviteForm::class)
-            ->setRoute('teams.members.invite', $team)->make();
+            ->setRoute('teams.members.invite', $team->id)->make();
 
         return view('teams.edit')->with(compact('inviteForm', 'form', 'team'));
     }
@@ -97,7 +99,7 @@ class TeamsController extends Controller
      * Show the form for handling members the specified team.
      *
      * @param  \App\Models\Team  $team
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function members(Team $team)
     {
@@ -108,7 +110,7 @@ class TeamsController extends Controller
         }
 
         $inviteForm = app(TeamInviteForm::class)
-            ->setRoute('teams.members.invite', $team)->make();
+            ->setRoute('teams.members.invite', $team->id)->make();
 
         return view('teams.members')->with(compact('inviteForm', 'team'));
     }
@@ -116,8 +118,8 @@ class TeamsController extends Controller
     /**
      * Update the specified team in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\TeamUpdateRequest  $request
+     * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(TeamUpdateRequest $request, Team $team)

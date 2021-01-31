@@ -2,11 +2,18 @@
 
 namespace App\Models\Concerns;
 
+use App\Notifications\TwoFactorNotification;
+
 trait HasTwoFactor
 {
+    public function usesTwoFactor($type)
+    {
+        return $this->two_factor_platform === $type;
+    }
+
     public function setTwoFactorCodeAttribute($value)
     {
-        $this->attributes['two_factor_code'] = encrypt($value);
+        $this->attributes['two_factor_code'] = is_null($value) ? $value : encrypt($value);
     }
 
     public function getTwoFactorCodeAttribute($value)
@@ -47,6 +54,12 @@ trait HasTwoFactor
         $this->update([
             'two_factor_expires_at' => now()->addHours(config('auth.two_factor_valid_hours', 24)),
         ]);
+    }
+
+    public function setAndSendTwoFactorForEmail()
+    {
+        $this->setTwoFactorForEmail();
+        $this->notify(new TwoFactorNotification);
     }
 
     public function setTwoFactorForEmail()

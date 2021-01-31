@@ -18,11 +18,12 @@
             </div>
         </div>
         <div class="col-md-8">
-            <p>Please scan the following QR code with your authenticator App of choice, or enter in this code manually.</p>
+            <p class="lead">Please scan the following QR code with your authenticator app of your choice, or enter in this code manually.</p>
 
             <div class="row">
                 <div class="col-md-12 mt-5">
-                    <input readonly value="{{ $manual }}" type="text">
+                    <label for="">Manual Authorization Code</label>
+                    <input class="form-control" readonly value="{{ $manual }}" type="text">
                 </div>
             </div>
 

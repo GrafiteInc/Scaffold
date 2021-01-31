@@ -7,6 +7,13 @@
     </span>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
+            @if (session('original_user'))
+                {!! form()->action('post', ['users.return-switch'], '<span class="fas fa-exchange-alt"></span>', [
+                    'class' => 'btn btn-text navbar-text mr-2'
+                ]) !!}
+            @endif
+        </li>
+        <li class="nav-item">
             <a class="navbar-text pr-4" href="{{ route('support') }}">
                 <span class="fas fa-question"></span>
             </a>

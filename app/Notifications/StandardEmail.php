@@ -20,7 +20,9 @@ class StandardEmail extends Notification implements ShouldQueue
     /**
      * Create a notification instance.
      *
-     * @param string $token
+     * @param string $name
+     * @param string $subject
+     * @param string $message
      */
     public function __construct($name, $subject, $message)
     {

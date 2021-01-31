@@ -9,7 +9,7 @@ use PragmaRX\Google2FALaravel\Support\Authenticator;
 
 class TwoFactorController extends Controller
 {
-    public function showVerificationForm(Request $request)
+    public function showForm(Request $request)
     {
         return view('auth.two-factor');
     }
@@ -18,10 +18,9 @@ class TwoFactorController extends Controller
      * Verification for Two Factor Auth
      *
      * @param Request $request
-     * @param string $code
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function twoFactorVerification(Request $request)
+    public function verify(Request $request)
     {
         if ($request->user()->two_factor_platform === 'email') {
             if ((int) $request->one_time_password === $request->user()->two_factor_code) {
@@ -45,7 +44,7 @@ class TwoFactorController extends Controller
     /**
      * Verification response.
      *
-     * @return \Illuminate\Support\Facades\Redirect
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function verified()
     {

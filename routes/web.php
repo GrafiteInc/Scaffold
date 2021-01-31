@@ -85,9 +85,9 @@ Route::middleware(ProtectAgainstSpam::class)->group(function () {
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('verify/two-factor', [TwoFactorController::class, 'showVerificationForm'])
+    Route::get('verify/two-factor', [TwoFactorController::class, 'showForm'])
         ->name('verification.two-factor.code');
-    Route::post('verify/two-factor', [TwoFactorController::class, 'twoFactorVerification'])
+    Route::post('verify/two-factor', [TwoFactorController::class, 'verify'])
         ->name('verification.two-factor');
 
     Route::post('users/return-switch', [UserController::class, 'switchBack'])->name('users.return-switch');
@@ -109,6 +109,8 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('user')->group(function () {
             Route::get('settings', [SettingsController::class, 'index'])->name('user.settings');
+            Route::get('settings/two-factor', [SettingsController::class, 'twoFactorSetup'])->name('user.settings.two-factor');
+
             Route::post('logout', LogoutSessionsController::class)->name('user.logout');
 
             Route::delete('destroy', [DestroyController::class, 'destroy'])->name('user.destroy');

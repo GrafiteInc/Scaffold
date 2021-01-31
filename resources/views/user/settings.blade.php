@@ -29,6 +29,12 @@
                             <span class="fas fa-fw fa-lock"></span>
                             Change Password
                         </a>
+                        @if (auth()->user()->usesTwoFactor('authenticator'))
+                            <a class="btn btn-block btn-outline-secondary mb-3" href="{{ route('user.settings.two-factor') }}">
+                                <span class="fas fa-fw fa-shield-alt"></span>
+                                Two Factor Auth
+                            </a>
+                        @endif
                         <hr class="mt-6 mb-4">
                         <x-f :content="$deleteAccountForm"></x-f>
                     </div>

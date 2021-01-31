@@ -2,6 +2,8 @@
 
 namespace App\Models\Concerns;
 
+use Illuminate\Support\Facades\Cache;
+
 trait HasSubscription
 {
     /**
@@ -12,19 +14,21 @@ trait HasSubscription
      */
     public function hasActiveSubscription()
     {
-        if ($this->subscription(config('billing.subscription_name')) && ! $this->subscription(config('billing.subscription_name'))->cancelled()) {
-            return true;
-        }
+        return Cache::remember($this->cacheIdentifier('subscription'), 86400, function () {
+            if ($this->subscription(config('billing.subscription_name')) && ! $this->subscription(config('billing.subscription_name'))->cancelled()) {
+                return true;
+            }
 
-        if (
-            $this->subscription(config('billing.subscription_name')) &&
-            $this->subscription(config('billing.subscription_name'))->cancelled() &&
-            $this->subscription(config('billing.subscription_name'))->onGracePeriod()
-        ) {
-            return true;
-        }
+            if (
+                $this->subscription(config('billing.subscription_name')) &&
+                $this->subscription(config('billing.subscription_name'))->cancelled() &&
+                $this->subscription(config('billing.subscription_name'))->onGracePeriod()
+            ) {
+                return true;
+            }
 
-        return false;
+            return false;
+        });
     }
 
     /**

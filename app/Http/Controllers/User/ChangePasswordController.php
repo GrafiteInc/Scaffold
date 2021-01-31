@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Forms\UserPasswordForm;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\PasswordUpdateRequest;
 use Collective\Auth\Foundation\ResetsPasswords;
+use App\Http\Requests\UserPasswordUpdateRequest;
 
 class ChangePasswordController extends Controller
 {
@@ -19,7 +19,7 @@ class ChangePasswordController extends Controller
      * User wants to change their password.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -31,10 +31,10 @@ class ChangePasswordController extends Controller
     /**
      * Change the user's password and return.
      *
-     * @param  \App\Http\Requests\PasswordUpdateRequest $request
+     * @param  \App\Http\Requests\UserPasswordUpdateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(PasswordUpdateRequest $request)
+    public function update(UserPasswordUpdateRequest $request)
     {
         $password = $request->new_password;
 

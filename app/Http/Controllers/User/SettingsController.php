@@ -10,14 +10,13 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
-use App\Notifications\TwoFactorNotification;
 
 class SettingsController extends Controller
 {
     /**
      * View current user's settings.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -38,7 +37,7 @@ class SettingsController extends Controller
     /**
      * Update the user.
      *
-     * @param  UpdateAccountRequest $request
+     * @param  UserUpdateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UserUpdateRequest $request)
@@ -75,23 +74,21 @@ class SettingsController extends Controller
                 $request->user()->setTwoFactorCode();
 
                 if ($request->user()->two_factor_platform === 'email') {
-                    $request->user()->notify(new TwoFactorNotification);
+                    $request->user()->validateTwoFactorCode();
                 }
 
                 if ($request->user()->two_factor_platform === 'authenticator') {
                     $google2fa = app('pragmarx.google2fa');
                     // log in the user automatically
                     $google2fa->login();
-                    // Show them the QR or manual code
-                    return view('user.authenticator', [
-                        'manual' => $request->user()->two_factor_code,
-                        'code' => $google2fa->getQRCodeInline(
-                            config('app.name'),
-                            $request->user()->email,
-                            $request->user()->two_factor_code,
-                        ),
-                    ]);
+
+                    return redirect()->route('user.settings.two-factor')->withInfo('Setup your authorization app.');
                 }
+            } else {
+                $request->user()->update([
+                    'two_factor_code' => null,
+                    'two_factor_expires_at' => null,
+                ]);
             }
 
             return redirect()->route('user.settings')->withMessage('Settings updated successfully');
@@ -100,6 +97,26 @@ class SettingsController extends Controller
 
             return redirect()->route('user.settings')->withErrors($e->getMessage());
         }
+    }
+
+    /**
+     * Setup the user 2Factor Auth
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function twoFactorSetup(Request $request)
+    {
+        $google2fa = app('pragmarx.google2fa');
+        // Show them the QR or manual code
+        return view('user.authenticator', [
+            'manual' => $request->user()->two_factor_code,
+            'code' => $google2fa->getQRCodeInline(
+                config('app.name'),
+                $request->user()->email,
+                $request->user()->two_factor_code,
+            ),
+        ]);
     }
 
     /**

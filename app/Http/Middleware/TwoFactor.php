@@ -19,6 +19,8 @@ class TwoFactor
 
         if ($user->two_factor_platform === 'email') {
             if (auth()->check() && ! $user->hasValidTwoFactorCode()) {
+                auth()->user()->setAndSendTwoFactorForEmail();
+
                 return redirect(route('verification.two-factor'));
             }
         }

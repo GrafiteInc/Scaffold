@@ -13,7 +13,7 @@ trait HasPermissions
      */
     public function getPermissionsAttribute()
     {
-        $userPermissions = collect([]);
+        $userPermissions = collect();
 
         foreach ($this->roles as $role) {
             foreach ($role->permissions as $permission) {

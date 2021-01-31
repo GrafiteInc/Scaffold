@@ -31,7 +31,7 @@ class ActivityThirtyDays extends Chart
                 return $activity->created_at->format('d-m-Y');
             });
 
-        $this->activityRecords = collect([]);
+        $this->activityRecords = collect();
 
         foreach ($activities as $date => $activity) {
             $this->activityRecords->push([

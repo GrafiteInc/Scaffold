@@ -9,9 +9,7 @@ use App\Charts\RegistrationThirtyDays;
 class DashboardController extends Controller
 {
     /**
-     * Dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     * The admin Dashboard
      */
     public function __invoke()
     {

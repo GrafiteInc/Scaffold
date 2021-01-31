@@ -13,7 +13,7 @@ class UsersController extends ApiController
     /**
      * Get the user data.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function me()
     {
@@ -26,7 +26,7 @@ class UsersController extends ApiController
      * Update the user profile.
      *
      * @param \App\Http\Requests\ApiUserUpdateRequest $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(ApiUserUpdateRequest $request)
     {
@@ -50,7 +50,7 @@ class UsersController extends ApiController
     /**
      * Delete the user profile.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy()
     {

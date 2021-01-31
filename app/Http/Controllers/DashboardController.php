@@ -11,7 +11,7 @@ class DashboardController extends Controller
     /**
      * Display the Dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function get()
     {

@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use Exception;
 use App\Models\Invite;
 use App\Services\InviteService;
 
@@ -27,7 +28,7 @@ trait Invitable
     /**
      * Model Invites.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return mixed
      */
     public function invites()
     {
