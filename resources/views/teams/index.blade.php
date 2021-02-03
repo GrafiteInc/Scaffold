@@ -4,7 +4,7 @@
 
 @section('content')
 
-    @can('subscribed')
+    @canany(['subscribed', 'admin'])
         <div class="row">
             <div class="col-md-12">
                 <div class="btn-toolbar justify-content-end">
@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-    @endcan
+    @endcanany
 
     <div class="row">
         <div class="col-md-12 mt-3">

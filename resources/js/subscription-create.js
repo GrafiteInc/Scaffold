@@ -14,6 +14,7 @@ if (subscriptionForm) {
 
     const cardHolderPlan = document.getElementById('card-holder-plan');
     const cardHolderName = document.getElementById('card-holder-name');
+    const cardHolderEmail = document.getElementById('card-holder-email');
     const cardHolderState = document.getElementById('card-holder-state');
     const cardHolderCountry = document.getElementById('card-holder-country');
     const cardButton = document.getElementById('card-button');
@@ -23,6 +24,7 @@ if (subscriptionForm) {
         if (
             cardHolderPlan.value == ''
             || cardHolderName.value == ''
+            || cardHolderEmail.value == ''
             || cardHolderState.value == ''
             || cardHolderCountry.value == ''
         ) {
@@ -52,6 +54,7 @@ if (subscriptionForm) {
             window.axios.post(route('ajax.billing.subscription.create'), {
                 plan: cardHolderPlan.value,
                 name: cardHolderName.value,
+                email: cardHolderEmail.value,
                 state: cardHolderState.value,
                 country: cardHolderCountry.value,
                 payment_method: setupIntent.payment_method

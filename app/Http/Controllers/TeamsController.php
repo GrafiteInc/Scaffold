@@ -42,7 +42,11 @@ class TeamsController extends Controller
      */
     public function create()
     {
-        abort_unless(Gate::allows('subscribed'), 403, 'Subscription is required.');
+        abort_unless(
+            Gate::allows('subscribed') || auth()->user()->hasRole('admin'),
+            403,
+            'Subscription is required.'
+        );
 
         $form = app(TeamForm::class)->create();
 
@@ -57,7 +61,11 @@ class TeamsController extends Controller
      */
     public function store(TeamCreateRequest $request)
     {
-        abort_unless(Gate::allows('subscribed'), 403, 'Subscription is required.');
+        abort_unless(
+            Gate::allows('subscribed') || auth()->user()->hasRole('admin'),
+            403,
+            'Subscription is required.'
+        );
 
         try {
             $team = $this->service->create($request->except('_token'));
@@ -81,7 +89,7 @@ class TeamsController extends Controller
      */
     public function edit(Team $team)
     {
-        abort_unless($team->hasActiveSubscription(), 403, 'Subscription is required.');
+        $this->handleAccess($team);
 
         if (! Gate::allows('team-admin', $team)) {
             abort(403);
@@ -103,7 +111,7 @@ class TeamsController extends Controller
      */
     public function members(Team $team)
     {
-        abort_unless($team->hasActiveSubscription(), 403, 'Subscription is required.');
+        $this->handleAccess($team);
 
         if (! Gate::allows('team-admin', $team)) {
             abort(403);
@@ -124,7 +132,7 @@ class TeamsController extends Controller
      */
     public function update(TeamUpdateRequest $request, Team $team)
     {
-        abort_unless($team->hasActiveSubscription(), 403, 'Subscription is required.');
+        $this->handleAccess($team);
 
         if (Gate::denies('team-admin', $team)) {
             return redirect()->back()->withErrors(['You do not have permission to do this.']);
@@ -149,7 +157,7 @@ class TeamsController extends Controller
      */
     public function destroy(Team $team)
     {
-        abort_unless($team->hasActiveSubscription(), 403, 'Subscription is required.');
+        $this->handleAccess($team);
 
         if (Gate::denies('team-admin', $team)) {
             return redirect()->back()->withErrors(['You do not have permission to do this.']);
@@ -178,7 +186,7 @@ class TeamsController extends Controller
     {
         $team = Team::find($request->team);
 
-        abort_unless($team->hasActiveSubscription(), 403, 'Subscription is required.');
+        $this->handleAccess($team);
 
         if (Gate::denies('team-admin', $team)) {
             return redirect()->back()->withErrors(['You do not have permission to do this.']);
@@ -197,5 +205,14 @@ class TeamsController extends Controller
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
+    }
+
+    protected function handleAccess($team)
+    {
+        abort_unless(
+            $team->hasActiveSubscription() || auth()->user()->hasRole('admin'),
+            403,
+            'Subscription is required.'
+        );
     }
 }

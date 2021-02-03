@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use App\Providers\RouteServiceProvider;
 use App\Notifications\InAppNotification;
 use Laravel\Cashier\Exceptions\IncompletePayment;
@@ -22,6 +23,7 @@ class SubscriptionController extends Controller
 
             $user->update([
                 'state' => $request->state,
+                'billing_email' => $request->email,
                 'country' => $request->country,
             ]);
 
@@ -34,6 +36,8 @@ class SubscriptionController extends Controller
             $user->notify($notification);
 
             activity("Subscribed to {$plan} plan.");
+
+            Cache::forget($user->cacheIdentifier('subscription'));
 
             return response()->json([
                 'message' => 'You\'re now subscribed!',
