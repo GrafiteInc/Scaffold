@@ -23,7 +23,7 @@
                     <div class="row">
                         @foreach ($images as $image)
                             <div class="col-md-4 mb-4 overflow-hidden" style="height: 200px;">
-                                <img class="w-100 align-top" src="{{ $image }}" alt="">
+                                <img loading="lazy" class="w-100 align-top" src="{{ $image }}" alt="">
                             </div>
                         @endforeach
                     </div>

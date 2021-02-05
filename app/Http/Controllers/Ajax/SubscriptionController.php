@@ -6,6 +6,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
+use App\Providers\RouteServiceProvider;
 use App\Notifications\InAppNotification;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 
@@ -21,6 +23,7 @@ class SubscriptionController extends Controller
 
             $user->update([
                 'state' => $request->state,
+                'billing_email' => $request->email,
                 'country' => $request->country,
             ]);
 
@@ -34,6 +37,8 @@ class SubscriptionController extends Controller
 
             activity("Subscribed to {$plan} plan.");
 
+            Cache::forget($user->cacheIdentifier('subscription'));
+
             return response()->json([
                 'message' => 'You\'re now subscribed!',
             ]);
@@ -41,7 +46,7 @@ class SubscriptionController extends Controller
             $message = 'Subscription requires extra steps.';
             $redirect = route(
                 'cashier.payment',
-                [$exception->payment->id, 'redirect' => route('home')]
+                [$exception->payment->id, 'redirect' => route(RouteServiceProvider::HOME)]
             );
         } catch (Exception $e) {
             Log::error($e->getMessage());

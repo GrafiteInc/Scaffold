@@ -3,6 +3,7 @@
 namespace App\Models\Concerns;
 
 use App\Models\Role;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Builder;
 
 trait HasRoles
@@ -30,7 +31,11 @@ trait HasRoles
      */
     public function hasRole($role)
     {
-        return $this->roles()->where('name', $role)->count() === 1;
+        $id = "has_role_${role}";
+
+        return Cache::remember($this->cacheIdentifier($id), 86400, function () use ($role) {
+            return $this->roles()->where('name', $role)->count() === 1;
+        });
     }
 
     /**

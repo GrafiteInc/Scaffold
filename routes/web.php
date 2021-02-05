@@ -16,13 +16,15 @@ use App\Http\Controllers\User\BillingController;
 use App\Http\Controllers\User\DestroyController;
 use App\Http\Controllers\User\InvitesController;
 use App\Http\Controllers\Ajax\ApiTokenController;
-use App\Http\Controllers\User\SecurityController;
 use App\Http\Controllers\User\SettingsController;
+use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\Ajax\FileUploadController;
 use App\Http\Controllers\Ajax\CookiePolicyController;
 use App\Http\Controllers\Ajax\SubscriptionController;
 use App\Http\Controllers\User\ApiTokenIndexController;
 use App\Http\Controllers\User\NotificationsController;
+use App\Http\Controllers\User\ChangePasswordController;
+use App\Http\Controllers\User\LogoutSessionsController;
 use App\Http\Controllers\Ajax\NotificationCountController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
@@ -83,9 +85,14 @@ Route::middleware(ProtectAgainstSpam::class)->group(function () {
 */
 
 Route::middleware('auth')->group(function () {
+    Route::get('verify/two-factor', [TwoFactorController::class, 'showForm'])
+        ->name('verification.two-factor.code');
+    Route::post('verify/two-factor', [TwoFactorController::class, 'verify'])
+        ->name('verification.two-factor');
+
     Route::post('users/return-switch', [UserController::class, 'switchBack'])->name('users.return-switch');
 
-    Route::middleware('verified')->group(function () {
+    Route::middleware(['verified', 'two-factor'])->group(function () {
         /*
         |--------------------------------------------------------------------------
         | Dashboard
@@ -102,12 +109,18 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('user')->group(function () {
             Route::get('settings', [SettingsController::class, 'index'])->name('user.settings');
+            Route::get('settings/two-factor', [SettingsController::class, 'twoFactorSetup'])->name('user.settings.two-factor');
+
+            Route::post('logout', LogoutSessionsController::class)->name('user.logout');
+
             Route::delete('destroy', [DestroyController::class, 'destroy'])->name('user.destroy');
             Route::put('settings', [SettingsController::class, 'update'])->name('user.update');
             Route::delete('avatar', [SettingsController::class, 'destroyAvatar'])->name('user.destroy.avatar');
 
-            Route::get('security', [SecurityController::class, 'index'])->name('user.security');
-            Route::put('security', [SecurityController::class, 'update'])->name('user.security.update');
+            Route::get('settings/password', [ChangePasswordController::class, 'index'])
+                ->name('user.settings.password');
+            Route::put('settings/security', [ChangePasswordController::class, 'update'])
+                ->name('user.settings.password.update');
 
             Route::get('api-tokens', ApiTokenIndexController::class)->name('user.api-tokens');
 

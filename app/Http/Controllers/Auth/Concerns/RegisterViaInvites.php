@@ -12,7 +12,7 @@ trait RegisterViaInvites
     /**
      * Show the invite registration form.
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function showRegistrationInviteForm(Request $request)
     {
@@ -23,7 +23,7 @@ trait RegisterViaInvites
      * Register a user via an invite.
      *
      * @param  Request $request
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function registerViaInvite(Request $request)
     {

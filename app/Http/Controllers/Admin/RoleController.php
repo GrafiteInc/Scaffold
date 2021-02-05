@@ -7,14 +7,13 @@ use App\Models\Role;
 use App\Http\Forms\RoleForm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\RoleCreateRequest;
 
 class RoleController extends Controller
 {
     /**
      * Display a listing of the roles.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -26,8 +25,7 @@ class RoleController extends Controller
 
     /**
      * Show the form for inviting a customer.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -42,7 +40,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRoleRequest $request)
+    public function store(RoleCreateRequest $request)
     {
         $role = Role::create([
             'name' => strtolower($request->label),
@@ -57,7 +55,7 @@ class RoleController extends Controller
      * Show the form for editing the Role.
      *
      * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Role $role)
     {

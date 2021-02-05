@@ -66,7 +66,7 @@ class TeamService
 
         if (! is_null($request->avatar)) {
             if (($request->file('avatar')->getSize() / 1024) > 10000) {
-                return redirect()->back()->withErrors(['Avatar file is too big, must be below 10MB.']);
+                throw new Exception('Avatar file is too big, must be below 10MB.', 1);
             }
 
             Storage::delete($team->avatar);
@@ -91,10 +91,8 @@ class TeamService
      *
      * @return \App\Models\Invite
      */
-    public function invite($teamId, $email)
+    public function invite($team, $email)
     {
-        $team = $this->model->find($teamId);
-
         $app = config('app.name');
 
         if ($team->members->pluck('email')->contains($email)) {
@@ -113,13 +111,12 @@ class TeamService
     /**
      * Leave a team.
      *
-     * @param int $teamId
+     * @param \App\Models\Team $team
      * @return bool
      */
-    public function leave($teamId)
+    public function leave($team)
     {
         $user = auth()->user();
-        $team = $this->model->find($teamId);
 
         $message = "{$user->name} has left {$team->name}.";
         $notification = new InAppNotification($message);
@@ -127,7 +124,7 @@ class TeamService
 
         $team->user->notify($notification);
 
-        return auth()->user()->teamMemberships()->detach($teamId);
+        return (bool) auth()->user()->teamMemberships()->detach($team->id);
     }
 
     /**
@@ -139,8 +136,6 @@ class TeamService
      */
     public function remove($user, $team)
     {
-        $team = $this->model->find($team);
-
         if (! Gate::allows('team-admin', $team)) {
             throw new Exception('You do not have permission to do this.', 1);
         }
@@ -180,7 +175,7 @@ class TeamService
      * @param \App\Models\User $user
      * @param \App\Models\Team $team
      * @param array $payload
-     * @return \App\Models\User
+     * @return \App\Models\User|false
      */
     public function updateMember($membership, $user, $team, $payload)
     {

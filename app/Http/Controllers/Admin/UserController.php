@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use Throwable;
 use App\Models\User;
 use App\Models\Invite;
 use Illuminate\Support\Str;
@@ -21,7 +22,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -39,7 +40,7 @@ class UserController extends Controller
      * Search for a matching User.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function search(Request $request)
     {
@@ -57,7 +58,7 @@ class UserController extends Controller
     /**
      * Show the form for inviting a User.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function getInvite()
     {
@@ -78,14 +79,14 @@ class UserController extends Controller
         $message = trans('general.user.invite');
         $token = Str::uuid();
 
-        $invite = Invite::firstOrCreate([
-            'user_id' => auth()->id(),
-            'email' => $request->email,
-            'message' => $message,
-            'token' => $token,
-        ]);
+        try {
+            Invite::firstOrCreate([
+                'user_id' => auth()->id(),
+                'email' => $request->email,
+                'message' => $message,
+                'token' => $token,
+            ]);
 
-        if ($invite) {
             Notification::route('mail', $request->email)
                 ->notify(new UserInviteEmail(
                     $request->email,
@@ -95,9 +96,9 @@ class UserController extends Controller
                 ));
 
             return redirect()->back()->with('message', 'Invitation was sent');
+        } catch (Throwable $th) {
+            return redirect()->back()->withErrors(['Invitation was not sent']);
         }
-
-        return redirect()->back()->withErrors(['Invitation was not sent']);
     }
 
     /**
@@ -139,7 +140,7 @@ class UserController extends Controller
      * Show the form for editing the User.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(User $user)
     {

@@ -10,11 +10,10 @@ use App\Services\TeamService;
 use App\Http\Forms\TeamInviteForm;
 use App\Http\Forms\TeamMemberForm;
 use Illuminate\Support\Facades\Gate;
-use App\Http\Controllers\Concerns\HasMembers;
 
 class TeamMembersController extends Controller
 {
-    use HasMembers;
+    public $service;
 
     public function __construct(TeamService $service)
     {
@@ -25,7 +24,7 @@ class TeamMembersController extends Controller
      * Display the specified team.
      *
      * @param  string  $uuid
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show($uuid)
     {
@@ -48,7 +47,7 @@ class TeamMembersController extends Controller
      *
      * @param  \App\Models\Team  $team
      * @param  \App\Models\User  $member
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function editMember(Team $team, User $member)
     {
@@ -58,17 +57,13 @@ class TeamMembersController extends Controller
             return redirect()->route('teams.show', $team->id);
         }
 
-        $teamLink = route('teams.show', $team->uuid);
+        $teamLink = $team->route();
         $member = $team->members->find($member->id);
 
         $form = app(TeamMemberForm::class)
             ->setMember($member)
             ->setRoute('teams.members.update', [$team->id, $member->id])
             ->make();
-
-        if (Gate::allows('team-admin', $team)) {
-            $teamLink = route('teams.edit', $team->id);
-        }
 
         return view('teams.member-edit')->with(compact('teamLink', 'form', 'member', 'team'));
     }
@@ -87,19 +82,81 @@ class TeamMembersController extends Controller
 
         $membership = $team->members->find($member->id)->membership;
 
-        //TODO -> whats up with this?
-        if (Gate::allows('team-manager', $team)) {
-            $teamLink = route('teams.edit', $team->id);
-        }
+        $route = $team->route();
 
         try {
             if ($this->service->updateMember($membership, $member, $team, $request->except('_token'))) {
-                return redirect()->back()->withMessage('Successfully updated');
+                return redirect($route)->withMessage('Successfully updated');
             }
 
-            return redirect()->back()->withMessage('Failed to update');
+            return redirect($route)->withMessage('Failed to update');
         } catch (Exception $e) {
-            return redirect()->back()->withErrors($e->getMessage());
+            return redirect($route)->withErrors($e->getMessage());
+        }
+    }
+
+    /**
+     * Invite a member.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Team  $team
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function inviteMember(Request $request, Team $team)
+    {
+        try {
+            $route = $team->route();
+
+            if ($this->service->invite($team, $request->email)) {
+                return redirect($route)->with('message', 'Successfully sent invite');
+            }
+
+            return redirect($route)->withErrors(['Failed to send invite']);
+        } catch (Exception $e) {
+            return redirect($route)->withErrors($e->getMessage());
+        }
+    }
+
+    /**
+     * Leave the team.
+     *
+     * @param  \App\Models\Team  $team
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function leave(Team $team)
+    {
+        try {
+            if ($this->service->leave($team)) {
+                return redirect()->route('teams')->with('message', 'Success, your membership was removed');
+            }
+
+            return redirect()->route('teams')->withErrors(['Failed to remove membership']);
+        } catch (Exception $e) {
+            return redirect()->route('teams')->withErrors($e->getMessage());
+        }
+    }
+
+    /**
+     * Remove a team member.
+     *
+     * @param  \App\Models\Team  $team
+     * @param  \App\Models\User  $member
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeMember(Team $team, User $member)
+    {
+        $route = $team->route();
+
+        try {
+            $result = $this->service->remove($member, $team);
+
+            if ($result) {
+                return redirect($route)->with('message', 'Success, the member was removed');
+            }
+
+            return redirect($route)->withErrors(['Failed to remove member']);
+        } catch (Exception $e) {
+            return redirect($route)->withErrors($e->getMessage());
         }
     }
 }

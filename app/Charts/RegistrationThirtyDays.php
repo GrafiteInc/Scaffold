@@ -7,6 +7,8 @@ use Grafite\Charts\Builder\Chart;
 
 class RegistrationThirtyDays extends Chart
 {
+    public $registrationRecords;
+
     public $height = 250;
 
     public $title = 'User Activities';
@@ -31,7 +33,7 @@ class RegistrationThirtyDays extends Chart
                 return $user->created_at->format('d-m-Y');
             });
 
-        $this->registrationRecords = collect([]);
+        $this->registrationRecords = collect();
 
         foreach ($registrations as $date => $registration) {
             $this->registrationRecords->push([

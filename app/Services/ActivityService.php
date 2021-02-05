@@ -6,6 +6,8 @@ use App\Models\Activity;
 
 class ActivityService
 {
+    public $model;
+
     public function __construct(Activity $model)
     {
         $this->model = $model;

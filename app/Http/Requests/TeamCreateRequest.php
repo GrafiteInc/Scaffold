@@ -14,7 +14,7 @@ class TeamCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user();
+        return auth()->check();
     }
 
     /**

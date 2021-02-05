@@ -6,10 +6,10 @@ require('./bootstrap');
 
 let _options = {
     global: {
-        preventDuplicates: true,
+        maxOnScreen: 4,
     },
     toast: {
-        timeout: 4000,
+        timeout: 2000,
         showProgressBar: false,
         position: SnotifyPosition.rightTop
     }

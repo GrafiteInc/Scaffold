@@ -1,11 +1,18 @@
 <nav class="navbar navbar-header navbar-expand sticky-top flex-md-nowrap app-nav p-0">
     <span class="navbar-text ml-4">
         <a class="sidebar-toggle mr-3">
-            <i class="fa fa-bars"></i>
+            <i class="fas fa-bars"></i>
         </a>
         <span class="navbar-text navbar-title p-0">@yield('page-title', 'Dashboard')</span>
     </span>
     <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            @if (session('original_user'))
+                {!! form()->action('post', ['users.return-switch'], '<span class="fas fa-exchange-alt"></span>', [
+                    'class' => 'btn btn-text navbar-text mr-2'
+                ]) !!}
+            @endif
+        </li>
         <li class="nav-item">
             <a class="navbar-text pr-4" href="{{ route('support') }}">
                 <span class="fas fa-question"></span>
@@ -25,10 +32,9 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="{{ route('user.settings') }}">Settings</a>
-                        <a class="dropdown-item" href="{{ route('user.security') }}">Security</a>
+                        <a class="dropdown-item" href="{{ route('user.api-tokens') }}">API Tokens</a>
                         <a class="dropdown-item" href="{{ route('user.invites') }}">Invites</a>
                         <a class="dropdown-item" href="{{ route('user.notifications') }}">Notifications</a>
-                        <a class="dropdown-item" href="{{ route('user.api-tokens') }}">API Tokens</a>
 
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('user.billing') }}">Billing</a>

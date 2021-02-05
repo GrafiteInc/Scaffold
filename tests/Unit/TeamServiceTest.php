@@ -52,7 +52,7 @@ class TeamServiceTest extends TestCase
             'name' => 'Avengers',
         ]);
 
-        $result = $this->service->invite($team->id, 'someone@example.com');
+        $result = $this->service->invite($team, 'someone@example.com');
 
         $this->assertStringContainsString('Avengers', $result->message);
 
@@ -75,7 +75,7 @@ class TeamServiceTest extends TestCase
 
         $team->members()->attach($this->user->id);
 
-        $this->service->leave($team->id);
+        $this->service->leave($team);
 
         $this->assertEquals(0, $team->members()->count());
 
@@ -96,7 +96,7 @@ class TeamServiceTest extends TestCase
 
         $team->members()->attach($teamMember);
 
-        $this->service->remove($teamMember, $team->id);
+        $this->service->remove($teamMember, $team);
 
         $this->assertEquals(0, $team->members()->count());
     }

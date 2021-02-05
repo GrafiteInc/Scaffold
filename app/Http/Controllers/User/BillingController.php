@@ -14,7 +14,7 @@ class BillingController extends Controller
     /**
      * Billing settings.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function subscribe(Request $request)
     {
@@ -36,7 +36,7 @@ class BillingController extends Controller
     /**
      * Billing renew.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function renewSubscription(Request $request)
     {
@@ -54,7 +54,7 @@ class BillingController extends Controller
     /**
      * Get subscription details.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function getSubscription(Request $request)
     {
@@ -75,7 +75,7 @@ class BillingController extends Controller
      * Change the payment method.
      *
      * @param  Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function paymentMethod(Request $request)
     {
@@ -94,7 +94,7 @@ class BillingController extends Controller
      * Change subscription plan.
      *
      * @param  Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function getChangePlan(Request $request)
     {
@@ -128,7 +128,7 @@ class BillingController extends Controller
      * Add a coupon.
      *
      * @param  Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function getCoupon(Request $request)
     {
@@ -162,7 +162,7 @@ class BillingController extends Controller
      * Get invoices.
      *
      * @param  Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function getInvoices(Request $request)
     {

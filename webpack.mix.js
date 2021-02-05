@@ -18,6 +18,8 @@ mix.js('resources/js/app.js', 'public/js')
         version: 2
     });
 
+mix.sourceMaps();
+
 if (mix.inProduction()) {
     mix.version();
 }

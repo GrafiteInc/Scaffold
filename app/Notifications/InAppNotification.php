@@ -9,7 +9,7 @@ class InAppNotification extends Notification
     /**
      * Mark as important.
      *
-     * @var string
+     * @var bool
      */
     public $is_important;
 
@@ -23,7 +23,7 @@ class InAppNotification extends Notification
     /**
      * Create a notification instance.
      *
-     * @param  string  $token
+     * @param  string  $message
      * @return void
      */
     public function __construct($message)

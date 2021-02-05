@@ -10,7 +10,7 @@ class NotificationsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -48,7 +48,6 @@ class NotificationsController extends Controller
     /**
      * Delete all notfications for a user.
      *
-     * @param  string $notification
      * @return \Illuminate\Http\RedirectResponse
      */
     public function deleteAll(Request $request)

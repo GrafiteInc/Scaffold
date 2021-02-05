@@ -74,7 +74,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapScriptRoutes()
     {
-        Route::prefix('scripts')
+        Route::middleware([])
             ->group(base_path('routes/scripts.php'));
     }
 }

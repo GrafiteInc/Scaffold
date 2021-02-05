@@ -2,6 +2,8 @@
 
 namespace App\Models\Concerns;
 
+use Illuminate\Support\Facades\Gate;
+
 trait HasSubscribedUser
 {
     /**
@@ -12,6 +14,6 @@ trait HasSubscribedUser
      */
     public function hasActiveSubscription()
     {
-        return $this->user->hasActiveSubscription();
+        return Gate::forUser($this->user)->allows('subscribed');
     }
 }

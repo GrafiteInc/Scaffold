@@ -13,7 +13,7 @@ class ApiUserUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth('sanctum')->user();
+        return auth('sanctum')->check();
     }
 
     /**

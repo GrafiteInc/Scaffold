@@ -7,7 +7,7 @@ class PagesController extends Controller
     /**
      * Homepage.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function home()
     {
@@ -17,7 +17,7 @@ class PagesController extends Controller
     /**
      * Privacy Policy page.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function privacyPolicy()
     {
@@ -27,7 +27,7 @@ class PagesController extends Controller
     /**
      * Terms of Service page.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function termsOfService()
     {
@@ -37,7 +37,7 @@ class PagesController extends Controller
     /**
      * Support page.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function getSupport()
     {

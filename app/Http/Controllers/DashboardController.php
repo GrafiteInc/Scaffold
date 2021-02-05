@@ -11,7 +11,7 @@ class DashboardController extends Controller
     /**
      * Display the Dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function get()
     {
@@ -24,6 +24,6 @@ class DashboardController extends Controller
 
         $form = app(ImageUploadForm::class)->make();
 
-        return view('dashboard.main', compact('images', 'form'));
+        return view('dashboard', compact('images', 'form'));
     }
 }

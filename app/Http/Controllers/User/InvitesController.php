@@ -13,7 +13,7 @@ class InvitesController extends Controller
     /**
      * Display a listing of invites.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {

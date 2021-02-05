@@ -30,7 +30,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param  Throwable  $throwable
      * @return void
      */
     public function report(Throwable $throwable)
@@ -43,7 +43,7 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Throwable  $exception
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Http\Response
      */
     public function render($request, Throwable $exception)
     {
@@ -58,8 +58,8 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response for JSON requests.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param  \Throwable  $exception
+     * @return \Illuminate\Http\JsonResponse
      */
     public function handleJsonResponse($request, $exception)
     {
@@ -76,8 +76,8 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response for standard web requests.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param  \Throwable  $exception
+     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Http\Response
      */
     public function handleHtmlErrors($request, $exception)
     {

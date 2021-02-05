@@ -14,7 +14,7 @@ class AdminUserUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return Gate::allows('admin');
+        return auth()->check() && Gate::allows('admin');
     }
 
     /**

@@ -44,7 +44,7 @@ class Role extends Model
     /**
      * A Role's users.
      *
-     * @return Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users()
     {
@@ -54,7 +54,7 @@ class Role extends Model
     /**
      * Get the permissions - and overide all in the case of `admin`.
      *
-     * @param string $value
+     * @param mixed $value
      * @return array
      */
     public function getPermissionsAttribute($value)

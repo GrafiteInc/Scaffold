@@ -12,7 +12,7 @@ class RevokeInviteController extends Controller
     /**
      * Delete the invitation.
      *
-     * @param  \App\Models\Invite  $appModelsInvite
+     * @param  \App\Models\Invite  $invite
      * @return \Illuminate\Http\RedirectResponse
      */
     public function __invoke(Invite $invite)

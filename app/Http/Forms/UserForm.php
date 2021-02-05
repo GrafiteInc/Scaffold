@@ -10,6 +10,7 @@ use Grafite\Forms\Html\Heading;
 use Grafite\Forms\Fields\Toggled;
 use Grafite\Forms\Forms\ModelForm;
 use Grafite\Forms\Fields\FileWithPreview;
+use Grafite\Forms\Fields\Bootstrap\Select;
 
 class UserForm extends ModelForm
 {
@@ -55,6 +56,16 @@ class UserForm extends ModelForm
             FileWithPreview::make('avatar', [
                 'preview_identifier' => '.avatar',
                 'preview_as_background_image' => true,
+            ]),
+            Select::make('two_factor_platform', [
+                'multiple' => false,
+                'null_value' => true,
+                'label' => 'Two Factor Platform',
+                'options' => [
+                    'Email' => 'email',
+                    'Authenticator' => 'authenticator',
+                ],
+                'value' => auth()->user()->two_factor_platform,
             ]),
         ], $this->billingColumns());
     }

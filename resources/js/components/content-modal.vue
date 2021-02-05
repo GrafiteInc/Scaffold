@@ -18,7 +18,7 @@
 
 <script>
     export default {
-        mame: "modal",
+        mame: "content-modal",
         props: [
             //
         ],
