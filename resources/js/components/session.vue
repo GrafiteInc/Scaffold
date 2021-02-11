@@ -22,11 +22,17 @@
             window.snotify = this.$snotify;
 
             window.addEventListener('offline', (event) => {
-                this.$snotify.info("The network connection has been lost.");
+                if (localStorage.getItem('network-state') && localStorage.getItem('network-state') !== 'offline') {
+                    this.$snotify.info("The network connection has been lost.");
+                    localStorage.setItem('network-state', 'offline');
+                }
             });
 
             window.addEventListener('online', (event) => {
-                this.$snotify.success("The network connection has been restored.");
+                if (localStorage.getItem('network-state') && localStorage.getItem('network-state') !== 'online') {
+                    this.$snotify.success("The network connection has been restored.");
+                    localStorage.setItem('network-state', 'online');
+                }
             });
 
             if (window.session.message) {
