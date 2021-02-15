@@ -200,6 +200,7 @@ Route::middleware('auth')->group(function () {
                 ->name('ajax.billing.subscription.payment-method');
 
             Route::post('file-upload', [FileUploadController::class, 'upload'])->name('ajax.files-upload');
+            Route::post('image-upload', [FileUploadController::class, 'uploadImage'])->name('ajax.image-upload');
         });
 
         /*

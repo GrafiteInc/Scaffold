@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Ajax;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class FileUploadController extends Controller
 {
@@ -17,6 +18,18 @@ class FileUploadController extends Controller
             'data' => [
                 'success' => true,
                 'paths' => $paths,
+            ],
+        ]);
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $path = $request->file('image')->store('public/uploads');
+
+        return response()->json([
+            'success' => true,
+            'file' => [
+                'url' => Storage::url($path),
             ],
         ]);
     }
