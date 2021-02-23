@@ -60,3 +60,4 @@ require("./subscription-payment-method");
 require("./ajax-forms");
 require('./sidebar');
 require('./theme');
+require('./events');

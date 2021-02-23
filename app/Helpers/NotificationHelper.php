@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\UserPusherEvent;
+use App\Events\GeneralPusherEvent;
 use App\Notifications\StandardEmail;
 use App\Notifications\InAppNotification;
 use Illuminate\Support\Facades\Notification;
@@ -11,21 +13,12 @@ use Illuminate\Support\Facades\Notification;
 */
 
 if (! function_exists('app_notify')) {
-    function app_notify($message, $isImportant = false)
+    function app_notify($message, $isImportant = false, $user = null)
     {
-        $notification = new InAppNotification($message);
-
-        if ($isImportant) {
-            $notification->isImportant();
+        if (is_null($user)) {
+            $user = auth()->user();
         }
 
-        auth()->user()->notify($notification);
-    }
-}
-
-if (! function_exists('app_notify_user')) {
-    function app_notify_user($user, $message, $isImportant = false)
-    {
         $notification = new InAppNotification($message);
 
         if ($isImportant) {
@@ -37,9 +30,11 @@ if (! function_exists('app_notify_user')) {
 }
 
 if (! function_exists('email_notify')) {
-    function email_notify($subject, $message)
+    function email_notify($subject, $message, $user = null)
     {
-        $user = auth()->user();
+        if (is_null($user)) {
+            $user = auth()->user();
+        }
 
         if ($user->allow_email_based_notifications) {
             Notification::route('mail', $user->email)
@@ -52,16 +47,16 @@ if (! function_exists('email_notify')) {
     }
 }
 
-if (! function_exists('email_notify_user')) {
-    function email_notify_user($user, $subject, $message)
+if (! function_exists('pusher_notify_general')) {
+    function pusher_notify_general($data)
     {
-        if ($user->allow_email_based_notifications) {
-            Notification::route('mail', $user->email)
-                ->notify(new StandardEmail(
-                    $user->name,
-                    $subject,
-                    $message
-                ));
-        }
+        event(new GeneralPusherEvent($data));
+    }
+}
+
+if (! function_exists('pusher_notify_user')) {
+    function pusher_notify_user($user, $data)
+    {
+        event(new UserPusherEvent($user, $data));
     }
 }
