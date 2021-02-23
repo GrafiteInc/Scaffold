@@ -40,7 +40,8 @@
                 <confirmation-modal></confirmation-modal>
                 <content-modal></content-modal>
                 <pending-modal></pending-modal>
-                <vue-snotify></vue-snotify>
+                <notifications></notifications>
+                <online></online>
 
                 <session
                     user='{!! optional(auth()->user())->jsonSessionData() ?? "{}" !!}'

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('page-title') Admin: Invite User @stop
+@section('page-title', 'Admin: Invite User')
 
 @section('admin_content')
 

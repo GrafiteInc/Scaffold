@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('page-title') Admin: Edit Role @stop
+@section('page-title', ' Admin: Edit Role')
 
 @section('admin_content')
     <div class="row">
