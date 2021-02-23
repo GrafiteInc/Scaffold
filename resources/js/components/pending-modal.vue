@@ -1,34 +1,31 @@
 <template>
-    <div id="appPendingModal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <h5 class="text-center m-0">
-                        <span class="fas fa-spinner fa-spin"></span>
-                        Processing
-                    </h5>
-                </div>
-            </div>
-        </div>
-    </div>
+    <b-overlay
+        ref="processing-overlay"
+        :show="show"
+        no-wrap
+        z-index="19000"
+    >
+    </b-overlay>
 </template>
 
 <script>
     export default {
         mame: "pending-modal",
-        props: [
-
-        ],
+        data () {
+            return {
+                show: false,
+            }
+        },
         mounted () {
             window.pendingModal = (button) => {
                 if (button && button.form.checkValidity()) {
                     button.form.submit();
                     button.disabled = true;
-                    $('#appPendingModal').modal('show');
+                    this.show = true;
                 }
 
                 if (! button) {
-                    $('#appPendingModal').modal('show');
+                    this.show = true;
                 }
 
                 return false;

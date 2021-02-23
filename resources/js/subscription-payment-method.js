@@ -27,7 +27,7 @@ if (paymentMethodForm) {
         );
 
         if (error) {
-            window.snotify.warning(error.message);
+            window.notify.warning(error.message);
             cardButton.disabled = false;
         } else {
             window.pendingModal();
@@ -38,7 +38,7 @@ if (paymentMethodForm) {
                 window.location = route('user.billing.details');
             })
             .catch(err => {
-                window.snotify.warning(err.data.data.message);
+                window.notify.warning(err.data.data.message);
             });
         }
     });
