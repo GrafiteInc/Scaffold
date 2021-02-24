@@ -3,7 +3,7 @@
 <script>
     export default {
         mame: "notifications",
-        mounted () {
+        created () {
             let _toast = this.$bvToast;
 
             window.notify = {

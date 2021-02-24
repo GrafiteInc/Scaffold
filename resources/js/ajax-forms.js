@@ -15,14 +15,14 @@ window.ajax = (_event) => {
 
     window.axios[_method](_form.action, _payload)
         .then((response) => {
-            window.snotify.success(response.data.message);
+            window.notify.success(response.data.message);
         })
         .catch((error) => {
-            window.snotify.warning(error.response.data.message);
+            window.notify.warning(error.response.data.message);
 
             for (var key in error.response.data.errors) {
                 $('input[name="'+key+'"]').addClass('border-danger');
-                window.snotify.error(error.response.data.errors[key][0]);
+                window.notify.error(error.response.data.errors[key][0]);
             }
         });
 }

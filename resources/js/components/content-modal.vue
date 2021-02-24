@@ -7,16 +7,13 @@
 <script>
     export default {
         mame: "content-modal",
-        props: [
-            //
-        ],
         data () {
             return {
                 title: '',
                 content: ''
             }
         },
-        mounted () {
+        created () {
             window.modal = (_title, _message) => {
                 this.title = _title;
                 this.content = _message;

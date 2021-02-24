@@ -30,7 +30,7 @@ if (paymentMethodForm) {
             window.notify.warning(error.message);
             cardButton.disabled = false;
         } else {
-            window.pendingModal();
+            window.pending();
             window.axios.post(route('ajax.billing.subscription.payment-method'), {
                 payment_method: setupIntent.payment_method
             })

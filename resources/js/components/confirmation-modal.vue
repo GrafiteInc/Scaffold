@@ -14,7 +14,7 @@
                 message: ''
             }
         },
-        mounted () {
+        created () {
             window.confirmation = (_event, _message) => {
                 _event.preventDefault();
 

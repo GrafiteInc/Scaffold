@@ -10,7 +10,7 @@
             warning: String,
             error_message: String,
         },
-        mounted () {
+        created () {
             window.session = {
                 user: JSON.parse(this.user),
                 message: this.message,

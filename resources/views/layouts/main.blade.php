@@ -39,9 +39,10 @@
 
                 <confirmation-modal></confirmation-modal>
                 <content-modal></content-modal>
-                <pending-modal></pending-modal>
+                <pending-overlay
+                    mode="{{ optional(auth()->user())->dark_mode ? 'dark' : 'light' }}"
+                ></pending-overlay>
                 <notifications></notifications>
-                <online></online>
 
                 <session
                     user='{!! optional(auth()->user())->jsonSessionData() ?? "{}" !!}'
