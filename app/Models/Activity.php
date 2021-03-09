@@ -39,25 +39,30 @@ class Activity extends Model
         $table = '<table class="table table-responsive table-borderless">';
 
         foreach ($data as $key => $value) {
-            $table .= '<tr valign="top">';
+            if (
+                ! in_array($key, ['secure', 'query', '_method', '_token'])
+                && ! is_numeric($key)
+            ) {
+                $table .= '<tr class="align-top">';
 
-            if (! is_numeric($key)) {
-                $table .= '<td><strong>' . str_replace('_', ' ', Str::title($key)) . ':</strong></td><td>';
-            } else {
-                $table .= '<td colspan="2">';
+                if (! is_numeric($key)) {
+                    $table .= '<td class="align-top"><strong>' . str_replace('_', ' ', Str::title($key)) . ':</strong></td><td class="align-top">';
+                } else {
+                    $table .= '<td colspan="2">';
+                }
+
+                if ((is_object($value) || is_array($value)) && ! empty($value)) {
+                    $table .= $this->jsonToTable($value);
+                } elseif (is_bool($value)) {
+                    $table .= ($value) ? 'True' : 'False';
+                } elseif (is_null($value) || empty($value)) {
+                    $table .= 'N/A';
+                } else {
+                    $table .= $value;
+                }
+
+                $table .= '</td></tr>';
             }
-
-            if ((is_object($value) || is_array($value)) && ! empty($value)) {
-                $table .= $this->jsonToTable($value);
-            } elseif (is_bool($value)) {
-                $table .= ($value) ? 'True' : 'False';
-            } elseif (is_null($value) || empty($value)) {
-                $table .= 'N/A';
-            } else {
-                $table .= $value;
-            }
-
-            $table .= '</td></tr>';
         }
 
         $table .= '</table>';

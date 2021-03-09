@@ -1,5 +1,10 @@
 <template>
     <div>
+        <b-modal ref="token-modal" hide-footer title="Confirmation">
+            <p class="mb-4">Are you sure you want to revoke this API token? It will invalidate any uses of it currently.</p>
+            <b-button @click="deleteToken" class="float-right" variant="outline-primary">Confirm</b-button>
+        </b-modal>
+
         <div class="card mb-2" v-for="token in api_tokens" v-bind:key="token.id">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
@@ -28,6 +33,11 @@
         props: {
             tokens: Array
         },
+        data () {
+            return {
+                token: null,
+            }
+        },
         created () {
             this.api_tokens = this.tokens;
             this.$event.listen('new-api-token', this.getTokens)
@@ -49,17 +59,16 @@
                 })
             },
             revokeToken (token) {
-                $('#appModalMessage').html('Are you sure you want to revoke this API token? It will invalidate any uses of it currently.');
-                $('#appModal').modal('show');
-
-                $('#appModalConfirmBtn').unbind().click(() => {
-                    axios.delete(route('ajax.destroy-token', token.id))
-                    .then(results => {
-                        $('#appModal').modal('hide');
-                        this.$snotify.success('Revoked!');
-                        this.getTokens();
-                    })
-                });
+                this.token = token;
+                this.$refs['token-modal'].show();
+            },
+            deleteToken () {
+                axios.delete(route('ajax.destroy-token', this.token.id))
+                .then(results => {
+                    this.$refs['token-modal'].hide();
+                    window.notify.success('Revoked!');
+                    this.getTokens();
+                })
             }
         },
         data () {

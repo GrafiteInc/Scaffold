@@ -3,8 +3,8 @@
 namespace App\Http\Forms;
 
 use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Fields\Select;
 use Grafite\Forms\Forms\BaseForm;
+use Grafite\Forms\Fields\Bootstrap\Select;
 
 class TeamMemberForm extends BaseForm
 {

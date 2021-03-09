@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('page-title') Admin: Create Role @stop
+@section('page-title', 'Admin: Create Role')
 
 @section('admin_content')
 

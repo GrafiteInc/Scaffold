@@ -1,6 +1,10 @@
 <template>
     <div>
-        <span v-if="notificationCount > 0" class="badge badge-pill badge-primary notification-badge" v-html="notificationCount"></span>
+        <span
+            v-if="notificationCount > 0"
+            class="badge badge-pill badge-primary notification-badge"
+            v-html="notificationCount"
+        ></span>
     </div>
 </template>
 

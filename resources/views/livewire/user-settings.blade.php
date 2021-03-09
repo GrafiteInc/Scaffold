@@ -1,3 +1,3 @@
-<div>
+<div wire:ignore>
     {!! $form !!}
 </div>

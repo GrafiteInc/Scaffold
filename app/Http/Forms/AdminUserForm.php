@@ -16,6 +16,8 @@ class AdminUserForm extends ModelForm
 
     public $routePrefix = 'admin.users';
 
+    public $disableOnSubmit = true;
+
     public $with = [
         'roles',
     ];

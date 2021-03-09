@@ -11,7 +11,7 @@
                     <div class="col-md-8">
                         @if (auth()->user()->avatar)
                             <div class="mb-4 d-flex justify-content-center">
-                                <div class="avatar shadow-sm border" style="background-image: url({{ auth()->user()->avatar_url }})"></div>
+                                <div class="avatar shadow-sm border bmx-scale-1-hover bmx-drop-shadow-hover" style="background-image: url({{ auth()->user()->avatar_url }})"></div>
                             </div>
                             <x-f-modal
                                 message='<p class="mb-4">Are you sure you want to delete your avatar?</p>'
@@ -35,7 +35,7 @@
                                 Two Factor Auth
                             </a>
                         @endif
-                        <hr class="mt-6 mb-4">
+                        <hr class="bmx-mt-6 mb-4">
                         <x-f :content="$deleteAccountForm"></x-f>
                     </div>
                 </div>

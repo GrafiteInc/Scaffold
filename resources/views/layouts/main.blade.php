@@ -29,7 +29,7 @@
         @laravelPWA
     </head>
     <body>
-        <div id="app">
+        <div id="app" class="min-vh-100">
             <div class="container-fluid">
                 @yield("app-content")
 
@@ -39,8 +39,10 @@
 
                 <confirmation-modal></confirmation-modal>
                 <content-modal></content-modal>
-                <pending-modal></pending-modal>
-                <vue-snotify></vue-snotify>
+                <pending-overlay
+                    mode="{{ optional(auth()->user())->dark_mode ? 'dark' : 'light' }}"
+                ></pending-overlay>
+                <notifications></notifications>
 
                 <session
                     user='{!! optional(auth()->user())->jsonSessionData() ?? "{}" !!}'

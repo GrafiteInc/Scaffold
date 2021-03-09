@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div class="row mt-6">
+    <div class="row bmx-mt-6">
         <div class="col-md-12">
             @if ($team->members->isEmpty())
                 <div class="row">

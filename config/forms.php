@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Form Maker Config
+| Forms Config
 |--------------------------------------------------------------------------
 */
 
@@ -32,8 +32,9 @@ return [
         'label-class' => 'control-label',
         'label-check-class' => 'form-check-label',
         'before_after_input_wrapper' => 'input-group',
-        'text-error' => 'text-danger',
         'error-class' => 'has-error',
+        'invalid-input-class' => 'is-invalid',
+        'invalid-feedback' => 'invalid-feedback',
         'check-class' => 'form-check',
 
         'check-input-class' => 'form-check-input',

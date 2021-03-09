@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.10.0] - 2021-03-09
+
+### Changed
+- Removed utilities.scss
+- Integrated Bootstrap utilities package
+
 ## [v2.9.0] - 2021-02-05
 
 ### Added

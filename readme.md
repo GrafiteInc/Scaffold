@@ -12,6 +12,9 @@ Grafite Scaffold was created as a highly opinionated boilerplate of Laravel's ba
 - grafite/database
 - grafite/forms
 - intervention/image
+- guzzlehttp/guzzle
+- fruitcake/laravel-cors
+- bepsvpt/secure-headers
 - laravel/cashier
 - laravel/dusk
 - laravel/helpers
@@ -20,6 +23,11 @@ Grafite Scaffold was created as a highly opinionated boilerplate of Laravel's ba
 - lasserafn/php-initial-avatar-generator
 - nunomaduro/collision
 - tightenco/ziggy
+- livewire/livewire
+- pragmarx/google2fa-laravel
+- pusher/pusher-php-server
+- silviolleite/laravelpwa
+- spatie/laravel-honeypot
 
 Scaffold is *intended* to be used to start a project and then be heavily altered.
 

@@ -40,7 +40,7 @@
                     <div class="col-md-12">
                         <button
                             class="btn btn-primary"
-                            onclick="window.pendingModal(this)"
+                            onclick="window.pending(this)"
                             type="submit"
                         >Apply Coupon</button>
                     </div>

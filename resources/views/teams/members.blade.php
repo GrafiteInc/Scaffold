@@ -14,7 +14,7 @@
             {!! $inviteForm !!}
         </div>
 
-        <div class="col-md-12 mt-6">
+        <div class="col-md-12 bmx-mt-6">
             @if ($team->members->isEmpty())
                 <div class="row">
                     <div class="col-md-12">

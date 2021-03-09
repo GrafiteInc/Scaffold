@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Broadcast;
+
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
@@ -10,6 +12,10 @@
 | used to check if an authenticated user can listen to the channel.
 |
 */
+
+Broadcast::channel('general', function ($user) {
+    return true;
+});
 
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
