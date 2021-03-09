@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-8 mt-8">
+            <div class="col-md-8 bmx-mt-8">
                 <div class="card shadow">
                     <div class="card-header text-center">{{ __('Confirm Password') }}</div>
 

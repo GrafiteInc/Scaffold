@@ -35,6 +35,8 @@ class UserForm extends ModelForm
 
     public $hasFiles = true;
 
+    public $disableOnSubmit = true;
+
     public function fields()
     {
         return array_merge([

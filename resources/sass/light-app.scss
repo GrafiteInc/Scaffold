@@ -4,7 +4,6 @@
 |--------------------------------------------------------------------------
 */
 @import "light/variables";
-@import "utilities.scss";
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +13,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'light/bootswatch';
 @import '~bootstrap-vue/src/index.scss';
+@import "@grafite/bootstrap-magic-extras";
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,6 @@
 |--------------------------------------------------------------------------
 */
 
-@import "light/theme.scss";
+@import "light/main.scss";
 @import "app.scss";
 @import "stripe.scss";

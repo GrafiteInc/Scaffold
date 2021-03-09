@@ -314,13 +314,3 @@ pre {
 .custom-file-label {
     border: 2px solid $input-border-color;
 }
-
-.snotifyToast {
-    box-shadow: 0px 0px 5px $gray-900;
-    .snotifyToast__inner {
-        background-color: $gray-800;
-        .snotifyToast__body {
-            color: $white !important;
-        }
-    }
-}

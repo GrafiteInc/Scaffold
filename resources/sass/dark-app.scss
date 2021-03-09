@@ -4,7 +4,6 @@
 |--------------------------------------------------------------------------
 */
 @import "dark/variables";
-@import "utilities.scss";
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +13,13 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'dark/bootswatch';
 @import '~bootstrap-vue/src/index.scss';
+@import "@grafite/bootstrap-magic-extras";
 
 /*
 |--------------------------------------------------------------------------
 | Post Vendors
 |--------------------------------------------------------------------------
 */
-@import "dark/theme.scss";
+@import "dark/main.scss";
 @import "app.scss";
 @import "stripe.scss";

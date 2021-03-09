@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="mb-4 d-flex justify-content-center">
-                <div class="avatar shadow-sm border" style="background-image: url({{ $team->avatar_url }})"></div>
+                <div class="avatar shadow-sm border bmx-scale-1-hover bmx-drop-shadow-hover" style="background-image: url({{ $team->avatar_url }})"></div>
             </div>
             @if ($team->avatar)
                 <div class="d-flex justify-content-center">

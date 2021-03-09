@@ -29,7 +29,7 @@
         @laravelPWA
     </head>
     <body>
-        <div id="app">
+        <div id="app" class="min-vh-100">
             <div class="container-fluid">
                 @yield("app-content")
 

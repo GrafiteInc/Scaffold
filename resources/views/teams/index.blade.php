@@ -36,9 +36,11 @@
                                             <a href="{!! route('teams.show', $team->uuid) !!}">{{ $team->name }}</a>
                                         </td>
                                         <td width="30%" class="d-none d-md-block">
-                                            @foreach ($team->members->take(5) as $member)
-                                                <div class="avatar-sm shadow-sm border" style="background-image: url({{ $member->avatar_url }})"></div>
-                                            @endforeach
+                                            <div class="avatar-row">
+                                                @foreach ($team->members->take(5)->reverse() as $member)
+                                                    <div class="avatar-sm shadow-sm bmx-scale-3-hover" style="background-image: url({{ $member->avatar_url }})"></div>
+                                                @endforeach
+                                            </div>
                                         </td>
                                         <td width="50%">
                                             @can('subscribed')
