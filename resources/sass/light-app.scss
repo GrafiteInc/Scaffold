@@ -1,26 +1,11 @@
-/*
-|--------------------------------------------------------------------------
-| Pre Vendors
-|--------------------------------------------------------------------------
-*/
+/*! purgecss start ignore */
 @import "light/variables";
-
-/*
-|--------------------------------------------------------------------------
-| Vendors
-|--------------------------------------------------------------------------
-*/
 @import '~bootstrap/scss/bootstrap';
 @import 'light/bootswatch';
 @import '~bootstrap-vue/src/index.scss';
-@import "@grafite/bootstrap-magic-extras";
-
-/*
-|--------------------------------------------------------------------------
-| Post Vendors
-|--------------------------------------------------------------------------
-*/
-
+@import "stripe.scss";
 @import "light/main.scss";
 @import "app.scss";
-@import "stripe.scss";
+/*! purgecss end ignore */
+
+@import "@grafite/bootstrap-magic-extras";
