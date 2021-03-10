@@ -9,7 +9,7 @@
         <p class="text-center">Or <a href="{{ route('register') }}">create a new account</a></p>
 
         <div class="card mt-5 mb-4 border-0">
-            <div class="card-body bg-light border-left border-secondary">
+            <div class="card-body bg-light border-left border-primary bmx-border-3">
                 <p class="lead m-0">After all it's way more fun on the inside!</p>
             </div>
         </div>

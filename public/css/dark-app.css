@@ -14241,6 +14241,18 @@ input[type=color].form-control:disabled {
   color: #222222;
 }
 
+.bmx-td-none-hover:hover {
+  text-decoration: none;
+}
+
+.bmx-td-underline {
+  text-decoration: underline;
+}
+
+.bmx-td-underline-hover:hover {
+  text-decoration: underline;
+}
+
 .bmx-btn-white {
   color: #222;
   background-color: #fff;
@@ -14876,7 +14888,7 @@ input[type=color].form-control:disabled {
   border-color: #fff;
 }
 .bmx-btn-outline-white:hover {
-  color: #222;
+  color: #fff;
   background-color: #fff;
   border-color: #fff;
 }
@@ -15176,7 +15188,7 @@ input[type=color].form-control:disabled {
   border-color: #f8f9fa;
 }
 .bmx-btn-outline-gray-100:hover {
-  color: #222;
+  color: #fff;
   background-color: #f8f9fa;
   border-color: #f8f9fa;
 }
@@ -15201,7 +15213,7 @@ input[type=color].form-control:disabled {
   border-color: #ebebeb;
 }
 .bmx-btn-outline-gray-200:hover {
-  color: #222;
+  color: #fff;
   background-color: #ebebeb;
   border-color: #ebebeb;
 }
@@ -15226,7 +15238,7 @@ input[type=color].form-control:disabled {
   border-color: #dee2e6;
 }
 .bmx-btn-outline-gray-300:hover {
-  color: #222;
+  color: #fff;
   background-color: #dee2e6;
   border-color: #dee2e6;
 }
@@ -15251,7 +15263,7 @@ input[type=color].form-control:disabled {
   border-color: #ced4da;
 }
 .bmx-btn-outline-gray-400:hover {
-  color: #222;
+  color: #fff;
   background-color: #ced4da;
   border-color: #ced4da;
 }
@@ -15276,7 +15288,7 @@ input[type=color].form-control:disabled {
   border-color: #adb5bd;
 }
 .bmx-btn-outline-gray-500:hover {
-  color: #222;
+  color: #fff;
   background-color: #adb5bd;
   border-color: #adb5bd;
 }
@@ -15394,6 +15406,130 @@ input[type=color].form-control:disabled {
 }
 .bmx-btn-outline-gray-900:not(:disabled):not(.disabled):active:focus, .bmx-btn-outline-gray-900:not(:disabled):not(.disabled).active:focus, .show > .bmx-btn-outline-gray-900.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(34, 34, 34, 0.5);
+}
+
+.bmx-border-10 {
+  border-width: 10px !important;
+}
+
+.bmx-border-9 {
+  border-width: 9px !important;
+}
+
+.bmx-border-8 {
+  border-width: 8px !important;
+}
+
+.bmx-border-7 {
+  border-width: 7px !important;
+}
+
+.bmx-border-6 {
+  border-width: 6px !important;
+}
+
+.bmx-border-5 {
+  border-width: 5px !important;
+}
+
+.bmx-border-4 {
+  border-width: 4px !important;
+}
+
+.bmx-border-3 {
+  border-width: 3px !important;
+}
+
+.bmx-border-2 {
+  border-width: 2px !important;
+}
+
+.bmx-border-1 {
+  border-width: 1px !important;
+}
+
+.bmx-border-white {
+  border-color: #fff !important;
+}
+
+.bmx-border-black {
+  border-color: #000 !important;
+}
+
+.bmx-border-blue {
+  border-color: #375a7f !important;
+}
+
+.bmx-border-indigo {
+  border-color: #6610f2 !important;
+}
+
+.bmx-border-purple {
+  border-color: #8558da !important;
+}
+
+.bmx-border-pink {
+  border-color: #e83e8c !important;
+}
+
+.bmx-border-red {
+  border-color: #E74C3C !important;
+}
+
+.bmx-border-orange {
+  border-color: #fd7e14 !important;
+}
+
+.bmx-border-yellow {
+  border-color: #F39C12 !important;
+}
+
+.bmx-border-green {
+  border-color: #00bc8c !important;
+}
+
+.bmx-border-teal {
+  border-color: #20c997 !important;
+}
+
+.bmx-border-cyan {
+  border-color: #3498DB !important;
+}
+
+.bmx-border-gray-100 {
+  border-color: #f8f9fa !important;
+}
+
+.bmx-border-gray-200 {
+  border-color: #ebebeb !important;
+}
+
+.bmx-border-gray-300 {
+  border-color: #dee2e6 !important;
+}
+
+.bmx-border-gray-400 {
+  border-color: #ced4da !important;
+}
+
+.bmx-border-gray-500 {
+  border-color: #adb5bd !important;
+}
+
+.bmx-border-gray-600 {
+  border-color: #999 !important;
+}
+
+.bmx-border-gray-700 {
+  border-color: #444 !important;
+}
+
+.bmx-border-gray-800 {
+  border-color: #303030 !important;
+}
+
+.bmx-border-gray-900 {
+  border-color: #222 !important;
 }
 
 .bmx-bg-white {
