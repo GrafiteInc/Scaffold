@@ -29,6 +29,8 @@ class UserForm extends ModelForm
 
     public $orientation = 'horizontal';
 
+    public $formId = 'UserForm';
+
     public $hasFiles = true;
 
     public $disableOnSubmit = true;
