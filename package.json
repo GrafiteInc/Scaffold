@@ -10,6 +10,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.2",
         "@grafite/bootstrap-magic-extras": "^0.1.1",
         "@grafite/helpers": "1.0.0",
         "axios": "^0.21",

@@ -60,7 +60,6 @@
 
         @yield('pre-app-js')
 
-        <script src="https://kit.fontawesome.com/40ca63cf3f.js"></script>
         <script src="{{ mix('/js/app.js') }}"></script>
 
         @yield('javascript')
