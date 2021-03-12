@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "asm89/stack-cors",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/asm89/stack-cors.git",
-                "reference": "8d8f88b3b3830916be94292c1fbce84433efb1aa"
+                "reference": "9cb795bf30988e8c96dd3c40623c48a877bc6714"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asm89/stack-cors/zipball/8d8f88b3b3830916be94292c1fbce84433efb1aa",
-                "reference": "8d8f88b3b3830916be94292c1fbce84433efb1aa",
+                "url": "https://api.github.com/repos/asm89/stack-cors/zipball/9cb795bf30988e8c96dd3c40623c48a877bc6714",
+                "reference": "9cb795bf30988e8c96dd3c40623c48a877bc6714",
                 "shasum": ""
             },
             "require": {
@@ -58,9 +58,9 @@
             ],
             "support": {
                 "issues": "https://github.com/asm89/stack-cors/issues",
-                "source": "https://github.com/asm89/stack-cors/tree/v2.0.2"
+                "source": "https://github.com/asm89/stack-cors/tree/v2.0.3"
             },
-            "time": "2020-10-29T16:03:21+00:00"
+            "time": "2021-03-11T06:42:03+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -1298,16 +1298,16 @@
         },
         {
             "name": "grafite/forms",
-            "version": "v4.5.3",
+            "version": "v4.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Forms.git",
-                "reference": "83374e6e58c95ef036f25ee437f2b8e698425293"
+                "reference": "95e1aa7568ccfada09b5dcc8798ed3e67ae1e1dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/83374e6e58c95ef036f25ee437f2b8e698425293",
-                "reference": "83374e6e58c95ef036f25ee437f2b8e698425293",
+                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/95e1aa7568ccfada09b5dcc8798ed3e67ae1e1dc",
+                "reference": "95e1aa7568ccfada09b5dcc8798ed3e67ae1e1dc",
                 "shasum": ""
             },
             "require": {
@@ -1359,9 +1359,9 @@
             ],
             "support": {
                 "issues": "https://github.com/GrafiteInc/Forms/issues",
-                "source": "https://github.com/GrafiteInc/Forms/tree/v4.5.3"
+                "source": "https://github.com/GrafiteInc/Forms/tree/v4.5.4"
             },
-            "time": "2021-03-10T20:57:00+00:00"
+            "time": "2021-03-12T16:15:47+00:00"
         },
         {
             "name": "graham-campbell/result-type",
