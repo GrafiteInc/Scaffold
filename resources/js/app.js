@@ -11,17 +11,6 @@ Vue.use(ToastPlugin);
 Vue.use(SidebarPlugin);
 Vue.use(OverlayPlugin);
 
-Vue.component('cookielaw', require('./components/cookie-law.vue').default);
-Vue.component('session', require('./components/session.vue').default);
-Vue.component('notifications', require('./components/notifications.vue').default);
-Vue.component('content-modal', require('./components/content-modal.vue').default);
-Vue.component('confirmation-modal', require('./components/confirmation-modal.vue').default);
-Vue.component('pending-overlay', require('./components/pending-overlay.vue').default);
-Vue.component('copy-button', require('./components/copy-button.vue').default);
-Vue.component('api-tokens', require('./components/api-tokens.vue').default);
-Vue.component('api-token-create', require('./components/api-token-create.vue').default);
-Vue.component('notification-badge', require('./components/notification-badge.vue').default);
-
 /**
  * The following component is a shared event system
  * this means you can trigger events in one component
@@ -39,6 +28,17 @@ Vue.prototype.$event = new Vue({
     }
 });
 
+Vue.component('cookielaw', require('./components/cookie-law.vue').default);
+Vue.component('session', require('./components/session.vue').default);
+Vue.component('notifications', require('./components/notifications.vue').default);
+Vue.component('content-modal', require('./components/content-modal.vue').default);
+Vue.component('confirmation-modal', require('./components/confirmation-modal.vue').default);
+Vue.component('pending-overlay', require('./components/pending-overlay.vue').default);
+Vue.component('copy-button', require('./components/copy-button.vue').default);
+Vue.component('api-tokens', require('./components/api-tokens.vue').default);
+Vue.component('api-token-create', require('./components/api-token-create.vue').default);
+Vue.component('notification-badge', require('./components/notification-badge.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49,10 +49,13 @@ const app = new Vue({
     el: '#app',
 });
 
+window.app = app;
+
 require("./subscription-create");
 require("./subscription-payment-method");
 require("./ajax-forms");
+require('./app-events');
 require('./sidebar');
 require('./theme');
-require('./events');
+require('./echo-events');
 require('./online');

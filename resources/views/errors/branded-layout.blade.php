@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <img class="w-100 bmx-mt-8" src="/img/boo.svg" alt="">
+                <img class="w-100 bmx-mt-8" src="/images/boo.svg" alt="">
             </div>
         </div>
     </div>

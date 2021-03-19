@@ -20,10 +20,6 @@ class UserForm extends ModelForm
 
     public $withJsValidation = true;
 
-    public $withLivewire = false;
-
-    public $livewireOnKeydown = false;
-
     public $buttons = [
         'submit' => 'Save',
         'delete' => '<span class="fas fa-fw fa-trash"></span> Delete',
@@ -32,6 +28,8 @@ class UserForm extends ModelForm
     public $columns = 1;
 
     public $orientation = 'horizontal';
+
+    public $formId = 'UserForm';
 
     public $hasFiles = true;
 

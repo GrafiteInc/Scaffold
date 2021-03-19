@@ -4,25 +4,35 @@
 window.ajax = (_event) => {
     _event.preventDefault();
 
-    let _form = _event.target.parentNode.parentNode.parentNode;
+    let _form = _event.target.form;
     let _method = _form.method.toLowerCase();
-    let _payloadArray = $(_form).serializeArray();
-    let _payload = {};
+    let _data = new FormData(_form);
 
-    $.map(_payloadArray, function(n, i){
-        _payload[n['name']] = n['value'];
+    window.axios[_method](_form.action, _data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+    })
+    .then((response) => {
+        let _event = _form.getAttribute('id')+'.success';
+        window.app.$event.fire(_event, response.data.data);
+        window.notify.success(response.data.message);
+    })
+    .catch((error) => {
+        let _event = _form.getAttribute('id')+'.error';
+        window.app.$event.fire(_event, response.data.data);
+        window.notify.warning(error.response.data.message);
+
+        for (var key in error.response.data.errors) {
+            let _errorMessage = document.createElement('div');
+                _errorMessage.classList.add('invalid-feedback');
+                _errorMessage.innerText = error.response.data.errors[key][0];
+            let _field = document.querySelector('input[name="'+key+'"]')
+                _field.classList.add('is-invalid');
+                _field.parentNode.appendChild(_errorMessage);
+            window.Forms_validation();
+
+            window.notify.error(error.response.data.errors[key][0]);
+        }
     });
-
-    window.axios[_method](_form.action, _payload)
-        .then((response) => {
-            window.notify.success(response.data.message);
-        })
-        .catch((error) => {
-            window.notify.warning(error.response.data.message);
-
-            for (var key in error.response.data.errors) {
-                $('input[name="'+key+'"]').addClass('border-danger');
-                window.notify.error(error.response.data.errors[key][0]);
-            }
-        });
 }
