@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.10.1] - 2021-03-19
+
+### Changed
+- Better fontawesome integration
+- App wide events
+- Better ajax form submissions
+- And purgeCSS
+
 ## [v2.10.0] - 2021-03-09
 
 ### Changed
