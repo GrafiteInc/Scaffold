@@ -6,7 +6,9 @@
     <div class="content-sm mt-4">
 
         <h3 class="text-center">Sign into your account</h3>
-        <p class="text-center">Or <a href="{{ route('register') }}">create a new account</a></p>
+        @if (Route::has('register'))
+            <p class="text-center">Or <a href="{{ route('register') }}">create a new account</a></p>
+        @endif
 
         <div class="card mt-5 mb-4 border-0 bmx-tada">
             <div class="card-body bg-light border-left border-primary bmx-border-3">

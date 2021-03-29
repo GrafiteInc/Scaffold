@@ -30,7 +30,7 @@
     </head>
     <body>
         <div id="app" class="min-vh-100">
-            <div class="container-fluid">
+            <div class="w-100">
                 @yield("app-content")
 
                 <cookielaw
