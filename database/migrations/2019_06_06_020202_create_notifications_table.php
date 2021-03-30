@@ -14,8 +14,8 @@ class CreateNotificationsTable extends Migration
     public function up()
     {
         Schema::create('notifications', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('id')->primary();
+            $table->bigIncrements('standard_id');
+            $table->uuid('id')->index();
             $table->string('type');
             $table->morphs('notifiable');
             $table->text('data');
