@@ -1189,16 +1189,16 @@
         },
         {
             "name": "grafite/charts",
-            "version": "v0.5.1",
+            "version": "v0.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Charts.git",
-                "reference": "31906ab1d6c8f3b8e89364cc9540a1d06c6748ac"
+                "reference": "e26855a12424d4f589edc792742fb3ca6a9f4a05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Charts/zipball/31906ab1d6c8f3b8e89364cc9540a1d06c6748ac",
-                "reference": "31906ab1d6c8f3b8e89364cc9540a1d06c6748ac",
+                "url": "https://api.github.com/repos/GrafiteInc/Charts/zipball/e26855a12424d4f589edc792742fb3ca6a9f4a05",
+                "reference": "e26855a12424d4f589edc792742fb3ca6a9f4a05",
                 "shasum": ""
             },
             "require": {
@@ -1237,9 +1237,9 @@
             "description": "An easy way to integrate Charts in Laravel",
             "support": {
                 "issues": "https://github.com/GrafiteInc/Charts/issues",
-                "source": "https://github.com/GrafiteInc/Charts/tree/v0.5.1"
+                "source": "https://github.com/GrafiteInc/Charts/tree/v0.5.2"
             },
-            "time": "2020-11-15T03:54:30+00:00"
+            "time": "2021-04-01T00:28:05+00:00"
         },
         {
             "name": "grafite/database",
@@ -1419,16 +1419,16 @@
         },
         {
             "name": "grafite/mission-control-laravel",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Mission-Control-Laravel-Package.git",
-                "reference": "79c081bafc9943ebe7652cc2faf34b6c2fc24270"
+                "reference": "f16ae5161b1a93842d07373069947f7918f9fd4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Mission-Control-Laravel-Package/zipball/79c081bafc9943ebe7652cc2faf34b6c2fc24270",
-                "reference": "79c081bafc9943ebe7652cc2faf34b6c2fc24270",
+                "url": "https://api.github.com/repos/GrafiteInc/Mission-Control-Laravel-Package/zipball/f16ae5161b1a93842d07373069947f7918f9fd4b",
+                "reference": "f16ae5161b1a93842d07373069947f7918f9fd4b",
                 "shasum": ""
             },
             "require": {
@@ -1469,9 +1469,9 @@
             "description": "The Laravel package for Mission Control (Grafite Inc)",
             "support": {
                 "issues": "https://github.com/GrafiteInc/Mission-Control-Laravel-Package/issues",
-                "source": "https://github.com/GrafiteInc/Mission-Control-Laravel-Package/tree/v2.0.0"
+                "source": "https://github.com/GrafiteInc/Mission-Control-Laravel-Package/tree/v2.0.1"
             },
-            "time": "2021-03-25T11:26:00+00:00"
+            "time": "2021-03-31T14:59:17+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -1905,16 +1905,16 @@
         },
         {
             "name": "laravel/cashier",
-            "version": "v12.10.0",
+            "version": "v12.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/cashier-stripe.git",
-                "reference": "4a1c61cca1db26487946b87bc53c4c735cbc840d"
+                "reference": "01613c324f8adcbd2f56484001f44800a6f2c023"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/4a1c61cca1db26487946b87bc53c4c735cbc840d",
-                "reference": "4a1c61cca1db26487946b87bc53c4c735cbc840d",
+                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/01613c324f8adcbd2f56484001f44800a6f2c023",
+                "reference": "01613c324f8adcbd2f56484001f44800a6f2c023",
                 "shasum": ""
             },
             "require": {
@@ -1966,7 +1966,7 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
+                    "email": "taylor@laravel.com"
                 }
             ],
             "description": "Laravel Cashier provides an expressive, fluent interface to Stripe's subscription billing services.",
@@ -1979,20 +1979,20 @@
                 "issues": "https://github.com/laravel/cashier/issues",
                 "source": "https://github.com/laravel/cashier"
             },
-            "time": "2021-03-16T15:56:57+00:00"
+            "time": "2021-03-30T21:19:50+00:00"
         },
         {
             "name": "laravel/framework",
-            "version": "v8.35.0",
+            "version": "v8.35.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "476d06a41d109a355cb3a376bd09f21b7d83ebda"
+                "reference": "d118c0df39e7524131176aaf76493eae63a8a602"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/476d06a41d109a355cb3a376bd09f21b7d83ebda",
-                "reference": "476d06a41d109a355cb3a376bd09f21b7d83ebda",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d118c0df39e7524131176aaf76493eae63a8a602",
+                "reference": "d118c0df39e7524131176aaf76493eae63a8a602",
                 "shasum": ""
             },
             "require": {
@@ -2147,7 +2147,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-03-30T14:09:34+00:00"
+            "time": "2021-03-30T21:34:17+00:00"
         },
         {
             "name": "laravel/helpers",
@@ -2207,16 +2207,16 @@
         },
         {
             "name": "laravel/sanctum",
-            "version": "v2.9.2",
+            "version": "v2.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "504ee92651c187c58640d87f03a7941977ef0149"
+                "reference": "81f3027af262590ffb63f202cba6d055d562a9a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/504ee92651c187c58640d87f03a7941977ef0149",
-                "reference": "504ee92651c187c58640d87f03a7941977ef0149",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/81f3027af262590ffb63f202cba6d055d562a9a1",
+                "reference": "81f3027af262590ffb63f202cba6d055d562a9a1",
                 "shasum": ""
             },
             "require": {
@@ -2267,7 +2267,7 @@
                 "issues": "https://github.com/laravel/sanctum/issues",
                 "source": "https://github.com/laravel/sanctum"
             },
-            "time": "2021-03-23T17:31:19+00:00"
+            "time": "2021-03-30T21:29:22+00:00"
         },
         {
             "name": "laravelcollective/auth",
@@ -7839,16 +7839,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "2.0.11",
+            "version": "2.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "a5a5632da0b1c2d6fa9a3b65f1f4e90d1f04abb9"
+                "reference": "6c12ce263da71641903e399c3ce8ecb08fd375fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/a5a5632da0b1c2d6fa9a3b65f1f4e90d1f04abb9",
-                "reference": "a5a5632da0b1c2d6fa9a3b65f1f4e90d1f04abb9",
+                "url": "https://api.github.com/repos/composer/composer/zipball/6c12ce263da71641903e399c3ce8ecb08fd375fb",
+                "reference": "6c12ce263da71641903e399c3ce8ecb08fd375fb",
                 "shasum": ""
             },
             "require": {
@@ -7916,7 +7916,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/composer/issues",
-                "source": "https://github.com/composer/composer/tree/2.0.11"
+                "source": "https://github.com/composer/composer/tree/2.0.12"
             },
             "funding": [
                 {
@@ -7932,7 +7932,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-24T13:57:23+00:00"
+            "time": "2021-04-01T08:14:59+00:00"
         },
         {
             "name": "composer/semver",
@@ -8299,16 +8299,16 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "ef0f5bce23b30b32d98fd9bb49c6fa37b40eb546"
+                "reference": "9dd6f2b56486d939c4467b3f35475d44af57cf17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/ef0f5bce23b30b32d98fd9bb49c6fa37b40eb546",
-                "reference": "ef0f5bce23b30b32d98fd9bb49c6fa37b40eb546",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/9dd6f2b56486d939c4467b3f35475d44af57cf17",
+                "reference": "9dd6f2b56486d939c4467b3f35475d44af57cf17",
                 "shasum": ""
             },
             "require": {
@@ -8352,7 +8352,7 @@
             ],
             "support": {
                 "issues": "https://github.com/facade/flare-client-php/issues",
-                "source": "https://github.com/facade/flare-client-php/tree/1.4.0"
+                "source": "https://github.com/facade/flare-client-php/tree/1.5.0"
             },
             "funding": [
                 {
@@ -8360,20 +8360,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-16T12:42:06+00:00"
+            "time": "2021-03-31T07:32:54+00:00"
         },
         {
             "name": "facade/ignition",
-            "version": "2.6.0",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "4be10a998815f77952b9eb983fb0b64c8a4defbb"
+                "reference": "bdc8b0b32c888f6edc838ca641358322b3d9506d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/4be10a998815f77952b9eb983fb0b64c8a4defbb",
-                "reference": "4be10a998815f77952b9eb983fb0b64c8a4defbb",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/bdc8b0b32c888f6edc838ca641358322b3d9506d",
+                "reference": "bdc8b0b32c888f6edc838ca641358322b3d9506d",
                 "shasum": ""
             },
             "require": {
@@ -8437,7 +8437,7 @@
                 "issues": "https://github.com/facade/ignition/issues",
                 "source": "https://github.com/facade/ignition"
             },
-            "time": "2021-03-24T18:58:31+00:00"
+            "time": "2021-03-30T15:55:38+00:00"
         },
         {
             "name": "facade/ignition-contracts",

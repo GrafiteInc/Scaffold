@@ -24,4 +24,10 @@ return [
         'update' => 'Update Users',
         'delete' => 'Delete Users',
     ],
+
+    'teams' => [
+        'create' => 'Create Teams',
+        'update' => 'Update Teams',
+        'delete' => 'Delete Teams',
+    ],
 ];
