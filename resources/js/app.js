@@ -59,3 +59,4 @@ require('./sidebar');
 require('./theme');
 require('./echo-events');
 require('./online');
+require('./mobile');

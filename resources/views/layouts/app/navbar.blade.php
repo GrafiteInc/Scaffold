@@ -1,9 +1,11 @@
-<nav class="navbar navbar-header navbar-expand sticky-top flex-md-nowrap app-nav p-0">
+<nav class="navbar navbar-header navbar-expand fixed-top flex-md-nowrap app-nav p-0">
     <span class="navbar-text ml-4">
-        <a class="sidebar-toggle mr-3">
+        <span class="sidebar-toggle mr-3">
             <i class="fas fa-bars"></i>
-        </a>
-        <span class="navbar-text navbar-title p-0">@yield('page-title', 'Dashboard')</span>
+        </span>
+        <span class="navbar-text navbar-title p-0">
+            {{ Str::limit(View::yieldContent('page-title', 'Dashboard'), 16) }}
+        </span>
     </span>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">

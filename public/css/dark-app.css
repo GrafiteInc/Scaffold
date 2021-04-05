@@ -19121,6 +19121,10 @@ pre {
 | App
 |--------------------------------------------------------------------------
 */
+.app-content {
+  margin-top: 80px;
+}
+
 .sidebar {
   width: 320px;
   position: fixed;
@@ -19249,6 +19253,8 @@ input[type=file].form-control {
 */
 .app-nav {
   height: 60px;
+  margin-left: 320px;
+  width: calc(100% - 320px);
 }
 
 .navbar-title {
@@ -19319,6 +19325,11 @@ input[type=file].form-control {
   .sidebar.toggled {
     margin-left: 0;
   }
+
+  .app-nav {
+    margin-left: 0px;
+    width: 100%;
+  }
 }
 /*
 |--------------------------------------------------------------------------
@@ -19338,6 +19349,10 @@ input[type=file].form-control {
 
   .nav-pills .nav-item {
     width: 100%;
+  }
+
+  .content-md {
+    width: 348px;
   }
 }
 /*! purgecss end ignore */
@@ -20524,24 +20539,288 @@ input[type=file].form-control {
   height: 100vh;
 }
 
-.bmx-mh-25 {
+.bmx-min-h-1 {
+  min-height: 1rem;
+}
+
+.bmx-min-h-2 {
+  min-height: 2rem;
+}
+
+.bmx-min-h-3 {
+  min-height: 3rem;
+}
+
+.bmx-min-h-4 {
+  min-height: 4rem;
+}
+
+.bmx-min-h-5 {
+  min-height: 5rem;
+}
+
+.bmx-min-h-6 {
+  min-height: 6rem;
+}
+
+.bmx-min-h-7 {
+  min-height: 7rem;
+}
+
+.bmx-min-h-8 {
+  min-height: 8rem;
+}
+
+.bmx-min-h-9 {
+  min-height: 9rem;
+}
+
+.bmx-min-h-10 {
+  min-height: 10rem;
+}
+
+.bmx-min-h-11 {
+  min-height: 11rem;
+}
+
+.bmx-min-h-12 {
+  min-height: 12rem;
+}
+
+.bmx-min-h-13 {
+  min-height: 13rem;
+}
+
+.bmx-min-h-14 {
+  min-height: 14rem;
+}
+
+.bmx-min-h-15 {
+  min-height: 15rem;
+}
+
+.bmx-min-h-16 {
+  min-height: 16rem;
+}
+
+.bmx-min-h-17 {
+  min-height: 17rem;
+}
+
+.bmx-min-h-18 {
+  min-height: 18rem;
+}
+
+.bmx-min-h-19 {
+  min-height: 19rem;
+}
+
+.bmx-min-h-20 {
+  min-height: 20rem;
+}
+
+.bmx-min-h-21 {
+  min-height: 21rem;
+}
+
+.bmx-min-h-22 {
+  min-height: 22rem;
+}
+
+.bmx-min-h-23 {
+  min-height: 23rem;
+}
+
+.bmx-min-h-24 {
+  min-height: 24rem;
+}
+
+.bmx-min-vh-25 {
   min-height: 25vh;
 }
 
-.bmx-mh-50 {
+.bmx-min-vh-50 {
   min-height: 50vh;
 }
 
-.bmx-mh-75 {
+.bmx-min-vh-75 {
   min-height: 75vh;
 }
 
-.bmx-mh-100 {
+.bmx-min-vh-100 {
   min-height: 100vh;
 }
 
 .bmx-min-h-window {
   min-height: calc(100vh - (52px + 52px));
+}
+
+.bmx-w-5 {
+  width: 5%;
+}
+
+.bmx-w-10 {
+  width: 10%;
+}
+
+.bmx-w-20 {
+  width: 20%;
+}
+
+.bmx-w-25 {
+  width: 25%;
+}
+
+.bmx-w-30 {
+  width: 30%;
+}
+
+.bmx-w-40 {
+  width: 40%;
+}
+
+.bmx-w-50 {
+  width: 50%;
+}
+
+.bmx-w-60 {
+  width: 60%;
+}
+
+.bmx-w-70 {
+  width: 70%;
+}
+
+.bmx-w-75 {
+  width: 75%;
+}
+
+.bmx-w-80 {
+  width: 80%;
+}
+
+.bmx-w-90 {
+  width: 90%;
+}
+
+.bmx-w-95 {
+  width: 95%;
+}
+
+.bmx-w-100 {
+  width: 100%;
+}
+
+.bmx-min-w-5 {
+  min-width: 5%;
+}
+
+.bmx-min-w-10 {
+  min-width: 10%;
+}
+
+.bmx-min-w-20 {
+  min-width: 20%;
+}
+
+.bmx-min-w-25 {
+  min-width: 25%;
+}
+
+.bmx-min-w-30 {
+  min-width: 30%;
+}
+
+.bmx-min-w-40 {
+  min-width: 40%;
+}
+
+.bmx-min-w-50 {
+  min-width: 50%;
+}
+
+.bmx-min-w-60 {
+  min-width: 60%;
+}
+
+.bmx-min-w-70 {
+  min-width: 70%;
+}
+
+.bmx-min-w-75 {
+  min-width: 75%;
+}
+
+.bmx-min-w-80 {
+  min-width: 80%;
+}
+
+.bmx-min-w-90 {
+  min-width: 90%;
+}
+
+.bmx-min-w-95 {
+  min-width: 95%;
+}
+
+.bmx-min-w-100 {
+  min-width: 100%;
+}
+
+.bmx-max-w-5 {
+  max-width: 5%;
+}
+
+.bmx-max-w-10 {
+  max-width: 10%;
+}
+
+.bmx-max-w-20 {
+  max-width: 20%;
+}
+
+.bmx-max-w-25 {
+  max-width: 25%;
+}
+
+.bmx-max-w-30 {
+  max-width: 30%;
+}
+
+.bmx-max-w-40 {
+  max-width: 40%;
+}
+
+.bmx-max-w-50 {
+  max-width: 50%;
+}
+
+.bmx-max-w-60 {
+  max-width: 60%;
+}
+
+.bmx-max-w-70 {
+  max-width: 70%;
+}
+
+.bmx-max-w-75 {
+  max-width: 75%;
+}
+
+.bmx-max-w-80 {
+  max-width: 80%;
+}
+
+.bmx-max-w-90 {
+  max-width: 90%;
+}
+
+.bmx-max-w-95 {
+  max-width: 95%;
+}
+
+.bmx-max-w-100 {
+  max-width: 100%;
 }
 
 .bmx-text-white {
@@ -23802,6 +24081,22 @@ input[type=file].form-control {
 
 .bmx-f-mono {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.bmx-overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.bmx-overflow-y-hidden {
+  overflow-y: hidden;
+}
+
+.bmx-overflow-x-scroll {
+  overflow-x: scroll;
+}
+
+.bmx-overflow-y-scroll {
+  overflow-y: scroll;
 }
 
 .bmx-animation-duration-200 {

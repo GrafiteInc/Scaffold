@@ -11,7 +11,7 @@
     <main class="ml-sm-auto main">
         @include("layouts.app.navbar")
 
-        <div class="container mt-4">
+        <div class="container app-content">
             @yield('content')
         </div>
     </main>
