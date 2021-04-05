@@ -19189,6 +19189,10 @@ input[type=file].form-control {
   .content-md {
     width: 348px;
   }
+
+  .page-link {
+    padding: 10px !important;
+  }
 }
 /*! purgecss end ignore */
 :root {

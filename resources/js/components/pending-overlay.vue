@@ -3,6 +3,7 @@
         ref="processing-overlay"
         :show="show"
         no-wrap
+        fixed
         z-index="19000"
         :variant="mode"
     >
