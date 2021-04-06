@@ -21,6 +21,7 @@
                 },
                 notify: function (message, variant, title) {
                     _toast.toast(message, {
+                        // title: title,
                         toaster: 'b-toaster-bottom-left',
                         autoHideDelay: 2000,
                         variant: variant,

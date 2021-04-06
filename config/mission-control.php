@@ -10,6 +10,16 @@ return [
     ],
 
     /**
+     * The log levels you wish to send to Mission Control.
+     */
+    'levels' => [
+        'emergency',
+        'alert',
+        'critical',
+        'error',
+    ],
+
+    /**
      * The API token can be found
      * on your user API Tokens page. A token
      * is manditory for all calls to Mission Control.

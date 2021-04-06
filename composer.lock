@@ -1419,16 +1419,16 @@
         },
         {
             "name": "grafite/mission-control-laravel",
-            "version": "v2.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Mission-Control-Laravel-Package.git",
-                "reference": "f16ae5161b1a93842d07373069947f7918f9fd4b"
+                "reference": "fc621dbf514600ce59de4d3fe995449a387c6015"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Mission-Control-Laravel-Package/zipball/f16ae5161b1a93842d07373069947f7918f9fd4b",
-                "reference": "f16ae5161b1a93842d07373069947f7918f9fd4b",
+                "url": "https://api.github.com/repos/GrafiteInc/Mission-Control-Laravel-Package/zipball/fc621dbf514600ce59de4d3fe995449a387c6015",
+                "reference": "fc621dbf514600ce59de4d3fe995449a387c6015",
                 "shasum": ""
             },
             "require": {
@@ -1469,9 +1469,9 @@
             "description": "The Laravel package for Mission Control (Grafite Inc)",
             "support": {
                 "issues": "https://github.com/GrafiteInc/Mission-Control-Laravel-Package/issues",
-                "source": "https://github.com/GrafiteInc/Mission-Control-Laravel-Package/tree/v2.0.1"
+                "source": "https://github.com/GrafiteInc/Mission-Control-Laravel-Package/tree/v2.0.2"
             },
-            "time": "2021-03-31T14:59:17+00:00"
+            "time": "2021-04-05T19:12:30+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -2744,16 +2744,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.4.1",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "b0cb782674673a67ddfd5910d2fcb5308bb32857"
+                "reference": "2495387841a3eb03ac62b2c984ccd2574303285b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/b0cb782674673a67ddfd5910d2fcb5308bb32857",
-                "reference": "b0cb782674673a67ddfd5910d2fcb5308bb32857",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/2495387841a3eb03ac62b2c984ccd2574303285b",
+                "reference": "2495387841a3eb03ac62b2c984ccd2574303285b",
                 "shasum": ""
             },
             "require": {
@@ -2804,7 +2804,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v2.4.1"
+                "source": "https://github.com/livewire/livewire/tree/v2.4.2"
             },
             "funding": [
                 {
@@ -2812,7 +2812,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-22T14:03:36+00:00"
+            "time": "2021-04-04T15:46:50+00:00"
         },
         {
             "name": "mashape/unirest-php",
