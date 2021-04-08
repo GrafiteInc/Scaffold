@@ -9,28 +9,28 @@
 </template>
 
 <script>
-    export default {
-        props: {},
-        created () {
-            this.getCount();
-            this.$event.listen('get-notifications', this.getCount);
-        },
-        methods: {
-            getCount () {
-                axios.get(route('ajax.notifications-count'), {})
-                .then(results => {
+export default {
+    props: {},
+    created () {
+        this.getCount();
+        this.$event.listen('get-notifications', this.getCount);
+    },
+    methods: {
+        getCount () {
+            axios.get(route('ajax.notifications-count'), {})
+                .then((results) => {
                     this.notificationCount = results.data.data;
                     this.$event.fire('notifications-counted', this.notificationCount);
                 })
-                .catch(err => {
+                .catch((err) => {
                     //
                 });
-            }
-        },
-        data () {
-            return {
-                notificationCount: 0,
-            }
         }
+    },
+    data () {
+        return {
+            notificationCount: 0,
+        };
     }
+};
 </script>

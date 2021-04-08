@@ -71,6 +71,8 @@ class SubscriptionController extends Controller
 
             activity("Payment method updated to card ending in {$user->card_last_four}.");
 
+            session()->flash('message', "Payment method updated to card ending in {$user->card_last_four}.");
+
             return response()->json([
                 'message' => 'Your payment method has been updated!',
             ]);

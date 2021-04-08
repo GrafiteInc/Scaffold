@@ -4,24 +4,29 @@
             v-clipboard="copyData"
             @success="success"
             class="input-group-text"
-        >Copy</button>
+        >
+            Copy
+        </button>
     </div>
 </template>
 
 <script>
-    export default {
-        props: {
-            message: ''
-        },
-        methods: {
-            success () {
-                window.notify.success('Copied!');
-            }
-        },
-        data() {
-            return {
-                copyData: this.message
-            }
+export default {
+    props: {
+        message: {
+            type: String,
+            default: ''
         }
+    },
+    methods: {
+        success () {
+            window.notify.success('Copied!');
+        }
+    },
+    data () {
+        return {
+            copyData: this.message
+        };
     }
+};
 </script>

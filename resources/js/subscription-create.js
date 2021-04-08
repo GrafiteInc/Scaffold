@@ -1,9 +1,9 @@
 const subscriptionForm = document.getElementById('subscription-form');
 
 if (subscriptionForm) {
-    let _color = (window.dark_mode === "false") ? '#111' : '#FFF';
+    let _color = (window.dark_mode === 'false') ? '#111' : '#FFF';
 
-    const stripe = Stripe(window.stripe_key);
+    const stripe = window.Stripe(window.stripe_key);
     const elements = stripe.elements();
     const cardElement = elements.create('card', {
         style: { base: { color: _color } },
@@ -59,16 +59,16 @@ if (subscriptionForm) {
                 country: cardHolderCountry.value,
                 payment_method: setupIntent.payment_method
             })
-            .then(results => {
-                window.location = route('user.billing.details');
-            })
-            .catch(err => {
-                window.notify.warning(err.data.data.message);
+                .then((results) => {
+                    window.location = route('user.billing.details');
+                })
+                .catch((err) => {
+                    window.notify.warning(err.data.data.message);
 
-                if (err.data.data.redirect) {
-                    window.location = err.data.data.redirect;
-                }
-            });
+                    if (err.data.data.redirect) {
+                        window.location = err.data.data.redirect;
+                    }
+                });
         }
     });
 }

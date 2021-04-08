@@ -16,42 +16,44 @@
                     v-clipboard="currentToken"
                     @success="success"
                     class="btn btn-primary"
-                >Copy</button>
+                >
+                    Copy
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    export default {
-        props: {},
-        methods: {
-            create () {
-                axios.post(route('ajax.create-token'), {
-                    name: this.name,
-                    permissions: []
-                })
-                .then(results => {
+export default {
+    props: {},
+    methods: {
+        create () {
+            axios.post(route('ajax.create-token'), {
+                name: this.name,
+                permissions: []
+            })
+                .then((results) => {
                     this.currentToken = results.data.data.token;
                     this.name = null;
                     window.notify.success('Token created!');
                     this.$event.fire('get-notifications');
                     this.$event.fire('new-api-token');
                 })
-                .catch(err => {
+                .catch((err) => {
                     //
                 });
-            },
-            success () {
-                window.notify.success('Copied!');
-                this.currentToken = false;
-            }
         },
-        data () {
-            return {
-                currentToken: false,
-                name: null
-            }
+        success () {
+            window.notify.success('Copied!');
+            this.currentToken = false;
         }
+    },
+    data () {
+        return {
+            currentToken: false,
+            name: null
+        };
     }
+};
 </script>

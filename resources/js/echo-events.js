@@ -2,14 +2,14 @@
  * Location for handling events from Echo.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-    var generalChannel = Echo.private('general');
-    generalChannel.listen('.general-event', function(data) {
+    let generalChannel = window.Echo.private('general');
+    generalChannel.listen('.general-event', (data) => {
         window.notify.info(data.data.message);
     });
 
-    var userId = window.session.user.id;
-    var userChannel = Echo.private('App.Models.User.' + userId);
-    userChannel.listen('.user-event', function(data) {
+    let userId = window.session.user.id;
+    let userChannel = window.Echo.private(`App.Models.User.${userId}`);
+    userChannel.listen('.user-event', (data) => {
         window.notify.info(data.data.message);
     });
 });
