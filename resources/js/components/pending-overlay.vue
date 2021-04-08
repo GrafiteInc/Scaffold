@@ -1,5 +1,6 @@
 <template>
     <b-overlay
+        id="pendingOverlay"
         ref="processing-overlay"
         :show="show"
         no-wrap
@@ -37,6 +38,10 @@
                 }
 
                 return false;
+            }
+
+            window.pendingHide = () => {
+                this.show = false;
             }
         }
     }

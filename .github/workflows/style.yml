@@ -1,0 +1,35 @@
+on: push
+name: Code Style
+jobs:
+  php:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['7.4']
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+
+    - name: Install global dependencies
+      run: composer global require friendsofphp/php-cs-fixer
+    - name: Check PHP CS Fixer version
+      run: php-cs-fixer --version
+    - name: Check Coding Standards
+      run: composer check-style
+
+  js:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: ‘14’
+
+    - name: Install Node dependencies
+      run: npm install eslint --ignore-scripts
+    - name: Check Coding Standards
+      run: npm run check-style
