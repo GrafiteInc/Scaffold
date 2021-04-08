@@ -29,6 +29,7 @@ jobs:
         node-version: 14
 
     - name: Install Node dependencies
-      run: npm install eslint --ignore-scripts
+      run: npm install --ignore-scripts
+
     - name: Check Coding Standards
       run: npm run check-style
