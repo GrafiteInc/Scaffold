@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', 'Billing: Payment Method')
+@section('page-title', 'Payment Method')
 
 @section('content')
 

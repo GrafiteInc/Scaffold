@@ -34,7 +34,7 @@ class TeamsControllerTest extends TestCase
         $response = $this->get(route('teams.create'));
 
         $response->assertOk();
-        $response->assertSee('Teams: Create');
+        $response->assertSee('Create a Team');
         $response->assertSee('Name');
     }
 

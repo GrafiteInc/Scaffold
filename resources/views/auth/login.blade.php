@@ -3,7 +3,7 @@
 @section('page-title', 'Login')
 
 @section('content')
-    <div class="content-sm mt-4">
+    <div class="content-sm mt-4 mb-4">
 
         <h3 class="text-center">Sign into your account</h3>
         @if (Route::has('register'))

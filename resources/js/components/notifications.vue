@@ -1,3 +1,5 @@
+<template><div></div></template>
+
 <script>
 export default {
     mame: 'notifications',
@@ -5,23 +7,22 @@ export default {
         let _toast = this.$bvToast;
 
         window.notify = {
-            success: function (message) {
-                this.notify(message, 'success', 'Success');
+            success: function (message, delay = 2000) {
+                this.notify(message, 'success', 'Success', delay);
             },
-            info: function (message) {
-                this.notify(message, 'info', 'Info');
+            info: function (message, delay = 2000) {
+                this.notify(message, 'info', 'Info', delay);
             },
-            warning: function (message) {
-                this.notify(message, 'warning', 'Warning');
+            warning: function (message, delay = 2000) {
+                this.notify(message, 'warning', 'Warning', delay);
             },
-            error: function (message) {
-                this.notify(message, 'danger', 'Error');
+            error: function (message, delay = 2000) {
+                this.notify(message, 'danger', 'Error', delay);
             },
-            notify: function (message, variant, title) {
+            notify: function (message, variant, title, delay = 2000) {
                 _toast.toast(message, {
-                    // title: title,
                     toaster: 'b-toaster-bottom-left',
-                    autoHideDelay: 2000,
+                    autoHideDelay: delay,
                     variant: variant,
                     solid: true,
                     noCloseButton: true

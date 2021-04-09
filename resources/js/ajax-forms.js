@@ -4,7 +4,11 @@
 window.ajax = (_event) => {
     _event.preventDefault();
 
-    let _form = _event.target.form;
+    let _button = _event.target;
+    let _processing = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Saving';
+    _button.innerHTML = _processing;
+
+    let _form = _button.form;
     let _method = _form.method.toLowerCase();
     let _data = new FormData(_form);
 
@@ -16,6 +20,7 @@ window.ajax = (_event) => {
         let _event = `${_form.getAttribute('id')}.success`;
         window.app.$event.fire(_event, response.data.data);
         window.notify.success(response.data.message);
+        _button.innerHTML = 'Save';
     }).catch((error) => {
         let _event = `${_form.getAttribute('id')}.error`;
         window.app.$event.fire(_event, error.response.data.data);

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', 'Billing: Coupon')
+@section('page-title', 'Coupon')
 
 @section('content')
 

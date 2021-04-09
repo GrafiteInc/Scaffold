@@ -1,3 +1,5 @@
+import PullToRefresh from 'pulltorefreshjs';
+
 /**
  * Handle special mobile JS
  */
@@ -13,7 +15,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Checks if should display install popup notification:
     if (isIos() && !isInStandaloneMode()) {
-        this.setState({ showInstallMessage: true });
+        window.notify.info('To install this app on your iPhone: tap the Share icon in the middle bar below and then Add to Home Screen.', 99000);
     }
 
     if (window.innerWidth <= 576) {
@@ -27,6 +29,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     window.location = e.target.closest('*[href]').href;
                 }, 50);
             });
+        });
+
+        const ptr = PullToRefresh.init({
+            mainElement: '#app',
+            distThreshold: 75,
+            distReload: 95,
+            onRefresh () {
+                window.location.reload();
+            }
         });
     }
 });

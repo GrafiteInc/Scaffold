@@ -1,4 +1,4 @@
-<div class="row mb-4">
+<div class="row">
     <div class="col-md-12">
         <div class="card shadow-sm">
             <div class="card-header">
@@ -29,10 +29,14 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group mb-0">
-                            <label for="name">Country</label>
-                            <input class="form-control" type="text" id="card-holder-country" required placeholder="Country" value="{{ $user->country }}" @if (isset($disabled)) disabled @endif>
-                        </div>
+                        {!!
+                            form()->makeField(\Grafite\Forms\Fields\Bootstrap\Country::class, 'country', [
+                                'id' => 'card-holder-country',
+                                'required' => true,
+                                'disabled' => $user->country,
+                                'value' => $user->country,
+                            ]);
+                        !!}
                     </div>
                 </div>
             </div>

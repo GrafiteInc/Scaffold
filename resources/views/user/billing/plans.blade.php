@@ -5,15 +5,17 @@
                 Subscription Plan
             </div>
             <div class="card-body">
-                <div class="form-group mb-0">
-                    @if (!isset($unlabelled)) <label for="name">Plan</label> @endif
-                    <select name="plan" id="card-holder-plan" class="form-control" required>
-                        <option value="">Select a Plan</option>
-                        @foreach(config('billing.plans') as $stripe_id => $plan)
-                            <option value="{{ $stripe_id }}">{{ $plan['name'] }} (${{ $plan['price'] }} {{ $plan['frequency'] }})</option>
-                        @endforeach
-                    </select>
-                </div>
+                    {!!
+                        form()->makeField(\Grafite\Forms\Fields\Bootstrap\Select::class, 'plan', [
+                            'id' => 'card-holder-plan',
+                            'label' => ($unlabelled) ? false : 'Plan',
+                            'required' => true,
+                            'multiple' => false,
+                            'title' => 'Select a Plan',
+                            'class' => 'form-control selectpicker',
+                            'options' => collect(config('billing.plans'))->pluck('key', 'label')->toArray(),
+                        ]);
+                    !!}
             </div>
         </div>
     </div>

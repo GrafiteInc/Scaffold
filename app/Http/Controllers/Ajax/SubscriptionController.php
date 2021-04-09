@@ -37,6 +37,8 @@ class SubscriptionController extends Controller
 
             activity("Subscribed to {$plan} plan.");
 
+            session()->flash('message', "Subscribed to {$plan} plan.");
+
             Cache::forget($user->cacheIdentifier('subscription'));
 
             return response()->json([
