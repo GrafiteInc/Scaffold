@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('app-content')
-    @include("layouts.guest.navbar")
+    <x-guest-navbar></x-guest-navbar>
 
     <div class="mt-4">
         @yield('content')

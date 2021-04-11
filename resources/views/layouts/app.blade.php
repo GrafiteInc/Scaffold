@@ -4,12 +4,12 @@
 
     <nav id="sidebar" class="sidebar">
         <div class="sidebar-sticky mt-4">
-            @include('layouts.app.sidebar')
+            <x-app-sidebar></x-app-sidebar>
         </div>
     </nav>
 
     <main class="ml-sm-auto main">
-        @include("layouts.app.navbar")
+        <x-app-navbar></x-app-navbar>
 
         <div class="container app-content">
             @yield('content')
