@@ -22,6 +22,7 @@
                                 triggerClass="btn btn-block btn-outline-danger mb-3"
                                 :payload="['user' => auth()->id()]"
                                 :options="['class' => 'btn btn-outline-primary float-right']"
+                                :disableOnSubmit=true
                             ></x-f-modal>
                         @endif
                         {!! $logoutForm !!}

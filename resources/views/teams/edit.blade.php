@@ -22,6 +22,7 @@
                         triggerClass="btn btn-block w-50 btn-outline-danger mb-3"
                         :payload="['team' => $team->id]"
                         :options="['class' => 'btn btn-outline-primary float-right']"
+                        :disableOnSubmit=true
                     ></x-f-modal>
                 </div>
             @endif

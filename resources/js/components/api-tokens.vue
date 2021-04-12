@@ -61,7 +61,11 @@ export default {
             this.tokenToRevoke = token;
             this.$refs['token-modal'].show();
         },
-        deleteToken () {
+        deleteToken (event) {
+            let _processing = '<i class="fas fa-circle-notch fa-spin mr-2"></i>';
+            event.target.innerHTML = _processing + event.target.innerHTML;
+            event.target.disabled = true;
+
             axios.delete(route('ajax.destroy-token', this.tokenToRevoke.id))
                 .then((results) => {
                     this.$refs['token-modal'].hide();
