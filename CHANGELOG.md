@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.11.0] - 2021-04-13
+
+### Added
+- JS style automation
+
+### Changed
+- UX improvements for mobile
+
 ## [v2.10.1] - 2021-03-19
 
 ### Changed
