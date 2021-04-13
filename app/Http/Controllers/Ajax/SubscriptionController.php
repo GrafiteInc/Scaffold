@@ -37,6 +37,8 @@ class SubscriptionController extends Controller
 
             activity("Subscribed to {$plan} plan.");
 
+            session()->flash('message', "Subscribed to {$plan} plan.");
+
             Cache::forget($user->cacheIdentifier('subscription'));
 
             return response()->json([
@@ -70,6 +72,8 @@ class SubscriptionController extends Controller
             $user->notify($notification);
 
             activity("Payment method updated to card ending in {$user->card_last_four}.");
+
+            session()->flash('message', "Payment method updated to card ending in {$user->card_last_four}.");
 
             return response()->json([
                 'message' => 'Your payment method has been updated!',

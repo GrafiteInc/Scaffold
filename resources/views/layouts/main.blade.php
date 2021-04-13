@@ -15,7 +15,7 @@
         <meta property="og:image" content="">
         <meta property="og:url" content="{{ url()->current() }}">
 
-        <title>App | @yield('page-title', 'My App')</title>
+        <title>{{ config('app.name') }} | @yield('page-title', 'My App')</title>
 
         <link rel="icon" type="image/ico" href="">
 
@@ -30,7 +30,7 @@
     </head>
     <body>
         <div id="app" class="min-vh-100">
-            <div class="container-fluid">
+            <div class="w-100 bmx-overflow-x-hidden">
                 @yield("app-content")
 
                 <cookielaw

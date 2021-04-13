@@ -1,6 +1,12 @@
-import Vue from 'vue'
+import Vue from 'vue';
 import VueClipboards from 'vue-clipboards';
-import { ModalPlugin, ButtonPlugin, ToastPlugin, SidebarPlugin, OverlayPlugin } from 'bootstrap-vue';
+import {
+    ModalPlugin,
+    ButtonPlugin,
+    ToastPlugin,
+    SidebarPlugin,
+    OverlayPlugin
+} from 'bootstrap-vue';
 
 require('./bootstrap');
 
@@ -28,16 +34,16 @@ Vue.prototype.$event = new Vue({
     }
 });
 
-Vue.component('cookielaw', require('./components/cookie-law.vue').default);
-Vue.component('session', require('./components/session.vue').default);
-Vue.component('notifications', require('./components/notifications.vue').default);
-Vue.component('content-modal', require('./components/content-modal.vue').default);
-Vue.component('confirmation-modal', require('./components/confirmation-modal.vue').default);
-Vue.component('pending-overlay', require('./components/pending-overlay.vue').default);
-Vue.component('copy-button', require('./components/copy-button.vue').default);
-Vue.component('api-tokens', require('./components/api-tokens.vue').default);
-Vue.component('api-token-create', require('./components/api-token-create.vue').default);
-Vue.component('notification-badge', require('./components/notification-badge.vue').default);
+Vue.component('Cookielaw', require('./components/cookie-law.vue').default);
+Vue.component('Session', require('./components/session.vue').default);
+Vue.component('Notifications', require('./components/notifications.vue').default);
+Vue.component('ContentModal', require('./components/content-modal.vue').default);
+Vue.component('ConfirmationModal', require('./components/confirmation-modal.vue').default);
+Vue.component('PendingOverlay', require('./components/pending-overlay.vue').default);
+Vue.component('CopyButton', require('./components/copy-button.vue').default);
+Vue.component('ApiTokens', require('./components/api-tokens.vue').default);
+Vue.component('ApiTokenCreate', require('./components/api-token-create.vue').default);
+Vue.component('NotificationBadge', require('./components/notification-badge.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -51,11 +57,12 @@ const app = new Vue({
 
 window.app = app;
 
-require("./subscription-create");
-require("./subscription-payment-method");
-require("./ajax-forms");
+require('./subscription-create');
+require('./subscription-payment-method');
+require('./ajax-forms');
 require('./app-events');
 require('./sidebar');
 require('./theme');
 require('./echo-events');
 require('./online');
+require('./mobile');

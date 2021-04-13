@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', 'Teams: Edit Member')
+@section('page-title', 'Edit Member')
 
 @section('content')
 

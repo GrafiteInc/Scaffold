@@ -135,3 +135,10 @@ input.form-control, textarea.form-control, select.form-control {
 .sidebar-toggle {
     color: $gray-800;
 }
+
+pre {
+    font-size: 1rem;
+    padding: 24px;
+    background-color: $input-bg;
+    border-radius: 8px;
+}

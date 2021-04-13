@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', "Teams: {$team->name}")
+@section('page-title', "{$team->name}")
 
 @section('content')
 

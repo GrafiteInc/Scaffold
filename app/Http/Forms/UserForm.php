@@ -11,6 +11,7 @@ use Grafite\Forms\Fields\Toggled;
 use Grafite\Forms\Forms\ModelForm;
 use Grafite\Forms\Fields\FileWithPreview;
 use Grafite\Forms\Fields\Bootstrap\Select;
+use Grafite\Forms\Fields\Bootstrap\Country;
 
 class UserForm extends ModelForm
 {
@@ -87,9 +88,10 @@ class UserForm extends ModelForm
                 'label' => 'State',
                 'required' => auth()->user()->hasActiveSubscription(),
             ]),
-            Text::make('country', [
+            Country::make('country', [
                 'label' => 'Country',
                 'required' => auth()->user()->hasActiveSubscription(),
+                'data-size' => 5,
             ]),
         ];
     }

@@ -36,7 +36,8 @@
                                         {!! form()->action('post',
                                             ['user.notifications.read', $notification->id],
                                             'Mark as Read',
-                                            ['class' => 'btn btn-sm btn-outline-primary mr-2']
+                                            ['class' => 'btn btn-sm btn-outline-primary mr-2'],
+                                            false, true
                                         ) !!}
                                     @endif
 
@@ -48,6 +49,7 @@
                                         triggerContent="<span class='fas fa-fw fa-trash'></span> Delete"
                                         triggerClass="btn btn-sm btn-outline-danger"
                                         :options="['class' => 'btn btn-outline-primary float-right']"
+                                        :disableOnSubmit=true
                                     ></x-f-modal>
                                 </div>
                             </td>

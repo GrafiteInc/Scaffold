@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', 'Teams: Create')
+@section('page-title', 'Create a Team')
 
 @section('content')
 

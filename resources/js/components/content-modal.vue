@@ -5,23 +5,23 @@
 </template>
 
 <script>
-    export default {
-        mame: "content-modal",
-        data () {
-            return {
-                title: '',
-                content: ''
-            }
-        },
-        created () {
-            window.modal = (_title, _message) => {
-                this.title = _title;
-                this.content = _message;
+export default {
+    mame: 'content-modal',
+    data () {
+        return {
+            title: '',
+            content: ''
+        };
+    },
+    created () {
+        window.modal = (_title, _message) => {
+            this.title = _title;
+            this.content = _message;
 
-                this.$refs['content-modal'].show();
+            this.$refs['content-modal'].show();
 
-                return false;
-            }
-        }
+            return false;
+        };
     }
+};
 </script>

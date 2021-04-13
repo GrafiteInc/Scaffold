@@ -71,7 +71,7 @@ Route::middleware(ProtectAgainstSpam::class)->group(function () {
     CollectiveAuth::routes([
         'login' => true,
         'logout' => true,
-        'register' => true,
+        'register' => config('general.registration_available', false),
         'reset' => true,
         'confirm' => true,
         'verify' => true,

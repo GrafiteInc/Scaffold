@@ -19,7 +19,13 @@ mix.js('resources/js/app.js', 'public/js')
     })
     .sass('resources/sass/dark-app.scss', 'public/css')
     .sass('resources/sass/light-app.scss', 'public/css')
-    .purgeCss();
+    .purgeCss({
+        content: [
+            "app/**/*.php",
+            "resources/**/*.html",
+            "resources/**/*.php",
+        ],
+    });
 
 mix.sourceMaps();
 

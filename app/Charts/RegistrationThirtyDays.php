@@ -15,6 +15,8 @@ class RegistrationThirtyDays extends Chart
 
     public $displayTitle = false;
 
+    public $displayXAxis = false;
+
     public $borderWidth = 4;
 
     public $activityRecords;

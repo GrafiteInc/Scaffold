@@ -1,5 +1,5 @@
-<div class="row mb-4">
-    <div class="col-md-6">
+<div class="row">
+    <div class="col-md-6 mt-4">
         <div class="card shadow-sm">
             <div class="card-header">
                 Current Subscription Plan
@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 mt-4">
         <div class="card shadow-sm">
             <div class="card-header">
                 Current Payment Method
