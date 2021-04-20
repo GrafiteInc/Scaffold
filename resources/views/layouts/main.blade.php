@@ -49,7 +49,7 @@
                     message='{!! session('message') !!}'
                     info='{!! session('info') !!}'
                     warning='{!! session('warning') !!}'
-                    error_message='{!! sessionErrorMessage() !!}'
+                    error='{{ sessionErrorMessage() }}'
                 ></session>
             </div>
 

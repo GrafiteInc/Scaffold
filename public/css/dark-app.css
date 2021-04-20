@@ -18990,6 +18990,9 @@ hr {
 .bootstrap-select .dropdown-menu li a.dropdown-item:hover {
   color: #fff !important;
 }
+.bootstrap-select .dropdown-menu li .no-results {
+  background-color: transparent;
+}
 
 .btn-select {
   background-color: #000 !important;
@@ -19001,13 +19004,13 @@ hr {
 }
 
 input.form-control:disabled, textarea.form-control:disabled, select.form-control:disabled {
-  background-color: #222 !important;
+  background-color: #222;
   color: #AAA !important;
 }
 
 input.form-control, textarea.form-control, select.form-control {
   background-color: #1F1F1F !important;
-  border: 2px solid #333 !important;
+  border: 2px solid #333;
   color: #EEE !important;
 }
 input.form-control:focus, textarea.form-control:focus, select.form-control:focus {

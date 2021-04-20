@@ -6,9 +6,9 @@ use App\Models\Role;
 use App\Models\User;
 use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Email;
+use Grafite\Forms\Fields\HasOne;
 use Grafite\Forms\Fields\Hidden;
 use Grafite\Forms\Forms\ModelForm;
-use Grafite\Forms\Fields\Bootstrap\HasMany;
 
 class AdminUserForm extends ModelForm
 {
@@ -56,10 +56,9 @@ class AdminUserForm extends ModelForm
             Hidden::make('role', [
                 'table-class' => 'd-none d-sm-table-cell',
             ]),
-            HasMany::make('roles', [
+            HasOne::make('role', [
                 'required' => true,
                 'visible' => false,
-                'multiple' => false,
                 'table-class' => 'd-none d-sm-table-cell',
                 'model' => Role::class,
                 'model_options' => [

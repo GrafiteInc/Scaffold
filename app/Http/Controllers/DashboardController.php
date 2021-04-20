@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
+use App\Http\Forms\UserWizardForm;
 use App\Http\Forms\ImageUploadForm;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,7 +24,8 @@ class DashboardController extends Controller
             });
 
         $form = app(ImageUploadForm::class)->make();
+        $wizard = app(UserWizardForm::class)->make();
 
-        return view('dashboard', compact('images', 'form'));
+        return view('dashboard', compact('images', 'wizard', 'form'));
     }
 }

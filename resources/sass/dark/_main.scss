@@ -178,6 +178,9 @@ hr {
             a.dropdown-item:hover {
                 color: $white !important;
             }
+            .no-results {
+                background-color: transparent;
+            }
         }
     }
 }
@@ -192,13 +195,13 @@ hr {
 }
 
 input.form-control:disabled, textarea.form-control:disabled, select.form-control:disabled {
-    background-color: #222 !important;
+    background-color: #222;
     color: #AAA !important;
 }
 
 input.form-control, textarea.form-control, select.form-control {
     background-color: $input-bg !important;
-    border: $input-border !important;
+    border: $input-border;
     color: #EEE !important;
     &:focus {
         background-color: #000;

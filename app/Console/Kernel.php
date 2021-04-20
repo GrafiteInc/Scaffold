@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use Illuminate\Support\Stringable;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -23,8 +24,34 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('mission-control:report')->everyFiveMinutes()
+            ->runInBackground()
+            ->appendOutputTo(storage_path('logs/scheduler.log'));
+
+        $schedule->command('db:table-empty', ['failed_jobs', '30'])->dailyAt('2:45')
+            ->runInBackground()
+            ->after(function () {
+                mission_control_notify('Emptied the Failed Jobs table', 'maintenance');
+            });
+
+        $schedule->command('maintenance:gzip-purge')->monthlyOn(4, '4:45')
+            ->runInBackground()
+            ->after(function () {
+                mission_control_notify('Purged gzipped logs', 'maintenance');
+            });
+
+        $schedule->command('maintenance:php-outdated')
+            ->monthlyOn(4, '4:45')
+            ->after(function (Stringable $output) {
+                mission_control_notify('PHP Outdated Parsing', 'maintenance', $output);
+            });
+
+        $schedule->command('maintenance:js-outdated')
+            ->monthlyOn(4, '4:45')
+            ->runInBackground()
+            ->after(function (Stringable $output) {
+                mission_control_notify('JS Outdated Parsing', 'maintenance', $output);
+            });
     }
 
     /**

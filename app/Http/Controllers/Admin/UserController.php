@@ -13,6 +13,7 @@ use App\Http\Forms\InviteUserForm;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Notifications\UserInviteEmail;
 use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\AdminUserUpdateRequest;
@@ -137,6 +138,34 @@ class UserController extends Controller
     }
 
     /**
+     * Create a user
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request)
+    {
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make(Str::random()),
+                'timezone' => $request->timezone,
+                'country' => $request->country,
+            ]);
+
+            $user->roles()->sync($request->role);
+
+            return redirect()->back()->with('message', 'Successfully created, but will need to reset password.');
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return redirect()->back()->with('errors', ['Failed to create']);
+        }
+    }
+
+    /**
      * Show the form for editing the User.
      *
      * @param  \App\Models\User  $user
@@ -167,7 +196,7 @@ class UserController extends Controller
                 'email' => $request->email,
             ]);
 
-            $user->roles()->sync($request->roles);
+            $user->roles()->sync($request->role);
 
             return redirect()->back()->with('message', 'Successfully updated');
         } catch (Exception $e) {

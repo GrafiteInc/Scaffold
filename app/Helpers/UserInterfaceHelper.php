@@ -21,6 +21,12 @@ if (! function_exists('route_link_class')) {
 if (! function_exists('sessionErrorMessage')) {
     function sessionErrorMessage()
     {
-        return str_replace("'", '`', collect(optional(session('errors'))->toArray())->flatten()->implode(' '));
+        $errors = session('errors', []);
+
+        if (is_array($errors)) {
+            $errors = collect($errors);
+        }
+
+        return str_replace("'", '`', optional($errors->flatten())->implode(' '));
     }
 }

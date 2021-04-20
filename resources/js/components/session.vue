@@ -8,7 +8,7 @@ export default {
         message: String,
         info: String,
         warning: String,
-        errorMessage: String,
+        error: String,
     },
     created () {
         window.session = {
@@ -16,7 +16,7 @@ export default {
             message: this.message,
             info: this.info,
             warning: this.warning,
-            error_message: this.errorMessage,
+            error: this.error,
         };
 
         if (window.session.message) {
@@ -31,8 +31,8 @@ export default {
             window.notify.warning(window.session.warning);
         }
 
-        if (window.session.error_message) {
-            window.notify.error(window.session.error_message);
+        if (window.session.error) {
+            window.notify.error(window.session.error);
         }
     }
 };
