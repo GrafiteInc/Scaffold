@@ -5,8 +5,8 @@ namespace App\Http\Forms;
 use App\Models\Role;
 use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Fields\HasOne;
 use Grafite\Forms\Forms\WizardForm;
+use Grafite\Forms\Fields\Bootstrap\HasOne;
 use Grafite\Forms\Fields\Bootstrap\Country;
 use Grafite\Forms\Fields\Bootstrap\Timezone;
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1ebf7017b31776fe0a14efbc163e8ce",
+    "content-hash": "925dc262f5ae8747ebce25b70c255e41",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1338,16 +1338,16 @@
         },
         {
             "name": "grafite/forms",
-            "version": "v4.8.0",
+            "version": "v4.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Forms.git",
-                "reference": "0e6f7a94a234158cf0613554c86508936b7a5686"
+                "reference": "7bb8821aab53e1060b810e4c0e632a6e875de08c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/0e6f7a94a234158cf0613554c86508936b7a5686",
-                "reference": "0e6f7a94a234158cf0613554c86508936b7a5686",
+                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/7bb8821aab53e1060b810e4c0e632a6e875de08c",
+                "reference": "7bb8821aab53e1060b810e4c0e632a6e875de08c",
                 "shasum": ""
             },
             "require": {
@@ -1399,9 +1399,9 @@
             ],
             "support": {
                 "issues": "https://github.com/GrafiteInc/Forms/issues",
-                "source": "https://github.com/GrafiteInc/Forms/tree/v4.8.0"
+                "source": "https://github.com/GrafiteInc/Forms/tree/v4.9.1"
             },
-            "time": "2021-04-20T16:12:18+00:00"
+            "time": "2021-04-21T14:57:46+00:00"
         },
         {
             "name": "grafite/maintenance",
@@ -7897,12 +7897,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "e291aa1d12cf7dc5c50be7c1c7219998745382e1"
+                "reference": "6587715d0f8cae0cd39073b3bc5f018d0e6b84fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/e291aa1d12cf7dc5c50be7c1c7219998745382e1",
-                "reference": "e291aa1d12cf7dc5c50be7c1c7219998745382e1",
+                "url": "https://api.github.com/repos/composer/composer/zipball/6587715d0f8cae0cd39073b3bc5f018d0e6b84fe",
+                "reference": "6587715d0f8cae0cd39073b3bc5f018d0e6b84fe",
                 "shasum": ""
             },
             "require": {
@@ -7988,7 +7988,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-19T11:55:52+00:00"
+            "time": "2021-04-20T20:05:32+00:00"
         },
         {
             "name": "composer/metadata-minifier",

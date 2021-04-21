@@ -13,6 +13,8 @@ class TeamForm extends ModelForm
 
     public $hasFiles = true;
 
+    public $disableOnSubmit = true;
+
     public $routePrefix = 'teams';
 
     public $buttons = [

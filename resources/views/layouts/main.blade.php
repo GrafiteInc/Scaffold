@@ -25,7 +25,7 @@
             <link title="light" rel="stylesheet" type="text/css" href="{{ mix('css/light-app.css') }}">
         @endif
 
-        @livewireStyles
+        @formStyles
         @laravelPWA
     </head>
     <body>
@@ -64,7 +64,6 @@
 
         @yield('javascript')
 
-        @livewireScripts
-        @forms
+        @formScripts
     </body>
 </html>
