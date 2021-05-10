@@ -50,8 +50,8 @@ class UserWizardForm extends WizardForm
     public function steps()
     {
         return [
-            [['name', 'email', 'role']],
-            ['timezone', 'country'],
+            [['name','email'],['role']],
+            [['timezone', 'country']],
         ];
     }
 }

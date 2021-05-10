@@ -6,15 +6,17 @@ use App\Models\Role;
 use App\Models\User;
 use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Fields\HasOne;
 use Grafite\Forms\Fields\Hidden;
 use Grafite\Forms\Forms\ModelForm;
+use Grafite\Forms\Fields\Bootstrap\HasOne;
 
 class AdminUserForm extends ModelForm
 {
     public $model = User::class;
 
     public $routePrefix = 'admin.users';
+
+    public $isCardForm = true;
 
     public $disableOnSubmit = true;
 
@@ -32,7 +34,7 @@ class AdminUserForm extends ModelForm
         'delete' => '<span class="fas fa-fw fa-trash"></span> Delete',
     ];
 
-    public $columns = 2;
+    public $columns = 'sections';
 
     public $buttonClasses = [
         'submit' => 'btn btn-primary',
@@ -65,6 +67,14 @@ class AdminUserForm extends ModelForm
                     'label' => 'label',
                 ],
             ]),
+        ];
+    }
+
+    public function setSections()
+    {
+        return [
+            ['name', 'email'],
+            ['role'],
         ];
     }
 }

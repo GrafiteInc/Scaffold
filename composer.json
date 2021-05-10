@@ -13,7 +13,7 @@
         "bepsvpt/secure-headers": "^7.1",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
-        "grafite/charts": "^0.5.0",
+        "grafite/charts": "^1.0",
         "grafite/database": "^2.3",
         "grafite/forms": "^4.9",
         "grafite/maintenance": "^0.2.0",
@@ -31,7 +31,8 @@
         "pusher/pusher-php-server": "~4.0",
         "silviolleite/laravelpwa": "^2.0",
         "spatie/laravel-honeypot": "^3.0",
-        "tightenco/ziggy": "^1.0.4"
+        "tightenco/ziggy": "^1.0.4",
+        "wulfheart/pretty_routes": "^0.3.0"
     },
     "require-dev": {
         "brianium/paratest": "^6.1",

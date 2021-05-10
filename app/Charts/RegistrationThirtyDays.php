@@ -10,15 +10,11 @@ class RegistrationThirtyDays extends Chart
     public $registrationRecords;
 
     public $height = 250;
-
-    public $title = 'User Activities';
-
+    public $title = 'User Registrations';
     public $displayTitle = false;
-
-    public $displayXAxis = false;
-
-    public $borderWidth = 4;
-
+    public $displayAxes = false;
+    public $zoom = true;
+    public $zoomAxis = 'x';
     public $activityRecords;
 
     /**

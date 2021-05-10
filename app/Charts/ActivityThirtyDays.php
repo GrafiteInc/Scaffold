@@ -8,15 +8,10 @@ use Grafite\Charts\Builder\Chart;
 class ActivityThirtyDays extends Chart
 {
     public $height = 250;
-
-    public $title = 'User Activities';
-
-    public $displayTitle = false;
-
-    public $displayXAxis = false;
-
-    public $borderWidth = 4;
-
+    public $id = 'Activities';
+    public $displayAxes = false;
+    public $zoom = true;
+    public $zoomAxis = 'x';
     public $activityRecords;
 
     /**
@@ -52,7 +47,7 @@ class ActivityThirtyDays extends Chart
     {
         $counts = $this->activityRecords->pluck('activity_count');
 
-        $dataset = $this->makeDataset('User Activities Per Day', $counts)
+        $dataset = $this->makeDataset('Activity Count', $counts)
             ->options([
                 'borderColor' => '#6f42c1',
             ]);

@@ -17,6 +17,9 @@
             <div class="card shadow-sm">
                 <div class="card-header">
                     User Registrations (30 Days)
+                    <div class="float-right">
+                        {!! $registrationChart->resetZoomButton() !!}
+                    </div>
                 </div>
                 <div class="card-body">
                     {!! $registrationChart->html() !!}
@@ -30,6 +33,9 @@
             <div class="card shadow-sm">
                 <div class="card-header">
                     User Activities (30 Days)
+                    <div class="float-right">
+                        {!! $activityChart->resetZoomButton() !!}
+                    </div>
                 </div>
                 <div class="card-body">
                     {!! $activityChart->html() !!}
@@ -43,5 +49,7 @@
 @section('javascript')
     {!! $registrationChart->cdn() !!}
     {!! $registrationChart->script() !!}
+
+    {!! $activityChart->cdn() !!}
     {!! $activityChart->script() !!}
 @stop
