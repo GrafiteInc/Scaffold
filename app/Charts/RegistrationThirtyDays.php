@@ -7,22 +7,11 @@ use Grafite\Charts\Builder\Chart;
 
 class RegistrationThirtyDays extends Chart
 {
-    public $registrationRecords;
-
     public $height = 250;
-    public $title = 'User Registrations';
-    public $displayTitle = false;
     public $displayAxes = false;
-    public $zoom = true;
-    public $zoomAxis = 'x';
-    public $activityRecords;
+    public $tooltipAlwaysOn = true;
 
-    /**
-     * Initializes the chart.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function collectData()
     {
         $registrations = User::where('created_at', '<', now())
             ->where('created_at', '>', now()->subDays(30))
@@ -31,24 +20,26 @@ class RegistrationThirtyDays extends Chart
                 return $user->created_at->format('d-m-Y');
             });
 
-        $this->registrationRecords = collect();
+        $data = collect();
 
         foreach ($registrations as $date => $registration) {
-            $this->registrationRecords->push([
+            $data->push([
                 'dates' => $date,
                 'registration_count' => $registration->count(),
             ]);
         }
+
+        return $data;
     }
 
     public function labels()
     {
-        return $this->registrationRecords->pluck('dates');
+        return $this->data->pluck('dates');
     }
 
     public function datasets()
     {
-        $counts = $this->registrationRecords->pluck('registration_count');
+        $counts = $this->data->pluck('registration_count');
 
         $dataset = $this->makeDataset('User Registrations Per Day', $counts)
             ->options([

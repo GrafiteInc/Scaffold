@@ -13,7 +13,7 @@
         "bepsvpt/secure-headers": "^7.1",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
-        "grafite/charts": "^1.0",
+        "grafite/charts": "^2.0",
         "grafite/database": "^2.3",
         "grafite/forms": "^4.9",
         "grafite/maintenance": "^0.2.0",

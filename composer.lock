@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "763c18857db2826e7a9cb79f528f5b57",
+    "content-hash": "a306c53324e6f3ba0f109e3e129733af",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1228,16 +1228,16 @@
         },
         {
             "name": "grafite/charts",
-            "version": "v1.0.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Charts.git",
-                "reference": "008172f9b3079f34ce658fb0aeb7833953fdff3e"
+                "reference": "d02c20f622cfa6bbdc7a9faf07a7725254598445"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Charts/zipball/008172f9b3079f34ce658fb0aeb7833953fdff3e",
-                "reference": "008172f9b3079f34ce658fb0aeb7833953fdff3e",
+                "url": "https://api.github.com/repos/GrafiteInc/Charts/zipball/d02c20f622cfa6bbdc7a9faf07a7725254598445",
+                "reference": "d02c20f622cfa6bbdc7a9faf07a7725254598445",
                 "shasum": ""
             },
             "require": {
@@ -1276,9 +1276,9 @@
             "description": "An easy way to integrate Charts in Laravel",
             "support": {
                 "issues": "https://github.com/GrafiteInc/Charts/issues",
-                "source": "https://github.com/GrafiteInc/Charts/tree/v1.0.0"
+                "source": "https://github.com/GrafiteInc/Charts/tree/v2.0.0"
             },
-            "time": "2021-05-08T23:36:00+00:00"
+            "time": "2021-05-10T19:08:07+00:00"
         },
         {
             "name": "grafite/database",
@@ -1337,16 +1337,16 @@
         },
         {
             "name": "grafite/forms",
-            "version": "v4.9.3",
+            "version": "v4.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Forms.git",
-                "reference": "6eb75d4413bea5e5f45f7d4f5028ebf3dcc042c5"
+                "reference": "7b86947d8083be1dae981099cfe7bd551fcc6a54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/6eb75d4413bea5e5f45f7d4f5028ebf3dcc042c5",
-                "reference": "6eb75d4413bea5e5f45f7d4f5028ebf3dcc042c5",
+                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/7b86947d8083be1dae981099cfe7bd551fcc6a54",
+                "reference": "7b86947d8083be1dae981099cfe7bd551fcc6a54",
                 "shasum": ""
             },
             "require": {
@@ -1398,9 +1398,9 @@
             ],
             "support": {
                 "issues": "https://github.com/GrafiteInc/Forms/issues",
-                "source": "https://github.com/GrafiteInc/Forms/tree/v4.9.3"
+                "source": "https://github.com/GrafiteInc/Forms/tree/v4.9.5"
             },
-            "time": "2021-04-29T23:34:48+00:00"
+            "time": "2021-05-11T23:17:46+00:00"
         },
         {
             "name": "grafite/maintenance",
@@ -2052,16 +2052,16 @@
         },
         {
             "name": "laravel/cashier",
-            "version": "v12.13.0",
+            "version": "v12.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/cashier-stripe.git",
-                "reference": "f1a7d5ffce278bf9c85cd3c1b86c45d688f3bf00"
+                "reference": "532089a487dd09c6fa5adaf9c0088715a7623e48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/f1a7d5ffce278bf9c85cd3c1b86c45d688f3bf00",
-                "reference": "f1a7d5ffce278bf9c85cd3c1b86c45d688f3bf00",
+                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/532089a487dd09c6fa5adaf9c0088715a7623e48",
+                "reference": "532089a487dd09c6fa5adaf9c0088715a7623e48",
                 "shasum": ""
             },
             "require": {
@@ -2126,20 +2126,20 @@
                 "issues": "https://github.com/laravel/cashier/issues",
                 "source": "https://github.com/laravel/cashier"
             },
-            "time": "2021-04-27T17:42:05+00:00"
+            "time": "2021-05-11T20:52:30+00:00"
         },
         {
             "name": "laravel/framework",
-            "version": "v8.40.0",
+            "version": "v8.41.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "a654897ad7f97aea9d7ef292803939798c4a02a4"
+                "reference": "05417155d886df8710e55c84e12622b52d83c47c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/a654897ad7f97aea9d7ef292803939798c4a02a4",
-                "reference": "a654897ad7f97aea9d7ef292803939798c4a02a4",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/05417155d886df8710e55c84e12622b52d83c47c",
+                "reference": "05417155d886df8710e55c84e12622b52d83c47c",
                 "shasum": ""
             },
             "require": {
@@ -2247,7 +2247,7 @@
                 "phpunit/phpunit": "Required to use assertions and run tests (^8.5.8|^9.3.3).",
                 "predis/predis": "Required to use the predis connector (^1.1.2).",
                 "psr/http-message": "Required to allow Storage::put to accept a StreamInterface (^1.0).",
-                "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^4.0|^5.0).",
+                "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^4.0|^5.0|^6.0).",
                 "symfony/cache": "Required to PSR-6 cache bridge (^5.1.4).",
                 "symfony/filesystem": "Required to enable support for relative symbolic links (^5.1.4).",
                 "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^2.0).",
@@ -2294,7 +2294,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-04-28T14:38:56+00:00"
+            "time": "2021-05-11T14:00:02+00:00"
         },
         {
             "name": "laravel/helpers",
@@ -2354,16 +2354,16 @@
         },
         {
             "name": "laravel/sanctum",
-            "version": "v2.10.0",
+            "version": "v2.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "a08cfee365c6b6df3e91c8f43b92f7163ffc8a94"
+                "reference": "3ed8f60dafef026acc21733366a08746a7bd176e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/a08cfee365c6b6df3e91c8f43b92f7163ffc8a94",
-                "reference": "a08cfee365c6b6df3e91c8f43b92f7163ffc8a94",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/3ed8f60dafef026acc21733366a08746a7bd176e",
+                "reference": "3ed8f60dafef026acc21733366a08746a7bd176e",
                 "shasum": ""
             },
             "require": {
@@ -2414,7 +2414,7 @@
                 "issues": "https://github.com/laravel/sanctum/issues",
                 "source": "https://github.com/laravel/sanctum"
             },
-            "time": "2021-04-20T16:20:46+00:00"
+            "time": "2021-05-11T21:03:57+00:00"
         },
         {
             "name": "laravelcollective/auth",

@@ -10694,14 +10694,14 @@ input[type=button].btn-block {
   margin-left: 0;
   line-height: 1.25;
   color: #fff;
-  background-color: #18BC9C;
+  background-color: #6f42c1;
   border: 0 solid transparent;
 }
 .page-link:hover {
   z-index: 2;
   color: #fff;
   text-decoration: none;
-  background-color: #0f7864;
+  background-color: #4e2d89;
   border-color: transparent;
 }
 .page-link:focus {
@@ -10722,14 +10722,14 @@ input[type=button].btn-block {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #0f7864;
+  background-color: #4e2d89;
   border-color: transparent;
 }
 .page-item.disabled .page-link {
   color: #ecf0f1;
   pointer-events: none;
   cursor: auto;
-  background-color: #3be6c4;
+  background-color: #9b7cd4;
   border-color: transparent;
 }
 

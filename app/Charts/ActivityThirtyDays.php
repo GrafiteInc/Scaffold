@@ -10,8 +10,7 @@ class ActivityThirtyDays extends Chart
     public $height = 250;
     public $id = 'Activities';
     public $displayAxes = false;
-    public $zoom = true;
-    public $zoomAxis = 'x';
+    public $tooltipAlwaysOn = true;
     public $activityRecords;
 
     /**
@@ -19,7 +18,7 @@ class ActivityThirtyDays extends Chart
      *
      * @return void
      */
-    public function __construct()
+    public function collectData()
     {
         $activities = Activity::where('created_at', '<', now())
             ->where('created_at', '>', now()->subDays(30))
@@ -28,24 +27,26 @@ class ActivityThirtyDays extends Chart
                 return $activity->created_at->format('d-m-Y');
             });
 
-        $this->activityRecords = collect();
+        $activityRecords = collect();
 
         foreach ($activities as $date => $activity) {
-            $this->activityRecords->push([
+            $activityRecords->push([
                 'dates' => $date,
                 'activity_count' => $activity->count(),
             ]);
         }
+
+        return $activityRecords;
     }
 
     public function labels()
     {
-        return $this->activityRecords->pluck('dates');
+        return $this->data->pluck('dates');
     }
 
     public function datasets()
     {
-        $counts = $this->activityRecords->pluck('activity_count');
+        $counts = $this->data->pluck('activity_count');
 
         $dataset = $this->makeDataset('Activity Count', $counts)
             ->options([
