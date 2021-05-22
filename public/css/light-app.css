@@ -22382,6 +22382,16 @@ input[type=file].form-control {
   border-color: #212529 !important;
 }
 
+.bmx-rounded-left-0 {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.bmx-rounded-right-0 {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 .bmx-bg-white {
   background-color: rgba(255, 255, 255, var(--bmx-bg-opacity));
 }

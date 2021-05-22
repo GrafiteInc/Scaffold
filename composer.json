@@ -15,7 +15,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "grafite/charts": "^2.0",
         "grafite/database": "^2.3",
-        "grafite/forms": "^4.9",
+        "grafite/forms": "^5.0",
         "grafite/maintenance": "^0.2.0",
         "grafite/mission-control-laravel": "^2.0",
         "guzzlehttp/guzzle": "^7.2",

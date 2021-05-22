@@ -44,6 +44,12 @@
  */
 
 /*!
+ * pulltorefreshjs v0.1.22
+ * (c) Rafael Soto
+ * Released under the MIT License.
+ */
+
+/*!
  * vue-cookie-law v1.13.3
  * (c) 2020 Jakub Juszczak <jakub@posteo.de>
  * 

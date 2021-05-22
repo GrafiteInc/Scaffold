@@ -42,7 +42,11 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <x-f :content="$form"></x-f>
+                <x-f-model
+                    :form="\App\Http\Forms\UserForm::class"
+                    action="edit"
+                    :model="auth()->user()"
+                ></x-f-model>
             </div>
         </div>
     </div>
