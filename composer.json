@@ -89,6 +89,7 @@
         "check-style": "vendor/bin/php-cs-fixer fix --dry-run",
         "fix-style": "vendor/bin/php-cs-fixer fix",
         "analyse": "vendor/bin/phpstan analyse",
-        "test": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover clover.xml && php coverage-checker.php clover.xml 75"
+        "test": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover clover.xml && php coverage-checker.php clover.xml 50",
+        "test-debug": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html test-html"
     }
 }

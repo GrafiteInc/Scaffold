@@ -22,7 +22,7 @@
     <server name="QUEUE_CONNECTION" value="sync"/>
     <server name="SESSION_DRIVER" value="array"/>
     <server name="TELESCOPE_ENABLED" value="false"/>
-    <server name="PLAN_MONTHLY" value="plan_monthly"/>
+    <server name="PLAN_MONTHLY" value="plan_FgRNFn5SPrDG6g"/>
   </php>
   <listeners>
     <listener class="NunoMaduro\Collision\Adapters\Phpunit\Printer"/>
