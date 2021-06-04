@@ -21,6 +21,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '7.4'
+        coverage: 'xdebug'
 
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
@@ -37,7 +38,7 @@ jobs:
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: test
-      run: vendor/bin/phpunit
+      run: composer test
 
     - name: checkbranchname
       id: checkbranch
