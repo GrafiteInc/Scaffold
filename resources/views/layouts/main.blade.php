@@ -27,6 +27,7 @@
 
         @formStyles
         @laravelPWA
+        @missionControl
     </head>
     <body>
         <div id="app" class="min-vh-100">
