@@ -15,9 +15,9 @@ class CreateCustomerColumns extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('stripe_id')->nullable()->after('remember_token')->collation('utf8mb4_bin')->index();
-            $table->string('card_brand')->nullable()->after('stripe_id');
-            $table->string('card_last_four', 4)->nullable()->after('card_brand');
-            $table->timestamp('trial_ends_at')->nullable()->after('card_last_four');
+            $table->string('pm_type')->nullable()->after('stripe_id');
+            $table->string('pm_last_four', 4)->nullable()->after('pm_type');
+            $table->timestamp('trial_ends_at')->nullable()->after('pm_last_four');
         });
     }
 
