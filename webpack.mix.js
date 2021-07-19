@@ -1,6 +1,7 @@
 const mix = require('laravel-mix');
+const path = require('path');
 
-require('laravel-mix-purgecss');
+// require('laravel-mix-purgecss');
 
 /*
  |--------------------------------------------------------------------------
@@ -15,17 +16,22 @@ require('laravel-mix-purgecss');
 
 mix.js('resources/js/app.js', 'public/js')
     .vue({
+        runtimeOnly: true,
         version: 2
     })
     .sass('resources/sass/dark-app.scss', 'public/css')
-    .sass('resources/sass/light-app.scss', 'public/css')
-    .purgeCss({
-        content: [
-            "app/**/*.php",
-            "resources/**/*.html",
-            "resources/**/*.php",
-        ],
-    });
+    .sass('resources/sass/light-app.scss', 'public/css');
+    // .purgeCss({
+    //     content: [
+    //         "app/**/*.php",
+    //         "resources/**/*.html",
+    //         "resources/**/*.php",
+    //     ],
+    // });
+
+mix.alias({
+    'vue$': path.resolve(__dirname, 'node_modules/vue/dist/vue.js')
+});
 
 mix.sourceMaps();
 

@@ -10,6 +10,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
+        "barryvdh/laravel-debugbar": "^3.6",
         "bepsvpt/secure-headers": "^7.1",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
@@ -20,7 +21,7 @@
         "grafite/mission-control-laravel": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.5",
-        "laravel/cashier": "^12.0",
+        "laravel/cashier": "^13.0",
         "laravel/framework": "^8.0",
         "laravel/helpers": "^1.1",
         "laravel/sanctum": "^2.6",
@@ -38,12 +39,12 @@
         "brianium/paratest": "^6.1",
         "facade/ignition": "^2.0",
         "fakerphp/faker": "^1.10",
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "itsgoingd/clockwork": "^5.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
         "laravel/dusk": "^6.0",
         "mockery/mockery": "^1.3",
         "nunomaduro/collision": "^5.3",
         "nunomaduro/larastan": "^0.6.13",
+        "nunomaduro/phpinsights": "^2.0",
         "phpunit/phpunit": "^9.3.3"
     },
     "config": {
@@ -89,6 +90,7 @@
         "check-style": "vendor/bin/php-cs-fixer fix --dry-run",
         "fix-style": "vendor/bin/php-cs-fixer fix",
         "analyse": "vendor/bin/phpstan analyse",
+        "insights": "vendor/bin/phpinsights",
         "test": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover clover.xml && php coverage-checker.php clover.xml 50",
         "test-debug": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html test-html"
     }

@@ -1,4 +1,5 @@
 {
+    "name": "scaffold",
     "private": true,
     "scripts": {
         "dev": "npm run development",
@@ -16,7 +17,7 @@
         "@grafite/bootstrap-magic-extras": "^0.1.1",
         "@grafite/helpers": "1.0.0",
         "axios": "^0.21",
-        "bootstrap": "^4.6.0",
+        "bootstrap": "^4.5.2",
         "bootstrap-vue": "^2.21.2",
         "eslint": "^7.23.0",
         "eslint-config-airbnb-base": "^14.2.1",
@@ -24,7 +25,7 @@
         "eslint-plugin-vue": "^7.8.0",
         "jquery": "^3.5.1",
         "laravel-echo": "^1.10.0",
-        "laravel-mix": "^6.0.16",
+        "laravel-mix": "^6.0.6",
         "laravel-mix-purgecss": "^6.0.0",
         "lodash": "^4.17.20",
         "popper.js": "^1.16.1",
@@ -36,8 +37,7 @@
         "vue": "^2.6.12",
         "vue-clipboards": "^1.3.0",
         "vue-cookie-law": "^1.13.3",
-        "vue-loader": "^15.9.7",
+        "vue-loader": "^15.9.6",
         "vue-template-compiler": "^2.6.12"
-    },
-    "name": "scaffold"
+    }
 }
