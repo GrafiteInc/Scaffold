@@ -24,8 +24,8 @@
  */
 
 /*!
- * Vue.js v2.6.12
- * (c) 2014-2020 Evan You
+ * Vue.js v2.6.14
+ * (c) 2014-2021 Evan You
  * Released under the MIT License.
  */
 
@@ -41,6 +41,12 @@
  * https://jquery.org/license
  *
  * Date: 2021-03-02T17:08Z
+ */
+
+/*!
+ * pulltorefreshjs v0.1.22
+ * (c) Rafael Soto
+ * Released under the MIT License.
  */
 
 /*!

@@ -37,4 +37,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /**
+     * Make a note that the user logged in.
+     *
+     * @return void
+     */
+    public function authenticated()
+    {
+        activity('login');
+    }
 }

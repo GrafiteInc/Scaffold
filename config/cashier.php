@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Stripe Keys
@@ -44,19 +45,6 @@ return [
         'secret' => env('STRIPE_WEBHOOK_SECRET'),
         'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Cashier Model
-    |--------------------------------------------------------------------------
-    |
-    | This is the model in your application that implements the Billable trait
-    | provided by Cashier. It will serve as the primary model you use while
-    | interacting with Cashier related methods, subscriptions, and so on.
-    |
-    */
-
-    'model' => env('CASHIER_MODEL', App\Models\User::class),
 
     /*
     |--------------------------------------------------------------------------
@@ -124,4 +112,5 @@ return [
     */
 
     'logger' => env('CASHIER_LOGGER'),
+
 ];

@@ -53,7 +53,7 @@ trait HasSubscription
         $plan = $this->subscription(config('billing.subscription_name'));
 
         if (! is_null($plan)) {
-            $plan = $plan->stripe_plan;
+            $plan = $plan->stripe_price;
 
             return $plans[$plan][$key];
         }

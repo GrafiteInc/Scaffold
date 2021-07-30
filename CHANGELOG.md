@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.12.0] - 2021-07-30
+
+### Changed
+- General UI improvementss
+- Switched to latest Cashier
+- Latest Forms package.
+
 ## [v2.11.0] - 2021-04-13
 
 ### Added

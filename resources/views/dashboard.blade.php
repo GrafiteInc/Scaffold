@@ -4,21 +4,26 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    {!! $form !!}
+    @if (auth()->user()->hasRole('admin'))
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-header text-center">
+                        <h4 class="m-0">New User</h4>
+                    </div>
+                    {!! $wizard !!}
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <div class="row mt-4">
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h3>Uploaded Images</h3>
+                    {!! $form !!}
+
+                    <h3 class="mt-5">Uploaded Images</h3>
 
                     <div class="row">
                         @foreach ($images as $image)

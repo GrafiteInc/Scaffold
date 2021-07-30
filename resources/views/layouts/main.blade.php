@@ -25,8 +25,9 @@
             <link title="light" rel="stylesheet" type="text/css" href="{{ mix('css/light-app.css') }}">
         @endif
 
-        @livewireStyles
+        @formStyles
         @laravelPWA
+        @missionControl
     </head>
     <body>
         <div id="app" class="min-vh-100">
@@ -49,7 +50,7 @@
                     message='{!! session('message') !!}'
                     info='{!! session('info') !!}'
                     warning='{!! session('warning') !!}'
-                    error_message='{!! sessionErrorMessage() !!}'
+                    error='{{ sessionErrorMessage() }}'
                 ></session>
             </div>
 
@@ -64,7 +65,6 @@
 
         @yield('javascript')
 
-        @livewireScripts
-        @forms
+        @formScripts
     </body>
 </html>

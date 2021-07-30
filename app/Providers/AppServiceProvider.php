@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Laravel\Cashier\Cashier;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -16,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         Cashier::keepPastDueSubscriptionsActive();
+        Cashier::useCustomerModel(User::class);
     }
 
     /**

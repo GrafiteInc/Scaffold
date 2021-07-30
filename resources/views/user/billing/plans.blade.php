@@ -8,7 +8,7 @@
                     {!!
                         form()->makeField(\Grafite\Forms\Fields\Bootstrap\Select::class, 'plan', [
                             'id' => 'card-holder-plan',
-                            'label' => ($unlabelled) ? false : 'Plan',
+                            'label' => (isset($unlabelled)) ? false : 'Plan',
                             'required' => true,
                             'multiple' => false,
                             'title' => 'Select a Plan',

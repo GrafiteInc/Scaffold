@@ -21,6 +21,8 @@ class TeamMemberForm extends BaseForm
 
     public $email;
 
+    public $disableOnSubmit = true;
+
     public function fields()
     {
         return [

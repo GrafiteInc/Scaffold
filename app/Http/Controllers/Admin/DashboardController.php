@@ -13,8 +13,8 @@ class DashboardController extends Controller
      */
     public function __invoke()
     {
-        $activityChart = new ActivityThirtyDays();
         $registrationChart = new RegistrationThirtyDays();
+        $activityChart = new ActivityThirtyDays();
 
         return view('admin.dashboard')
             ->with(compact('activityChart', 'registrationChart'));

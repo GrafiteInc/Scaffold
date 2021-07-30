@@ -32,9 +32,7 @@ class TeamMembersController extends Controller
 
         abort_unless($team->hasActiveSubscription(), 403, 'Team does not have an active subscription.');
 
-        if (! Gate::allows('team-member', $team)) {
-            abort(403);
-        }
+        abort_unless(Gate::allows('team-member', $team), 403, 'You are not a member of this team.');
 
         $inviteForm = app(TeamInviteForm::class)
             ->setRoute('teams.members.invite', $team)->make();

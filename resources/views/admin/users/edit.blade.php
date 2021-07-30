@@ -13,7 +13,9 @@
     </div>
     <div class="row mt-4">
         <div class="col-md-12">
-            {!! $form !!}
+            <div class="card shadow-sm">
+                {!! $form !!}
+            </div>
         </div>
     </div>
 

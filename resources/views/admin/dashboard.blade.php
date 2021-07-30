@@ -43,5 +43,7 @@
 @section('javascript')
     {!! $registrationChart->cdn() !!}
     {!! $registrationChart->script() !!}
+
+    {!! $activityChart->cdn() !!}
     {!! $activityChart->script() !!}
 @stop
