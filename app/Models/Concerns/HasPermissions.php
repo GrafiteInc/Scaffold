@@ -35,4 +35,17 @@ trait HasPermissions
 
         return $userPermissions;
     }
+
+    /**
+     * Check if user has permission
+     *
+     * @param string $requestedPermission
+     * @return boolean
+     */
+    public function hasPermission($requestedPermission)
+    {
+        return collect($this->permissions)->filter(function ($permission) use ($requestedPermission) {
+            return $permission === $requestedPermission;
+        })->count() >= 1;
+    }
 }

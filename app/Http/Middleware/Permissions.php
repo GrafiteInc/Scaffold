@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Gate;
 
 class Permissions
 {
@@ -15,12 +16,8 @@ class Permissions
      */
     public function handle($request, Closure $next, $requestPermissionCollection)
     {
-        $requestPermissions = explode('|', $requestPermissionCollection);
-
-        foreach ($requestPermissions as $accessPermission) {
-            if (in_array($accessPermission, $request->user()->permissions->toArray())) {
-                return $next($request);
-            }
+        if (Gate::forUser($request->user())->allows('has-permissions', [$requestPermissionCollection])) {
+            return $next($request);
         }
 
         abort(401);

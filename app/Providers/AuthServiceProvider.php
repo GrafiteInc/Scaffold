@@ -33,6 +33,21 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         /*
+         * Gateway for determining if user has permissions
+         */
+        Gate::define('has-permissions', function ($user, $requestPermissionCollection) {
+            $requestPermissions = explode(',', $requestPermissionCollection);
+
+            foreach ($requestPermissions as $accessPermission) {
+                if (in_array($accessPermission, $user->permissions->toArray())) {
+                    return true;
+                }
+            }
+
+            return false;
+        });
+
+        /*
          * Gateway for determining team admin
          */
         Gate::define('team-admin', function ($user, $team) {

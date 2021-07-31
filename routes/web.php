@@ -217,19 +217,30 @@ Route::middleware('auth')->group(function () {
             | Users
             |--------------------------------------------------------------------------
             */
-            Route::get('users/search', [UserController::class, 'search'])->name('admin.users.search');
-            Route::get('users/invite', [UserController::class, 'getInvite'])->name('admin.users.invite');
-            Route::post('users/invite', [UserController::class, 'postInvite'])->name('admin.users.send-invite');
-            Route::post('users/switch/{user}', [UserController::class, 'switchToUser'])->name('admin.users.switch');
+            Route::get('users/search', [UserController::class, 'search'])
+                ->middleware(['permissions:users'])
+                ->name('admin.users.search');
 
-            Route::resource('users', UserController::class, ['as' => 'admin']);
+            Route::get('users/invite', [UserController::class, 'getInvite'])
+                ->middleware(['permissions:users.invite'])
+                ->name('admin.users.invite');
+
+            Route::post('users/invite', [UserController::class, 'postInvite'])
+                ->middleware(['permissions:users.invite'])
+                ->name('admin.users.send-invite');
+
+            Route::post('users/switch/{user}', [UserController::class, 'switchToUser'])
+                ->middleware(['permissions:users'])
+                ->name('admin.users.switch');
+
+            Route::resource('users', UserController::class, ['as' => 'admin', 'middleware' => ['permissions:users']]);
 
             /*
             |--------------------------------------------------------------------------
             | Roles
             |--------------------------------------------------------------------------
             */
-            Route::resource('roles', RoleController::class, ['as' => 'admin']);
+            Route::resource('roles', RoleController::class, ['as' => 'admin', 'middleware' => ['permissions:roles']]);
         });
     });
 });
