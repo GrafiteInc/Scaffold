@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.12.1] - 2021-07-31
+
+### Changed
+- Improved permission controls
+
 ## [v2.12.0] - 2021-07-30
 
 ### Changed
