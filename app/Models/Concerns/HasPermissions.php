@@ -42,10 +42,14 @@ trait HasPermissions
      * @param string $requestedPermission
      * @return boolean
      */
-    public function hasPermission($requestedPermission)
+    public function hasPermission($requestedPermissions)
     {
-        return collect($this->permissions)->filter(function ($permission) use ($requestedPermission) {
-            return $permission === $requestedPermission;
-        })->count() >= 1;
+        if (! is_array($requestedPermissions)) {
+            $requestedPermissions = [$requestedPermissions];
+        }
+
+        return collect($this->permissions)->filter(function ($permission) use ($requestedPermissions) {
+            return in_array($permission, $requestedPermissions);
+        })->count() === count($requestedPermissions);
     }
 }

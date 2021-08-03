@@ -48,7 +48,7 @@ abstract class TestCase extends BaseTestCase
             'name' => config('billing.subscription_name'),
             'stripe_id' => 'foo-bar-test-subscription-id',
             'stripe_status' => 'active',
-            'stripe_plan' => 'foo-bar',
+            'stripe_price' => 'foo-bar',
             'quantity' => 1,
         ]);
     }
