@@ -39,7 +39,9 @@
                                                     <span class="fas fa-fw fa-pencil-alt"></span> Edit
                                                 </a>
 
-                                                {!! app(\App\Http\Forms\RoleForm::class)->confirm('Are you sure you want to delete this role?', 'confirmation')->delete($role) !!}
+                                                @if ($role->name !== 'admin')
+                                                    {!! app(\App\Http\Forms\RoleForm::class)->confirm('Are you sure you want to delete this role?', 'confirmation')->delete($role) !!}
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>

@@ -59,7 +59,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $form = app(RoleForm::class)->edit($role);
+        $form = app(RoleForm::class)->disabledWhen(function () use ($role) {
+            return $role->name === 'admin';
+        })->edit($role);
 
         return view('admin.roles.edit')
             ->with(compact('form', 'role'));
