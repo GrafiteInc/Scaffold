@@ -2,6 +2,7 @@
 
 namespace App\Http\Forms;
 
+use Grafite\Forms\Fields\Editor;
 use Grafite\Forms\Forms\BaseForm;
 use Grafite\Forms\Fields\Dropzone;
 
