@@ -47,6 +47,5 @@
     <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
     <script>
         window.stripe_key = "{{ config("services.stripe.key") }}";
-        window.dark_mode = "{{ json_encode((bool) auth()->user()->dark_mode) }}"
     </script>
 @stop

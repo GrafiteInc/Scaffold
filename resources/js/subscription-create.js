@@ -1,7 +1,7 @@
 const subscriptionForm = document.getElementById('subscription-form');
 
 if (subscriptionForm) {
-    let _color = (window.dark_mode === 'false') ? '#111' : '#FFF';
+    let _color = (! window.dark_mode) ? '#111' : '#FFF';
 
     const stripe = window.Stripe(window.stripe_key);
     const elements = stripe.elements();

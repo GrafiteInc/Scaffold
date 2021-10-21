@@ -55,7 +55,6 @@ class SettingsController extends Controller
             $request->user()->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'dark_mode' => $request->filled('dark_mode') ?? false,
                 'avatar' => $path,
                 'allow_email_based_notifications' => $request->filled('allow_email_based_notifications') ?? false,
                 'billing_email' => $request->billing_email,

@@ -30,7 +30,6 @@ class UserSettings extends Component
         $this->data['billing_email'] = $this->user->billing_email;
         $this->data['state'] = $this->user->state;
         $this->data['country'] = $this->user->country;
-        $this->data['dark_mode'] = (bool) $this->user->dark_mode;
         $this->data['allow_email_based_notifications'] = (bool) $this->user->allow_email_based_notifications;
         $this->data['two_factor_platform'] = $this->user->two_factor_platform;
     }

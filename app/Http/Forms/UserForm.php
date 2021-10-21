@@ -45,11 +45,6 @@ class UserForm extends ModelForm
             Email::make('email', [
                 'required' => true,
             ]),
-            Toggled::make('dark_mode', [
-                'legend' => 'Dark Mode',
-                'theme' => (auth()->user()->dark_mode) ? 'dark' : 'light',
-                'color' => '#8558da',
-            ]),
             Toggled::make('allow_email_based_notifications', [
                 'legend' => 'Email Contact',
                 'color' => '#8558da',

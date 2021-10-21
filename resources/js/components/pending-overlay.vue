@@ -14,15 +14,10 @@
 <script>
 export default {
     mame: 'pending-overlay',
-    props: {
-        mode: {
-            type: String,
-            default: 'dark'
-        }
-    },
     data () {
         return {
             show: false,
+            mode: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
         };
     },
     created () {

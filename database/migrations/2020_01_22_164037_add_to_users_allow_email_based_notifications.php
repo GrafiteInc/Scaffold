@@ -14,7 +14,7 @@ class AddToUsersAllowEmailBasedNotifications extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('allow_email_based_notifications')->after('dark_mode')->default(true);
+            $table->boolean('allow_email_based_notifications')->after('email')->default(true);
         });
     }
 

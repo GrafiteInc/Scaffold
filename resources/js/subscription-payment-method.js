@@ -1,7 +1,7 @@
 const paymentMethodForm = document.getElementById('payment-method-form');
 
 if (paymentMethodForm) {
-    let _color = (window.dark_mode === 'false') ? '#111' : '#FFF';
+    let _color = (! window.dark_mode) ? '#111' : '#FFF';
 
     const stripe = window.Stripe(window.stripe_key);
     const elements = stripe.elements();

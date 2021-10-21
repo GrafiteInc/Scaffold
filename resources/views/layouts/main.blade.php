@@ -18,12 +18,8 @@
         <title>{{ config('app.name') }} | @yield('page-title', 'My App')</title>
 
         <link rel="icon" type="image/ico" href="">
-
-        @if (auth()->user() && auth()->user()->dark_mode)
-            <link title="dark" rel="stylesheet" type="text/css" href="{{ mix('css/dark-app.css') }}">
-        @else
-            <link title="light" rel="stylesheet" type="text/css" href="{{ mix('css/light-app.css') }}">
-        @endif
+        <link id="darkStylesheet" rel="stylesheet" href="{{ mix('css/dark-app.css') }}">
+        <link id="lightStylesheet" rel="stylesheet" href="{{ mix('css/light-app.css') }}">
 
         @formStyles
         @laravelPWA
@@ -40,9 +36,7 @@
 
                 <confirmation-modal></confirmation-modal>
                 <content-modal></content-modal>
-                <pending-overlay
-                    mode="{{ optional(auth()->user())->dark_mode ? 'dark' : 'light' }}"
-                ></pending-overlay>
+                <pending-overlay></pending-overlay>
                 <notifications></notifications>
 
                 <session
@@ -50,7 +44,7 @@
                     message='{!! session('message') !!}'
                     info='{!! session('info') !!}'
                     warning='{!! session('warning') !!}'
-                    error='{{ sessionErrorMessage() }}'
+                    error='{{ session_error_message() }}'
                 ></session>
             </div>
 
