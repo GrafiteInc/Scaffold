@@ -26,7 +26,7 @@ class RoleForm extends ModelForm
     public $buttonClasses = [
         'submit' => 'btn btn-primary',
         'cancel' => 'btn btn-secondary',
-        'delete' => 'btn btn-outline-danger btn-sm',
+        'delete' => 'btn btn-outline-danger btn-sm ml-2',
     ];
 
     public function setSections()

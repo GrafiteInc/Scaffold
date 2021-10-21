@@ -35,7 +35,7 @@
                                         <td>{{ $role->label }}</td>
                                         <td width="180px" class="text-right">
                                             <div class="btn-toolbar justify-content-end">
-                                                <a class="btn btn-outline-primary btn-sm mr-2" href="{{ url('admin/roles/'.$role->id.'/edit') }}">
+                                                <a class="btn btn-outline-primary btn-sm" href="{{ url('admin/roles/'.$role->id.'/edit') }}">
                                                     <span class="fas fa-fw fa-pencil-alt"></span> Edit
                                                 </a>
 

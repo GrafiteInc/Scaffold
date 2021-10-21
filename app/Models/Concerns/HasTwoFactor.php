@@ -59,7 +59,7 @@ trait HasTwoFactor
     public function setAndSendTwoFactorForEmail()
     {
         $this->setTwoFactorForEmail();
-        $this->notify(new TwoFactorNotification);
+        $this->notify(new TwoFactorNotification());
     }
 
     public function setTwoFactorForEmail()
