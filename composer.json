@@ -68,7 +68,8 @@
         "files": [
             "app/Helpers/ActivityHelper.php",
             "app/Helpers/NotificationHelper.php",
-            "app/Helpers/UserInterfaceHelper.php"
+            "app/Helpers/RouteHelper.php",
+            "app/Helpers/SessionHelper.php"
         ]
     },
     "autoload-dev": {
