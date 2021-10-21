@@ -27,34 +27,32 @@ class LoginForm extends BaseForm
     {
         return [
             HoneyPot::make(),
-            Email::make('email', [
-                'required' => true,
-                'label' => 'Email',
-                'placeholder' => 'Email',
-            ]),
-            PasswordWithReveal::make('password', [
-                'required' => true,
-                'label' => 'Password',
-                'placeholder' => 'Password',
-                'toggle' => '<span class="fas fa-eye"></span>',
-            ]),
-            CheckboxInline::make('remember', [
-                'class' => 'mt-3',
-                'label-class' => 'mt-3',
-                'label' => 'Remember Me',
-            ]),
-            Link::make([
-                'content' => 'Forgot Password?',
-                'class' => 'd-block mt-3 text-right',
-                'href' => route('password.request'),
-            ], 'forgot_password'),
+            Email::make('email')
+                ->required()
+                ->label('Email')
+                ->placeholder('Email'),
+            PasswordWithReveal::make('password')
+                ->required()
+                ->label('Password')
+                ->placeholder('Password')
+                ->options([
+                    'toggle' => '<span class="fas fa-eye"></span>',
+                ]),
+            CheckboxInline::make('remember')
+                ->cssClass('mt-3')
+                ->labelClass('mt-3')
+                ->label('Remember Me'),
+            Link::make('Forgot Password?')
+                ->cssClass('d-block mt-3 text-right')
+                ->href(route('password.request'))
+                ->name('forgot_password'),
         ];
     }
 
     public function setSections()
     {
         return [
-            ['honeypot'],
+            // ['honeypot'],
             ['email'],
             ['password'],
             ['remember','forgot_password'],

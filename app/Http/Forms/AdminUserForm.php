@@ -53,19 +53,22 @@ class AdminUserForm extends ModelForm
             Email::make('email', [
                 'required' => true,
                 'sortable' => true,
-                'table-class' => 'd-none d-sm-table-cell',
+                'options' => [
+                    'foo' => 'bar'
+                ],
+                'table_class' => 'd-none d-sm-table-cell',
             ]),
             Hidden::make('role', [
-                'table-class' => 'd-none d-sm-table-cell',
+                'table_class' => 'd-none d-sm-table-cell',
             ]),
             HasOne::make('role', [
                 'required' => true,
                 'visible' => false,
-                'table-class' => 'd-none d-sm-table-cell',
+                'table_class' => 'd-none d-sm-table-cell',
                 'model' => Role::class,
                 'model_options' => [
                     'label' => 'label',
-                ],
+                ]
             ]),
         ];
     }

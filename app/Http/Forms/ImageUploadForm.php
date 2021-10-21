@@ -2,7 +2,6 @@
 
 namespace App\Http\Forms;
 
-use Grafite\Forms\Fields\Editor;
 use Grafite\Forms\Forms\BaseForm;
 use Grafite\Forms\Fields\Dropzone;
 
@@ -17,11 +16,9 @@ class ImageUploadForm extends BaseForm
     public function fields()
     {
         return [
-            Dropzone::make('pics', [
-                'label' => 'Upload Images',
-                'route' => $this->route,
-                'theme' => (auth()->user()->dark_mode) ? 'dark' : 'light',
-            ]),
+            Dropzone::make('pics')
+                ->unlabelled()
+                ->option('route', $this->route),
         ];
     }
 }
