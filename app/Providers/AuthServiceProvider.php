@@ -25,16 +25,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        /*
-         * Gateway for determining if user is admin
-         */
+        // Gateway for determining if user is admin
         Gate::define('admin', function ($user) {
             return $user->hasRole('admin');
         });
 
-        /*
-         * Gateway for determining if user has permissions
-         */
+        // Gateway for determining if user has permissions
         Gate::define('has-permissions', function ($user, $requestPermissionCollection) {
             $requestPermissions = explode(',', $requestPermissionCollection);
 
@@ -47,16 +43,12 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-        /*
-         * Gateway for determining team admin
-         */
+        // Gateway for determining team admin
         Gate::define('team-admin', function ($user, $team) {
             return (int) $user->id === (int) $team->user_id;
         });
 
-        /*
-         * Gateway for determining team manager
-         */
+        // Gateway for determining team manager
         Gate::define('team-manager', function ($user, $team) {
             if ((int) $user->id === (int) $team->user_id) {
                 return true;
@@ -76,9 +68,7 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-        /*
-         * Gateway for determining team members
-         */
+        // Gateway for determining team members
         Gate::define('team-member', function ($user, $team) {
             if ((int) $user->id === (int) $team->user_id) {
                 return true;
@@ -87,23 +77,17 @@ class AuthServiceProvider extends ServiceProvider
             return $team->members->contains($user->id);
         });
 
-        /*
-         * Gateway for determining subscribers
-         */
+        // Gateway for determining subscribers
         Gate::define('subscribed', function ($user) {
             return $user->hasActiveSubscription();
         });
 
-        /*
-         * Gateway for determining not cancelled subscribers
-         */
+        // Gateway for determining not cancelled subscribers
         Gate::define('subscription-not-cancelled', function ($user) {
             return ! $user->hasCancelledSubscription();
         });
 
-        /*
-         * Gateway for determining not cancelled subscribers
-         */
+        // Gateway for determining not cancelled subscribers
         Gate::define('subscription-cancelled', function ($user) {
             return $user->hasCancelledSubscription();
         });

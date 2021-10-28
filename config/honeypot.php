@@ -46,8 +46,6 @@ return [
      */
     'honeypot_fields_required_for_all_forms' => false,
 
-    /*
-     * This switch determines if the honeypot protection should be activated.
-     */
+    // This switch determines if the honeypot protection should be activated.
     'enabled' => env('HONEYPOT_ENABLED', true),
 ];

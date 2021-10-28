@@ -15,10 +15,13 @@ class TeamForm extends ModelForm
 
     public $disableOnSubmit = true;
 
+    public $deleteAsModal = true;
+
     public $routePrefix = 'teams';
 
     public $buttons = [
         'submit' => 'Save',
+        'edit' => '<i class="fas fa-fw fa-cogs"></i> Settings',
         'delete' => '<span class="fas fa-fw fa-trash"></span> Delete',
     ];
 
@@ -32,12 +35,11 @@ class TeamForm extends ModelForm
     public $buttonClasses = [
         'submit' => 'btn btn-primary',
         'cancel' => 'btn btn-secondary',
+        'edit' => 'btn btn-outline-primary btn-sm mr-2',
         'delete' => 'btn btn-sm btn-outline-danger',
     ];
 
-    public $confirmMessage = 'Are you sure you want to delete this team?';
-
-    public $confirmMethod = 'confirmation';
+    // public $confirmMessage = 'Are you sure you want to delete this team?';
 
     public function fields()
     {

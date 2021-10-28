@@ -13,7 +13,7 @@ if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 }
 
 window.matchMedia('(prefers-color-scheme: dark)')
-    .addEventListener('change', ({matches:isDark}) => {
+    .addEventListener('change', ({ matches: isDark }) => {
         window.dark_mode = false;
 
         let _head = document.getElementsByTagName('head')[0];
@@ -34,12 +34,12 @@ window.matchMedia('(prefers-color-scheme: dark)')
             _stylesheetID = '#lightStylesheet';
         }
 
-        new Promise(function(resolve, reject) {
+        new Promise((resolve, reject) => {
             _head.appendChild(_themeNode);
 
             _themeNode.onload = function () {
                 document.querySelector(_stylesheetID).remove();
                 resolve();
-            }
+            };
         });
     });

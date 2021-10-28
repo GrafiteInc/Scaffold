@@ -20,13 +20,13 @@ class AdminUserForm extends ModelForm
 
     public $disableOnSubmit = true;
 
+    public $deleteAsModal = true;
+
     public $with = [
         'roles',
     ];
 
     public $confirmMessage = 'Are you sure you want to delete this user?';
-
-    public $confirmMethod = 'confirmation';
 
     public $buttons = [
         'submit' => 'Save',
@@ -53,9 +53,6 @@ class AdminUserForm extends ModelForm
             Email::make('email', [
                 'required' => true,
                 'sortable' => true,
-                'options' => [
-                    'foo' => 'bar'
-                ],
                 'table_class' => 'd-none d-sm-table-cell',
             ]),
             Hidden::make('role', [
@@ -68,7 +65,7 @@ class AdminUserForm extends ModelForm
                 'model' => Role::class,
                 'model_options' => [
                     'label' => 'label',
-                ]
+                ],
             ]),
         ];
     }

@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
         "aws/aws-sdk-php": "^3.192",
         "barryvdh/laravel-debugbar": "^3.6",
         "bepsvpt/secure-headers": "^7.1",
@@ -17,7 +17,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "grafite/charts": "^2.0",
         "grafite/database": "^2.3",
-        "grafite/forms": "^5.0",
+        "grafite/forms": "^6.0",
         "grafite/maintenance": "^0.2.0",
         "grafite/mission-control-laravel": "^2.0",
         "guzzlehttp/guzzle": "^7.2",

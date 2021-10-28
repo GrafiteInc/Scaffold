@@ -44,9 +44,7 @@
                                         <td width="50%">
                                             @can('subscribed')
                                                 <div class="btn-toolbar justify-content-end">
-                                                    <a class="btn btn-outline-primary btn-sm mr-2" href="{!! route('teams.edit', $team) !!}">
-                                                        <i class="fas fa-fw fa-cogs"></i> Settings
-                                                    </a>
+                                                    {!! $team->form()->editButton() !!}
                                                     {!! $team->form()->delete() !!}
                                                 </div>
                                             @endcan

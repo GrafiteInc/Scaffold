@@ -16,7 +16,7 @@ class RoleForm extends ModelForm
 
     public $buttons = [
         'submit' => 'Save',
-        'delete' => '<span class="fas fa-fw fa-trash"></span> Delete'
+        'delete' => '<span class="fas fa-fw fa-trash"></span> Delete',
     ];
 
     public $columns = 'sections';
@@ -43,7 +43,7 @@ class RoleForm extends ModelForm
     {
         return array_merge([
             Text::make('label', [
-                'required' => true
+                'required' => true,
             ]),
         ], $this->permissionOptions());
     }
@@ -56,7 +56,7 @@ class RoleForm extends ModelForm
         foreach ($permissions as $model => $action) {
             foreach ($action as $name => $label) {
                 $key = Str::ucfirst(Str::singular($model)) . ' Permissions';
-                $options[$key][] = "permissions[$model.$name]";
+                $options[$key][] = "permissions[${model}.${name}]";
             }
         }
 
@@ -72,8 +72,8 @@ class RoleForm extends ModelForm
 
         foreach ($permissions as $model => $action) {
             foreach ($action as $name => $label) {
-                $options[] = Checkbox::make("permissions[$model.$name]", [
-                    'label' => $label
+                $options[] = Checkbox::make("permissions[${model}.${name}]", [
+                    'label' => $label,
                 ]);
             }
         }

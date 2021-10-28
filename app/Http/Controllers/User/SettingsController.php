@@ -24,10 +24,10 @@ class SettingsController extends Controller
         $logoutForm = app(LogoutForm::class)->make();
 
         $deleteAccountForm = form()
-            ->confirm(trans('general.user.delete_account'), 'confirmation')
-            ->action('delete', 'user.destroy', 'Delete My Account', [
-                'class' => 'btn btn-block btn-danger mb-6',
-            ]);
+            ->action('delete', 'user.destroy', 'Please delete my account', [
+                'class' => 'btn btn-outline-primary float-right',
+            ])
+            ->confirmAsModal(trans('general.user.delete_account'), 'Delete My Account', 'btn btn-block btn-danger mb-6');
 
         return view('user.settings')->with(compact('deleteAccountForm', 'logoutForm'));
     }
