@@ -9,6 +9,7 @@ import {
 } from 'bootstrap-vue';
 
 require('./bootstrap');
+require('./theme');
 
 Vue.use(VueClipboards);
 Vue.use(ModalPlugin);
@@ -62,7 +63,6 @@ require('./subscription-payment-method');
 require('./ajax-forms');
 require('./app-events');
 require('./sidebar');
-require('./theme');
 require('./echo-events');
 require('./online');
 require('./mobile');
