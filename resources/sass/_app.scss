@@ -217,9 +217,43 @@ input[type="file"].form-control {
 |--------------------------------------------------------------------------
 */
 
-@media (max-width: 992px) {
+/*
+|--------------------------------------------------------------------------
+| Tablet Screen
+|--------------------------------------------------------------------------
+*/
+
+@media (min-width: 768px) and (max-width: 1399px) {
+    .sidebar {
+        width: 220px;
+    }
+    .sidebar-sticky {
+        width: 220px;
+    }
+    .main {
+        width: calc(100% - 220px);
+    }
+    .app-nav {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Mobile Screen
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 768px) {
     .sidebar-toggle {
-        display: inline-block;
+        display: block;
+        width: 20px;
+        float: left;
+    }
+    .navbar-title {
+        display: block;
+        float: left;
     }
     .main {
         width: 100%;
@@ -243,25 +277,6 @@ input[type="file"].form-control {
         margin-left: 0px;
         width: 100%;
     }
-}
-
-/*
-|--------------------------------------------------------------------------
-| Medium Screen
-|--------------------------------------------------------------------------
-*/
-
-@media (min-width: 576px) and (max-width: 748px) {
-    // nothing needed here
-}
-
-/*
-|--------------------------------------------------------------------------
-| Mobile Screen
-|--------------------------------------------------------------------------
-*/
-
-@media (max-width: 576px) {
     #app.container-fluid {
         padding-right: 0px;
         padding-left: 0px;
