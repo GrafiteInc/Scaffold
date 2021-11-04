@@ -15,11 +15,11 @@
         <meta property="og:image" content="">
         <meta property="og:url" content="{{ url()->current() }}">
 
-        <title>{{ config('app.name') }} | @yield('page-title', 'My App')</title>
+        <title>{{ config('app.name') }} | @yield('page-title', 'Scaffold')</title>
 
         <link rel="icon" type="image/ico" href="">
-        <link id="darkStylesheet" rel="stylesheet" href="{{ mix('css/dark-app.css') }}">
-        <link id="lightStylesheet" rel="stylesheet" href="{{ mix('css/light-app.css') }}">
+
+        @include('layouts.components.theme-styles')
 
         @formStyles
         @laravelPWA

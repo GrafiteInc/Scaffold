@@ -17,6 +17,10 @@ window.ajax = (_event) => {
             'Content-Type': 'multipart/form-data'
         }
     }).then((response) => {
+        if ($('#' + _form.getAttribute('id') + '_Modal')) {
+            $('#' + _form.getAttribute('id') + '_Modal').modal('hide');
+        }
+
         let _event = `${_form.getAttribute('id')}.success`;
         window.app.$event.fire(_event, response.data.data);
         window.notify.success(response.data.message);
