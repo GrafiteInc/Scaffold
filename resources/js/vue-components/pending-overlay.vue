@@ -1,14 +1,11 @@
 <template>
-    <b-overlay
-        id="pendingOverlay"
-        ref="processing-overlay"
-        :show="show"
-        no-wrap
-        fixed
-        z-index="19000"
-        :variant="mode"
-    >
-    </b-overlay>
+    <div class="overlay bg-dark" v-if="show">
+        <div class="spinner-container">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -41,3 +38,20 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.overlay {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 30000;
+    opacity: .8;
+}
+.spinner-container {
+    position: absolute;
+    top: 49%;
+    left: calc(50% - 15px);
+}
+</style>

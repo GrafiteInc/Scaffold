@@ -48,7 +48,7 @@ class LogoutForm extends ModalForm
      *
      * @var string
      */
-    public $triggerClass = 'btn btn-block btn-outline-warning mb-3';
+    public $triggerClass = 'btn d-block w-100 btn-outline-warning mb-3';
 
     /**
      * Set the desired fields for the form.

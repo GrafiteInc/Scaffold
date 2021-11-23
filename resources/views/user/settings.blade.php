@@ -19,19 +19,19 @@
                                 method="delete"
                                 route="user.destroy.avatar"
                                 triggerContent="<span class='fas fa-fw fa-trash'></span> Delete Avatar"
-                                triggerClass="btn btn-block btn-outline-danger mb-3"
+                                triggerClass="btn d-block w-100 btn-outline-danger mb-3"
                                 :payload="['user' => auth()->id()]"
-                                :options="['class' => 'btn btn-outline-primary float-right']"
+                                :options="['class' => 'btn btn-outline-primary float-end']"
                                 :disableOnSubmit=true
                             ></x-f-modal>
                         @endif
                         {!! $logoutForm !!}
-                        <a class="btn btn-block btn-outline-secondary mb-3" href="{{ route('user.settings.password') }}">
+                        <a class="btn d-block w-100 btn-outline-secondary mb-3" href="{{ route('user.settings.password') }}">
                             <span class="fas fa-fw fa-lock"></span>
                             Change Password
                         </a>
                         @if (auth()->user()->usesTwoFactor('authenticator'))
-                            <a class="btn btn-block btn-outline-secondary mb-3" href="{{ route('user.settings.two-factor') }}">
+                            <a class="btn d-block w-100 btn-outline-secondary mb-3" href="{{ route('user.settings.two-factor') }}">
                                 <span class="fas fa-fw fa-shield-alt"></span>
                                 Two Factor Auth
                             </a>

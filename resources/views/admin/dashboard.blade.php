@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12 ">
             @if (session('original_user'))
-                <a class="btn btn-secondary pull-right mt-4" href="/users/switch-back">Return to your Login</a>
+                <a class="btn btn-secondary float-end mt-4" href="/users/switch-back">Return to your Login</a>
             @endif
         </div>
     </div>

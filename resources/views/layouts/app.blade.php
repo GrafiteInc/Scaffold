@@ -8,7 +8,7 @@
         </div>
     </nav>
 
-    <main class="ml-sm-auto main">
+    <main class="ms-sm-auto main">
         <x-app-navbar></x-app-navbar>
 
         <div class="container app-content">

@@ -25,7 +25,7 @@
                     <path class="fill-current text-red-500" d="M12 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.9c-.13 1.2-1.88 1.2-2 0l-.5-5a1 1 0 0 1 1-1.1h1a1 1 0 0 1 1 1.1l-.5 5z"/>
                 </svg>
 
-                <span class="ml-3">@{{ errorMessage }}</span>
+                <span class="ms-3">@{{ errorMessage }}</span>
             </p>
 
             <div class="bg-white rounded-lg shadow-xl p-4 sm:p-6 mt-4">
@@ -141,7 +141,7 @@
                                     id="remember"
                                     type="checkbox"
                                     required
-                                    class="inline-block mr-1 focus:outline-none"
+                                    class="inline-block me-1 focus:outline-none"
                                     v-model="remember"
                                 />
 

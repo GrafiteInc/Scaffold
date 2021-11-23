@@ -2,7 +2,7 @@
     <div>
         <span
             v-if="notificationCount > 0"
-            class="badge badge-pill badge-primary notification-badge"
+            class="badge badge-pill bg-primary notification-badge rounded-circle"
             v-html="notificationCount"
         ></span>
     </div>
@@ -34,3 +34,12 @@ export default {
     }
 };
 </script>
+
+<style lang="scss">
+    .notification-badge {
+        display: inline-block;
+        position: absolute;
+        top: 12px;
+        right: 90px;
+    }
+</style>

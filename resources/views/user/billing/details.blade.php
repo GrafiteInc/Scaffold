@@ -18,7 +18,7 @@
                         <div class="col-md-12">
                             @include('user.billing.upcoming-invoice')
                         </div>
-                        <div class="col-md-12 mt-4 text-right">
+                        <div class="col-md-12 mt-4 text-end">
                             {!! form()->confirm('Are you sure you want to cancel your subscription?', 'confirmation')
                                 ->action('post', 'user.subscription.cancel',
                                     'Cancel Subscription',
@@ -36,7 +36,7 @@
                                         <table class="table">
                                             <tr>
                                                 <th>Ends At</th>
-                                                <th class="text-right">{{ $subscription->ends_at->format('F j, Y') }}</th>
+                                                <th class="text-end">{{ $subscription->ends_at->format('F j, Y') }}</th>
                                             </tr>
                                         </table>
                                     </div>

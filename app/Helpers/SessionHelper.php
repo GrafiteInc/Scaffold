@@ -19,3 +19,26 @@ if (! function_exists('session_error_message')) {
         return str_replace("'", '`', optional(collect($errors)->flatten())->implode(' '));
     }
 }
+
+if (! function_exists('javascript_session_data')) {
+    function javascript_session_data()
+    {
+        $user = optional(auth()->user())->jsonSessionData() ?? '{}';
+        $message = session('message');
+        $info = session('info');
+        $warning = session('warning');
+        $error = session_error_message();
+
+        return <<<SESSION
+                <script>
+                window.session = {
+                    user: ${user},
+                    message: '${message}',
+                    info: '${info}',
+                    warning: '${warning}',
+                    error: '${error}'
+                }
+                </script>
+    SESSION;
+    }
+}

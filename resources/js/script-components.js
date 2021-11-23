@@ -1,0 +1,9 @@
+require('./script-components/subscription-create');
+require('./script-components/subscription-payment-method');
+require('./script-components/ajax-forms');
+require('./script-components/app-events');
+require('./script-components/sidebar');
+require('./script-components/echo-events');
+require('./script-components/theme-switcher');
+require('./script-components/online');
+require('./script-components/mobile');

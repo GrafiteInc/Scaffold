@@ -39,11 +39,9 @@ class LoginForm extends BaseForm
                     'toggle' => '<span class="fas fa-eye"></span>',
                 ]),
             CheckboxInline::make('remember')
-                ->cssClass('mt-3')
-                ->labelClass('mt-3')
                 ->label('Remember Me'),
             Link::make('Forgot Password?')
-                ->cssClass('d-block mt-3 text-right')
+                ->cssClass('d-block text-end')
                 ->href(route('password.request'))
                 ->name('forgot_password'),
         ];

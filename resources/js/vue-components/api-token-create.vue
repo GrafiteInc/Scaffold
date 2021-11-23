@@ -11,7 +11,7 @@
                 </button>
             </div>
             <div class="col-md-12 d-flex justify-content-end mt-4 mb-2" v-if="currentToken">
-                <input type="text" class="form-control mr-sm-2" readonly v-model="currentToken">
+                <input type="text" class="form-control me-sm-2" readonly v-model="currentToken">
                 <button
                     v-clipboard="currentToken"
                     @success="success"

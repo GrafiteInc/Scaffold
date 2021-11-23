@@ -29,29 +29,23 @@
         <div id="app" class="min-vh-100">
             <div class="w-100 bmx-overflow-x-hidden">
                 @yield("app-content")
-
-                <cookielaw
-                    version="{{ config('app.version', 'v1') }}"
-                ></cookielaw>
-
-                <confirmation-modal></confirmation-modal>
-                <content-modal></content-modal>
-                <pending-overlay></pending-overlay>
-                <notifications></notifications>
-
-                <session
-                    user='{!! optional(auth()->user())->jsonSessionData() ?? "{}" !!}'
-                    message='{!! session('message') !!}'
-                    info='{!! session('info') !!}'
-                    warning='{!! session('warning') !!}'
-                    error='{{ session_error_message() }}'
-                ></session>
             </div>
+
+            <cookielaw
+                version="{{ config('app.version', 'v1') }}"
+            ></cookielaw>
+
+            <confirmation-modal></confirmation-modal>
+            <content-modal></content-modal>
+            <pending-overlay></pending-overlay>
+            <notifications></notifications>
 
             @yield("alerts")
         </div>
 
         @routes
+
+        {!! javascript_session_data() !!}
 
         @yield('pre-app-js')
 

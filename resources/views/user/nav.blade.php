@@ -1,4 +1,4 @@
-<ul class="nav nav-pills mb-4">
+<ul class="nav nav-pills mb-4 p-1 rounded bg-dark">
     <li class="nav-item">
         <a class="{{ route_link_class(['user.settings', 'user.settings.*']) }}" href="{{ route('user.settings') }}">Settings</a>
     </li>

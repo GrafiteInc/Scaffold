@@ -26,11 +26,11 @@
                                         <span class="badge badge-primary badge-pill">Registered User</span>
                                     @endif
                                 </td>
-                                <td width="290px" class="text-right">
+                                <td width="290px" class="text-end">
                                     {!! form()->action('post',
                                         ['invite.resend', $invite],
                                         'Resend Invite',
-                                        ['class' => 'btn btn-sm btn-outline-primary mr-2']
+                                        ['class' => 'btn btn-sm btn-outline-primary me-2']
                                     ) !!}
 
                                     {!! form()->confirm('Are you sure you want to revoke this invite?', 'confirmation')

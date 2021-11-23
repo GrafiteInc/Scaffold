@@ -57,11 +57,11 @@
                                 @foreach($invites as $invite)
                                     <tr>
                                         <td>{{ $invite->email }}</td>
-                                        <td class="text-right" width="250px">
+                                        <td class="text-end" width="250px">
                                             {!! form()->action('post',
                                                 ['invite.resend', $invite],
                                                 'Resend Invite',
-                                                ['class' => 'btn btn-sm btn-outline-primary mr-2']
+                                                ['class' => 'btn btn-sm btn-outline-primary me-2']
                                             ) !!}
 
                                             {!! form()->confirm('Are you sure you want to revoke this invite?', 'confirmation')

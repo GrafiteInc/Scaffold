@@ -25,7 +25,7 @@ class SettingsController extends Controller
 
         $deleteAccountForm = form()
             ->action('delete', 'user.destroy', 'Please delete my account', [
-                'class' => 'btn btn-outline-primary float-right',
+                'class' => 'btn btn-outline-primary float-end',
             ])
             ->confirmAsModal(trans('general.user.delete_account'), 'Delete My Account', 'btn btn-block btn-danger mb-6');
 

@@ -18,7 +18,7 @@ class UserWizardForm extends WizardForm
 
     public $isCardForm = true;
 
-    public $progressBarColor = 'var(--primary)';
+    public $progressBarColor = 'var(--bs-primary)';
 
     public $buttons = [
         'submit' => 'Submit',

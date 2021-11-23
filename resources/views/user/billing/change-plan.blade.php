@@ -17,7 +17,7 @@
                 {!! csrf_field() !!}
                 @include('user.billing.plans', ['unlabelled' => true])
 
-                <div class="row text-right">
+                <div class="row text-end">
                     <div class="col-md-12">
                         <button
                             class="btn btn-primary"

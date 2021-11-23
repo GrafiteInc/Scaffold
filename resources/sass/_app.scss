@@ -69,11 +69,10 @@
 }
 
 .alert {
-    margin-left: 326px;
-    width: calc(100% - 360px);
+    max-width: 320px;
     position: fixed;
     top: 75px;
-    z-index: 7500;
+    left: calc(50% - 160px);
 }
 
 .content-sm {
@@ -188,13 +187,6 @@ input[type="file"].form-control {
 }
 
 .navbar-nav {
-    .notification-badge {
-        display: inline-block;
-        position: absolute;
-        top: 12px;
-        right: 80px;
-    }
-
     .nav-user-dropdown {
         &:focus {
             box-shadow: none;
@@ -252,7 +244,7 @@ input[type="file"].form-control {
         float: left;
     }
     .navbar-title {
-        display: block;
+        display: none;
         float: left;
     }
     .main {

@@ -35,7 +35,7 @@ class TeamForm extends ModelForm
     public $buttonClasses = [
         'submit' => 'btn btn-primary',
         'cancel' => 'btn btn-secondary',
-        'edit' => 'btn btn-outline-primary btn-sm mr-2',
+        'edit' => 'btn btn-outline-primary btn-sm me-2',
         'delete' => 'btn btn-sm btn-outline-danger',
     ];
 

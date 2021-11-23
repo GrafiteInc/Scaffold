@@ -21,6 +21,7 @@ return [
         'table-head' => 'thead border-bottom',
         'table-actions-header' => '<th class="text-right">Actions</th>',
         'sortable-icon' => '<span class="fas fa-fw fa-arrows-alt-v"></span>',
+        'badge-tag' => 'badge bg-primary mt-1 float-end',
     ],
 
     'form' => [
@@ -28,9 +29,9 @@ return [
         'delete-class' => 'form-inline',
         'inline-class' => 'form d-inline',
 
-        'group-class' => 'form-group',
+        'group-class' => 'form-group mb-3',
         'input-class' => 'form-control',
-        'label-class' => 'control-label',
+        'label-class' => 'form-label',
         'label-check-class' => 'form-check-label',
         'before_after_input_wrapper' => 'input-group',
         'error-class' => 'has-error',
@@ -40,8 +41,8 @@ return [
 
         'check-input-class' => 'form-check-input',
         'check-inline-class' => 'form-check form-check-inline',
-        'custom-file-label' => 'custom-file-label',
-        'custom-file-input-class' => 'custom-file-input',
+        'custom-file-label' => 'custom-file-label form-label',
+        'custom-file-input-class' => 'custom-file-input form-control',
         'custom-file-wrapper-class' => 'custom-file',
 
         'input-group-text' => 'input-group-text',

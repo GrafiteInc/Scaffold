@@ -18,7 +18,7 @@
                 <thead>
                     <th>Date</th>
                     <th class="d-none d-md-table-cell">Identifier</th>
-                    <th class="text-right">Dollars</th>
+                    <th class="text-end">Dollars</th>
                 </thead>
                 <tbody>
                     @foreach($invoices as $invoice)
@@ -30,7 +30,7 @@
                                 </a>
                             </td>
                             <td class="d-none d-md-table-cell">{{ $invoice->id }}</td>
-                            <td class="text-right">${{ ($invoice->total / 100) }}</td>
+                            <td class="text-end">${{ ($invoice->total / 100) }}</td>
                         </tr>
                     @endforeach
                 </tbody>

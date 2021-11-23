@@ -32,7 +32,7 @@
             </div>
 
             @if (! is_null($intent))
-                <div class="row text-right">
+                <div class="row text-end">
                     <div class="col-md-12">
                         <button class="btn btn-primary" id="card-button" data-secret="{{ $intent->client_secret }}" type="submit">Update Payment Method</button>
                     </div>

@@ -40,10 +40,10 @@ class UserForm extends ModelForm
     {
         return array_merge([
             Text::make('name', [
-                'required' => true,
+                // 'required' => true,
             ]),
             Email::make('email', [
-                'required' => true,
+                // 'required' => true,
             ]),
             Toggled::make('allow_email_based_notifications', [
                 'legend' => 'Email Contact',

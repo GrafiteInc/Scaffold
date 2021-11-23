@@ -1,13 +1,21 @@
 <template>
     <div>
-        <b-modal ref="token-modal" hide-footer title="Confirmation">
-            <p class="mb-4">
-                Are you sure you want to revoke this API token? It will invalidate any uses of it currently.
-            </p>
-            <b-button @click="deleteToken" class="float-right" variant="outline-primary">
-                Confirm
-            </b-button>
-        </b-modal>
+        <div class="modal fade" role="dialog" ref="token-modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmation</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-4">Are you sure you want to revoke this API token? It will invalidate any uses of it currently.</p>
+                        <button @click="deleteToken" class="float-end btn btn-outline-primary">
+                            Confirm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="card mb-2" v-for="token in api_tokens" :key="token.id">
             <div class="card-body">
@@ -59,7 +67,8 @@ export default {
         },
         revokeToken (token) {
             this.tokenToRevoke = token;
-            this.$refs['token-modal'].show();
+            let _modal = bootstrap.Modal.getOrCreateInstance(this.$refs['token-modal']);
+            _modal.toggle();
         },
         deleteToken (event) {
             let _processing = '<i class="fas fa-circle-notch fa-spin mr-2"></i>';
@@ -68,7 +77,8 @@ export default {
 
             axios.delete(route('ajax.destroy-token', this.tokenToRevoke.id))
                 .then((results) => {
-                    this.$refs['token-modal'].hide();
+                    let _modal = bootstrap.Modal.getOrCreateInstance(this.$refs['token-modal']);
+                    _modal.hide();
                     window.notify.success('Revoked!');
                     this.getTokens();
                 });

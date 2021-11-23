@@ -6,6 +6,7 @@ use App\Http\Forms\UserForm;
 use Laravel\Cashier\Billable;
 use App\Models\Concerns\HasRoles;
 use App\Models\Concerns\HasTeams;
+use Grafite\Forms\Traits\HasForm;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\HasActivity;
@@ -25,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use Billable;
     use Notifiable;
     use HasTeams;
+    use HasForm;
     use HasActivity;
     use HasAvatar;
     use HasApiTokens;
