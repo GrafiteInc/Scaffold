@@ -19,17 +19,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     if (window.innerWidth <= 576) {
-        window.pendingHide();
+        // window.pendingHide();
 
-        document.querySelectorAll('a').forEach((link) => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.pending();
-                setTimeout(() => {
-                    window.location = e.target.closest('*[href]').href;
-                }, 50);
-            });
-        });
+        // document.querySelectorAll('a').forEach((link) => {
+        //     link.addEventListener('click', (e) => {
+        //         e.preventDefault();
+        //         window.pending();
+        //         setTimeout(() => {
+        //             window.location = e.target.closest('*[href]').href;
+        //         }, 50);
+        //     });
+        // });
 
         const ptr = PullToRefresh.init({
             mainElement: '#app',
