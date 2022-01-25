@@ -5,10 +5,7 @@
 @section('admin_content')
     <div class="row">
         <div class="col-md-12">
-
-            {!! $form !!}
-
+            <x-forms.role :role="$role"></x-forms.role>
         </div>
     </div>
-
 @stop

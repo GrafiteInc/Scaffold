@@ -29,7 +29,7 @@
         </div>
         <div class="col-md-8 mb-4">
             <div>
-                {!! $form !!}
+                <x-forms.team :team="$team"></x-forms.team>
             </div>
         </div>
     </div>

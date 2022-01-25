@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Team;
-use App\Http\Forms\TeamForm;
 use Illuminate\Http\Request;
 use App\Services\TeamService;
-use App\Http\Forms\TeamInviteForm;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\TeamCreateRequest;
@@ -48,9 +46,7 @@ class TeamsController extends Controller
             'Subscription is required.'
         );
 
-        $form = app(TeamForm::class)->create();
-
-        return view('teams.create')->with(compact('form'));
+        return view('teams.create');
     }
 
     /**
@@ -95,12 +91,7 @@ class TeamsController extends Controller
             abort(403);
         }
 
-        $form = app(TeamForm::class)->edit($team);
-
-        $inviteForm = app(TeamInviteForm::class)
-            ->setRoute('teams.members.invite', $team->id)->make();
-
-        return view('teams.edit')->with(compact('inviteForm', 'form', 'team'));
+        return view('teams.edit')->with(compact('team'));
     }
 
     /**
@@ -117,10 +108,7 @@ class TeamsController extends Controller
             abort(403);
         }
 
-        $inviteForm = app(TeamInviteForm::class)
-            ->setRoute('teams.members.invite', $team->id)->make();
-
-        return view('teams.members')->with(compact('inviteForm', 'team'));
+        return view('teams.members')->with(compact('team'));
     }
 
     /**

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use App\Models\Role;
-use App\Http\Forms\RoleForm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleCreateRequest;
@@ -17,10 +16,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::paginate(10);
 
-        return view('admin.roles.index')
-            ->with(compact('roles'));
+        return view('admin.roles.index')->withRoles($roles);
     }
 
     /**
@@ -29,10 +27,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $form = app(RoleForm::class)->create();
-
-        return view('admin.roles.create')
-            ->with(compact('form'));
+        return view('admin.roles.create');
     }
 
     /**
@@ -59,12 +54,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $form = app(RoleForm::class)->disabledWhen(function () use ($role) {
-            return $role->name === 'admin';
-        })->edit($role);
-
-        return view('admin.roles.edit')
-            ->with(compact('form', 'role'));
+        return view('admin.roles.edit')->withRole($role);
     }
 
     /**

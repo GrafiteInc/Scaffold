@@ -24,7 +24,7 @@
         </div>
         <div class="col-md-4">
             @if (Gate::allows('team-manager', $team))
-                {!! $inviteForm !!}
+                <x-forms.team-invite :team="$team"></x-forms.team-invite>
             @endif
         </div>
     </div>

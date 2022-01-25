@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\View\Forms;
 
 use Grafite\Forms\Fields\Password;
 use Grafite\Forms\Forms\ModalForm;

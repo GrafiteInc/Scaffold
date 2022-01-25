@@ -27,10 +27,9 @@ class Cart extends Component
 
     public function render()
     {
-        $form = app(CartForm::class)
+        return app(CartForm::class)
             ->setErrorBag($this->getErrorBag())
-            ->make($this->data);
-
-        return view('livewire.cart')->withForm($form);
+            ->make($this->data)
+            ->renderForLivewire();
     }
 }

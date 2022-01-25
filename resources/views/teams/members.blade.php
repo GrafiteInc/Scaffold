@@ -11,7 +11,7 @@
             <div class="avatar shadow-sm border" style="background-image: url({{ $team->avatar_url }})"></div>
         </div>
         <div class="col-md-8 mb-4">
-            {!! $inviteForm !!}
+            <x-forms.team-invite :team="$team"></x-forms.team-invite>
         </div>
 
         <div class="col-md-12 bmx-mt-6">

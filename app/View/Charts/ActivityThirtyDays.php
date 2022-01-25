@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Charts;
+namespace App\View\Charts;
 
 use App\Models\Activity;
 use Grafite\Charts\Builder\Chart;

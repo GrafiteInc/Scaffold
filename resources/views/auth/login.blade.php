@@ -19,7 +19,7 @@
 
         <div class="card shadow">
             <div class="card-body">
-                <x-f-base :form="\App\Http\Forms\LoginForm::class"></x-f-base>
+                <x-forms.login></x-forms.login>
             </div>
         </div>
 

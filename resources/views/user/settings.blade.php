@@ -25,7 +25,7 @@
                                 :disableOnSubmit=true
                             ></x-f-modal>
                         @endif
-                        {!! $logoutForm !!}
+                        <x-forms.logout></x-forms.logout>
                         <a class="btn d-block w-100 btn-outline-secondary mb-3" href="{{ route('user.settings.password') }}">
                             <span class="fas fa-fw fa-lock"></span>
                             Change Password
@@ -37,16 +37,12 @@
                             </a>
                         @endif
                         <hr class="bmx-mt-6 mb-4">
-                        <x-f :content="$deleteAccountForm"></x-f>
+                        <x-forms.user-delete-account></x-forms.user-delete-account>
                     </div>
                 </div>
             </div>
             <div class="col-md-8">
-                <x-f-model
-                    :form="\App\Http\Forms\UserForm::class"
-                    action="edit"
-                    :model="auth()->user()"
-                ></x-f-model>
+                <x-forms.user></x-forms.user>
             </div>
         </div>
     </div>

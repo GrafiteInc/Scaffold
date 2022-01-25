@@ -53,9 +53,10 @@ class UserSettings extends Component
 
     public function render()
     {
-        $form = app(UserForm::class)
+        return app(UserForm::class)
             ->setErrorBag($this->getErrorBag())
-            ->edit($this->user);
+            ->edit($this->user)
+            ->renderForLivewire();
 
         return view('livewire.user-settings')->withForm($form);
     }

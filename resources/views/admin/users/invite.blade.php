@@ -6,9 +6,7 @@
 
     <div class="row">
         <div class="col-md-12">
-
-            {!! $form !!}
-
+            <x-forms.user-invite></x-forms.user-invite>
         </div>
     </div>
 

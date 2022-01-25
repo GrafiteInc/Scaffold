@@ -19,7 +19,7 @@
                     User Registrations (30 Days)
                 </div>
                 <div class="card-body">
-                    {!! $registrationChart->html() !!}
+                    <x-charts.registrations></x-charts.registrations>
                 </div>
             </div>
         </div>
@@ -32,18 +32,10 @@
                     User Activities (30 Days)
                 </div>
                 <div class="card-body">
-                    {!! $activityChart->html() !!}
+                    <x-charts.activities></x-charts.activities>
                 </div>
             </div>
         </div>
     </div>
 
-@stop
-
-@section('javascript')
-    {!! $registrationChart->cdn() !!}
-    {!! $registrationChart->script() !!}
-
-    {!! $activityChart->cdn() !!}
-    {!! $activityChart->script() !!}
 @stop

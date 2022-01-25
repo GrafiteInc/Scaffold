@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\View\Forms;
 
 use App\Models\Team;
 use Grafite\Forms\Fields\Text;

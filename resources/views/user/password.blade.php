@@ -13,12 +13,12 @@
                             <div class="avatar shadow-sm border" style="background-image: url({{ auth()->user()->avatar_url }})"></div>
                         </div>
                     @endif
-                    <a class="btn btn-block btn-outline-secondary mb-3" href="{{ route('user.settings') }}">Main Settings</a>
+                    <a class="btn w-100 btn-outline-secondary mb-3" href="{{ route('user.settings') }}">Main Settings</a>
                 </div>
             </div>
         </div>
         <div class="col-md-8">
-            {!! $form !!}
+            <x-forms.user-password></x-forms.user-password>
         </div>
     </div>
 

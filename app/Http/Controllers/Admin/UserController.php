@@ -8,8 +8,7 @@ use App\Models\User;
 use App\Models\Invite;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Forms\AdminUserForm;
-use App\Http\Forms\InviteUserForm;
+use App\View\Forms\AdminUserForm;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -27,11 +26,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $index = app(AdminUserForm::class)->index();
-
         $invites = Invite::where([
             'model_id' => null,
         ])->get();
+
+        $index = app(AdminUserForm::class)->index();
 
         return view('admin.users.index')
             ->with(compact('index', 'invites'));
@@ -46,6 +45,7 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $query = app(User::class)->search($request->search);
+
         $index = app(AdminUserForm::class)->index($query);
 
         $invites = Invite::where([
@@ -63,10 +63,7 @@ class UserController extends Controller
      */
     public function getInvite()
     {
-        $form = app(InviteUserForm::class)->make();
-
-        return view('admin.users.invite')
-            ->with(compact('form'));
+        return view('admin.users.invite');
     }
 
     /**
@@ -173,12 +170,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $form = app(AdminUserForm::class)->edit($user);
         $activities = $user->activities()->orderBy('created_at', 'DESC')
             ->limit(25)->get();
 
         return view('admin.users.edit')
-            ->with(compact('activities', 'form', 'user'));
+            ->with(compact('activities', 'user'));
     }
 
     /**

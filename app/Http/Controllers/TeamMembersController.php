@@ -7,8 +7,6 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\TeamService;
-use App\Http\Forms\TeamInviteForm;
-use App\Http\Forms\TeamMemberForm;
 use Illuminate\Support\Facades\Gate;
 
 class TeamMembersController extends Controller
@@ -34,10 +32,7 @@ class TeamMembersController extends Controller
 
         abort_unless(Gate::allows('team-member', $team), 403, 'You are not a member of this team.');
 
-        $inviteForm = app(TeamInviteForm::class)
-            ->setRoute('teams.members.invite', $team)->make();
-
-        return view('teams.show')->with(compact('team', 'inviteForm'));
+        return view('teams.show')->with(compact('team'));
     }
 
     /**
@@ -58,12 +53,7 @@ class TeamMembersController extends Controller
         $teamLink = $team->route();
         $member = $team->members->find($member->id);
 
-        $form = app(TeamMemberForm::class)
-            ->setMember($member)
-            ->setRoute('teams.members.update', [$team->id, $member->id])
-            ->make();
-
-        return view('teams.member-edit')->with(compact('teamLink', 'form', 'member', 'team'));
+        return view('teams.member-edit')->with(compact('teamLink', 'member', 'team'));
     }
 
     /**

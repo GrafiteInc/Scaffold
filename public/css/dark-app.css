@@ -8284,7 +8284,7 @@ progress {
   color: #FFF;
   background-color: #1F1F1F;
   background-clip: padding-box;
-  border: 1px solid #333;
+  border: 1px solid #444;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -8507,7 +8507,7 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 16px 12px;
-  border: 1px solid #333;
+  border: 1px solid #444;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   -webkit-appearance: none;
@@ -8859,7 +8859,7 @@ textarea.form-control-lg {
   text-align: center;
   white-space: nowrap;
   background-color: #444;
-  border: 1px solid #333;
+  border: 1px solid #444;
   border-radius: 0.25rem;
 }
 
@@ -18360,7 +18360,7 @@ textarea.form-control-lg {
   box-sizing: border-box;
   height: 40px;
   padding: 10px 12px;
-  border: 1px solid #333;
+  border: 1px solid #444;
   border-radius: 4px;
   background-color: #1F1F1F;
   color: #FFF !important;
@@ -18501,7 +18501,7 @@ hr {
 */
 .bootstrap-select button.dropdown-toggle, .bootstrap-select button.dropdown-toggle:active {
   color: #FFF !important;
-  border: 2px solid #333 !important;
+  border: 2px solid #444 !important;
   background-color: #1F1F1F !important;
 }
 .bootstrap-select .dropdown-menu li a.dropdown-item:hover {
@@ -18530,7 +18530,7 @@ input.form-control:disabled, textarea.form-control:disabled, select.form-control
 
 input.form-control, textarea.form-control, select.form-control {
   background-color: #1F1F1F !important;
-  border: 2px solid #333;
+  border: 2px solid #444;
   color: #EEE !important;
 }
 input.form-control:focus, textarea.form-control:focus, select.form-control:focus {
@@ -18554,7 +18554,7 @@ input.form-control:focus, textarea.form-control:focus, select.form-control:focus
 }
 
 .datepicker input {
-  border: 2px solid #333;
+  border: 2px solid #444;
   background-color: #1F1F1F;
   color: #EEE;
   font-size: 0.85em !important;
@@ -18593,7 +18593,7 @@ input.form-control:focus, textarea.form-control:focus, select.form-control:focus
 }
 
 hr {
-  background-color: #333;
+  background-color: #444;
 }
 
 pre {
@@ -18604,11 +18604,11 @@ pre {
 }
 
 .ql-container.ql-snow {
-  border: 2px solid #333 !important;
+  border: 2px solid #444 !important;
 }
 
 .ql-toolbar.ql-snow {
-  border: 2px solid #333 !important;
+  border: 2px solid #444 !important;
   background-color: #1F1F1F !important;
   border-bottom: none !important;
 }
@@ -18636,7 +18636,7 @@ pre {
 }
 
 .custom-file-label {
-  border: 2px solid #333;
+  border: 2px solid #444;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18660,6 +18660,7 @@ pre {
 
 .sidebar {
   width: 320px;
+  margin-left: -320px;
   position: fixed;
   left: 0;
   z-index: 100;
@@ -18828,6 +18829,11 @@ input[type=file].form-control {
 | Large Screen
 |--------------------------------------------------------------------------
 */
+@media (min-width: 768px) {
+  .sidebar {
+    margin-left: 0px;
+  }
+}
 /*
 |--------------------------------------------------------------------------
 | Tablet Screen
@@ -22386,7 +22392,7 @@ input[type=file].form-control {
   color: #FFF;
   background-color: #1F1F1F;
   background-clip: padding-box;
-  border: 1px solid #333;
+  border: 1px solid #444;
 }
 
 .bmx-border-10 {

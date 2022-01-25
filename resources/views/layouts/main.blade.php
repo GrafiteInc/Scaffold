@@ -22,6 +22,9 @@
         @include('layouts.components.theme-styles')
 
         @formStyles
+        @chartStyles
+        @htmlStyles
+        @chartCdn
         @laravelPWA
         @missionControl
     </head>
@@ -54,5 +57,6 @@
         @yield('javascript')
 
         @formScripts
+        @chartScripts
     </body>
 </html>

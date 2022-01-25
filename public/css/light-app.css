@@ -18422,7 +18422,7 @@ html {
 */
 .navbar-header {
   background-color: #fff;
-  color: #fff;
+  color: #000;
 }
 .navbar-header .navbar-nav {
   background-color: #fff;
@@ -18489,6 +18489,7 @@ pre {
 
 .sidebar {
   width: 320px;
+  margin-left: -320px;
   position: fixed;
   left: 0;
   z-index: 100;
@@ -18657,6 +18658,11 @@ input[type=file].form-control {
 | Large Screen
 |--------------------------------------------------------------------------
 */
+@media (min-width: 768px) {
+  .sidebar {
+    margin-left: 0px;
+  }
+}
 /*
 |--------------------------------------------------------------------------
 | Tablet Screen

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\View\Forms;
 
 use Grafite\Forms\Html\Button;
 use Grafite\Forms\Fields\Number;

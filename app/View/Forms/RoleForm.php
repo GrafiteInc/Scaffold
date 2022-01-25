@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\View\Forms;
 
 use App\Models\Role;
 use Illuminate\Support\Str;
@@ -16,6 +16,7 @@ class RoleForm extends ModelForm
 
     public $buttons = [
         'submit' => 'Save',
+        'edit' => '<span class="fas fa-fw fa-pencil-alt"></span> Edit',
         'delete' => '<span class="fas fa-fw fa-trash"></span> Delete',
     ];
 
@@ -26,6 +27,7 @@ class RoleForm extends ModelForm
     public $buttonClasses = [
         'submit' => 'btn btn-primary',
         'cancel' => 'btn btn-secondary',
+        'edit' => 'btn btn-outline-primary btn-sm mr-2',
         'delete' => 'btn btn-outline-danger btn-sm ms-2',
     ];
 

@@ -35,12 +35,10 @@
                                         <td>{{ $role->label }}</td>
                                         <td width="180px" class="text-end">
                                             <div class="btn-toolbar justify-content-end">
-                                                <a class="btn btn-outline-primary btn-sm" href="{{ url('admin/roles/'.$role->id.'/edit') }}">
-                                                    <span class="fas fa-fw fa-pencil-alt"></span> Edit
-                                                </a>
+                                                {!! $role->form()->editButton() !!}
 
                                                 @if ($role->name !== 'admin')
-                                                    {!! app(\App\Http\Forms\RoleForm::class)->confirm('Are you sure you want to delete this role?', 'confirmation')->delete($role) !!}
+                                                    {!! $role->form()->confirm('Are you sure you want to delete this role?', 'confirmation')->delete($role) !!}
                                                 @endif
                                             </div>
                                         </td>
@@ -48,6 +46,8 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                        {{ $roles }}
                     </div>
                 </div>
             @endif

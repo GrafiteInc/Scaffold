@@ -22,6 +22,7 @@
 
 .sidebar {
     width: 320px;
+    margin-left: -320px;
     position: fixed;
     left: 0;
     z-index: 100;
@@ -208,6 +209,13 @@ input[type="file"].form-control {
 | Large Screen
 |--------------------------------------------------------------------------
 */
+
+// The sidebar should be hidden by default for mobile and loaded on desktop
+@media (min-width: 768px) {
+    .sidebar {
+        margin-left: 0px;
+    }
+}
 
 /*
 |--------------------------------------------------------------------------

@@ -18,8 +18,8 @@
                         <h4 class="m-0">App Notifications</h4>
                     </div>
                     <div class="col-md-6">
-                        {!! form()->setModal('Delete All', 'btn btn-outline-danger float-end', '<p>Are you sure you want to delete all notifications?</p>')
-                            ->action('delete', 'user.notifications.clear', 'Confirm', ['class' => 'btn btn-outline-primary float-end'], true) !!}
+                        {!! form()->setModal('Delete All', 'btn btn-sm btn-outline-danger float-end', '<p>Are you sure you want to delete all notifications?</p>')
+                            ->action('delete', 'user.notifications.clear', 'Confirm', ['class' => 'btn  btn-outline-primary float-end'], true) !!}
                     </div>
                 </div>
             </div>

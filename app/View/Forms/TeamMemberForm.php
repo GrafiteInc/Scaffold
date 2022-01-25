@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\View\Forms;
 
 use Grafite\Forms\Fields\Email;
 use Grafite\Forms\Forms\BaseForm;

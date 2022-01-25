@@ -14,7 +14,7 @@
     <div class="row mt-4">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                {!! $form !!}
+                <x-forms.admin-user :user="$user"></x-forms.admin-user>
             </div>
         </div>
     </div>

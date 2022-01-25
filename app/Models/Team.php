@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\Forms\TeamForm;
+use App\View\Forms\TeamForm;
 use Grafite\Forms\Traits\HasForm;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\Invitable;

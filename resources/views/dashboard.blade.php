@@ -11,7 +11,7 @@
                     <div class="card-header text-center">
                         <h4 class="m-0">New User</h4>
                     </div>
-                    {!! $wizard !!}
+                    <x-forms.user-wizard></x-forms.user-wizard>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    {!! $form !!}
+                    <x-forms.image-upload></x-forms.image-upload>
 
                     <h3 class="mt-5">Uploaded Images</h3>
 

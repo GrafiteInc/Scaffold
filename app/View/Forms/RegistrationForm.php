@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\View\Forms;
 
 use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Email;
@@ -48,7 +48,7 @@ class RegistrationForm extends BaseForm
                 'placeholder' => 'At least 8 characters',
                 'toggle' => '<span class="fas fa-eye"></span>',
             ]),
-            PasswordWithReveal::make('confirm', [
+            PasswordWithReveal::make('password_confirmation', [
                 'required' => true,
                 'label' => 'Confirm Password',
                 'placeholder' => 'At least 8 characters',
@@ -64,7 +64,7 @@ class RegistrationForm extends BaseForm
             ['name'],
             ['email'],
             ['password'],
-            ['confirm'],
+            ['password_confirmation'],
             ['registered'],
         ];
     }
