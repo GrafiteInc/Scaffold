@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.13.0] - 2022-01-25
+
+### Changed
+- Moved forms and charts to view components
+- Now uses system color scheme
+- Various UI improvements
+
 ## [v2.12.1] - 2021-07-31
 
 ### Changed
