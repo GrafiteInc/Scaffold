@@ -21,7 +21,7 @@
                         triggerContent="<span class='fas fa-fw fa-trash'></span> Delete Avatar"
                         triggerClass="btn btn-block w-50 btn-outline-danger mb-3"
                         :payload="['team' => $team->id]"
-                        :options="['class' => 'btn btn-outline-primary float-right']"
+                        :options="['class' => 'btn btn-outline-primary float-end']"
                         :disableOnSubmit=true
                     ></x-f-modal>
                 </div>
@@ -29,7 +29,7 @@
         </div>
         <div class="col-md-8 mb-4">
             <div>
-                {!! $form !!}
+                <x-forms.team :team="$team"></x-forms.team>
             </div>
         </div>
     </div>

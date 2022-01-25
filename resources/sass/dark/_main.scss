@@ -23,7 +23,7 @@ $sidebar-header: $slate-light;
 
 $navbar-header: #222;
 $navbar-bg: $slate-dark;
-$navbar-text-color: $white;
+$navbar-link-color: $white;
 
 $footer-bg: $gray-800;
 
@@ -111,15 +111,16 @@ hr {
 
     .navbar-nav {
         background-color: $navbar-header;
+        .nav-item {
+            .nav-link {
+                color: $navbar-link-color;
+            }
+        }
     }
 
     .btn-account {
         color: $white;
     }
-}
-
-.navbar-text {
-    color: $navbar-text-color;
 }
 
 .navbar-brand {
@@ -182,6 +183,9 @@ hr {
                 background-color: transparent;
             }
         }
+    }
+    .no-results {
+        background: transparent !important;
     }
 }
 

@@ -19,7 +19,6 @@ class UserResource extends JsonResource
             'name' => $this->resource->name,
             'avatar' => $this->resource->avatar,
             'email' => $this->resource->email,
-            'dark_mode' => (bool) $this->resource->dark_mode,
             'email_verified_at' => $this->resource->email_verified_at,
             'created_at' => $this->resource->created_at,
             'updated_at' => $this->resource->updated_at,

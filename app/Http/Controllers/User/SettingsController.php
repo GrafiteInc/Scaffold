@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use Exception;
 use Illuminate\Http\Request;
-use App\Http\Forms\LogoutForm;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -21,15 +20,7 @@ class SettingsController extends Controller
     {
         $user = $request->user();
 
-        $logoutForm = app(LogoutForm::class)->make();
-
-        $deleteAccountForm = form()
-            ->confirm(trans('general.user.delete_account'), 'confirmation')
-            ->action('delete', 'user.destroy', 'Delete My Account', [
-                'class' => 'btn btn-block btn-danger mb-6',
-            ]);
-
-        return view('user.settings')->with(compact('deleteAccountForm', 'logoutForm'));
+        return view('user.settings')->with(compact('user'));
     }
 
     /**
@@ -55,7 +46,6 @@ class SettingsController extends Controller
             $request->user()->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'dark_mode' => $request->filled('dark_mode') ?? false,
                 'avatar' => $path,
                 'allow_email_based_notifications' => $request->filled('allow_email_based_notifications') ?? false,
                 'billing_email' => $request->billing_email,
@@ -106,6 +96,7 @@ class SettingsController extends Controller
     public function twoFactorSetup(Request $request)
     {
         $google2fa = app('pragmarx.google2fa');
+
         // Show them the QR or manual code
         return view('user.authenticator', [
             'manual' => $request->user()->two_factor_code,

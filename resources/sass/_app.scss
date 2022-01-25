@@ -1,3 +1,15 @@
+@media (prefers-color-scheme: dark) {
+    html {
+        background-color: #222;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    html {
+        background-color: #FFF;
+    }
+}
+
 /*
 |--------------------------------------------------------------------------
 | App
@@ -10,6 +22,7 @@
 
 .sidebar {
     width: 320px;
+    margin-left: -320px;
     position: fixed;
     left: 0;
     z-index: 100;
@@ -57,11 +70,10 @@
 }
 
 .alert {
-    margin-left: 326px;
-    width: calc(100% - 360px);
+    max-width: 320px;
     position: fixed;
     top: 75px;
-    z-index: 7500;
+    left: calc(50% - 160px);
 }
 
 .content-sm {
@@ -176,13 +188,6 @@ input[type="file"].form-control {
 }
 
 .navbar-nav {
-    .notification-badge {
-        display: inline-block;
-        position: absolute;
-        top: 12px;
-        right: 80px;
-    }
-
     .nav-user-dropdown {
         &:focus {
             box-shadow: none;
@@ -205,9 +210,50 @@ input[type="file"].form-control {
 |--------------------------------------------------------------------------
 */
 
-@media (max-width: 992px) {
+// The sidebar should be hidden by default for mobile and loaded on desktop
+@media (min-width: 768px) {
+    .sidebar {
+        margin-left: 0px;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Tablet Screen
+|--------------------------------------------------------------------------
+*/
+
+@media (min-width: 768px) and (max-width: 1399px) {
+    .sidebar {
+        width: 220px;
+    }
+    .sidebar-sticky {
+        width: 220px;
+    }
+    .main {
+        width: calc(100% - 220px);
+    }
+    .app-nav {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Mobile Screen
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 768px) {
     .sidebar-toggle {
-        display: inline-block;
+        display: block;
+        width: 20px;
+        float: left;
+    }
+    .navbar-title {
+        display: none;
+        float: left;
     }
     .main {
         width: 100%;
@@ -231,25 +277,6 @@ input[type="file"].form-control {
         margin-left: 0px;
         width: 100%;
     }
-}
-
-/*
-|--------------------------------------------------------------------------
-| Medium Screen
-|--------------------------------------------------------------------------
-*/
-
-@media (min-width: 576px) and (max-width: 748px) {
-    // nothing needed here
-}
-
-/*
-|--------------------------------------------------------------------------
-| Mobile Screen
-|--------------------------------------------------------------------------
-*/
-
-@media (max-width: 576px) {
     #app.container-fluid {
         padding-right: 0px;
         padding-left: 0px;

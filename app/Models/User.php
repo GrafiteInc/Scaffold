@@ -6,6 +6,7 @@ use App\Http\Forms\UserForm;
 use Laravel\Cashier\Billable;
 use App\Models\Concerns\HasRoles;
 use App\Models\Concerns\HasTeams;
+use Grafite\Forms\Traits\HasForm;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\HasActivity;
@@ -25,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use Billable;
     use Notifiable;
     use HasTeams;
+    use HasForm;
     use HasActivity;
     use HasAvatar;
     use HasApiTokens;
@@ -48,7 +50,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'avatar',
         'email',
         'password',
-        'dark_mode',
         'allow_email_based_notifications',
         'email_verified_at',
         'billing_email',
@@ -83,7 +84,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'dark_mode' => 'boolean',
     ];
 
     /**
@@ -148,7 +148,6 @@ class User extends Authenticatable implements MustVerifyEmail
             'id',
             'name',
             'email',
-            'dark_mode',
         ];
 
         return json_encode(collect($this->toArray())

@@ -1,7 +1,7 @@
 {{-- <div class="mx-4 mb-3">
     <h4 class="m-0">
         <span class="fa fa-fw fa-cogs"></span>
-        <span class="pl-2">{{ config('app.name') }}</span>
+        <span class="ps-2">{{ config('app.name') }}</span>
     </h4>
 </div> --}}
 

@@ -35,7 +35,7 @@
             </div>
 
             @if (! is_null($intent))
-                <div class="row text-right">
+                <div class="row text-end">
                     <div class="col-md-12">
                         <button class="btn btn-primary" id="card-button" data-secret="{{ $intent->client_secret }}" type="submit">Subscribe</button>
                     </div>
@@ -50,6 +50,5 @@
     <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
     <script>
         window.stripe_key = "{{ config("services.stripe.key") }}";
-        window.dark_mode = "{{ json_encode((bool) auth()->user()->dark_mode) }}"
     </script>
 @stop

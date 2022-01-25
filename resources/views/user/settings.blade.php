@@ -19,34 +19,30 @@
                                 method="delete"
                                 route="user.destroy.avatar"
                                 triggerContent="<span class='fas fa-fw fa-trash'></span> Delete Avatar"
-                                triggerClass="btn btn-block btn-outline-danger mb-3"
+                                triggerClass="btn d-block w-100 btn-outline-danger mb-3"
                                 :payload="['user' => auth()->id()]"
-                                :options="['class' => 'btn btn-outline-primary float-right']"
+                                :options="['class' => 'btn btn-outline-primary float-end']"
                                 :disableOnSubmit=true
                             ></x-f-modal>
                         @endif
-                        {!! $logoutForm !!}
-                        <a class="btn btn-block btn-outline-secondary mb-3" href="{{ route('user.settings.password') }}">
+                        <x-forms.logout></x-forms.logout>
+                        <a class="btn d-block w-100 btn-outline-secondary mb-3" href="{{ route('user.settings.password') }}">
                             <span class="fas fa-fw fa-lock"></span>
                             Change Password
                         </a>
                         @if (auth()->user()->usesTwoFactor('authenticator'))
-                            <a class="btn btn-block btn-outline-secondary mb-3" href="{{ route('user.settings.two-factor') }}">
+                            <a class="btn d-block w-100 btn-outline-secondary mb-3" href="{{ route('user.settings.two-factor') }}">
                                 <span class="fas fa-fw fa-shield-alt"></span>
                                 Two Factor Auth
                             </a>
                         @endif
                         <hr class="bmx-mt-6 mb-4">
-                        <x-f :content="$deleteAccountForm"></x-f>
+                        <x-forms.user-delete-account></x-forms.user-delete-account>
                     </div>
                 </div>
             </div>
             <div class="col-md-8">
-                <x-f-model
-                    :form="\App\Http\Forms\UserForm::class"
-                    action="edit"
-                    :model="auth()->user()"
-                ></x-f-model>
+                <x-forms.user></x-forms.user>
             </div>
         </div>
     </div>

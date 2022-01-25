@@ -132,6 +132,7 @@ class TeamService
      *
      * @param \App\Models\User $user
      * @param \App\Models\Team $team
+     *
      * @return bool
      */
     public function remove($user, $team)
@@ -175,6 +176,7 @@ class TeamService
      * @param \App\Models\User $user
      * @param \App\Models\Team $team
      * @param array $payload
+     *
      * @return \App\Models\User|false
      */
     public function updateMember($membership, $user, $team, $payload)

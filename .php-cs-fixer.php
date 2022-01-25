@@ -15,7 +15,7 @@ $finder = PhpCsFixer\Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setFinder($finder)
     ->setRules([
         '@PSR2' => true,
@@ -25,11 +25,7 @@ return PhpCsFixer\Config::create()
             'syntax' => 'short',
         ],
         'no_singleline_whitespace_before_semicolons' => true,
-        'no_extra_blank_lines' => [
-            'break', 'case', 'continue', 'curly_brace_block', 'default',
-            'extra', 'parenthesis_brace_block', 'return',
-            'square_brace_block', 'switch', 'throw', 'use', 'useTrait', 'use_trait',
-        ],
+        'no_extra_blank_lines' => ['tokens' => ['break', 'case', 'continue', 'curly_brace_block', 'default', 'extra', 'parenthesis_brace_block', 'return', 'square_brace_block', 'switch', 'throw', 'use']],
         'cast_spaces' => [
             'space' => 'single',
         ],
@@ -55,7 +51,7 @@ return PhpCsFixer\Config::create()
         ],
         'no_empty_statement' => true,
         'unary_operator_spaces' => true, // $number ++ becomes $number++
-        'hash_to_slash_comment' => true, // # becomes //
+        'single_line_comment_style' => true, // # becomes //
         'standardize_not_equals' => true, // <> becomes !=
         'native_function_casing' => true,
         'ternary_operator_spaces' => true,
@@ -65,16 +61,7 @@ return PhpCsFixer\Config::create()
         ],
         'function_typehint_space' => true,
         'no_leading_import_slash' => true,
-        'blank_line_before_statement' => [
-            'statements' => [
-                'break', 'case', 'continue',
-                'declare', 'default', 'die',
-                'do', 'exit', 'for', 'foreach',
-                'goto', 'if', 'include',
-                'include_once', 'require', 'require_once',
-                'return', 'switch', 'throw', 'try', 'while', 'yield',
-            ],
-        ],
+        'blank_line_before_statement' => ['statements' => ['break', 'case', 'continue', 'declare', 'default', 'exit', 'goto', 'include', 'include_once', 'require', 'require_once', 'return', 'switch', 'throw', 'try']],
         'combine_consecutive_unsets' => true,
         'method_chaining_indentation' => true,
         'no_whitespace_in_blank_line' => true,
@@ -85,7 +72,7 @@ return PhpCsFixer\Config::create()
         'compact_nullable_typehint' => true,
         'explicit_string_variable' => true,
         'no_leading_namespace_whitespace' => true,
-        'trailing_comma_in_multiline_array' => true,
+        'trailing_comma_in_multiline' => true,
         'not_operator_with_successor_space' => true,
         'object_operator_without_whitespace' => true,
         'single_blank_line_before_namespace' => true,

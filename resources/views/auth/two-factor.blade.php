@@ -35,10 +35,8 @@
 @section('alerts')
     @if (session('resent'))
         <div class="alert alert-info" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
             {{ __('A fresh verification link has been sent to your email address.') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 @stop

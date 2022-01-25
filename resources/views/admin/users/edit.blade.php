@@ -5,7 +5,7 @@
 @section('admin_content')
 
     <div class="row">
-        <div class="col-md-12 text-right">
+        <div class="col-md-12 text-end">
             @if (! session('original_user'))
                 {!! form()->action('post', ['admin.users.switch', $user->id], 'Login as this User', [ 'class' => 'btn btn-outline-secondary' ]) !!}
             @endif
@@ -14,7 +14,7 @@
     <div class="row mt-4">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                {!! $form !!}
+                <x-forms.admin-user :user="$user"></x-forms.admin-user>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
                                     <td width="250px" class="d-none d-sm-table-cell">
                                         <b>{{ $activity->request['method'] }}:</b> {{ Str::limit(str_replace(url('/'), '', $activity->request['url']), 20) }}
                                     </td>
-                                    <td width="110px" class="text-right">{{ $activity->created_at->format('M d, Y') }}</td>
+                                    <td width="180px" class="text-end">{{ $activity->created_at->format('M d, Y') }}</td>
                                 </tr>
                             @endforeach
                         </table>

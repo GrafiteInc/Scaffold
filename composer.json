@@ -9,14 +9,16 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
+        "aws/aws-sdk-php": "^3.192",
         "barryvdh/laravel-debugbar": "^3.6",
         "bepsvpt/secure-headers": "^7.1",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
         "grafite/charts": "^2.0",
         "grafite/database": "^2.3",
-        "grafite/forms": "^5.0",
+        "grafite/forms": "develop-dev",
+        "grafite/html": "^1.0",
         "grafite/maintenance": "^0.2.0",
         "grafite/mission-control-laravel": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
@@ -30,6 +32,7 @@
         "livewire/livewire": "^2.2",
         "pragmarx/google2fa-laravel": "^1.4",
         "pusher/pusher-php-server": "~4.0",
+        "shiftonelabs/laravel-sqs-fifo-queue": "^2.0",
         "silviolleite/laravelpwa": "^2.0",
         "spatie/laravel-honeypot": "^3.0",
         "tightenco/ziggy": "^1.0.4",
@@ -66,7 +69,8 @@
         "files": [
             "app/Helpers/ActivityHelper.php",
             "app/Helpers/NotificationHelper.php",
-            "app/Helpers/UserInterfaceHelper.php"
+            "app/Helpers/RouteHelper.php",
+            "app/Helpers/SessionHelper.php"
         ]
     },
     "autoload-dev": {

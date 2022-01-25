@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use App\View\Forms\RoleForm;
+use Grafite\Forms\Traits\HasForm;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Role extends Model
 {
     use HasFactory;
+    use HasForm;
+
+    public $form = RoleForm::class;
 
     public $timestamps = false;
 

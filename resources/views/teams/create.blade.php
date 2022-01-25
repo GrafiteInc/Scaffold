@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        {!! $form !!}
+                        <x-forms.team></x-forms.team>
                     </div>
                 </div>
             </div>

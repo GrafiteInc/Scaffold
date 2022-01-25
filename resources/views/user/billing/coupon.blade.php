@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-                <div class="row text-right mt-4">
+                <div class="row text-end mt-4">
                     <div class="col-md-12">
                         <button
                             class="btn btn-primary"

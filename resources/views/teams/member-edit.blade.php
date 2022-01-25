@@ -15,7 +15,7 @@
     <div class="row mt-4">
         <div class="col-md-12 mb-4">
             <div>
-                {!! $form !!}
+                <x-forms.team-member :member="$member" :team="$team"></x-forms.team-member>
             </div>
         </div>
     </div>

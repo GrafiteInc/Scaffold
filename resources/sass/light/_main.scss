@@ -19,7 +19,7 @@ $sidebar-header: $slate-light;
 
 $navbar-header: $white;
 $navbar-bg: $slate-dark;
-$navbar-text-color: $slate-dark;
+$navbar-link-color: $slate-dark;
 
 $footer-bg: $gray-100;
 $footer-text-color: $slate-dark;
@@ -88,15 +88,16 @@ html {
 
 .navbar-header {
     background-color: $navbar-header;
-    color: $white;
+    color: $black;
 
     .navbar-nav {
         background-color: $navbar-header;
+        .nav-item {
+            .nav-link {
+                color: $navbar-link-color;
+            }
+        }
     }
-}
-
-.navbar-text {
-    color: $navbar-text-color;
 }
 
 .app-nav {

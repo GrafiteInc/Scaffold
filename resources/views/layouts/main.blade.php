@@ -15,17 +15,16 @@
         <meta property="og:image" content="">
         <meta property="og:url" content="{{ url()->current() }}">
 
-        <title>{{ config('app.name') }} | @yield('page-title', 'My App')</title>
+        <title>{{ config('app.name') }} | @yield('page-title', 'Scaffold')</title>
 
         <link rel="icon" type="image/ico" href="">
 
-        @if (auth()->user() && auth()->user()->dark_mode)
-            <link title="dark" rel="stylesheet" type="text/css" href="{{ mix('css/dark-app.css') }}">
-        @else
-            <link title="light" rel="stylesheet" type="text/css" href="{{ mix('css/light-app.css') }}">
-        @endif
+        @include('layouts.components.theme-styles')
 
         @formStyles
+        @chartStyles
+        @htmlStyles
+        @chartCdn
         @laravelPWA
         @missionControl
     </head>
@@ -33,31 +32,23 @@
         <div id="app" class="min-vh-100">
             <div class="w-100 bmx-overflow-x-hidden">
                 @yield("app-content")
-
-                <cookielaw
-                    version="{{ config('app.version', 'v1') }}"
-                ></cookielaw>
-
-                <confirmation-modal></confirmation-modal>
-                <content-modal></content-modal>
-                <pending-overlay
-                    mode="{{ optional(auth()->user())->dark_mode ? 'dark' : 'light' }}"
-                ></pending-overlay>
-                <notifications></notifications>
-
-                <session
-                    user='{!! optional(auth()->user())->jsonSessionData() ?? "{}" !!}'
-                    message='{!! session('message') !!}'
-                    info='{!! session('info') !!}'
-                    warning='{!! session('warning') !!}'
-                    error='{{ sessionErrorMessage() }}'
-                ></session>
             </div>
+
+            <cookielaw
+                version="{{ config('app.version', 'v1') }}"
+            ></cookielaw>
+
+            <confirmation-modal></confirmation-modal>
+            <content-modal></content-modal>
+            <pending-overlay></pending-overlay>
+            <notifications></notifications>
 
             @yield("alerts")
         </div>
 
         @routes
+
+        {!! javascript_session_data() !!}
 
         @yield('pre-app-js')
 
@@ -66,5 +57,6 @@
         @yield('javascript')
 
         @formScripts
+        @chartScripts
     </body>
 </html>

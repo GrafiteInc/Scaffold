@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Forms\UserPasswordForm;
 use Illuminate\Support\Facades\Hash;
 use Collective\Auth\Foundation\ResetsPasswords;
 use App\Http\Requests\UserPasswordUpdateRequest;
@@ -23,9 +22,7 @@ class ChangePasswordController extends Controller
      */
     public function index(Request $request)
     {
-        $form = app(UserPasswordForm::class)->make();
-
-        return view('user.password')->with(compact('form'));
+        return view('user.password');
     }
 
     /**

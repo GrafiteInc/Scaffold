@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Models\User;
 use Laravel\Cashier\Cashier;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,13 @@ class AppServiceProvider extends ServiceProvider
     {
         Cashier::keepPastDueSubscriptionsActive();
         Cashier::useCustomerModel(User::class);
+
+        Password::defaults(fn () => Password::min(8)
+            ->mixedCase()
+            ->letters()
+            ->numbers()
+            ->symbols()
+            ->uncompromised());
     }
 
     /**
@@ -28,5 +37,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
+        Blade::if('permission', function ($value) {
+            return request()->user()->hasPermission($value);
+        });
     }
 }

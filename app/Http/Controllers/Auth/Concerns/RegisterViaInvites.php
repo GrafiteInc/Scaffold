@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Services\InviteService;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 trait RegisterViaInvites
 {
@@ -62,7 +63,11 @@ trait RegisterViaInvites
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
-            'password' => 'required|min:6|confirmed',
+            'password' => [
+                'required',
+                'confirmed',
+                Password::defaults(),
+            ],
         ]);
     }
 }

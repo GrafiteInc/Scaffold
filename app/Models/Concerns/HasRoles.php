@@ -10,7 +10,7 @@ trait HasRoles
 {
     public function getRoleAttribute()
     {
-        return $this->roles()->first()->label;
+        return $this->roles()->first()->id;
     }
 
     /**

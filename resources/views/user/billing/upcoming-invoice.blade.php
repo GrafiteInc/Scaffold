@@ -7,11 +7,11 @@
             <table class="table">
                 <tr>
                     <th>Date</th>
-                    <th class="text-right">Cost</th>
+                    <th class="text-end">Cost</th>
                 </tr>
                 <tr>
                     <td>{{ $invoice->date()->format('F j, Y') }}</td>
-                    <td class="text-right">&dollar;{{ $invoice->total/100 }}</td>
+                    <td class="text-end">&dollar;{{ $invoice->total/100 }}</td>
                 </tr>
             </table>
         @else

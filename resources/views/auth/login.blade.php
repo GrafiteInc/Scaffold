@@ -12,14 +12,14 @@
         @endif
 
         <div class="card mt-5 mb-4 border-0 bmx-tada">
-            <div class="card-body bg-light border-left border-primary bmx-border-3">
+            <div class="card-body bg-dark border-start bmx-border-purple bmx-border-3">
                 <p class="lead m-0">After all it's way more fun on the inside!</p>
             </div>
         </div>
 
         <div class="card shadow">
             <div class="card-body">
-                <x-f-base :form="\App\Http\Forms\LoginForm::class"></x-f-base>
+                <x-forms.login></x-forms.login>
             </div>
         </div>
 

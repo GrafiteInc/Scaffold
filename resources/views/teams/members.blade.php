@@ -11,7 +11,7 @@
             <div class="avatar shadow-sm border" style="background-image: url({{ $team->avatar_url }})"></div>
         </div>
         <div class="col-md-8 mb-4">
-            {!! $inviteForm !!}
+            <x-forms.team-invite :team="$team"></x-forms.team-invite>
         </div>
 
         <div class="col-md-12 bmx-mt-6">
@@ -37,9 +37,9 @@
                                     <tr>
                                         <td>{{ $member->name }} ({{ $member->email }})</td>
                                         <td>{{ ucfirst($member->membership->team_role) }}</td>
-                                        <td width="250px" class="text-right">
+                                        <td width="250px" class="text-end">
                                             @if (Gate::allows('team-admin', $team))
-                                                <a href="{{ route('teams.members.edit', [$team->id, $member->id]) }}" class="btn btn-sm btn-outline-primary mr-2">Edit</a>
+                                                <a href="{{ route('teams.members.edit', [$team->id, $member->id]) }}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
                                             @endif
 
                                             @if (Gate::allows('team-admin', $team))

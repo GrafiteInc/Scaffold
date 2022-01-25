@@ -18,8 +18,8 @@
                         <h4 class="m-0">App Notifications</h4>
                     </div>
                     <div class="col-md-6">
-                        {!! form()->setModal('Delete All', 'btn btn-outline-danger float-right', '<p>Are you sure you want to delete all notifications?</p>')
-                            ->action('delete', 'user.notifications.clear', 'Confirm', ['class' => 'btn btn-outline-primary float-right'], true) !!}
+                        {!! form()->setModal('Delete All', 'btn btn-sm btn-outline-danger float-end', '<p>Are you sure you want to delete all notifications?</p>')
+                            ->action('delete', 'user.notifications.clear', 'Confirm', ['class' => 'btn  btn-outline-primary float-end'], true) !!}
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                                         {!! form()->action('post',
                                             ['user.notifications.read', $notification->id],
                                             'Mark as Read',
-                                            ['class' => 'btn btn-sm btn-outline-primary mr-2'],
+                                            ['class' => 'btn btn-sm btn-outline-primary me-2'],
                                             false, true
                                         ) !!}
                                     @endif
@@ -48,7 +48,7 @@
                                         :route="['user.notifications.destroy', $notification->id]"
                                         triggerContent="<span class='fas fa-fw fa-trash'></span> Delete"
                                         triggerClass="btn btn-sm btn-outline-danger"
-                                        :options="['class' => 'btn btn-outline-primary float-right']"
+                                        :options="['class' => 'btn btn-outline-primary float-end']"
                                         :disableOnSubmit=true
                                     ></x-f-modal>
                                 </div>

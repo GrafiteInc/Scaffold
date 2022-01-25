@@ -1,9 +1,7 @@
 <?php
 
 return [
-    /*
-     * Enable / disable Google2FA.
-     */
+    // Enable / disable Google2FA.
     'enabled' => env('OTP_ENABLED', true),
 
     /*
@@ -13,64 +11,42 @@ return [
      */
     'lifetime' => env('OTP_LIFETIME', 0), // 0 = eternal
 
-    /*
-     * Renew lifetime at every new request.
-     */
+    // Renew lifetime at every new request.
     'keep_alive' => env('OTP_KEEP_ALIVE', true),
 
-    /*
-     * Auth container binding.
-     */
+    // Auth container binding.
     'auth' => 'auth',
 
-    /*
-     * Guard.
-     */
+    // Guard.
     'guard' => '',
 
-    /*
-     * 2FA verified session var.
-     */
+    // 2FA verified session var.
 
     'session_var' => 'google2fa',
 
-    /*
-     * One Time Password request input name.
-     */
+    // One Time Password request input name.
     'otp_input' => 'one_time_password',
 
-    /*
-     * One Time Password Window.
-     */
+    // One Time Password Window.
     'window' => 1,
 
-    /*
-     * Forbid user to reuse One Time Passwords.
-     */
+    // Forbid user to reuse One Time Passwords.
     'forbid_old_passwords' => false,
 
-    /*
-     * User's table column for google2fa secret.
-     */
+    // User's table column for google2fa secret.
     'otp_secret_column' => 'two_factor_code',
 
-    /*
-     * One Time Password View.
-     */
+    // One Time Password View.
     'view' => 'auth.two-factor.authenticator',
 
-    /*
-     * One Time Password error message.
-     */
+    // One Time Password error message.
     'error_messages' => [
         'wrong_otp' => "The 'One Time Password' typed was wrong.",
         'cannot_be_empty' => 'One Time Password cannot be empty.',
         'unknown' => 'An unknown error has occurred. Please try again.',
     ],
 
-    /*
-     * Throw exceptions or just fire events?
-     */
+    // Throw exceptions or just fire events?
     'throw_exceptions' => env('OTP_THROW_EXCEPTION', true),
 
     /*

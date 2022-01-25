@@ -572,7 +572,7 @@ return [
                 // 'https:',
             ],
 
-            /* followings are only work for `script` and `style` related directives */
+            // followings are only work for `script` and `style` related directives
 
             'unsafe-inline' => false,
 
