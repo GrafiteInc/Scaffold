@@ -34,10 +34,9 @@
                 @yield("app-content")
             </div>
 
-            <cookielaw
+            <cookie-law
                 version="{{ config('app.version', 'v1') }}"
-            ></cookielaw>
-
+            ></cookie-law>
             <confirmation-modal></confirmation-modal>
             <content-modal></content-modal>
             <pending-overlay></pending-overlay>

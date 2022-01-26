@@ -17,17 +17,19 @@ window.ajax = (_event) => {
             'Content-Type': 'multipart/form-data'
         }
     }).then((response) => {
-        if ($('#' + _form.getAttribute('id') + '_Modal')) {
-            $('#' + _form.getAttribute('id') + '_Modal').modal('hide');
+        let _modalElement = document.getElementById(_form.getAttribute('id') + '_Modal');
+
+        if (_modalElement) {
+            bootstrap.Modal.getOrCreateInstance(_modalElement).toggle();
         }
 
         let _event = `${_form.getAttribute('id')}.success`;
-        window.app.$event.fire(_event, response.data.data);
+        window.app.$events.fire(_event, response.data.data);
         window.notify.success(response.data.message);
         _button.innerHTML = 'Save';
     }).catch((error) => {
         let _event = `${_form.getAttribute('id')}.error`;
-        window.app.$event.fire(_event, error.response.data.data);
+        window.app.$events.fire(_event, error.response.data.data);
         window.notify.warning(error.response.data.message);
 
         [...error.response.data.errors].forEach((key) => {

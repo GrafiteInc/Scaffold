@@ -15,10 +15,7 @@ require('laravel-mix-purgecss');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .vue({
-        runtimeOnly: true,
-        version: 2
-    })
+    .vue()
     .sass('resources/sass/dark-app.scss', 'public/css')
     .sass('resources/sass/light-app.scss', 'public/css')
     .purgeCss({
@@ -30,11 +27,8 @@ mix.js('resources/js/app.js', 'public/js')
         ],
     });
 
-mix.alias({
-    'vue$': path.resolve(__dirname, 'node_modules/vue/dist/vue.js')
-});
-
-mix.sourceMaps();
+// For debugging on prod enable this
+// mix.sourceMaps();
 
 if (mix.inProduction()) {
     mix.version();

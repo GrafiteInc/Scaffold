@@ -47,7 +47,7 @@ export default {
     },
     created () {
         this.api_tokens = this.tokens;
-        this.$event.listen('new-api-token', this.getTokens);
+        window.app.$events.listen('new-api-token', this.getTokens);
     },
     methods: {
         tokenDate (token) {
@@ -72,7 +72,8 @@ export default {
         },
         deleteToken (event) {
             let _processing = '<i class="fas fa-circle-notch fa-spin mr-2"></i>';
-            event.target.innerHTML = _processing + event.target.innerHTML;
+            let _originalHTML = event.target.innerHTML
+            event.target.innerHTML = _processing + _originalHTML;
             event.target.disabled = true;
 
             axios.delete(route('ajax.destroy-token', this.tokenToRevoke.id))
@@ -80,6 +81,8 @@ export default {
                     let _modal = bootstrap.Modal.getOrCreateInstance(this.$refs['token-modal']);
                     _modal.hide();
                     window.notify.success('Revoked!');
+                    event.target.disabled = false;
+                    event.target.innerHTML = _originalHTML;
                     this.getTokens();
                 });
         }
