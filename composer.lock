@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f4e0debd07d44cff974d75ab525d94c",
+    "content-hash": "d9e0598ef299c0251cb6f9eb105f99aa",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1563,16 +1563,16 @@
         },
         {
             "name": "grafite/forms",
-            "version": "dev-develop",
+            "version": "v6.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Forms.git",
-                "reference": "611716dee977a7cdf601560b6f155a9509309b9a"
+                "reference": "dc2d118bbb838ee3f22fde417032c8e8cb4d0439"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/611716dee977a7cdf601560b6f155a9509309b9a",
-                "reference": "611716dee977a7cdf601560b6f155a9509309b9a",
+                "url": "https://api.github.com/repos/GrafiteInc/Forms/zipball/dc2d118bbb838ee3f22fde417032c8e8cb4d0439",
+                "reference": "dc2d118bbb838ee3f22fde417032c8e8cb4d0439",
                 "shasum": ""
             },
             "require": {
@@ -1629,9 +1629,9 @@
             ],
             "support": {
                 "issues": "https://github.com/GrafiteInc/Forms/issues",
-                "source": "https://github.com/GrafiteInc/Forms/tree/develop"
+                "source": "https://github.com/GrafiteInc/Forms/tree/v6.2.3"
             },
-            "time": "2022-01-21T19:25:18+00:00"
+            "time": "2022-01-26T11:33:57+00:00"
         },
         {
             "name": "grafite/html",
@@ -13998,9 +13998,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "grafite/forms": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
