@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <x-forms.user-invite></x-forms.user-invite>
+            <x-forms.invite-user></x-forms.invite-user>
         </div>
     </div>
 

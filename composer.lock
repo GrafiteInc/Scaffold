@@ -1454,16 +1454,16 @@
         },
         {
             "name": "grafite/charts",
-            "version": "v2.3.1",
+            "version": "v2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Charts.git",
-                "reference": "28e881e46c0d3b304ef4b609d8c001d58df5eb8c"
+                "reference": "f7a3c17fd63f902dc0cb03fc458d8d9062188fd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Charts/zipball/28e881e46c0d3b304ef4b609d8c001d58df5eb8c",
-                "reference": "28e881e46c0d3b304ef4b609d8c001d58df5eb8c",
+                "url": "https://api.github.com/repos/GrafiteInc/Charts/zipball/f7a3c17fd63f902dc0cb03fc458d8d9062188fd8",
+                "reference": "f7a3c17fd63f902dc0cb03fc458d8d9062188fd8",
                 "shasum": ""
             },
             "require": {
@@ -1502,9 +1502,9 @@
             "description": "An easy way to integrate Charts in Laravel",
             "support": {
                 "issues": "https://github.com/GrafiteInc/Charts/issues",
-                "source": "https://github.com/GrafiteInc/Charts/tree/v2.3.1"
+                "source": "https://github.com/GrafiteInc/Charts/tree/v2.3.2"
             },
-            "time": "2022-01-18T17:12:39+00:00"
+            "time": "2022-01-26T19:13:49+00:00"
         },
         {
             "name": "grafite/database",
