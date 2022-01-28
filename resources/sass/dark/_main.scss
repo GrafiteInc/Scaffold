@@ -57,7 +57,7 @@ hr {
 .sidebar {
     background-color: $sidebar-bg;
 
-    .nav-item.active a {
+    .nav-link.active {
         color: $primary;
     }
 
@@ -110,7 +110,6 @@ hr {
     color: $white;
 
     .navbar-nav {
-        background-color: $navbar-header;
         .nav-item {
             .nav-link {
                 color: $navbar-link-color;
@@ -158,7 +157,7 @@ hr {
     }
 }
 
-.app-nav {
+.app-with-sidebar-nav {
     border-bottom: 1px solid $gray-700;
 }
 

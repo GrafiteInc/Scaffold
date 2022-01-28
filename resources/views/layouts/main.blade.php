@@ -30,7 +30,7 @@
     </head>
     <body>
         <div id="app" class="min-vh-100">
-            <div class="w-100 bmx-overflow-x-hidden">
+            <div class="w-100 bmx-overflow-x-hidden min-vh-100">
                 @yield("app-content")
             </div>
 

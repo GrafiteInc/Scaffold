@@ -1,9 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.app-with-sidebar-panel')
 
 @section('page-title', 'Dashboard')
 
-@section('content')
-
+@section('panel')
     @if (auth()->user()->hasRole('admin'))
         <div class="row">
             <div class="col-md-12">
@@ -17,14 +16,14 @@
         </div>
     @endif
 
-    <div class="row mt-4">
+    <x-forms.image-upload></x-forms.image-upload>
+@stop
+
+@section('content')
+    <div class="row">
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <x-forms.image-upload></x-forms.image-upload>
-
-                    <h3 class="mt-5">Uploaded Images</h3>
-
                     <div class="row">
                         @foreach ($images as $image)
                             <div class="col-md-4 mb-4 overflow-hidden" style="height: 200px;">
@@ -36,5 +35,4 @@
             </div>
         </div>
     </div>
-
 @stop

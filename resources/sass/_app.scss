@@ -16,7 +16,7 @@
 |--------------------------------------------------------------------------
 */
 
-.app-content {
+.app-sidebar-content {
     margin-top: 80px;
 }
 
@@ -164,7 +164,11 @@ input[type="file"].form-control {
 |--------------------------------------------------------------------------
 */
 
-.app-nav {
+.app-nav-fluid {
+    height: 60px;
+}
+
+.app-with-sidebar-nav {
     height: 60px;
     margin-left: 320px;
     width: calc(100% - 320px);
@@ -233,7 +237,7 @@ input[type="file"].form-control {
     .main {
         width: calc(100% - 220px);
     }
-    .app-nav {
+    .app-with-sidebar-nav {
         margin-left: 220px;
         width: calc(100% - 220px);
     }
@@ -273,7 +277,7 @@ input[type="file"].form-control {
     .sidebar.toggled {
         margin-left: 0;
     }
-    .app-nav {
+    .app-with-sidebar-nav {
         margin-left: 0px;
         width: 100%;
     }

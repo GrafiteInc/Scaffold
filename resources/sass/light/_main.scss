@@ -46,7 +46,7 @@ html {
 .sidebar {
     background-color: $sidebar-bg;
 
-    .nav-item.active a {
+    .nav-link.active {
         color: $primary;
     }
 
@@ -91,7 +91,6 @@ html {
     color: $black;
 
     .navbar-nav {
-        background-color: $navbar-header;
         .nav-item {
             .nav-link {
                 color: $navbar-link-color;
@@ -100,7 +99,7 @@ html {
     }
 }
 
-.app-nav {
+.app-with-sidebar-nav {
     border-bottom: 1px solid $gray-300;
 }
 
@@ -142,4 +141,8 @@ pre {
     padding: 24px;
     background-color: $input-bg;
     border-radius: 8px;
+}
+
+#toaster {
+    color: #FFF;
 }
