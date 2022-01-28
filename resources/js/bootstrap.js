@@ -82,5 +82,5 @@ window.app = {
 
             this._events[name] = this._events[name].filter(filterListeners);
         }
-    },
+    }
 };

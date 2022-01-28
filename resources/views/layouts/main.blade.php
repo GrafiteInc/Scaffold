@@ -38,6 +38,7 @@
                 version="{{ config('app.version', 'v1') }}"
             ></cookie-law>
             <confirmation-modal></confirmation-modal>
+            <offcanvas></offcanvas>
             <content-modal></content-modal>
             <pending-overlay></pending-overlay>
             <notifications></notifications>

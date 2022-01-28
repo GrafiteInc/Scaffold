@@ -8,6 +8,7 @@ import { createApp } from 'vue';
 
 import Notifications from './vue-components/notifications.vue';
 import ContentModal from './vue-components/content-modal.vue';
+import Offcanvas from './vue-components/offcanvas.vue';
 import ConfirmationModal from './vue-components/confirmation-modal.vue';
 import PendingOverlay from './vue-components/pending-overlay.vue';
 import CookieLaw from './vue-components/cookie-law.vue';
@@ -25,6 +26,7 @@ const app = createApp({
         CopyButton,
         NotificationBadge,
         ContentModal,
+        Offcanvas,
         ConfirmationModal,
         PendingOverlay,
         CookieLaw
