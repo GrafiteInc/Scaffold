@@ -12,12 +12,12 @@
 
         <div class="container-fluid app-sidebar-content">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <div class="ms-2">
                         @yield('panel')
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-lg-9">
                     <div class="me-2">
                         @yield('content')
                     </div>
