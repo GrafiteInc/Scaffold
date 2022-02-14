@@ -20,7 +20,9 @@ class DestroyController extends Controller
     {
         $user = $request->user();
 
-        Storage::delete($user->avatar);
+        if ($user->avatar) {
+            Storage::delete($user->avatar);
+        }
 
         $subject = 'Account Deletion.';
         $message = 'Your account has been deleted.';

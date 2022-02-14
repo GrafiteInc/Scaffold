@@ -18496,30 +18496,6 @@ hr {
 | Forms
 |--------------------------------------------------------------------------
 */
-.bootstrap-select button.dropdown-toggle, .bootstrap-select button.dropdown-toggle:active {
-  color: #FFF !important;
-  border: 2px solid #444 !important;
-  background-color: #1F1F1F !important;
-}
-.bootstrap-select .dropdown-menu li a.dropdown-item:hover {
-  color: #fff !important;
-}
-.bootstrap-select .dropdown-menu li .no-results {
-  background-color: transparent;
-}
-.bootstrap-select .no-results {
-  background: transparent !important;
-}
-
-.btn-select {
-  background-color: #000 !important;
-}
-
-.vs--disabled .vs__dropdown-toggle, .vs--disabled .vs__clear, .vs--disabled .vs__search, .vs--disabled .vs__selected, .vs--disabled .vs__open-indicator {
-  background-color: #1F1F1F !important;
-  color: #EEE !important;
-}
-
 input.form-control:disabled, textarea.form-control:disabled, select.form-control:disabled {
   background-color: #222;
   color: #AAA !important;
@@ -18536,55 +18512,6 @@ input.form-control:focus, textarea.form-control:focus, select.form-control:focus
   outline: 0 !important;
 }
 
-.vue__time-picker input.display-time {
-  background-color: #1F1F1F;
-  border: none !important;
-  color: #fff;
-}
-
-.vue__time-picker .dropdown {
-  border: #222 1px solid;
-  background-color: #1F1F1F !important;
-}
-.vue__time-picker .dropdown ul li {
-  color: #EEE !important;
-}
-
-.datepicker input {
-  border: 2px solid #444;
-  background-color: #1F1F1F;
-  color: #EEE;
-  font-size: 0.85em !important;
-  font-weight: normal !important;
-}
-
-.vc-popover-content {
-  background-color: #1F1F1F !important;
-}
-
-.vc-container {
-  background-color: #1F1F1F !important;
-}
-
-.vs__dropdown-toggle {
-  background-color: #1F1F1F;
-}
-.vs__dropdown-toggle input {
-  color: #FFF;
-}
-.vs__dropdown-toggle .vs__selected {
-  color: #EEE;
-}
-
-.vs__dropdown-option {
-  color: #EEE;
-}
-
-.vs__dropdown-menu {
-  background-color: #1F1F1F !important;
-  color: #EEE;
-}
-
 .border-top, .border-left, .border-bottom, .border-right {
   border-color: #303030 !important;
 }
@@ -18598,30 +18525,6 @@ pre {
   padding: 24px;
   background-color: #1F1F1F;
   border-radius: 8px;
-}
-
-.ql-container.ql-snow {
-  border: 2px solid #444 !important;
-}
-
-.ql-toolbar.ql-snow {
-  border: 2px solid #444 !important;
-  background-color: #1F1F1F !important;
-  border-bottom: none !important;
-}
-
-.ql-snow .ql-editor {
-  border-bottom-right-radius: 4px !important;
-  border-bottom-left-radius: 4px !important;
-}
-
-.ql-bubble .ql-editor {
-  border: 2px solid transparent;
-}
-
-.ql-editor {
-  background-color: #1F1F1F !important;
-  border: 2px solid transparent;
 }
 
 .hover-highlight:hover {

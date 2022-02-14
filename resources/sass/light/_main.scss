@@ -117,21 +117,6 @@ input.form-control, textarea.form-control, select.form-control {
     }
 }
 
-.bootstrap-select {
-    button.dropdown-toggle, button.dropdown-toggle:active {
-        color: #111 !important;
-        border: 1px solid $gray-400 !important;
-        background-color: $white !important;
-    }
-    .dropdown-menu {
-        li {
-            a.dropdown-item:hover {
-                color: $white !important;
-            }
-        }
-    }
-}
-
 .sidebar-toggle {
     color: $gray-800;
 }
