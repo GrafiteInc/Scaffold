@@ -54,7 +54,9 @@ class UsersController extends ApiController
      */
     public function destroy()
     {
-        Storage::delete($this->user->avatar);
+        if ($this->user->avatar) {
+            Storage::delete($this->user->avatar);
+        }
 
         $subject = 'Account Deletion.';
         $message = 'Your account has been deleted.';

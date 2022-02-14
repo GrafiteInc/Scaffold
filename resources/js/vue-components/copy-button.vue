@@ -1,9 +1,9 @@
 <template>
     <div>
         <button
-            v-clipboard="copyData"
-            @success="success"
-            class="input-group-text"
+            :data-clipboard-text="copyData"
+            @click="success"
+            class="input-group-text copy-clipboard-btn"
         >
             Copy
         </button>
@@ -17,6 +17,9 @@ export default {
             type: String,
             default: ''
         }
+    },
+    mounted () {
+        new window.clipboard('.copy-clipboard-btn');
     },
     methods: {
         success () {

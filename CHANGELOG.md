@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.14.0] - 2022-02-14
+
+### Added
+- New alternative layout
+- New offset component
+- Laravel 9 and other updates
+
 ## [v2.13.0] - 2022-01-25
 
 ### Changed

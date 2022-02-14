@@ -13,14 +13,14 @@ export default {
     props: {},
     created () {
         this.getCount();
-        this.$event.listen('get-notifications', this.getCount);
+        window.app.$events.listen('get-notifications', this.getCount);
     },
     methods: {
         getCount () {
             axios.get(route('ajax.notifications-count'), {})
                 .then((results) => {
                     this.notificationCount = results.data.data;
-                    this.$event.fire('notifications-counted', this.notificationCount);
+                    window.app.$events.fire('notifications-counted', this.notificationCount);
                 })
                 .catch((err) => {
                     //

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\User;
 
 use Exception;
 use Illuminate\Http\Request;
+use App\Actions\UpdateUserAvatar;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
+use App\Actions\ProcessUserTwoFactorSettings;
 
 class SettingsController extends Controller
 {
@@ -32,21 +34,10 @@ class SettingsController extends Controller
     public function update(UserUpdateRequest $request)
     {
         try {
-            $path = $request->user()->avatar;
-
-            if (! is_null($request->avatar)) {
-                if (($request->file('avatar')->getSize() / 1024) > 10000) {
-                    return redirect()->back()->withErrors(['Avatar file is too big, must be below 10MB.']);
-                }
-
-                Storage::delete($request->user()->avatar);
-                $path = Storage::putFile('public/avatars', $request->avatar, 'public');
-            }
-
             $request->user()->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'avatar' => $path,
+                'avatar' => UpdateUserAvatar::handle($request) ?? $request->user()->avatar,
                 'allow_email_based_notifications' => $request->filled('allow_email_based_notifications') ?? false,
                 'billing_email' => $request->billing_email,
                 'state' => $request->state,
@@ -56,27 +47,8 @@ class SettingsController extends Controller
 
             activity('Settings updated.');
 
-            if (! is_null($request->user()->two_factor_platform)) {
-                activity('Enabled Two Factor Authenticator.');
-
-                $request->user()->setTwoFactorCode();
-
-                if ($request->user()->two_factor_platform === 'email') {
-                    $request->user()->validateTwoFactorCode();
-                }
-
-                if ($request->user()->two_factor_platform === 'authenticator') {
-                    $google2fa = app('pragmarx.google2fa');
-                    // log in the user automatically
-                    $google2fa->login();
-
-                    return redirect()->route('user.settings.two-factor')->withInfo('Setup your authorization app.');
-                }
-            } else {
-                $request->user()->update([
-                    'two_factor_code' => null,
-                    'two_factor_expires_at' => null,
-                ]);
+            if (ProcessUserTwoFactorSettings::handle($request)) {
+                return redirect()->route('user.settings.two-factor')->withInfo('Setup your authorization app.');
             }
 
             return redirect()->route('user.settings')->withMessage('Settings updated successfully');

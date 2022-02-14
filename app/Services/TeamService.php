@@ -69,7 +69,10 @@ class TeamService
                 throw new Exception('Avatar file is too big, must be below 10MB.', 1);
             }
 
-            Storage::delete($team->avatar);
+            if ($team->avatar) {
+                Storage::delete($team->avatar);
+            }
+
             $path = Storage::putFile('public/avatars', $request->avatar, 'public');
         }
 

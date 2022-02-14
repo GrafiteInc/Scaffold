@@ -13,8 +13,8 @@
             <div class="col-md-12 d-flex justify-content-end mt-4 mb-2" v-if="currentToken">
                 <input type="text" class="form-control me-sm-2" readonly v-model="currentToken">
                 <button
-                    v-clipboard="currentToken"
-                    @success="success"
+                    :data-clipboard-text="currentToken"
+                    @click="success"
                     class="btn btn-primary"
                 >
                     Copy
@@ -27,6 +27,9 @@
 <script>
 export default {
     props: {},
+    mounted () {
+        new window.clipboard('.btn');
+    },
     methods: {
         create () {
             axios.post(route('ajax.create-token'), {
@@ -37,8 +40,8 @@ export default {
                     this.currentToken = results.data.data.token;
                     this.name = null;
                     window.notify.success('Token created!');
-                    this.$event.fire('get-notifications');
-                    this.$event.fire('new-api-token');
+                    window.app.$events.fire('get-notifications');
+                    window.app.$events.fire('new-api-token');
                 })
                 .catch((err) => {
                     //

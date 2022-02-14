@@ -30,15 +30,15 @@
     </head>
     <body>
         <div id="app" class="min-vh-100">
-            <div class="w-100 bmx-overflow-x-hidden">
+            <div class="w-100 bmx-overflow-x-hidden min-vh-100">
                 @yield("app-content")
             </div>
 
-            <cookielaw
+            <cookie-law
                 version="{{ config('app.version', 'v1') }}"
-            ></cookielaw>
-
+            ></cookie-law>
             <confirmation-modal></confirmation-modal>
+            <offcanvas></offcanvas>
             <content-modal></content-modal>
             <pending-overlay></pending-overlay>
             <notifications></notifications>

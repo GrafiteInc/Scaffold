@@ -57,7 +57,7 @@ hr {
 .sidebar {
     background-color: $sidebar-bg;
 
-    .nav-item.active a {
+    .nav-link.active {
         color: $primary;
     }
 
@@ -110,7 +110,6 @@ hr {
     color: $white;
 
     .navbar-nav {
-        background-color: $navbar-header;
         .nav-item {
             .nav-link {
                 color: $navbar-link-color;
@@ -158,7 +157,7 @@ hr {
     }
 }
 
-.app-nav {
+.app-with-sidebar-nav {
     border-bottom: 1px solid $gray-700;
 }
 
@@ -167,36 +166,6 @@ hr {
 | Forms
 |--------------------------------------------------------------------------
 */
-
-.bootstrap-select {
-    button.dropdown-toggle, button.dropdown-toggle:active {
-        color: $input-color !important;
-        border: 2px solid $input-border-color !important;
-        background-color: $input-bg !important;
-    }
-    .dropdown-menu {
-        li {
-            a.dropdown-item:hover {
-                color: $white !important;
-            }
-            .no-results {
-                background-color: transparent;
-            }
-        }
-    }
-    .no-results {
-        background: transparent !important;
-    }
-}
-
-.btn-select {
-    background-color: $black !important;
-}
-
-.vs--disabled .vs__dropdown-toggle, .vs--disabled .vs__clear, .vs--disabled .vs__search, .vs--disabled .vs__selected, .vs--disabled .vs__open-indicator {
-    background-color: $input-bg !important;
-    color: #EEE !important;
-}
 
 input.form-control:disabled, textarea.form-control:disabled, select.form-control:disabled {
     background-color: #222;
@@ -214,63 +183,6 @@ input.form-control, textarea.form-control, select.form-control {
     }
 }
 
-.vue__time-picker {
-    input.display-time {
-        background-color: $input-bg;
-        border: none !important;
-        color: #fff;
-    }
-}
-
-.vue__time-picker {
-    .dropdown {
-        border: #222 1px solid;
-        background-color: $input-bg !important;
-        ul {
-            li {
-                color: #EEE !important;
-            }
-        }
-    }
-}
-
-.datepicker {
-    input {
-        border: 2px solid $input-border-color;
-        background-color: $input-bg;
-        color: #EEE;
-        font-size: 0.85em !important;
-        font-weight: normal !important;
-    }
-}
-
-.vc-popover-content {
-    background-color: $input-bg !important;
-}
-
-.vc-container {
-    background-color: $input-bg !important;
-}
-
-.vs__dropdown-toggle {
-    background-color: $input-bg;
-    input {
-        color: #FFF;
-    }
-    .vs__selected {
-        color: #EEE;
-    }
-}
-
-.vs__dropdown-option {
-    color: #EEE;
-}
-
-.vs__dropdown-menu {
-    background-color: $input-bg !important;
-    color: #EEE;
-}
-
 .border-top, .border-left, .border-bottom, .border-right {
     border-color: $gray-800 !important;
 }
@@ -284,30 +196,6 @@ pre {
     padding: 24px;
     background-color: $input-bg;
     border-radius: 8px;
-}
-
-.ql-container.ql-snow {
-    border: 2px solid $input-border-color !important;
-}
-
-.ql-toolbar.ql-snow {
-    border: 2px solid $input-border-color !important;
-    background-color: $input-bg !important;
-    border-bottom: none !important;
-}
-
-.ql-snow .ql-editor {
-    border-bottom-right-radius: 4px !important;
-    border-bottom-left-radius: 4px !important;
-}
-
-.ql-bubble .ql-editor {
-    border: 2px solid transparent;
-}
-
-.ql-editor {
-    background-color: $input-bg !important;
-    border: 2px solid transparent;
 }
 
 .hover-highlight:hover {

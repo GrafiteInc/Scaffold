@@ -1,28 +1,31 @@
 <template>
     <div>
-        <cookie-law
-            theme="basic"
-            message="This website uses cookies to ensure you get the best experience on our website."
-            @accept="accept"
-            :storage-name="cookieName"
-        ></cookie-law>
+        <div class="cookie-banner" v-if="showBanner">
+            <span class="mx-4">This website uses cookies to ensure you get the best experience on our website.</span>
+            <button
+                class="btn btn-sm btn-outline-secondary mx-4"
+                @click="accept"
+            >Accept</button>
+        </div>
     </div>
 </template>
 
 <script>
-import CookieLaw from 'vue-cookie-law';
 export default {
-    mame: 'cookielaw',
+    mame: 'cookie-law',
     props: [
         'version'
     ],
-    components: {
-        CookieLaw
+    mounted () {
+        this.showBanner = window.localStorage.getItem(this.cookieName) ? false : true;
     },
     methods: {
         accept () {
             // If they have not accepted it yet, lets log it
             if (! window.localStorage.getItem(this.cookieName)) {
+                this.showBanner = false,
+                window.localStorage.setItem(this.cookieName, true);
+
                 axios.post(route('ajax.accept-cookie-policy'), {
                     version: this.version,
                 })
@@ -38,6 +41,7 @@ export default {
     },
     data () {
         return {
+            showBanner: true,
             cookieName: `cookie:accepted:${this.version}`
         };
     }
@@ -45,24 +49,16 @@ export default {
 </script>
 
 <style lang="scss">
-    @import './../../sass/light/variables';
-
-    .Cookie--basic {
-        background-color: $light;
-        color: $dark;
-        padding: 1.25em;
-    }
-
-    .Cookie--basic .Cookie__button {
-        background-color: $dark;
-        color: $light;
-        padding: 0.625em 3.125em;
-        border-radius: 0;
-        border: 0;
-        font-size: 1em;
-        &:hover {
-            background-color: $primary;
-            color: $white;
+    .cookie-banner {
+        left: 0;
+        bottom: 0;
+        position: fixed;
+        z-index: 10000000;
+        background: #333;
+        width: 100%;
+        text-align: center;
+        span {
+            line-height: 56px;
         }
     }
 </style>
