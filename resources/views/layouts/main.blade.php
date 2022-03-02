@@ -21,6 +21,8 @@
 
         @include('layouts.components.theme-styles')
 
+        <script src="https://kit.fontawesome.com/e46847d218.js" crossorigin="anonymous"></script>
+
         @formStyles
         @chartStyles
         @htmlStyles

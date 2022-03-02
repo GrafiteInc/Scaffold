@@ -8,6 +8,7 @@
     </nav>
 
     <main class="ms-sm-auto main">
+        <div class="sidebar-overlay"></div>
         <x-app-navbar-static></x-app-navbar-static>
 
         <div class="container app-sidebar-content">

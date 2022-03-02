@@ -12710,6 +12710,22 @@ input[type=file].form-control {
     margin-left: 0;
   }
 
+  .sidebar-overlay {
+    position: fixed;
+    width: 100%;
+    z-index: 30;
+    top: 0;
+    height: 100vh;
+    background-color: transparent;
+    -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+    display: none;
+  }
+
+  .sidebar-overlay.toggled {
+    display: block;
+  }
+
   .app-with-sidebar-nav {
     margin-left: 0px;
     width: 100%;
