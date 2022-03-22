@@ -7,7 +7,7 @@
                     <button type="button" class="btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <span v-html="message"></span>
+                    <p class="mb-4" v-html="message"></p>
                     <button @click="submitForm" class="float-end btn btn-outline-primary">
                         Confirm
                     </button>
