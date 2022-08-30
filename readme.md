@@ -36,7 +36,11 @@ Scaffold is *intended* to be used to start a project and then be heavily altered
 
 ## Requirements
 
-1. PHP 7.3+
+1. PHP 8.1+
+
+## Setup
+
+sail up
 
 ## Compatibility and Support
 

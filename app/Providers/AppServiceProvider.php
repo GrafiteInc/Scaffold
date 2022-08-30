@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use Laravel\Cashier\Cashier;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -41,5 +42,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('permission', function ($value) {
             return request()->user()->hasPermission($value);
         });
+
+        URL::forceScheme('https');
     }
 }
