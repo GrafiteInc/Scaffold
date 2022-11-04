@@ -6,10 +6,15 @@
 @import "dark/variables";
 @import '~bootstrap/scss/bootstrap';
 @import 'dark/bootswatch';
-// @import '~bootstrap-vue/src/index.scss';
 @import "stripe.scss";
 @import "dark/main.scss";
-@import "app.scss";
+
+@import "app/window.scss";
+@import "app/sidebar.scss";
+@import "app/navbar.scss";
+@import "app/avatar.scss";
+@import "app/primary_components.scss";
+@import "app/media_containers.scss";
 /*! purgecss end ignore */
 
 @import "@grafite/bootstrap-magic-extras";

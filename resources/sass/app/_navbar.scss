@@ -1,0 +1,43 @@
+.app-nav-fluid {
+    height: 60px;
+}
+
+.app-with-sidebar-nav {
+    height: 60px;
+    margin-left: 320px;
+    width: calc(100% - 320px);
+}
+
+.navbar-title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-avatar {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: cover;
+    line-height: 45px;
+    margin-bottom: -8px;
+    margin-right: 10px;
+}
+
+.navbar-nav {
+    .nav-user-dropdown {
+        &:focus {
+            box-shadow: none;
+        }
+    }
+    .dropdown-menu {
+        position: absolute;
+        top: 42px;
+        left: -164px;
+        width: 220px;
+    }
+    .dropdown-toggle::after {
+        content: none;
+    }
+}

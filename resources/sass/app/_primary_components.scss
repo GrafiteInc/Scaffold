@@ -1,0 +1,59 @@
+.main {
+    width: calc(100% - 320px);
+    padding-bottom: 48px;
+}
+
+.alert {
+    max-width: 320px;
+    position: fixed;
+    top: 75px;
+    left: calc(50% - 160px);
+}
+
+.content-sm {
+    width: 348px;
+    margin: 0px auto;
+    padding-top: 48px;
+}
+
+.content-md {
+    width: 548px;
+    margin: 0px auto;
+    padding-top: 48px;
+}
+
+.table {
+    td {
+        vertical-align: middle;
+    }
+}
+
+.modal-body {
+    .table {
+        tbody {
+            min-width: 100%;
+        }
+    }
+}
+
+.card-body {
+    .table {
+        width: calc(100% + 20px);
+        margin: -10px !important;
+        tr {
+            td {
+                padding: 0.55rem;
+            }
+        }
+    }
+}
+
+.table-hover {
+    tr:hover {
+        cursor: pointer;
+    }
+}
+
+.toggle {
+    margin-left: -20px;
+}

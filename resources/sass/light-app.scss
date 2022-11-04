@@ -6,10 +6,16 @@
 @import "light/variables";
 @import '~bootstrap/scss/bootstrap';
 @import 'light/bootswatch';
-// @import '~bootstrap-vue/src/index.scss';
 @import "stripe.scss";
+
 @import "light/main.scss";
-@import "app.scss";
+
+@import "app/window.scss";
+@import "app/sidebar.scss";
+@import "app/navbar.scss";
+@import "app/avatar.scss";
+@import "app/primary_components.scss";
+@import "app/media_containers.scss";
 /*! purgecss end ignore */
 
 @import "@grafite/bootstrap-magic-extras";
