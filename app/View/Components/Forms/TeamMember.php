@@ -2,37 +2,53 @@
 
 namespace App\View\Components\Forms;
 
-use Illuminate\View\Component;
-use App\View\Forms\TeamMemberForm;
+use Grafite\Forms\Fields\Email;
+use Grafite\Forms\Forms\ComponentForm;
+use Grafite\Forms\Fields\Bootstrap\Select;
 
-class TeamMember extends Component
+class TeamMember extends ComponentForm
 {
+    public $buttons = [
+        'submit' => 'Save',
+        'delete' => '<span class="fas fa-fw fa-trash"></span> Delete',
+    ];
+
+    public $columns = 2;
+
+    public $method = 'put';
+
     public $member;
 
-    public $team;
+    public $disableOnSubmit = true;
 
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
     public function __construct($member, $team)
     {
         $this->member = $member;
         $this->team = $team;
+
+        $this->setRoute('teams.members.update', [$this->team->id, $this->member->id]);
+
+        parent::__construct();
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render()
+    public function fields()
     {
-        return app(TeamMemberForm::class)
-            ->setMember($this->member)
-            ->setRoute('teams.members.update', [$this->team->id, $this->member->id])
-            ->make()
-            ->render();
+        return [
+            Email::make('email', [
+                'label' => 'Email',
+                'value' => $this->member->email,
+                'disabled' => 'disabled',
+            ]),
+            Select::make('team_role', [
+                'required' => true,
+                'multiple' => false,
+                'label' => 'Select a Team Role',
+                'options' => [
+                    'Manager' => 'manager',
+                    'Member' => 'member',
+                ],
+                'value' => $this->member->membership->team_role,
+            ]),
+        ];
     }
 }

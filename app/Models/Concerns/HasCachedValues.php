@@ -11,7 +11,7 @@ trait HasCachedValues
         $id = $this->id;
         $class = str_replace('\\', '-', get_class($this));
 
-        return strtolower("${class}_${string}_${id}");
+        return strtolower("{$class}_{$string}_{$id}");
     }
 
     public function clearCachedValues()

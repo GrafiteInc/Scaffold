@@ -2,29 +2,55 @@
 
 namespace App\View\Components\Forms;
 
-use App\View\Forms\TeamForm;
-use Illuminate\View\Component;
+use App\Models\Team as TeamModel;
+use Grafite\Forms\Fields\Text;
+use Grafite\Forms\Forms\ComponentModelForm;
+use Grafite\Forms\Fields\FileWithPreview;
 
-class Team extends Component
+class Team extends ComponentModelForm
 {
-    public $team;
+    public $model = TeamModel::class;
 
-    public function __construct($team = null)
-    {
-        $this->team = $team;
-    }
+    public $hasFiles = true;
+
+    public $disableOnSubmit = true;
+
+    public $deleteAsModal = true;
+
+    public $routePrefix = 'teams';
+
+    public $buttons = [
+        'submit' => 'Save',
+        'edit' => '<i class="fas fa-fw fa-cogs"></i> Settings',
+        'delete' => '<span class="fas fa-fw fa-trash"></span> Delete',
+    ];
+
+    public $columns = 1;
 
     /**
-     * Get the view / contents that represent the component.
+     * Form button classes.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @var array
      */
-    public function render()
-    {
-        if ($this->team) {
-            return app(TeamForm::class)->edit($this->team)->render();
-        }
+    public $buttonClasses = [
+        'submit' => 'btn btn-primary',
+        'cancel' => 'btn btn-secondary',
+        'edit' => 'btn btn-outline-primary btn-sm me-2',
+        'delete' => 'btn btn-sm btn-outline-danger',
+    ];
 
-        return app(TeamForm::class)->create()->render();
+    // public $confirmMessage = 'Are you sure you want to delete this team?';
+
+    public function fields()
+    {
+        return [
+            Text::make('name', [
+                'required' => true,
+            ]),
+            FileWithPreview::make('avatar', [
+                'preview_identifier' => '.avatar',
+                'preview_as_background_image' => true,
+            ]),
+        ];
     }
 }

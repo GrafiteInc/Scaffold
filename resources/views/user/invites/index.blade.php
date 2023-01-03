@@ -23,7 +23,7 @@
                                 @foreach($invites as $invite)
                                     <tr>
                                         <td>{{ $invite->message }}</td>
-                                        <td width="205px">
+                                        <td width="225px">
                                             <div class="btn-toolbar justify-content-between">
                                                 {!! form()->action('post',
                                                     ['user.invites.accept', $invite],

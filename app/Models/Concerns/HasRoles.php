@@ -31,7 +31,7 @@ trait HasRoles
      */
     public function hasRole($role)
     {
-        $id = "has_role_${role}";
+        $id = "has_role_{$role}";
 
         return Cache::remember($this->cacheIdentifier($id), 86400, function () use ($role) {
             return $this->roles()->where('name', $role)->count() === 1;

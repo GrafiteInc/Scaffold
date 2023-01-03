@@ -58,7 +58,7 @@ class RoleForm extends ModelForm
         foreach ($permissions as $model => $action) {
             foreach ($action as $name => $label) {
                 $key = Str::ucfirst(Str::singular($model)) . ' Permissions';
-                $options[$key][] = "permissions[${model}.${name}]";
+                $options[$key][] = "permissions[{$model}.{$name}]";
             }
         }
 
@@ -74,7 +74,7 @@ class RoleForm extends ModelForm
 
         foreach ($permissions as $model => $action) {
             foreach ($action as $name => $label) {
-                $options[] = Checkbox::make("permissions[${model}.${name}]", [
+                $options[] = Checkbox::make("permissions[{$model}.{$name}]", [
                     'label' => $label,
                 ]);
             }
