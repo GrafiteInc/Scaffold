@@ -4,7 +4,6 @@
 
 @section('content')
     <div class="content-sm mt-4 mb-4">
-
         <h3 class="text-center">Sign into your account</h3>
 
         @if (Route::has('register'))
@@ -19,11 +18,9 @@
 
         <div class="card shadow">
             <div class="card-body">
-                <x-forms.login></x-forms.login>
+                <x-f-base :form="\App\View\Forms\LoginForm::class" />
             </div>
         </div>
-
     </div>
-
 @stop
 

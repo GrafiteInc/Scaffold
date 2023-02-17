@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Ajax;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,13 +10,9 @@ class ApiTokenController extends Controller
 {
     public function index(Request $request)
     {
-        $tokens = $request->user()->tokens()->orderBy('created_at', 'DESC')->get();
+        $tokens = $request->user()->tokens()->orderByDesc('created_at')->get();
 
-        return response()->json([
-            'data' => [
-                'tokens' => $tokens,
-            ],
-        ]);
+        return view('user.api-tokens')->withTokens($tokens);
     }
 
     public function create(Request $request)
@@ -30,11 +26,7 @@ class ApiTokenController extends Controller
 
         $request->user()->notify($notification);
 
-        return response()->json([
-            'data' => [
-                'token' => $token->plainTextToken,
-            ],
-        ]);
+        return redirect()->back()->withToken($token->plainTextToken);
     }
 
     public function destroy(Request $request, $token)
@@ -46,8 +38,6 @@ class ApiTokenController extends Controller
 
         $token->delete();
 
-        return response()->json([
-            'message' => 'success',
-        ]);
+        return redirect()->back()->withMessage('Token deleted');
     }
 }

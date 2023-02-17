@@ -4,10 +4,10 @@ namespace App\View\Forms;
 
 use App\Models\Role;
 use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Forms\BaseForm;
+use Grafite\Forms\Forms\ComponentForm;
 use Grafite\Forms\Fields\Bootstrap\HasOne;
 
-class InviteUserForm extends BaseForm
+class InviteUserForm extends ComponentForm
 {
     /**
      * The form route.
@@ -21,6 +21,8 @@ class InviteUserForm extends BaseForm
     public $route = 'admin.users.send-invite';
 
     public $orientation = 'horizontal';
+
+    public $disableOnSubmit = true;
 
     /**
      * Buttons and values.

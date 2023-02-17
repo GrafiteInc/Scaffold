@@ -3,9 +3,9 @@
 namespace App\View\Forms;
 
 use Grafite\Forms\Fields\Password;
-use Grafite\Forms\Forms\ComponentForm;
+use Grafite\Forms\Forms\ModalForm;
 
-class LogoutForm extends ComponentForm
+class LogoutForm extends ModalForm
 {
     /**
      * The form route.

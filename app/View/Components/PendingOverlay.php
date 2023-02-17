@@ -1,11 +1,10 @@
 <?php
 
-namespace App\View\Components\Forms;
+namespace App\View\Components;
 
 use Illuminate\View\Component;
-use App\View\Forms\InviteUserForm;
 
-class InviteUser extends Component
+class PendingOverlay extends Component
 {
     /**
      * Get the view / contents that represent the component.
@@ -14,6 +13,6 @@ class InviteUser extends Component
      */
     public function render()
     {
-        return app(InviteUserForm::class)->make()->render();
+        return view('layouts.components.pending-overlay');
     }
 }

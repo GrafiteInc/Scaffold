@@ -24,26 +24,30 @@
         <script src="https://kit.fontawesome.com/e46847d218.js" crossorigin="anonymous"></script>
 
         @formStyles
+        @htmlStyles
         @chartStyles
         @htmlStyles
         @chartCdn
         @laravelPWA
         @missionControl
+
+        @stack('styles')
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     </head>
     <body>
         <div id="app" class="min-vh-100">
+            {{-- cookie law --}}
+            <x-html-tag component="\App\View\Components\Global\PendingOverlay" />
+            <x-html-tag component="\App\View\Components\Global\Notifications" />
+            <x-html-tag component="\App\View\Components\Global\ConfirmationModal" />
+            <x-html-tag component="\App\View\Components\Global\LivewireConfirmationModal" />
+            <x-html-tag component="\App\View\Components\Global\ActionModal" />
+            <x-html-tag component="\App\View\Components\Global\ContentModal" />
+            <x-html-tag component="\App\View\Components\Global\Offcanvas" />
+
             <div class="w-100 bmx-overflow-x-hidden min-vh-100">
                 @yield("app-content")
             </div>
-
-            <cookie-law
-                version="{{ config('app.version', 'v1') }}"
-            ></cookie-law>
-            <confirmation-modal></confirmation-modal>
-            <offcanvas></offcanvas>
-            <content-modal></content-modal>
-            <pending-overlay></pending-overlay>
-            <notifications></notifications>
 
             @yield("alerts")
         </div>
@@ -56,9 +60,13 @@
 
         <script src="{{ mix('/js/app.js') }}"></script>
 
-        @yield('javascript')
-
-        @formScripts
+        @livewireScripts
+        {{-- Because we need to reload the assets in case of Styles + JS --}}
+        @forms
+        {{-- Because we need to reload the assets in case of Styles + JS --}}
+        @htmlAssets
         @chartScripts
+
+        @stack('javascript')
     </body>
 </html>

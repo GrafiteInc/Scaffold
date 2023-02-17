@@ -1,11 +1,10 @@
 <?php
 
-namespace App\View\Components\Forms;
+namespace App\View\Components;
 
 use Illuminate\View\Component;
-use App\View\Forms\RegistrationForm;
 
-class Registration extends Component
+class ConfirmationModal extends Component
 {
     /**
      * Get the view / contents that represent the component.
@@ -14,6 +13,6 @@ class Registration extends Component
      */
     public function render()
     {
-        return app(RegistrationForm::class)->make()->render();
+        return view('layouts.components.confirmation-modal');
     }
 }

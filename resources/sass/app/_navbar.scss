@@ -13,6 +13,13 @@
     font-weight: bold;
 }
 
+.notification-badge {
+    display: inline-block;
+    position: absolute;
+    margin-top: -10px;
+    right: 94px;
+}
+
 .nav-avatar {
     display: inline-block;
     width: 26px;

@@ -9,6 +9,12 @@
     .sidebar {
         margin-left: 0px;
     }
+    .text-truncate {
+        max-width: 650px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 /*
@@ -30,6 +36,14 @@
     .app-with-sidebar-nav {
         margin-left: 220px;
         width: calc(100% - 220px);
+    }
+    .text-truncate {
+        width: 300px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
     }
 }
 
@@ -98,5 +112,13 @@
     }
     .page-link {
         padding: 10px !important;
+    }
+    .text-truncate {
+        width: 200px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
     }
 }

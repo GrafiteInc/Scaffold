@@ -12,7 +12,7 @@
 </li>
 <li class="nav-item">
     <a class="nav-link pe-4" href="{{ route('user.notifications') }}">
-        <notification-badge></notification-badge>
+        <livewire:notification-badge />
         <span class="fas fa-bell"></span>
     </a>
 </li>

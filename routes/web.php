@@ -15,17 +15,15 @@ use App\Http\Controllers\RevokeInviteController;
 use App\Http\Controllers\User\BillingController;
 use App\Http\Controllers\User\DestroyController;
 use App\Http\Controllers\User\InvitesController;
-use App\Http\Controllers\Ajax\ApiTokenController;
+use App\Http\Controllers\User\ApiTokenController;
 use App\Http\Controllers\User\SettingsController;
 use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\Ajax\FileUploadController;
 use App\Http\Controllers\Ajax\CookiePolicyController;
 use App\Http\Controllers\Ajax\SubscriptionController;
-use App\Http\Controllers\User\ApiTokenIndexController;
 use App\Http\Controllers\User\NotificationsController;
 use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\User\LogoutSessionsController;
-use App\Http\Controllers\Ajax\NotificationCountController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 /*
@@ -122,7 +120,9 @@ Route::middleware('auth')->group(function () {
             Route::put('settings/security', [ChangePasswordController::class, 'update'])
                 ->name('user.settings.password.update');
 
-            Route::get('api-tokens', ApiTokenIndexController::class)->name('user.api-tokens');
+            Route::get('api-tokens', [ApiTokenController::class, 'index'])->name('user.api-tokens');
+            Route::delete('token/{token}/destroy', [ApiTokenController::class, 'destroy'])->name('user.destroy-token');
+            Route::post('token', [ApiTokenController::class, 'create'])->name('user.create-token');
 
             Route::prefix('billing')->group(function () {
                 Route::middleware('has-subscription')->group(function () {
@@ -188,12 +188,6 @@ Route::middleware('auth')->group(function () {
         */
 
         Route::prefix('ajax')->group(function () {
-            Route::get('tokens', [ApiTokenController::class, 'index'])->name('ajax.tokens');
-            Route::post('token', [ApiTokenController::class, 'create'])->name('ajax.create-token');
-            Route::delete('token/{token}/destroy', [ApiTokenController::class, 'destroy'])->name('ajax.destroy-token');
-
-            Route::get('notifications-count', NotificationCountController::class)->name('ajax.notifications-count');
-
             Route::post('subscribe', [SubscriptionController::class, 'createSubscription'])
                 ->name('ajax.billing.subscription.create');
             Route::post('payment-method', [SubscriptionController::class, 'updatePaymentMethod'])

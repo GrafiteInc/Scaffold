@@ -20,7 +20,7 @@
             <div class="card-body">
                 <div class="form-group mb-3">
                     <label for="number" class="form-label">Credit Card</label>
-                    <input class="form-control" disabled type="text" name="number" value="**** **** **** {{ $user->card_last_four }}">
+                    <input class="form-control" disabled type="text" name="number" value="**** **** **** {{ $user->pm_last_four }}">
                 </div>
             </div>
         </div>

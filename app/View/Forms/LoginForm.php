@@ -1,15 +1,15 @@
 <?php
 
-namespace App\View\Components\Forms;
+namespace App\View\Forms;
 
 use Grafite\Forms\Html\Link;
 use Grafite\Forms\Fields\Email;
 use Grafite\Forms\Html\HoneyPot;
-use Grafite\Forms\Forms\ComponentForm;
+use Grafite\Forms\Forms\BaseForm;
 use Grafite\Forms\Fields\CheckboxInline;
 use Grafite\Forms\Fields\PasswordWithReveal;
 
-class Login extends ComponentForm
+class LoginForm extends BaseForm
 {
     public $route = 'login';
 

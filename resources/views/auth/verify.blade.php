@@ -26,7 +26,7 @@
 
 @section('alerts')
     @if (session('resent'))
-        <div class="alert alert-info" role="alert">
+        <div class="alert bg-info" role="alert">
             {{ __('A fresh verification link has been sent to your email address.') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>

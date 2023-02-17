@@ -29,7 +29,7 @@
         </div>
         <div class="col-md-8 mb-4">
             <div>
-                <x-forms.team :instance="$team"></x-forms.team>
+                <x-f-model :form="\App\View\Forms\TeamForm::class" :model="$team" action="edit" />
             </div>
         </div>
     </div>

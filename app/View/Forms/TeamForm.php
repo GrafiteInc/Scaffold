@@ -1,15 +1,15 @@
 <?php
 
-namespace App\View\Components\Forms;
+namespace App\View\Forms;
 
-use App\Models\Team as TeamModel;
+use App\Models\Team;
 use Grafite\Forms\Fields\Text;
-use Grafite\Forms\Forms\ComponentModelForm;
+use Grafite\Forms\Forms\ModelForm;
 use Grafite\Forms\Fields\FileWithPreview;
 
-class Team extends ComponentModelForm
+class TeamForm extends ModelForm
 {
-    public $model = TeamModel::class;
+    public $model = Team::class;
 
     public $hasFiles = true;
 

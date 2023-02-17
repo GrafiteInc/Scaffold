@@ -3,10 +3,10 @@
 namespace App\View\Forms;
 
 use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Forms\ComponentForm;
+use Grafite\Forms\Forms\BaseForm;
 use Grafite\Forms\Fields\Bootstrap\Select;
 
-class TeamMemberForm extends ComponentForm
+class TeamMemberForm extends BaseForm
 {
     public $buttons = [
         'submit' => 'Save',
@@ -17,26 +17,18 @@ class TeamMemberForm extends ComponentForm
 
     public $method = 'put';
 
-    public $member;
+    public $membership;
+
+    public $email;
 
     public $disableOnSubmit = true;
-
-    public function __construct($member, $team)
-    {
-        $this->member = $member;
-        $this->team = $team;
-
-        $this->setRoute('teams.members.update', [$this->team->id, $this->member->id]);
-
-        parent::__construct();
-    }
 
     public function fields()
     {
         return [
             Email::make('email', [
                 'label' => 'Email',
-                'value' => $this->member->email,
+                'value' => $this->email,
                 'disabled' => 'disabled',
             ]),
             Select::make('team_role', [
@@ -47,8 +39,16 @@ class TeamMemberForm extends ComponentForm
                     'Manager' => 'manager',
                     'Member' => 'member',
                 ],
-                'value' => $this->member->membership->team_role,
+                'value' => $this->membership,
             ]),
         ];
+    }
+
+    public function setMember($member)
+    {
+        $this->membership = $member->membership->team_role;
+        $this->email = $member->email;
+
+        return $this;
     }
 }
