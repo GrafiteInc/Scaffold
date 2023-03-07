@@ -36,7 +36,9 @@ class LivewireConfirmationModal extends HtmlTagComponent
             window.submitLivewireConfirmationForm = function (event) {
                 let _livewireMethod = window.livewireConfirmationFormTarget.closest('form').getAttribute('wire:submit.prevent');
                 let _id = _livewireMethod.replace(/^\D+/g, '');
-                window.Livewire.emit('formConfirmed', _id);
+                let _class = _livewireMethod.substr(_livewireMethod.indexOf("'") + 1);
+                    _class = _class.replace("')", '');
+                window.Livewire.emit('form'+_class+'Confirmed', _id);
 
                 let _modal = window.bootstrap.Modal.getOrCreateInstance(document.getElementById('livewireConfirmationModal'));
                 _modal.toggle();

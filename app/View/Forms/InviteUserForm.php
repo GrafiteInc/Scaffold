@@ -4,10 +4,10 @@ namespace App\View\Forms;
 
 use App\Models\Role;
 use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Forms\ComponentForm;
+use Grafite\Forms\Forms\BaseForm;
 use Grafite\Forms\Fields\Bootstrap\HasOne;
 
-class InviteUserForm extends ComponentForm
+class InviteUserForm extends BaseForm
 {
     /**
      * The form route.
