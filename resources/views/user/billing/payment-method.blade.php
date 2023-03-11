@@ -43,9 +43,9 @@
 
 @stop
 
-@section('pre-app-js')
+@push('pre-app-js')
     <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
     <script>
         window.stripe_key = "{{ config("services.stripe.key") }}";
     </script>
-@stop
+@endpush

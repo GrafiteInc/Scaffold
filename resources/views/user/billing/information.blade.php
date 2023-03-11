@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-md-6">
                         {!!
-                            form()->makeField(\Grafite\Forms\Fields\Bootstrap\Country::class, 'country', [
+                            form()->makeField(\Grafite\Forms\Fields\Country::class, 'country', [
                                 'id' => 'card-holder-country',
                                 'required' => true,
                                 'disabled' => $user->country,

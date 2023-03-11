@@ -56,7 +56,7 @@
 
         {!! javascript_session_data() !!}
 
-        @yield('pre-app-js')
+        @stack('pre-app-js')
 
         <script src="{{ mix('/js/app.js') }}"></script>
 
