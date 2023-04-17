@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Actions\UpdateUserAvatar;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use PragmaRX\Google2FA\Support\QRCode;
 use Illuminate\Support\Facades\Storage;
+use PragmaRX\Google2FAQRCode\Google2FA;
 use App\Http\Requests\UserUpdateRequest;
 use App\Actions\ProcessUserTwoFactorSettings;
 
@@ -67,12 +69,16 @@ class SettingsController extends Controller
      */
     public function twoFactorSetup(Request $request)
     {
-        $google2fa = app('pragmarx.google2fa');
+        $google2fa = new Google2FA();
 
         // Show them the QR or manual code
         return view('user.authenticator', [
             'manual' => $request->user()->two_factor_code,
-            'code' => $google2fa->getQRCodeInline(
+            'code' => $google2fa->setQrcodeService(
+                new \PragmaRX\Google2FAQRCode\QRCode\Bacon(
+                    new \BaconQrCode\Renderer\Image\SvgImageBackEnd()
+                )
+            )->getQRCodeInline(
                 config('app.name'),
                 $request->user()->email,
                 $request->user()->two_factor_code,

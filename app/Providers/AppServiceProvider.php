@@ -43,6 +43,10 @@ class AppServiceProvider extends ServiceProvider
             return request()->user()->hasPermission($value);
         });
 
+        Blade::directive('session', function () {
+            return "<?php echo javascript_session_data(); ?>";
+        });
+
         if (! app()->environment('testing')) {
             URL::forceScheme('https');
         }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24c9999bef7d0eb42f2c39333eb48ae3",
+    "content-hash": "e54cd83aff01b8360eb75c1e6100961b",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -149,6 +149,60 @@
                 "source": "https://github.com/aws/aws-sdk-php/tree/3.261.5"
             },
             "time": "2023-03-06T19:20:40+00:00"
+        },
+        {
+            "name": "bacon/bacon-qr-code",
+            "version": "2.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bacon/BaconQrCode.git",
+                "reference": "8674e51bb65af933a5ffaf1c308a660387c35c22"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/8674e51bb65af933a5ffaf1c308a660387c35c22",
+                "reference": "8674e51bb65af933a5ffaf1c308a660387c35c22",
+                "shasum": ""
+            },
+            "require": {
+                "dasprid/enum": "^1.0.3",
+                "ext-iconv": "*",
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "phly/keep-a-changelog": "^2.1",
+                "phpunit/phpunit": "^7 | ^8 | ^9",
+                "spatie/phpunit-snapshot-assertions": "^4.2.9",
+                "squizlabs/php_codesniffer": "^3.4"
+            },
+            "suggest": {
+                "ext-imagick": "to generate QR code images"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BaconQrCode\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Scholzen 'DASPRiD'",
+                    "email": "mail@dasprids.de",
+                    "homepage": "https://dasprids.de/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "BaconQrCode is a QR code generator for PHP.",
+            "homepage": "https://github.com/Bacon/BaconQrCode",
+            "support": {
+                "issues": "https://github.com/Bacon/BaconQrCode/issues",
+                "source": "https://github.com/Bacon/BaconQrCode/tree/2.0.8"
+            },
+            "time": "2022-12-07T17:46:57+00:00"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -366,6 +420,198 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "chillerlan/php-qrcode",
+            "version": "4.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chillerlan/php-qrcode.git",
+                "reference": "2ca4bf5ae048af1981d1023ee42a0a2a9d51e51d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chillerlan/php-qrcode/zipball/2ca4bf5ae048af1981d1023ee42a0a2a9d51e51d",
+                "reference": "2ca4bf5ae048af1981d1023ee42a0a2a9d51e51d",
+                "shasum": ""
+            },
+            "require": {
+                "chillerlan/php-settings-container": "^2.1.4",
+                "ext-mbstring": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "phan/phan": "^5.3",
+                "phpunit/phpunit": "^9.5",
+                "setasign/fpdf": "^1.8.2"
+            },
+            "suggest": {
+                "chillerlan/php-authenticator": "Yet another Google authenticator! Also creates URIs for mobile apps.",
+                "setasign/fpdf": "Required to use the QR FPDF output."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "chillerlan\\QRCode\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kazuhiko Arase",
+                    "homepage": "https://github.com/kazuhikoarase"
+                },
+                {
+                    "name": "Smiley",
+                    "email": "smiley@chillerlan.net",
+                    "homepage": "https://github.com/codemasher"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/chillerlan/php-qrcode/graphs/contributors"
+                }
+            ],
+            "description": "A QR code generator. PHP 7.4+",
+            "homepage": "https://github.com/chillerlan/php-qrcode",
+            "keywords": [
+                "phpqrcode",
+                "qr",
+                "qr code",
+                "qrcode",
+                "qrcode-generator"
+            ],
+            "support": {
+                "issues": "https://github.com/chillerlan/php-qrcode/issues",
+                "source": "https://github.com/chillerlan/php-qrcode/tree/4.3.4"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/donate?hosted_button_id=WLYUNAT9ZTJZ4",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://ko-fi.com/codemasher",
+                    "type": "ko_fi"
+                }
+            ],
+            "time": "2022-07-25T09:12:45+00:00"
+        },
+        {
+            "name": "chillerlan/php-settings-container",
+            "version": "2.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chillerlan/php-settings-container.git",
+                "reference": "1beb7df3c14346d4344b0b2e12f6f9a74feabd4a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chillerlan/php-settings-container/zipball/1beb7df3c14346d4344b0b2e12f6f9a74feabd4a",
+                "reference": "1beb7df3c14346d4344b0b2e12f6f9a74feabd4a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "phan/phan": "^5.3",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "chillerlan\\Settings\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Smiley",
+                    "email": "smiley@chillerlan.net",
+                    "homepage": "https://github.com/codemasher"
+                }
+            ],
+            "description": "A container class for immutable settings objects. Not a DI container. PHP 7.4+",
+            "homepage": "https://github.com/chillerlan/php-settings-container",
+            "keywords": [
+                "PHP7",
+                "Settings",
+                "configuration",
+                "container",
+                "helper"
+            ],
+            "support": {
+                "issues": "https://github.com/chillerlan/php-settings-container/issues",
+                "source": "https://github.com/chillerlan/php-settings-container"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/donate?hosted_button_id=WLYUNAT9ZTJZ4",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://ko-fi.com/codemasher",
+                    "type": "ko_fi"
+                }
+            ],
+            "time": "2022-07-05T22:32:14+00:00"
+        },
+        {
+            "name": "dasprid/enum",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DASPRiD/Enum.git",
+                "reference": "8e6b6ea76eabbf19ea2bf5b67b98e1860474012f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DASPRiD/Enum/zipball/8e6b6ea76eabbf19ea2bf5b67b98e1860474012f",
+                "reference": "8e6b6ea76eabbf19ea2bf5b67b98e1860474012f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1 <9.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7 | ^8 | ^9",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DASPRiD\\Enum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Scholzen 'DASPRiD'",
+                    "email": "mail@dasprids.de",
+                    "homepage": "https://dasprids.de/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP 7.1 enum implementation",
+            "keywords": [
+                "enum",
+                "map"
+            ],
+            "support": {
+                "issues": "https://github.com/DASPRiD/Enum/issues",
+                "source": "https://github.com/DASPRiD/Enum/tree/1.0.4"
+            },
+            "time": "2023-03-01T18:44:03+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -1459,16 +1705,16 @@
         },
         {
             "name": "grafite/maintenance",
-            "version": "v0.3.0",
+            "version": "v0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Maintenance.git",
-                "reference": "a213b451636563fa66e58a2b4bc3c5a8e28dab96"
+                "reference": "ff24ceb19b7e8d4f2e1fb26b4dee3de3688ebb9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Maintenance/zipball/a213b451636563fa66e58a2b4bc3c5a8e28dab96",
-                "reference": "a213b451636563fa66e58a2b4bc3c5a8e28dab96",
+                "url": "https://api.github.com/repos/GrafiteInc/Maintenance/zipball/ff24ceb19b7e8d4f2e1fb26b4dee3de3688ebb9f",
+                "reference": "ff24ceb19b7e8d4f2e1fb26b4dee3de3688ebb9f",
                 "shasum": ""
             },
             "require": {
@@ -1507,9 +1753,9 @@
             "description": "A handy set of commands for app maintenance",
             "support": {
                 "issues": "https://github.com/GrafiteInc/Maintenance/issues",
-                "source": "https://github.com/GrafiteInc/Maintenance/tree/v0.3.0"
+                "source": "https://github.com/GrafiteInc/Maintenance/tree/v0.3.1"
             },
-            "time": "2023-03-03T13:28:50+00:00"
+            "time": "2023-03-07T13:50:25+00:00"
         },
         {
             "name": "grafite/mission-control",

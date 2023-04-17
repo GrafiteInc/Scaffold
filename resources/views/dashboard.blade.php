@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card shadow-sm">
-                    <div class="card-header text-center">
+                    <div class="card-header text-center bmx-bg-indigo-light">
                         <h4 class="m-0">New User</h4>
                     </div>
                     <x-forms.user-wizard></x-forms.user-wizard>

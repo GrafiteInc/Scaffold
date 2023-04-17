@@ -1,3 +1,16 @@
+.navbar-header {
+    background-color: var(--app-navbar-bg);
+    color: var(--app-navbar-header);
+
+    .navbar-nav {
+        .nav-item {
+            .nav-link {
+                color: var(--app-navbar-link-color);
+            }
+        }
+    }
+}
+
 .app-nav-fluid {
     height: 60px;
 }
@@ -6,6 +19,7 @@
     height: 60px;
     margin-left: 320px;
     width: calc(100% - 320px);
+    border-bottom: 1px solid var(--app-navbar-bottom-border);
 }
 
 .navbar-title {

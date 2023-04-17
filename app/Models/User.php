@@ -84,15 +84,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-
-    /**
-     * The attributes that should be cast to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'two_factor_expires_at',
+        'two_factor_expires_at' => 'datetime',
     ];
 
     /**

@@ -1,15 +1,3 @@
-@media (prefers-color-scheme: dark) {
-    html {
-        background-color: #222;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    html {
-        background-color: #FFF;
-    }
-}
-
-input[type="file"].form-control {
-    line-height: 1.2;
+html {
+    background-color: var(--app-html-bg);
 }

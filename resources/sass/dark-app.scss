@@ -1,8 +1,4 @@
 /*! purgecss start ignore */
-// @import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
-// @import '@fortawesome/fontawesome-free/scss/solid.scss';
-// @import '@fortawesome/fontawesome-free/scss/brands.scss';
-// @import '@fortawesome/fontawesome-free/scss/regular.scss';
 @import "dark/variables";
 @import '~bootstrap/scss/bootstrap';
 @import 'dark/bootswatch';
@@ -15,6 +11,7 @@
 @import "app/avatar.scss";
 @import "app/primary_components.scss";
 @import "app/media_containers.scss";
+
 /*! purgecss end ignore */
 
 @import "@grafite/bootstrap-magic-extras";

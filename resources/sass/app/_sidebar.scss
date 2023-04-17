@@ -1,3 +1,28 @@
+/*
+|--------------------------------------------------------------------------
+| Sidebar
+|--------------------------------------------------------------------------
+*/
+
+.sidebar {
+    background-color: var(--app-sidebar-bg);
+
+    .nav-link.active {
+        color: var(--bs-primary);
+    }
+
+    .nav-item {
+        a {
+            color: var(--app-sidebar-link)
+        }
+    }
+}
+
+.sidebar-header {
+    background-color: var(--app-sidebar-header);
+    color: var(--bs-white);
+}
+
 .app-sidebar-content {
     margin-top: 80px;
 }

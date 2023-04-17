@@ -11,7 +11,7 @@ class Notifications extends HtmlTagComponent
         return <<<HTML
             <div class="position-fixed top-0 end-0 pe-3 pt-4 mt-5 bmx-z-4">
                 <div id="toaster" class="toast border-0 align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="d-flex">
+                    <div class="d-flex text-white">
                         <div id="_componentNotification" class="toast-body"></div>
                         <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>

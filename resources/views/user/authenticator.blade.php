@@ -28,7 +28,7 @@
             </div>
 
             <div class="mt-5 d-flex justify-content-center">
-                <img src="{{ $code }}">
+                {!! $code !!}
             </div>
         </div>
     </div>

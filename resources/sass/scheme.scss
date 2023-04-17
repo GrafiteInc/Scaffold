@@ -1,0 +1,44 @@
+@media (prefers-color-scheme: light) {
+    :root {
+        --app-html-bg: #FFF;
+        --bs-body-bg: var(--bs-white);
+        --app-navbar-bg: #FFF;
+        --app-navbar-header: #222;
+        --app-navbar-link-color: #222;
+        --app-navbar-bottom-border: #EEE;
+        --app-sidebar-bg: var(--bs-gray-100);
+        --app-sidebar-header: #8c8b94;
+        --app-sidebar-link: #222;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --app-html-bg: #000;
+        --app-navbar-bg: #222;
+        --app-navbar-header: #222;
+        --app-navbar-link-color: #FFF;
+        --app-navbar-bottom-border: #333;
+        --app-sidebar-bg: #303030;
+        --app-sidebar-header: #8c8b94;
+        --app-sidebar-link: #fff;
+        --bs-body-bg: #222;
+        --bs-dark-rgb: 0,0,0;
+        --bs-border-color: #444;
+
+        .table-carded tr td:first-child {
+            border-left-color: var(--bs-border-color);
+        }
+        .table-carded tr td {
+            border-top-color: var(--bs-border-color);
+            border-bottom-color: var(--bs-border-color);
+        }
+        .table-carded tr td:last-child {
+            border-right-color: var(--bs-border-color);
+        }
+    }
+
+    .btn-text {
+        color: #fff;
+    }
+}
