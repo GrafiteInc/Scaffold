@@ -14,7 +14,7 @@
                             {!! csrf_field() !!}
 
                             <label for="passcode">One Time Password</label>
-                            <input id="passcode" class="form-control" name="one_time_password" type="text" required>
+                            <input id="passcode" class="form-control mt-3" name="one_time_password" type="text" required>
 
                             <div class="row">
                                 <div class="col-md-12 mt-4">

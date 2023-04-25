@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Collective\Auth\Foundation\SendsPasswordResetEmails;
+use Grafite\Auth\Foundation\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
 {

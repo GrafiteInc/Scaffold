@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
-use Collective\Auth\Foundation\RegistersUsers;
+use Grafite\Auth\Foundation\RegistersUsers;
 use App\Http\Controllers\Auth\Concerns\RegisterViaInvites;
 
 class RegisterController extends Controller

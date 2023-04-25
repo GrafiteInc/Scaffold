@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Collective\Auth\Foundation\ResetsPasswords;
+use Grafite\Auth\Foundation\ResetsPasswords;
 use App\Http\Requests\UserPasswordUpdateRequest;
 
 class ChangePasswordController extends Controller

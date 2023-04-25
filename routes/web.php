@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth;
+use Grafite\Auth\Facades\GrafiteAuth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TeamsController;
-use Collective\Auth\Facades\CollectiveAuth;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
@@ -66,7 +66,7 @@ Route::post('register/invite', [Auth\RegisterController::class, 'registerViaInvi
     ->name('register.invite');
 
 Route::middleware(ProtectAgainstSpam::class)->group(function () {
-    CollectiveAuth::routes([
+    GrafiteAuth::routes([
         'login' => true,
         'logout' => true,
         'register' => config('general.registration_available', false),
