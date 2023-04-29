@@ -2,6 +2,9 @@
 
 namespace App\Models\Concerns;
 
+use Exception;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Notifications\TwoFactorNotification;
 
 trait HasTwoFactor
@@ -43,16 +46,25 @@ trait HasTwoFactor
         return ! is_null($this->two_factor_code);
     }
 
-    public function hasValidTwoFactorCode()
+    public function notConfirmedTwoFactor()
     {
-        return ! is_null($this->two_factor_expires_at)
-            && $this->two_factor_expires_at->gt(now());
+        return is_null($this->two_factor_confirmed_at);
     }
 
     public function validateTwoFactorCode()
     {
+        if (now()->gt($this->two_factor_expires_at)) {
+            Auth::logout();
+            Session::invalidate();
+            Session::flush();
+
+            abort(403, 'Expired Code');
+        }
+
         $this->update([
-            'two_factor_expires_at' => now()->addHours(config('auth.two_factor_valid_hours', 24)),
+            'two_factor_code' => null,
+            'two_factor_expires_at' => null,
+            'two_factor_confirmed_at' => now(),
         ]);
     }
 
@@ -67,6 +79,7 @@ trait HasTwoFactor
         $code = mt_rand(100000, 999999);
 
         $this->update([
+            'two_factor_expires_at' => now()->addMinutes(config('auth.two_factor_valid_hours', 10)),
             'two_factor_code' => $code,
         ]);
 

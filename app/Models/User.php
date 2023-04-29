@@ -62,6 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_platform',
         'two_factor_code',
         'two_factor_expires_at',
+        'two_factor_confirmed_at',
     ];
 
     /**
@@ -75,6 +76,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_platform',
         'two_factor_code',
         'two_factor_expires_at',
+        'two_factor_confirmed_at',
     ];
 
     /**
@@ -85,6 +87,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
         'two_factor_expires_at' => 'datetime',
+        'two_factor_confirmed_at' => 'datetime',
     ];
 
     /**
