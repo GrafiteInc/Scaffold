@@ -2,10 +2,9 @@
 
 namespace App\Models\Concerns;
 
-use Exception;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use PragmaRX\Recovery\Recovery;
 use App\Notifications\TwoFactorNotification;
+use App\Notifications\TwoFactorRecoveryNotification;
 
 trait HasTwoFactor
 {
@@ -19,6 +18,11 @@ trait HasTwoFactor
         $this->attributes['two_factor_code'] = is_null($value) ? $value : encrypt($value);
     }
 
+    public function setTwoFactorRecoveryCodesAttribute($value)
+    {
+        $this->attributes['two_factor_recovery_codes'] = is_null($value) ? $value : encrypt($value);
+    }
+
     public function getTwoFactorCodeAttribute($value)
     {
         if (! is_null($value)) {
@@ -30,11 +34,11 @@ trait HasTwoFactor
 
     public function setTwoFactorCode()
     {
-        if ($this->two_factor_platform === 'authenticator') {
+        if ($this->usesTwoFactor('authenticator')) {
             return $this->setTwoFactorForAuthenticator();
         }
 
-        if ($this->two_factor_platform === 'email') {
+        if ($this->usesTwoFactor('email')) {
             return $this->setTwoFactorForEmail();
         }
 
@@ -53,16 +57,7 @@ trait HasTwoFactor
 
     public function validateTwoFactorCode()
     {
-        if (now()->gt($this->two_factor_expires_at)) {
-            Auth::logout();
-            Session::invalidate();
-            Session::flush();
-
-            abort(403, 'Expired Code');
-        }
-
         $this->update([
-            'two_factor_code' => null,
             'two_factor_expires_at' => null,
             'two_factor_confirmed_at' => now(),
         ]);
@@ -91,9 +86,15 @@ trait HasTwoFactor
         $google2fa = app('pragmarx.google2fa');
         $code = $google2fa->generateSecretKey();
 
+        $recovery = new Recovery();
+        $recoveryCodes = $recovery->toArray();
+
         $this->update([
             'two_factor_code' => $code,
+            'two_factor_recovery_codes' => implode(',', $recoveryCodes),
         ]);
+
+        $this->notify(new TwoFactorRecoveryNotification($recoveryCodes));
 
         return $code;
     }

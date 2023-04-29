@@ -17,13 +17,13 @@ class TwoFactor
     {
         $user = auth()->user();
 
-        if (auth()->check() && $user->notConfirmedTwoFactor()) {
-            if ($user->two_factor_platform === 'email') {
-                auth()->user()->setAndSendTwoFactorForEmail();
+        if ($user->notConfirmedTwoFactor()) {
+            if ($user->usesTwoFactor('email')) {
+                $user->setAndSendTwoFactorForEmail();
                 return redirect(route('verification.two-factor'));
             }
 
-            if ($user->two_factor_platform === 'authenticator') {
+            if ($user->usesTwoFactor('authenticator')) {
                 $authenticator = app(Authenticator::class)->boot($request);
 
                 if (! $authenticator->isAuthenticated()) {

@@ -50,7 +50,8 @@ class SettingsController extends Controller
             activity('Settings updated.');
 
             if (ProcessUserTwoFactorSettings::handle($request)) {
-                return redirect()->route('user.settings.two-factor')->withInfo('Setup your authorization app.');
+                return redirect()->route('user.settings.two-factor')
+                    ->withInfo('Setup your authorization app.');
             }
 
             return redirect()->route('user.settings')->withMessage('Settings updated successfully');

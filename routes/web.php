@@ -15,6 +15,7 @@ use App\Http\Controllers\RevokeInviteController;
 use App\Http\Controllers\User\BillingController;
 use App\Http\Controllers\User\DestroyController;
 use App\Http\Controllers\User\InvitesController;
+use App\Http\Controllers\Auth\RecoveryController;
 use App\Http\Controllers\User\ApiTokenController;
 use App\Http\Controllers\User\SettingsController;
 use App\Http\Controllers\Auth\TwoFactorController;
@@ -81,6 +82,11 @@ Route::middleware(ProtectAgainstSpam::class)->group(function () {
 | Authenticated Routes
 |--------------------------------------------------------------------------
 */
+
+Route::get('recovery', [RecoveryController::class, 'show'])
+    ->name('recovery');
+Route::post('recovery', [RecoveryController::class, 'verify'])
+    ->name('recovery.verify');
 
 Route::middleware('auth')->group(function () {
     Route::get('verify/two-factor', [TwoFactorController::class, 'showForm'])
