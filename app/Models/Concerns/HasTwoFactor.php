@@ -32,6 +32,15 @@ trait HasTwoFactor
         return null;
     }
 
+    public function getTwoFactorRecoveryCodesAttribute($value)
+    {
+        if (! is_null($value)) {
+            return decrypt($value);
+        }
+
+        return null;
+    }
+
     public function setTwoFactorCode()
     {
         if ($this->usesTwoFactor('authenticator')) {

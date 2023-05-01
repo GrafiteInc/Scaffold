@@ -3,6 +3,7 @@
 namespace Tests\Feature\Controllers\User;
 
 use Tests\TestCase;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTwoFactorTest extends TestCase
@@ -11,34 +12,41 @@ class UserTwoFactorTest extends TestCase
 
     public function testTwoFactorEmail(): void
     {
-        // status and content
-        // Passport::actingAsClient(
-        //     \factory(Client::class)->create(),
-        //     ['auth-manage'],
-        // );
+        Notification::fake();
 
-        // $response = $this->postJson('/register', [
-        //     'email' => $this->faker->safeEmail,
-        //     'password' => Str::random(16),
-        // ]);
+        $response = $this->put(route('user.settings'), [
+            'name' => $this->user->name,
+            'email' => $this->user->email,
+            'two_factor_platform' => 'email',
+        ]);
 
-        // $response->assertStatus(422);
+        // Special note here, because the email is sent via the middleware
+        // we do not get the email as something we can confirm like the test below.
+        $response->assertRedirect(route('user.settings'));
+
+        $this->assertNotNull($this->user->two_factor_code);
+        $this->assertNotNull($this->user->two_factor_expires_at);
+        $this->assertNull($this->user->two_factor_confirmed_at);
+        $this->assertNull($this->user->two_factor_recovery_codes);
     }
 
-    public function testGoogleTwoFactor(): void
+    public function testAuthenticatorTwoFactor(): void
     {
-        // status and content
-        // Passport::actingAsClient(
-        //     \factory(Client::class)->create(),
-        //     ['auth-manage'],
-        // );
+        Notification::fake();
 
-        // $response = $this->postJson('/register', [
-        //     'name' => $this->faker->name,
-        //     'email' => $this->faker->safeEmail,
-        //     'password' => Str::random(16),
-        // ]);
+        $response = $this->put(route('user.settings'), [
+            'name' => $this->user->name,
+            'email' => $this->user->email,
+            'two_factor_platform' => 'authenticator',
+        ]);
 
-        // $response->assertStatus(201);
+        $response->assertRedirect(route('user.settings.two-factor'));
+
+        $this->assertNotNull($this->user->two_factor_code);
+        $this->assertNull($this->user->two_factor_expires_at);
+        $this->assertNull($this->user->two_factor_confirmed_at);
+        $this->assertNotNull($this->user->two_factor_recovery_codes);
+
+        Notification::assertCount(1);
     }
 }

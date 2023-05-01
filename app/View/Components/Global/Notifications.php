@@ -23,8 +23,6 @@ class Notifications extends HtmlTagComponent
     public static function js()
     {
         return <<<JS
-                let _this = this;
-
                 window.notify = {
                     removeClassByPrefix: function (el, prefix) {
                         let newClassList = [];

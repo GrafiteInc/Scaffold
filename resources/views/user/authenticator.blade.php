@@ -13,7 +13,7 @@
                             <div class="avatar shadow-sm border" style="background-image: url({{ auth()->user()->avatar_url }})"></div>
                         </div>
                     @endif
-                    <a class="btn btn-block btn-outline-secondary mb-3" href="{{ route('user.settings') }}">Main Settings</a>
+                    <a class="btn w-100 btn-outline-secondary mb-3" href="{{ route('user.settings') }}">Main Settings</a>
                 </div>
             </div>
         </div>
@@ -27,9 +27,24 @@
                 </div>
             </div>
 
-            <div class="mt-5 d-flex justify-content-center">
-                {!! $code !!}
+            <div class="row">
+                <div class="col-md-12 mt-5">
+                    <div class="mt-5 d-flex justify-content-center">
+                        {!! $code !!}
+                    </div>
+                </div>
             </div>
+
+            @if ($recovery)
+                <div class="row">
+                    <div class="col-md-12 mt-5">
+                        <label for="">Recovery Codes</label>
+                        <br>
+                        <small>You will never see these again, so keep them safe.</small>
+                        <textarea class="form-control" rows="10">{!! Str::of($recovery)->replace(',', "\n") !!}</textarea>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 

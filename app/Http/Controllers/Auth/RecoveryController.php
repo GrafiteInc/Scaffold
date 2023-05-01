@@ -26,12 +26,14 @@ class RecoveryController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
-            $codes = Str::of(decrypt($user->two_factor_recovery_codes))->explode(',');
+            $codes = Str::of($user->two_factor_recovery_codes)->explode(',');
 
             if ($codes->contains($request->recovery_code)) {
                 $user->update([
                     'two_factor_platform' => null,
                     'two_factor_code' => null,
+                    'two_factor_expires_at' => null,
+                    'two_factor_confirmed_at' => null,
                     'two_factor_recovery_codes' => null,
                 ]);
 
@@ -49,6 +51,6 @@ class RecoveryController extends Controller
      */
     public function verified()
     {
-        return redirect(RouteServiceProvider::HOME)->withMessage('Login verified.');
+        return redirect(RouteServiceProvider::HOME)->withMessage('Two Factor reset.');
     }
 }

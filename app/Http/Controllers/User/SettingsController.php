@@ -51,7 +51,10 @@ class SettingsController extends Controller
 
             if (ProcessUserTwoFactorSettings::handle($request)) {
                 return redirect()->route('user.settings.two-factor')
-                    ->withInfo('Setup your authorization app.');
+                    ->with([
+                        'info' => 'Setup your authorization app.',
+                        'show-codes' => true
+                    ]);
             }
 
             return redirect()->route('user.settings')->withMessage('Settings updated successfully');
@@ -72,8 +75,8 @@ class SettingsController extends Controller
     {
         $google2fa = new Google2FA();
 
-        // Show them the QR or manual code
-        return view('user.authenticator', [
+        $data = [
+            'recovery' => false,
             'manual' => $request->user()->two_factor_code,
             'code' => $google2fa->setQrcodeService(
                 new \PragmaRX\Google2FAQRCode\QRCode\Bacon(
@@ -84,7 +87,14 @@ class SettingsController extends Controller
                 $request->user()->email,
                 $request->user()->two_factor_code,
             ),
-        ]);
+        ];
+
+        if (session('show-codes')) {
+            $data['recovery'] = $request->user()->two_factor_recovery_codes;
+        }
+
+        // Show them the QR or manual code
+        return view('user.authenticator', $data);
     }
 
     /**
