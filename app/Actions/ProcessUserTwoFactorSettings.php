@@ -13,6 +13,8 @@ class ProcessUserTwoFactorSettings
             'two_factor_recovery_codes' => null,
         ]);
 
+        $request->session()->forget('auth.two_factor_confirmed');
+
         if (! is_null($request->user()->two_factor_platform)) {
             activity('Enabled Two Factor Authenticator.');
 

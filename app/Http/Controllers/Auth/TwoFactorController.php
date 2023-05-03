@@ -52,6 +52,6 @@ class TwoFactorController extends Controller
      */
     public function verified()
     {
-        return redirect(RouteServiceProvider::HOME)->withMessage('Login verified.');
+        return redirect(RouteServiceProvider::HOME)->withMessage('Two Factor verified.');
     }
 }

@@ -75,6 +75,11 @@ Route::middleware(ProtectAgainstSpam::class)->group(function () {
         'confirm' => true,
         'verify' => true,
     ]);
+
+    Route::get('recovery', [RecoveryController::class, 'show'])
+        ->name('recovery');
+    Route::post('recovery', [RecoveryController::class, 'verify'])
+        ->name('recovery.verify');
 });
 
 /*
@@ -82,11 +87,6 @@ Route::middleware(ProtectAgainstSpam::class)->group(function () {
 | Authenticated Routes
 |--------------------------------------------------------------------------
 */
-
-Route::get('recovery', [RecoveryController::class, 'show'])
-    ->name('recovery');
-Route::post('recovery', [RecoveryController::class, 'verify'])
-    ->name('recovery.verify');
 
 Route::middleware('auth')->group(function () {
     Route::get('verify/two-factor', [TwoFactorController::class, 'showForm'])
@@ -114,6 +114,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('user')->group(function () {
             Route::get('settings', [SettingsController::class, 'index'])->name('user.settings');
             Route::get('settings/two-factor', [SettingsController::class, 'twoFactorSetup'])->name('user.settings.two-factor');
+            Route::post('settings/two-factor/confirm', [SettingsController::class, 'twoFactorConfirm'])->name('user.settings.two-factor.confirm');
 
             Route::post('logout', LogoutSessionsController::class)->name('user.logout');
 

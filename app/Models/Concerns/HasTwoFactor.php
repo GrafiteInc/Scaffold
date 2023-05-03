@@ -61,15 +61,21 @@ trait HasTwoFactor
 
     public function notConfirmedTwoFactor()
     {
-        return is_null($this->two_factor_confirmed_at);
+        return ! session('auth.two_factor_confirmed', false);
+    }
+
+    public function hasConfirmedAuthenticator()
+    {
+        return ! is_null($this->two_factor_confirmed_at);
     }
 
     public function validateTwoFactorCode()
     {
         $this->update([
             'two_factor_expires_at' => null,
-            'two_factor_confirmed_at' => now(),
         ]);
+
+        session()->put('auth.two_factor_confirmed', true);
     }
 
     public function setAndSendTwoFactorForEmail()

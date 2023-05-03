@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use App\Actions\UpdateUserAvatar;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use PragmaRX\Google2FA\Support\QRCode;
 use Illuminate\Support\Facades\Storage;
 use PragmaRX\Google2FAQRCode\Google2FA;
 use App\Http\Requests\UserUpdateRequest;
 use App\Actions\ProcessUserTwoFactorSettings;
+use PragmaRX\Google2FALaravel\Support\Authenticator;
 
 class SettingsController extends Controller
 {
@@ -76,7 +76,6 @@ class SettingsController extends Controller
         $google2fa = new Google2FA();
 
         $data = [
-            'recovery' => false,
             'manual' => $request->user()->two_factor_code,
             'code' => $google2fa->setQrcodeService(
                 new \PragmaRX\Google2FAQRCode\QRCode\Bacon(
@@ -89,12 +88,28 @@ class SettingsController extends Controller
             ),
         ];
 
-        if (session('show-codes')) {
-            $data['recovery'] = $request->user()->two_factor_recovery_codes;
-        }
-
         // Show them the QR or manual code
         return view('user.authenticator', $data);
+    }
+
+    public function twoFactorConfirm(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->usesTwoFactor('authenticator')) {
+            $authenticator = app(Authenticator::class)->boot($request);
+            if (! $authenticator->isAuthenticated()) {
+                abort(401, 'Invalid code.');
+            }
+        }
+
+        $user->validateTwoFactorCode();
+
+        $user->update([
+            'two_factor_confirmed_at' => now(),
+        ]);
+
+        return redirect()->route('user.settings')->withMessage('Two Factor confirmed');
     }
 
     /**
