@@ -44,7 +44,6 @@ class SettingsController extends Controller
                 'billing_email' => $request->billing_email,
                 'state' => $request->state,
                 'country' => $request->country,
-                'two_factor_platform' => $request->two_factor_platform,
             ]);
 
             activity('Settings updated.');
@@ -95,21 +94,22 @@ class SettingsController extends Controller
     public function twoFactorConfirm(Request $request)
     {
         $user = $request->user();
+        $authenticator = app(Authenticator::class)->boot($request);
 
-        if ($user->usesTwoFactor('authenticator')) {
-            $authenticator = app(Authenticator::class)->boot($request);
-            if (! $authenticator->isAuthenticated()) {
-                abort(401, 'Invalid code.');
-            }
+        if ($authenticator->isAuthenticated()) {
+            session()->forget('auth.two_factor_platform_temp');
+
+            $user->validateTwoFactorCode();
+
+            $user->update([
+                'two_factor_platform' => 'authenticator',
+                'two_factor_confirmed_at' => now(),
+            ]);
+
+            return redirect()->route('user.settings')->withMessage('Two Factor confirmed');
         }
 
-        $user->validateTwoFactorCode();
-
-        $user->update([
-            'two_factor_confirmed_at' => now(),
-        ]);
-
-        return redirect()->route('user.settings')->withMessage('Two Factor confirmed');
+        return redirect()->route('user.settings')->withWarning('Unable to confirm Two Factor.');
     }
 
     /**

@@ -13,17 +13,29 @@ class ProcessUserTwoFactorSettings
             'two_factor_recovery_codes' => null,
         ]);
 
-        $request->session()->forget('auth.two_factor_confirmed');
+        if (is_null($request->two_factor_platform)) {
+            session()->forget('auth.two_factor_platform_temp');
 
-        if (! is_null($request->user()->two_factor_platform)) {
-            activity('Enabled Two Factor Authenticator.');
+            $request->user()->update([
+                'two_factor_platform' => null,
+            ]);
+        }
 
-            $request->user()->setTwoFactorCode();
+        if (! is_null($request->two_factor_platform)) {
+            activity('Changed Two Factor Authenticator.');
+
+            session()->put('auth.two_factor_platform_temp', $request->two_factor_platform);
+
+            if ($request->user()->usesTwoFactor('email')) {
+                session()->forget('auth.two_factor_platform_temp');
+
+                $request->user()->update([
+                    'two_factor_platform' => 'email',
+                ]);
+            }
 
             if ($request->user()->usesTwoFactor('authenticator')) {
-                $google2fa = app('pragmarx.google2fa');
-                // log in the user automatically
-                $google2fa->login();
+                $request->user()->setTwoFactorForAuthenticator();
 
                 return true;
             }

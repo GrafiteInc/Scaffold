@@ -10,6 +10,10 @@ trait HasTwoFactor
 {
     public function usesTwoFactor($type)
     {
+        if (session('auth.two_factor_platform_temp')) {
+            return session('auth.two_factor_platform_temp') === $type;
+        }
+
         return $this->two_factor_platform === $type;
     }
 
@@ -94,6 +98,15 @@ trait HasTwoFactor
         ]);
 
         return (string) $code;
+    }
+
+    public function getTwoFactorPlatformAttribute($value)
+    {
+        if (session('auth.two_factor_platform_temp')) {
+            return session('auth.two_factor_platform_temp');
+        }
+
+        return $value;
     }
 
     public function setTwoFactorForAuthenticator()

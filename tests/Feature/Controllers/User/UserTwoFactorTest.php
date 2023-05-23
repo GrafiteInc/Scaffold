@@ -24,10 +24,13 @@ class UserTwoFactorTest extends TestCase
         // we do not get the email as something we can confirm like the test below.
         $response->assertRedirect(route('user.settings'));
 
-        $this->assertNotNull($this->user->two_factor_code);
-        $this->assertNotNull($this->user->two_factor_expires_at);
-        $this->assertNull($this->user->two_factor_confirmed_at);
-        $this->assertNull($this->user->two_factor_recovery_codes);
+        $user = $this->user->fresh();
+
+        // These stay null since the user is logged in
+        $this->assertNull($user->two_factor_code);
+        $this->assertNull($user->two_factor_expires_at);
+        $this->assertNull($user->two_factor_confirmed_at);
+        $this->assertNull($user->two_factor_recovery_codes);
     }
 
     public function testAuthenticatorTwoFactor(): void

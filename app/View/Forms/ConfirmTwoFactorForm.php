@@ -20,10 +20,10 @@ class ConfirmTwoFactorForm extends BaseForm
     public function fields()
     {
         return [
-            Text::make('code')
+            Text::make('one_time_password')
                 ->required()
                 ->withoutLabel()
-                ->placeholder('Code'),
+                ->placeholder('Authenticator Code'),
         ];
     }
 }
