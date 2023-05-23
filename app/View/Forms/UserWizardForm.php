@@ -5,10 +5,10 @@ namespace App\View\Forms;
 use App\Models\Role;
 use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Forms\WizardForm;
 use Grafite\Forms\Fields\HasOne;
 use Grafite\Forms\Fields\Country;
 use Grafite\Forms\Fields\Timezone;
+use Grafite\Forms\Forms\WizardForm;
 
 class UserWizardForm extends WizardForm
 {

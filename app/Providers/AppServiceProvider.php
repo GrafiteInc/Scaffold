@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::directive('session', function () {
-            return "<?php echo javascript_session_data(); ?>";
+            return '<?php echo javascript_session_data(); ?>';
         });
 
         if (! app()->environment('testing')) {

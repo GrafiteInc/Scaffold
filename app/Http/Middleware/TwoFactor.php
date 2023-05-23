@@ -20,6 +20,7 @@ class TwoFactor
         if ($user->notConfirmedTwoFactor()) {
             if ($user->usesTwoFactor('email')) {
                 $user->setAndSendTwoFactorForEmail();
+
                 return redirect(route('verification.two-factor'));
             }
 

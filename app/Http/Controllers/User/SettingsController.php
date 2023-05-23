@@ -52,7 +52,7 @@ class SettingsController extends Controller
                 return redirect()->route('user.settings.two-factor')
                     ->with([
                         'info' => 'Setup your authorization app.',
-                        'show-codes' => true
+                        'show-codes' => true,
                     ]);
             }
 

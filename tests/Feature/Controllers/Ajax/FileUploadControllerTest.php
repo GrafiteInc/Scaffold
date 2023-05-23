@@ -25,7 +25,7 @@ class FileUploadControllerTest extends TestCase
         ]);
 
         $response->assertOk();
-        Storage::assertExists('public/uploads/'.$file->hashName());
+        Storage::assertExists('public/uploads/' . $file->hashName());
     }
 
     public function testImageUpload()
@@ -43,6 +43,6 @@ class FileUploadControllerTest extends TestCase
         ]);
 
         $response->assertOk();
-        Storage::assertExists('public/uploads/'.$file->hashName());
+        Storage::assertExists('public/uploads/' . $file->hashName());
     }
 }

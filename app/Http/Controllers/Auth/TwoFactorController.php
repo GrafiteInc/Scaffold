@@ -26,8 +26,8 @@ class TwoFactorController extends Controller
 
         if ($user->usesTwoFactor('email')) {
             if (
-                 (int) $request->one_time_password !== (int) $user->two_factor_code
-                 || now()->gt($user->two_factor_expires_at)
+                (int) $request->one_time_password !== (int) $user->two_factor_code
+                || now()->gt($user->two_factor_expires_at)
             ) {
                 abort(401, 'Invalid code.');
             }
