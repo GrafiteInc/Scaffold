@@ -10,6 +10,7 @@ use Grafite\Forms\Traits\HasForm;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\HasActivity;
+use App\Models\Concerns\HasSessions;
 use App\Notifications\ResetPassword;
 use App\Models\Concerns\HasTwoFactor;
 use App\Models\Concerns\HasPermissions;
@@ -37,6 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     use HasTwoFactor;
     use DatabaseSearchable;
+    use HasSessions;
 
     public $form = UserForm::class;
 

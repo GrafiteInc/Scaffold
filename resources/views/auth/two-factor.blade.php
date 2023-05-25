@@ -18,7 +18,8 @@
 
                             <div class="row">
                                 <div class="col-md-12 mt-4">
-                                    <div class="btn-toolbar justify-content-end">
+                                    <div class="btn-toolbar justify-content-between">
+                                        <a class="btn btn-outline-secondary" href="{{ route('recovery') }}">Use Recovery Codes</a>
                                         <button class="btn btn-primary" type="submit">Authenticate</button>
                                     </div>
                                 </div>

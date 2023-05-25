@@ -6,38 +6,40 @@ class ProcessUserTwoFactorSettings
 {
     public static function handle($request)
     {
-        $request->user()->update([
-            'two_factor_code' => null,
-            'two_factor_expires_at' => null,
-            'two_factor_confirmed_at' => null,
-            'two_factor_recovery_codes' => null,
-        ]);
-
-        if (is_null($request->two_factor_platform)) {
-            session()->forget('auth.two_factor_platform_temp');
-
+        if ($request->two_factor_platform !== $request->user()->two_factor_platform) {
             $request->user()->update([
-                'two_factor_platform' => null,
+                'two_factor_code' => null,
+                'two_factor_expires_at' => null,
+                'two_factor_confirmed_at' => null,
+                'two_factor_recovery_codes' => null,
             ]);
-        }
 
-        if (! is_null($request->two_factor_platform)) {
-            activity('Changed Two Factor Authenticator.');
-
-            session()->put('auth.two_factor_platform_temp', $request->two_factor_platform);
-
-            if ($request->user()->usesTwoFactor('email')) {
+            if (is_null($request->two_factor_platform)) {
                 session()->forget('auth.two_factor_platform_temp');
 
                 $request->user()->update([
-                    'two_factor_platform' => 'email',
+                    'two_factor_platform' => null,
                 ]);
             }
 
-            if ($request->user()->usesTwoFactor('authenticator')) {
-                $request->user()->setTwoFactorForAuthenticator();
+            if (! is_null($request->two_factor_platform)) {
+                activity('Changed Two Factor Authenticator.');
 
-                return true;
+                session()->put('auth.two_factor_platform_temp', $request->two_factor_platform);
+
+                if ($request->user()->usesTwoFactor('email')) {
+                    session()->forget('auth.two_factor_platform_temp');
+
+                    $request->user()->update([
+                        'two_factor_platform' => 'email',
+                    ]);
+                }
+
+                if ($request->user()->usesTwoFactor('authenticator')) {
+                    $request->user()->setTwoFactorForAuthenticator();
+
+                    return true;
+                }
             }
         }
 

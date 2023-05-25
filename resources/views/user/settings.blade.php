@@ -47,6 +47,9 @@
                     :model="$user"
                 />
             </div>
+            <hr class="bmx-mt-6 mb-4">
+            <h4>Device - Sessions</h4>
+            @include('user.devices', ['sessions' => $user->getSessions()])
         </div>
     </div>
 @stop
