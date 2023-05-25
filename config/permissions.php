@@ -12,6 +12,10 @@
 */
 
 return [
+    'announcements' => [
+        'create' => 'Create Announcements',
+    ],
+
     'roles' => [
         'create' => 'Create Roles',
         'update' => 'Update Roles',

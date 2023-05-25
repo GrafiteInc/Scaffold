@@ -22,6 +22,7 @@ use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\Ajax\FileUploadController;
 use App\Http\Controllers\Ajax\CookiePolicyController;
 use App\Http\Controllers\Ajax\SubscriptionController;
+use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\User\NotificationsController;
 use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\User\LogoutSessionsController;
@@ -235,13 +236,8 @@ Route::middleware('auth')->group(function () {
                 ->name('admin.users.switch');
 
             Route::resource('users', UserController::class, ['as' => 'admin', 'middleware' => ['permissions:users']]);
-
-            /*
-            |--------------------------------------------------------------------------
-            | Roles
-            |--------------------------------------------------------------------------
-            */
             Route::resource('roles', RoleController::class, ['as' => 'admin', 'middleware' => ['permissions:roles']]);
+            Route::resource('announcements', AnnouncementController::class, ['as' => 'admin', 'middleware' => ['permissions:announcements']]);
         });
     });
 });
