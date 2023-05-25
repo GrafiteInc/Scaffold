@@ -3,7 +3,6 @@
 @section('page-title', 'Admin: Dashboard')
 
 @section('admin_content')
-
     <div class="row">
         <div class="col-md-12 ">
             @if (session('original_user'))
@@ -11,7 +10,6 @@
             @endif
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-12">
             <div class="card shadow-sm">
@@ -37,5 +35,4 @@
             </div>
         </div>
     </div>
-
 @stop

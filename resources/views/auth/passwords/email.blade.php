@@ -3,7 +3,6 @@
 @section('page-title', 'Forgot Password')
 
 @section('content')
-
     <div class="content-sm mt-4">
 
         <h3 class="text-center mb-5">Forgot your password?</h3>
@@ -36,14 +35,12 @@
             </div>
         </div>
     </div>
-
 @stop
 
-@section('alerts')
+@push('javascript')
     @if (session('status'))
-        <div class="alert alert-info" role="alert">
-            {{ __('A fresh password reset link has been sent to your email address.') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        <script>
+            window.notify.info("{{ __('A fresh password reset link has been sent to your email address.') }}");
+        </script>
     @endif
-@stop
+@endpush

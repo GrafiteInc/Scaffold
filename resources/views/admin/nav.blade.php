@@ -8,4 +8,7 @@
     <li class="nav-item">
         <a class="{{ route_link_class(['admin.roles.*']) }}" href="{{ route('admin.roles.index') }}">Roles</a>
     </li>
+    <li class="nav-item">
+        <a class="{{ route_link_class(['admin.announcements.*']) }}" href="{{ route('admin.announcements.create') }}">Announcements</a>
+    </li>
 </ul>

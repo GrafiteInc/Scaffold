@@ -26,6 +26,6 @@ class UserDeleteAccount extends Component
             ->action('delete', 'user.destroy', 'Please delete my account', [
                 'class' => 'btn btn-outline-primary float-end',
             ])
-            ->confirmAsModal(trans('general.user.delete_account'), 'Delete My Account', 'btn d-block w-100 btn-danger mb-6');
+            ->confirmAsModal(trans('general.user.delete_account'), 'Delete My Account', 'btn d-block w-100 btn-danger bmx-mb-6');
     }
 }

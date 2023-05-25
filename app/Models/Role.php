@@ -70,7 +70,7 @@ class Role extends Model
 
             foreach ($permissions as $model => $action) {
                 foreach ($action as $name => $label) {
-                    $options[] = "${model}.${name}";
+                    $options[] = "{$model}.{$name}";
                 }
             }
 

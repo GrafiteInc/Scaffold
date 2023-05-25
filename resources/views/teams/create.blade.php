@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <x-forms.team></x-forms.team>
+                        <x-f-model :form="\App\View\Forms\TeamForm::class" action="create" />
                     </div>
                 </div>
             </div>

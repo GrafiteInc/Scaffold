@@ -15,7 +15,7 @@
 
         <div class="card shadow mb-5">
             <div class="card-body">
-                <x-forms.registration></x-forms.registration>
+                <x-f-base :form="\App\View\Forms\RegistrationForm::class" />
             </div>
         </div>
 

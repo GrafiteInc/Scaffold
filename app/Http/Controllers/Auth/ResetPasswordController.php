@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Validation\Rules\Password;
-use Collective\Auth\Foundation\ResetsPasswords;
+use Grafite\Auth\Foundation\ResetsPasswords;
 
 class ResetPasswordController extends Controller
 {

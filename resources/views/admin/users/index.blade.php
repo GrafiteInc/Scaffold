@@ -3,10 +3,9 @@
 @section('page-title', 'Admin: Users')
 
 @section('admin_content')
-
     <div class="row">
         <div class="col-md-6 mb-3">
-            <x-forms.admin-user-index-search></x-forms.admin-user-index-search>
+            <x-f-search :index="$index" route="admin.users.search" content='<span class="fas fa-search"></span>' placeholder="Search Users" method="get" />
         </div>
         <div class="col-md-6 mb-3">
             <div class="btn-toolbar justify-content-end">
@@ -57,7 +56,7 @@
                                 @foreach($invites as $invite)
                                     <tr>
                                         <td>{{ $invite->email }}</td>
-                                        <td class="text-end" width="250px">
+                                        <td class="text-end" width="280px">
                                             {!! form()->action('post',
                                                 ['invite.resend', $invite],
                                                 'Resend Invite',

@@ -32,11 +32,11 @@ if (! function_exists('javascript_session_data')) {
         return <<<SESSION
                 <script>
                 window.session = {
-                    user: ${user},
-                    message: '${message}',
-                    info: '${info}',
-                    warning: '${warning}',
-                    error: '${error}'
+                    user: {$user},
+                    message: '{$message}',
+                    info: '{$info}',
+                    warning: '{$warning}',
+                    error: '{$error}'
                 }
                 </script>
     SESSION;

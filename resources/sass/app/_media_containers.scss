@@ -1,0 +1,124 @@
+/*
+|--------------------------------------------------------------------------
+| Large Screen
+|--------------------------------------------------------------------------
+*/
+
+// The sidebar should be hidden by default for mobile and loaded on desktop
+@media (min-width: 768px) {
+    .sidebar {
+        margin-left: 0px;
+    }
+    .text-truncate {
+        max-width: 650px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Tablet Screen
+|--------------------------------------------------------------------------
+*/
+
+@media (min-width: 768px) and (max-width: 1399px) {
+    .sidebar {
+        width: 220px;
+    }
+    .sidebar-sticky {
+        width: 220px;
+    }
+    .main {
+        width: calc(100% - 220px);
+    }
+    .app-with-sidebar-nav {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+    .text-truncate {
+        width: 300px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Mobile Screen
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+        width: 20px;
+        float: left;
+    }
+    .navbar-title {
+        display: none;
+        float: left;
+    }
+    .main {
+        width: 100%;
+    }
+    .alert {
+        margin-left: 2%;
+        width: 96%;
+    }
+    .sidebar {
+        margin-top: 60px;
+        margin-left: -320px;
+        box-shadow: 0 5px 5px $sidebar-shadow;
+    }
+    .sidebar-sticky {
+        height: calc(100vh - 60px);
+    }
+    .sidebar.toggled {
+        margin-left: 0;
+    }
+    .sidebar-overlay {
+        position: fixed;
+        width: 100%;
+        z-index: 30;
+        top: 0;
+        height: 100vh;
+        background-color: transparent;
+        backdrop-filter: blur(6px);
+        display: none;
+    }
+    .sidebar-overlay.toggled {
+        display: block;
+    }
+    .app-with-sidebar-nav {
+        margin-left: 0px;
+        width: 100%;
+    }
+    #app.container-fluid {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .nav-pills {
+        .nav-item {
+            width: 100%;
+        }
+    }
+    .content-md {
+        width: 348px;
+    }
+    .page-link {
+        padding: 10px !important;
+    }
+    .text-truncate {
+        width: 200px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+    }
+}

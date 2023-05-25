@@ -2,6 +2,7 @@ const mix = require('laravel-mix');
 const path = require('path');
 
 require('laravel-mix-purgecss');
+require('laravel-mix-compress');
 
 /*
  |--------------------------------------------------------------------------
@@ -15,13 +16,14 @@ require('laravel-mix-purgecss');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .vue()
-    .sass('resources/sass/dark-app.scss', 'public/css')
-    .sass('resources/sass/light-app.scss', 'public/css')
+    // .sass('resources/sass/dark-app.scss', 'public/css')
+    // .sass('resources/sass/light-app.scss', 'public/css')
+    .sass('resources/sass/app.scss', 'public/css')
     .purgeCss({
         enabled: mix.inProduction(),
         content: [
             "app/**/*.php",
+            "resources/**/*.vue",
             "resources/**/*.html",
             "resources/**/*.php",
         ],
@@ -30,6 +32,13 @@ mix.js('resources/js/app.js', 'public/js')
 // For debugging on prod enable this
 // mix.sourceMaps();
 
+// mix.webpackConfig({
+//     stats: {
+//          children: true
+//     }
+// });
+
 if (mix.inProduction()) {
+    mix.compress();
     mix.version();
 }

@@ -84,8 +84,8 @@ template;
     public static function js($id, $options)
     {
         return <<<scripts
-        let _addressField_${id} = document.getElementById('${id}');
-        _addressField_${id}.addEventListener('keydown', function (event) {
+        let _addressField_{$id} = document.getElementById('{$id}');
+        _addressField_{$id}.addEventListener('keydown', function (event) {
             if (! ['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
                 _query = this.value;
 
@@ -94,7 +94,7 @@ template;
                         method: 'GET',
                     };
 
-                    fetch("Views://api.geoapify.com/v1/geocode/autocomplete?text="+_query+"&apiKey=${options['api_key']}", requestOptions)
+                    fetch("Views://api.geoapify.com/v1/geocode/autocomplete?text="+_query+"&apiKey={$options['api_key']}", requestOptions)
                     .then(response => response.json())
                     .then((result) => {
 

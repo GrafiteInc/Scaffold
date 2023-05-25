@@ -22,6 +22,8 @@ class InviteUserForm extends BaseForm
 
     public $orientation = 'horizontal';
 
+    public $disableOnSubmit = true;
+
     /**
      * Buttons and values.
      *

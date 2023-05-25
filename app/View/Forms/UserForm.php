@@ -7,12 +7,11 @@ use Grafite\Forms\Html\HrTag;
 use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Email;
 use Grafite\Forms\Html\Heading;
+use Grafite\Forms\Fields\Select;
+use Grafite\Forms\Fields\Country;
 use Grafite\Forms\Fields\Toggled;
 use Grafite\Forms\Forms\ModelForm;
-use App\View\Forms\Fields\AddressField;
 use Grafite\Forms\Fields\FileWithPreview;
-use Grafite\Forms\Fields\Bootstrap\Select;
-use Grafite\Forms\Fields\Bootstrap\Country;
 
 class UserForm extends ModelForm
 {

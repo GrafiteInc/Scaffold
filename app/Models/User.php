@@ -10,6 +10,7 @@ use Grafite\Forms\Traits\HasForm;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\HasActivity;
+use App\Models\Concerns\HasSessions;
 use App\Notifications\ResetPassword;
 use App\Models\Concerns\HasTwoFactor;
 use App\Models\Concerns\HasPermissions;
@@ -37,6 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     use HasTwoFactor;
     use DatabaseSearchable;
+    use HasSessions;
 
     public $form = UserForm::class;
 
@@ -54,14 +56,16 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at',
         'billing_email',
         'stripe_id',
-        'card_brand',
-        'card_last_four',
+        'pm_type',
+        'pm_last_four',
         'trial_ends_at',
         'state',
         'country',
         'two_factor_platform',
         'two_factor_code',
         'two_factor_expires_at',
+        'two_factor_confirmed_at',
+        'two_factor_recovery_codes',
     ];
 
     /**
@@ -75,6 +79,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_platform',
         'two_factor_code',
         'two_factor_expires_at',
+        'two_factor_confirmed_at',
+        'two_factor_recovery_codes',
     ];
 
     /**
@@ -84,15 +90,8 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-
-    /**
-     * The attributes that should be cast to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'two_factor_expires_at',
+        'two_factor_expires_at' => 'datetime',
+        'two_factor_confirmed_at' => 'datetime',
     ];
 
     /**

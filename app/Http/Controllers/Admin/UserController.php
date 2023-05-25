@@ -81,6 +81,7 @@ class UserController extends Controller
             Invite::firstOrCreate([
                 'user_id' => auth()->id(),
                 'email' => $request->email,
+            ], [
                 'message' => $message,
                 'token' => $token,
             ]);

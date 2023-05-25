@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <x-forms.user-password></x-forms.user-password>
+            <x-f-base :form="\App\View\Forms\UserPasswordForm::class" />
         </div>
     </div>
 

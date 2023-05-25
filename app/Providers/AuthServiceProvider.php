@@ -23,8 +23,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
-
         // Gateway for determining if user is admin
         Gate::define('admin', function ($user) {
             return $user->hasRole('admin');

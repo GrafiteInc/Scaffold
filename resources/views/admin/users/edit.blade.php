@@ -14,7 +14,11 @@
     <div class="row mt-4">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                <x-forms.admin-user :user="$user"></x-forms.admin-user>
+                <x-f-model
+                    :form="\App\View\Forms\AdminUserForm::class"
+                    :model="$user"
+                    action="edit"
+                />
             </div>
         </div>
     </div>

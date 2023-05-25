@@ -1,0 +1,25 @@
+.avatar {
+    min-width: 200px;
+    min-height: 200px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center center;
+}
+
+.avatar-row {
+    direction: rtl;
+    text-align: left;
+    padding-left: 12px;
+}
+
+.avatar-sm {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    border: 1px solid $white;
+    display: inline-block;
+    margin-left: -12px;
+}
