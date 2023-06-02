@@ -23,14 +23,14 @@
 
         <script src="https://kit.fontawesome.com/e46847d218.js" crossorigin="anonymous"></script>
 
+        @session
+
         @formStyles
         @htmlStyles
         @chartStyles
-        @htmlStyles
         @chartCdn
         @laravelPWA
         @missionControl
-        @session
 
         @stack('styles')
         <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>

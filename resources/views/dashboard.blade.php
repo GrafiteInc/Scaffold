@@ -34,5 +34,23 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+            {!! app(\Grafite\Html\Tags\Map::class)
+                ->zoom(12)
+                ->maxZoom(20)
+                ->bubbles([
+                    [
+                        'x' => 43.981739,
+                        'y' => -80.735542,
+                        'opacity' => 0.8,
+                        'radius' => 400,
+                        'tooltip' => 'I\'m a bubble.',
+                        {{-- 'click' => 'window.pending()' --}}
+                    ]
+                ])
+                ->skin('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png')
+                ->center(43.981739, -80.735542)
+                ->marker(43.981739, -80.735542, 'This is my home')->render() !!}
+        </div>
     </div>
 @stop

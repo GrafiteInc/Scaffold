@@ -21,24 +21,27 @@ if (! function_exists('session_error_message')) {
 }
 
 if (! function_exists('javascript_session_data')) {
-    function javascript_session_data()
+    function javascript_session_data($nonce = false)
     {
         $user = optional(auth()->user())->jsonSessionData() ?? '{}';
         $message = session('message');
         $info = session('info');
         $warning = session('warning');
         $error = session_error_message();
+        $nonce = $nonce ? ' nonce="' . $nonce . '"' : '';
 
-        return <<<SESSION
-                <script>
-                window.session = {
-                    user: {$user},
-                    message: '{$message}',
-                    info: '{$info}',
-                    warning: '{$warning}',
-                    error: '{$error}'
+        return <<<JS
+            <script {$nonce}>
+                window.app = {
+                    session: {
+                        user: {$user},
+                        message: '{$message}',
+                        info: '{$info}',
+                        warning: '{$warning}',
+                        error: '{$error}'
+                    }
                 }
-                </script>
-    SESSION;
+            </script>
+    JS;
     }
 }

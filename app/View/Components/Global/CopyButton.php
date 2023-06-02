@@ -8,15 +8,28 @@ class CopyButton extends HtmlTagComponent
 {
     public static function template()
     {
-        $data = self::$data[0];
+        $data = self::$data['payload'];
+        $css = self::$data['css'] ?? 'btn btn-outline-secondary';
+        $text = self::$data['text'] ?? 'Copy';
 
         return <<<HTML
             <button
-                onclick="navigator.clipboard.writeText('{$data}'); window.notify.success('copied!');"
-                class="btn btn-outline-secondary"
+                class="{$css} global-copy-button"
+                data-payload="{$data}"
             >
-                <span class="fa fa-copy"></span> Copy
+                <span class="fa fa-copy"></span> {$text}
             </button>
         HTML;
+    }
+
+    public static function js()
+    {
+        return <<<JS
+            document.querySelectorAll('.global-copy-button').forEach(function (_button) {
+                _button.addEventListener('click', function (event) {
+                    navigator.clipboard.writeText(_button.getAttribute('data-payload')); window.app.notify.success('Copied!');
+                });
+            });
+        JS;
     }
 }
