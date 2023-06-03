@@ -5149,51 +5149,71 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   \******************************************************/
 /***/ (() => {
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 /**
  * This is an example of how we can handle ajax based form submissions.
  */
 window.ajax = function (_event) {
-  _event.preventDefault();
   var _button = _event.target;
-  var _processing = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Saving';
-  _button.innerHTML = _processing;
-  var _form = _button.form;
-  var _method = _form.method.toLowerCase();
-  var _data = new FormData(_form);
-  window.axios[_method](_form.action, _data, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  }).then(function (response) {
-    var _modalElement = document.getElementById(_form.getAttribute('id') + '_Modal');
-    if (_modalElement) {
-      bootstrap.Modal.getOrCreateInstance(_modalElement).toggle();
-    }
-    var _event = "".concat(_form.getAttribute('id'), ".success");
-    window.app.$events.fire(_event, response.data.data);
-    window.notify.success(response.data.message);
-    _button.innerHTML = 'Save';
-  })["catch"](function (error) {
-    var _event = "".concat(_form.getAttribute('id'), ".error");
-    window.app.$events.fire(_event, error.response.data.data);
-    window.notify.warning(error.response.data.message);
-    _toConsumableArray(error.response.data.errors).forEach(function (key) {
-      var _errorMessage = document.createElement('div');
-      _errorMessage.classList.add('invalid-feedback');
-      _errorMessage.innerText = error.response.data.errors[key][0];
-      var _field = document.querySelector("input[name=\"".concat(key, "\"]"));
-      _field.classList.add('is-invalid');
-      _field.parentNode.appendChild(_errorMessage);
-      window.Forms_validation();
-      window.notify.error(error.response.data.errors[key][0]);
+  var _originalContent = _button.innerHTML;
+  _event.preventDefault();
+  var _form = _event.target.closest('form');
+  if (!_button.hasAttribute('data-formsjs-onclick')) {
+    _button = _button.closest('button');
+  }
+  if (_button) {
+    _originalContent = _button.innerHTML;
+    var _processing = '<i class="fas fa-circle-notch fa-spin"></i> ';
+    _button.innerHTML = _processing;
+  }
+  if (_form) {
+    var _method = _form.method.toLowerCase();
+    var _data = new FormData(_form);
+    window.axios[_method](_form.action, _data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(function (response) {
+      var _modalElement = document.getElementById("".concat(_form.getAttribute('id'), "_Modal"));
+      if (_modalElement) {
+        window.bootstrap.Modal.getOrCreateInstance(_modalElement).hide();
+      }
+
+      // Event handling
+      var _event = "".concat(_form.getAttribute('id'), ".success");
+      window.app.$events.fire(_event, response.data.data);
+      _button.innerHTML = _originalContent;
+    })["catch"](function (error) {
+      // let _event = `${_form.getAttribute('id')}.error`;
+      // window.app.$events.fire(_event, error.response.data);
+
+      if (error.response && error.response.data) {
+        [error.response.data.errors].forEach(function (key) {
+          var _fieldKey = Object.keys(key)[0];
+          var _errorMessage = document.createElement('div');
+          _errorMessage.classList.add('invalid-feedback');
+          _errorMessage.innerText = error.response.data.errors[_fieldKey];
+          var _fieldKeySelector = "input[name=\"".concat(_fieldKey, "\"]");
+          var _field = document.querySelector(_fieldKeySelector);
+          if (!_field.classList.contains('is-invalid')) {
+            _field.classList.add('is-invalid');
+            _field.parentNode.appendChild(_errorMessage);
+          }
+          window.Forms_validation();
+        });
+      }
     });
-  });
+  }
+};
+window.ajaxDebounced = window.app.debounce(window.ajax);
+window.ajaxWithRefresh = function (event) {
+  window.ajax(event);
+  setTimeout(function () {
+    window.livewire.emit('refresh');
+    setTimeout(function () {
+      window.FormsJS();
+      window.turnOnTooltips();
+    }, 1000);
+  }, 1000);
 };
 
 /***/ }),

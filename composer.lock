@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.271.6",
+            "version": "3.271.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "16d4f9e5395e73d6370e7e3d9acd077a0e38adc3"
+                "reference": "d0fe1af38ef521e419004e5f990ceb8e0b2b001d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/16d4f9e5395e73d6370e7e3d9acd077a0e38adc3",
-                "reference": "16d4f9e5395e73d6370e7e3d9acd077a0e38adc3",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d0fe1af38ef521e419004e5f990ceb8e0b2b001d",
+                "reference": "d0fe1af38ef521e419004e5f990ceb8e0b2b001d",
                 "shasum": ""
             },
             "require": {
@@ -151,9 +151,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.271.6"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.271.7"
             },
-            "time": "2023-06-01T18:23:44+00:00"
+            "time": "2023-06-02T18:21:03+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -722,16 +722,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "3.6.2",
+            "version": "3.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "b4bd1cfbd2b916951696d82e57d054394d84864c"
+                "reference": "9a747d29e7e6b39509b8f1847e37a23a0163ea6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/b4bd1cfbd2b916951696d82e57d054394d84864c",
-                "reference": "b4bd1cfbd2b916951696d82e57d054394d84864c",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/9a747d29e7e6b39509b8f1847e37a23a0163ea6a",
+                "reference": "9a747d29e7e6b39509b8f1847e37a23a0163ea6a",
                 "shasum": ""
             },
             "require": {
@@ -744,12 +744,12 @@
                 "psr/log": "^1|^2|^3"
             },
             "require-dev": {
-                "doctrine/coding-standard": "11.1.0",
+                "doctrine/coding-standard": "12.0.0",
                 "fig/log-test": "^1",
                 "jetbrains/phpstorm-stubs": "2022.3",
-                "phpstan/phpstan": "1.10.9",
+                "phpstan/phpstan": "1.10.14",
                 "phpstan/phpstan-strict-rules": "^1.5",
-                "phpunit/phpunit": "9.6.6",
+                "phpunit/phpunit": "9.6.7",
                 "psalm/plugin-phpunit": "0.18.4",
                 "squizlabs/php_codesniffer": "3.7.2",
                 "symfony/cache": "^5.4|^6.0",
@@ -814,7 +814,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/3.6.2"
+                "source": "https://github.com/doctrine/dbal/tree/3.6.3"
             },
             "funding": [
                 {
@@ -830,7 +830,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-14T07:25:38+00:00"
+            "time": "2023-06-01T05:46:46+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -1635,16 +1635,16 @@
         },
         {
             "name": "grafite/html",
-            "version": "v1.7.0",
+            "version": "v1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Html.git",
-                "reference": "bd5a8d6361d9a6b3d74f348a7b3b96acb3370d60"
+                "reference": "dad127398137633a876feb9ddb0263ddad805743"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Html/zipball/bd5a8d6361d9a6b3d74f348a7b3b96acb3370d60",
-                "reference": "bd5a8d6361d9a6b3d74f348a7b3b96acb3370d60",
+                "url": "https://api.github.com/repos/GrafiteInc/Html/zipball/dad127398137633a876feb9ddb0263ddad805743",
+                "reference": "dad127398137633a876feb9ddb0263ddad805743",
                 "shasum": ""
             },
             "require": {
@@ -1695,9 +1695,9 @@
             ],
             "support": {
                 "issues": "https://github.com/GrafiteInc/Html/issues",
-                "source": "https://github.com/GrafiteInc/Html/tree/v1.7.0"
+                "source": "https://github.com/GrafiteInc/Html/tree/v1.7.1"
             },
-            "time": "2023-05-28T03:49:06+00:00"
+            "time": "2023-06-03T04:59:36+00:00"
         },
         {
             "name": "grafite/maintenance",
@@ -2690,16 +2690,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.13.0",
+            "version": "v10.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "7322723585103082758d74917db62980684845cb"
+                "reference": "c1569099594168870cb4bdabfbaa35e5d172310b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/7322723585103082758d74917db62980684845cb",
-                "reference": "7322723585103082758d74917db62980684845cb",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c1569099594168870cb4bdabfbaa35e5d172310b",
+                "reference": "c1569099594168870cb4bdabfbaa35e5d172310b",
                 "shasum": ""
             },
             "require": {
@@ -2886,7 +2886,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-05-30T14:46:25+00:00"
+            "time": "2023-06-02T13:13:10+00:00"
         },
         {
             "name": "laravel/helpers",
@@ -11258,16 +11258,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.1.3",
+            "version": "10.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2379ebafc1737e71cdc84f402acb6b7f04198b9d"
+                "reference": "3aad97fde1f3e490e2b316ba56bc4680310e3c3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2379ebafc1737e71cdc84f402acb6b7f04198b9d",
-                "reference": "2379ebafc1737e71cdc84f402acb6b7f04198b9d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3aad97fde1f3e490e2b316ba56bc4680310e3c3f",
+                "reference": "3aad97fde1f3e490e2b316ba56bc4680310e3c3f",
                 "shasum": ""
             },
             "require": {
@@ -11307,7 +11307,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "10.1-dev"
+                    "dev-main": "10.2-dev"
                 }
             },
             "autoload": {
@@ -11339,7 +11339,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.1.3"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.2.0"
             },
             "funding": [
                 {
@@ -11355,7 +11355,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-11T05:16:22+00:00"
+            "time": "2023-06-02T05:42:13+00:00"
         },
         {
             "name": "sebastian/cli-parser",

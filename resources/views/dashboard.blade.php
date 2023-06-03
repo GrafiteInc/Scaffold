@@ -34,9 +34,13 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row mt-4">
         <div class="col-md-12">
-            {!! app(\Grafite\Html\Tags\Map::class)
-                ->zoom(12)
+            <div class="card shadow-sm">
+                <div class="card-body">
+{!! app(\Grafite\Html\Tags\Map::class)
+                ->zoom(3)
                 ->maxZoom(20)
                 ->bubbles([
                     [
@@ -45,12 +49,15 @@
                         'opacity' => 0.8,
                         'radius' => 400,
                         'tooltip' => 'I\'m a bubble.',
-                        {{-- 'click' => 'window.pending()' --}}
+                        'click' => 'window.pending()'
                     ]
                 ])
                 ->skin('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png')
                 ->center(43.981739, -80.735542)
-                ->marker(43.981739, -80.735542, 'This is my home')->render() !!}
+                ->marker(43.981739, -80.735542, 'This is my home')
+                ->render() !!}
+                </div>
+            </div>
         </div>
     </div>
 @stop

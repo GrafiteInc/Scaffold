@@ -41,6 +41,21 @@ class PendingOverlay extends HtmlTagComponent
 
     public static function js()
     {
+        //
+        // $position = <<<JS
+        //     document.addEventListener('DOMContentLoaded', function () {
+        //         window.scrollTo({
+        //             top: window.localStorage.getItem('position'),
+        //             left: 0,
+        //             behavior: 'instant'
+        //         });
+        //     })
+        // JS;
+
+        // if (! session('positioned')) {
+        //     $position = '';
+        // }
+
         return <<<JS
             window.pending = (button) => {
                 if (button && button.form.checkValidity()) {
@@ -59,6 +74,12 @@ class PendingOverlay extends HtmlTagComponent
             window.pendingHide = () => {
                 document.getElementById('_componentPendingOverlay').classList.add('d-none');
             };
+
+            // window.addEventListener("scroll", function () {
+            //     window.localStorage.setItem('position', window.pageYOffset)
+            // });
+
+            // position
         JS;
     }
 }
