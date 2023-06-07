@@ -21,7 +21,7 @@ class Team extends Model
 
     public $form = TeamForm::class;
 
-    public $relationship = 'teamMemberships';
+    public $relationship = 'memberships';
 
     public $fillable = [
         'user_id',

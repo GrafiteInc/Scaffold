@@ -28,7 +28,7 @@ class TeamsController extends Controller
     public function index(Request $request)
     {
         $teams = $request->user()->teams;
-        $memberships = $request->user()->teamMemberships;
+        $memberships = $request->user()->memberships;
 
         return view('teams.index')->with(compact('memberships', 'teams'));
     }

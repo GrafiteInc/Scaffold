@@ -24,7 +24,7 @@ class InvitesControllerTest extends TestCase
         $invite = Invite::factory()->create([
             'user_id' => $user->id,
             'email' => $this->user->email,
-            'relationship' => 'teamMemberships',
+            'relationship' => 'memberships',
             'model_id' => $team->id,
             'message' => 'new team!',
             'token' => 'foo',
@@ -44,7 +44,7 @@ class InvitesControllerTest extends TestCase
         $invite = Invite::factory()->create([
             'user_id' => $user->id,
             'email' => $this->user->email,
-            'relationship' => 'teamMemberships',
+            'relationship' => 'memberships',
             'model_id' => $team->id,
             'message' => 'new team!',
             'token' => 'foo',
