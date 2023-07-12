@@ -17,7 +17,7 @@
         "@grafite/helpers": "1.0.0",
         "@popperjs/core": "^2.10.2",
         "axios": "^0.21",
-        "bootstrap": "^5.3.0-alpha1",
+        "bootstrap": "^5.3.0",
         "clipboard": "^2.0.8",
         "collect.js": "^4.28.6",
         "css-loader": "^6.5.1",

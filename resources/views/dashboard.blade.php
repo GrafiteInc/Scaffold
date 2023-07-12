@@ -17,9 +17,14 @@
     @endif
 
     <x-forms.image-upload></x-forms.image-upload>
+
+    {{-- <x-html-rating value="6" max="12" /> --}}
 @stop
 
 @section('content')
+    {{-- <x-html-announcement text="This is a general statement for all our users!" dismiss background="danger" /> --}}
+    {{-- <x-html-animation component="pulse" /> --}}
+
     <div class="row">
         <div class="col-md-12">
             <div class="card shadow-sm">
@@ -27,7 +32,8 @@
                     <div class="row">
                         @foreach ($images as $index => $image)
                             <div class="col-md-4 mb-4 overflow-hidden bmx-pointer" onclick="window.offCanvas('Image #{{ $index }}', '{{ $image }}')" style="height: 200px;">
-                                <img loading="lazy" class="w-100 align-top" src="{{ $image }}" alt="">
+                                {!! app(\Grafite\Html\Tags\Image::class)->placeholder()->fluid()->source(url($image))->render() !!}
+                                {{-- <img loading="lazy" class="w-100 align-top" src="{{ $image }}" alt=""> --}}
                             </div>
                         @endforeach
                     </div>

@@ -5150,20 +5150,19 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
 /***/ (() => {
 
 /**
- * This is an example of how we can handle ajax based form submissions.
+ * Handling Ajax form submissions
  */
 window.ajax = function (_event) {
-  var _button = _event.target;
-  var _originalContent = _button.innerHTML;
   _event.preventDefault();
   var _form = _event.target.closest('form');
+  var _button = _event.target;
   if (!_button.hasAttribute('data-formsjs-onclick')) {
     _button = _button.closest('button');
   }
   if (_button) {
-    _originalContent = _button.innerHTML;
-    var _processing = '<i class="fas fa-circle-notch fa-spin"></i> ';
-    _button.innerHTML = _processing;
+    var _originalContent2 = _button.innerHTML;
+    var _processing = '<i class="fas fa-circle-notch fa-spin bmx-fade-in"></i> ';
+    _button.innerHTML = _processing + _originalContent2;
   }
   if (_form) {
     var _method = _form.method.toLowerCase();
@@ -5181,11 +5180,12 @@ window.ajax = function (_event) {
       // Event handling
       var _event = "".concat(_form.getAttribute('id'), ".success");
       window.app.$events.fire(_event, response.data.data);
-      _button.innerHTML = _originalContent;
+      if (_button) {
+        _button.innerHTML = _originalContent;
+      }
     })["catch"](function (error) {
       // let _event = `${_form.getAttribute('id')}.error`;
       // window.app.$events.fire(_event, error.response.data);
-
       if (error.response && error.response.data) {
         [error.response.data.errors].forEach(function (key) {
           var _fieldKey = Object.keys(key)[0];
@@ -5200,6 +5200,9 @@ window.ajax = function (_event) {
           }
           window.Forms_validation();
         });
+      }
+      if (_button) {
+        _button.innerHTML = _originalContent;
       }
     });
   }

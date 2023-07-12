@@ -31,6 +31,7 @@
         @chartCdn
         @laravelPWA
         @missionControl
+        @fathom
 
         @stack('styles')
         <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>

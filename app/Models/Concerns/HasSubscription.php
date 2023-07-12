@@ -38,7 +38,11 @@ trait HasSubscription
      */
     public function hasCancelledSubscription()
     {
-        return $this->subscription(config('billing.subscription_name'))->cancelled();
+        if ($this->subscription(config('billing.subscription_name'))) {
+            return $this->subscription(config('billing.subscription_name'))->cancelled();
+        }
+
+        return false;
     }
 
     /**

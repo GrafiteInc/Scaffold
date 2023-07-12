@@ -47,7 +47,7 @@ class UserWizardForm extends WizardForm
         ];
     }
 
-    public function steps()
+    public function steps($fields)
     {
         return [
             [['name','email'],['role']],

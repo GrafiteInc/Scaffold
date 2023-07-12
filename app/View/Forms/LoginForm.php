@@ -6,6 +6,7 @@ use Grafite\Forms\Html\Link;
 use Grafite\Forms\Fields\Email;
 use Grafite\Forms\Html\HoneyPot;
 use Grafite\Forms\Forms\BaseForm;
+use Grafite\Forms\Fields\hCaptcha;
 use Grafite\Forms\Fields\CheckboxInline;
 use Grafite\Forms\Fields\PasswordWithReveal;
 
@@ -40,6 +41,7 @@ class LoginForm extends BaseForm
                 ]),
             CheckboxInline::make('remember')
                 ->label('Remember Me'),
+            hCaptcha::make('captcha'),
             Link::make('Forgot Password?')
                 ->cssClass('d-block text-end')
                 ->href(route('password.request'))
@@ -54,6 +56,7 @@ class LoginForm extends BaseForm
             ['email'],
             ['password'],
             ['remember','forgot_password'],
+            // ['captcha'],
         ];
     }
 }

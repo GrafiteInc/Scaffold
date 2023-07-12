@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth;
+use App\Http\Middleware\hCaptcha;
 use Grafite\Auth\Facades\GrafiteAuth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
@@ -67,7 +68,7 @@ Route::get('register/invite', [Auth\RegisterController::class, 'showRegistration
 Route::post('register/invite', [Auth\RegisterController::class, 'registerViaInvite'])
     ->name('register.invite');
 
-Route::middleware(ProtectAgainstSpam::class)->group(function () {
+Route::middleware([ProtectAgainstSpam::class])->group(function () {
     GrafiteAuth::routes([
         'login' => true,
         'logout' => true,
