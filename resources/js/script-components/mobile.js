@@ -19,12 +19,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     if (window.innerWidth <= 576) {
-        // window.pendingHide();
+        // window.app.pendingHide();
 
         // document.querySelectorAll('a').forEach((link) => {
         //     link.addEventListener('click', (e) => {
         //         e.preventDefault();
-        //         window.pending();
+        //         window.app.pending();
         //         setTimeout(() => {
         //             window.location = e.target.closest('*[href]').href;
         //         }, 50);

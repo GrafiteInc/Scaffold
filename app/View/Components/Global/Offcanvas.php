@@ -24,7 +24,7 @@ class Offcanvas extends HtmlTagComponent
     public static function js()
     {
         return <<<JS
-            window.offCanvas = (_title, _message) => {
+            window.app.offCanvas = (_title, _message) => {
                 document.getElementById('offCanvasTitle').innerHTML = _title;
                 document.getElementById('offCanvasMessage').innerHTML = _message;
 

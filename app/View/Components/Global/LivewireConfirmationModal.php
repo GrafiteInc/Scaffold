@@ -34,7 +34,7 @@ class LivewireConfirmationModal extends HtmlTagComponent
     {
         return <<<JS
             window.submitLivewireConfirmationForm = function (event) {
-                let _livewireMethod = window.livewireConfirmationFormTarget.closest('form').getAttribute('wire:submit.prevent');
+                let _livewireMethod = window.app.livewireConfirmationFormTarget.closest('form').getAttribute('wire:submit.prevent');
                 let _id = _livewireMethod.replace(/^\D+/g, '');
                 let _class = _livewireMethod.substr(_livewireMethod.indexOf("'") + 1);
                     _class = _class.replace("')", '');
@@ -44,13 +44,13 @@ class LivewireConfirmationModal extends HtmlTagComponent
                 _modal.toggle();
             }
 
-            window.livewireConfirmation = (_event, _message) => {
+            window.app.livewireConfirmation = (_event, _message) => {
                 _event.preventDefault();
 
                 document.getElementById('livewireConfirmationModalMessage').innerHTML = _message;
                 let _modal = window.bootstrap.Modal.getOrCreateInstance(document.getElementById('livewireConfirmationModal'));
                 _modal.toggle();
-                window.livewireConfirmationFormTarget = _event.target;
+                window.app.livewireConfirmationFormTarget = _event.target;
 
                 return false;
             };

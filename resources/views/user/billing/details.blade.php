@@ -19,7 +19,7 @@
                             @include('user.billing.upcoming-invoice')
                         </div>
                         <div class="col-md-12 mt-4 text-end">
-                            {!! form()->confirm('Are you sure you want to cancel your subscription?', 'confirmation')
+                            {!! form()->confirm('Are you sure you want to cancel your subscription?', 'app.confirmation')
                                 ->action('post', 'user.subscription.cancel',
                                     'Cancel Subscription',
                                     ['class' => 'btn btn-outline-danger']

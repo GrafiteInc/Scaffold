@@ -43,7 +43,6 @@
             <x-html-tag component="\App\View\Components\Global\Notifications" />
             <x-html-tag component="\App\View\Components\Global\ConfirmationModal" />
             <x-html-tag component="\App\View\Components\Global\LivewireConfirmationModal" />
-            <x-html-tag component="\App\View\Components\Global\ActionModal" />
             <x-html-tag component="\App\View\Components\Global\ContentModal" />
             <x-html-tag component="\App\View\Components\Global\Offcanvas" />
 

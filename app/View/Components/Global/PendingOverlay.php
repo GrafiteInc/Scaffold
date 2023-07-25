@@ -57,7 +57,7 @@ class PendingOverlay extends HtmlTagComponent
         // }
 
         return <<<JS
-            window.pending = (button) => {
+            window.app.pending = (button) => {
                 if (button && button.form.checkValidity()) {
                     button.form.submit();
                     button.disabled = true;
@@ -71,7 +71,7 @@ class PendingOverlay extends HtmlTagComponent
                 return false;
             };
 
-            window.pendingHide = () => {
+            window.app.pendingHide = () => {
                 document.getElementById('_componentPendingOverlay').classList.add('d-none');
             };
 

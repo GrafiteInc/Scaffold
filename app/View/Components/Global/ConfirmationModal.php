@@ -43,7 +43,7 @@ class ConfirmationModal extends HtmlTagComponent
                 event.target.innerHTML = _processing + event.target.innerHTML;
                 event.target.disabled = true;
 
-                window.confirmationFormTarget.closest('form').submit();
+                window.app.confirmationFormTarget.closest('form').submit();
 
                 let _modal = window.bootstrap.Modal.getOrCreateInstance(document.getElementById('confirmationModal'));
                 _modal.toggle();
@@ -51,7 +51,7 @@ class ConfirmationModal extends HtmlTagComponent
                 event.target.disabled = false;
             }
 
-            window.confirmation = (_event) => {
+            window.app.confirmation = (_event) => {
                 let _target = event.target;
                 _event.preventDefault();
 
@@ -62,7 +62,7 @@ class ConfirmationModal extends HtmlTagComponent
                 document.getElementById('confirmationModalMessage').innerHTML = _target.getAttribute('data-formsjs-confirm-message');
                 let _modal = window.bootstrap.Modal.getOrCreateInstance(document.getElementById('confirmationModal'));
                 _modal.toggle();
-                window.confirmationFormTarget = _event.target;
+                window.app.confirmationFormTarget = _event.target;
 
                 return false;
             };

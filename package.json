@@ -33,6 +33,8 @@
         "pusher-js": "^7.0.3",
         "resolve-url-loader": "^5.0.0",
         "sass": "1.32.0",
-        "sass-loader": "^8.0"
+        "sass-loader": "^8.0",
+        "vue": "^3.3.4",
+        "vue-loader": "^16.8.3"
     }
 }

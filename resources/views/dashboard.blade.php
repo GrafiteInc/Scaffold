@@ -18,7 +18,14 @@
 
     <x-forms.image-upload></x-forms.image-upload>
 
-    {{-- <x-html-rating value="6" max="12" /> --}}
+    <copy-button message="Ok so we have Vue!">Test Button</copy-button>
+
+    {{-- <x-html-hovercard content="Testing">
+        <img src="https://placehold.co/600x400" alt="">
+        <h4>Test Ideas</h4>
+        <x-html-rating value="6" max="12" />
+    </x-html-hovercard> --}}
+
 @stop
 
 @section('content')
@@ -55,7 +62,7 @@
                         'opacity' => 0.8,
                         'radius' => 400,
                         'tooltip' => 'I\'m a bubble.',
-                        'click' => 'window.pending()'
+                        'click' => 'window.app.pending()'
                     ]
                 ])
                 ->skin('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png')

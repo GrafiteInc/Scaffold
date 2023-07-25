@@ -28,7 +28,7 @@ class ContentModal extends HtmlTagComponent
     public static function js()
     {
         return <<<JS
-            window.modal = (_title, _message) => {
+            window.app.modal = (_title, _message) => {
                 document.getElementById('contentModalTitle').innerHTML = _title;
                 document.getElementById('contentModalMessage').innerHTML = _message;
 
