@@ -27,7 +27,7 @@ class NotificationBadge extends Component
         $this->countNotifications();
 
         if ($this->count > 0) {
-            return '<span class="badge badge-pill bg-primary notification-badge rounded-circle">' . $this->count . '</span>';
+            return '<span class="badge badge-pill bg-primary notification-badge rounded-circle">'.$this->count.'</span>';
         }
 
         return '';

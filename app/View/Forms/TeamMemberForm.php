@@ -2,9 +2,9 @@
 
 namespace App\View\Forms;
 
+use Grafite\Forms\Fields\Bootstrap\Select;
 use Grafite\Forms\Fields\Email;
 use Grafite\Forms\Forms\BaseForm;
-use Grafite\Forms\Fields\Bootstrap\Select;
 
 class TeamMemberForm extends BaseForm
 {

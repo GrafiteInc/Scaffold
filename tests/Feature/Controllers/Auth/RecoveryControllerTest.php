@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Controllers\Auth;
 
-use Tests\TestCase;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
+use Tests\TestCase;
 
 class RecoveryControllerTest extends TestCase
 {

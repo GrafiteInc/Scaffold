@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Actions\ProcessUserTwoFactorSettings;
+use App\Actions\UpdateUserAvatar;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\UserUpdateRequest;
 use Exception;
 use Illuminate\Http\Request;
-use App\Actions\UpdateUserAvatar;
 use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use PragmaRX\Google2FAQRCode\Google2FA;
-use App\Http\Requests\UserUpdateRequest;
-use App\Actions\ProcessUserTwoFactorSettings;
 use PragmaRX\Google2FALaravel\Support\Authenticator;
+use PragmaRX\Google2FAQRCode\Google2FA;
 
 class SettingsController extends Controller
 {
@@ -30,7 +30,6 @@ class SettingsController extends Controller
     /**
      * Update the user.
      *
-     * @param  UserUpdateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UserUpdateRequest $request)
@@ -67,7 +66,6 @@ class SettingsController extends Controller
     /**
      * Setup the user 2Factor Auth
      *
-     * @param Request $request
      * @return \Illuminate\View\View
      */
     public function twoFactorSetup(Request $request)

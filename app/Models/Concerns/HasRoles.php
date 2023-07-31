@@ -3,8 +3,8 @@
 namespace App\Models\Concerns;
 
 use App\Models\Role;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
 
 trait HasRoles
 {
@@ -26,7 +26,7 @@ trait HasRoles
     /**
      * Check if the user has a Role.
      *
-     * @param string $role
+     * @param  string  $role
      * @return bool
      */
     public function hasRole($role)
@@ -41,8 +41,8 @@ trait HasRoles
     /**
      * Scope users by thier given roles
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $roleName
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $roleName
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeByRole($query, $roleName)

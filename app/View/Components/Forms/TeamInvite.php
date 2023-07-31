@@ -2,8 +2,8 @@
 
 namespace App\View\Components\Forms;
 
-use Illuminate\View\Component;
 use App\View\Forms\TeamInviteForm;
+use Illuminate\View\Component;
 
 class TeamInvite extends Component
 {

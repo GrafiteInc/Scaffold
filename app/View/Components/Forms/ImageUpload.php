@@ -2,8 +2,8 @@
 
 namespace App\View\Components\Forms;
 
-use Illuminate\View\Component;
 use App\View\Forms\ImageUploadForm;
+use Illuminate\View\Component;
 
 class ImageUpload extends Component
 {

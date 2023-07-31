@@ -8,7 +8,9 @@ use Grafite\Charts\Builder\Chart;
 class RegistrationThirtyDays extends Chart
 {
     public $height = 250;
+
     public $displayAxes = false;
+
     public $tooltipAlwaysOn = true;
 
     public function collectData()

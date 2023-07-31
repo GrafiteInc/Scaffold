@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Exception;
-use Throwable;
-use App\Models\User;
-use App\Models\Invite;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\View\Forms\AdminUserForm;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminUserUpdateRequest;
+use App\Models\Invite;
+use App\Models\User;
+use App\Notifications\UserInviteEmail;
+use App\View\Forms\AdminUserForm;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Notifications\UserInviteEmail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
-use App\Http\Requests\AdminUserUpdateRequest;
+use Illuminate\Support\Str;
+use Throwable;
 
 class UserController extends Controller
 {
@@ -39,7 +39,6 @@ class UserController extends Controller
     /**
      * Search for a matching User.
      *
-     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\View\View
      */
     public function search(Request $request)
@@ -69,7 +68,6 @@ class UserController extends Controller
     /**
      * Show the form for inviting a customer.
      *
-     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postInvite(Request $request)
@@ -103,7 +101,6 @@ class UserController extends Controller
     /**
      * Switch to a different User.
      *
-     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function switchToUser(Request $request, User $user)
@@ -138,7 +135,6 @@ class UserController extends Controller
     /**
      * Create a user
      *
-     * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -166,7 +162,6 @@ class UserController extends Controller
     /**
      * Show the form for editing the User.
      *
-     * @param  \App\Models\User  $user
      * @return \Illuminate\View\View
      */
     public function edit(User $user)
@@ -181,8 +176,6 @@ class UserController extends Controller
     /**
      * Update the User in storage.
      *
-     * @param  \App\Http\Requests\AdminUserUpdateRequest  $request
-     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(AdminUserUpdateRequest $request, User $user)
@@ -206,7 +199,6 @@ class UserController extends Controller
     /**
      * Remove the User from storage.
      *
-     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(User $user)

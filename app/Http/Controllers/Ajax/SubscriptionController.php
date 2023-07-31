@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Ajax;
 
+use App\Http\Controllers\Controller;
+use App\Notifications\InAppNotification;
+use App\Providers\RouteServiceProvider;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
-use App\Providers\RouteServiceProvider;
-use App\Notifications\InAppNotification;
+use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 
 class SubscriptionController extends Controller

@@ -11,7 +11,6 @@ class hCaptcha
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -28,7 +27,7 @@ class hCaptcha
                 }
             }
 
-           return redirect()->back()->withErrors(['hCaptcha could not be confirmed.']);
+            return redirect()->back()->withErrors(['hCaptcha could not be confirmed.']);
         }
 
         return $next($request);

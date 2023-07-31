@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasAvatar;
+use App\Models\Concerns\HasSubscribedUser;
+use App\Models\Concerns\Invitable;
 use App\View\Forms\TeamForm;
 use Grafite\Forms\Traits\HasForm;
-use App\Models\Concerns\HasAvatar;
-use App\Models\Concerns\Invitable;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Concerns\HasSubscribedUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 
 class Team extends Model
 {

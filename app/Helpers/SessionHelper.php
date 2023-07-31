@@ -28,7 +28,7 @@ if (! function_exists('javascript_session_data')) {
         $info = session('info');
         $warning = session('warning');
         $error = session_error_message();
-        $nonce = $nonce ? ' nonce="' . $nonce . '"' : '';
+        $nonce = $nonce ? ' nonce="'.$nonce.'"' : '';
 
         return <<<JS
             <script {$nonce}>

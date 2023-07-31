@@ -8,7 +8,7 @@ class Offcanvas extends HtmlTagComponent
 {
     public static function template()
     {
-        return <<<HTML
+        return <<<'HTML'
             <div id="offCanvas" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offCanvasTitle">
                 <div class="offcanvas-header">
                     <h5 id="offCanvasTitle"></h5>
@@ -23,7 +23,7 @@ class Offcanvas extends HtmlTagComponent
 
     public static function js()
     {
-        return <<<JS
+        return <<<'JS'
             window.app.offCanvas = (_title, _message) => {
                 document.getElementById('offCanvasTitle').innerHTML = _title;
                 document.getElementById('offCanvasMessage').innerHTML = _message;

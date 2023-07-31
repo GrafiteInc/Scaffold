@@ -48,7 +48,7 @@ trait HasSubscription
     /**
      * Get the users subscription plan.
      *
-     * @param string $key
+     * @param  string  $key
      * @return mixed
      */
     public function subscriptionPlan($key)

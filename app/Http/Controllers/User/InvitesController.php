@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Models\Invite;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Invite;
 use App\Notifications\StandardEmail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 
 class InvitesController extends Controller
@@ -25,7 +25,6 @@ class InvitesController extends Controller
     /**
      * Accept an invite.
      *
-     * @param \App\Models\Invite $invite
      * @return \Illuminate\Http\RedirectResponse
      */
     public function accept(Request $request, Invite $invite)
@@ -46,7 +45,6 @@ class InvitesController extends Controller
     /**
      * Reject an invite.
      *
-     * @param \App\Models\Invite $invite
      * @return \Illuminate\Http\RedirectResponse
      */
     public function reject(Invite $invite)

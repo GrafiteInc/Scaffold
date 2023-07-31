@@ -4,8 +4,8 @@ namespace App\Models;
 
 use App\View\Forms\RoleForm;
 use Grafite\Forms\Traits\HasForm;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
@@ -59,7 +59,7 @@ class Role extends Model
     /**
      * Get the permissions - and overide all in the case of `admin`.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      * @return array
      */
     public function getPermissionsAttribute($value)

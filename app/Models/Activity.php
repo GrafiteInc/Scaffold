@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Activity extends Model
 {
@@ -46,7 +46,7 @@ class Activity extends Model
                 $table .= '<tr class="align-top">';
 
                 if (! is_numeric($key)) {
-                    $table .= '<td class="align-top"><strong>' . str_replace('_', ' ', Str::title($key)) . ':</strong></td><td class="align-top">';
+                    $table .= '<td class="align-top"><strong>'.str_replace('_', ' ', Str::title($key)).':</strong></td><td class="align-top">';
                 } else {
                     $table .= '<td colspan="2">';
                 }

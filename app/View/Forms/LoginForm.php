@@ -2,13 +2,13 @@
 
 namespace App\View\Forms;
 
-use Grafite\Forms\Html\Link;
-use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Html\HoneyPot;
-use Grafite\Forms\Forms\BaseForm;
-use Grafite\Forms\Fields\hCaptcha;
 use Grafite\Forms\Fields\CheckboxInline;
+use Grafite\Forms\Fields\Email;
+use Grafite\Forms\Fields\hCaptcha;
 use Grafite\Forms\Fields\PasswordWithReveal;
+use Grafite\Forms\Forms\BaseForm;
+use Grafite\Forms\Html\HoneyPot;
+use Grafite\Forms\Html\Link;
 
 class LoginForm extends BaseForm
 {
@@ -55,7 +55,7 @@ class LoginForm extends BaseForm
             // ['honeypot'],
             ['email'],
             ['password'],
-            ['remember','forgot_password'],
+            ['remember', 'forgot_password'],
             // ['captcha'],
         ];
     }

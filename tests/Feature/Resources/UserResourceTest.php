@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Resources;
 
-use Tests\TestCase;
 use App\Http\Resources\UserResource;
+use Tests\TestCase;
 
 class UserResourceTest extends TestCase
 {

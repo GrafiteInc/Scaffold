@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Http\Forms\UserForm;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 /**
  * NOT IN USE

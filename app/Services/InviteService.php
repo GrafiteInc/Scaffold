@@ -2,21 +2,21 @@
 
 namespace App\Services;
 
-use App\Models\User;
 use App\Models\Invite;
-use Illuminate\Support\Str;
-use App\Notifications\UserInviteEmail;
+use App\Models\User;
 use App\Notifications\InAppNotification;
+use App\Notifications\UserInviteEmail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 
 class InviteService
 {
     /**
      * Create an invite.
      *
-     * @param mixed $model
-     * @param string $email
-     * @param string $message
+     * @param  mixed  $model
+     * @param  string  $email
+     * @param  string  $message
      * @return \App\Models\Invite
      */
     public function create($model, $email, $message)
@@ -66,7 +66,7 @@ class InviteService
      * Delete all invites that match this since their
      * tokens will now be invalid.
      *
-     * @param array $payload
+     * @param  array  $payload
      * @return void
      */
     public function deleteUnfulfilledInvites($payload)
@@ -77,8 +77,8 @@ class InviteService
     /**
      * Find by the user activation token.
      *
-     * @param string $token
-     * @param string $email
+     * @param  string  $token
+     * @param  string  $email
      * @return bool
      */
     public function validateInvitation($token, $email)

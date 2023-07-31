@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Controllers\User;
 
-use Tests\TestCase;
 use Illuminate\Support\Facades\Hash;
+use Tests\TestCase;
 
 class ChangePasswordControllerTest extends TestCase
 {

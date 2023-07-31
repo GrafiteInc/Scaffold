@@ -39,8 +39,8 @@ trait HasPermissions
     /**
      * Check if user has permission
      *
-     * @param string $requestedPermission
-     * @return boolean
+     * @param  string  $requestedPermission
+     * @return bool
      */
     public function hasPermission($requestedPermissions)
     {

@@ -1,20 +1,20 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
-use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenTraits;
-use NunoMaduro\PhpInsights\Domain\Metrics\Architecture\Classes;
-use SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff;
+use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenDefineFunctions;
 use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenFinalClasses;
 use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenNormalClasses;
-use SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff;
 use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenPrivateMethods;
-use SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff;
-use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenDefineFunctions;
+use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenTraits;
+use NunoMaduro\PhpInsights\Domain\Metrics\Architecture\Classes;
+use SlevomatCodingStandard\Sniffs\Commenting\UselessFunctionDocCommentSniff;
+use SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DeclareStrictTypesSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DisallowMixedTypeHintSniff;
-use SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff;
-use SlevomatCodingStandard\Sniffs\Commenting\UselessFunctionDocCommentSniff;
+use SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff;
+use SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff;
+use SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff;
 
 return [
     /*

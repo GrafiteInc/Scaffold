@@ -3,12 +3,12 @@
 namespace App\Providers;
 
 use App\Models\User;
-use Laravel\Cashier\Cashier;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Laravel\Cashier\Cashier;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::directive('session', function ($nonce) {
-            return '<?php echo javascript_session_data(' . $nonce . '); ?>';
+            return '<?php echo javascript_session_data('.$nonce.'); ?>';
         });
 
         if (! app()->environment('testing')) {

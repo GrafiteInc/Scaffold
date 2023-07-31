@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use Exception;
 use App\Models\Team;
-use Illuminate\Support\Str;
+use App\Notifications\InAppNotification;
+use Exception;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
-use App\Notifications\InAppNotification;
+use Illuminate\Support\Str;
 
 class TeamService
 {
@@ -26,7 +26,7 @@ class TeamService
     /**
      * Find a team by uuid.
      *
-     * @param string $uuid
+     * @param  string  $uuid
      * @return \App\Models\Team
      */
     public function findByUuid($uuid)
@@ -89,9 +89,8 @@ class TeamService
     /**
      * Invite a user to a team.
      *
-     * @param \App\Models\Team $team
-     * @param string $email
-     *
+     * @param  \App\Models\Team  $team
+     * @param  string  $email
      * @return \App\Models\Invite
      */
     public function invite($team, $email)
@@ -105,7 +104,7 @@ class TeamService
         $message = "You've been invited to a team on {$app} called: {$team->name}!";
 
         if ($invite = $team->invite($email, $message)) {
-            app_notify('You sent an invite to ' . $email . ' for ' . $team->name);
+            app_notify('You sent an invite to '.$email.' for '.$team->name);
         }
 
         return $invite;
@@ -114,7 +113,7 @@ class TeamService
     /**
      * Leave a team.
      *
-     * @param \App\Models\Team $team
+     * @param  \App\Models\Team  $team
      * @return bool
      */
     public function leave($team)
@@ -133,9 +132,8 @@ class TeamService
     /**
      * Remove a team member.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Team $team
-     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Team  $team
      * @return bool
      */
     public function remove($user, $team)
@@ -152,8 +150,7 @@ class TeamService
     /**
      * Delete a team.
      *
-     * @param Team $team
-     *
+     * @param  Team  $team
      * @return bool
      */
     public function destroy($team)
@@ -175,11 +172,10 @@ class TeamService
     /**
      * Update a members information.
      *
-     * @param \Illuminate\Database\Eloquent\Relations\Pivot $membership
-     * @param \App\Models\User $user
-     * @param \App\Models\Team $team
-     * @param array $payload
-     *
+     * @param  \Illuminate\Database\Eloquent\Relations\Pivot  $membership
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Team  $team
+     * @param  array  $payload
      * @return \App\Models\User|false
      */
     public function updateMember($membership, $user, $team, $payload)
@@ -192,7 +188,7 @@ class TeamService
             ])->save()
         ) {
             if ($originalRole !== $payload['team_role']) {
-                $message = 'Your team role in ' . $team->name . ' has changed to: ' . Str::title($payload['team_role']);
+                $message = 'Your team role in '.$team->name.' has changed to: '.Str::title($payload['team_role']);
                 $notification = new InAppNotification($message);
                 $notification->isImportant();
 

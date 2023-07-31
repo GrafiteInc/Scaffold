@@ -2,9 +2,9 @@
 
 namespace App\Models\Concerns;
 
-use PragmaRX\Recovery\Recovery;
 use App\Notifications\TwoFactorNotification;
 use App\Notifications\TwoFactorRecoveryNotification;
+use PragmaRX\Recovery\Recovery;
 
 trait HasTwoFactor
 {

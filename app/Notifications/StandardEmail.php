@@ -3,9 +3,9 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class StandardEmail extends Notification implements ShouldQueue
 {
@@ -20,9 +20,9 @@ class StandardEmail extends Notification implements ShouldQueue
     /**
      * Create a notification instance.
      *
-     * @param string $name
-     * @param string $subject
-     * @param string $message
+     * @param  string  $name
+     * @param  string  $subject
+     * @param  string  $message
      */
     public function __construct($name, $subject, $message)
     {
@@ -34,8 +34,7 @@ class StandardEmail extends Notification implements ShouldQueue
     /**
      * Get the notification's channels.
      *
-     * @param mixed $notifiable
-     *
+     * @param  mixed  $notifiable
      * @return array|string
      */
     public function via($notifiable)
@@ -48,8 +47,7 @@ class StandardEmail extends Notification implements ShouldQueue
     /**
      * Build the mail representation of the notification.
      *
-     * @param mixed $notifiable
-     *
+     * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
@@ -57,7 +55,7 @@ class StandardEmail extends Notification implements ShouldQueue
         return (new MailMessage())
             // ->theme('custom')
             ->subject($this->subject)
-            ->greeting('Hello ' . $this->name)
+            ->greeting('Hello '.$this->name)
             ->line($this->message)
             ->action('Login', url('login'));
     }

@@ -8,9 +8,13 @@ use Grafite\Charts\Builder\Chart;
 class ActivityThirtyDays extends Chart
 {
     public $height = 250;
+
     public $id = 'Activities';
+
     public $displayAxes = false;
+
     public $tooltipAlwaysOn = true;
+
     public $activityRecords;
 
     /**

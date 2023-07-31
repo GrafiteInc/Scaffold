@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Models\Invite;
 use App\Notifications\UserInviteEmail;
+use Exception;
 use Illuminate\Support\Facades\Notification;
 
 class ResendInviteController extends Controller
@@ -12,7 +12,6 @@ class ResendInviteController extends Controller
     /**
      * Resend the invitation.
      *
-     * @param  \App\Models\Invite  $invite
      * @return \Illuminate\Http\RedirectResponse
      */
     public function __invoke(Invite $invite)

@@ -3,10 +3,10 @@
 namespace App\View\Forms;
 
 use App\Models\Role;
-use Illuminate\Support\Str;
-use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Checkbox;
+use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Forms\ModelForm;
+use Illuminate\Support\Str;
 
 class RoleForm extends ModelForm
 {
@@ -59,7 +59,7 @@ class RoleForm extends ModelForm
 
         foreach ($permissions as $model => $action) {
             foreach ($action as $name => $label) {
-                $key = Str::ucfirst(Str::singular($model)) . ' Permissions';
+                $key = Str::ucfirst(Str::singular($model)).' Permissions';
                 $options[$key][] = "permissions[{$model}.{$name}]";
             }
         }

@@ -3,8 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class TwoFactorRecoveryNotification extends Notification
 {
@@ -23,7 +23,6 @@ class TwoFactorRecoveryNotification extends Notification
      * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
-     * @return array
      */
     public function via($notifiable): array
     {
@@ -40,7 +39,7 @@ class TwoFactorRecoveryNotification extends Notification
     public function toMail($notifiable): MailMessage
     {
         $message = (new MailMessage())
-            ->greeting('Hello ' . $notifiable->name)
+            ->greeting('Hello '.$notifiable->name)
             ->line('Your two factor recovery codes are:');
 
         foreach ($this->codes as $code) {
