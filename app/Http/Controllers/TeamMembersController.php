@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Models\Team;
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Services\TeamService;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class TeamMembersController extends Controller
@@ -38,8 +38,6 @@ class TeamMembersController extends Controller
     /**
      * Edit a team member.
      *
-     * @param  \App\Models\Team  $team
-     * @param  \App\Models\User  $member
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function editMember(Team $team, User $member)
@@ -59,9 +57,6 @@ class TeamMembersController extends Controller
     /**
      * Update a members information.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Team $team
-     * @param \App\Models\User $member
      * @return \Illuminate\Http\RedirectResponse
      */
     public function updateMember(Request $request, Team $team, User $member)
@@ -86,8 +81,6 @@ class TeamMembersController extends Controller
     /**
      * Invite a member.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\RedirectResponse
      */
     public function inviteMember(Request $request, Team $team)
@@ -108,7 +101,6 @@ class TeamMembersController extends Controller
     /**
      * Leave the team.
      *
-     * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\RedirectResponse
      */
     public function leave(Team $team)
@@ -127,8 +119,6 @@ class TeamMembersController extends Controller
     /**
      * Remove a team member.
      *
-     * @param  \App\Models\Team  $team
-     * @param  \App\Models\User  $member
      * @return \Illuminate\Http\RedirectResponse
      */
     public function removeMember(Team $team, User $member)

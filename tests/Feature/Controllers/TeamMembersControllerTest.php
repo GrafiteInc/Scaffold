@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Controllers;
 
-use Tests\TestCase;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
 
 class TeamMembersControllerTest extends TestCase
 {

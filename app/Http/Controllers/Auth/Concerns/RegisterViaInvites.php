@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth\Concerns;
 
+use App\Services\InviteService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use App\Services\InviteService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
@@ -23,7 +23,6 @@ trait RegisterViaInvites
     /**
      * Register a user via an invite.
      *
-     * @param  Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function registerViaInvite(Request $request)
@@ -55,7 +54,6 @@ trait RegisterViaInvites
     /**
      * Validate the invite.
      *
-     * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     public function validateInvite(array $data)

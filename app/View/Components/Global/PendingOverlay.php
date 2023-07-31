@@ -8,7 +8,7 @@ class PendingOverlay extends HtmlTagComponent
 {
     public static function template()
     {
-        return <<<HTML
+        return <<<'HTML'
             <div id="_componentPendingOverlay" class="overlay d-none bg-dark">
                 <div class="spinner-container">
                     <div class="spinner-border" role="status">
@@ -21,7 +21,7 @@ class PendingOverlay extends HtmlTagComponent
 
     public static function styles()
     {
-        return <<<CSS
+        return <<<'CSS'
             .overlay {
                 width: 100%;
                 height: 100vh;
@@ -56,7 +56,7 @@ class PendingOverlay extends HtmlTagComponent
         //     $position = '';
         // }
 
-        return <<<JS
+        return <<<'JS'
             window.app.pending = (button) => {
                 if (button && button.form.checkValidity()) {
                     button.form.submit();

@@ -1,33 +1,32 @@
 <?php
 
+use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Ajax\CookiePolicyController;
+use App\Http\Controllers\Ajax\FileUploadController;
+use App\Http\Controllers\Ajax\SubscriptionController;
 use App\Http\Controllers\Auth;
-use App\Http\Middleware\hCaptcha;
+use App\Http\Controllers\Auth\RecoveryController;
+use App\Http\Controllers\Auth\TwoFactorController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ResendInviteController;
+use App\Http\Controllers\RevokeInviteController;
+use App\Http\Controllers\TeamMembersController;
+use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\User\ApiTokenController;
+use App\Http\Controllers\User\BillingController;
+use App\Http\Controllers\User\ChangePasswordController;
+use App\Http\Controllers\User\DestroyController;
+use App\Http\Controllers\User\InvitesController;
+use App\Http\Controllers\User\LogoutSessionsController;
+use App\Http\Controllers\User\NotificationsController;
+use App\Http\Controllers\User\SettingsController;
 use Grafite\Auth\Facades\GrafiteAuth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\TeamsController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\TeamMembersController;
-use App\Http\Controllers\ResendInviteController;
-use App\Http\Controllers\RevokeInviteController;
-use App\Http\Controllers\User\BillingController;
-use App\Http\Controllers\User\DestroyController;
-use App\Http\Controllers\User\InvitesController;
-use App\Http\Controllers\Auth\RecoveryController;
-use App\Http\Controllers\User\ApiTokenController;
-use App\Http\Controllers\User\SettingsController;
-use App\Http\Controllers\Auth\TwoFactorController;
-use App\Http\Controllers\Ajax\FileUploadController;
-use App\Http\Controllers\Ajax\CookiePolicyController;
-use App\Http\Controllers\Ajax\SubscriptionController;
-use App\Http\Controllers\Admin\AnnouncementController;
-use App\Http\Controllers\User\NotificationsController;
-use App\Http\Controllers\User\ChangePasswordController;
-use App\Http\Controllers\User\LogoutSessionsController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------

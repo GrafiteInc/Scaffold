@@ -2,8 +2,8 @@
 
 namespace App\View\Forms;
 
-use Grafite\Forms\Forms\BaseForm;
 use Grafite\Forms\Fields\Password;
+use Grafite\Forms\Forms\BaseForm;
 
 class UserPasswordForm extends BaseForm
 {

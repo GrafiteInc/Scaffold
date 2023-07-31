@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use PragmaRX\Google2FALaravel\Support\Authenticator;
 
 class TwoFactorController extends Controller
@@ -17,7 +17,6 @@ class TwoFactorController extends Controller
     /**
      * Verification for Two Factor Auth
      *
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function verify(Request $request)

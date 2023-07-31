@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.15.2] - 2023-07-31
+
+### Changed
+- Switched to Laravel Pint
+
 ## [v2.15.1] - 2023-07-31
 
 ### Added

@@ -2,8 +2,8 @@
 
 namespace App\View\Forms;
 
-use Grafite\Forms\Forms\BaseForm;
 use Grafite\Forms\Fields\Dropzone;
+use Grafite\Forms\Forms\BaseForm;
 
 class ImageUploadForm extends BaseForm
 {

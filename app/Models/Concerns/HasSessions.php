@@ -2,10 +2,10 @@
 
 namespace App\Models\Concerns;
 
+use hisorange\BrowserDetect\Parser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use hisorange\BrowserDetect\Parser;
 
 trait HasSessions
 {
@@ -30,6 +30,6 @@ trait HasSessions
     {
         $request = (new Request())->headers->set('User-Agent', $session->user_agent);
 
-        return (new Parser(null, $request, []));
+        return new Parser(null, $request, []);
     }
 }

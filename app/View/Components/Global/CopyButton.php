@@ -24,7 +24,7 @@ class CopyButton extends HtmlTagComponent
 
     public static function js()
     {
-        return <<<JS
+        return <<<'JS'
             document.querySelectorAll('.global-copy-button').forEach(function (_button) {
                 _button.addEventListener('click', function (event) {
                     navigator.clipboard.writeText(_button.getAttribute('data-payload')); window.app.notify.success('Copied!');

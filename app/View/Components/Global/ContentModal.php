@@ -8,7 +8,7 @@ class ContentModal extends HtmlTagComponent
 {
     public static function template()
     {
-        return <<<HTML
+        return <<<'HTML'
             <div class="modal fade" role="dialog" id="contentModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -27,7 +27,7 @@ class ContentModal extends HtmlTagComponent
 
     public static function js()
     {
-        return <<<JS
+        return <<<'JS'
             window.app.modal = (_title, _message) => {
                 document.getElementById('contentModalTitle').innerHTML = _title;
                 document.getElementById('contentModalMessage').innerHTML = _message;

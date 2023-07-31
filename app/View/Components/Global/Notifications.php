@@ -8,7 +8,7 @@ class Notifications extends HtmlTagComponent
 {
     public static function template()
     {
-        return <<<HTML
+        return <<<'HTML'
             <div class="position-fixed bottom-0 start-0 ms-4 mb-4 bmx-z-4">
                 <div id="toaster" class="toast border-0 align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="d-flex">
@@ -22,7 +22,7 @@ class Notifications extends HtmlTagComponent
 
     public static function js()
     {
-        return <<<JS
+        return <<<'JS'
                 let _this = this;
 
                 window.app.notify = {

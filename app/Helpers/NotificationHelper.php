@@ -1,9 +1,9 @@
 <?php
 
-use App\Events\UserPusherEvent;
 use App\Events\GeneralPusherEvent;
-use App\Notifications\StandardEmail;
+use App\Events\UserPusherEvent;
 use App\Notifications\InAppNotification;
+use App\Notifications\StandardEmail;
 use Illuminate\Support\Facades\Notification;
 
 /*

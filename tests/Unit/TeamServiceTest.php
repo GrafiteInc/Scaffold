@@ -2,14 +2,14 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use App\Models\Team;
 use App\Models\User;
-use App\Services\TeamService;
-use App\Notifications\UserInviteEmail;
 use App\Notifications\InAppNotification;
-use Illuminate\Support\Facades\Notification;
+use App\Notifications\UserInviteEmail;
+use App\Services\TeamService;
 use Illuminate\Notifications\AnonymousNotifiable;
+use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
 
 class TeamServiceTest extends TestCase
 {

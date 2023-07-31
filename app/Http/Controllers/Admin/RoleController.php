@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Exception;
-use App\Models\Role;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleCreateRequest;
+use App\Models\Role;
+use Exception;
+use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
     /**
      * Display a listing of the roles.
+     *
      * @return \Illuminate\View\View
      */
     public function index()
@@ -23,6 +24,7 @@ class RoleController extends Controller
 
     /**
      * Show the form for inviting a customer.
+     *
      * @return \Illuminate\View\View
      */
     public function create()
@@ -49,7 +51,6 @@ class RoleController extends Controller
     /**
      * Show the form for editing the Role.
      *
-     * @param  \App\Models\Role  $role
      * @return \Illuminate\View\View
      */
     public function edit(Role $role)
@@ -60,8 +61,6 @@ class RoleController extends Controller
     /**
      * Update the Role in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Role $role)
@@ -84,7 +83,6 @@ class RoleController extends Controller
      * Force the logout of users who
      * had that role.
      *
-     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Role $role)

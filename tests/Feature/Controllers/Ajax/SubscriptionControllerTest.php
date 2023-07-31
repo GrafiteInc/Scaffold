@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Controllers\Ajax;
 
-use Tests\TestCase;
 use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
 
 class SubscriptionControllerTest extends TestCase
 {

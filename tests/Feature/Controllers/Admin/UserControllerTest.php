@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Controllers\Admin;
 
-use Tests\TestCase;
+use App\Models\Invite;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Invite;
+use Tests\TestCase;
 
 class UserControllerTest extends TestCase
 {

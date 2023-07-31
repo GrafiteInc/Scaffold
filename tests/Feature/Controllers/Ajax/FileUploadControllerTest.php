@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Controllers\Ajax;
 
-use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
 
 class FileUploadControllerTest extends TestCase
 {
@@ -25,7 +25,7 @@ class FileUploadControllerTest extends TestCase
         ]);
 
         $response->assertOk();
-        Storage::assertExists('public/uploads/' . $file->hashName());
+        Storage::assertExists('public/uploads/'.$file->hashName());
     }
 
     public function testImageUpload()
@@ -43,6 +43,6 @@ class FileUploadControllerTest extends TestCase
         ]);
 
         $response->assertOk();
-        Storage::assertExists('public/uploads/' . $file->hashName());
+        Storage::assertExists('public/uploads/'.$file->hashName());
     }
 }

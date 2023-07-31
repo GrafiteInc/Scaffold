@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Controllers\Auth;
 
-use Tests\GuestTestCase;
 use Illuminate\Support\Str;
+use Tests\GuestTestCase;
 
 class RegistrationControllerTest extends GuestTestCase
 {

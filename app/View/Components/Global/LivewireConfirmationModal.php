@@ -8,7 +8,7 @@ class LivewireConfirmationModal extends HtmlTagComponent
 {
     public static function template()
     {
-        return <<<HTML
+        return <<<'HTML'
             <div class="modal fade" role="dialog" id="livewireConfirmationModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

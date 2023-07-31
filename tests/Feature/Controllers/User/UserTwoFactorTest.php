@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Controllers\User;
 
-use Tests\TestCase;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
 
 class UserTwoFactorTest extends TestCase
 {

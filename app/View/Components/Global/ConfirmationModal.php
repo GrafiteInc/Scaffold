@@ -8,7 +8,7 @@ class ConfirmationModal extends HtmlTagComponent
 {
     public static function template()
     {
-        return <<<HTML
+        return <<<'HTML'
             <div class="modal fade" role="dialog" id="confirmationModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
@@ -32,7 +32,7 @@ class ConfirmationModal extends HtmlTagComponent
 
     public static function js()
     {
-        return <<<JS
+        return <<<'JS'
             document.getElementById('confirmationModalConfirmButton').addEventListener('click', function (event) {
                 window.submitConfirmationForm(event);
             })

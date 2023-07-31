@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class AnnouncementController extends Controller
 {
     /**
      * Show the form for inviting a customer.
+     *
      * @return \Illuminate\View\View
      */
     public function create()
