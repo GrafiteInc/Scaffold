@@ -17,7 +17,7 @@ if (paymentMethodForm) {
 
     cardButton.addEventListener('click', async (e) => {
         cardButton.disabled = true;
-        window.pending();
+        window.app.pending();
 
         const { setupIntent, error } = await stripe.confirmCardSetup(
             clientSecret, {
@@ -28,7 +28,7 @@ if (paymentMethodForm) {
         );
 
         if (error) {
-            window.pendingHide();
+            window.app.pendingHide();
             window.notify.warning(error.message);
             cardButton.disabled = false;
         } else {

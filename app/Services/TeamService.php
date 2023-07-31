@@ -127,7 +127,7 @@ class TeamService
 
         $team->user->notify($notification);
 
-        return (bool) auth()->user()->teamMemberships()->detach($team->id);
+        return (bool) auth()->user()->memberships()->detach($team->id);
     }
 
     /**
@@ -144,7 +144,7 @@ class TeamService
             throw new Exception('You do not have permission to do this.', 1);
         }
 
-        $user->teamMemberships()->detach($team->id);
+        $user->memberships()->detach($team->id);
 
         return true;
     }
@@ -164,7 +164,7 @@ class TeamService
             $notification->isImportant();
 
             $member->notify($notification);
-            $member->teamMemberships()->detach($team->id);
+            $member->memberships()->detach($team->id);
         });
 
         $team->invites()->delete();

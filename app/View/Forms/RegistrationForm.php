@@ -57,7 +57,7 @@ class RegistrationForm extends BaseForm
         ];
     }
 
-    public function setSections()
+    public function setSections($fields)
     {
         return [
             ['honeypot'],

@@ -16,7 +16,12 @@
                                 <input type="text" class="form-control " value="{{ session('token') }}">
                             </div>
                             <div class="col-md-3 text-end">
-                                <x-html-tag component="\App\View\Components\Global\CopyButton" :data="[session('token')]" />
+                                <x-html-tag component="\App\View\Components\Global\CopyButton"
+                                    :data="[
+                                        'payload' => session('token'),
+                                        'text' => 'Copy Token'
+                                    ]"
+                                />
                             </div>
                         </div>
                     @endif

@@ -38,7 +38,8 @@
                                                 {!! $role->form()->editButton() !!}
 
                                                 @if ($role->name !== 'admin')
-                                                    {!! $role->form()->confirm('Are you sure you want to delete this role?', 'confirmation')->delete($role) !!}
+                                                    {!! $role->form()->confirm('Are you sure you want to delete this role?', 'app.confirmation')->delete($role) !!}
+
                                                 @endif
                                             </div>
                                         </td>

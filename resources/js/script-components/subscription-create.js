@@ -50,7 +50,7 @@ if (subscriptionForm) {
             window.notify.warning(error.message);
             cardButton.disabled = false;
         } else {
-            window.pending();
+            window.app.pending();
             window.axios.post(route('ajax.billing.subscription.create'), {
                 plan: cardHolderPlan.value,
                 name: cardHolderName.value,

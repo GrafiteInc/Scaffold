@@ -70,7 +70,7 @@ class AdminUserForm extends ModelForm
         ];
     }
 
-    public function setSections()
+    public function setSections($fields)
     {
         return [
             ['name', 'email'],

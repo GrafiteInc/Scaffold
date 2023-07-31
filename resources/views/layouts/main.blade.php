@@ -21,16 +21,17 @@
 
         @include('layouts.components.theme-styles')
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <script src="https://kit.fontawesome.com/e46847d218.js" crossorigin="anonymous"></script>
 
+        @session
         @formStyles
         @htmlStyles
         @chartStyles
-        @htmlStyles
         @chartCdn
         @laravelPWA
         @missionControl
-        @session
+        @fathom
 
         @stack('styles')
         <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
@@ -42,7 +43,6 @@
             <x-html-tag component="\App\View\Components\Global\Notifications" />
             <x-html-tag component="\App\View\Components\Global\ConfirmationModal" />
             <x-html-tag component="\App\View\Components\Global\LivewireConfirmationModal" />
-            <x-html-tag component="\App\View\Components\Global\ActionModal" />
             <x-html-tag component="\App\View\Components\Global\ContentModal" />
             <x-html-tag component="\App\View\Components\Global\Offcanvas" />
 

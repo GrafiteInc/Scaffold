@@ -91,7 +91,7 @@ class TeamsControllerTest extends TestCase
             'user_id' => $this->user->id,
         ]);
 
-        $user->teamMemberships()->attach($team);
+        $user->memberships()->attach($team);
 
         $response = $this->delete(route('teams.destroy', [$team->id]));
 

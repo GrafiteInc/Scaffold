@@ -11,7 +11,7 @@ trait HasTeams
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function teamMemberships()
+    public function memberships()
     {
         return $this->belongsToMany(Team::class)
             ->as('membership')
@@ -26,5 +26,15 @@ trait HasTeams
     public function teams()
     {
         return $this->hasMany(Team::class);
+    }
+
+    /**
+     * The teams the user can access
+     *
+     * @return void
+     */
+    public function teamsUserCanAccess()
+    {
+        return $this->teams->merge($this->memberships)->unique();
     }
 }

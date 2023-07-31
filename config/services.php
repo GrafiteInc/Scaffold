@@ -42,4 +42,13 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
+
+    'hcaptcha' => [
+        'sitekey' => env('HCAPTCHA_SITEKEY'),
+        'secret' => env('HCAPTCHA_SECRET'),
+    ],
+
+    'fathom' => [
+        'key' => env('FATHOM_KEY'),
+    ],
 ];

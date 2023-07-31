@@ -63,7 +63,7 @@
                                                 ['class' => 'btn btn-sm btn-outline-primary me-2']
                                             ) !!}
 
-                                            {!! form()->confirm('Are you sure you want to revoke this invite?', 'confirmation')
+                                            {!! form()->confirm('Are you sure you want to revoke this invite?', 'app.confirmation')
                                                 ->action('post',
                                                 ['invite.revoke', $invite],
                                                 '<span class="fas fa-fw fa-undo"></span> Revoke Invite',

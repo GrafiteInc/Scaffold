@@ -21,7 +21,7 @@
                     <div class="col-md-12">
                         <button
                             class="btn btn-primary"
-                            onclick="window.pending(this)"
+                            onclick="window.app.pending(this)"
                             type="submit"
                         >Change Plan</button>
                     </div>

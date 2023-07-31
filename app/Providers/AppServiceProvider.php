@@ -43,8 +43,12 @@ class AppServiceProvider extends ServiceProvider
             return request()->user()->hasPermission($value);
         });
 
-        Blade::directive('session', function () {
-            return '<?php echo javascript_session_data(); ?>';
+        Blade::directive('nonce', function () {
+            return '';
+        });
+
+        Blade::directive('session', function ($nonce) {
+            return '<?php echo javascript_session_data(' . $nonce . '); ?>';
         });
 
         if (! app()->environment('testing')) {

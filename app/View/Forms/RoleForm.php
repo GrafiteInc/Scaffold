@@ -31,7 +31,9 @@ class RoleForm extends ModelForm
         'delete' => 'btn btn-outline-danger btn-sm ms-2',
     ];
 
-    public function setSections()
+    public $disableOnSubmit = true;
+
+    public function setSections($fields)
     {
         return array_merge(
             [[

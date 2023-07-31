@@ -19,6 +19,7 @@ mix.js('resources/js/app.js', 'public/js')
     // .sass('resources/sass/dark-app.scss', 'public/css')
     // .sass('resources/sass/light-app.scss', 'public/css')
     .sass('resources/sass/app.scss', 'public/css')
+    .vue()
     .purgeCss({
         enabled: mix.inProduction(),
         content: [
