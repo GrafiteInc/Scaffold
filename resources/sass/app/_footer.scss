@@ -4,13 +4,13 @@
 */
 
 .footer {
-    background-color: $footer-bg;
+    background-color: var(--app-footer-bg);
 
     span {
-        color: $footer-text-color;
+        color: var(--app-footer-text-color);
     }
 
     a {
-        color: $footer-text-color;
+        color: var(--app-footer-text-color);
     }
 }

@@ -1,7 +1,5 @@
-// Flatly 5.1.3
+// Flatly 5.3.1
 // Bootswatch
-
-$enable-negative-margins: true;
 
 $theme: "flatly" !default;
 
@@ -32,20 +30,20 @@ $green:   #18bc9c !default;
 $teal:    #20c997 !default;
 $cyan:    #3498db !default;
 
-$primary:       $purple !default;
+$primary:       $indigo !default;
 $secondary:     $gray-600 !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
 $light:         $gray-200 !default;
-$dark:          $gray-300 !default;
+$dark:          $gray-700 !default;
 
 $min-contrast-ratio:   2.05 !default;
 
 // Links
 
-$link-color:                $primary !default;
+$link-color:                $success !default;
 
 // Fonts
 
@@ -57,7 +55,7 @@ $h3-font-size:                2rem !default;
 
 // Tables
 
-$table-bg-scale:              0 !default;
+$table-bg-scale:              0% !default;
 
 // Dropdowns
 
@@ -67,9 +65,9 @@ $dropdown-link-hover-bg:            $primary !default;
 
 // Navs
 
-$nav-link-padding-y:                .5rem !default !default;
+$nav-link-padding-y:                .5rem !default;
 $nav-link-padding-x:                2rem !default;
-$nav-link-disabled-color:           $gray-600 !default !default;
+$nav-link-disabled-color:           $gray-600 !default;
 $nav-tabs-border-color:             $gray-200 !default;
 
 // Navbar

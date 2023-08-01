@@ -19,7 +19,7 @@
 
         <link rel="icon" type="image/ico" href="">
 
-        @include('layouts.components.theme-styles')
+        <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <script src="https://kit.fontawesome.com/e46847d218.js" crossorigin="anonymous"></script>

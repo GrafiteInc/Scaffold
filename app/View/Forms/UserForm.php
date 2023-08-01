@@ -48,7 +48,6 @@ class UserForm extends ModelForm
             ]),
             Toggled::make('allow_email_based_notifications', [
                 'legend' => 'Email Contact',
-                'color' => '#8558da',
             ]),
             FileWithPreview::make('avatar', [
                 'preview_identifier' => '.avatar',

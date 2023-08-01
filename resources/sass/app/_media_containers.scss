@@ -73,7 +73,7 @@
     .sidebar {
         margin-top: 60px;
         margin-left: -320px;
-        box-shadow: 0 5px 5px $sidebar-shadow;
+        box-shadow: 0 5px 5px var(--bs-gray-300);
     }
     .sidebar-sticky {
         height: calc(100vh - 60px);

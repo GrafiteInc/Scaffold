@@ -7,8 +7,13 @@
 .sidebar {
     background-color: var(--app-sidebar-bg);
 
-    .nav-link.active {
-        color: var(--bs-primary);
+    .nav-link {
+        margin: 8px;
+        &.active {
+            color: var(--bs-white);
+            background-color: var(--bs-primary);
+            border-radius: 6px;
+        }
     }
 
     .nav-item {
