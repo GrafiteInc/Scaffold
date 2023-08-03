@@ -13443,13 +13443,15 @@ input[type=file].form-control {
 }
 
 .content-sm {
-  width: 348px;
+  width: calc(100% - 24px);
+  max-width: 548px;
   margin: 0px auto;
   padding-top: 48px;
 }
 
 .content-md {
-  width: 548px;
+  width: calc(100% - 24px);
+  max-width: 720px;
   margin: 0px auto;
   padding-top: 48px;
 }

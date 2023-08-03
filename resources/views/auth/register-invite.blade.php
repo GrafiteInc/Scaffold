@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div class="card shadow mb-5">
+        <div class="card shadow border-0 mb-5">
             <div class="card-body">
                 <form method="POST" action="{{ route('register.invite') }}">
                     {!! csrf_field() !!}
