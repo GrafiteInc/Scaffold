@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.16.0] - 2023-08-06
+
+### Changed
+- New Stripe and Cashier system
+
+### Fixed
+- Some minor style issues
+
 ## [v2.15.2] - 2023-07-31
 
 ### Changed
