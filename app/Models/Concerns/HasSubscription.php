@@ -72,4 +72,9 @@ trait HasSubscription
             && ! is_null($this->state)
             && ! is_null($this->country);
     }
+
+    public function clearSubscriptionCache()
+    {
+        Cache::forget($this->cacheIdentifier('subscription'));
+    }
 }

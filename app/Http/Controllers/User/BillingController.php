@@ -80,6 +80,8 @@ class BillingController extends Controller
 
             activity("Subscribed to {$request->plan} subscription plan.");
 
+            $request->user()->clearSubscriptionCache();
+
             return redirect()
                 ->route('user.billing')
                 ->withMessage('You\'re subscribed!');
@@ -89,18 +91,6 @@ class BillingController extends Controller
 
         return redirect()->back()
             ->withErrors(['Could not set your subscription, please try again.']);
-    }
-
-    /**
-     * Change subscription plan.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function getChangePlan(Request $request)
-    {
-        $user = $request->user();
-
-        return view('user.billing.change-plan')->with(compact('user'));
     }
 
     /**
@@ -116,6 +106,8 @@ class BillingController extends Controller
                 ->swap($request->plan);
 
             activity("Switched to {$request->plan} subscription plan.");
+
+            $request->user()->clearSubscriptionCache();
 
             return redirect()->route('user.billing')
                 ->withMessage('Your subscription was swapped!');
