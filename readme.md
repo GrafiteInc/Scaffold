@@ -8,23 +8,26 @@
 ## About Grafite Scaffold
 Grafite Scaffold was created as a highly opinionated boilerplate of Laravel's base application structure. In comes loaded with a variety of packages for various needs including:
 
+- grafite/auth
 - grafite/charts
 - grafite/database
 - grafite/forms
+- grafite/html
+- grafite/maintenance
+- hisorange/browser-detect
 - intervention/image
 - guzzlehttp/guzzle
-- fruitcake/laravel-cors
 - bepsvpt/secure-headers
+- livewire/livewire
+- laravel/framework
 - laravel/cashier
 - laravel/dusk
 - laravel/helpers
-- laravelcollective/auth
 - laravel/sanctum
 - lasserafn/php-initial-avatar-generator
-- nunomaduro/collision
 - tightenco/ziggy
-- livewire/livewire
 - pragmarx/google2fa-laravel
+- pragmarx/recovery
 - pusher/pusher-php-server
 - silviolleite/laravelpwa
 - spatie/laravel-honeypot
@@ -36,7 +39,7 @@ Scaffold is *intended* to be used to start a project and then be heavily altered
 
 ## Requirements
 
-1. PHP 7.3+
+1. PHP 8.1+
 
 ## Compatibility and Support
 
