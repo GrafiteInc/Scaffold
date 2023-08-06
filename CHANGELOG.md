@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.16.1] - 2023-08-06
+
+### Fixed
+- Small issue with caching
+
 ## [v2.16.0] - 2023-08-06
 
 ### Changed
