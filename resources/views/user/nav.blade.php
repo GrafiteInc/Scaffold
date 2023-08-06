@@ -1,4 +1,4 @@
-<ul class="nav nav-pills mb-4 p-1 rounded bg-dark">
+<ul class="nav nav-pills mb-4 p-1 rounded bg-body-tertiary">
     <li class="nav-item">
         <a class="{{ route_link_class(['user.settings', 'user.settings.*']) }}" href="{{ route('user.settings') }}">Settings</a>
     </li>
@@ -10,5 +10,8 @@
     </li>
     <li class="nav-item">
         <a class="{{ route_link_class('user.notifications') }}" href="{{ route('user.notifications') }}">Notifications</a>
+    </li>
+    <li class="nav-item">
+        <a class="{{ route_link_class('user.billing') }}" href="{{ route('user.billing') }}">Billing</a>
     </li>
 </ul>

@@ -1,10 +1,10 @@
 /*! purgecss start ignore */
 $color-mode-type: media-query;
 
-@import "light/variables";
+@import "theme/variables";
 @import '~bootstrap/scss/bootstrap';
-@import 'light/bootswatch';
-@import "light/main.scss";
+@import 'theme/bootswatch';
+
 @import "scheme.scss";
 @import "app/window.scss";
 @import "app/forms.scss";
@@ -14,6 +14,7 @@ $color-mode-type: media-query;
 @import "app/primary_components.scss";
 @import "app/media_containers.scss";
 @import "stripe.scss";
+
 $bmx-brand-primary: $primary !default;
 $bmx-brand-secondary: $secondary !default;
 $bmx-brand-terciary: $info !default;

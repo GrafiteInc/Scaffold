@@ -51,11 +51,6 @@ Route::get('privacy-policy', [PagesController::class, 'privacyPolicy'])->name('p
 
 Route::post('accept-cookie-policy', [CookiePolicyController::class, 'accept'])->name('ajax.accept-cookie-policy');
 
-Route::post(
-    'stripe/webhook',
-    [\App\Http\Controllers\WebhookController::class, 'handleWebhook']
-);
-
 /*
 |--------------------------------------------------------------------------
 | Auth
@@ -75,6 +70,8 @@ Route::middleware([ProtectAgainstSpam::class])->group(function () {
         'reset' => true,
         'confirm' => true,
         'verify' => true,
+    ], [
+        'throttle:5,1',
     ]);
 
     Route::get('recovery', [RecoveryController::class, 'show'])
@@ -98,6 +95,10 @@ Route::middleware('auth')->group(function () {
     Route::post('users/return-switch', [UserController::class, 'switchBack'])->name('users.return-switch');
 
     Route::middleware(['verified', 'two-factor'])->group(function () {
+        Route::get('subscribed', function () {
+            dd(request());
+        });
+
         /*
         |--------------------------------------------------------------------------
         | Dashboard
@@ -152,18 +153,12 @@ Route::middleware('auth')->group(function () {
             });
 
             Route::prefix('billing')->group(function () {
-                Route::get('subscribe', [BillingController::class, 'subscribe'])->name('user.billing');
-                Route::get('renew', [BillingController::class, 'renewSubscription'])->name('user.billing.renew');
-                Route::get('details', [BillingController::class, 'getSubscription'])->name('user.billing.details');
+                Route::get('', [BillingController::class, 'index'])->name('user.billing');
+                Route::post('update', [BillingController::class, 'update'])->name('user.billing.update');
+                Route::post('subscribe', [BillingController::class, 'subscribe'])->name('user.billing.subscribe');
                 Route::group(['gateway' => 'subscribed'], function () {
-                    Route::get('payment-method', [BillingController::class, 'paymentMethod'])->name('user.billing.payment-method');
-                    Route::get('change-plan', [BillingController::class, 'getChangePlan'])->name('user.billing.change-plan');
-                    Route::post('swap-plan', [BillingController::class, 'swapPlan'])->name('user.billing.swap-plan');
-                    Route::post('cancellation', [BillingController::class, 'cancelSubscription'])->name('user.subscription.cancel');
-                    Route::get('invoices', [BillingController::class, 'getInvoices'])->name('user.billing.invoices');
-                    Route::get('invoice/{id}', [BillingController::class, 'getInvoiceById'])->name('user.billing.invoice');
-                    Route::get('coupon', [BillingController::class, 'getCoupon'])->name('user.billing.coupons');
-                    Route::post('apply-coupon', [BillingController::class, 'applyCoupon'])->name('user.billing.apply-coupon');
+                    Route::post('swap', [BillingController::class, 'swap'])->name('user.billing.swap');
+                    Route::post('coupon', [BillingController::class, 'coupon'])->name('user.billing.coupon');
                 });
             });
         });
@@ -196,11 +191,6 @@ Route::middleware('auth')->group(function () {
         */
 
         Route::prefix('ajax')->group(function () {
-            Route::post('subscribe', [SubscriptionController::class, 'createSubscription'])
-                ->name('ajax.billing.subscription.create');
-            Route::post('payment-method', [SubscriptionController::class, 'updatePaymentMethod'])
-                ->name('ajax.billing.subscription.payment-method');
-
             Route::post('file-upload', [FileUploadController::class, 'upload'])->name('ajax.files-upload');
             Route::post('image-upload', [FileUploadController::class, 'uploadImage'])->name('ajax.image-upload');
         });

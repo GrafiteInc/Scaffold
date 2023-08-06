@@ -13,6 +13,3 @@ require('./script-components/ajax-forms');
 // UI UX level components
 require('./script-components/tooltips');
 require('./script-components/clipboard');
-
-require('./script-components/subscription-create');
-require('./script-components/subscription-payment-method');

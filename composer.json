@@ -24,7 +24,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "hisorange/browser-detect": "^4.5",
         "intervention/image": "^2.5",
-        "laravel/cashier": "^13.0",
+        "laravel/cashier": "^14.0",
         "laravel/framework": "^10.0",
         "laravel/helpers": "^1.1",
         "laravel/sanctum": "^3.0",

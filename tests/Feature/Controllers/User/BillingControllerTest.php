@@ -22,6 +22,8 @@ class BillingControllerTest extends TestCase
 
         Subscription::factory()->create([
             'user_id' => $this->user->id,
+            'stripe_price' => 'foo_bar_003',
+            'quantity' => 1,
         ]);
 
         $this->user->update([
@@ -30,45 +32,7 @@ class BillingControllerTest extends TestCase
             'card_last_four' => '4242',
         ]);
 
-        $response = $this->get(route('user.billing.details'));
-
-        $response->assertOk();
-    }
-
-    public function testBillingPaymentMethod()
-    {
-        $this->markTestSkipped('Requires Stripe keys');
-
-        Subscription::factory()->create([
-            'user_id' => $this->user->id,
-        ]);
-
-        $this->user->update([
-            'stripe_id' => 'foo_bar_01',
-            'card_brand' => 'visa',
-            'card_last_four' => '4242',
-        ]);
-
-        $response = $this->get(route('user.billing.payment-method'));
-
-        $response->assertOk();
-    }
-
-    public function testBillingCoupon()
-    {
-        $this->markTestSkipped('Requires Stripe keys');
-
-        Subscription::factory()->create([
-            'user_id' => $this->user->id,
-        ]);
-
-        $this->user->update([
-            'stripe_id' => 'foo_bar_01',
-            'card_brand' => 'visa',
-            'card_last_four' => '4242',
-        ]);
-
-        $response = $this->get(route('user.billing.coupons'));
+        $response = $this->get(route('user.billing'));
 
         $response->assertOk();
     }
