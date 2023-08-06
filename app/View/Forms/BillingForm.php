@@ -2,16 +2,19 @@
 
 namespace App\View\Forms;
 
-use Grafite\Forms\Fields\Text;
-use Grafite\Forms\Fields\Email;
 use Grafite\Forms\Fields\Country;
+use Grafite\Forms\Fields\Email;
+use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Forms\BaseForm;
 
 class BillingForm extends BaseForm
 {
     public $route = 'user.billing.update';
+
     public $method = 'post';
+
     public $isCardForm = true;
+
     public $withJsValidation = true;
 
     public $buttons = [

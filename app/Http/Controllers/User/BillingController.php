@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
-use Exception;
-use App\View\Forms\SwapForm;
-use Illuminate\Http\Request;
-use App\View\Forms\CouponForm;
-use App\View\Forms\BillingForm;
-use App\View\Forms\SubscribeForm;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\View\Forms\BillingForm;
+use App\View\Forms\CouponForm;
+use App\View\Forms\SubscribeForm;
+use App\View\Forms\SwapForm;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BillingController extends Controller
 {
@@ -55,7 +55,7 @@ class BillingController extends Controller
             'country' => $request->country,
         ]);
 
-        activity("Updated billing information.");
+        activity('Updated billing information.');
 
         $user->updateStripeCustomer([
             'email' => $request->billing_email,

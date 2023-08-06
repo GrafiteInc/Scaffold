@@ -8,7 +8,9 @@ use Grafite\Forms\Forms\BaseForm;
 class SubscribeForm extends BaseForm
 {
     public $route = 'user.billing.subscribe';
+
     public $method = 'post';
+
     public $withJsValidation = true;
 
     public $buttons = [

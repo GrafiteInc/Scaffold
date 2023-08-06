@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Ajax\CookiePolicyController;
 use App\Http\Controllers\Ajax\FileUploadController;
-use App\Http\Controllers\Ajax\SubscriptionController;
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\Auth\RecoveryController;
 use App\Http\Controllers\Auth\TwoFactorController;

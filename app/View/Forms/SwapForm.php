@@ -8,7 +8,9 @@ use Grafite\Forms\Forms\BaseForm;
 class SwapForm extends BaseForm
 {
     public $route = 'user.billing.swap';
+
     public $method = 'post';
+
     public $withJsValidation = true;
 
     public $buttons = [
