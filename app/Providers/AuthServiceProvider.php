@@ -81,13 +81,13 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         // Gateway for determining not cancelled subscribers
-        Gate::define('subscription-not-cancelled', function ($user) {
-            return ! $user->hasCancelledSubscription();
+        Gate::define('subscription-not-canceled', function ($user) {
+            return ! $user->hasCanceledSubscription();
         });
 
         // Gateway for determining not cancelled subscribers
-        Gate::define('subscription-cancelled', function ($user) {
-            return $user->hasCancelledSubscription();
+        Gate::define('subscription-canceled', function ($user) {
+            return $user->hasCanceledSubscription();
         });
     }
 }

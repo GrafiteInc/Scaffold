@@ -63,7 +63,7 @@ class UserForm extends ModelForm
                 ],
                 'value' => auth()->user()->two_factor_platform,
             ]),
-        ], $this->billingColumns());
+        ]);
     }
 
     public function billingColumns()

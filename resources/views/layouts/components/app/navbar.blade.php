@@ -27,8 +27,6 @@
                 <a class="dropdown-item" href="{{ route('user.api-tokens') }}">API Tokens</a>
                 <a class="dropdown-item" href="{{ route('user.invites') }}">Invites</a>
                 <a class="dropdown-item" href="{{ route('user.notifications') }}">Notifications</a>
-
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('user.billing') }}">Billing</a>
 
                 @if (auth()->user()->hasRole('admin'))

@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        Cashier::calculateTaxes();
         Cashier::keepPastDueSubscriptionsActive();
         Cashier::useCustomerModel(User::class);
 

@@ -29,7 +29,7 @@
 @stop
 
 @section('content')
-    <x-html-announcement text="This is a general statement for all our users!" dismiss background="danger" />
+    {{-- <x-html-announcement text="This is a general statement for all our users!" dismiss background="danger" /> --}}
     {{-- <x-html-animation component="pulse" /> --}}
 
     <div class="row">

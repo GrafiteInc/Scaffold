@@ -2,91 +2,93 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Notifications\InAppNotification;
 use Exception;
+use App\View\Forms\SwapForm;
 use Illuminate\Http\Request;
+use App\View\Forms\CouponForm;
+use App\View\Forms\BillingForm;
+use App\View\Forms\SubscribeForm;
 use Illuminate\Support\Facades\Log;
-use Throwable;
+use App\Http\Controllers\Controller;
 
 class BillingController extends Controller
 {
-    /**
-     * Billing settings.
-     *
-     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
-     */
-    public function subscribe(Request $request)
-    {
-        $user = $request->user();
-
-        if ($user->hasActiveSubscription()) {
-            return redirect()->route('user.billing.details');
-        }
-
-        try {
-            $intent = $user->createSetupIntent();
-        } catch (Throwable $th) {
-            $intent = null;
-        }
-
-        return view('user.billing.subscribe')->with(compact('user', 'intent'));
-    }
-
-    /**
-     * Billing renew.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function renewSubscription(Request $request)
-    {
-        $user = $request->user();
-
-        try {
-            $intent = $user->createSetupIntent();
-        } catch (Throwable $th) {
-            $intent = null;
-        }
-
-        return view('user.billing.renew')->with(compact('user', 'intent'));
-    }
-
     /**
      * Get subscription details.
      *
      * @return \Illuminate\View\View
      */
-    public function getSubscription(Request $request)
+    public function index(Request $request)
     {
         $user = $request->user();
+        $upcomingPayment = null;
 
-        try {
-            $invoice = $user->upcomingInvoice();
-        } catch (Throwable $th) {
-            $invoice = null;
+        $user->createOrGetStripeCustomer();
+        $user->updateDefaultPaymentMethodFromStripe();
+
+        $form = app(BillingForm::class)->setUser($user)->make();
+        $subscribeForm = app(SubscribeForm::class)->setUser($user)->make();
+        $swapForm = app(SwapForm::class)->setUser($user)->make();
+        $couponForm = app(CouponForm::class)->make();
+
+        if ($user->hasActiveSubscription()) {
+            $upcomingPayment = $user->upcomingInvoice();
         }
 
-        $subscription = $user->subscription(config('billing.subscription_name'));
-
-        return view('user.billing.details')->with(compact('user', 'invoice', 'subscription'));
+        return view('user.billing')->with([
+            'user' => $user,
+            'form' => $form,
+            'subscribeForm' => $subscribeForm,
+            'swapForm' => $swapForm,
+            'couponForm' => $couponForm,
+            'upcomingPayment' => $upcomingPayment,
+        ]);
     }
 
-    /**
-     * Change the payment method.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function paymentMethod(Request $request)
+    public function update(Request $request)
     {
         $user = $request->user();
 
+        $user->update([
+            'billing_email' => $request->billing_email,
+            'state' => $request->state,
+            'country' => $request->country,
+        ]);
+
+        activity("Updated billing information.");
+
+        $user->updateStripeCustomer([
+            'email' => $request->billing_email,
+            'address' => [
+                'state' => $request->state,
+                'country' => $request->country,
+            ],
+        ]);
+
+        return redirect()->back()->withMessage('Information updated.');
+    }
+
+    public function subscribe(Request $request)
+    {
         try {
-            $intent = $user->createSetupIntent();
-        } catch (Throwable $th) {
-            $intent = null;
+            $paymentMethod = $request->user()->defaultPaymentMethod();
+            $plan = $request->plan;
+
+            $request->user()->newSubscription(
+                'main', $plan
+            )->create($paymentMethod->id);
+
+            activity("Subscribed to {$request->plan} subscription plan.");
+
+            return redirect()
+                ->route('user.billing')
+                ->withMessage('You\'re subscribed!');
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
         }
 
-        return view('user.billing.payment-method')->with(compact('user', 'intent'));
+        return redirect()->back()
+            ->withErrors(['Could not set your subscription, please try again.']);
     }
 
     /**
@@ -106,31 +108,23 @@ class BillingController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function swapPlan(Request $request)
+    public function swap(Request $request)
     {
         try {
-            $request->user()->subscription(config('billing.subscription_name'))->swap($request->plan);
+            $request->user()
+                ->subscription(config('billing.subscription_name'))
+                ->swap($request->plan);
 
             activity("Switched to {$request->plan} subscription plan.");
 
-            return redirect()->route('user.billing.details')->withMessage('Your subscription was swapped!');
+            return redirect()->route('user.billing')
+                ->withMessage('Your subscription was swapped!');
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
 
-        return redirect()->back()->withErrors(['Could not change your subscription, please try again.']);
-    }
-
-    /**
-     * Add a coupon.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function getCoupon(Request $request)
-    {
-        $user = $request->user();
-
-        return view('user.billing.coupon')->with(compact('user'));
+        return redirect()->back()
+            ->withErrors(['Could not change your subscription, please try again.']);
     }
 
     /**
@@ -138,92 +132,22 @@ class BillingController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function applyCoupon(Request $request)
+    public function coupon(Request $request)
     {
         try {
-            $request->user()->applyCoupon($request->coupon);
+            $coupon = $request->user()->findPromotionCode($request->coupon)->coupon();
+
+            $request->user()
+                ->applyCoupon($coupon->id);
 
             activity("Used coupon: {$request->coupon}.");
 
-            return redirect()->route('user.billing.details')->withMessage('Your coupon was used!');
+            return redirect()->route('user.billing')
+                ->withMessage('Your coupon was used!');
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
 
         return redirect()->back()->withErrors(['Could not process your coupon, please try again.']);
-    }
-
-    /**
-     * Get invoices.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function getInvoices(Request $request)
-    {
-        $user = $request->user();
-
-        try {
-            $invoices = $user->invoices(config('billing.subscription_name'));
-        } catch (Throwable $th) {
-            $invoices = null;
-        }
-
-        return view('user.billing.invoices')->with(compact('user', 'invoices'));
-    }
-
-    /**
-     * Get one invoice.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getInvoiceById($id, Request $request)
-    {
-        try {
-            $user = $request->user();
-
-            $response = $user->downloadInvoice($id, [
-                'vendor' => config('billing.invoice.company'),
-                'street' => config('billing.invoice.street'),
-                'location' => config('billing.invoice.location'),
-                'phone' => config('billing.invoice.phone'),
-                'url' => config('billing.invoice.url'),
-                'product' => config('billing.invoice.product'),
-                'description' => 'Subscription',
-            ]);
-        } catch (Exception $e) {
-            $response = back()->withErrors(['Could not find this invoice, please try again.']);
-        }
-
-        return $response;
-    }
-
-    /**
-     * Cancel Subscription.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function cancelSubscription(Request $request)
-    {
-        try {
-            $user = $request->user();
-            $invoice = $user->upcomingInvoice();
-
-            $user->subscription(config('billing.subscription_name'))->cancel();
-
-            $date = $invoice->date()->format('Y-m-d');
-            $message = 'Your subscription has been cancelled! It will be availale until '.$date;
-
-            activity($message);
-
-            $notification = new InAppNotification($message);
-            $notification->isImportant();
-            $user->notify($notification);
-
-            return redirect()->route('user.billing.details')->withMessage($message);
-        } catch (Exception $e) {
-            Log::error($e->getMessage());
-        }
-
-        return redirect()->back()->withErrors(['Could not cancel billing, please try again.']);
     }
 }

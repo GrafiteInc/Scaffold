@@ -14,14 +14,14 @@ trait HasSubscription
      */
     public function hasActiveSubscription()
     {
-        return Cache::remember($this->cacheIdentifier('subscription'), 86400, function () {
-            if ($this->subscription(config('billing.subscription_name')) && ! $this->subscription(config('billing.subscription_name'))->cancelled()) {
+        return Cache::remember($this->cacheIdentifier('subscription'), 300, function () {
+            if ($this->subscription(config('billing.subscription_name')) && ! $this->subscription(config('billing.subscription_name'))->canceled()) {
                 return true;
             }
 
             if (
                 $this->subscription(config('billing.subscription_name')) &&
-                $this->subscription(config('billing.subscription_name'))->cancelled() &&
+                $this->subscription(config('billing.subscription_name'))->canceled() &&
                 $this->subscription(config('billing.subscription_name'))->onGracePeriod()
             ) {
                 return true;
@@ -36,10 +36,10 @@ trait HasSubscription
      *
      * @return bool
      */
-    public function hasCancelledSubscription()
+    public function hasCanceledSubscription()
     {
         if ($this->subscription(config('billing.subscription_name'))) {
-            return $this->subscription(config('billing.subscription_name'))->cancelled();
+            return $this->subscription(config('billing.subscription_name'))->canceled();
         }
 
         return false;
@@ -63,5 +63,14 @@ trait HasSubscription
         }
 
         return null;
+    }
+
+    public function hasBillingInformation()
+    {
+        return (
+            ! is_null($this->billing_email)
+            && ! is_null($this->state)
+            && ! is_null($this->country)
+        );
     }
 }
