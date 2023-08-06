@@ -67,10 +67,9 @@ trait HasSubscription
 
     public function hasBillingInformation()
     {
-        return (
+        return
             ! is_null($this->billing_email)
             && ! is_null($this->state)
-            && ! is_null($this->country)
-        );
+            && ! is_null($this->country);
     }
 }

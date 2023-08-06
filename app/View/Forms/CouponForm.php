@@ -8,7 +8,9 @@ use Grafite\Forms\Forms\BaseForm;
 class CouponForm extends BaseForm
 {
     public $route = 'user.billing.coupon';
+
     public $method = 'post';
+
     public $withJsValidation = true;
 
     public $buttons = [
