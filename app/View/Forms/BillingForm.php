@@ -13,8 +13,6 @@ class BillingForm extends BaseForm
 
     public $method = 'post';
 
-    public $isCardForm = true;
-
     public $withJsValidation = true;
 
     public $buttons = [

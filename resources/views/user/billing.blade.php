@@ -15,15 +15,15 @@
                     </div>
                 </div>
             @endif
-            <div class="card shadow-sm">
-                <div class="card-header">
-                    Billing Information
+            <div class="card border-0 shadow-sm">
+                <div class="card-body bg-body-tertiary bmx-border-6 shadow-sm rounded">
+                    <h5 class="mb-4">Billing Information</h5>
+                    {!! $form !!}
                 </div>
-                {!! $form !!}
             </div>
         </div>
         <div class="col-md-6">
-            @if ($user->hasPaymentMethod())
+            @if ($user->hasDefaultPaymentMethod())
                 @if (! $user->hasActiveSubscription())
                     <div class="card mb-4 border-0">
                         <div class="card-body bg-body-tertiary border-start bmx-border-green bmx-border-6 shadow-sm rounded">
