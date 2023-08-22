@@ -21922,11 +21922,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-// Script Components
-__webpack_require__(/*! ./script-components */ "./resources/js/script-components.js");
-
 // Vue Components
 __webpack_require__(/*! ./vue-components */ "./resources/js/vue-components.js");
+
+// Script Components
+__webpack_require__(/*! ./script-components */ "./resources/js/script-components.js");
 
 /***/ }),
 
