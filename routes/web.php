@@ -132,11 +132,11 @@ Route::middleware('auth')->group(function () {
             Route::delete('token/{token}/destroy', [ApiTokenController::class, 'destroy'])->name('user.destroy-token');
             Route::post('token', [ApiTokenController::class, 'create'])->name('user.create-token');
 
-            Route::prefix('billing')->group(function () {
-                Route::middleware('has-subscription')->group(function () {
-                    Route::delete('cancel', [BillingController::class, 'cancel'])->name('user.billing.cancel');
-                });
-            });
+            // Route::prefix('billing')->group(function () {
+            //     Route::middleware('has-subscription')->group(function () {
+            //         Route::delete('cancel', [BillingController::class, 'cancel'])->name('user.billing.cancel');
+            //     });
+            // });
 
             Route::prefix('notifications')->group(function () {
                 Route::get('/', [NotificationsController::class, 'index'])->name('user.notifications');
