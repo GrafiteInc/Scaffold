@@ -55,14 +55,14 @@
 
         @stack('pre-app-js')
 
-        <script src="{{ mix('/js/app.js') }}"></script>
-
         @livewireScripts
         {{-- Because we need to reload the assets in case of Styles + JS --}}
         @forms
         {{-- Because we need to reload the assets in case of Styles + JS --}}
         @htmlAssets
         @chartScripts
+
+        <script src="{{ mix('/js/app.js') }}"></script>
 
         @stack('javascript')
     </body>
