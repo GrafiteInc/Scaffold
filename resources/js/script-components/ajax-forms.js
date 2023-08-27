@@ -73,7 +73,7 @@ window.ajaxDebounced = window.app.debounce(window.ajax);
 window.ajaxWithRefresh = function (event) {
     window.ajax(event);
     setTimeout(() => {
-        window.livewire.emit('refresh');
+        window.Livewire.dispatch('refresh');
         setTimeout(() => {
             window.FormsJS();
             window.turnOnTooltips();
