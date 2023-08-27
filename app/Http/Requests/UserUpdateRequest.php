@@ -23,17 +23,7 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        $billingRules = [];
-
-        if (request()->user()->hasActiveSubscription()) {
-            $billingRules = [
-                'billing_email' => 'required',
-                'state' => 'required',
-                'country' => 'required',
-            ];
-        }
-
-        return array_merge([
+        return [
             'email' => [
                 'required',
             ],
@@ -43,6 +33,6 @@ class UserUpdateRequest extends FormRequest
             'avatar' => [
                 'image',
             ],
-        ], $billingRules);
+        ];
     }
 }

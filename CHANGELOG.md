@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.16.3] - 2023-08-27
+
+### Added
+- Livewire 3 support
+
 ## [v2.16.2] - 2023-08-22
 
 ### Fixed

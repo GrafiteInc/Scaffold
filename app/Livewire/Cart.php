@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
-use App\Http\Forms\CartForm;
+use App\View\Forms\CartForm;
 use Livewire\Component;
 
 class Cart extends Component

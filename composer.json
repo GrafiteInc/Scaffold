@@ -29,7 +29,7 @@
         "laravel/helpers": "^1.1",
         "laravel/sanctum": "^3.0",
         "lasserafn/php-initial-avatar-generator": "^4.0",
-        "livewire/livewire": "^2.2",
+        "livewire/livewire": "^3.0",
         "pragmarx/google2fa-laravel": "^2.0",
         "pragmarx/recovery": "^0.2.1",
         "pusher/pusher-php-server": "^7.2",

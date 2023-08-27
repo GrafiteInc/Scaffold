@@ -5,6 +5,16 @@ window.turnOnTooltips = function () {
     });
 };
 
+window.turnOnPopovers = function () {
+    let popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+    [...popoverTriggerList].map((popoverTriggerEl) => {
+        return new window.bootstrap.Popover(popoverTriggerEl, {
+            html: true,
+        });
+    });
+};
+
 window.addEventListener('DOMContentLoaded', () => {
     window.turnOnTooltips();
+    window.turnOnPopovers();
 });

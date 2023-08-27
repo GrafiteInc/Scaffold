@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 
@@ -30,7 +30,7 @@ class NotificationBadge extends Component
             return '<span class="badge badge-pill bg-primary notification-badge rounded-circle">'.$this->count.'</span>';
         }
 
-        return '';
+        return '<span></span>';
     }
 
     public function countNotifications()

@@ -3,6 +3,7 @@ require('./script-components/core');
 require('./script-components/utilities');
 require('./script-components/app-events');
 require('./script-components/echo-events');
+require('./script-components/livewire-events');
 require('./script-components/online');
 
 // UI functional level components
