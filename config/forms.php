@@ -8,7 +8,7 @@
 
 return [
     'bootstrap-version' => '5.0',
-    'modal-centered' => true,
+    'modal-centered' => false,
     'buttons' => [
         'submit' => 'btn btn-primary',
         'edit' => 'btn btn-outline-primary',
