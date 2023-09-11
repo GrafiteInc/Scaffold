@@ -55,6 +55,11 @@ class ConfirmationModal extends HtmlTagComponent
                 let _target = event.target;
                 _event.preventDefault();
 
+                document.querySelectorAll('.modal').forEach(function (_instance) {
+                    let _modal = window.bootstrap.Modal.getOrCreateInstance(_instance);
+                    _modal.hide();
+                });
+
                 if (! _target.hasAttribute('data-formsjs-confirm-message')) {
                     _target = _target.closest('button');
                 }
