@@ -7,7 +7,7 @@ use Grafite\Forms\Forms\BaseForm;
 
 class ConfirmTwoFactorForm extends BaseForm
 {
-    public $route = 'user.settings.two-factor.confirm';
+    public $route = 'user.security.two-factor.confirm';
 
     public $buttons = [
         'submit' => 'Confirm',

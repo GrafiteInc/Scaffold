@@ -8,7 +8,7 @@ use Grafite\Auth\Foundation\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class ChangePasswordController extends Controller
+class SecurityController extends Controller
 {
     use ResetsPasswords;
 
@@ -21,7 +21,9 @@ class ChangePasswordController extends Controller
      */
     public function index(Request $request)
     {
-        return view('user.password');
+        return view('user.security')->with([
+            'user' => $request->user(),
+        ]);
     }
 
     /**
@@ -38,7 +40,7 @@ class ChangePasswordController extends Controller
 
             activity('Password updated');
 
-            return redirect()->route('user.settings')
+            return redirect()->route('user.security')
                 ->withMessage('Password updated successfully');
         }
 

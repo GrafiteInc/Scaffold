@@ -53,16 +53,6 @@ class UserForm extends ModelForm
                 'preview_identifier' => '.avatar',
                 'preview_as_background_image' => true,
             ]),
-            Select::make('two_factor_platform', [
-                'multiple' => false,
-                'null_value' => true,
-                'label' => 'Two Factor Platform',
-                'options' => [
-                    'Email' => 'email',
-                    'Authenticator' => 'authenticator',
-                ],
-                'value' => auth()->user()->two_factor_platform,
-            ]),
         ]);
     }
 

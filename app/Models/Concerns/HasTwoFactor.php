@@ -8,6 +8,11 @@ use PragmaRX\Recovery\Recovery;
 
 trait HasTwoFactor
 {
+    public function hasUnconfirmedTwoFactor()
+    {
+        return session('auth.two_factor_platform_temp', false);
+    }
+
     public function usesTwoFactor($type)
     {
         if (session('auth.two_factor_platform_temp')) {
@@ -102,10 +107,6 @@ trait HasTwoFactor
 
     public function getTwoFactorPlatformAttribute($value)
     {
-        if (session('auth.two_factor_platform_temp')) {
-            return session('auth.two_factor_platform_temp');
-        }
-
         return $value;
     }
 
@@ -114,16 +115,22 @@ trait HasTwoFactor
         $google2fa = app('pragmarx.google2fa');
         $code = $google2fa->generateSecretKey();
 
+        $this->update([
+            'two_factor_code' => $code,
+        ]);
+
+        return $code;
+    }
+
+    public function setAndSendTwoFactorRecoveryCodes()
+    {
         $recovery = new Recovery();
         $recoveryCodes = $recovery->toArray();
 
         $this->update([
-            'two_factor_code' => $code,
             'two_factor_recovery_codes' => implode(',', $recoveryCodes),
         ]);
 
         $this->notify(new TwoFactorRecoveryNotification($recoveryCodes));
-
-        return $code;
     }
 }

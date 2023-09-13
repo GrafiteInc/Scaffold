@@ -48,10 +48,6 @@ class AppServiceProvider extends ServiceProvider
             return '';
         });
 
-        Blade::directive('session', function ($nonce) {
-            return '<?php echo javascript_session_data('.$nonce.'); ?>';
-        });
-
         if (! app()->environment('testing')) {
             URL::forceScheme('https');
         }

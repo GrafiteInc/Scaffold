@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad74b1e25fe43a09d23bf58c799e282b",
+    "content-hash": "3e43c016b06ac82e20f9278177153781",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -628,6 +628,58 @@
             "time": "2022-10-27T11:44:00+00:00"
         },
         {
+            "name": "divineomega/php-summary",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DivineOmega/php-summary.git",
+                "reference": "0307a38f8050e2aa7b979271ab6f226d01ea4ecb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DivineOmega/php-summary/zipball/0307a38f8050e2aa7b979271ab6f226d01ea4ecb",
+                "reference": "0307a38f8050e2aa7b979271ab6f226d01ea4ecb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^7.0 || ^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DivineOmega\\PHPSummary\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-only"
+            ],
+            "description": "PHP Summarization Library",
+            "homepage": "https://github.com/DivineOmega/php-summary",
+            "keywords": [
+                "library",
+                "php",
+                "summarization",
+                "summarization library",
+                "summarizing",
+                "summary"
+            ],
+            "support": {
+                "issues": "https://github.com/DivineOmega/php-summary/issues",
+                "source": "https://github.com/DivineOmega/php-summary/tree/v3.0.0"
+            },
+            "time": "2020-06-24T22:16:52+00:00"
+        },
+        {
             "name": "doctrine/cache",
             "version": "2.2.0",
             "source": {
@@ -1138,6 +1190,66 @@
                 }
             ],
             "time": "2022-12-15T16:57:16+00:00"
+        },
+        {
+            "name": "donatello-za/rake-php-plus",
+            "version": "v1.0.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Donatello-za/rake-php-plus.git",
+                "reference": "e9e9c0862b3dc953d288e8f42c76e4ceaeca0619"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Donatello-za/rake-php-plus/zipball/e9e9c0862b3dc953d288e8f42c76e4ceaeca0619",
+                "reference": "e9e9c0862b3dc953d288e8f42c76e4ceaeca0619",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "php": ">=5.5.0",
+                "phpunit/phpunit": "~4.0|~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.13-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DonatelloZa\\RakePlus\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Don Schoeman",
+                    "email": "ta.maximus@gmail.com"
+                }
+            ],
+            "description": "Yet another PHP implementation of the Rapid Automatic Keyword Extraction algorithm (RAKE).",
+            "homepage": "https://github.com/Donatello-za/rake-php-plus",
+            "keywords": [
+                "Algorithm",
+                "automatic",
+                "extraction",
+                "keyword",
+                "rake",
+                "rapid"
+            ],
+            "support": {
+                "issues": "https://github.com/Donatello-za/rake-php-plus/issues",
+                "source": "https://github.com/Donatello-za/rake-php-plus"
+            },
+            "time": "2022-02-23T18:42:03+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -1813,6 +1925,74 @@
             "time": "2023-03-04T03:59:25+00:00"
         },
         {
+            "name": "grafite/support",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GrafiteInc/Support.git",
+                "reference": "d020ddcced6c426bd94cd7136c3be657de2b0488"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GrafiteInc/Support/zipball/d020ddcced6c426bd94cd7136c3be657de2b0488",
+                "reference": "d020ddcced6c426bd94cd7136c3be657de2b0488",
+                "shasum": ""
+            },
+            "require": {
+                "divineomega/php-summary": "^3.0",
+                "donatello-za/rake-php-plus": "^1.0",
+                "hallindavid/manny": "^1.02",
+                "illuminate/collections": "^9.0|^10.0",
+                "illuminate/support": "^9.0|^10.0",
+                "illuminate/view": "^9.0|^10.0",
+                "nojimage/twitter-text-php": "^3.3",
+                "nxp/math-executor": "^2.3",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.10",
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^8.0",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Grafite\\Support\\SupportProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/GlobalHelpers/RouteHelper.php",
+                    "src/GlobalHelpers/SessionHelper.php"
+                ],
+                "psr-4": {
+                    "Grafite\\Support\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Lantz",
+                    "email": "mattlantz@gmail.com"
+                }
+            ],
+            "description": "Some handy Laravel Support tools",
+            "keywords": [
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/GrafiteInc/Support/issues",
+                "source": "https://github.com/GrafiteInc/Support/tree/v1.1.1"
+            },
+            "time": "2023-09-12T17:20:32+00:00"
+        },
+        {
             "name": "graham-campbell/result-type",
             "version": "v1.1.1",
             "source": {
@@ -2282,6 +2462,68 @@
                 }
             ],
             "time": "2021-10-07T12:57:01+00:00"
+        },
+        {
+            "name": "hallindavid/manny",
+            "version": "v1.02",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hallindavid/manny.git",
+                "reference": "c7c6fb8e98c01a80a544047d52ee950f8ba40460"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hallindavid/manny/zipball/c7c6fb8e98c01a80a544047d52ee950f8ba40460",
+                "reference": "c7c6fb8e98c01a80a544047d52ee950f8ba40460",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.1@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Manny": "Manny\\Manny"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Manny\\": "src/Manny"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Hallin",
+                    "email": "hallin.david@gmail.com",
+                    "homepage": "https://davidhallin.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "a package of manipulators that hopefully come in useful for those of us who always forget regex when we need it (manny is short for manipulation)",
+            "keywords": [
+                "format",
+                "formatter",
+                "laravel",
+                "manipulation",
+                "number",
+                "regex",
+                "string",
+                "trim"
+            ],
+            "support": {
+                "issues": "https://github.com/hallindavid/manny/issues",
+                "source": "https://github.com/hallindavid/manny/tree/v1.02"
+            },
+            "time": "2022-12-17T18:11:32+00:00"
         },
         {
             "name": "hisorange/browser-detect",
@@ -4724,6 +4966,76 @@
             "time": "2023-07-30T15:42:21+00:00"
         },
         {
+            "name": "nojimage/twitter-text-php",
+            "version": "v3.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nojimage/twitter-text-php.git",
+                "reference": "3f2e31f935630fb6f33c7ca2ed168dc7278081f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nojimage/twitter-text-php/zipball/3f2e31f935630fb6f33c7ca2ed168dc7278081f8",
+                "reference": "3f2e31f935630fb6f33c7ca2ed168dc7278081f8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-intl": "*",
+                "ext-mbstring": "*",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "phpunit/phpunit": "^9.5",
+                "symfony/yaml": "^5.0.0",
+                "twitter/twitter-text": "^3.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Twitter\\Text\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Sanford",
+                    "email": "matt@mzsanford.com",
+                    "homepage": "http://mzsanford.com"
+                },
+                {
+                    "name": "Mike Cochrane",
+                    "email": "mikec@mikenz.geek.nz",
+                    "homepage": "http://mikenz.geek.nz"
+                },
+                {
+                    "name": "Nick Pope",
+                    "email": "git@nickpope.me.uk",
+                    "homepage": "http://www.nickpope.me.uk"
+                },
+                {
+                    "name": "Takashi Nojima",
+                    "homepage": "http://php-tips.com"
+                }
+            ],
+            "description": "A library of PHP classes that provide auto-linking and extraction of usernames, lists, hashtags and URLs from tweets.",
+            "homepage": "https://github.com/nojimage/twitter-text-php",
+            "keywords": [
+                "autolink",
+                "extract",
+                "text",
+                "twitter"
+            ],
+            "support": {
+                "issues": "https://github.com/nojimage/twitter-text-php/issues",
+                "source": "https://github.com/nojimage/twitter-text-php/tree/v3.3.1"
+            },
+            "time": "2023-07-12T03:31:27+00:00"
+        },
+        {
             "name": "nunomaduro/termwind",
             "version": "v1.15.1",
             "source": {
@@ -4808,6 +5120,64 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "nxp/math-executor",
+            "version": "v2.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/neonxp/MathExecutor.git",
+                "reference": "e1cca194c57cf242fd8635b2e72e11e990279c95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/neonxp/MathExecutor/zipball/e1cca194c57cf242fd8635b2e72e11e990279c95",
+                "reference": "e1cca194c57cf242fd8635b2e72e11e990279c95",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0 <8.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "phpstan/phpstan": "^1.9",
+                "phpunit/phpunit": ">=9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NXP\\": "src/NXP"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander 'NeonXP' Kiryukhin",
+                    "email": "a.kiryukhin@mail.ru"
+                },
+                {
+                    "name": "Bruce Wells",
+                    "email": "brucekwells@gmail.com"
+                }
+            ],
+            "description": "Simple math expressions calculator",
+            "homepage": "http://github.com/NeonXP/MathExecutor",
+            "keywords": [
+                "calculator",
+                "expression",
+                "formula",
+                "math",
+                "mathmatics",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/neonxp/MathExecutor/issues",
+                "source": "https://github.com/neonxp/MathExecutor/tree/v2.3.4"
+            },
+            "time": "2023-03-21T15:10:38+00:00"
         },
         {
             "name": "overtrue/pinyin",
