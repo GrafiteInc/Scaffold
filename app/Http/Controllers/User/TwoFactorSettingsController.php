@@ -57,7 +57,7 @@ class TwoFactorSettingsController extends Controller
         if ($authenticator->isAuthenticated()) {
             session()->forget('auth.two_factor_platform_temp');
 
-            $user->validateTwoFactorCode();;
+            $user->validateTwoFactorCode();
             $request->user()->setAndSendTwoFactorRecoveryCodes();
 
             $user->update([
