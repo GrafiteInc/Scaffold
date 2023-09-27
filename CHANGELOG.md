@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.17.0] - 2023-09-27
+
+### Changed
+- Minor redesign for better workflow
+- Improved two-factor
+
 ## [v2.16.3] - 2023-08-27
 
 ### Added
