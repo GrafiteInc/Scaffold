@@ -4,7 +4,7 @@
             @click="success"
             class="btn btn-outline-primary"
         >
-            <slot />
+            <slot></slot>
         </button>
     </div>
 </template>
@@ -17,7 +17,7 @@ export default {
         }
     },
     methods: {
-        success : () => {
+        success: () => {
             window.app.notify.success('Copied!');
         }
     },
