@@ -21,6 +21,7 @@
         "grafite/html": "^1.0",
         "grafite/maintenance": "^0.3.1",
         "grafite/mission-control-laravel": "^2.0",
+        "grafite/support": "^1.1",
         "guzzlehttp/guzzle": "^7.2",
         "hisorange/browser-detect": "^4.5",
         "intervention/image": "^2.5",
@@ -69,9 +70,7 @@
         },
         "files": [
             "app/Helpers/ActivityHelper.php",
-            "app/Helpers/NotificationHelper.php",
-            "app/Helpers/RouteHelper.php",
-            "app/Helpers/SessionHelper.php"
+            "app/Helpers/NotificationHelper.php"
         ]
     },
     "autoload-dev": {

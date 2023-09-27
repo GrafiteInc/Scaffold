@@ -15,6 +15,8 @@ use App\Models\Concerns\HasTeams;
 use App\Models\Concerns\HasTwoFactor;
 use App\Notifications\ResetPassword;
 use Grafite\Forms\Traits\HasForm;
+use Grafite\Support\Models\Concerns\CanAccessFeatures;
+use Grafite\Support\Models\Concerns\HasJavascriptData;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -39,6 +41,8 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasTwoFactor;
     use DatabaseSearchable;
     use HasSessions;
+    use CanAccessFeatures;
+    use HasJavascriptData;
 
     public $form = UserForm::class;
 
@@ -133,24 +137,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function notifyPasswordReset($token)
     {
         $this->notify(new ResetPassword($token));
-    }
-
-    /**
-     * Prepare a payload for the JS session data.
-     *
-     * @return string|false
-     */
-    public function jsonSessionData()
-    {
-        $visibleAttributes = [
-            'id',
-            'name',
-            'email',
-        ];
-
-        return json_encode(collect($this->toArray())
-            ->filter(function ($value, $attribute) use ($visibleAttributes) {
-                return in_array($attribute, $visibleAttributes);
-            }));
     }
 }

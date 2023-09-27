@@ -17,12 +17,13 @@ use App\Http\Controllers\TeamMembersController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\User\ApiTokenController;
 use App\Http\Controllers\User\BillingController;
-use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\User\DestroyController;
 use App\Http\Controllers\User\InvitesController;
 use App\Http\Controllers\User\LogoutSessionsController;
 use App\Http\Controllers\User\NotificationsController;
+use App\Http\Controllers\User\SecurityController;
 use App\Http\Controllers\User\SettingsController;
+use App\Http\Controllers\User\TwoFactorSettingsController;
 use Grafite\Auth\Facades\GrafiteAuth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
@@ -114,8 +115,9 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('user')->group(function () {
             Route::get('settings', [SettingsController::class, 'index'])->name('user.settings');
-            Route::get('settings/two-factor', [SettingsController::class, 'twoFactorSetup'])->name('user.settings.two-factor');
-            Route::post('settings/two-factor/confirm', [SettingsController::class, 'twoFactorConfirm'])->name('user.settings.two-factor.confirm');
+            Route::get('security/two-factor', [TwoFactorSettingsController::class, 'setup'])->name('user.security.two-factor');
+            Route::put('security/two-factor', [TwoFactorSettingsController::class, 'update'])->name('user.two-factor.update');
+            Route::post('security/two-factor/confirm', [TwoFactorSettingsController::class, 'confirm'])->name('user.security.two-factor.confirm');
 
             Route::post('logout', LogoutSessionsController::class)->name('user.logout');
 
@@ -123,10 +125,10 @@ Route::middleware('auth')->group(function () {
             Route::put('settings', [SettingsController::class, 'update'])->name('user.update');
             Route::delete('avatar', [SettingsController::class, 'destroyAvatar'])->name('user.destroy.avatar');
 
-            Route::get('settings/password', [ChangePasswordController::class, 'index'])
-                ->name('user.settings.password');
-            Route::put('settings/security', [ChangePasswordController::class, 'update'])
-                ->name('user.settings.password.update');
+            Route::get('security', [SecurityController::class, 'index'])
+                ->name('user.security');
+            Route::put('security', [SecurityController::class, 'update'])
+                ->name('user.security.update');
 
             Route::get('api-tokens', [ApiTokenController::class, 'index'])->name('user.api-tokens');
             Route::delete('token/{token}/destroy', [ApiTokenController::class, 'destroy'])->name('user.destroy-token');

@@ -24,7 +24,10 @@ class RecoveryControllerTest extends TestCase
         ]);
 
         $this->user->setTwoFactorForAuthenticator();
+        // Codes not sent
+        Notification::assertCount(0);
 
+        $this->user->setAndSendTwoFactorRecoveryCodes();
         // Means codes were sent
         Notification::assertCount(1);
 

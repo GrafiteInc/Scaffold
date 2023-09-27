@@ -39,7 +39,7 @@
                     <div class="card-body">
                         <table class="table table-borderless table-hover p-0 m-0">
                             @foreach($activities as $activity)
-                                <tr onclick="window.modal('Activity', '{{ $activity->forModal() }}')">
+                                <tr onclick="window.app.modal('Activity', '{{ $activity->forModal() }}')">
                                     <td>{{ $activity->description }}</td>
                                     <td width="250px" class="d-none d-sm-table-cell">
                                         <b>{{ $activity->request['method'] }}:</b> {{ Str::limit(str_replace(url('/'), '', $activity->request['url']), 20) }}

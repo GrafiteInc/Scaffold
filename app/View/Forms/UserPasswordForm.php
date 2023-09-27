@@ -7,7 +7,7 @@ use Grafite\Forms\Forms\BaseForm;
 
 class UserPasswordForm extends BaseForm
 {
-    public $route = 'user.settings.password.update';
+    public $route = 'user.security.update';
 
     public $method = 'put';
 

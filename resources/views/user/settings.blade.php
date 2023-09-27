@@ -24,17 +24,6 @@
                                 :disableOnSubmit=true
                             />
                         @endif
-                        <x-f-base :form="\App\View\Forms\LogoutForm::class" />
-                        <a class="btn d-block w-100 btn-outline-secondary mb-3" href="{{ route('user.settings.password') }}">
-                            <span class="fas fa-fw fa-lock"></span>
-                            Change Password
-                        </a>
-                        @if (auth()->user()->usesTwoFactor('authenticator'))
-                            <a class="btn d-block w-100 btn-outline-secondary mb-3" href="{{ route('user.settings.two-factor') }}">
-                                <span class="fas fa-fw fa-shield-alt"></span>
-                                Two Factor Auth
-                            </a>
-                        @endif
                         <hr class="bmx-mt-6 mb-4">
                         <x-forms.user-delete-account></x-forms.user-delete-account>
                     </div>
@@ -47,9 +36,6 @@
                     :model="$user"
                 />
             </div>
-            <hr class="bmx-mt-6 mb-4">
-            <h4>Device - Sessions</h4>
-            @include('user.devices', ['sessions' => $user->getSessions()])
         </div>
     </div>
 @stop

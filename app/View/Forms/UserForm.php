@@ -6,7 +6,6 @@ use App\Models\User;
 use Grafite\Forms\Fields\Country;
 use Grafite\Forms\Fields\Email;
 use Grafite\Forms\Fields\FileWithPreview;
-use Grafite\Forms\Fields\Select;
 use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Toggled;
 use Grafite\Forms\Forms\ModelForm;
@@ -52,16 +51,6 @@ class UserForm extends ModelForm
             FileWithPreview::make('avatar', [
                 'preview_identifier' => '.avatar',
                 'preview_as_background_image' => true,
-            ]),
-            Select::make('two_factor_platform', [
-                'multiple' => false,
-                'null_value' => true,
-                'label' => 'Two Factor Platform',
-                'options' => [
-                    'Email' => 'email',
-                    'Authenticator' => 'authenticator',
-                ],
-                'value' => auth()->user()->two_factor_platform,
             ]),
         ]);
     }

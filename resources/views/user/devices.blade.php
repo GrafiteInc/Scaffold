@@ -1,11 +1,11 @@
 @if (count($sessions) > 0)
     @foreach ($sessions as $session)
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-md-1">
                 @if ($session->agent->isDesktop())
-                    <h3 class="m-0"><span class="fa fa-desktop"></span></h3>
+                    <h3 class="m-0 mt-1"><span class="fa fa-desktop"></span></h3>
                 @else
-                    <h3 class="m-0"><span class="fa fa-mobile"></span></h3>
+                    <h3 class="m-0 mt-1"><span class="fa fa-mobile"></span></h3>
                 @endif
             </div>
 
