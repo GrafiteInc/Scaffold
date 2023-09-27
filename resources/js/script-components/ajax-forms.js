@@ -6,13 +6,14 @@ window.ajax = (_event) => {
 
     let _form = _event.target.closest('form');
     let _button = _event.target;
+    let _originalContent = null;
 
     if (! _button.hasAttribute('data-formsjs-onclick')) {
         _button = _button.closest('button');
     }
 
     if (_button) {
-        let _originalContent = _button.innerHTML;
+        _originalContent = _button.innerHTML;
         let _processing = '<i class="fas fa-circle-notch fa-spin bmx-fade-in"></i> ';
         _button.innerHTML = _processing + _originalContent;
     }
