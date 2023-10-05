@@ -10,8 +10,13 @@
                     <div class="card-body bg-body-tertiary border-start bmx-border-green bmx-border-6 shadow-sm rounded">
                         <h5>Current Plan:</h5>
                         <p>{{ $user->subscriptionPlan('name') }}</p>
-                        <h5>Upcoming Payment:</h5>
-                        <p class="mb-0">{{ $upcomingPayment->total() }} on {{ $upcomingPayment->date()->format('M jS, Y') }}</p>
+                        @if ($upcomingPayment)
+                            <h5>Upcoming Payment:</h5>
+                            <p class="mb-0">{{ $upcomingPayment->total() }} on {{ $upcomingPayment->date()->format('M jS, Y') }}</p>
+                        @else
+                            <h5>Ends At:</h5>
+                            <p class="mb-0">{{ $user->subscription(config('billing.subscription_name'))->ends_at->format('M jS, Y \a\t h:i A') }}</p>
+                        @endif
                     </div>
                 </div>
             @endif
@@ -30,7 +35,8 @@
                             {!! $subscribeForm !!}
                         </div>
                     </div>
-                @else
+                @endif
+                @if ($user->hasActiveSubscription() && $upcomingPayment)
                     <div class="card mb-4 border-0">
                         <div class="card-body bg-body-tertiary border-start bmx-border-gray-300 bmx-border-6 shadow-sm rounded">
                             {!! $couponForm !!}
