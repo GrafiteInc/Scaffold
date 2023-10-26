@@ -82,6 +82,12 @@ class BillingController extends Controller
 
             $request->user()->clearSubscriptionCache();
 
+             if ($request->user()->onTrial()) {
+                $request->user()->update([
+                    'trial_ends_at' => null,
+                ]);
+            }
+
             return redirect()
                 ->route('user.billing')
                 ->withMessage('You\'re subscribed!');

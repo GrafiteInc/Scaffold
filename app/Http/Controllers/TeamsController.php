@@ -191,7 +191,7 @@ class TeamsController extends Controller
     protected function handleAccess($team)
     {
         abort_unless(
-            $team->hasActiveSubscription() || auth()->user()->hasRole('admin'),
+            $team->hasActiveSubscription() || $team->user->onTrial() || auth()->user()->hasRole('admin'),
             403,
             'Subscription is required.'
         );
