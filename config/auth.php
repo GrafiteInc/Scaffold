@@ -38,6 +38,7 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+            'remember' => '80640', // 8 weeks
         ],
 
         'api' => [

@@ -134,12 +134,6 @@ Route::middleware('auth')->group(function () {
             Route::delete('token/{token}/destroy', [ApiTokenController::class, 'destroy'])->name('user.destroy-token');
             Route::post('token', [ApiTokenController::class, 'create'])->name('user.create-token');
 
-            // Route::prefix('billing')->group(function () {
-            //     Route::middleware('has-subscription')->group(function () {
-            //         Route::delete('cancel', [BillingController::class, 'cancel'])->name('user.billing.cancel');
-            //     });
-            // });
-
             Route::prefix('notifications')->group(function () {
                 Route::get('/', [NotificationsController::class, 'index'])->name('user.notifications');
                 Route::post('{uuid}/read', [NotificationsController::class, 'read'])->name('user.notifications.read');
@@ -155,12 +149,9 @@ Route::middleware('auth')->group(function () {
 
             Route::prefix('billing')->group(function () {
                 Route::get('', [BillingController::class, 'index'])->name('user.billing');
-                Route::post('update', [BillingController::class, 'update'])->name('user.billing.update');
                 Route::post('subscribe', [BillingController::class, 'subscribe'])->name('user.billing.subscribe');
-                Route::group(['gateway' => 'subscribed'], function () {
-                    Route::post('swap', [BillingController::class, 'swap'])->name('user.billing.swap');
-                    Route::post('coupon', [BillingController::class, 'coupon'])->name('user.billing.coupon');
-                });
+                Route::get('subscribe/success', [BillingController::class, 'success'])->name('user.billing.subscribe.success');
+                Route::get('subscribe/cancelled', [BillingController::class, 'cancelled'])->name('user.billing.subscribe.cancelled');
             });
         });
 
