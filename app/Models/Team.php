@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Gate;
 
 class Team extends Model
 {
-    use Invitable;
     use HasAvatar;
     use HasFactory;
     use HasForm;
     use HasSubscribedUser;
+    use Invitable;
 
     public $form = TeamForm::class;
 

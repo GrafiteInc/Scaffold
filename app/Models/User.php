@@ -27,22 +27,22 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Billable;
-    use Notifiable;
-    use HasTeams;
-    use HasForm;
-    use HasActivity;
-    use HasAvatar;
-    use HasApiTokens;
-    use HasCachedValues;
-    use HasSubscription;
-    use HasRoles;
-    use HasPermissions;
-    use HasFactory;
-    use HasTwoFactor;
-    use DatabaseSearchable;
-    use HasSessions;
     use CanAccessFeatures;
+    use DatabaseSearchable;
+    use HasActivity;
+    use HasApiTokens;
+    use HasAvatar;
+    use HasCachedValues;
+    use HasFactory;
+    use HasForm;
     use HasJavascriptData;
+    use HasPermissions;
+    use HasRoles;
+    use HasSessions;
+    use HasSubscription;
+    use HasTeams;
+    use HasTwoFactor;
+    use Notifiable;
 
     public $form = UserForm::class;
 

@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.18.0] - 2024-01-08
+
+### Changed
+- Billing system is more streamlined
+
+### Fixed
+- Some code styles
+
 ## [v2.17.2] - 2023-10-26
 
 ### Changed
