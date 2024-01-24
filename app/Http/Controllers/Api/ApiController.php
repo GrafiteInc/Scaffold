@@ -6,14 +6,14 @@ use App\Http\Controllers\Controller;
 
 class ApiController extends Controller
 {
-    public $user;
-
-    public function __construct()
+    public function user()
     {
-        $this->user = auth('sanctum')->user();
+        $user = auth('sanctum')->user();
 
-        if (is_null($this->user) && ! app()->runningInConsole()) {
+        if (is_null($user) && ! app()->runningInConsole()) {
             abort(401, 'Unauthorized.');
         }
+
+        return $user;
     }
 }

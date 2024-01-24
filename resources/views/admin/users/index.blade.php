@@ -50,7 +50,7 @@
                     <div class="card-header">
                         <h4 class="m-0">User Invites</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body m-2">
                         <table class="table table-striped table-borderless m-0 p-0">
                             <tbody>
                                 @foreach($invites as $invite)
