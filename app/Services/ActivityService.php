@@ -17,7 +17,7 @@ class ActivityService
      * Create an activity record.
      *
      * @param  string  $description
-     * @return  \App\Models\Activity
+     * @return \App\Models\Activity
      */
     public function log($description = '')
     {

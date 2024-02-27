@@ -571,7 +571,7 @@ return [
                 'kit.fontawesome.com',
                 'code.jquery.com',
                 'js.pusher.com',
-                'cdn.usefathom.com'
+                'cdn.usefathom.com',
             ],
 
             'schemes' => [
