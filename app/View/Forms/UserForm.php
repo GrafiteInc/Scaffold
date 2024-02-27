@@ -3,16 +3,14 @@
 namespace App\View\Forms;
 
 use App\Models\User;
-use Grafite\Forms\Html\HrTag;
-use Grafite\Forms\Fields\Text;
+use Grafite\Forms\Fields\Country;
 use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Html\Heading;
+use Grafite\Forms\Fields\FileWithPreview;
+use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Toggled;
 use Grafite\Forms\Forms\ModelForm;
-use App\View\Forms\Fields\AddressField;
-use Grafite\Forms\Fields\FileWithPreview;
-use Grafite\Forms\Fields\Bootstrap\Select;
-use Grafite\Forms\Fields\Bootstrap\Country;
+use Grafite\Forms\Html\Heading;
+use Grafite\Forms\Html\HrTag;
 
 class UserForm extends ModelForm
 {
@@ -49,23 +47,12 @@ class UserForm extends ModelForm
             ]),
             Toggled::make('allow_email_based_notifications', [
                 'legend' => 'Email Contact',
-                'color' => '#8558da',
             ]),
             FileWithPreview::make('avatar', [
                 'preview_identifier' => '.avatar',
                 'preview_as_background_image' => true,
             ]),
-            Select::make('two_factor_platform', [
-                'multiple' => false,
-                'null_value' => true,
-                'label' => 'Two Factor Platform',
-                'options' => [
-                    'Email' => 'email',
-                    'Authenticator' => 'authenticator',
-                ],
-                'value' => auth()->user()->two_factor_platform,
-            ]),
-        ], $this->billingColumns());
+        ]);
     }
 
     public function billingColumns()

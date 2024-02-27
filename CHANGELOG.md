@@ -3,6 +3,82 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.18.0] - 2024-01-08
+
+### Changed
+- Billing system is more streamlined
+
+### Fixed
+- Some code styles
+
+## [v2.17.2] - 2023-10-26
+
+### Changed
+- Small improvements to billing
+
+## [v2.17.1] - 2023-09-27
+
+### Fixed
+- Minor fixes for styles and tests
+
+## [v2.17.0] - 2023-09-27
+
+### Changed
+- Minor redesign for better workflow
+- Improved two-factor
+
+## [v2.16.3] - 2023-08-27
+
+### Added
+- Livewire 3 support
+
+## [v2.16.2] - 2023-08-22
+
+### Fixed
+- Silly mistake with vue
+
+## [v2.16.1] - 2023-08-06
+
+### Fixed
+- Small issue with caching
+
+## [v2.16.0] - 2023-08-06
+
+### Changed
+- New Stripe and Cashier system
+
+### Fixed
+- Some minor style issues
+
+## [v2.15.2] - 2023-07-31
+
+### Changed
+- Switched to Laravel Pint
+
+## [v2.15.1] - 2023-07-31
+
+### Added
+- Vue components
+- CSP support
+
+### Changed
+- General improvements
+
+## [v2.15.0] - 2023-05-25
+
+### Added
+- Recovery codes
+- session listing
+- UI improvements
+- Dependency pruning
+- New HTML components
+- Admin announcements
+
+### Fixed
+- Many issues with MFA
+- Laravel 10
+- Minor UI issues
+
 ## [v2.14.1] - 2022-02-21
 
 ### Changed

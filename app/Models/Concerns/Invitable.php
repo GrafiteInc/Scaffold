@@ -2,18 +2,17 @@
 
 namespace App\Models\Concerns;
 
-use Exception;
 use App\Models\Invite;
 use App\Services\InviteService;
+use Exception;
 
 trait Invitable
 {
     /**
      * Invite a user to this.
      *
-     * @param string $email
-     * @param string $message
-     *
+     * @param  string  $email
+     * @param  string  $message
      * @return \App\Models\Invite
      */
     public function invite($email, $message)

@@ -43,7 +43,7 @@
                                             @endif
 
                                             @if (Gate::allows('team-admin', $team))
-                                                {!! form()->confirm('Are you sure you want to remove this member?', 'confirmation')
+                                                {!! form()->confirm('Are you sure you want to remove this member?', 'app.confirmation')
                                                     ->action('delete',
                                                     ['teams.members.remove', $team->id, $member->id],
                                                     'Remove',

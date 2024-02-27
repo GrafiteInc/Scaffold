@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Controllers;
 
-use Tests\TestCase;
 use App\Models\Team;
 use App\Models\User;
 use App\Notifications\InAppNotification;
 use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
 
 class TeamsControllerTest extends TestCase
 {
@@ -91,7 +91,7 @@ class TeamsControllerTest extends TestCase
             'user_id' => $this->user->id,
         ]);
 
-        $user->teamMemberships()->attach($team);
+        $user->memberships()->attach($team);
 
         $response = $this->delete(route('teams.destroy', [$team->id]));
 

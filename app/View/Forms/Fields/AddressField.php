@@ -54,7 +54,7 @@ class AddressField extends Field
      */
     public static function getTemplate($options)
     {
-        return <<<template
+        return <<<'template'
             {label}
             {field}
             <div class="autocomplete-results">
@@ -66,7 +66,7 @@ template;
     /**
      * Field related scripts
      *
-     * @param array $options
+     * @param  array  $options
      * @return array
      */
     public static function scripts($options)
@@ -75,17 +75,17 @@ template;
     }
 
     /**
-         * Field related JavaScript
-         *
-         * @param string $id
-         * @param array $options
-         * @return string|null
-         */
+     * Field related JavaScript
+     *
+     * @param  string  $id
+     * @param  array  $options
+     * @return string|null
+     */
     public static function js($id, $options)
     {
         return <<<scripts
-        let _addressField_${id} = document.getElementById('${id}');
-        _addressField_${id}.addEventListener('keydown', function (event) {
+        let _addressField_{$id} = document.getElementById('{$id}');
+        _addressField_{$id}.addEventListener('keydown', function (event) {
             if (! ['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
                 _query = this.value;
 
@@ -94,7 +94,7 @@ template;
                         method: 'GET',
                     };
 
-                    fetch("Views://api.geoapify.com/v1/geocode/autocomplete?text="+_query+"&apiKey=${options['api_key']}", requestOptions)
+                    fetch("Views://api.geoapify.com/v1/geocode/autocomplete?text="+_query+"&apiKey={$options['api_key']}", requestOptions)
                     .then(response => response.json())
                     .then((result) => {
 
@@ -109,7 +109,7 @@ scripts;
     /**
      * Field related stylesheets
      *
-     * @param array $options
+     * @param  array  $options
      * @return array
      */
     public static function stylesheets($options)
@@ -120,8 +120,8 @@ scripts;
     /**
      * Field related styles
      *
-     * @param string $id
-     * @param array $options
+     * @param  string  $id
+     * @param  array  $options
      * @return string|null
      */
     public static function styles($id, $options)

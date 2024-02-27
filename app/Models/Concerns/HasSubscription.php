@@ -14,14 +14,14 @@ trait HasSubscription
      */
     public function hasActiveSubscription()
     {
-        return Cache::remember($this->cacheIdentifier('subscription'), 86400, function () {
-            if ($this->subscription(config('billing.subscription_name')) && ! $this->subscription(config('billing.subscription_name'))->cancelled()) {
+        return Cache::remember($this->cacheIdentifier('subscription'), 300, function () {
+            if ($this->subscription(config('billing.subscription_name')) && ! $this->subscription(config('billing.subscription_name'))->canceled()) {
                 return true;
             }
 
             if (
                 $this->subscription(config('billing.subscription_name')) &&
-                $this->subscription(config('billing.subscription_name'))->cancelled() &&
+                $this->subscription(config('billing.subscription_name'))->canceled() &&
                 $this->subscription(config('billing.subscription_name'))->onGracePeriod()
             ) {
                 return true;
@@ -36,15 +36,19 @@ trait HasSubscription
      *
      * @return bool
      */
-    public function hasCancelledSubscription()
+    public function hasCanceledSubscription()
     {
-        return $this->subscription(config('billing.subscription_name'))->cancelled();
+        if ($this->subscription(config('billing.subscription_name'))) {
+            return $this->subscription(config('billing.subscription_name'))->canceled();
+        }
+
+        return false;
     }
 
     /**
      * Get the users subscription plan.
      *
-     * @param string $key
+     * @param  string  $key
      * @return mixed
      */
     public function subscriptionPlan($key)
@@ -59,5 +63,18 @@ trait HasSubscription
         }
 
         return null;
+    }
+
+    public function hasBillingInformation()
+    {
+        return
+            ! is_null($this->billing_email)
+            && ! is_null($this->state)
+            && ! is_null($this->country);
+    }
+
+    public function clearSubscriptionCache()
+    {
+        Cache::forget($this->cacheIdentifier('subscription'));
     }
 }

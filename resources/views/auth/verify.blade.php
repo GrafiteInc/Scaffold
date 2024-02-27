@@ -7,7 +7,7 @@
     <div class="content-sm mt-4">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-header">{{ __('Verify Your Email Address') }}</div>
 
                     <div class="card-body">
@@ -26,7 +26,7 @@
 
 @section('alerts')
     @if (session('resent'))
-        <div class="alert alert-info" role="alert">
+        <div class="alert bg-info" role="alert">
             {{ __('A fresh verification link has been sent to your email address.') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>

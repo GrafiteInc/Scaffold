@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Controllers;
 
-use Tests\TestCase;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
 
 class TeamMembersControllerTest extends TestCase
 {
@@ -90,7 +90,7 @@ class TeamMembersControllerTest extends TestCase
             'user_id' => $this->user->id,
         ]);
 
-        $this->user->teamMemberships()->attach($team);
+        $this->user->memberships()->attach($team);
 
         $response = $this->post(route('teams.leave', [$team->id]));
 
@@ -110,7 +110,7 @@ class TeamMembersControllerTest extends TestCase
             'user_id' => $this->user->id,
         ]);
 
-        $user->teamMemberships()->attach($team);
+        $user->memberships()->attach($team);
 
         $response = $this->delete(route('teams.members.remove', [$team->id, $user->id]));
 

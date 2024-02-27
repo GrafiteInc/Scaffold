@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Controllers\User;
 
-use Tests\TestCase;
+use App\Models\Invite;
 use App\Models\Team;
 use App\Models\User;
-use App\Models\Invite;
+use Tests\TestCase;
 
 class InvitesControllerTest extends TestCase
 {
@@ -24,7 +24,7 @@ class InvitesControllerTest extends TestCase
         $invite = Invite::factory()->create([
             'user_id' => $user->id,
             'email' => $this->user->email,
-            'relationship' => 'teamMemberships',
+            'relationship' => 'memberships',
             'model_id' => $team->id,
             'message' => 'new team!',
             'token' => 'foo',
@@ -44,7 +44,7 @@ class InvitesControllerTest extends TestCase
         $invite = Invite::factory()->create([
             'user_id' => $user->id,
             'email' => $this->user->email,
-            'relationship' => 'teamMemberships',
+            'relationship' => 'memberships',
             'model_id' => $team->id,
             'message' => 'new team!',
             'token' => 'foo',

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Collective\Auth\Foundation\ConfirmsPasswords;
+use Grafite\Auth\Foundation\ConfirmsPasswords;
 
 class ConfirmPasswordController extends Controller
 {

@@ -2,8 +2,8 @@
 
 namespace App\View\Components\Forms;
 
-use Illuminate\View\Component;
 use App\View\Forms\UserPasswordForm;
+use Illuminate\View\Component;
 
 class UserPassword extends Component
 {

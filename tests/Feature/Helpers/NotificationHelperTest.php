@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Helpers;
 
-use Tests\TestCase;
-use App\Events\UserPusherEvent;
 use App\Events\GeneralPusherEvent;
-use Illuminate\Support\Facades\Event;
+use App\Events\UserPusherEvent;
 use App\Notifications\InAppNotification;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
 
 class NotificationHelperTest extends TestCase
 {

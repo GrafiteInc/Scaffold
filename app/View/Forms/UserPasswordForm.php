@@ -2,12 +2,12 @@
 
 namespace App\View\Forms;
 
-use Grafite\Forms\Forms\BaseForm;
 use Grafite\Forms\Fields\Password;
+use Grafite\Forms\Forms\BaseForm;
 
 class UserPasswordForm extends BaseForm
 {
-    public $route = 'user.settings.password.update';
+    public $route = 'user.security.update';
 
     public $method = 'put';
 

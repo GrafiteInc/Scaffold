@@ -1,0 +1,77 @@
+/*
+|--------------------------------------------------------------------------
+| Sidebar
+|--------------------------------------------------------------------------
+*/
+
+.sidebar {
+    background-color: var(--app-sidebar-bg);
+
+    .nav-link {
+        margin: 8px;
+        &.active {
+            color: var(--bs-white);
+            background-color: var(--bs-primary);
+            border-radius: 6px;
+        }
+    }
+
+    .nav-item {
+        a {
+            color: var(--app-sidebar-link)
+        }
+    }
+}
+
+.sidebar-header {
+    background-color: var(--app-sidebar-header);
+    color: var(--bs-white);
+}
+
+.app-sidebar-content {
+    margin-top: 80px;
+}
+
+.sidebar {
+    width: 320px;
+    margin-left: -320px;
+    position: fixed;
+    left: 0;
+    z-index: 100;
+    padding: 0;
+    transition: all 0.3s;
+}
+
+.sidebar-sticky {
+    width: 320px;
+    height: calc(100vh - 0px);
+    overflow-y: auto;
+}
+
+.sidebar .nav-item {
+    font-weight: bold;
+    width: 100%;
+    line-height: 32px;
+    font-size: 16px;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+.sidebar-header {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 48px;
+
+    span {
+        padding-left: 28px;
+    }
+}
+
+.sidebar-toggle {
+    display: none;
+    cursor: pointer;
+    padding: 4px;
+}

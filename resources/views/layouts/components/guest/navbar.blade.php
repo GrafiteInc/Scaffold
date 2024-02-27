@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="w-100">
     <nav class="navbar bg-primary sticky-top p-0 mx-n3">
         <a class="navbar-brand m-2 text-white" href="/">
             <span class="fas fa-fw fa-cogs"></span> {{ config('app.name') }}

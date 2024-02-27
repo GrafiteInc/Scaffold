@@ -2,17 +2,17 @@
 
 namespace Tests;
 
-use App\Models\Role;
-use App\Models\User;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\Permissions;
 use App\Http\Middleware\VerifyCsrfToken;
-use Laravel\Dusk\TestCase as BaseTestCase;
+use App\Models\Role;
+use App\Models\User;
 use Facebook\WebDriver\Chrome\ChromeOptions;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Dusk\TestCase as BaseTestCase;
 
 abstract class DuskTestCase extends BaseTestCase
 {
@@ -25,6 +25,7 @@ abstract class DuskTestCase extends BaseTestCase
      * Prepare for Dusk test execution.
      *
      * @beforeClass
+     *
      * @return void
      */
     public static function prepare()

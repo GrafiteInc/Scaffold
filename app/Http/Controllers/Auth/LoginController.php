@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Collective\Auth\Foundation\AuthenticatesUsers;
+use Grafite\Auth\Foundation\AuthenticatesUsers;
 
 class LoginController extends Controller
 {

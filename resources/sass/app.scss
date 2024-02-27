@@ -1,0 +1,74 @@
+/*! purgecss start ignore */
+$color-mode-type: media-query;
+
+@import "theme/variables";
+@import '~bootstrap/scss/bootstrap';
+@import 'theme/bootswatch';
+
+@import "scheme.scss";
+@import "app/window.scss";
+@import "app/forms.scss";
+@import "app/sidebar.scss";
+@import "app/navbar.scss";
+@import "app/avatar.scss";
+@import "app/primary_components.scss";
+@import "app/media_containers.scss";
+@import "stripe.scss";
+
+$bmx-brand-primary: $primary !default;
+$bmx-brand-secondary: $secondary !default;
+$bmx-brand-terciary: $info !default;
+
+$bmx-colors: (
+    "white": $white,
+    "black": $black,
+    "blue": $blue,
+    "blue-light": $blue-200,
+    "blue-dark": $blue-700,
+    "indigo": $indigo,
+    "indigo-light": $indigo-200,
+    "indigo-dark": $indigo-700,
+    "purple": $purple,
+    "purple-light": $purple-200,
+    "purple-dark": $purple-700,
+    "pink": $pink,
+    "pink-light": $pink-200,
+    "pink-dark": $pink-700,
+    "red":  $red,
+    "red-light": $red-200,
+    "red-dark": $red-700,
+    "orange": $orange,
+    "orange-light": $orange-200,
+    "orange-dark": $orange-700,
+    "yellow": $yellow,
+    "yellow-light": $yellow-200,
+    "yellow-dark": $yellow-700,
+    "green": $green,
+    "green-light": $green-200,
+    "green-dark": $green-700,
+    "teal": $teal,
+    "teal-light": $teal-200,
+    "teal-dark": $teal-700,
+    "cyan": $cyan,
+    "cyan-light": $cyan-200,
+    "cyan-dark": $cyan-700,
+    "gray-100": $gray-100,
+    "gray-200": $gray-200,
+    "gray-300": $gray-300,
+    "gray-400": $gray-400,
+    "gray-500": $gray-500,
+    "gray-600": $gray-600,
+    "gray-700": $gray-700,
+    "gray-800": $gray-800,
+    "gray-900": $gray-900,
+    "brand-primary": $bmx-brand-primary,
+    "brand-secondary": $bmx-brand-secondary,
+    "brand-terciary": $bmx-brand-terciary,
+    "primary": $primary,
+    "secondary": $secondary,
+    "info": $info,
+);
+
+/*! purgecss end ignore */
+
+@import "@grafite/bootstrap-magic-extras";

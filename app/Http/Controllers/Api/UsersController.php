@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\ApiUserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Notifications\StandardEmail;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\ApiUserUpdateRequest;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends ApiController
 {
@@ -18,26 +18,25 @@ class UsersController extends ApiController
     public function me()
     {
         return response()->json([
-            'data' => new UserResource($this->user),
+            'data' => new UserResource($this->user()),
         ]);
     }
 
     /**
      * Update the user profile.
      *
-     * @param \App\Http\Requests\ApiUserUpdateRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(ApiUserUpdateRequest $request)
     {
         if (
-            $this->user->update([
+            $this->user()->update([
                 'email' => $request->json('email'),
                 'name' => $request->json('name'),
             ])
         ) {
             return response()->json([
-                'data' => new UserResource($this->user),
+                'data' => new UserResource($this->user()),
                 'status' => 'Profile updated',
             ]);
         }
@@ -54,17 +53,17 @@ class UsersController extends ApiController
      */
     public function destroy()
     {
-        if ($this->user->avatar) {
-            Storage::delete($this->user->avatar);
+        if ($this->user()->avatar) {
+            Storage::delete($this->user()->avatar);
         }
 
         $subject = 'Account Deletion.';
         $message = 'Your account has been deleted.';
 
-        Notification::route('mail', $this->user->email)
-            ->notify(new StandardEmail($this->user->name, $subject, $message));
+        Notification::route('mail', $this->user()->email)
+            ->notify(new StandardEmail($this->user()->name, $subject, $message));
 
-        $this->user->delete();
+        $this->user()->delete();
 
         return response()->json([
             'status' => 'Profile deleted',

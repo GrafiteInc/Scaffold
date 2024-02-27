@@ -2,14 +2,14 @@
 
 namespace Tests\Feature\Controllers\User;
 
-use Tests\TestCase;
 use Illuminate\Support\Facades\Hash;
+use Tests\TestCase;
 
 class ChangePasswordControllerTest extends TestCase
 {
     public function testSecurity()
     {
-        $response = $this->get(route('user.settings.password'));
+        $response = $this->get(route('user.security'));
 
         $response->assertOk();
     }
@@ -20,12 +20,12 @@ class ChangePasswordControllerTest extends TestCase
             'password' => Hash::make('^testPassword2'),
         ]);
 
-        $response = $this->put(route('user.settings.password.update'), [
+        $response = $this->put(route('user.security.update'), [
             'old_password' => '^testPassword2',
             'new_password' => '^testPassword1',
             'new_password_confirmation' => '^testPassword1',
         ]);
 
-        $response->assertRedirect(route('user.settings'));
+        $response->assertRedirect(route('user.security'));
     }
 }

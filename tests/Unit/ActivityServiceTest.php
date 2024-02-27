@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use App\Models\Activity;
 use App\Services\ActivityService;
+use Tests\TestCase;
 
 class ActivityServiceTest extends TestCase
 {

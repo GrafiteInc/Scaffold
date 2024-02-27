@@ -3,7 +3,6 @@
 @section('page-title', 'Settings')
 
 @section('user_content')
-
     <div class="mt-3">
         <div class="row">
             <div class="col-md-4">
@@ -23,18 +22,7 @@
                                 :payload="['user' => auth()->id()]"
                                 :options="['class' => 'btn btn-outline-primary float-end']"
                                 :disableOnSubmit=true
-                            ></x-f-modal>
-                        @endif
-                        <x-forms.logout></x-forms.logout>
-                        <a class="btn d-block w-100 btn-outline-secondary mb-3" href="{{ route('user.settings.password') }}">
-                            <span class="fas fa-fw fa-lock"></span>
-                            Change Password
-                        </a>
-                        @if (auth()->user()->usesTwoFactor('authenticator'))
-                            <a class="btn d-block w-100 btn-outline-secondary mb-3" href="{{ route('user.settings.two-factor') }}">
-                                <span class="fas fa-fw fa-shield-alt"></span>
-                                Two Factor Auth
-                            </a>
+                            />
                         @endif
                         <hr class="bmx-mt-6 mb-4">
                         <x-forms.user-delete-account></x-forms.user-delete-account>
@@ -42,9 +30,12 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <x-forms.user></x-forms.user>
+                <x-f-model
+                    :form="\App\View\Forms\UserForm::class"
+                    action="edit"
+                    :model="$user"
+                />
             </div>
         </div>
     </div>
-
 @stop

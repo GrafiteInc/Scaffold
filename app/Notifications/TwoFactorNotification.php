@@ -3,8 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class TwoFactorNotification extends Notification
 {
@@ -23,7 +23,6 @@ class TwoFactorNotification extends Notification
      * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
-     * @return array
      */
     public function via($notifiable): array
     {
@@ -42,8 +41,8 @@ class TwoFactorNotification extends Notification
         $url = route('verification.two-factor');
 
         return (new MailMessage())
-            ->greeting('Hello ' . $notifiable->name)
-            ->line('Your two factor code is: ' . $notifiable->two_factor_code)
+            ->greeting('Hello '.$notifiable->name)
+            ->line('Your two factor code is: '.$notifiable->two_factor_code)
             ->action('Verify Here', $url)
             ->line('The code will expire in 10 minutes')
             ->line('If you have not tried to login, we recommend changing your password immediately.');

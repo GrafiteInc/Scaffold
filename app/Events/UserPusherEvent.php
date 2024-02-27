@@ -3,11 +3,11 @@
 namespace App\Events;
 
 use App\Models\User;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 class UserPusherEvent implements ShouldBroadcast
 {
@@ -42,6 +42,6 @@ class UserPusherEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('App.Models.User.' . $this->user->id);
+        return new PrivateChannel('App.Models.User.'.$this->user->id);
     }
 }

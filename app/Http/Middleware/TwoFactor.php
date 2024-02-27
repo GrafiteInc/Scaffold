@@ -17,19 +17,19 @@ class TwoFactor
     {
         $user = auth()->user();
 
-        if ($user->two_factor_platform === 'email') {
-            if (auth()->check() && ! $user->hasValidTwoFactorCode()) {
-                auth()->user()->setAndSendTwoFactorForEmail();
+        if ($user->notConfirmedTwoFactor()) {
+            if ($user->usesTwoFactor('email')) {
+                $user->setAndSendTwoFactorForEmail();
 
                 return redirect(route('verification.two-factor'));
             }
-        }
 
-        if ($user->two_factor_platform === 'authenticator') {
-            $authenticator = app(Authenticator::class)->boot($request);
+            if ($user->usesTwoFactor('authenticator')) {
+                $authenticator = app(Authenticator::class)->boot($request);
 
-            if (! $authenticator->isAuthenticated()) {
-                return redirect(route('verification.two-factor'));
+                if (! $authenticator->isAuthenticated()) {
+                    return redirect(route('verification.two-factor'));
+                }
             }
         }
 

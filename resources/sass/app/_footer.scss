@@ -1,0 +1,16 @@
+|--------------------------------------------------------------------------
+| Footer
+|--------------------------------------------------------------------------
+*/
+
+.footer {
+    background-color: var(--app-footer-bg);
+
+    span {
+        color: var(--app-footer-text-color);
+    }
+
+    a {
+        color: var(--app-footer-text-color);
+    }
+}

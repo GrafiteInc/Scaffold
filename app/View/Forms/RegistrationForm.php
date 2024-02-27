@@ -2,11 +2,11 @@
 
 namespace App\View\Forms;
 
-use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Html\HoneyPot;
-use Grafite\Forms\Forms\BaseForm;
 use Grafite\Forms\Fields\PasswordWithReveal;
+use Grafite\Forms\Fields\Text;
+use Grafite\Forms\Forms\BaseForm;
+use Grafite\Forms\Html\HoneyPot;
 
 class RegistrationForm extends BaseForm
 {
@@ -57,7 +57,7 @@ class RegistrationForm extends BaseForm
         ];
     }
 
-    public function setSections()
+    public function setSections($fields)
     {
         return [
             ['honeypot'],

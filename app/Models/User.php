@@ -3,40 +3,46 @@
 namespace App\Models;
 
 use App\Http\Forms\UserForm;
-use Laravel\Cashier\Billable;
-use App\Models\Concerns\HasRoles;
-use App\Models\Concerns\HasTeams;
-use Grafite\Forms\Traits\HasForm;
-use Laravel\Sanctum\HasApiTokens;
-use App\Models\Concerns\HasAvatar;
-use App\Models\Concerns\HasActivity;
-use App\Notifications\ResetPassword;
-use App\Models\Concerns\HasTwoFactor;
-use App\Models\Concerns\HasPermissions;
-use App\Models\Concerns\HasCachedValues;
-use App\Models\Concerns\HasSubscription;
-use Illuminate\Notifications\Notifiable;
 use App\Models\Concerns\DatabaseSearchable;
+use App\Models\Concerns\HasActivity;
+use App\Models\Concerns\HasAvatar;
+use App\Models\Concerns\HasCachedValues;
+use App\Models\Concerns\HasPermissions;
+use App\Models\Concerns\HasRoles;
+use App\Models\Concerns\HasSessions;
+use App\Models\Concerns\HasSubscription;
+use App\Models\Concerns\HasTeams;
+use App\Models\Concerns\HasTwoFactor;
+use App\Notifications\ResetPassword;
+use Grafite\Forms\Traits\HasForm;
+use Grafite\Support\Models\Concerns\CanAccessFeatures;
+use Grafite\Support\Models\Concerns\HasJavascriptData;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Cashier\Billable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Billable;
-    use Notifiable;
-    use HasTeams;
-    use HasForm;
-    use HasActivity;
-    use HasAvatar;
-    use HasApiTokens;
-    use HasCachedValues;
-    use HasSubscription;
-    use HasRoles;
-    use HasPermissions;
-    use HasFactory;
-    use HasTwoFactor;
+    use CanAccessFeatures;
     use DatabaseSearchable;
+    use HasActivity;
+    use HasApiTokens;
+    use HasAvatar;
+    use HasCachedValues;
+    use HasFactory;
+    use HasForm;
+    use HasJavascriptData;
+    use HasPermissions;
+    use HasRoles;
+    use HasSessions;
+    use HasSubscription;
+    use HasTeams;
+    use HasTwoFactor;
+    use Notifiable;
 
     public $form = UserForm::class;
 
@@ -62,6 +68,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_platform',
         'two_factor_code',
         'two_factor_expires_at',
+        'two_factor_confirmed_at',
+        'two_factor_recovery_codes',
     ];
 
     /**
@@ -75,6 +83,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_platform',
         'two_factor_code',
         'two_factor_expires_at',
+        'two_factor_confirmed_at',
+        'two_factor_recovery_codes',
     ];
 
     /**
@@ -84,15 +94,8 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-
-    /**
-     * The attributes that should be cast to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'two_factor_expires_at',
+        'two_factor_expires_at' => 'datetime',
+        'two_factor_confirmed_at' => 'datetime',
     ];
 
     /**
@@ -129,30 +132,10 @@ class User extends Authenticatable implements MustVerifyEmail
      * Send the password reset notification.
      *
      * @param  string  $token
-     *
      * @return void
      */
     public function notifyPasswordReset($token)
     {
         $this->notify(new ResetPassword($token));
-    }
-
-    /**
-     * Prepare a payload for the JS session data.
-     *
-     * @return string|false
-     */
-    public function jsonSessionData()
-    {
-        $visibleAttributes = [
-            'id',
-            'name',
-            'email',
-        ];
-
-        return json_encode(collect($this->toArray())
-            ->filter(function ($value, $attribute) use ($visibleAttributes) {
-                return in_array($attribute, $visibleAttributes);
-            }));
     }
 }

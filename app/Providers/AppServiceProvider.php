@@ -3,12 +3,12 @@
 namespace App\Providers;
 
 use App\Models\User;
-use Laravel\Cashier\Cashier;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Laravel\Cashier\Cashier;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        Cashier::calculateTaxes();
         Cashier::keepPastDueSubscriptionsActive();
         Cashier::useCustomerModel(User::class);
 
@@ -43,6 +44,12 @@ class AppServiceProvider extends ServiceProvider
             return request()->user()->hasPermission($value);
         });
 
-        URL::forceScheme('https');
+        Blade::directive('nonce', function () {
+            return '';
+        });
+
+        if (! app()->environment('testing')) {
+            URL::forceScheme('https');
+        }
     }
 }

@@ -78,10 +78,10 @@
                                 @foreach($memberships as $team)
                                     <tr>
                                         <td>{{ $team->name }}</td>
-                                        <td width="180px" class="text-end">
+                                        <td width="200px" class="text-end">
                                             <div class="btn-toolbar justify-content-end">
                                                 <a class="btn btn-outline-primary btn-sm me-2" href="{!! route('teams.show', $team->uuid) !!}"><i class="fa fa-eye"></i> View</a>
-                                                {!! form()->confirm('Are you sure you want to leave '.$team->name.'?', 'confirmation')->action('post',
+                                                {!! form()->confirm('Are you sure you want to leave '.$team->name.'?', 'app.confirmation')->action('post',
                                                     ['teams.leave', $team],
                                                     'Leave Team',
                                                     ['class' => 'btn btn-sm btn-outline-warning']) !!}

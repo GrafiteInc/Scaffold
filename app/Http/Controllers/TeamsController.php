@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use App\Models\Team;
-use Illuminate\Http\Request;
-use App\Services\TeamService;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\TeamCreateRequest;
 use App\Http\Requests\TeamUpdateRequest;
+use App\Models\Team;
+use App\Services\TeamService;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class TeamsController extends Controller
 {
@@ -28,7 +28,7 @@ class TeamsController extends Controller
     public function index(Request $request)
     {
         $teams = $request->user()->teams;
-        $memberships = $request->user()->teamMemberships;
+        $memberships = $request->user()->memberships;
 
         return view('teams.index')->with(compact('memberships', 'teams'));
     }
@@ -52,7 +52,6 @@ class TeamsController extends Controller
     /**
      * Store a newly created team in storage.
      *
-     * @param  \App\Http\Requests\TeamCreateRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(TeamCreateRequest $request)
@@ -80,7 +79,6 @@ class TeamsController extends Controller
     /**
      * Show the form for editing the specified team.
      *
-     * @param  \App\Models\Team  $team
      * @return \Illuminate\View\View
      */
     public function edit(Team $team)
@@ -97,7 +95,6 @@ class TeamsController extends Controller
     /**
      * Show the form for handling members the specified team.
      *
-     * @param  \App\Models\Team  $team
      * @return \Illuminate\View\View
      */
     public function members(Team $team)
@@ -114,8 +111,6 @@ class TeamsController extends Controller
     /**
      * Update the specified team in storage.
      *
-     * @param  \App\Http\Requests\TeamUpdateRequest  $request
-     * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(TeamUpdateRequest $request, Team $team)
@@ -140,7 +135,6 @@ class TeamsController extends Controller
     /**
      * Remove the specified team from storage.
      *
-     * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Team $team)
@@ -167,7 +161,6 @@ class TeamsController extends Controller
     /**
      * Remove the specified team avatar from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroyAvatar(Request $request)
@@ -198,7 +191,7 @@ class TeamsController extends Controller
     protected function handleAccess($team)
     {
         abort_unless(
-            $team->hasActiveSubscription() || auth()->user()->hasRole('admin'),
+            $team->hasActiveSubscription() || $team->user->onTrial() || auth()->user()->hasRole('admin'),
             403,
             'Subscription is required.'
         );

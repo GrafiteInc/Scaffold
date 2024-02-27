@@ -14,7 +14,11 @@
     <div class="row mt-4">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                <x-forms.admin-user :user="$user"></x-forms.admin-user>
+                <x-f-model
+                    :form="\App\View\Forms\AdminUserForm::class"
+                    :model="$user"
+                    action="edit"
+                />
             </div>
         </div>
     </div>
@@ -35,7 +39,7 @@
                     <div class="card-body">
                         <table class="table table-borderless table-hover p-0 m-0">
                             @foreach($activities as $activity)
-                                <tr onclick="window.modal('Activity', '{{ $activity->forModal() }}')">
+                                <tr onclick="window.app.modal('Activity', '{{ $activity->forModal() }}')">
                                     <td>{{ $activity->description }}</td>
                                     <td width="250px" class="d-none d-sm-table-cell">
                                         <b>{{ $activity->request['method'] }}:</b> {{ Str::limit(str_replace(url('/'), '', $activity->request['url']), 20) }}

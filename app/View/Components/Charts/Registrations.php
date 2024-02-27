@@ -2,8 +2,8 @@
 
 namespace App\View\Components\Charts;
 
-use Illuminate\View\Component;
 use App\View\Charts\RegistrationThirtyDays;
+use Illuminate\View\Component;
 
 class Registrations extends Component
 {

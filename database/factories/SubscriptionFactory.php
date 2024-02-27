@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Laravel\Cashier\Subscription;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Laravel\Cashier\Subscription;
 
 class SubscriptionFactory extends Factory
 {

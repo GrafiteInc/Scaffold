@@ -8,7 +8,7 @@
 
 return [
     'bootstrap-version' => '5.0',
-    'modal-centered' => true,
+    'modal-centered' => false,
     'buttons' => [
         'submit' => 'btn btn-primary',
         'edit' => 'btn btn-outline-primary',
@@ -20,8 +20,10 @@ return [
         'pagination' => 'd-flex justify-content-center mt-4 mb-0',
         'table' => 'table table-borderless m-0 p-0',
         'table-head' => 'thead border-bottom',
-        'table-actions-header' => '<th class="text-right">Actions</th>',
+        'table-actions-header' => '<th class="text-end">Actions</th>',
         'sortable-icon' => '<span class="fas fa-fw fa-arrows-alt-v"></span>',
+        'sortable-icon-up' => '<span class="fas fa-fw fa-arrow-up"></span>',
+        'sortable-icon-down' => '<span class="fas fa-fw fa-arrow-down"></span>',
         'badge-tag' => 'badge bg-primary mt-1 float-end',
     ],
 

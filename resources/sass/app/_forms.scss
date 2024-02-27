@@ -1,0 +1,22 @@
+/*
+|--------------------------------------------------------------------------
+| Forms
+|--------------------------------------------------------------------------
+*/
+
+input.form-control, textarea.form-control, select.form-control {
+    &:focus {
+        outline: 0 !important;
+    }
+}
+
+pre {
+    font-size: 1rem;
+    padding: 24px;
+    background-color: var(--bs-form-control-bg);
+    border-radius: 8px;
+}
+
+input[type="file"].form-control {
+    line-height: 1.2;
+}

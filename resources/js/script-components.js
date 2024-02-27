@@ -1,9 +1,16 @@
-require('./script-components/subscription-create');
-require('./script-components/subscription-payment-method');
-require('./script-components/ajax-forms');
+// Low level components
+require('./script-components/core');
+require('./script-components/utilities');
 require('./script-components/app-events');
-require('./script-components/sidebar');
 require('./script-components/echo-events');
-require('./script-components/theme-switcher');
+require('./script-components/livewire-events');
 require('./script-components/online');
-require('./script-components/mobile');
+
+// UI functional level components
+require('./script-components/sidebar');
+// require('./script-components/mobile');
+require('./script-components/ajax-forms');
+
+// UI UX level components
+require('./script-components/tooltips');
+require('./script-components/clipboard');

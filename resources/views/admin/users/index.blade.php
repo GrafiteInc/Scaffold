@@ -3,10 +3,9 @@
 @section('page-title', 'Admin: Users')
 
 @section('admin_content')
-
     <div class="row">
         <div class="col-md-6 mb-3">
-            <x-forms.admin-user-index-search></x-forms.admin-user-index-search>
+            <x-f-search :index="$index" route="admin.users.search" content='<span class="fas fa-search"></span>' placeholder="Search Users" method="get" />
         </div>
         <div class="col-md-6 mb-3">
             <div class="btn-toolbar justify-content-end">
@@ -51,20 +50,20 @@
                     <div class="card-header">
                         <h4 class="m-0">User Invites</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body m-2">
                         <table class="table table-striped table-borderless m-0 p-0">
                             <tbody>
                                 @foreach($invites as $invite)
                                     <tr>
                                         <td>{{ $invite->email }}</td>
-                                        <td class="text-end" width="250px">
+                                        <td class="text-end" width="280px">
                                             {!! form()->action('post',
                                                 ['invite.resend', $invite],
                                                 'Resend Invite',
                                                 ['class' => 'btn btn-sm btn-outline-primary me-2']
                                             ) !!}
 
-                                            {!! form()->confirm('Are you sure you want to revoke this invite?', 'confirmation')
+                                            {!! form()->confirm('Are you sure you want to revoke this invite?', 'app.confirmation')
                                                 ->action('post',
                                                 ['invite.revoke', $invite],
                                                 '<span class="fas fa-fw fa-undo"></span> Revoke Invite',

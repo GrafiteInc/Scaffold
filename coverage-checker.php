@@ -25,9 +25,9 @@ foreach ($metrics as $metric) {
 $coverage = ($checkedElements / $totalElements) * 100;
 
 if ($coverage < $percentage) {
-    echo 'Code coverage is ' . $coverage . '%, which is below the accepted ' . $percentage . '%' . PHP_EOL;
+    echo 'Code coverage is '.$coverage.'%, which is below the accepted '.$percentage.'%'.PHP_EOL;
 
     exit(1);
 }
 
-echo 'Code coverage is ' . $coverage . '% - OK!' . PHP_EOL;
+echo 'Code coverage is '.$coverage.'% - OK!'.PHP_EOL;

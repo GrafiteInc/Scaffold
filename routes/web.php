@@ -1,32 +1,32 @@
 <?php
 
-use App\Http\Controllers\Auth;
-use Illuminate\Support\Facades\Route;
-use Spatie\Honeypot\ProtectAgainstSpam;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\TeamsController;
-use Collective\Auth\Facades\CollectiveAuth;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\TeamMembersController;
+use App\Http\Controllers\Ajax\CookiePolicyController;
+use App\Http\Controllers\Ajax\FileUploadController;
+use App\Http\Controllers\Auth;
+use App\Http\Controllers\Auth\RecoveryController;
+use App\Http\Controllers\Auth\TwoFactorController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ResendInviteController;
 use App\Http\Controllers\RevokeInviteController;
+use App\Http\Controllers\TeamMembersController;
+use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\User\ApiTokenController;
 use App\Http\Controllers\User\BillingController;
 use App\Http\Controllers\User\DestroyController;
 use App\Http\Controllers\User\InvitesController;
-use App\Http\Controllers\Ajax\ApiTokenController;
-use App\Http\Controllers\User\SettingsController;
-use App\Http\Controllers\Auth\TwoFactorController;
-use App\Http\Controllers\Ajax\FileUploadController;
-use App\Http\Controllers\Ajax\CookiePolicyController;
-use App\Http\Controllers\Ajax\SubscriptionController;
-use App\Http\Controllers\User\ApiTokenIndexController;
-use App\Http\Controllers\User\NotificationsController;
-use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\User\LogoutSessionsController;
-use App\Http\Controllers\Ajax\NotificationCountController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\User\NotificationsController;
+use App\Http\Controllers\User\SecurityController;
+use App\Http\Controllers\User\SettingsController;
+use App\Http\Controllers\User\TwoFactorSettingsController;
+use Grafite\Auth\Facades\GrafiteAuth;
+use Illuminate\Support\Facades\Route;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,11 +51,6 @@ Route::get('privacy-policy', [PagesController::class, 'privacyPolicy'])->name('p
 
 Route::post('accept-cookie-policy', [CookiePolicyController::class, 'accept'])->name('ajax.accept-cookie-policy');
 
-Route::post(
-    'stripe/webhook',
-    [\App\Http\Controllers\WebhookController::class, 'handleWebhook']
-);
-
 /*
 |--------------------------------------------------------------------------
 | Auth
@@ -67,15 +62,22 @@ Route::get('register/invite', [Auth\RegisterController::class, 'showRegistration
 Route::post('register/invite', [Auth\RegisterController::class, 'registerViaInvite'])
     ->name('register.invite');
 
-Route::middleware(ProtectAgainstSpam::class)->group(function () {
-    CollectiveAuth::routes([
+Route::middleware([ProtectAgainstSpam::class])->group(function () {
+    GrafiteAuth::routes([
         'login' => true,
         'logout' => true,
         'register' => config('general.registration_available', false),
         'reset' => true,
         'confirm' => true,
         'verify' => true,
+    ], [
+        'throttle:5,1',
     ]);
+
+    Route::get('recovery', [RecoveryController::class, 'show'])
+        ->name('recovery');
+    Route::post('recovery', [RecoveryController::class, 'verify'])
+        ->name('recovery.verify');
 });
 
 /*
@@ -93,6 +95,10 @@ Route::middleware('auth')->group(function () {
     Route::post('users/return-switch', [UserController::class, 'switchBack'])->name('users.return-switch');
 
     Route::middleware(['verified', 'two-factor'])->group(function () {
+        Route::get('subscribed', function () {
+            dd(request());
+        });
+
         /*
         |--------------------------------------------------------------------------
         | Dashboard
@@ -109,7 +115,9 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('user')->group(function () {
             Route::get('settings', [SettingsController::class, 'index'])->name('user.settings');
-            Route::get('settings/two-factor', [SettingsController::class, 'twoFactorSetup'])->name('user.settings.two-factor');
+            Route::get('security/two-factor', [TwoFactorSettingsController::class, 'setup'])->name('user.security.two-factor');
+            Route::put('security/two-factor', [TwoFactorSettingsController::class, 'update'])->name('user.two-factor.update');
+            Route::post('security/two-factor/confirm', [TwoFactorSettingsController::class, 'confirm'])->name('user.security.two-factor.confirm');
 
             Route::post('logout', LogoutSessionsController::class)->name('user.logout');
 
@@ -117,18 +125,14 @@ Route::middleware('auth')->group(function () {
             Route::put('settings', [SettingsController::class, 'update'])->name('user.update');
             Route::delete('avatar', [SettingsController::class, 'destroyAvatar'])->name('user.destroy.avatar');
 
-            Route::get('settings/password', [ChangePasswordController::class, 'index'])
-                ->name('user.settings.password');
-            Route::put('settings/security', [ChangePasswordController::class, 'update'])
-                ->name('user.settings.password.update');
+            Route::get('security', [SecurityController::class, 'index'])
+                ->name('user.security');
+            Route::put('security', [SecurityController::class, 'update'])
+                ->name('user.security.update');
 
-            Route::get('api-tokens', ApiTokenIndexController::class)->name('user.api-tokens');
-
-            Route::prefix('billing')->group(function () {
-                Route::middleware('has-subscription')->group(function () {
-                    Route::delete('cancel', [BillingController::class, 'cancel'])->name('user.billing.cancel');
-                });
-            });
+            Route::get('api-tokens', [ApiTokenController::class, 'index'])->name('user.api-tokens');
+            Route::delete('token/{token}/destroy', [ApiTokenController::class, 'destroy'])->name('user.destroy-token');
+            Route::post('token', [ApiTokenController::class, 'create'])->name('user.create-token');
 
             Route::prefix('notifications')->group(function () {
                 Route::get('/', [NotificationsController::class, 'index'])->name('user.notifications');
@@ -144,19 +148,10 @@ Route::middleware('auth')->group(function () {
             });
 
             Route::prefix('billing')->group(function () {
-                Route::get('subscribe', [BillingController::class, 'subscribe'])->name('user.billing');
-                Route::get('renew', [BillingController::class, 'renewSubscription'])->name('user.billing.renew');
-                Route::get('details', [BillingController::class, 'getSubscription'])->name('user.billing.details');
-                Route::group(['gateway' => 'subscribed'], function () {
-                    Route::get('payment-method', [BillingController::class, 'paymentMethod'])->name('user.billing.payment-method');
-                    Route::get('change-plan', [BillingController::class, 'getChangePlan'])->name('user.billing.change-plan');
-                    Route::post('swap-plan', [BillingController::class, 'swapPlan'])->name('user.billing.swap-plan');
-                    Route::post('cancellation', [BillingController::class, 'cancelSubscription'])->name('user.subscription.cancel');
-                    Route::get('invoices', [BillingController::class, 'getInvoices'])->name('user.billing.invoices');
-                    Route::get('invoice/{id}', [BillingController::class, 'getInvoiceById'])->name('user.billing.invoice');
-                    Route::get('coupon', [BillingController::class, 'getCoupon'])->name('user.billing.coupons');
-                    Route::post('apply-coupon', [BillingController::class, 'applyCoupon'])->name('user.billing.apply-coupon');
-                });
+                Route::get('', [BillingController::class, 'index'])->name('user.billing');
+                Route::post('subscribe', [BillingController::class, 'subscribe'])->name('user.billing.subscribe');
+                Route::get('subscribe/success', [BillingController::class, 'success'])->name('user.billing.subscribe.success');
+                Route::get('subscribe/cancelled', [BillingController::class, 'cancelled'])->name('user.billing.subscribe.cancelled');
             });
         });
 
@@ -188,17 +183,6 @@ Route::middleware('auth')->group(function () {
         */
 
         Route::prefix('ajax')->group(function () {
-            Route::get('tokens', [ApiTokenController::class, 'index'])->name('ajax.tokens');
-            Route::post('token', [ApiTokenController::class, 'create'])->name('ajax.create-token');
-            Route::delete('token/{token}/destroy', [ApiTokenController::class, 'destroy'])->name('ajax.destroy-token');
-
-            Route::get('notifications-count', NotificationCountController::class)->name('ajax.notifications-count');
-
-            Route::post('subscribe', [SubscriptionController::class, 'createSubscription'])
-                ->name('ajax.billing.subscription.create');
-            Route::post('payment-method', [SubscriptionController::class, 'updatePaymentMethod'])
-                ->name('ajax.billing.subscription.payment-method');
-
             Route::post('file-upload', [FileUploadController::class, 'upload'])->name('ajax.files-upload');
             Route::post('image-upload', [FileUploadController::class, 'uploadImage'])->name('ajax.image-upload');
         });
@@ -234,13 +218,8 @@ Route::middleware('auth')->group(function () {
                 ->name('admin.users.switch');
 
             Route::resource('users', UserController::class, ['as' => 'admin', 'middleware' => ['permissions:users']]);
-
-            /*
-            |--------------------------------------------------------------------------
-            | Roles
-            |--------------------------------------------------------------------------
-            */
             Route::resource('roles', RoleController::class, ['as' => 'admin', 'middleware' => ['permissions:roles']]);
+            Route::resource('announcements', AnnouncementController::class, ['as' => 'admin', 'middleware' => ['permissions:announcements']]);
         });
     });
 });

@@ -12,7 +12,7 @@
 </li>
 <li class="nav-item">
     <a class="nav-link pe-4" href="{{ route('user.notifications') }}">
-        <notification-badge></notification-badge>
+        <livewire:notification-badge />
         <span class="fas fa-bell"></span>
     </a>
 </li>
@@ -24,11 +24,10 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="{{ route('user.settings') }}">Settings</a>
+                <a class="dropdown-item" href="{{ route('user.security') }}">Security</a>
                 <a class="dropdown-item" href="{{ route('user.api-tokens') }}">API Tokens</a>
                 <a class="dropdown-item" href="{{ route('user.invites') }}">Invites</a>
                 <a class="dropdown-item" href="{{ route('user.notifications') }}">Notifications</a>
-
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('user.billing') }}">Billing</a>
 
                 @if (auth()->user()->hasRole('admin'))
@@ -37,6 +36,7 @@
                     <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a>
                     <a class="dropdown-item" href="{{ route('admin.users.index') }}">Users</a>
                     <a class="dropdown-item" href="{{ route('admin.roles.index') }}">Roles</a>
+                    <a class="dropdown-item" href="{{ route('admin.announcements.create') }}">Annoucements</a>
                 @endif
 
                 <div class="dropdown-divider"></div>

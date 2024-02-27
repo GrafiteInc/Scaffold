@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Ajax;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class FileUploadController extends Controller

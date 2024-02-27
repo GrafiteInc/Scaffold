@@ -4,11 +4,10 @@ namespace App\View\Forms;
 
 use App\Models\Role;
 use App\Models\User;
-use Grafite\Forms\Fields\Text;
-use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Fields\Hidden;
-use Grafite\Forms\Forms\ModelForm;
 use Grafite\Forms\Fields\Bootstrap\HasOne;
+use Grafite\Forms\Fields\Email;
+use Grafite\Forms\Fields\Text;
+use Grafite\Forms\Forms\ModelForm;
 
 class AdminUserForm extends ModelForm
 {
@@ -55,9 +54,6 @@ class AdminUserForm extends ModelForm
                 'sortable' => true,
                 'table_class' => 'd-none d-sm-table-cell',
             ]),
-            Hidden::make('role', [
-                'table_class' => 'd-none d-sm-table-cell',
-            ]),
             HasOne::make('role', [
                 'required' => true,
                 'visible' => false,
@@ -70,7 +66,7 @@ class AdminUserForm extends ModelForm
         ];
     }
 
-    public function setSections()
+    public function setSections($fields)
     {
         return [
             ['name', 'email'],
