@@ -77,7 +77,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // Gateway for determining subscribers
         Gate::define('subscribed', function ($user) {
-            return $user->hasActiveSubscription() || $user->onTrial();
+            return $user->hasActiveSubscription() || $user->onTrial() || $user->hasRole('admin');
         });
 
         // Gateway for determining not cancelled subscribers
