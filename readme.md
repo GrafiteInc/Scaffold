@@ -41,6 +41,10 @@ Scaffold is *intended* to be used to start a project and then be heavily altered
 
 1. PHP 8.1+
 
+## Setup
+
+sail up
+
 ## Compatibility and Support
 
 Since Grafite Scaffold is a starter project it offers no support, and no compatibily guarantees.

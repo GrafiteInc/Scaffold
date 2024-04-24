@@ -10,6 +10,14 @@ use Illuminate\Validation\ValidationException;
 
 class ApiDeviceLoginController extends Controller
 {
+    /**
+     * Device Login
+     *
+     * Create a new device token for the user.
+     * Otherwise we fall back to sanctum's default auth methodology.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function create(Request $request)
     {
         $request->validate([

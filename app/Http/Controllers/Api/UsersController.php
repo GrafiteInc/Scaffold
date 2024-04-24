@@ -18,7 +18,7 @@ class UsersController extends ApiController
     public function me()
     {
         return response()->json([
-            'data' => new UserResource($this->user),
+            'data' => new UserResource($this->user()),
         ]);
     }
 
@@ -30,13 +30,13 @@ class UsersController extends ApiController
     public function update(ApiUserUpdateRequest $request)
     {
         if (
-            $this->user->update([
+            $this->user()->update([
                 'email' => $request->json('email'),
                 'name' => $request->json('name'),
             ])
         ) {
             return response()->json([
-                'data' => new UserResource($this->user),
+                'data' => new UserResource($this->user()),
                 'status' => 'Profile updated',
             ]);
         }
@@ -53,17 +53,17 @@ class UsersController extends ApiController
      */
     public function destroy()
     {
-        if ($this->user->avatar) {
-            Storage::delete($this->user->avatar);
+        if ($this->user()->avatar) {
+            Storage::delete($this->user()->avatar);
         }
 
         $subject = 'Account Deletion.';
         $message = 'Your account has been deleted.';
 
-        Notification::route('mail', $this->user->email)
-            ->notify(new StandardEmail($this->user->name, $subject, $message));
+        Notification::route('mail', $this->user()->email)
+            ->notify(new StandardEmail($this->user()->name, $subject, $message));
 
-        $this->user->delete();
+        $this->user()->delete();
 
         return response()->json([
             'status' => 'Profile deleted',

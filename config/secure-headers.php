@@ -109,7 +109,7 @@ return [
      */
 
     'hsts' => [
-        'enable' => false,
+        'enable' => true,
 
         'max-age' => 31536000,
 
@@ -156,15 +156,15 @@ return [
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/ambient-light-sensor
-        'ambient-light-sensor' => [
-            'none' => false,
+        // 'ambient-light-sensor' => [
+        //     'none' => false,
 
-            '*' => false,
+        //     '*' => false,
 
-            'self' => true,
+        //     'self' => true,
 
-            'origins' => [],
-        ],
+        //     'origins' => [],
+        // ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/autoplay
         'autoplay' => [
@@ -178,15 +178,15 @@ return [
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/battery
-        'battery' => [
-            'none' => false,
+        // 'battery' => [
+        //     'none' => false,
 
-            '*' => false,
+        //     '*' => false,
 
-            'self' => true,
+        //     'self' => true,
 
-            'origins' => [],
-        ],
+        //     'origins' => [],
+        // ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/camera
         'camera' => [
@@ -222,15 +222,15 @@ return [
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/document-domain
-        'document-domain' => [
-            'none' => false,
+        // 'document-domain' => [
+        //     'none' => false,
 
-            '*' => true,
+        //     '*' => true,
 
-            'self' => false,
+        //     'self' => false,
 
-            'origins' => [],
-        ],
+        //     'origins' => [],
+        // ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/encrypted-media
         'encrypted-media' => [
@@ -244,26 +244,26 @@ return [
         ],
 
         // https://wicg.github.io/page-lifecycle/#execution-while-not-rendered
-        'execution-while-not-rendered' => [
-            'none' => false,
+        // 'execution-while-not-rendered' => [
+        //     'none' => false,
 
-            '*' => true,
+        //     '*' => true,
 
-            'self' => false,
+        //     'self' => false,
 
-            'origins' => [],
-        ],
+        //     'origins' => [],
+        // ],
 
         // https://wicg.github.io/page-lifecycle/#execution-while-out-of-viewport
-        'execution-while-out-of-viewport' => [
-            'none' => false,
+        // 'execution-while-out-of-viewport' => [
+        //     'none' => false,
 
-            '*' => true,
+        //     '*' => true,
 
-            'self' => false,
+        //     'self' => false,
 
-            'origins' => [],
-        ],
+        //     'origins' => [],
+        // ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/fullscreen
         'fullscreen' => [
@@ -332,15 +332,15 @@ return [
         ],
 
         // https://drafts.csswg.org/css-nav-1/
-        'navigation-override' => [
-            'none' => false,
+        // 'navigation-override' => [
+        //     'none' => false,
 
-            '*' => false,
+        //     '*' => false,
 
-            'self' => true,
+        //     'self' => true,
 
-            'origins' => [],
-        ],
+        //     'origins' => [],
+        // ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/payment
         'payment' => [
@@ -409,15 +409,15 @@ return [
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/web-share
-        'web-share' => [
-            'none' => false,
+        // 'web-share' => [
+        //     'none' => false,
 
-            '*' => false,
+        //     '*' => false,
 
-            'self' => true,
+        //     'self' => true,
 
-            'origins' => [],
-        ],
+        //     'origins' => [],
+        // ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/xr-spatial-tracking
         'xr-spatial-tracking' => [
@@ -559,12 +559,19 @@ return [
         'script-src' => [
             'none' => false,
 
-            'self' => false,
+            'self' => true,
 
             'report-sample' => false,
 
             'allow' => [
-                // 'url',
+                'cdn.quilljs.com',
+                'cdnjs.cloudflare.com',
+                'unpkg.com',
+                'cdn.jsdelivr.net',
+                'kit.fontawesome.com',
+                'code.jquery.com',
+                'js.pusher.com',
+                'cdn.usefathom.com',
             ],
 
             'schemes' => [
@@ -574,9 +581,9 @@ return [
 
             // followings are only work for `script` and `style` related directives
 
-            'unsafe-inline' => false,
+            'unsafe-inline' => true,
 
-            'unsafe-eval' => false,
+            'unsafe-eval' => true,
 
             // https://www.w3.org/TR/CSP3/#unsafe-hashes-usage
             'unsafe-hashes' => false,
@@ -607,10 +614,17 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src-elem
         'script-src-elem' => [
+            'cdn.quilljs.com',
+            'cdnjs.cloudflare.com',
+            'unpkg.com',
+            'cdn.jsdelivr.net',
+            'kit.fontawesome.com',
+            'code.jquery.com',
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src
         'style-src' => [
+            // 'unsafe-inline',
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src-attr

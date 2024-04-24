@@ -68,3 +68,8 @@
 // .cta::after {
 //     content: " ...";
 // }
+
+pre {
+    background-color: var(--bs-tertiary-bg);
+    white-space: pre-wrap;
+}

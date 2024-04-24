@@ -3,14 +3,11 @@
 namespace App\View\Forms;
 
 use App\Models\User;
-use Grafite\Forms\Fields\Country;
 use Grafite\Forms\Fields\Email;
 use Grafite\Forms\Fields\FileWithPreview;
 use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Fields\Toggled;
 use Grafite\Forms\Forms\ModelForm;
-use Grafite\Forms\Html\Heading;
-use Grafite\Forms\Html\HrTag;
 
 class UserForm extends ModelForm
 {
@@ -37,7 +34,7 @@ class UserForm extends ModelForm
 
     public function fields()
     {
-        return array_merge([
+        return [
             Text::make('name', [
                 'required' => true,
             ]),
@@ -51,31 +48,6 @@ class UserForm extends ModelForm
             FileWithPreview::make('avatar', [
                 'preview_identifier' => '.avatar',
                 'preview_as_background_image' => true,
-            ]),
-        ]);
-    }
-
-    public function billingColumns()
-    {
-        return [
-            Heading::make([
-                'class' => 'mt-4 mb-1',
-                'content' => 'Billing Details',
-                'level' => 4,
-            ]),
-            HrTag::make(),
-            Email::make('billing_email', [
-                'label' => 'Email',
-                'required' => auth()->user()->hasActiveSubscription(),
-            ]),
-            Text::make('state', [
-                'label' => 'State',
-                'required' => auth()->user()->hasActiveSubscription(),
-            ]),
-            Country::make('country', [
-                'label' => 'Country',
-                'required' => auth()->user()->hasActiveSubscription(),
-                'data-size' => 5,
             ]),
         ];
     }

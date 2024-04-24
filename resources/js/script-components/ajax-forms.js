@@ -2,11 +2,11 @@
  * Handling Ajax form submissions
  */
 window.ajax = (_event) => {
+    let _originalContent = null;
     _event.preventDefault();
 
     let _form = _event.target.closest('form');
     let _button = _event.target;
-    let _originalContent = null;
 
     if (! _button.hasAttribute('data-formsjs-onclick')) {
         _button = _button.closest('button');
@@ -47,22 +47,33 @@ window.ajax = (_event) => {
                 [error.response.data.errors].forEach((key) => {
                     let _fieldKey = Object.keys(key)[0];
                     let _errorMessage = document.createElement('div');
+
                     _errorMessage.classList.add('invalid-feedback');
                     _errorMessage.innerText = error.response.data.errors[_fieldKey];
 
                     let _fieldKeySelector = `input[name="${_fieldKey}"]`;
                     let _field = document.querySelector(_fieldKeySelector);
 
+                    if (! _field) { // means its a select... I guess
+                        _fieldKeySelector = `select[name="${_fieldKey}"]`;
+                        _field = document.querySelector(_fieldKeySelector);
+                    }
+
+                    if (! _field) { // means its a textarea... I guess
+                        _fieldKeySelector = `textarea[name="${_fieldKey}"]`;
+                        _field = document.querySelector(_fieldKeySelector);
+                    }
+
                     if (! _field.classList.contains('is-invalid')) {
                         _field.classList.add('is-invalid');
                         _field.parentNode.appendChild(_errorMessage);
                     }
 
-                    window.Forms_validation();
+                    window.FormsJS_validation();
                 });
             }
 
-            if (_button) {
+            if (_button && _originalContent) {
                 _button.innerHTML = _originalContent;
             }
         });
@@ -71,13 +82,26 @@ window.ajax = (_event) => {
 
 window.ajaxDebounced = window.app.debounce(window.ajax);
 
+window.FormsJS_submit_debounce = window.app.debounce((event) => {
+    if (event.target.form) {
+        event.target.form.submit();
+    }
+
+    if (event.target.tagName === 'FORM') {
+        event.target.submit();
+    }
+});
+
 window.ajaxWithRefresh = function (event) {
     window.ajax(event);
     setTimeout(() => {
         window.Livewire.dispatch('refresh');
         setTimeout(() => {
-            window.FormsJS();
-            window.turnOnTooltips();
+            let _form = event.target.closest('form');
+
+            if (_form) {
+                _form.reset();
+            }
         }, 1000);
     }, 1000);
 };
