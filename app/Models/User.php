@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Http\Forms\UserForm;
 use App\Models\Concerns\DatabaseSearchable;
 use App\Models\Concerns\HasActivity;
 use App\Models\Concerns\HasAvatar;
@@ -14,6 +13,7 @@ use App\Models\Concerns\HasSubscription;
 use App\Models\Concerns\HasTeams;
 use App\Models\Concerns\HasTwoFactor;
 use App\Notifications\ResetPassword;
+use App\View\Forms\UserForm;
 use Grafite\Forms\Traits\HasForm;
 use Grafite\Support\Models\Concerns\CanAccessFeatures;
 use Grafite\Support\Models\Concerns\HasJavascriptData;

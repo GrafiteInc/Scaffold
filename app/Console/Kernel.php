@@ -23,7 +23,8 @@ class Kernel extends ConsoleKernel
             ->runInBackground()
             ->after(function () {
                 mission_control_notify('Emptied the Failed Jobs table', 'maintenance');
-            });
+            })
+            ->onOneServer();
 
         $schedule->command('maintenance:gzip-purge')->monthlyOn(4, '4:45')
             ->runInBackground()
@@ -35,14 +36,16 @@ class Kernel extends ConsoleKernel
             ->monthlyOn(4, '4:45')
             ->after(function (Stringable $output) {
                 mission_control_notify('PHP Outdated Parsing', 'maintenance', $output);
-            });
+            })
+            ->onOneServer();
 
         $schedule->command('maintenance:js-outdated')
             ->monthlyOn(4, '4:45')
             ->runInBackground()
             ->after(function (Stringable $output) {
                 mission_control_notify('JS Outdated Parsing', 'maintenance', $output);
-            });
+            })
+            ->onOneServer();
     }
 
     /**

@@ -54,12 +54,12 @@ window.ajax = (_event) => {
                     let _fieldKeySelector = `input[name="${_fieldKey}"]`;
                     let _field = document.querySelector(_fieldKeySelector);
 
-                    if (! _field) { //means its a select... I guess
+                    if (! _field) { // means its a select... I guess
                         _fieldKeySelector = `select[name="${_fieldKey}"]`;
                         _field = document.querySelector(_fieldKeySelector);
                     }
 
-                    if (! _field) { //means its a textarea... I guess
+                    if (! _field) { // means its a textarea... I guess
                         _fieldKeySelector = `textarea[name="${_fieldKey}"]`;
                         _field = document.querySelector(_fieldKeySelector);
                     }
