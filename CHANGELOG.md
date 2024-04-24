@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.19.0] - 2024-04-24
+
+### Added
+- Laravel 11 support
+
+### Changed
+- Some minor ajax stuff
+- Improved security headers
+- Started dockerizing
+
 ## [v2.18.0] - 2024-01-08
 
 ### Changed
