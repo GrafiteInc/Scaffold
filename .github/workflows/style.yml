@@ -1,5 +1,11 @@
-on: push
-name: Code Style
+name: Styles
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   php:
     runs-on: ubuntu-latest
