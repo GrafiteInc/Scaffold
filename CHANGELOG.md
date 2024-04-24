@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.19.1] - 2024-04-24
+
+### Changed
+- General updates and CICD fixes
+
 ## [v2.19.0] - 2024-04-24
 
 ### Added
