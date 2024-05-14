@@ -27,7 +27,7 @@ class LoginForm extends BaseForm
     public function fields()
     {
         return [
-            HoneyPot::make(),
+            HoneyPot::make()->name('honeypot'),
             Email::make('email')
                 ->required()
                 ->label('Email')

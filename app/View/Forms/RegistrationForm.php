@@ -31,7 +31,7 @@ class RegistrationForm extends BaseForm
     public function fields()
     {
         return [
-            HoneyPot::make(),
+            HoneyPot::make()->name('honeypot'),
             Text::make('name', [
                 'required' => true,
                 'label' => 'Name',
