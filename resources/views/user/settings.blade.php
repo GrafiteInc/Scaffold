@@ -8,10 +8,10 @@
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-8">
+                        <div class="mb-4 d-flex justify-content-center">
+                            <div class="avatar shadow-sm border bmx-scale-1-hover bmx-drop-shadow-hover" style="background-image: url({{ auth()->user()->avatar_url }})"></div>
+                        </div>
                         @if (auth()->user()->avatar)
-                            <div class="mb-4 d-flex justify-content-center">
-                                <div class="avatar shadow-sm border bmx-scale-1-hover bmx-drop-shadow-hover" style="background-image: url({{ auth()->user()->avatar_url }})"></div>
-                            </div>
                             <x-f-modal
                                 message='<p class="mb-4">Are you sure you want to delete your avatar?</p>'
                                 content="Confirm"
