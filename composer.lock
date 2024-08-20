@@ -1902,16 +1902,16 @@
         },
         {
             "name": "grafite/html",
-            "version": "v1.13.3",
+            "version": "v1.13.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Html.git",
-                "reference": "58f93ca438335eaa6437578b0cba9167de0794e3"
+                "reference": "7af6a343e75194aacf22c24b31b0e8d313ae0af1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Html/zipball/58f93ca438335eaa6437578b0cba9167de0794e3",
-                "reference": "58f93ca438335eaa6437578b0cba9167de0794e3",
+                "url": "https://api.github.com/repos/GrafiteInc/Html/zipball/7af6a343e75194aacf22c24b31b0e8d313ae0af1",
+                "reference": "7af6a343e75194aacf22c24b31b0e8d313ae0af1",
                 "shasum": ""
             },
             "require": {
@@ -1962,9 +1962,9 @@
             ],
             "support": {
                 "issues": "https://github.com/GrafiteInc/Html/issues",
-                "source": "https://github.com/GrafiteInc/Html/tree/v1.13.3"
+                "source": "https://github.com/GrafiteInc/Html/tree/v1.13.4"
             },
-            "time": "2024-08-20T12:15:21+00:00"
+            "time": "2024-08-20T13:51:03+00:00"
         },
         {
             "name": "grafite/maintenance",
