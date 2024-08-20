@@ -20,7 +20,7 @@ class InvitesControllerTest extends TestCase
         $response = $this->post(route('invite.resend', [$invite->id]));
 
         Notification::assertSentTo(
-            new AnonymousNotifiable(),
+            new AnonymousNotifiable,
             UserInviteEmail::class,
             function ($notification, $channels, $notifiable) use ($invite) {
                 return $notifiable->routes['mail'] === $invite->email;
@@ -40,7 +40,7 @@ class InvitesControllerTest extends TestCase
         $response = $this->post(route('invite.revoke', [$invite->id]));
 
         Notification::assertSentTo(
-            new AnonymousNotifiable(),
+            new AnonymousNotifiable,
             StandardEmail::class,
             function ($notification, $channels, $notifiable) use ($invite) {
                 return $notifiable->routes['mail'] === $invite->email;

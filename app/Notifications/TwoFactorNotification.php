@@ -15,9 +15,7 @@ class TwoFactorNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     /**
      * Get the notification's delivery channels.
@@ -40,7 +38,7 @@ class TwoFactorNotification extends Notification
     {
         $url = route('verification.two-factor');
 
-        return (new MailMessage())
+        return (new MailMessage)
             ->greeting('Hello '.$notifiable->name)
             ->line('Your two factor code is: '.$notifiable->two_factor_code)
             ->action('Verify Here', $url)

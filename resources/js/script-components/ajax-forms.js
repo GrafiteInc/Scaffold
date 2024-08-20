@@ -5,16 +5,16 @@ window.ajax = (_event) => {
     let _originalContent = null;
     _event.preventDefault();
 
-    let _form = _event.target.closest('form');
+    let _form = _event.target.closest("form");
     let _button = _event.target;
 
-    if (! _button.hasAttribute('data-formsjs-onclick')) {
-        _button = _button.closest('button');
+    if (! _button.hasAttribute("data-formsjs-onclick")) {
+        _button = _button.closest("button");
     }
 
     if (_button) {
         _originalContent = _button.innerHTML;
-        let _processing = '<i class="fas fa-circle-notch fa-spin bmx-fade-in"></i> ';
+        let _processing = "<i class=\"fas fa-circle-notch fa-spin bmx-fade-in\"></i> ";
         _button.innerHTML = _processing + _originalContent;
     }
 
@@ -24,17 +24,17 @@ window.ajax = (_event) => {
 
         window.axios[_method](_form.action, _data, {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                "Content-Type": "multipart/form-data"
             }
         }).then((response) => {
-            let _modalElement = document.getElementById(`${_form.getAttribute('id')}_Modal`);
+            let _modalElement = document.getElementById(`${_form.getAttribute("id")}_Modal`);
 
             if (_modalElement) {
                 window.bootstrap.Modal.getOrCreateInstance(_modalElement).hide();
             }
 
             // Event handling
-            let _event = `${_form.getAttribute('id')}.success`;
+            let _event = `${_form.getAttribute("id")}.success`;
             window.app.$events.fire(_event, response.data.data);
 
             if (_button) {
@@ -46,9 +46,9 @@ window.ajax = (_event) => {
             if (error.response && error.response.data) {
                 [error.response.data.errors].forEach((key) => {
                     let _fieldKey = Object.keys(key)[0];
-                    let _errorMessage = document.createElement('div');
+                    let _errorMessage = document.createElement("div");
 
-                    _errorMessage.classList.add('invalid-feedback');
+                    _errorMessage.classList.add("invalid-feedback");
                     _errorMessage.innerText = error.response.data.errors[_fieldKey];
 
                     let _fieldKeySelector = `input[name="${_fieldKey}"]`;
@@ -64,8 +64,8 @@ window.ajax = (_event) => {
                         _field = document.querySelector(_fieldKeySelector);
                     }
 
-                    if (! _field.classList.contains('is-invalid')) {
-                        _field.classList.add('is-invalid');
+                    if (! _field.classList.contains("is-invalid")) {
+                        _field.classList.add("is-invalid");
                         _field.parentNode.appendChild(_errorMessage);
                     }
 
@@ -87,7 +87,7 @@ window.FormsJS_submit_debounce = window.app.debounce((event) => {
         event.target.form.submit();
     }
 
-    if (event.target.tagName === 'FORM') {
+    if (event.target.tagName === "FORM") {
         event.target.submit();
     }
 });
@@ -95,9 +95,9 @@ window.FormsJS_submit_debounce = window.app.debounce((event) => {
 window.ajaxWithRefresh = function (event) {
     window.ajax(event);
     setTimeout(() => {
-        window.Livewire.dispatch('refresh');
+        window.Livewire.dispatch("refresh");
         setTimeout(() => {
-            let _form = event.target.closest('form');
+            let _form = event.target.closest("form");
 
             if (_form) {
                 _form.reset();

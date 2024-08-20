@@ -28,7 +28,7 @@ trait HasSessions
 
     protected function createAgent($session)
     {
-        $request = (new Request())->headers->set('User-Agent', $session->user_agent);
+        $request = (new Request)->headers->set('User-Agent', $session->user_agent);
 
         return new Parser(null, $request, []);
     }

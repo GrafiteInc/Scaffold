@@ -1,4 +1,4 @@
-window.Livewire.on('loadMore', () => {
+window.Livewire.on("loadMore", () => {
     setTimeout(() => {
         window.FormsJS();
         window.turnOnTooltips();
@@ -6,7 +6,7 @@ window.Livewire.on('loadMore', () => {
     }, 250);
 });
 
-window.Livewire.on('refresh', () => {
+window.Livewire.on("refresh", () => {
     setTimeout(() => {
         window.FormsJS();
         window.turnOnTooltips();

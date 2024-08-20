@@ -5,8 +5,8 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "check-style": "node_modules/.bin/eslint --ext .js,.vue -c .eslintrc.js resources/js",
-        "fix-style": "node_modules/.bin/eslint --ext .js,.vue -c .eslintrc.js resources/js --fix"
+        "check-style": "node_modules/.bin/eslint --ext .js,.vue -c .eslintrc.cjs resources/js",
+        "fix-style": "node_modules/.bin/eslint --ext .js,.vue -c .eslintrc.cjs resources/js --fix"
     },
     "devDependencies": {
         "@grafite/bootstrap-magic-extras": "^0.3.0",
@@ -19,8 +19,6 @@
         "collect.js": "^4.28.6",
         "css-loader": "^6.5.1",
         "eslint": "^7.23.0",
-        "eslint-config-airbnb-base": "^14.2.1",
-        "eslint-plugin-import": "^2.22.1",
         "eslint-plugin-vue": "^7.8.0",
         "laravel-echo": "^1.10.0",
         "laravel-vite-plugin": "^1.0.5",

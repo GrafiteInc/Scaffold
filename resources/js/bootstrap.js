@@ -1,6 +1,6 @@
-import axios from 'axios';
-import clipboard from 'clipboard';
-import * as bootstrap from 'bootstrap';
+import axios from "axios";
+import clipboard from "clipboard";
+import * as bootstrap from "bootstrap";
 
 window.clipboard = clipboard;
 window.bootstrap = bootstrap;
@@ -13,7 +13,7 @@ window.bootstrap = bootstrap;
 
 window.axios = axios;
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -21,12 +21,12 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * a simple convenience so we don't have to attach every token manually.
  */
 
-let token = document.head.querySelector('meta[name="csrf-token"]');
+let token = document.head.querySelector("meta[name=\"csrf-token\"]");
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common["X-CSRF-TOKEN"] = token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error("CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token");
 }
 
 /**
@@ -35,13 +35,13 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from 'laravel-echo';
-import pusher from 'pusher-js';
+import Echo from "laravel-echo";
+import pusher from "pusher-js";
 
 window.Pusher = pusher;
 
 window.Echo = new Echo({
-    broadcaster: 'pusher',
+    broadcaster: "pusher",
     key: import.meta.env.VITE_PUSHER_APP_KEY,
     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
     forceTLS: true
