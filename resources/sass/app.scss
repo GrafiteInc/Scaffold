@@ -2,7 +2,7 @@
 $color-mode-type: media-query;
 
 @import "theme/variables";
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 @import 'theme/bootswatch';
 
 @import "scheme.scss";

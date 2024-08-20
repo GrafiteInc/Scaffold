@@ -49,6 +49,9 @@ class UsersController extends ApiController
     /**
      * Delete the user profile.
      *
+     * Completely deletes the user account.
+     * Will output an email notification of the deleted account.
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy()

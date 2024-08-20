@@ -39,7 +39,7 @@ Scaffold is *intended* to be used to start a project and then be heavily altered
 
 ## Requirements
 
-1. PHP 8.1+
+1. PHP 8.2+
 
 ## Setup
 

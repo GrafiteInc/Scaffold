@@ -20,6 +20,12 @@
 
     <copy-button message="Ok so we have Vue!">Test Button</copy-button>
 
+    <div class="mt-5">
+        <x-html-tilt glare="true">
+            <img src="https://placehold.co/400x600" alt="">
+        </x-html-tilt>
+    </div>
+
     {{-- <x-html-hovercard content="Testing">
         <img src="https://placehold.co/600x400" alt="">
         <h4>Test Ideas</h4>
@@ -38,9 +44,13 @@
                 <div class="card-body">
                     <div class="row">
                         @foreach ($images as $index => $image)
-                            <div class="col-md-4 mb-4 overflow-hidden bmx-pointer" onclick="window.offCanvas('Image #{{ $index }}', '{{ $image }}')" style="height: 200px;">
+                            <div class="col-md-4 mb-4 overflow-hidden bmx-pointer" style="height: 200px;">
+                            {{-- <x-html-offcanvas-image :title="$image" :src="$image" cssClass="w-100 img-fluid" position="end">
                                 {!! app(\Grafite\Html\Tags\Image::class)->placeholder()->fluid()->source(url($image))->render() !!}
-                                {{-- <img loading="lazy" class="w-100 align-top" src="{{ $image }}" alt=""> --}}
+                            </x-html-offcanvas-image> --}}
+                            <x-html-offcanvas :title="$image" cssClass="w-100 img-fluid" position="end">
+                                {!! app(\Grafite\Html\Tags\Image::class)->placeholder()->fluid()->source(url($image))->render() !!}
+                            </x-html-offcanvas>
                             </div>
                         @endforeach
                     </div>

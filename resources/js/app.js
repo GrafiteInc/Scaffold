@@ -1,7 +1,7 @@
-require('./bootstrap');
+import './bootstrap';
 
 // Vue Components
-require('./vue-components');
+import './vue-components';
 
 // Script Components
-require('./script-components');
+import './script-components';
