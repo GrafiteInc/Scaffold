@@ -19,19 +19,16 @@
 
         <link rel="icon" type="image/ico" href="">
 
-        <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
+        @session
+        @laravelPWA
+        @missionControl
+        @routes
+        @livewireStyles
+
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <script src="https://kit.fontawesome.com/e46847d218.js" crossorigin="anonymous"></script>
-
-        @session
-        @formStyles
-        @htmlStyles
-        @chartStyles
-        @chartCdn
-        @laravelPWA
-        @missionControl
-        @fathom
 
         @stack('styles')
         <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
@@ -51,19 +48,10 @@
             </div>
         </div>
 
-        @routes
-
-        @stack('pre-app-js')
-
         @livewireScripts
-
-        <script src="{{ mix('/js/app.js') }}"></script>
-
-        {{-- Because we need to reload the assets in case of Styles + JS --}}
         @forms
-        {{-- Because we need to reload the assets in case of Styles + JS --}}
         @htmlAssets
-        @chartScripts
+        @chartsAssets
 
         @stack('javascript')
     </body>
