@@ -45,12 +45,12 @@
                     <div class="row">
                         @foreach ($images as $index => $image)
                             <div class="col-md-4 mb-4 overflow-hidden bmx-pointer" style="height: 200px;">
-                            <x-html-offcanvas-image :title="$image" :src="$image" cssClass="w-100 img-fluid" position="end">
+                            {{-- <x-html-offcanvas-image :title="$image" :src="$image" cssClass="w-100 img-fluid" position="end">
                                 {!! app(\Grafite\Html\Tags\Image::class)->placeholder()->fluid()->source(url($image))->render() !!}
-                            </x-html-offcanvas-image>
-                            {{-- <x-html-offcanvas :title="$image" cssClass="w-100 img-fluid" position="end">
+                            </x-html-offcanvas-image> --}}
+                            <x-html-offcanvas :title="$image" cssClass="w-100 img-fluid" position="end">
                                 {!! app(\Grafite\Html\Tags\Image::class)->placeholder()->fluid()->source(url($image))->render() !!}
-                            </x-html-offcanvas> --}}
+                            </x-html-offcanvas>
                             </div>
                         @endforeach
                     </div>
@@ -62,7 +62,7 @@
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-body">
-{{-- {!! app(\Grafite\Html\Tags\Map::class)
+{!! app(\Grafite\Html\Tags\Map::class)
                 ->zoom(3)
                 ->maxZoom(20)
                 ->bubbles([
@@ -78,7 +78,7 @@
                 ->skin('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png')
                 ->center(43.981739, -80.735542)
                 ->marker(43.981739, -80.735542, 'This is my home')
-                ->render() !!} --}}
+                ->render() !!}
                 </div>
             </div>
         </div>
