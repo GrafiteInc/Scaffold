@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.20.1] - 2024-08-27
+
+### Fixed
+- Styling and CI testing
+
 ## [v2.20.0] - 2024-08-20
 
 ### Changed
