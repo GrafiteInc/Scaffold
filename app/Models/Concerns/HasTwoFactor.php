@@ -90,7 +90,7 @@ trait HasTwoFactor
     public function setAndSendTwoFactorForEmail()
     {
         $this->setTwoFactorForEmail();
-        $this->notify(new TwoFactorNotification());
+        $this->notify(new TwoFactorNotification);
     }
 
     public function setTwoFactorForEmail()
@@ -124,7 +124,7 @@ trait HasTwoFactor
 
     public function setAndSendTwoFactorRecoveryCodes()
     {
-        $recovery = new Recovery();
+        $recovery = new Recovery;
         $recoveryCodes = $recovery->toArray();
 
         $this->update([

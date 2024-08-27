@@ -1,7 +1,7 @@
-import './bootstrap';
+import "./bootstrap";
 
 // Vue Components
-import './vue-components';
+import "./vue-components";
 
 // Script Components
-import './script-components';
+import "./script-components";

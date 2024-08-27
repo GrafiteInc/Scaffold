@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener("DOMContentLoaded", () => {
     // window.addEventListener('offline', (event) => {
     //     window.notify.info('The network connection has been lost.');
     // });

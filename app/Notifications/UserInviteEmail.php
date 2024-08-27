@@ -61,7 +61,7 @@ class UserInviteEmail extends Notification implements ShouldQueue
             $endpoint = route('user.invites');
         }
 
-        return (new MailMessage())
+        return (new MailMessage)
             ->subject('You’ve Been Invited to Join '.$app)
             ->greeting('Hello '.$this->user)
             ->line($this->from->name.' has invited you to join '.$app.'!')

@@ -40,7 +40,7 @@ class InviteServiceTest extends TestCase
         );
 
         Notification::assertSentTo(
-            new AnonymousNotifiable(),
+            new AnonymousNotifiable,
             UserInviteEmail::class,
             function ($notification, $channels, $notifiable) use ($user) {
                 return $notifiable->routes['mail'] === $user->email;

@@ -15,9 +15,7 @@ class TwoFactorRecoveryNotification extends Notification
      *
      * @return void
      */
-    public function __construct(public $codes)
-    {
-    }
+    public function __construct(public $codes) {}
 
     /**
      * Get the notification's delivery channels.
@@ -38,7 +36,7 @@ class TwoFactorRecoveryNotification extends Notification
      */
     public function toMail($notifiable): MailMessage
     {
-        $message = (new MailMessage())
+        $message = (new MailMessage)
             ->greeting('Hello '.$notifiable->name)
             ->line('Your two factor recovery codes are:');
 

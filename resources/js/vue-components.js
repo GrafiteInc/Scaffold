@@ -1,16 +1,16 @@
-import { createApp } from 'vue';
+import { createApp } from "vue";
 
 // External Components
 
 // Internal Components
-import CopyButton from './vue-components/CopyButton.vue';
+import CopyButton from "./vue-components/CopyButton.vue";
 
 // Define App
 const vueApp = createApp({});
 
 // Add Components
-vueApp.component('CopyButton', CopyButton);
+vueApp.component("CopyButton", CopyButton);
 
 // Mount App
-vueApp.mount('#app');
+vueApp.mount("#app");
 window.app.vue = vueApp;

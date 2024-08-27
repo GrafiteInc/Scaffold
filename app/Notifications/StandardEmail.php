@@ -52,7 +52,7 @@ class StandardEmail extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage())
+        return (new MailMessage)
             // ->theme('custom')
             ->subject($this->subject)
             ->greeting('Hello '.$this->name)

@@ -9,7 +9,7 @@ class UserResourceTest extends TestCase
 {
     public function testUserResource()
     {
-        $request = new \Illuminate\Http\Request();
+        $request = new \Illuminate\Http\Request;
 
         $users = collect([$this->user]);
 

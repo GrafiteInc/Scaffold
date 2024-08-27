@@ -30,13 +30,13 @@ class TwoFactorSettingsController extends Controller
      */
     public function setup(Request $request)
     {
-        $google2fa = new Google2FA();
+        $google2fa = new Google2FA;
 
         $data = [
             'manual' => $request->user()->two_factor_code,
             'code' => $google2fa->setQrcodeService(
                 new \PragmaRX\Google2FAQRCode\QRCode\Bacon(
-                    new \BaconQrCode\Renderer\Image\SvgImageBackEnd()
+                    new \BaconQrCode\Renderer\Image\SvgImageBackEnd
                 )
             )->getQRCodeInline(
                 config('app.name'),
