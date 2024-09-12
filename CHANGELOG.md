@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.20.2] - 2024-09-12
+
+### Added
+- Enhancement for response times
+
 ## [v2.20.1] - 2024-08-27
 
 ### Fixed
