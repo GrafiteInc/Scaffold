@@ -47,5 +47,7 @@ class LoginController extends Controller
     public function authenticated()
     {
         activity('login');
+
+        auth()->user()->deviceLogin();
     }
 }
