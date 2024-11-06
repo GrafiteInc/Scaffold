@@ -82,5 +82,11 @@
                 </div>
             </div>
         </div>
+        {{-- <div class="col-md-12">
+            {!! app(\App\View\Charts\WordyChart::class)->html() !!}
+        </div> --}}
+        <div class="col-md-12">
+            {!! $chart !!}
+        </div>
     </div>
 @stop

@@ -21,6 +21,8 @@ class DashboardController extends Controller
                 return str_replace('public', 'storage', $file);
             });
 
-        return view('dashboard', compact('images'));
+        $chart = app(\App\View\Charts\CanChart::class)->html();
+
+        return view('dashboard', compact('images', 'chart'));
     }
 }

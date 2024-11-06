@@ -572,6 +572,7 @@ return [
                 'code.jquery.com',
                 'js.pusher.com',
                 'cdn.usefathom.com',
+                'js.hcaptcha.com',
             ],
 
             'schemes' => [
@@ -620,6 +621,7 @@ return [
             'cdn.jsdelivr.net',
             'kit.fontawesome.com',
             'code.jquery.com',
+            'js.hcaptcha.com',
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src
