@@ -18,9 +18,9 @@
         "fahlisaputra/laravel-minify": "^1.1",
         "grafite/auth": "^1.0",
         "grafite/blacksmith": "^1.0",
-        "grafite/charts": "^2.0",
+        "grafite/charts": "^3.0",
         "grafite/database": "^2.5.2",
-        "grafite/forms": "^6.2",
+        "grafite/forms": "^7.0",
         "grafite/html": "^1.0",
         "grafite/maintenance": "^0.4.0",
         "grafite/mission-control-laravel": "^3.4",
@@ -40,7 +40,8 @@
         "shiftonelabs/laravel-sqs-fifo-queue": "^2.0",
         "silviolleite/laravelpwa": "^2.0",
         "spatie/laravel-honeypot": "^4.0",
-        "tightenco/ziggy": "^1.0.4"
+        "tightenco/ziggy": "^1.0.4",
+        "yorcreative/laravel-scrubber": "^3.0"
     },
     "require-dev": {
         "brianium/paratest": "^7.0",
