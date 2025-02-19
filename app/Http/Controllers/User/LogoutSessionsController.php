@@ -12,9 +12,11 @@ class LogoutSessionsController extends Controller
         try {
             auth()->logoutOtherDevices($request->password);
 
-            return redirect()->route('user.settings')->withMessage('Logged out of other devices.');
+            auth()->user()->deviceLogout($request);
+
+            return redirect()->route('user.security')->withMessage('Logged out of other devices.');
         } catch (\Throwable $th) {
-            return redirect()->route('user.settings')->withErrors($th->getMessage());
+            return redirect()->route('user.security')->withErrors($th->getMessage());
         }
     }
 }

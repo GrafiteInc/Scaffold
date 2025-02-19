@@ -8,7 +8,7 @@ use App\Models\Concerns\HasAvatar;
 use App\Models\Concerns\HasCachedValues;
 use App\Models\Concerns\HasPermissions;
 use App\Models\Concerns\HasRoles;
-use App\Models\Concerns\HasSessions;
+use App\Models\Concerns\HasDevices;
 use App\Models\Concerns\HasSubscription;
 use App\Models\Concerns\HasTeams;
 use App\Models\Concerns\HasTwoFactor;
@@ -38,7 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasJavascriptData;
     use HasPermissions;
     use HasRoles;
-    use HasSessions;
+    use HasDevices;
     use HasSubscription;
     use HasTeams;
     use HasTwoFactor;

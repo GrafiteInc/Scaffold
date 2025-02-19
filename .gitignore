@@ -7,11 +7,11 @@
 .env
 .env.docker
 .phpunit.result.cache
-/.phpunit.cache
-/.phpunit.cache/test-results
+.phpunit.cache/*
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
 clover.xml
 test-html
+.phpunit.cache/test-results

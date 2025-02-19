@@ -37,8 +37,8 @@
     </div>
     <div class="row mt-3">
         <div class="col-md-12 border-top pt-4">
-            <h4 class="mb-4">Device Sessions</h4>
-            @include('user.devices', ['sessions' => $user->getSessions()])
+            <h4 class="mb-4">Devices</h4>
+            @include('user.devices', ['sessions' => $user->getDevices()])
         </div>
     </div>
 

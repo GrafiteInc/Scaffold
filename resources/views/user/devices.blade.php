@@ -21,7 +21,7 @@
                         @if ($session->is_current_device)
                             <span class="text-success">{{ __('This device') }}</span>
                         @else
-                            {{ __('Last active') }} {{ $session->last_active }}
+                            {{ __('Last login') }} {{ $session->last_active }}
                         @endif
                     </div>
                 </div>
