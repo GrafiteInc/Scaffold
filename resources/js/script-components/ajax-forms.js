@@ -13,6 +13,7 @@ window.ajax = (_event) => {
     }
 
     if (_button) {
+        _originalContent = _button.innerHTML;
         let _processing = "<i class=\"spinner-border spinner-border-sm\"></i> ";
         _button.style.width = _button.offsetWidth + 'px';
         _button.innerHTML = _processing;
