@@ -10,7 +10,7 @@
                     <div class="card-header">{{ __('Two Factor Authentication') }}</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('recovery.verify') }}">
-                            {!! csrf_field() !!}
+                            {{ csrf_field() }}
 
                             <label for="email">Email</label>
                             <input id="email" class="form-control mt-3 mb-3" name="email" type="email" required>

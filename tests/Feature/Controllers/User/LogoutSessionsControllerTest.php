@@ -12,7 +12,7 @@ class LogoutSessionsControllerTest extends TestCase
             'password' => 'secret',
         ]);
 
-        $response->assertRedirect(route('user.settings'));
+        $response->assertRedirect(route('user.security'));
 
         $response->assertSessionHas('message', 'Logged out of other devices.');
     }

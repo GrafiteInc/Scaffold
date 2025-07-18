@@ -13,7 +13,7 @@
 <div class="position-fixed bottom-0 bg-warning rounded-end mb-4">
     <p class="p-4 mb-0">
         You are currently on trial mode.
-        <br>This will expire in {{ auth()->user()->trial_ends_at->diffInDays() }} days.
+        <br>This will expire in {{ floor(auth()->user()->trial_ends_at->diffInDays(now(), true)) }} days.
         <br>
         <br>
         <a class="text-white" href="{{ route('user.billing') }}">Subscribe here</a>

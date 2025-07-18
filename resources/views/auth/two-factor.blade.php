@@ -11,7 +11,7 @@
                     <div class="card-header">{{ __('Two Factor Authentication') }}</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('verification.two-factor') }}">
-                            {!! csrf_field() !!}
+                            {{ csrf_field() }}
 
                             <label for="passcode">One Time Password</label>
                             <input id="passcode" class="form-control mt-3" name="one_time_password" type="text" required>
