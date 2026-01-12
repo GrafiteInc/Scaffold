@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\Ajax\CookiePolicyController;
 use App\Http\Controllers\Auth;
-use App\Http\Controllers\Auth\RecoveryController;
-use App\Http\Controllers\PagesController;
 use Grafite\Auth\Facades\GrafiteAuth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\Auth\RecoveryController;
+use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\Ajax\CookiePolicyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,7 @@ Route::post('accept-cookie-policy', [CookiePolicyController::class, 'accept'])->
 
 /*
 |--------------------------------------------------------------------------
-| Auth
+| Standard Auth
 |--------------------------------------------------------------------------
 */
 
@@ -59,3 +61,15 @@ Route::middleware([ProtectAgainstSpam::class])->group(function () {
     Route::post('recovery', [RecoveryController::class, 'verify'])
         ->name('recovery.verify');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Socialite Auth
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/auth/{provider}/redirect', function ($provider) {
+    return Socialite::driver($provider)->redirect();
+})->name('auth.social.redirect');
+
+Route::get('/auth/{provider}/callback', SocialiteController::class)->name('auth.social.callback');
