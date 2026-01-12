@@ -61,5 +61,11 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
+
+        // SAML IDP Filesystem Disk
+        'samlidp' => [
+            'driver' => 'local',
+            'root' => storage_path() . '/samlidp',
+        ],
     ],
 ];

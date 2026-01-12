@@ -2,13 +2,14 @@
 
 namespace App\View\Forms;
 
-use Grafite\Forms\Fields\CheckboxInline;
-use Grafite\Forms\Fields\Email;
-use Grafite\Forms\Fields\hCaptcha;
-use Grafite\Forms\Fields\PasswordWithReveal;
-use Grafite\Forms\Forms\BaseForm;
-use Grafite\Forms\Html\HoneyPot;
 use Grafite\Forms\Html\Link;
+use Grafite\Forms\Fields\Email;
+use Grafite\Forms\Fields\Hidden;
+use Grafite\Forms\Html\HoneyPot;
+use Grafite\Forms\Forms\BaseForm;
+use Grafite\Forms\Fields\hCaptcha;
+use Grafite\Forms\Fields\CheckboxInline;
+use Grafite\Forms\Fields\PasswordWithReveal;
 
 class LoginForm extends BaseForm
 {
@@ -27,6 +28,12 @@ class LoginForm extends BaseForm
     public function fields()
     {
         return [
+            Hidden::make('RelayState')
+                ->value(request()->get('RelayState'))
+                ->name('RelayState'),
+            Hidden::make('SAMLRequest')
+                ->value(request()->get('SAMLRequest'))
+                ->name('SAMLRequest'),
             HoneyPot::make()->name('honeypot'),
             Email::make('email')
                 ->required()
@@ -52,6 +59,7 @@ class LoginForm extends BaseForm
     public function setSections($fields)
     {
         return [
+            ['RelayState', 'SAMLRequest'],
             // ['honeypot'],
             ['email'],
             ['password'],
