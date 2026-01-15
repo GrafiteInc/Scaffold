@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class RoleControllerTest extends TestCase
 {
-    public function testIndex()
+    public function test_index()
     {
         $response = $this->get(route('admin.roles.index'));
 
@@ -16,7 +16,7 @@ class RoleControllerTest extends TestCase
         $response->assertSee('Roles');
     }
 
-    public function testCreate()
+    public function test_create()
     {
         $response = $this->get(route('admin.roles.create'));
 
@@ -25,7 +25,7 @@ class RoleControllerTest extends TestCase
         $response->assertSee('Permissions');
     }
 
-    public function testStore()
+    public function test_store()
     {
         $response = $this->post(route('admin.roles.store'), [
             'label' => 'Subscriber',
@@ -44,7 +44,7 @@ class RoleControllerTest extends TestCase
         ], Role::where('name', 'subscriber')->first()->permissions);
     }
 
-    public function testEdit()
+    public function test_edit()
     {
         $role = Role::factory()->create();
 
@@ -55,7 +55,7 @@ class RoleControllerTest extends TestCase
         $response->assertSee('Permissions');
     }
 
-    public function testUpdate()
+    public function test_update()
     {
         $role = Role::factory()->create();
 
@@ -71,7 +71,7 @@ class RoleControllerTest extends TestCase
         $this->assertEquals(['users.invite'], Role::where('name', 'subscriber')->first()->permissions);
     }
 
-    public function testDelete()
+    public function test_delete()
     {
         $role = Role::factory()->create([
             'label' => 'Subscriber',

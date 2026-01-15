@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class DashboardControllerTest extends TestCase
 {
-    public function testIndex()
+    public function test_index()
     {
         $response = $this->get(route('admin.dashboard'));
 

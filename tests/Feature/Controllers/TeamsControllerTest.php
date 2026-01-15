@@ -10,14 +10,14 @@ use Tests\TestCase;
 
 class TeamsControllerTest extends TestCase
 {
-    public function testIndex()
+    public function test_index()
     {
         $response = $this->get(route('teams'));
 
         $response->assertOk();
     }
 
-    public function testIndexWithSubcription()
+    public function test_index_with_subcription()
     {
         $this->withSubscription();
 
@@ -27,7 +27,7 @@ class TeamsControllerTest extends TestCase
         $response->assertSee('Create Team');
     }
 
-    public function testCreate()
+    public function test_create()
     {
         $this->withSubscription();
 
@@ -38,7 +38,7 @@ class TeamsControllerTest extends TestCase
         $response->assertSee('Name');
     }
 
-    public function testStore()
+    public function test_store()
     {
         $this->withSubscription();
 
@@ -50,7 +50,7 @@ class TeamsControllerTest extends TestCase
         $response->assertSessionHas('message', 'Successfully created a team');
     }
 
-    public function testEdit()
+    public function test_edit()
     {
         $this->withSubscription();
 
@@ -63,7 +63,7 @@ class TeamsControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testUpdate()
+    public function test_update()
     {
         $this->withSubscription();
 
@@ -79,7 +79,7 @@ class TeamsControllerTest extends TestCase
         $response->assertSessionHas('message', 'Successfully updated');
     }
 
-    public function testDelete()
+    public function test_delete()
     {
         $this->withSubscription();
 

@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class InvitesControllerTest extends TestCase
 {
-    public function testResend()
+    public function test_resend()
     {
         Notification::fake();
 
@@ -31,7 +31,7 @@ class InvitesControllerTest extends TestCase
         $response->assertSessionHas('message', 'Invitation was resent');
     }
 
-    public function testRevoke()
+    public function test_revoke()
     {
         Notification::fake();
 

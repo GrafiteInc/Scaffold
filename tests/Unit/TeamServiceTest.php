@@ -13,14 +13,14 @@ use Tests\TestCase;
 
 class TeamServiceTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->service = $this->app->make(TeamService::class);
     }
 
-    public function testCreate()
+    public function test_create()
     {
         $result = $this->service->create([
             'name' => 'Justice League',
@@ -29,7 +29,7 @@ class TeamServiceTest extends TestCase
         $this->assertEquals('Justice League', $result->name);
     }
 
-    public function testUpdate()
+    public function test_update()
     {
         $team = Team::factory()->create([
             'name' => 'Avengers',
@@ -44,7 +44,7 @@ class TeamServiceTest extends TestCase
         $this->assertEquals('Justice League', $result->name);
     }
 
-    public function testInvite()
+    public function test_invite()
     {
         Notification::fake();
 
@@ -59,7 +59,7 @@ class TeamServiceTest extends TestCase
         Notification::assertSentTo(new AnonymousNotifiable, UserInviteEmail::class);
     }
 
-    public function testLeaveTeam()
+    public function test_leave_team()
     {
         Notification::fake();
 
@@ -82,7 +82,7 @@ class TeamServiceTest extends TestCase
         Notification::assertSentTo($teamAdmin, InAppNotification::class);
     }
 
-    public function testRemoveMember()
+    public function test_remove_member()
     {
         $teamMember = User::factory()->create([
             'id' => 999,
@@ -101,7 +101,7 @@ class TeamServiceTest extends TestCase
         $this->assertEquals(0, $team->members()->count());
     }
 
-    public function testDeleteTeam()
+    public function test_delete_team()
     {
         Notification::fake();
 

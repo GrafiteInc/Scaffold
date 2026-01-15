@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class UserResourceTest extends TestCase
 {
-    public function testUserResource()
+    public function test_user_resource()
     {
         $request = new \Illuminate\Http\Request;
 

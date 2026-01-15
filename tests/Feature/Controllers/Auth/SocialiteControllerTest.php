@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Controllers\Auth;
 
-use Tests\GuestTestCase;
 use Laravel\Socialite\Facades\Socialite;
+use Tests\GuestTestCase;
 
 class SocialiteControllerTest extends GuestTestCase
 {
-    public function testRedirect()
+    public function test_redirect()
     {
         Socialite::fake('github');
 

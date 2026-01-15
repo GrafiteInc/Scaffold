@@ -8,14 +8,14 @@ use Tests\TestCase;
 
 class RecoveryControllerTest extends TestCase
 {
-    public function testGetRecoveryPage()
+    public function test_get_recovery_page()
     {
         $response = $this->get(route('recovery'));
 
         $response->assertOk();
     }
 
-    public function testVerifyRecovery()
+    public function test_verify_recovery()
     {
         Notification::fake();
 

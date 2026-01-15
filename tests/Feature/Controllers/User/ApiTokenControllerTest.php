@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class ApiTokenControllerTest extends TestCase
 {
-    public function testCreate()
+    public function test_create()
     {
         $response = $this->post(route('user.create-token'), [
             'name' => 'testing',
@@ -15,7 +15,7 @@ class ApiTokenControllerTest extends TestCase
         $response->assertStatus(302);
     }
 
-    public function testIndex()
+    public function test_index()
     {
         $this->post(route('user.create-token'), [
             'name' => 'testing',
@@ -26,7 +26,7 @@ class ApiTokenControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testDestroy()
+    public function test_destroy()
     {
         $this->post(route('user.create-token'), [
             'name' => 'testing',

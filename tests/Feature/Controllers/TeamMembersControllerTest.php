@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class TeamMembersControllerTest extends TestCase
 {
-    public function testShow()
+    public function test_show()
     {
         $this->withSubscription();
 
@@ -23,7 +23,7 @@ class TeamMembersControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testEditMember()
+    public function test_edit_member()
     {
         $this->withSubscription();
 
@@ -41,7 +41,7 @@ class TeamMembersControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testUpdateMember()
+    public function test_update_member()
     {
         $this->withSubscription();
 
@@ -62,7 +62,7 @@ class TeamMembersControllerTest extends TestCase
         $response->assertSessionHas('message', 'Successfully updated');
     }
 
-    public function testInviteMember()
+    public function test_invite_member()
     {
         $this->withSubscription();
 
@@ -80,7 +80,7 @@ class TeamMembersControllerTest extends TestCase
         $response->assertSessionHas('message', 'Successfully sent invite');
     }
 
-    public function testLeaveTeam()
+    public function test_leave_team()
     {
         $this->withSubscription();
 
@@ -98,7 +98,7 @@ class TeamMembersControllerTest extends TestCase
         $response->assertSessionHas('message', 'Success, your membership was removed');
     }
 
-    public function testRemoveTeamMember()
+    public function test_remove_team_member()
     {
         $this->withSubscription();
 

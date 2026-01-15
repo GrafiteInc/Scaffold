@@ -8,14 +8,14 @@ use Tests\TestCase;
 
 class SettingsControllerTest extends TestCase
 {
-    public function testSettings()
+    public function test_settings()
     {
         $response = $this->get(route('user.settings'));
 
         $response->assertOk();
     }
 
-    public function testUpdateSettings()
+    public function test_update_settings()
     {
         $response = $this->put(route('user.update'), [
             'name' => 'Burt Cooper',
@@ -27,7 +27,7 @@ class SettingsControllerTest extends TestCase
         $this->assertEquals('Burt Cooper', $this->user->fresh()->name);
     }
 
-    public function testUpdateUserAvatar()
+    public function test_update_user_avatar()
     {
         Storage::fake();
 

@@ -7,14 +7,14 @@ use Tests\GuestTestCase;
 
 class RegistrationControllerTest extends GuestTestCase
 {
-    public function testGetRegistration()
+    public function test_get_registration()
     {
         $response = $this->get(route('register'));
 
         $response->assertOk();
     }
 
-    public function testPostRegistration()
+    public function test_post_registration()
     {
         $password = Str::random(16);
 

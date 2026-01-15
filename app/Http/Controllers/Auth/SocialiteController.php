@@ -16,25 +16,25 @@ class SocialiteController extends Controller
         // $user->token
 
         // function ($provider) {
-//     $user = Socialite::driver($provider)->user();
+        //     $user = Socialite::driver($provider)->user();
 
-//     // $user->token
+        //     // $user->token
 
-//     // $githubUser = Socialite::driver('github')->user();
+        //     // $githubUser = Socialite::driver('github')->user();
 
-//     // $user = User::updateOrCreate([
-//     //     'github_id' => $githubUser->id,
-//     // ], [
-//     //     'name' => $githubUser->name,
-//     //     'email' => $githubUser->email,
-//     //     'github_token' => $githubUser->token,
-//     //     'github_refresh_token' => $githubUser->refreshToken,
-//     // ]);
+        //     // $user = User::updateOrCreate([
+        //     //     'github_id' => $githubUser->id,
+        //     // ], [
+        //     //     'name' => $githubUser->name,
+        //     //     'email' => $githubUser->email,
+        //     //     'github_token' => $githubUser->token,
+        //     //     'github_refresh_token' => $githubUser->refreshToken,
+        //     // ]);
 
-//     // Auth::login($user);
+        //     // Auth::login($user);
 
-//     // return redirect('/dashboard');
-// });
+        //     // return redirect('/dashboard');
+        // });
 
     }
 }

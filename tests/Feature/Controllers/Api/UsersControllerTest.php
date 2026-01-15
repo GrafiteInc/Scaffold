@@ -11,7 +11,7 @@ use Tests\ApiTestCase;
 
 class UsersControllerTest extends ApiTestCase
 {
-    public function testMe()
+    public function test_me()
     {
         Sanctum::actingAs($this->user);
 
@@ -22,7 +22,7 @@ class UsersControllerTest extends ApiTestCase
         $this->assertEquals($this->user->name, $content->data->name);
     }
 
-    public function testMeWithBearerToken()
+    public function test_me_with_bearer_token()
     {
         $token = $this->user->createToken('test-token')->plainTextToken;
 
@@ -35,7 +35,7 @@ class UsersControllerTest extends ApiTestCase
         $this->assertEquals($this->user->name, $content->data->name);
     }
 
-    public function testUpdate()
+    public function test_update()
     {
         Sanctum::actingAs($this->user);
 
@@ -50,7 +50,7 @@ class UsersControllerTest extends ApiTestCase
         $this->assertEquals($this->user->email, $content->data->email);
     }
 
-    public function testDestroy()
+    public function test_destroy()
     {
         Sanctum::actingAs($this->user);
         Storage::fake();

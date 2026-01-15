@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class FileUploadControllerTest extends TestCase
 {
-    public function testFileUpload()
+    public function test_file_upload()
     {
         Storage::fake();
 
@@ -28,7 +28,7 @@ class FileUploadControllerTest extends TestCase
         Storage::assertExists('public/uploads/'.$file->hashName());
     }
 
-    public function testImageUpload()
+    public function test_image_upload()
     {
         Storage::fake();
 

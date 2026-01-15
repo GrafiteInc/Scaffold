@@ -2,10 +2,10 @@
 
 namespace App\Models\Concerns;
 
+use hisorange\BrowserDetect\Parser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use hisorange\BrowserDetect\Parser;
 
 trait HasDevices
 {

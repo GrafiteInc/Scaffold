@@ -6,7 +6,7 @@ use Tests\GuestTestCase;
 
 class CookiePolicyControllerTest extends GuestTestCase
 {
-    public function testAccept()
+    public function test_accept()
     {
         $response = $this->post(route('ajax.accept-cookie-policy'));
 

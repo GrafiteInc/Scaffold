@@ -16,7 +16,7 @@ abstract class GuestTestCase extends BaseTestCase
 
     public $user;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

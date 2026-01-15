@@ -10,7 +10,7 @@ class UserTwoFactorTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testTwoFactorEmail(): void
+    public function test_two_factor_email(): void
     {
         Notification::fake();
 
@@ -33,7 +33,7 @@ class UserTwoFactorTest extends TestCase
         $this->assertNull($user->two_factor_recovery_codes);
     }
 
-    public function testAuthenticatorTwoFactor(): void
+    public function test_authenticator_two_factor(): void
     {
         Notification::fake();
 

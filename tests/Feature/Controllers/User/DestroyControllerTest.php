@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class DestroyControllerTest extends TestCase
 {
-    public function testDestroy()
+    public function test_destroy()
     {
         $response = $this->delete(route('user.destroy'));
 

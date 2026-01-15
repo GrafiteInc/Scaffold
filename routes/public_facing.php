@@ -1,14 +1,14 @@
 <?php
 
+use App\Http\Controllers\Ajax\CookiePolicyController;
 use App\Http\Controllers\Auth;
-use Grafite\Auth\Facades\GrafiteAuth;
-use Illuminate\Support\Facades\Route;
-use Spatie\Honeypot\ProtectAgainstSpam;
-use Laravel\Socialite\Facades\Socialite;
-use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Auth\RecoveryController;
 use App\Http\Controllers\Auth\SocialiteController;
-use App\Http\Controllers\Ajax\CookiePolicyController;
+use App\Http\Controllers\PagesController;
+use Grafite\Auth\Facades\GrafiteAuth;
+use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------

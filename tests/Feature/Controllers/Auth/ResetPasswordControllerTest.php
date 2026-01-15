@@ -6,7 +6,7 @@ use Tests\GuestTestCase;
 
 class ResetPasswordControllerTest extends GuestTestCase
 {
-    public function testGetResetPasswordPage()
+    public function test_get_reset_password_page()
     {
         $response = $this->get(route('password.request'));
 

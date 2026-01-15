@@ -6,7 +6,7 @@ use Tests\GuestTestCase;
 
 class ForgotPasswordControllerTest extends GuestTestCase
 {
-    public function testGetForgotPassword()
+    public function test_get_forgot_password()
     {
         $response = $this->get(route('password.request'));
 

@@ -7,14 +7,14 @@ use Tests\TestCase;
 
 class ChangePasswordControllerTest extends TestCase
 {
-    public function testSecurity()
+    public function test_security()
     {
         $response = $this->get(route('user.security'));
 
         $response->assertOk();
     }
 
-    public function testUpdatePassword()
+    public function test_update_password()
     {
         $this->user->update([
             'password' => Hash::make('^testPassword2'),
