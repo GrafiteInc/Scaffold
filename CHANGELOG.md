@@ -3,6 +3,27 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.22.0] - 2026-01-15
+
+### Chore
+- version bump
+- fix style js
+- style fixes
+- npm package updates
+- shift to Laravel 12
+- dependency updates
+
+### Fix
+- small repairs to team member form
+- breaks tests for some reason
+
+### Feature
+- added core elements of socialite
+
+### Refactor
+- moved public outside of core web routes
+- minor cleanup and fixes
+
 ## [v2.21.0] - 2025-02-19
 
 ### Fixed
