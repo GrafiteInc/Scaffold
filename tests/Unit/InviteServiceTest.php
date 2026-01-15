@@ -14,14 +14,14 @@ use Tests\TestCase;
 
 class InviteServiceTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->service = app(InviteService::class);
     }
 
-    public function testCreate()
+    public function test_create()
     {
         Notification::fake();
 
@@ -48,7 +48,7 @@ class InviteServiceTest extends TestCase
         );
     }
 
-    public function testValidateInvitation()
+    public function test_validate_invitation()
     {
         $user = User::factory()->create();
         $invite = Invite::factory()->create([

@@ -6,7 +6,7 @@ use Tests\GuestTestCase;
 
 class LoginControllerTest extends GuestTestCase
 {
-    public function testGetLoginPage()
+    public function test_get_login_page()
     {
         $response = $this->get(route('login'));
 

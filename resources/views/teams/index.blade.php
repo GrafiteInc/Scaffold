@@ -32,7 +32,7 @@
                                 @foreach($teams as $team)
                                     <tr>
                                         <td width="20%">
-                                            <a href="{!! route('teams.show', $team->uuid) !!}">{{ $team->name }}</a>
+                                            <a href="{{ route('teams.show', $team->uuid) }}">{{ $team->name }}</a>
                                         </td>
                                         <td width="30%" class="d-none d-md-block">
                                             <div class="avatar-row">
@@ -80,7 +80,7 @@
                                         <td>{{ $team->name }}</td>
                                         <td width="200px" class="text-end">
                                             <div class="btn-toolbar justify-content-end">
-                                                <a class="btn btn-outline-primary btn-sm me-2" href="{!! route('teams.show', $team->uuid) !!}"><i class="fa fa-eye"></i> View</a>
+                                                <a class="btn btn-outline-primary btn-sm me-2" href="{{ route('teams.show', $team->uuid) }}"><i class="fa fa-eye"></i> View</a>
                                                 {!! form()->confirm('Are you sure you want to leave '.$team->name.'?', 'app.confirmation')->action('post',
                                                     ['teams.leave', $team],
                                                     'Leave Team',

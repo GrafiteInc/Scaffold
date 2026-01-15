@@ -3,16 +3,15 @@
 namespace App\Providers;
 
 use App\Models\User;
-use Illuminate\Support\Str;
 use Dedoc\Scramble\Scramble;
-use Laravel\Cashier\Cashier;
-use Illuminate\Routing\Route;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
+use Laravel\Cashier\Cashier;
 
 class AppServiceProvider extends ServiceProvider
 {

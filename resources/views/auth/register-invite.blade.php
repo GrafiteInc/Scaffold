@@ -16,15 +16,15 @@
         <div class="card shadow border-0 mb-5">
             <div class="card-body">
                 <form method="POST" action="{{ route('register.invite') }}">
-                    {!! csrf_field() !!}
+                    {{ csrf_field() }}
 
                     <input name="activation_token" type="hidden" value="{{ request('activate_token') }}">
 
                     <div class="row">
                         <div class="col-md-12">
                             <label class="form-label">Email</label>
-                            <input class="form-control" disabled type="email" name="email_facade" value="{!! request('email') !!}" placeholder="Email">
-                            <input type="hidden" name="email" value="{!! request('email') !!}">
+                            <input class="form-control" disabled type="email" name="email_facade" value="{{ request('email') }}" placeholder="Email">
+                            <input type="hidden" name="email" value="{{ request('email') }}">
                         </div>
                     </div>
 

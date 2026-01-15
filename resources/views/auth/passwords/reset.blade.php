@@ -17,7 +17,7 @@
         <div class="card shadow-sm">
             <div class="card-body">
                 <form method="POST" action="{{ route('password.update') }}">
-                    {!! csrf_field() !!}
+                    {{ csrf_field() }}
                     <input type="hidden" name="token" value="{{ $token }}">
 
                     <div class="row">

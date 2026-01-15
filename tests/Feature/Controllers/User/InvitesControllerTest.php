@@ -9,14 +9,14 @@ use Tests\TestCase;
 
 class InvitesControllerTest extends TestCase
 {
-    public function testIndex()
+    public function test_index()
     {
         $response = $this->get(route('user.invites'));
 
         $response->assertOk();
     }
 
-    public function testAccept()
+    public function test_accept()
     {
         $user = User::factory()->create();
         $team = Team::factory()->create();
@@ -36,7 +36,7 @@ class InvitesControllerTest extends TestCase
         $response->assertSessionHas('message', 'Invitation accepted');
     }
 
-    public function testReject()
+    public function test_reject()
     {
         $user = User::factory()->create();
         $team = Team::factory()->create();

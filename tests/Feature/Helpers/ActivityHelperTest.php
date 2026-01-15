@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class ActivityHelperTest extends TestCase
 {
-    public function testActivityLog()
+    public function test_activity_log()
     {
         activity('testing stuff');
 

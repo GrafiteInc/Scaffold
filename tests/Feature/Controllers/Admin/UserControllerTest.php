@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class UserControllerTest extends TestCase
 {
-    public function testIndex()
+    public function test_index()
     {
         $user = User::factory()->create([
             'name' => 'Joe',
@@ -27,7 +27,7 @@ class UserControllerTest extends TestCase
         $response->assertSee('joe@grafite.ca');
     }
 
-    public function testSearch()
+    public function test_search()
     {
         $user = User::factory()->create([
             'name' => 'Joe',
@@ -49,7 +49,7 @@ class UserControllerTest extends TestCase
         $response->assertDontSee('joe@grafite.ca');
     }
 
-    public function testGetInvite()
+    public function test_get_invite()
     {
         $response = $this->get(route('admin.users.invite'));
 
@@ -59,7 +59,7 @@ class UserControllerTest extends TestCase
         $response->assertSee('Send');
     }
 
-    public function testPostInvite()
+    public function test_post_invite()
     {
         $response = $this->post(route('admin.users.invite'), [
             'email' => 'jim@grafite.ca',
@@ -75,7 +75,7 @@ class UserControllerTest extends TestCase
         $this->assertEquals(1, $count);
     }
 
-    public function testEdit()
+    public function test_edit()
     {
         $user = User::factory()->create([
             'name' => 'Joe',
@@ -94,7 +94,7 @@ class UserControllerTest extends TestCase
         $response->assertSee('Joe');
     }
 
-    public function testUpdate()
+    public function test_update()
     {
         $user = User::factory()->create([
             'name' => 'Joe',
@@ -111,7 +111,7 @@ class UserControllerTest extends TestCase
         $this->assertEquals(1, $count);
     }
 
-    public function testLoginAsUser()
+    public function test_login_as_user()
     {
         $role = Role::factory()->create([
             'name' => 'member',
@@ -131,7 +131,7 @@ class UserControllerTest extends TestCase
         $response->assertSessionHas('original_user', $this->user->id);
     }
 
-    public function testReturnToLoginFromUser()
+    public function test_return_to_login_from_user()
     {
         $role = Role::factory()->create([
             'name' => 'member',
@@ -156,7 +156,7 @@ class UserControllerTest extends TestCase
         $response->assertSessionHasNoErrors();
     }
 
-    public function testDelete()
+    public function test_delete()
     {
         $user = User::factory()->create([
             'name' => 'Joe',

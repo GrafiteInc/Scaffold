@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class NotificationHelperTest extends TestCase
 {
-    public function testAppNotify()
+    public function test_app_notify()
     {
         Notification::fake();
 
@@ -23,7 +23,7 @@ class NotificationHelperTest extends TestCase
         );
     }
 
-    public function testEmailNotifyDisabled()
+    public function test_email_notify_disabled()
     {
         Notification::fake();
 
@@ -34,7 +34,7 @@ class NotificationHelperTest extends TestCase
         Notification::assertNothingSent();
     }
 
-    public function testPusherGeneral()
+    public function test_pusher_general()
     {
         Notification::fake();
         Event::fake();
@@ -44,7 +44,7 @@ class NotificationHelperTest extends TestCase
         Event::assertDispatched(GeneralPusherEvent::class);
     }
 
-    public function testPusherUser()
+    public function test_pusher_user()
     {
         Notification::fake();
         Event::fake();

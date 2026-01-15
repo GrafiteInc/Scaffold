@@ -149,7 +149,8 @@ class UserController extends Controller
                 'country' => $request->country,
             ]);
 
-            $user->roles()->sync($request->role);
+            // Assign the user to the role, then clear the roles cache
+            $user->roles()->sync($request->role)->refreshCache();
 
             return redirect()->back()->with('message', 'Successfully created, but will need to reset password.');
         } catch (Exception $e) {

@@ -17,7 +17,7 @@
             <div class="card-body">
                 <form method="POST" action="{{ route('password.email') }}">
                     @honeypot
-                    {!! csrf_field() !!}
+                    {{ csrf_field() }}
 
                     <div class="row">
                         <div class="col-md-12">

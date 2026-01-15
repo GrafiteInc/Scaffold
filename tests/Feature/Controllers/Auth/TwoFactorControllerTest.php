@@ -7,14 +7,14 @@ use Tests\TestCase;
 
 class TwoFactorControllerTest extends TestCase
 {
-    public function testGetTwoFactorPage()
+    public function test_get_two_factor_page()
     {
         $response = $this->get(route('verification.two-factor'));
 
         $response->assertOk();
     }
 
-    public function testVerifyTwoFactorEmail()
+    public function test_verify_two_factor_email()
     {
         Notification::fake();
 

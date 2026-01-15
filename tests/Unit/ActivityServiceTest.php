@@ -8,14 +8,14 @@ use Tests\TestCase;
 
 class ActivityServiceTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->service = $this->app->make(ActivityService::class);
     }
 
-    public function testLog()
+    public function test_log()
     {
         $response = $this->service->log('this is a simple test');
 

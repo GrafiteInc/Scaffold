@@ -8,14 +8,14 @@ use Tests\TestCase;
 
 class NotificationControllerTest extends TestCase
 {
-    public function testIndex()
+    public function test_index()
     {
         $response = $this->get(route('user.notifications'));
 
         $response->assertOk();
     }
 
-    public function testMarkAsRead()
+    public function test_mark_as_read()
     {
         $notification = DatabaseNotification::factory()->create([
             'notifiable_id' => $this->user->id,
@@ -28,7 +28,7 @@ class NotificationControllerTest extends TestCase
         $this->assertTrue(! is_null($notification->fresh()->read_at));
     }
 
-    public function testDelete()
+    public function test_delete()
     {
         $notification = DatabaseNotification::factory()->create([
             'notifiable_id' => $this->user->id,
@@ -41,7 +41,7 @@ class NotificationControllerTest extends TestCase
         $this->assertEquals(0, DatabaseNotification::where('notifiable_id', $this->user->id)->count());
     }
 
-    public function testDeleteAll()
+    public function test_delete_all()
     {
         $notification = DatabaseNotification::factory(4)->create([
             'notifiable_id' => $this->user->id,

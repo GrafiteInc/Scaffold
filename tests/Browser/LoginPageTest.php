@@ -2,12 +2,12 @@
 
 namespace Tests\Browser;
 
-use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
 
 class LoginPageTest extends DuskTestCase
 {
-    public function testLoginProcess()
+    public function test_login_process()
     {
         $this->browse(function ($browser) {
             $browser->waitForReload(function (Browser $browser) {
@@ -15,7 +15,7 @@ class LoginPageTest extends DuskTestCase
                     ->type('email', $this->user->email)
                     ->type('password', 'secret')
                     ->press('Login');
-                })
+            })
                 ->assertPathIs('/dashboard')
                 ->assertAuthenticated();
         });

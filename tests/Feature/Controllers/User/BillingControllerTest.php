@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class BillingControllerTest extends TestCase
 {
-    public function testBillingSubscribe()
+    public function test_billing_subscribe()
     {
         $this->markTestSkipped('Requires Stripe keys');
 
@@ -16,7 +16,7 @@ class BillingControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testBillingGetDetails()
+    public function test_billing_get_details()
     {
         $this->markTestSkipped('Requires Stripe keys');
 

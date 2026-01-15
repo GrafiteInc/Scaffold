@@ -26,8 +26,9 @@
         "pusher-js": "^8.3",
         "resolve-url-loader": "^5.0.0",
         "sass": "1.32.0",
+        "sass-embedded": "^1.97.2",
         "sass-loader": "^8.0",
-        "vite": "^5.3.5",
+        "vite": "^6.0.4",
         "vue": "^3.3.4",
         "vue-loader": "^16.8.3"
     }
