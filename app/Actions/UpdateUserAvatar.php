@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UpdateUserAvatar
 {
-    public static function handle($request)
+    public static function handle($request): string|false|null
     {
         if (! is_null($request->avatar)) {
             if (($request->file('avatar')->getSize() / 1024) > 10000) {

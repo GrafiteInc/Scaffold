@@ -4,6 +4,7 @@ namespace App\View\Charts;
 
 use App\Models\Activity;
 use Grafite\Charts\Builder\Chart;
+use Illuminate\Support\Collection;
 
 class ActivityThirtyDays extends Chart
 {
@@ -22,7 +23,7 @@ class ActivityThirtyDays extends Chart
      *
      * @return void
      */
-    public function collectData()
+    public function collectData(): Collection
     {
         $activities = Activity::where('created_at', '<', now())
             ->where('created_at', '>', now()->subDays(30))

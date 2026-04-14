@@ -3,6 +3,7 @@
 namespace App\View\Charts;
 
 use Grafite\Charts\Builder\WordCloud;
+use Illuminate\Support\Collection;
 
 class WordyChart extends WordCloud
 {
@@ -19,7 +20,7 @@ class WordyChart extends WordCloud
      *
      * @return void
      */
-    public function collectData()
+    public function collectData(): Collection
     {
         return collect([
             'hello' => 99,

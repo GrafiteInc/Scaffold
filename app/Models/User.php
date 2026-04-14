@@ -49,7 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'name',
@@ -75,7 +75,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * The attributes excluded from the model's JSON form.
      *
-     * @var array
+     * @var array<string>
      */
     protected $hidden = [
         'password',
@@ -90,7 +90,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
@@ -101,7 +101,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Appends.
      *
-     * @var array
+     * @var array<string>
      */
     public $appends = [
         'avatar_url',

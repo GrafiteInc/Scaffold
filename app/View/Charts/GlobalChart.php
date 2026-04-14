@@ -20,7 +20,7 @@ class GlobalChart extends GeoChart
      *
      * @return void
      */
-    public function collectData()
+    public function collectData(): array
     {
         $data = json_encode(Http::get('https://unpkg.com/world-atlas/countries-50m.json')->json());
 

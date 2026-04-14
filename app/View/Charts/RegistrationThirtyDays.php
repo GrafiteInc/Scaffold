@@ -4,6 +4,7 @@ namespace App\View\Charts;
 
 use App\Models\User;
 use Grafite\Charts\Builder\Chart;
+use Illuminate\Support\Collection;
 
 class RegistrationThirtyDays extends Chart
 {
@@ -13,7 +14,7 @@ class RegistrationThirtyDays extends Chart
 
     public $tooltipAlwaysOn = true;
 
-    public function collectData()
+    public function collectData(): Collection
     {
         $registrations = User::where('created_at', '<', now())
             ->where('created_at', '>', now()->subDays(30))
