@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 trait HasPermissions
@@ -11,7 +12,7 @@ trait HasPermissions
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getPermissionsAttribute()
+    public function getPermissionsAttribute(): Collection
     {
         $userPermissions = collect();
 
