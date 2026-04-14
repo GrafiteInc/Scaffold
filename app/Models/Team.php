@@ -69,9 +69,9 @@ class Team extends Model
     /**
      * Get the route to the team, pending on the member type
      *
-     * @return void
+     * @return string
      */
-    public function route()
+    public function route(): string
     {
         if (Gate::allows('team-admin', $this)) {
             return route('teams.members', $this->id);

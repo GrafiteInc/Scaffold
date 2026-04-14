@@ -57,7 +57,5 @@ class UserSettings extends Component
             ->setErrorBag($this->getErrorBag())
             ->edit($this->user)
             ->renderForLivewire();
-
-        return view('livewire.user-settings')->withForm($form);
     }
 }

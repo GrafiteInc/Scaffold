@@ -21,7 +21,7 @@ class UsChart extends GeoChart
     /**
      * Initializes the chart.
      *
-     * @return void
+     * @return array
      */
     public function collectData(): array
     {

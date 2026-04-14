@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class NotificationBadge extends Component
 {
-    public $count;
+    public $count = 0;
 
     public function getListeners()
     {
@@ -22,8 +22,6 @@ class NotificationBadge extends Component
 
     public function render()
     {
-        $this->count = 0;
-
         $this->countNotifications();
 
         if ($this->count > 0) {
@@ -33,7 +31,7 @@ class NotificationBadge extends Component
         return '<span></span>';
     }
 
-    public function countNotifications()
+    public function countNotifications(): void
     {
         $this->count = auth()->user()->unreadNotifications->count();
     }

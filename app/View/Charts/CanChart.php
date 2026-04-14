@@ -3,6 +3,7 @@
 namespace App\View\Charts;
 
 use Grafite\Charts\Builder\GeoChart;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
 class CanChart extends GeoChart
@@ -39,18 +40,16 @@ class CanChart extends GeoChart
     /**
      * Initializes the chart.
      *
-     * @return void
+     * @return array
      */
-    public function collectData()
+    public function collectData(): array
     {
         $data = Http::get('https://gist.githubusercontent.com/Brideau/2391df60938462571ca9/raw/f5a1f3b47ff671eaf2fb7e7b798bacfc6962606a/canadaprov.json')->json();
 
         return $data['features'];
-
-        return $this->parseGeoData($data);
     }
 
-    public function labels()
+    public function labels(): Collection
     {
         return collect($this->data)->map(function ($country) {
             return $country['properties']['name'];

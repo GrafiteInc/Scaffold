@@ -4,6 +4,7 @@ namespace App\Models\Concerns;
 
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Cache;
 
 trait HasRoles
@@ -18,7 +19,7 @@ trait HasRoles
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles()
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class);
     }
@@ -29,7 +30,7 @@ trait HasRoles
      * @param  string  $role
      * @return bool
      */
-    public function hasRole($role)
+    public function hasRole($role): bool
     {
         $id = "has_role_{$role}";
 
@@ -39,13 +40,13 @@ trait HasRoles
     }
 
     /**
-     * Scope users by thier given roles
+     * Scope users by their given roles
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  string  $roleName
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeByRole($query, $roleName)
+    public function scopeByRole(Builder $query, string $roleName): Builder
     {
         $role = Role::where('name', $roleName)->first();
 

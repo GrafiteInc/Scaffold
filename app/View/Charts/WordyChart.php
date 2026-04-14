@@ -18,7 +18,7 @@ class WordyChart extends WordCloud
     /**
      * Initializes the chart.
      *
-     * @return void
+     * @return Collection
      */
     public function collectData(): Collection
     {
@@ -30,12 +30,12 @@ class WordyChart extends WordCloud
         ]);
     }
 
-    public function labels()
+    public function labels(): Collection
     {
         return $this->data->keys();
     }
 
-    public function datasets()
+    public function datasets(): array
     {
         $dataset = $this->makeDataset('Words', $this->data->values())
             ->options([

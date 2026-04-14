@@ -1,0 +1,103 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Cannot call method refreshCache\(\) on array\<string, array\>\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Admin/UserController.php
+
+		-
+			message: '#^Call to an undefined method PragmaRX\\Google2FALaravel\\Google2FA\:\:isAuthenticated\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Auth/TwoFactorController.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$membership\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/TeamMembersController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:onTrial\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: app/Http/Controllers/TeamMembersController.php
+
+		-
+			message: '#^Variable \$route might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: app/Http/Controllers/TeamMembersController.php
+
+		-
+			message: '#^Call to an undefined method PragmaRX\\Google2FALaravel\\Google2FA\:\:isAuthenticated\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/User/TwoFactorSettingsController.php
+
+		-
+			message: '#^Call to an undefined method PragmaRX\\Google2FALaravel\\Google2FA\:\:isAuthenticated\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Middleware/TwoFactor.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\Invite\:\:\$user\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/Invite.php
+
+		-
+			message: '#^Call to function property_exists\(\) with \$this\(App\\Models\\Team\) and ''relationship'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Models/Team.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model&object\{pivot\: Illuminate\\Database\\Eloquent\\Relations\\Pivot\}\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$permissions\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Method App\\Models\\User\:\:teamsUserCanAccess\(\) with return type void returns Illuminate\\Database\\Eloquent\\Collection\<int, Illuminate\\Database\\Eloquent\\Model\> but should not return anything\.$#'
+			identifier: return.void
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Relations\\Pivot\:\:\$team_role\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/TeamService.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:memberships\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Services/TeamService.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:notify\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: app/Services/TeamService.php
+
+		-
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 1
+			path: app/Services/TeamService.php
+
+		-
+			message: '#^Call to an undefined method Grafite\\Forms\\Forms\\HtmlForm\:\:edit\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/View/Components/Forms/Role.php

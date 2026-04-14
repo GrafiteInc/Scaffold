@@ -65,8 +65,6 @@ class RoleForm extends ModelForm
         }
 
         return $options;
-
-        return collect($options)->chunk(2)->toArray();
     }
 
     public function permissionOptions()

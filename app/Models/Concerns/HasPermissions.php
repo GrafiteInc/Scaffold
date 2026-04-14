@@ -39,7 +39,7 @@ trait HasPermissions
     /**
      * Check if user has permission
      *
-     * @param  string  $requestedPermission
+     * @param  string|array  $requestedPermissions
      * @return bool
      */
     public function hasPermission($requestedPermissions)
