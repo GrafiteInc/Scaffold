@@ -4,6 +4,9 @@ namespace App\Exceptions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -12,7 +15,7 @@ class Handler extends ExceptionHandler
     /**
      * A list of the exception types that are not reported.
      *
-     * @var array<int, class-string<\Throwable>>
+     * @var array<int, class-string<Throwable>>
      */
     protected $dontReport = [];
 
@@ -40,8 +43,8 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Http\Response
+     * @param  Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response|Response
      */
     public function render($request, Throwable $exception)
     {
@@ -55,9 +58,9 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response for JSON requests.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Illuminate\Http\JsonResponse
+     * @param  Request  $request
+     * @param  Throwable  $exception
+     * @return JsonResponse
      */
     public function handleJsonResponse($request, $exception)
     {
@@ -73,9 +76,9 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response for standard web requests.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Throwable  $exception
+     * @return \Symfony\Component\HttpFoundation\Response|Response
      */
     public function handleHtmlErrors($request, $exception)
     {

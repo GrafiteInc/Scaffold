@@ -5,15 +5,17 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Invite;
 use App\Notifications\StandardEmail;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\View\View;
 
 class InvitesController extends Controller
 {
     /**
      * Display a listing of invites.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function index(Request $request)
     {
@@ -25,7 +27,7 @@ class InvitesController extends Controller
     /**
      * Accept an invite.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function accept(Request $request, Invite $invite)
     {
@@ -45,7 +47,7 @@ class InvitesController extends Controller
     /**
      * Reject an invite.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function reject(Invite $invite)
     {

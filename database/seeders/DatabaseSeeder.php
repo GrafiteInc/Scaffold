@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\JobsTableSeeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 

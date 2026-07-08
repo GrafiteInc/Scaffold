@@ -16,8 +16,6 @@ trait HasRoles
 
     /**
      * User Roles.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles(): BelongsToMany
     {
@@ -28,7 +26,6 @@ trait HasRoles
      * Check if the user has a Role.
      *
      * @param  string  $role
-     * @return bool
      */
     public function hasRole($role): bool
     {
@@ -41,10 +38,6 @@ trait HasRoles
 
     /**
      * Scope users by their given roles
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string  $roleName
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeByRole(Builder $query, string $roleName): Builder
     {

@@ -13,7 +13,7 @@ trait Invitable
      *
      * @param  string  $email
      * @param  string  $message
-     * @return \App\Models\Invite
+     * @return Invite
      */
     public function invite($email, $message)
     {

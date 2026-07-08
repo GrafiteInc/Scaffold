@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Invite;
 use App\Notifications\StandardEmail;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Notification;
 
 class RevokeInviteController extends Controller
@@ -12,7 +13,7 @@ class RevokeInviteController extends Controller
     /**
      * Delete the invitation.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function __invoke(Invite $invite)
     {

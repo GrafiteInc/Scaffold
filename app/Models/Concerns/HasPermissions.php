@@ -9,8 +9,6 @@ trait HasPermissions
 {
     /**
      * User Permissions.
-     *
-     * @return \Illuminate\Support\Collection
      */
     public function getPermissionsAttribute(): Collection
     {

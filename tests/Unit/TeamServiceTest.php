@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Notifications\InAppNotification;
 use App\Notifications\UserInviteEmail;
 use App\Services\TeamService;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
@@ -35,7 +36,7 @@ class TeamServiceTest extends TestCase
             'name' => 'Avengers',
         ]);
 
-        $request = new \Illuminate\Http\Request([
+        $request = new Request([
             'name' => 'Justice League',
         ]);
 

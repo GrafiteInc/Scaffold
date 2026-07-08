@@ -20,8 +20,6 @@ class ActivityThirtyDays extends Chart
 
     /**
      * Initializes the chart.
-     *
-     * @return Collection
      */
     public function collectData(): Collection
     {

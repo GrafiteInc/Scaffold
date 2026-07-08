@@ -9,12 +9,14 @@ use App\Models\User;
 use App\Notifications\UserInviteEmail;
 use App\View\Forms\AdminUserForm;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Throwable;
 
 class UserController extends Controller
@@ -22,7 +24,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function index()
     {
@@ -39,7 +41,7 @@ class UserController extends Controller
     /**
      * Search for a matching User.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function search(Request $request)
     {
@@ -58,7 +60,7 @@ class UserController extends Controller
     /**
      * Show the form for inviting a User.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function getInvite()
     {
@@ -68,7 +70,7 @@ class UserController extends Controller
     /**
      * Show the form for inviting a customer.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function postInvite(Request $request)
     {
@@ -101,7 +103,7 @@ class UserController extends Controller
     /**
      * Switch to a different User.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function switchToUser(Request $request, User $user)
     {
@@ -115,7 +117,7 @@ class UserController extends Controller
     /**
      * Switch back to your original user.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function switchBack(Request $request)
     {
@@ -136,7 +138,7 @@ class UserController extends Controller
      * Create a user
      *
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -163,7 +165,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the User.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function edit(User $user)
     {
@@ -177,7 +179,7 @@ class UserController extends Controller
     /**
      * Update the User in storage.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(AdminUserUpdateRequest $request, User $user)
     {
@@ -200,7 +202,7 @@ class UserController extends Controller
     /**
      * Remove the User from storage.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function destroy(User $user)
     {

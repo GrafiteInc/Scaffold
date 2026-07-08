@@ -6,16 +6,18 @@ use App\Actions\UpdateUserAvatar;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserUpdateRequest;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class SettingsController extends Controller
 {
     /**
      * View current user's settings.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function index(Request $request)
     {
@@ -27,7 +29,7 @@ class SettingsController extends Controller
     /**
      * Update the user.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(UserUpdateRequest $request)
     {
@@ -52,7 +54,7 @@ class SettingsController extends Controller
     /**
      * Delete a user's avatar.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function destroyAvatar(Request $request)
     {

@@ -17,7 +17,7 @@ class InviteService
      * @param  mixed  $model
      * @param  string  $email
      * @param  string  $message
-     * @return \App\Models\Invite
+     * @return Invite
      */
     public function create($model, $email, $message)
     {

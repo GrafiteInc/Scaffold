@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class NotificationsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function index(Request $request)
     {
@@ -23,7 +25,7 @@ class NotificationsController extends Controller
      * Display the specified resource.
      *
      * @param  string  $notification
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function read(Request $request, $notification)
     {
@@ -36,7 +38,7 @@ class NotificationsController extends Controller
      * Delete a notfication.
      *
      * @param  string  $notification
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function delete(Request $request, $notification)
     {
@@ -48,7 +50,7 @@ class NotificationsController extends Controller
     /**
      * Delete all notfications for a user.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function deleteAll(Request $request)
     {

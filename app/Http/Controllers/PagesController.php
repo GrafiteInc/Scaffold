@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+
 class PagesController extends Controller
 {
     /**
      * Homepage.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function home()
     {
@@ -17,7 +19,7 @@ class PagesController extends Controller
     /**
      * Privacy Policy page.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function privacyPolicy()
     {
@@ -27,7 +29,7 @@ class PagesController extends Controller
     /**
      * Terms of Service page.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function termsOfService()
     {
@@ -37,7 +39,7 @@ class PagesController extends Controller
     /**
      * Support page.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function getSupport()
     {

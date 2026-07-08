@@ -39,8 +39,6 @@ class CanChart extends GeoChart
 
     /**
      * Initializes the chart.
-     *
-     * @return array
      */
     public function collectData(): array
     {

@@ -17,8 +17,6 @@ class WordyChart extends WordCloud
 
     /**
      * Initializes the chart.
-     *
-     * @return Collection
      */
     public function collectData(): Collection
     {
