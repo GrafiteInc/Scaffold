@@ -110,20 +110,20 @@ class QueueController extends Controller
     /**
      * Retry a failed job.
      */
-    public function retry(int $failedJob): RedirectResponse
+    public function retry(string $failedJobUuid): RedirectResponse
     {
         if (! DB::connection()->getSchemaBuilder()->hasTable('failed_jobs')) {
             return redirect()->back()->withErrors('Failed jobs table is not available.');
         }
 
-        $exists = DB::table('failed_jobs')->where('id', $failedJob)->exists();
+        $exists = DB::table('failed_jobs')->where('uuid', $failedJobUuid)->exists();
 
         if (! $exists) {
             return redirect()->back()->withErrors('Failed job was not found.');
         }
 
         Artisan::call('queue:retry', [
-            'id' => [(string) $failedJob],
+            'id' => [$failedJobUuid],
         ]);
 
         return redirect()->back()->with('message', 'Failed job retry queued.');

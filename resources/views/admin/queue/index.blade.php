@@ -39,7 +39,7 @@
                         </div>
 
                     <div class="card shadow-sm mb-3">
-                        <div class="card-header">Next 10 Queued Jobs</div>
+                        <div class="card-header">Next Queued Jobs</div>
                         <div class="card-body">
                             @if ($queuedJobs->isEmpty())
                                 <p class="mb-0">No queued jobs.</p>
@@ -140,7 +140,7 @@
                                                     <td class="text-end">
                                                         <div class="d-inline-flex gap-2">
                                                             {!! form()->action('post',
-                                                                ['admin.queue.retry', $job->id],
+                                                                ['admin.queue.retry', $job->uuid],
                                                                 'Retry',
                                                                 ['class' => 'btn btn-sm btn-outline-primary']
                                                             ) !!}

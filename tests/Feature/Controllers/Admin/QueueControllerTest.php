@@ -52,7 +52,7 @@ class QueueControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertSee('Queued Jobs: 2');
-        $response->assertSee('Failed Jobs (1)');
+        $response->assertSee('Failed Jobs: 1');
         $response->assertSee('Index failure');
     }
 
@@ -99,6 +99,26 @@ class QueueControllerTest extends TestCase
             ->once()
             ->with('queue:retry', [
                 'id' => $failedJobIds,
+            ]);
+    }
+
+    public function test_retry_retries_single_failed_job_by_uuid()
+    {
+        $failedJob = FailedJob::factory()->create([
+            'uuid' => 'f3a4526e-98fa-4fb4-8d8b-2d90c3cd12e7',
+        ]);
+
+        Artisan::spy();
+
+        $response = $this->post(route('admin.queue.retry', [$failedJob->uuid]));
+
+        $response->assertRedirect();
+        $response->assertSessionHas('message', 'Failed job retry queued.');
+
+        Artisan::shouldHaveReceived('call')
+            ->once()
+            ->with('queue:retry', [
+                'id' => [$failedJob->uuid],
             ]);
     }
 

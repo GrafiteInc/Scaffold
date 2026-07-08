@@ -156,7 +156,7 @@ Route::middleware('auth')->group(function () {
                 Route::delete('queued/{queuedJob}/destroy', [QueueController::class, 'destroyQueued'])->name('queued.destroy');
                 Route::post('retry-all', [QueueController::class, 'retryAll'])->name('retry-all');
                 Route::delete('destroy-all', [QueueController::class, 'destroyAll'])->name('destroy-all');
-                Route::post('{failedJob}/retry', [QueueController::class, 'retry'])->name('retry');
+                Route::post('{failedJobUuid}/retry', [QueueController::class, 'retry'])->name('retry');
                 Route::delete('{failedJob}/destroy', [QueueController::class, 'destroy'])->name('destroy');
             });
 
