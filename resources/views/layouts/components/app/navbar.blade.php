@@ -37,6 +37,7 @@
                     <a class="dropdown-item" href="{{ route('admin.users.index') }}">Users</a>
                     <a class="dropdown-item" href="{{ route('admin.roles.index') }}">Roles</a>
                     <a class="dropdown-item" href="{{ route('admin.announcements.create') }}">Annoucements</a>
+                    <a class="dropdown-item" href="{{ route('admin.queue.index') }}">Queue</a>
                 @endif
 
                 <div class="dropdown-divider"></div>
