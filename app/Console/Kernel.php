@@ -19,12 +19,22 @@ class Kernel extends ConsoleKernel
             ->runInBackground()
             ->appendOutputTo(storage_path('logs/scheduler.log'));
 
-        $schedule->command('db:table-empty', ['failed_jobs', '30'])->dailyAt('2:45')
+        $schedule->command('mission-control:stats')->dailyAt('9:00')
             ->runInBackground()
-            ->after(function () {
-                mission_control_notify('Emptied the Failed Jobs table', 'maintenance');
-            })
-            ->onOneServer();
+            ->appendOutputTo(storage_path('logs/scheduler.log'));
+
+        // Enable if you have queue workers
+        // $schedule->command('mission-control:queue')->everyFifteenMinutes()
+        //     ->runInBackground()
+        //     ->appendOutputTo(storage_path('logs/scheduler.log'));
+
+        // Enable if jobs are discardable
+        // $schedule->command('db:table-empty', ['failed_jobs', '30'])->dailyAt('2:45')
+        //     ->runInBackground()
+        //     ->after(function () {
+        //         mission_control_notify('Emptied the Failed Jobs table', 'maintenance');
+        //     })
+        //     ->onOneServer();
 
         $schedule->command('maintenance:gzip-purge')->monthlyOn(4, '4:45')
             ->runInBackground()
