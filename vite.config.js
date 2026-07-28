@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import vue from "@vitejs/plugin-vue";
 import purgecss from "@fullhuman/postcss-purgecss";
+import viteCompression from 'vite-plugin-compression';
 
 export default defineConfig(({ command }) => ({
     plugins: [
@@ -16,6 +17,12 @@ export default defineConfig(({ command }) => ({
                     includeAbsolute: false,
                 },
             },
+        }),
+        viteCompression({
+            algorithm: 'gzip',
+            ext: '.gz',
+            threshold: 1024, // Compresses files larger than 1KB
+            deleteOriginFile: false // Keeps uncompressed versions for compatibility
         }),
     ],
     resolve: {
