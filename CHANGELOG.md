@@ -3,6 +3,28 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v2.23.0] - 2026-07-28
+
+### Refactor
+- remove anything more than last 5 devices
+
+### Feature
+- vite compression
+- disposable email blocker
+- purgecss added
+- simple queue managment
+- enhancements of static code
+
+### Fix
+- improved setup for next prod app
+- code styles
+- uuid rather than id
+
+### Chore
+- code improvements
+- docblock updates
+- update build spec
+
 ## [v2.22.0] - 2026-01-15
 
 ### Chore
