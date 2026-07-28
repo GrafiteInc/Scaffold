@@ -9,6 +9,7 @@
         "fix-style": "node_modules/.bin/eslint --ext .js,.vue -c .eslintrc.cjs resources/js --fix"
     },
     "devDependencies": {
+        "@fullhuman/postcss-purgecss": "^8.0.0",
         "@grafite/bootstrap-magic-extras": "^0.3.1",
         "@grafite/helpers": "1.0.0",
         "@popperjs/core": "^2.10.2",
@@ -26,7 +27,7 @@
         "puppeteer": "^25.02.0",
         "pusher-js": "^8.3",
         "resolve-url-loader": "^5.0.0",
-        "sass": "1.32.0",
+        "sass": "^1.101.3",
         "sass-loader": "^8.0",
         "vite": "^6.3.5",
         "vue": "^3.3.4",
