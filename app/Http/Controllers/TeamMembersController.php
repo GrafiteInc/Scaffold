@@ -6,8 +6,10 @@ use App\Models\Team;
 use App\Models\User;
 use App\Services\TeamService;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\View\View;
 
 class TeamMembersController extends Controller
 {
@@ -22,7 +24,7 @@ class TeamMembersController extends Controller
      * Display the specified team.
      *
      * @param  string  $uuid
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function show($uuid)
     {
@@ -38,7 +40,7 @@ class TeamMembersController extends Controller
     /**
      * Edit a team member.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return RedirectResponse|View
      */
     public function editMember(Team $team, User $member)
     {
@@ -57,7 +59,7 @@ class TeamMembersController extends Controller
     /**
      * Update a members information.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function updateMember(Request $request, Team $team, User $member)
     {
@@ -81,7 +83,7 @@ class TeamMembersController extends Controller
     /**
      * Invite a member.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function inviteMember(Request $request, Team $team)
     {
@@ -101,7 +103,7 @@ class TeamMembersController extends Controller
     /**
      * Leave the team.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function leave(Team $team)
     {
@@ -119,7 +121,7 @@ class TeamMembersController extends Controller
     /**
      * Remove a team member.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function removeMember(Team $team, User $member)
     {

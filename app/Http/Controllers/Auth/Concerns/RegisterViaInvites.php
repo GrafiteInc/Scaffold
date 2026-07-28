@@ -3,17 +3,19 @@
 namespace App\Http\Controllers\Auth\Concerns;
 
 use App\Services\InviteService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\View\View;
 
 trait RegisterViaInvites
 {
     /**
      * Show the invite registration form.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function showRegistrationInviteForm(Request $request)
     {
@@ -23,7 +25,7 @@ trait RegisterViaInvites
     /**
      * Register a user via an invite.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function registerViaInvite(Request $request)
     {

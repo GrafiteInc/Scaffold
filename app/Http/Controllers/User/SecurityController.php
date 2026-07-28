@@ -5,8 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserPasswordUpdateRequest;
 use Grafite\Auth\Foundation\ResetsPasswords;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 
 class SecurityController extends Controller
 {
@@ -17,7 +19,7 @@ class SecurityController extends Controller
     /**
      * User wants to change their password.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function index(Request $request)
     {
@@ -29,7 +31,7 @@ class SecurityController extends Controller
     /**
      * Change the user's password and return.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(UserPasswordUpdateRequest $request)
     {

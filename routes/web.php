@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\QueueController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Ajax\FileUploadController;
@@ -148,6 +149,16 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('admin')->middleware(['roles:admin', 'password.confirm'])->group(function () {
             Route::get('dashboard', AdminDashboardController::class)->name('admin.dashboard');
+
+            Route::prefix('queue')->name('admin.queue.')->group(function () {
+                Route::get('/', [QueueController::class, 'index'])->name('index');
+                Route::delete('queued/destroy-all', [QueueController::class, 'destroyAllQueued'])->name('queued.destroy-all');
+                Route::delete('queued/{queuedJob}/destroy', [QueueController::class, 'destroyQueued'])->name('queued.destroy');
+                Route::post('retry-all', [QueueController::class, 'retryAll'])->name('retry-all');
+                Route::delete('destroy-all', [QueueController::class, 'destroyAll'])->name('destroy-all');
+                Route::post('{failedJobUuid}/retry', [QueueController::class, 'retry'])->name('retry');
+                Route::delete('{failedJob}/destroy', [QueueController::class, 'destroy'])->name('destroy');
+            });
 
             /*
             |--------------------------------------------------------------------------

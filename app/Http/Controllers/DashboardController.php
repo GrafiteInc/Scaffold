@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
     /**
      * Display the Dashboard.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function get()
     {

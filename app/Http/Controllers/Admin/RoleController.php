@@ -6,14 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleCreateRequest;
 use App\Models\Role;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class RoleController extends Controller
 {
     /**
      * Display a listing of the roles.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function index()
     {
@@ -25,7 +27,7 @@ class RoleController extends Controller
     /**
      * Show the form for inviting a customer.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function create()
     {
@@ -35,7 +37,7 @@ class RoleController extends Controller
     /**
      * Show the form for creating a Role.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(RoleCreateRequest $request)
     {
@@ -51,7 +53,7 @@ class RoleController extends Controller
     /**
      * Show the form for editing the Role.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function edit(Role $role)
     {
@@ -61,7 +63,7 @@ class RoleController extends Controller
     /**
      * Update the Role in storage.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(Request $request, Role $role)
     {
@@ -83,7 +85,7 @@ class RoleController extends Controller
      * Force the logout of users who
      * had that role.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function destroy(Role $role)
     {

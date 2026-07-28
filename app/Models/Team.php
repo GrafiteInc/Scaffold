@@ -9,6 +9,8 @@ use App\View\Forms\TeamForm;
 use Grafite\Forms\Traits\HasForm;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Gate;
 
 class Team extends Model
@@ -47,7 +49,7 @@ class Team extends Model
     /**
      * Team members.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function user()
     {
@@ -57,7 +59,7 @@ class Team extends Model
     /**
      * Team members.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function members()
     {
@@ -68,10 +70,8 @@ class Team extends Model
 
     /**
      * Get the route to the team, pending on the member type
-     *
-     * @return void
      */
-    public function route()
+    public function route(): string
     {
         if (Gate::allows('team-admin', $this)) {
             return route('teams.members', $this->id);

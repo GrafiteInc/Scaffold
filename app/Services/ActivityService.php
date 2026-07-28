@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use Illuminate\Support\Collection;
 
 class ActivityService
 {
@@ -17,7 +18,7 @@ class ActivityService
      * Create an activity record.
      *
      * @param  string  $description
-     * @return \App\Models\Activity
+     * @return Activity
      */
     public function log($description = '')
     {
@@ -41,7 +42,7 @@ class ActivityService
      * We sort any objects as they can
      * invalidate the storage.
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function inputs()
     {

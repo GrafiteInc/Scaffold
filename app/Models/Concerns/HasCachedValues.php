@@ -16,6 +16,10 @@ trait HasCachedValues
 
     public function clearCachedValues()
     {
+        if (! property_exists($this, 'caches')) {
+            return;
+        }
+
         collect($this->caches)->each(function ($cache) {
             Cache::forget($this->cacheIdentifier($cache));
         });

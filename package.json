@@ -9,7 +9,8 @@
         "fix-style": "node_modules/.bin/eslint --ext .js,.vue -c .eslintrc.cjs resources/js --fix"
     },
     "devDependencies": {
-        "@grafite/bootstrap-magic-extras": "^0.3.0",
+        "@fullhuman/postcss-purgecss": "^8.0.0",
+        "@grafite/bootstrap-magic-extras": "^0.3.1",
         "@grafite/helpers": "1.0.0",
         "@popperjs/core": "^2.10.2",
         "@vitejs/plugin-vue": "^5.1.2",
@@ -18,17 +19,18 @@
         "clipboard": "^2.0.8",
         "collect.js": "^4.28.6",
         "css-loader": "^6.5.1",
-        "eslint": "^7.23.0",
-        "eslint-plugin-vue": "^7.8.0",
+        "eslint": "^10.5.0",
+        "eslint-plugin-vue": "^10.9.0",
         "laravel-echo": "^1.10.0",
         "laravel-vite-plugin": "^1.0.5",
         "pulltorefreshjs": "^0.1.22",
+        "puppeteer": "^25.02.0",
         "pusher-js": "^8.3",
         "resolve-url-loader": "^5.0.0",
-        "sass": "1.32.0",
-        "sass-embedded": "^1.97.2",
+        "sass": "^1.101.3",
         "sass-loader": "^8.0",
-        "vite": "^6.0.4",
+        "vite": "^6.3.5",
+        "vite-plugin-compression": "^0.5.1",
         "vue": "^3.3.4",
         "vue-loader": "^16.8.3"
     }

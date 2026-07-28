@@ -7,9 +7,11 @@ use App\Http\Requests\TeamUpdateRequest;
 use App\Models\Team;
 use App\Services\TeamService;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class TeamsController extends Controller
 {
@@ -23,7 +25,7 @@ class TeamsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function index(Request $request)
     {
@@ -36,7 +38,7 @@ class TeamsController extends Controller
     /**
      * Show the form for creating a new team.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function create()
     {
@@ -52,7 +54,7 @@ class TeamsController extends Controller
     /**
      * Store a newly created team in storage.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(TeamCreateRequest $request)
     {
@@ -79,7 +81,7 @@ class TeamsController extends Controller
     /**
      * Show the form for editing the specified team.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function edit(Team $team)
     {
@@ -95,7 +97,7 @@ class TeamsController extends Controller
     /**
      * Show the form for handling members the specified team.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function members(Team $team)
     {
@@ -111,7 +113,7 @@ class TeamsController extends Controller
     /**
      * Update the specified team in storage.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(TeamUpdateRequest $request, Team $team)
     {
@@ -135,7 +137,7 @@ class TeamsController extends Controller
     /**
      * Remove the specified team from storage.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function destroy(Team $team)
     {
@@ -161,7 +163,7 @@ class TeamsController extends Controller
     /**
      * Remove the specified team avatar from storage.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function destroyAvatar(Request $request)
     {

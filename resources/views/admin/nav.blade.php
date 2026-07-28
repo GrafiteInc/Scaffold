@@ -11,4 +11,7 @@
     <li class="nav-item">
         <a class="{{ route_link_class(['admin.announcements.*']) }}" href="{{ route('admin.announcements.create') }}">Announcements</a>
     </li>
+    <li class="nav-item">
+        <a class="{{ route_link_class(['admin.queue.*']) }}" href="{{ route('admin.queue.index') }}">Queue</a>
+    </li>
 </ul>

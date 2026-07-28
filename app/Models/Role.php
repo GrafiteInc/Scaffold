@@ -6,6 +6,7 @@ use App\View\Forms\RoleForm;
 use Grafite\Forms\Traits\HasForm;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Role extends Model
 {
@@ -16,31 +17,16 @@ class Role extends Model
 
     public $timestamps = false;
 
-    /**
-     * Fillable fields.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
         'label',
         'permissions',
     ];
 
-    /**
-     * Field casts.
-     *
-     * @var array
-     */
     protected $casts = [
         'permissions' => 'json',
     ];
 
-    /**
-     * Rules.
-     *
-     * @var array
-     */
     public static $rules = [
         'name' => 'required|unique:roles',
         'label' => 'required',
@@ -48,10 +34,8 @@ class Role extends Model
 
     /**
      * A Role's users.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function users()
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }
@@ -60,9 +44,8 @@ class Role extends Model
      * Get the permissions - and overide all in the case of `admin`.
      *
      * @param  mixed  $value
-     * @return array
      */
-    public function getPermissionsAttribute($value)
+    public function getPermissionsAttribute($value): array
     {
         if ($this->name === 'admin') {
             $options = [];

@@ -10,6 +10,34 @@ return [
     ],
 
     /**
+     * The queues you want to monitor.
+     */
+    'queues' => [
+        'default' => 'database',
+        // 'sync' => 'sync',
+    ],
+
+    /**
+     * The duration of seconds at which a DB query takes too long.
+     */
+    'query_threshold' => 5,
+
+    /**
+     * The duration of seconds at which a page load takes too long.
+     */
+    'page_load_threshold' => 3.5,
+
+    /**
+     * Log JavaScript errors to Mission Control.
+     */
+    'log_javascript_errors' => true,
+
+    /**
+     * Log web traffic to Mission Control.
+     */
+    'log_traffic' => true,
+
+    /**
      * The log levels you wish to send to Mission Control.
      */
     'levels' => [
@@ -17,6 +45,9 @@ return [
         'alert',
         'critical',
         'error',
+        // 'info',
+        // 'notice',
+        // 'warning',
     ],
 
     /**
@@ -46,4 +77,37 @@ return [
      * The URL for Mission Control. Custom domains are an option.
      */
     'url' => env('MISSION_CONTROL_URL', 'https://missioncontrolapp.io'),
+
+    /**
+     * Control your attack monitoring
+     */
+    'attacks' => [
+        'xss' => [
+            // Evil starting attributes
+            // '#(<[^>]+[\x00-\x20\"\'\/])(form|formaction|on\w*|xmlns|xlink:href)[^>]*>?#iUu',
+            // javascript:, livescript:, vbscript:, mocha: protocols
+            '!((java|live|vb)script|mocha|feed):(\w)*!iUu',
+            '#-moz-binding[\x00-\x20]*:#u',
+            // Unneeded tags
+            // '#</*(applet|meta|xml|blink|link|style|script|embed|object|iframe|frame|frameset|ilayer|layer|bgsound|title|base)[^>]*>?#i',
+        ],
+        'php' => [
+            'bzip2://',
+            'expect://',
+            'glob://',
+            'phar://',
+            'php://',
+            'ogg://',
+            'rar://',
+            'ssh2://',
+            'zip://',
+            'zlib://',
+        ],
+        // 'lfi' => [
+        //     '#\.\/#is',
+        // ],
+        'rfi' => [
+            '#(http|ftp){1,1}(s){0,1}://.*#i',
+        ],
+    ],
 ];

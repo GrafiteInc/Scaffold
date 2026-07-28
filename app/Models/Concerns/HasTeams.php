@@ -3,13 +3,15 @@
 namespace App\Models\Concerns;
 
 use App\Models\Team;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait HasTeams
 {
     /**
      * User Team memberships.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function memberships()
     {
@@ -21,7 +23,7 @@ trait HasTeams
     /**
      * User Teams.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function teams()
     {

@@ -2,9 +2,12 @@
 
 namespace App\Services;
 
+use App\Models\Invite;
 use App\Models\Team;
+use App\Models\User;
 use App\Notifications\InAppNotification;
 use Exception;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -27,7 +30,7 @@ class TeamService
      * Find a team by uuid.
      *
      * @param  string  $uuid
-     * @return \App\Models\Team
+     * @return Team
      */
     public function findByUuid($uuid)
     {
@@ -37,7 +40,7 @@ class TeamService
     /**
      * Create a Team.
      *
-     * @return \App\Models\Team
+     * @return Team
      */
     public function create(array $payload)
     {
@@ -58,7 +61,7 @@ class TeamService
     /**
      * Update a Team.
      *
-     * @return \App\Models\Team
+     * @return Team
      */
     public function update($team, $request)
     {
@@ -89,9 +92,9 @@ class TeamService
     /**
      * Invite a user to a team.
      *
-     * @param  \App\Models\Team  $team
+     * @param  Team  $team
      * @param  string  $email
-     * @return \App\Models\Invite
+     * @return Invite
      */
     public function invite($team, $email)
     {
@@ -103,7 +106,9 @@ class TeamService
 
         $message = "You've been invited to a team on {$app} called: {$team->name}!";
 
-        if ($invite = $team->invite($email, $message)) {
+        $invite = $team->invite($email, $message);
+
+        if ($invite) {
             app_notify('You sent an invite to '.$email.' for '.$team->name);
         }
 
@@ -113,7 +118,7 @@ class TeamService
     /**
      * Leave a team.
      *
-     * @param  \App\Models\Team  $team
+     * @param  Team  $team
      * @return bool
      */
     public function leave($team)
@@ -132,8 +137,8 @@ class TeamService
     /**
      * Remove a team member.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Team  $team
+     * @param  User  $user
+     * @param  Team  $team
      * @return bool
      */
     public function remove($user, $team)
@@ -172,11 +177,11 @@ class TeamService
     /**
      * Update a members information.
      *
-     * @param  \Illuminate\Database\Eloquent\Relations\Pivot  $membership
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Team  $team
+     * @param  Pivot  $membership
+     * @param  User  $user
+     * @param  Team  $team
      * @param  array  $payload
-     * @return \App\Models\User|false
+     * @return User|false
      */
     public function updateMember($membership, $user, $team, $payload)
     {

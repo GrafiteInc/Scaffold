@@ -3,6 +3,7 @@
 namespace App\View\Charts;
 
 use Grafite\Charts\Builder\GeoChart;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
 class UsChart extends GeoChart
@@ -19,17 +20,15 @@ class UsChart extends GeoChart
 
     /**
      * Initializes the chart.
-     *
-     * @return void
      */
-    public function collectData()
+    public function collectData(): array
     {
         $data = json_encode(Http::get('https://unpkg.com/us-atlas/states-10m.json')->json());
 
         return $this->parseGeoData($data);
     }
 
-    public function labels()
+    public function labels(): Collection
     {
         return collect($this->data['states']->features)->map(function ($country) {
             return $country->properties->name;
@@ -37,7 +36,7 @@ class UsChart extends GeoChart
 
     }
 
-    public function datasets()
+    public function datasets(): array
     {
         $data = collect($this->data['states']->features)->map(function ($country) {
             return [

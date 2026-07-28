@@ -4,14 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AnnouncementController extends Controller
 {
     /**
      * Show the form for inviting a customer.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function create()
     {
@@ -21,7 +23,7 @@ class AnnouncementController extends Controller
     /**
      * Show the form for creating a Role.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {

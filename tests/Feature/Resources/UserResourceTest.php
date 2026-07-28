@@ -3,13 +3,14 @@
 namespace Tests\Feature\Resources;
 
 use App\Http\Resources\UserResource;
+use Illuminate\Http\Request;
 use Tests\TestCase;
 
 class UserResourceTest extends TestCase
 {
     public function test_user_resource()
     {
-        $request = new \Illuminate\Http\Request;
+        $request = new Request;
 
         $users = collect([$this->user]);
 

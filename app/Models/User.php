@@ -19,6 +19,7 @@ use Grafite\Support\Models\Concerns\CanAccessFeatures;
 use Grafite\Support\Models\Concerns\HasJavascriptData;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
@@ -46,11 +47,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public $form = UserForm::class;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
         'avatar',
@@ -72,11 +68,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_recovery_codes',
     ];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -87,22 +78,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_recovery_codes',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'two_factor_expires_at' => 'datetime',
         'two_factor_confirmed_at' => 'datetime',
     ];
 
-    /**
-     * Appends.
-     *
-     * @var array
-     */
     public $appends = [
         'avatar_url',
     ];
@@ -110,7 +91,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * User Invites.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function invites()
     {
