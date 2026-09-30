@@ -100,6 +100,21 @@ grouping settings into `app.php`. `config/general.php` is the catch-all for app-
 (non-package) settings. When looking for where a package's behavior is tuned, check
 `config/<package-name>.php` before searching `.env`.
 
+### MCP server (Claude Desktop / claude.ai connectors)
+`laravel/mcp` exposes `App\Mcp\Servers\UsersServer` at `POST /mcp/users` (registered in
+`routes/ai.php`, which the package loads itself — it is not in `RouteServiceProvider`). Tools
+live in `app/Mcp/Tools/**`, are generated with `make:mcp-tool`, and share business logic with
+the REST API through services (`App\Services\UserService`) rather than duplicating it. Admin-only
+tools implement `shouldRegister()` (hidden from `tools/list`) **and** re-check in `handle()`.
+Auth is OAuth 2.1 via Laravel Passport: `Mcp::oauthRoutes()` publishes discovery + dynamic client
+registration, the `api` guard in `config/auth.php` is Passport-backed and used **only** by MCP,
+and the REST API keeps using Sanctum (`auth:sanctum`). `User` deliberately uses Sanctum's
+`HasApiTokens` only — Passport's guard does not need its trait, and the two traits conflict.
+The OAuth consent page is `resources/views/mcp/authorize.blade.php`. Allowed OAuth redirect
+domains are in `config/mcp.php`. Deploys need `php artisan passport:keys` once (keys are
+gitignored). Test tools with `UsersServer::actingAs($user)->tool(SomeTool::class, [...])`, and
+the full HTTP flow with `Passport::actingAs($user)` (see `tests/Feature/Mcp/`).
+
 ### API docs are generated, not hand-maintained
 `dedoc/scramble` auto-generates OpenAPI docs from `app/Http/Controllers/Api/*` and
 `app/Http/Resources/*` — don't write API doc comments/annotations by hand; ensure request/

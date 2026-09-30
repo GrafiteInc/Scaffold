@@ -45,6 +45,15 @@ Scaffold is *intended* to be used to start a project and then be heavily altered
 
 sail up
 
+## Connecting Claude (MCP)
+
+The app ships with an MCP server for user accounts at `/mcp/users`, authorized with OAuth 2.1 via Laravel Passport.
+
+1. Run `php artisan migrate` and `php artisan passport:keys` once per environment (the keys are gitignored).
+2. In Claude, add a custom connector pointing at `https://{your-app}/mcp/users`. Claude registers itself, and you approve access on the app's authorize page.
+
+Add servers and tools in `routes/ai.php` and `app/Mcp/` (`php artisan make:mcp-server`, `php artisan make:mcp-tool`).
+
 ## Compatibility and Support
 
 Since Grafite Scaffold is a starter project it offers no support, and no compatibily guarantees.
