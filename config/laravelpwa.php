@@ -1,8 +1,44 @@
 <?php
 
+use Grafite\Forms\Fields\Dropzone;
+
 return [
     'name' => env('APP_NAME', 'Scaffold'),
     'version' => env('APP_VERSION', '1.0'),
+
+    /*
+     * Whether to register the service worker. Defaults to production only —
+     * set PWA_SERVICE_WORKER=true locally to exercise offline and push
+     * without deploying.
+     */
+    'register_service_worker' => env('PWA_SERVICE_WORKER', env('APP_ENV') === 'production'),
+
+    /*
+     * Form fields whose CDN files the service worker fetches while the browser
+     * is idle, so their editors open from cache the first time. Add heavier
+     * fields here as forms start using them (Quill2, Datepicker, Flatpickr).
+     */
+    'warm_fields' => [
+        Dropzone::class,
+    ],
+
+    /*
+     * Third-party hosts the service worker may cache static files from. Keep
+     * this to asset CDNs: analytics, captcha, payment and API hosts must not
+     * be cached.
+     */
+    'cdn_hosts' => [
+        'cdn.jsdelivr.net',
+        'cdnjs.cloudflare.com',
+        'code.jquery.com',
+        'unpkg.com',
+        'fonts.googleapis.com',
+        'fonts.gstatic.com',
+        'kit.fontawesome.com',
+        'ka-f.fontawesome.com',
+        'ka-p.fontawesome.com',
+    ],
+
     'manifest' => [
         'name' => env('APP_NAME', 'Scaffold'),
         'short_name' => 'Scaffold',
@@ -18,11 +54,11 @@ return [
                 'purpose' => 'any',
             ],
             '192x192' => [
-                'path' => '/images/icons/manifest-icon-192.png',
+                'path' => '/images/icons/icon-192x192.png',
                 'purpose' => 'any',
             ],
             '512x512' => [
-                'path' => '/images/icons/manifest-icon-512.png',
+                'path' => '/images/icons/icon-512x512.png',
                 'purpose' => 'any',
             ],
         ],

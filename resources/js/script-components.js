@@ -14,3 +14,5 @@ import "./script-components/ajax-forms";
 // UI UX level components
 import "./script-components/tooltips";
 import "./script-components/clipboard";
+import "./script-components/push";
+import "./script-components/warm-cache";

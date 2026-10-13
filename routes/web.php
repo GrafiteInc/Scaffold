@@ -18,6 +18,7 @@ use App\Http\Controllers\User\DestroyController;
 use App\Http\Controllers\User\InvitesController;
 use App\Http\Controllers\User\LogoutSessionsController;
 use App\Http\Controllers\User\NotificationsController;
+use App\Http\Controllers\User\PushSubscriptionController;
 use App\Http\Controllers\User\SecurityController;
 use App\Http\Controllers\User\SettingsController;
 use App\Http\Controllers\User\TwoFactorSettingsController;
@@ -87,6 +88,14 @@ Route::middleware('auth')->group(function () {
             Route::get('api-tokens', [ApiTokenController::class, 'index'])->name('user.api-tokens');
             Route::delete('token/{token}/destroy', [ApiTokenController::class, 'destroy'])->name('user.destroy-token');
             Route::post('token', [ApiTokenController::class, 'create'])->name('user.create-token');
+
+            Route::prefix('push-subscriptions')->group(function () {
+                Route::post('/', [PushSubscriptionController::class, 'store'])->name('user.push-subscriptions.store');
+                Route::delete('/', [PushSubscriptionController::class, 'destroy'])->name('user.push-subscriptions.destroy');
+                Route::post('test', [PushSubscriptionController::class, 'test'])
+                    ->middleware('throttle:6,1')
+                    ->name('user.push-subscriptions.test');
+            });
 
             Route::prefix('notifications')->group(function () {
                 Route::get('/', [NotificationsController::class, 'index'])->name('user.notifications');

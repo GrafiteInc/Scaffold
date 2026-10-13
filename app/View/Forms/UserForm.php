@@ -45,6 +45,9 @@ class UserForm extends ModelForm
             Toggled::make('allow_email_based_notifications', [
                 'legend' => 'Email Contact',
             ]),
+            Toggled::make('allow_push_notifications', [
+                'legend' => 'Push Notifications',
+            ]),
             FileWithPreview::make('avatar', [
                 'preview_identifier' => '.avatar',
                 'preview_as_background_image' => true,

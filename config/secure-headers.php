@@ -570,7 +570,6 @@ return [
                 'cdn.jsdelivr.net',
                 'kit.fontawesome.com',
                 'code.jquery.com',
-                'js.pusher.com',
                 'cdn.usefathom.com',
                 'js.hcaptcha.com',
             ],

@@ -46,11 +46,11 @@
 <meta name="msapplication-TileColor" content="{{ $config['background_color'] }}">
 <meta name="msapplication-TileImage" content="{{ data_get(end($config['icons']), 'src') }}">
 
-@if (app()->environment('production'))
+@if (config('laravelpwa.register_service_worker'))
     <script type="text/javascript">
         // Initialize the service worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/serviceworker.js', {
+            navigator.serviceWorker.register('/service-worker.js', {
                 scope: '.'
             }).then(function (registration) {
                 // Registration was successful

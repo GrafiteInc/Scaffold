@@ -7,6 +7,7 @@ use Dedoc\Scramble\Scramble;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Schedule;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -43,6 +44,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
+        Schedule::alwaysOnOneServer();
 
         Scramble::routes(function (Route $route) {
             return Str::startsWith($route->uri, 'api/');

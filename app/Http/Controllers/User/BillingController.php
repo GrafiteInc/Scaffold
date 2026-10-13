@@ -59,6 +59,11 @@ class BillingController extends Controller
             'success_url' => route('user.billing.subscribe.success'),
             'cancel_url' => route('user.billing.subscribe.cancelled'),
             'mode' => 'subscription',
+            'billing_address_collection' => 'required',
+            'customer_update' => [
+                'address' => 'auto',
+                'name' => 'auto',
+            ],
         ]);
     }
 }

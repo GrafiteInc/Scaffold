@@ -28,6 +28,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "hisorange/browser-detect": "^4.5",
         "intervention/image": "^2.5",
+        "laravel-notification-channels/webpush": "^13.0",
         "laravel/cashier": "^15.0",
         "laravel/framework": "^13.0",
         "laravel/helpers": "^1.1",
@@ -79,7 +80,8 @@
         },
         "files": [
             "app/Helpers/ActivityHelper.php",
-            "app/Helpers/NotificationHelper.php"
+            "app/Helpers/NotificationHelper.php",
+            "app/Helpers/BuildVersionHelper.php"
         ]
     },
     "autoload-dev": {
