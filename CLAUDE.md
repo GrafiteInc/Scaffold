@@ -115,6 +115,44 @@ domains are in `config/mcp.php`. Deploys need `php artisan passport:keys` once (
 gitignored). Test tools with `UsersServer::actingAs($user)->tool(SomeTool::class, [...])`, and
 the full HTTP flow with `Passport::actingAs($user)` (see `tests/Feature/Mcp/`).
 
+### AI chat (threads + agent tools, via `laravel/ai`)
+A chat with threads users can return to, at `/chat` (`ThreadsController` + the
+`App\Livewire\ThreadChat` component) and `POST /api/chat` (`Api\ChatController`, Sanctum).
+Both go through `App\Services\ConversationService`:
+- `receive()` files the message into a thread via `Services\Conversation\ThreadResolver`.
+  - The web chat is explicit: it continues the thread on screen or asks for a new one.
+  - A message with no thread (API without `thread_id`) is placed automatically: idle
+    timeout, rapid/short replies, reset words ("new: ..."), then a fast-model
+    `ThreadRelevance` check.
+  - One thread per user is open at a time; continuing an old one reopens it.
+- `respond()` runs `App\Ai\Agents\Assistant` on everything unanswered and records the
+  reply, with tool calls, provider and usage in `meta`.
+  - History is the last `conversation.context_messages` turns plus the thread summary.
+  - Summaries come from `ThreadSummarizer` (via the `SummarizeThread` job).
+  - A provider failure becomes an apology reply, not an exception.
+- Livewire sends in two round trips (`send` then `respond`), so no queue or broadcasting is needed.
+
+Settings are in `config/conversation.php` (provider→model failover for the `agent` and `fast`
+tiers, thread boundaries, tools). Provider keys are in `config/ai.php`.
+
+**Adding a tool:** extend `App\Ai\Tools\AppTool`, put the logic in a service and call it from
+`run()`, then add the class to `conversation.tools`. Tools are resolved from the container with
+`user` and `thread`. `AppTool` turns validation errors and exceptions into text the model can
+act on. `Tools/Users/*` are the examples; they reuse `UserService`/`UserResource` like the MCP
+tools do.
+
+**RAG goes in as a tool too.** `RecallThreads` (a keyword search over thread summaries) is the
+current retrieval. Add an embeddings or vector-store tool (`laravel/ai` `Embeddings`/`Stores`)
+to `conversation.tools`; no vector infrastructure ships yet (MySQL, SQLite in tests).
+
+**Tests** fake the agents and never call a provider:
+- `Assistant::fake([...])->preventStrayPrompts()`
+- `Assistant::fake([new ToolCall('id', 'ToolName', [...]), 'text'])` actually runs the tool
+- `ThreadRelevance::fake([['related' => false, 'reason' => '...']])` and `ThreadSummarizer::fake(...)`
+
+`resources/views/chat/index.blade.php` wraps the chat in `v-pre` because Vue mounts on `#app`
+and would otherwise compile chat content as a template.
+
 ### API docs are generated, not hand-maintained
 `dedoc/scramble` auto-generates OpenAPI docs from `app/Http/Controllers/Api/*` and
 `app/Http/Resources/*` — don't write API doc comments/annotations by hand; ensure request/

@@ -11,6 +11,7 @@ use App\Models\Concerns\HasPermissions;
 use App\Models\Concerns\HasRoles;
 use App\Models\Concerns\HasSubscription;
 use App\Models\Concerns\HasTeams;
+use App\Models\Concerns\HasThreads;
 use App\Models\Concerns\HasTwoFactor;
 use App\Notifications\ResetPassword;
 use App\View\Forms\UserForm;
@@ -44,6 +45,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasRoles;
     use HasSubscription;
     use HasTeams;
+    use HasThreads;
     use HasTwoFactor;
     use Notifiable;
 

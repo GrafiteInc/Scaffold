@@ -12,6 +12,7 @@ use App\Http\Controllers\ResendInviteController;
 use App\Http\Controllers\RevokeInviteController;
 use App\Http\Controllers\TeamMembersController;
 use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\ThreadsController;
 use App\Http\Controllers\User\ApiTokenController;
 use App\Http\Controllers\User\BillingController;
 use App\Http\Controllers\User\DestroyController;
@@ -137,6 +138,12 @@ Route::middleware('auth')->group(function () {
             Route::delete('{team}/remove/{member}', [TeamMembersController::class, 'removeMember'])->name('teams.members.remove');
             Route::get('{team}/edit/{member}', [TeamMembersController::class, 'editMember'])->name('teams.members.edit');
             Route::put('{team}/update/{member}', [TeamMembersController::class, 'updateMember'])->name('teams.members.update');
+        });
+
+        Route::prefix('chat')->group(function () {
+            Route::get('/', [ThreadsController::class, 'index'])->name('chat');
+            Route::get('{thread}', [ThreadsController::class, 'show'])->whereNumber('thread')->name('chat.show');
+            Route::delete('{thread}', [ThreadsController::class, 'destroy'])->whereNumber('thread')->name('chat.destroy');
         });
 
         /*

@@ -77,4 +77,8 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('APP_URL').'/auth/google/callback',
     ],
+
+    'exa' => [
+        'api_key' => env('EXA_API_KEY'),
+    ],
 ];

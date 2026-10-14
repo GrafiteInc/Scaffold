@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ApiDeviceLoginController;
+use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +23,10 @@ Route::middleware('auth:sanctum')->name('api')->group(function () {
         Route::get('me', [UsersController::class, 'me'])->name('.users.me');
         Route::put('update', [UsersController::class, 'update'])->name('.users.update');
         Route::delete('destroy', [UsersController::class, 'destroy'])->name('.users.destroy');
+    });
+
+    Route::prefix('chat')->group(function () {
+        Route::get('threads', [ChatController::class, 'threads'])->name('.chat.threads');
+        Route::post('/', [ChatController::class, 'converse'])->middleware('throttle:30,1')->name('.chat');
     });
 });
