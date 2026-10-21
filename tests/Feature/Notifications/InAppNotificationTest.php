@@ -36,6 +36,8 @@ class InAppNotificationTest extends TestCase
 
     public function test_web_push_payload()
     {
+        config(['app.name' => 'Grafite Scaffold']);
+
         $notification = new InAppNotification('<strong>Task</strong> is due');
         $notification->isImportant();
 
