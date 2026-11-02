@@ -43,6 +43,18 @@ runs on PHP 8.4 against `.env.example`, so keep that file's keys in sync with an
 
 ## Architecture
 
+### Application bootstrap (Laravel 13 skeleton)
+There is no HTTP/Console Kernel, exception Handler, or Route/Auth/Event service provider.
+- `bootstrap/app.php` holds routing (`public_facing.php` + `web.php` share the `web` group;
+  `scripts.php` loads with no middleware so the service worker gets no session cookie),
+  global middleware, group additions, aliases (`admin`, `roles`, `permissions`,
+  `two-factor`, `activity`), CSRF exceptions, and exception rendering. `api/*` and `ajax/*`
+  errors always render as JSON.
+- The schedule lives in `routes/console.php`.
+- Gates are defined in `AppServiceProvider::defineGates()`.
+- Listeners in `app/Listeners` are auto-discovered, so don't also register them by hand.
+- CSRF middleware is `PreventRequestForgery` (L13's name; `VerifyCsrfToken` is deprecated).
+
 ### Request flow: thin controllers, fat services
 Controllers under `app/Http/Controllers/**` (organized by `Admin/`, `Api/`, `Ajax/`, `Auth/`,
 `User/`) inject a single `App\Services\*Service` in the constructor and delegate all
@@ -74,9 +86,11 @@ docs/fields list first.
 config; paired Blade-facing wrappers live in `app/View/Components/Charts/`.
 
 ### Livewire is used sparingly
-Only `app/Livewire/` (`Cart`, `NotificationBadge`, `UserSettings`) — most interactivity goes
-through Grafite view components instead of full Livewire components. Check there before
-reaching for Livewire on a new feature.
+Livewire 4. Only `app/Livewire/` (`Cart`, `NotificationBadge`, `ThreadChat`, `UserSettings`):
+most interactivity goes through Grafite view components instead of full Livewire components.
+Check there before reaching for Livewire on a new feature. Assets are included manually
+(`inject_assets` is off; `@livewireScripts` is in `layouts/main.blade.php`) and are served
+from a hashed `/livewire-{hash}/` prefix, which the service worker's cache rule expects.
 
 ### Code generation via Artisan — prefer these over hand-writing boilerplate
 Beyond stock Laravel generators, this app ships extra `make:*` commands (mostly from
@@ -102,7 +116,7 @@ grouping settings into `app.php`. `config/general.php` is the catch-all for app-
 
 ### MCP server (Claude Desktop / claude.ai connectors)
 `laravel/mcp` exposes `App\Mcp\Servers\UsersServer` at `POST /mcp/users` (registered in
-`routes/ai.php`, which the package loads itself — it is not in `RouteServiceProvider`). Tools
+`routes/ai.php`, which the package loads itself — it is not in `bootstrap/app.php`). Tools
 live in `app/Mcp/Tools/**`, are generated with `make:mcp-tool`, and share business logic with
 the REST API through services (`App\Services\UserService`) rather than duplicating it. Admin-only
 tools implement `shouldRegister()` (hidden from `tools/list`) **and** re-check in `handle()`.
