@@ -37,7 +37,7 @@
         "laravel/passport": "^13.8",
         "laravel/sanctum": "^4.0",
         "laravel/socialite": "^5.24",
-        "livewire/livewire": "^3.0",
+        "livewire/livewire": "^4.0",
         "pragmarx/google2fa-laravel": "^3.0",
         "pragmarx/recovery": "^0.2.1",
         "pusher/pusher-php-server": "^7.2",
