@@ -28,8 +28,8 @@ class BillingControllerTest extends TestCase
 
         $this->user->update([
             'stripe_id' => 'foo_bar_01',
-            'card_brand' => 'visa',
-            'card_last_four' => '4242',
+            'pm_type' => 'visa',
+            'pm_last_four' => '4242',
         ]);
 
         $response = $this->get(route('user.billing'));
