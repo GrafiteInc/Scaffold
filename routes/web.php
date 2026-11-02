@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware(['verified', 'two-factor'])->group(function () {
         Route::get('subscribed', function () {
-            dd(request());
+            // This route can be used to check if the user is subscribed to a service.
         });
 
         /*
