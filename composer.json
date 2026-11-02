@@ -26,7 +26,7 @@
         "grafite/mission-control-laravel": "^3.4",
         "grafite/support": "^1.1",
         "guzzlehttp/guzzle": "^7.2",
-        "hisorange/browser-detect": "^4.5",
+        "hisorange/browser-detect": "^5.0",
         "intervention/image": "^2.5",
         "laravel-notification-channels/webpush": "^13.0",
         "laravel/ai": "^1.2",
