@@ -8,11 +8,12 @@ use App\Models\Role;
 use App\Models\User;
 use EragLaravelDisposableEmail\Rules\DisposableEmailRule;
 use Grafite\Auth\Foundation\RegistersUsers;
+use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
-class RegisterController extends Controller
+class RegisterController extends Controller implements HasMiddleware
 {
     /*
     |--------------------------------------------------------------------------
@@ -35,13 +36,13 @@ class RegisterController extends Controller
     protected $redirectTo = '/dashboard';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * Get the middleware that should be assigned to the controller.
      */
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('guest');
+        return [
+            'guest',
+        ];
     }
 
     /**
@@ -76,7 +77,7 @@ class RegisterController extends Controller
             'email_verified_at' => $data['email_verified_at'] ?? null,
         ]);
 
-        $user->roles()->attach(Role::where('name', 'member')->first()->id);
+        $user->roles()->attach(Role::where('name', '=', 'member')->first()->id);
 
         return $user;
     }

@@ -54,6 +54,9 @@ There is no HTTP/Console Kernel, exception Handler, or Route/Auth/Event service 
 - Gates are defined in `AppServiceProvider::defineGates()`.
 - Listeners in `app/Listeners` are auto-discovered, so don't also register them by hand.
 - CSRF middleware is `PreventRequestForgery` (L13's name; `VerifyCsrfToken` is deprecated).
+- The base `Controller` is an empty abstract class. Controllers that need their own middleware
+  implement `HasMiddleware` with a static `middleware()` method (see `Auth/LoginController`),
+  not `$this->middleware()` in the constructor.
 
 ### Request flow: thin controllers, fat services
 Controllers under `app/Http/Controllers/**` (organized by `Admin/`, `Api/`, `Ajax/`, `Auth/`,
