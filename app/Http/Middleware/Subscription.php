@@ -34,7 +34,7 @@ class Subscription
      */
     public function handle($request, Closure $next)
     {
-        if (Gate::allows('has-subscription', $this->auth->user())) {
+        if (Gate::allows('subscribed', $this->auth->user())) {
             return $next($request);
         }
 
