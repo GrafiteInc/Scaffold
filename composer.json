@@ -25,7 +25,7 @@
         "grafite/maintenance": "^0.7.0",
         "grafite/mission-control-laravel": "^3.4",
         "grafite/support": "^1.1",
-        "guzzlehttp/guzzle": "^7.2",
+        "guzzlehttp/guzzle": "^7.8|^8.0",
         "hisorange/browser-detect": "^5.0",
         "intervention/image": "^2.5",
         "laravel-notification-channels/webpush": "^13.0",
@@ -42,11 +42,11 @@
         "pragmarx/google2fa-laravel": "^3.0",
         "pragmarx/recovery": "^0.2.1",
         "pusher/pusher-php-server": "^7.2",
-        "shiftonelabs/laravel-sqs-fifo-queue": "^2.0",
+        "shiftonelabs/laravel-sqs-fifo-queue": "^3.0",
         "silviolleite/laravelpwa": "^2.0",
         "spatie/laravel-honeypot": "^4.0",
-        "symfony/http-client": "^7.4",
-        "tightenco/ziggy": "^1.0.4",
+        "symfony/http-client": "^8.0",
+        "tightenco/ziggy": "^2.0",
         "yorcreative/laravel-scrubber": "^3.0"
     },
     "require-dev": {
