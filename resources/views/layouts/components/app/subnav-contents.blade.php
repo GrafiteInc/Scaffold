@@ -9,3 +9,11 @@
         <span class="fas fa-users fa-fw"></span> Teams
     </a>
 </li>
+
+@if (config('conversation.enabled'))
+    <li class="nav-item">
+        <a class="{{ route_link_class(['chat', 'chat.*'], 'active') }}" href="{{ route('chat') }}">
+            <span class="fas fa-comments fa-fw"></span> Chat
+        </a>
+    </li>
+@endif

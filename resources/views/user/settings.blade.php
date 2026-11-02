@@ -35,6 +35,24 @@
                     action="edit"
                     :model="$user"
                 />
+
+                <div class="card shadow-sm mt-4" data-push-panel>
+                    <div class="card-body">
+                        <h5 class="card-title">Push Notifications</h5>
+                        <p class="text-muted mb-3" data-push-status>Checking this device&hellip;</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="button" class="btn btn-outline-primary d-none" data-push-enable>
+                                <span class="fas fa-fw fa-bell"></span> Enable on this device
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary d-none" data-push-test>
+                                <span class="fas fa-fw fa-paper-plane"></span> Send test
+                            </button>
+                            <button type="button" class="btn btn-outline-danger d-none" data-push-disable>
+                                <span class="fas fa-fw fa-bell-slash"></span> Disable on this device
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

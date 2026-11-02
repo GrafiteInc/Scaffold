@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use PragmaRX\Google2FALaravel\Support\Authenticator;
@@ -52,6 +51,6 @@ class TwoFactorController extends Controller
      */
     public function verified()
     {
-        return redirect(RouteServiceProvider::HOME)->withMessage('Two Factor verified.');
+        return redirect()->route('dashboard')->withMessage('Two Factor verified.');
     }
 }

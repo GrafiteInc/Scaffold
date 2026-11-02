@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ApiDeviceLoginController;
+use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
+| routes are loaded by bootstrap/app.php within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
@@ -22,5 +23,10 @@ Route::middleware('auth:sanctum')->name('api')->group(function () {
         Route::get('me', [UsersController::class, 'me'])->name('.users.me');
         Route::put('update', [UsersController::class, 'update'])->name('.users.update');
         Route::delete('destroy', [UsersController::class, 'destroy'])->name('.users.destroy');
+    });
+
+    Route::prefix('chat')->group(function () {
+        Route::get('threads', [ChatController::class, 'threads'])->name('.chat.threads');
+        Route::post('/', [ChatController::class, 'converse'])->middleware('throttle:30,1')->name('.chat');
     });
 });

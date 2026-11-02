@@ -12,12 +12,14 @@ use App\Http\Controllers\ResendInviteController;
 use App\Http\Controllers\RevokeInviteController;
 use App\Http\Controllers\TeamMembersController;
 use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\ThreadsController;
 use App\Http\Controllers\User\ApiTokenController;
 use App\Http\Controllers\User\BillingController;
 use App\Http\Controllers\User\DestroyController;
 use App\Http\Controllers\User\InvitesController;
 use App\Http\Controllers\User\LogoutSessionsController;
 use App\Http\Controllers\User\NotificationsController;
+use App\Http\Controllers\User\PushSubscriptionController;
 use App\Http\Controllers\User\SecurityController;
 use App\Http\Controllers\User\SettingsController;
 use App\Http\Controllers\User\TwoFactorSettingsController;
@@ -50,7 +52,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware(['verified', 'two-factor'])->group(function () {
         Route::get('subscribed', function () {
-            dd(request());
+            // This route can be used to check if the user is subscribed to a service.
         });
 
         /*
@@ -87,6 +89,14 @@ Route::middleware('auth')->group(function () {
             Route::get('api-tokens', [ApiTokenController::class, 'index'])->name('user.api-tokens');
             Route::delete('token/{token}/destroy', [ApiTokenController::class, 'destroy'])->name('user.destroy-token');
             Route::post('token', [ApiTokenController::class, 'create'])->name('user.create-token');
+
+            Route::prefix('push-subscriptions')->group(function () {
+                Route::post('/', [PushSubscriptionController::class, 'store'])->name('user.push-subscriptions.store');
+                Route::delete('/', [PushSubscriptionController::class, 'destroy'])->name('user.push-subscriptions.destroy');
+                Route::post('test', [PushSubscriptionController::class, 'test'])
+                    ->middleware('throttle:6,1')
+                    ->name('user.push-subscriptions.test');
+            });
 
             Route::prefix('notifications')->group(function () {
                 Route::get('/', [NotificationsController::class, 'index'])->name('user.notifications');
@@ -128,6 +138,12 @@ Route::middleware('auth')->group(function () {
             Route::delete('{team}/remove/{member}', [TeamMembersController::class, 'removeMember'])->name('teams.members.remove');
             Route::get('{team}/edit/{member}', [TeamMembersController::class, 'editMember'])->name('teams.members.edit');
             Route::put('{team}/update/{member}', [TeamMembersController::class, 'updateMember'])->name('teams.members.update');
+        });
+
+        Route::prefix('chat')->group(function () {
+            Route::get('/', [ThreadsController::class, 'index'])->name('chat');
+            Route::get('{thread}', [ThreadsController::class, 'show'])->whereNumber('thread')->name('chat.show');
+            Route::delete('{thread}', [ThreadsController::class, 'destroy'])->whereNumber('thread')->name('chat.destroy');
         });
 
         /*

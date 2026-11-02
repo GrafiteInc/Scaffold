@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Grafite\Auth\Foundation\ConfirmsPasswords;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class ConfirmPasswordController extends Controller
+class ConfirmPasswordController extends Controller implements HasMiddleware
 {
     /*
     |--------------------------------------------------------------------------
@@ -26,15 +26,15 @@ class ConfirmPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/dashboard';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * Get the middleware that should be assigned to the controller.
      */
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('auth');
+        return [
+            'auth',
+        ];
     }
 }

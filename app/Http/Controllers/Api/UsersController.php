@@ -5,12 +5,17 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\ApiUserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Notifications\StandardEmail;
+use App\Services\UserService;
+use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 class UsersController extends ApiController
 {
+    public function __construct(public UserService $service) {}
+
     /**
      * Get the user data.
      *
@@ -30,21 +35,23 @@ class UsersController extends ApiController
      */
     public function update(ApiUserUpdateRequest $request)
     {
-        if (
-            $this->user()->update([
+        try {
+            $user = $this->service->update($this->user(), [
                 'email' => $request->json('email'),
                 'name' => $request->json('name'),
-            ])
-        ) {
+            ]);
+
             return response()->json([
-                'data' => new UserResource($this->user()),
+                'data' => new UserResource($user),
                 'status' => 'Profile updated',
             ]);
-        }
+        } catch (Exception $e) {
+            Log::error($e);
 
-        return response()->json([
-            'status' => 'Failed to update the profile.',
-        ], 500);
+            return response()->json([
+                'status' => 'Failed to update the profile.',
+            ], 500);
+        }
     }
 
     /**

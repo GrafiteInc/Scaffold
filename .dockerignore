@@ -1,2 +1,53 @@
+# VCS / CI / editor
 .git
+.github
+.do
+.editorconfig
+.DS_Store
+**/.DS_Store
+.notes
+
+# Secrets and local environment (production config comes from the platform)
 .env
+.env.*
+!.env.example
+
+# Installed inside the image
+node_modules
+vendor
+
+# Built inside the image
+public/build
+public/hot
+public/storage
+public/mix-manifest.json
+bootstrap/cache/*.php
+
+# Runtime state
+storage/*.key
+storage/logs/*
+storage/debugbar/*
+storage/clockwork/*
+storage/app/public/*
+storage/app/livewire-tmp
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/testing/*
+storage/framework/views/*
+!storage/**/.gitignore
+
+# Tests and reports
+tests/Browser/screenshots
+tests/Browser/console
+tests/Browser/source
+test-html
+clover.xml
+cognitive.json
+.phpunit.cache
+.phpunit.result.cache
+phpunit.xml.bak
+
+# Local Docker files
+compose*.yaml
+Dockerfile
+.dockerignore

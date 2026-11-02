@@ -6,6 +6,11 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="version" content="v{{ config('laravelpwa.version', '1') }}">
+        @auth
+            @if (config('webpush.vapid.public_key'))
+                <meta name="vapid-public-key" content="{{ config('webpush.vapid.public_key') }}">
+            @endif
+        @endauth
 
         {{-- Helps prevent 419 issues --}}
         <meta http-equiv="refresh" content="{{ config('session.lifetime') * 60 }}">
@@ -18,6 +23,12 @@
         <title>{{ config('app.name') }} | @yield('page-title', 'Scaffold')</title>
 
         <link rel="icon" type="image/ico" href="">
+
+        {{-- Open CDN connections early. Scripts and fonts use separate connection pools. --}}
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+        <link rel="preconnect" href="https://ka-f.fontawesome.com" crossorigin>
+        <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
         @session
         @laravelPWA

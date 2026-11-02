@@ -39,6 +39,7 @@ class SettingsController extends Controller
                 'email' => $request->email,
                 'avatar' => UpdateUserAvatar::handle($request) ?? $request->user()->avatar,
                 'allow_email_based_notifications' => $request->filled('allow_email_based_notifications'),
+                'allow_push_notifications' => $request->filled('allow_push_notifications'),
             ]);
 
             activity('Settings updated.');

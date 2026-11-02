@@ -1,0 +1,114 @@
+name: Deploy
+
+# Builds the production image, pushes it to DigitalOcean Container Registry, and
+# deploys .do/app.yaml to App Platform. Runs after Tests pass on main, or by hand.
+# Setup (secrets, variables, one-time DigitalOcean resources) is in readme.md.
+
+on:
+  workflow_run:
+    workflows: [ Tests ]
+    types: [ completed ]
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      IMAGE: registry.digitalocean.com/${{ vars.DOCR_REGISTRY }}/${{ vars.DOCR_REPOSITORY }}
+      SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: ${{ env.SHA }}
+
+    - uses: docker/setup-buildx-action@v4
+
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+    - name: Log in to DigitalOcean Container Registry
+      run: doctl registry login --expiry-seconds 1200
+
+    - name: Build and push image
+      id: build
+      uses: docker/build-push-action@v7
+      with:
+        context: .
+        target: production
+        platforms: linux/amd64
+        push: true
+        # A plain image manifest (no attestations) is what App Platform pulls most reliably.
+        provenance: false
+        sbom: false
+        tags: |
+          ${{ env.IMAGE }}:${{ env.SHA }}
+          ${{ env.IMAGE }}:latest
+        build-args: |
+          VITE_PUSHER_APP_KEY=${{ vars.PUSHER_APP_KEY }}
+          VITE_PUSHER_APP_CLUSTER=${{ vars.PUSHER_APP_CLUSTER || 'mt1' }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    - name: Deploy to App Platform
+      uses: digitalocean/app_action/deploy@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+        app_spec_location: .do/app.yaml
+        project_id: ${{ vars.DO_PROJECT_ID }}
+        print_build_logs: true
+        print_deploy_logs: true
+      env:
+        # Image
+        IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        DOCR_REPOSITORY: ${{ vars.DOCR_REPOSITORY }}
+        # Infrastructure (GitHub variables)
+        DO_APP_NAME: ${{ vars.DO_APP_NAME }}
+        DO_MYSQL_CLUSTER: ${{ vars.DO_MYSQL_CLUSTER }}
+        DO_MYSQL_DATABASE: ${{ vars.DO_MYSQL_DATABASE }}
+        DO_MYSQL_USER: ${{ vars.DO_MYSQL_USER }}
+        DO_VALKEY_CLUSTER: ${{ vars.DO_VALKEY_CLUSTER }}
+        SPACES_REGION: ${{ vars.SPACES_REGION }}
+        SPACES_BUCKET: ${{ vars.SPACES_BUCKET }}
+        MAIL_HOST: ${{ vars.MAIL_HOST }}
+        MAIL_PORT: ${{ vars.MAIL_PORT }}
+        MAIL_FROM_ADDRESS: ${{ vars.MAIL_FROM_ADDRESS }}
+        PUSHER_APP_ID: ${{ vars.PUSHER_APP_ID }}
+        PUSHER_APP_KEY: ${{ vars.PUSHER_APP_KEY }}
+        PUSHER_APP_CLUSTER: ${{ vars.PUSHER_APP_CLUSTER }}
+        STRIPE_KEY: ${{ vars.STRIPE_KEY }}
+        PLAN_MONTHLY: ${{ vars.PLAN_MONTHLY }}
+        PLAN_YEARLY: ${{ vars.PLAN_YEARLY }}
+        VAPID_SUBJECT: ${{ vars.VAPID_SUBJECT }}
+        VAPID_PUBLIC_KEY: ${{ vars.VAPID_PUBLIC_KEY }}
+        MISSION_CONTROL_PROJECT_UUID: ${{ vars.MISSION_CONTROL_PROJECT_UUID }}
+        # Secrets
+        APP_KEY: ${{ secrets.APP_KEY }}
+        PASSPORT_PRIVATE_KEY: ${{ secrets.PASSPORT_PRIVATE_KEY }}
+        PASSPORT_PUBLIC_KEY: ${{ secrets.PASSPORT_PUBLIC_KEY }}
+        SPACES_ACCESS_KEY_ID: ${{ secrets.SPACES_ACCESS_KEY_ID }}
+        SPACES_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_ACCESS_KEY }}
+        MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+        MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        PUSHER_APP_SECRET: ${{ secrets.PUSHER_APP_SECRET }}
+        STRIPE_SECRET: ${{ secrets.STRIPE_SECRET }}
+        STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+        MISSION_CONTROL_USER_TOKEN: ${{ secrets.MISSION_CONTROL_USER_TOKEN }}
+        MISSION_CONTROL_PROJECT_KEY: ${{ secrets.MISSION_CONTROL_PROJECT_KEY }}
+
+    # Old image versions count against the registry's storage. Untagged manifests are
+    # left behind by every push of :latest; clean them up now and then, e.g.:
+    # - name: Clean up registry
+    #   run: doctl registry garbage-collection start --include-untagged-manifests --force

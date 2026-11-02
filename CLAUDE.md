@@ -1,0 +1,207 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## About
+
+Grafite Scaffold is an opinionated Laravel 13 boilerplate meant to be forked and heavily
+altered per-project (it's a starting point, not a maintained library consumers depend on).
+It bundles first-party Grafite packages (`grafite/auth`, `grafite/forms`, `grafite/charts`,
+`grafite/database`, `grafite/support`, `grafite/blacksmith`, `grafite/maintenance`,
+`grafite/mission-control-laravel`) that define most of the app's conventions — read a
+package's source in `vendor/grafite/*` when its behavior isn't obvious from usage alone.
+
+## Commands
+
+### PHP / backend
+```bash
+composer test              # PHPUnit (Unit + Feature) with coverage, enforces 50% min via coverage-checker.php
+composer test-debug         # same, but emits HTML coverage report to test-html/
+vendor/bin/phpunit --filter TestClassName          # run a single test class
+vendor/bin/phpunit --filter testMethodName          # run a single test method
+vendor/bin/phpunit tests/Feature/Controllers/TeamsControllerTest.php   # run one file
+
+composer check-style        # Pint, dry-run
+composer fix-style          # Pint, auto-fix
+composer analyse            # Larastan/PHPStan (level 5, see phpstan.neon.dist)
+composer insights           # phpinsights
+```
+There is no Pest — tests are plain PHPUnit `TestCase` classes. `tests/Architecture/` exists
+but is currently empty. Dusk browser tests live in `tests/Browser/` and use `.env.dusk.local`.
+
+### JS / frontend
+```bash
+npm run dev          # Vite dev server
+npm run build         # Vite production build (runs purgecss + gzip/brotli compression, see vite.config.js)
+npm run check-style   # ESLint (resources/js, .js/.vue)
+npm run fix-style     # ESLint --fix
+```
+
+### Environment
+`sail up` (`compose.yaml`: MySQL, Valkey, Mailpit) is the documented way to run the app
+locally (README). CI (`.github/workflows/`) runs on PHP 8.4 against `.env.example`, so keep
+that file's keys in sync with any new config.
+
+### Deployment (Docker → DigitalOcean App Platform)
+- **One image for everything.** The `Dockerfile` (`serversideup/php` fpm-nginx, port 8080,
+  non-root) builds the `production` target. App Platform runs it as:
+  - the `web` service
+  - the `queue` and `scheduler` workers, via `run_command`
+  - the PRE_DEPLOY `migrate` job
+- **Startup and migrations.** At boot the web container caches config, routes, views and
+  events (`AUTORUN_*`). It never migrates: the `migrate` job does that. Anything that breaks
+  `php artisan optimize`, such as an uncacheable route, breaks the deploy.
+- **Temporary filesystem.**
+  - Uploads must go through the default disk, which is Spaces (`FILESYSTEM_DISK=s3`).
+  - Logs go to stderr.
+  - Passport keys come from `PASSPORT_PRIVATE_KEY` / `PASSPORT_PUBLIC_KEY`.
+  - Cache, sessions and queue use Valkey.
+  - `docker/entrypoint.d/20-mysql-ca.sh` writes the managed MySQL CA from `DB_CA_CERT`.
+- **The deploy pipeline.** `.github/workflows/deploy.yml` runs after Tests pass on `main`. It
+  builds and pushes to DOCR, then deploys `.do/app.yaml` with `digitalocean/app_action`,
+  which substitutes `${VARS}` from the workflow env. `docker.yml` builds and smoke-tests the
+  image on PRs.
+- **Adding a setting.** Put it in `.do/app.yaml` and in the deploy step's `env:` in
+  `deploy.yml`, then add the GitHub secret or variable and the `.env.example` key. A deploy
+  overwrites anything set only in the DO dashboard.
+- **`VITE_*` values** are compiled into the JS, so they are Docker build args, not runtime env.
+- `compose.production.yaml` runs the production image locally for a smoke test.
+
+## Architecture
+
+### Application bootstrap (Laravel 13 skeleton)
+There is no HTTP/Console Kernel, exception Handler, or Route/Auth/Event service provider.
+- `bootstrap/app.php` holds routing (`public_facing.php` + `web.php` share the `web` group;
+  `scripts.php` loads with no middleware so the service worker gets no session cookie),
+  global middleware, group additions, aliases (`admin`, `roles`, `permissions`,
+  `two-factor`, `activity`), CSRF exceptions, and exception rendering. `api/*` and `ajax/*`
+  errors always render as JSON.
+- The schedule lives in `routes/console.php`.
+- Gates are defined in `AppServiceProvider::defineGates()`.
+- Listeners in `app/Listeners` are auto-discovered, so don't also register them by hand.
+- CSRF middleware is `PreventRequestForgery` (L13's name; `VerifyCsrfToken` is deprecated).
+- The base `Controller` is an empty abstract class. Controllers that need their own middleware
+  implement `HasMiddleware` with a static `middleware()` method (see `Auth/LoginController`),
+  not `$this->middleware()` in the constructor.
+
+### Request flow: thin controllers, fat services
+Controllers under `app/Http/Controllers/**` (organized by `Admin/`, `Api/`, `Ajax/`, `Auth/`,
+`User/`) inject a single `App\Services\*Service` in the constructor and delegate all
+create/update/destroy logic to it (see `TeamsController` + `TeamService`). One-off pieces of
+business logic that don't warrant a full service live in `app/Actions/` as invokable classes
+(e.g. `UpdateUserAvatar`, `ProcessUserTwoFactorSettings`). Controllers wrap service calls in
+try/catch and use `abort_unless`/`Gate::allows` for authorization, not FormRequest-embedded
+authorization — request validation lives in `app/Http/Requests/`.
+
+### Models: capability via `Concerns` traits, not inheritance
+`app/Models/Concerns/*` holds single-purpose traits (`HasRoles`, `HasPermissions`, `HasTeams`,
+`HasSubscription`, `HasTwoFactor`, `HasActivity`, `HasAvatar`, `HasDevices`,
+`HasCachedValues`, `DatabaseSearchable`, `Invitable`). `User` is the composition root and pulls
+in most of them plus Grafite/Cashier/Sanctum traits — look there first to see what a model
+"has." `DatabaseSearchable::search()` does a naive `LIKE` scan across every column returned by
+`Schema::getColumnListing()`; it is intentionally schema-driven rather than an explicit
+searchable-attributes list.
+
+### Forms are declarative classes, not Blade forms
+`app/View/Forms/*Form.php` extends Grafite `ModelForm`/`WizardForm` and defines fields via a
+`fields()` method using `Grafite\Forms\Fields\*` (`Text::make(...)`, `Email::make(...)`, etc.),
+plus config properties (`$columns`, `$orientation`, `$buttons`, `$withJsValidation`). A model
+opts into a form by setting `public $form = SomeForm::class;` and using `HasForm`. Never
+hand-roll a `<form>` in Blade for model CRUD — check `app/View/Forms/` and the Grafite Forms
+docs/fields list first.
+
+### Charts are declarative classes too
+`app/View/Charts/*` extends the shared `CanChart` base and produces `grafite/charts` chart
+config; paired Blade-facing wrappers live in `app/View/Components/Charts/`.
+
+### Livewire is used sparingly
+Livewire 4. Only `app/Livewire/` (`Cart`, `NotificationBadge`, `ThreadChat`, `UserSettings`):
+most interactivity goes through Grafite view components instead of full Livewire components.
+Check there before reaching for Livewire on a new feature. Assets are included manually
+(`inject_assets` is off; `@livewireScripts` is in `layouts/main.blade.php`) and are served
+from a hashed `/livewire-{hash}/` prefix, which the service worker's cache rule expects.
+
+### Code generation via Artisan — prefer these over hand-writing boilerplate
+Beyond stock Laravel generators, this app ships extra `make:*` commands (mostly from
+`grafite/blacksmith`/`grafite/support`) that produce project-convention-correct stubs:
+`make:model-form`, `make:wizard-form`, `make:modal-form`, `make:base-form`, `make:field`,
+`make:chart`, `make:livewire-form`, `make:global-component`, `make:regex-class` (for
+`yorcreative/laravel-scrubber` log scrubbing). **Run `php artisan list` / `php artisan help
+make:X` before authoring a new Form, Chart, Field, or global component by hand** — the
+generator stub already matches this repo's conventions and is cheaper than reconstructing the
+pattern from scratch by reading multiple example files.
+
+### Autoloaded helper functions
+`app/Helpers/ActivityHelper.php` and `app/Helpers/NotificationHelper.php` are loaded globally
+via Composer's `autoload.files` (see `composer.json`), not namespaced classes — they're global
+functions available everywhere without a `use` statement.
+
+### Config is split finely, one file per concern
+`config/` has one file per package/feature (`billing.php`, `google2fa.php`, `honeypot.php`,
+`mission-control.php`, `scramble.php`, `secure-headers.php`, `insights.php`, ...) rather than
+grouping settings into `app.php`. `config/general.php` is the catch-all for app-specific
+(non-package) settings. When looking for where a package's behavior is tuned, check
+`config/<package-name>.php` before searching `.env`.
+
+### MCP server (Claude Desktop / claude.ai connectors)
+`laravel/mcp` exposes `App\Mcp\Servers\UsersServer` at `POST /mcp/users` (registered in
+`routes/ai.php`, which the package loads itself — it is not in `bootstrap/app.php`). Tools
+live in `app/Mcp/Tools/**`, are generated with `make:mcp-tool`, and share business logic with
+the REST API through services (`App\Services\UserService`) rather than duplicating it. Admin-only
+tools implement `shouldRegister()` (hidden from `tools/list`) **and** re-check in `handle()`.
+Auth is OAuth 2.1 via Laravel Passport: `Mcp::oauthRoutes()` publishes discovery + dynamic client
+registration, the `api` guard in `config/auth.php` is Passport-backed and used **only** by MCP,
+and the REST API keeps using Sanctum (`auth:sanctum`). `User` deliberately uses Sanctum's
+`HasApiTokens` only — Passport's guard does not need its trait, and the two traits conflict.
+The OAuth consent page is `resources/views/mcp/authorize.blade.php`. Allowed OAuth redirect
+domains are in `config/mcp.php`. Deploys need `php artisan passport:keys` once (keys are
+gitignored). Test tools with `UsersServer::actingAs($user)->tool(SomeTool::class, [...])`, and
+the full HTTP flow with `Passport::actingAs($user)` (see `tests/Feature/Mcp/`).
+
+### AI chat (threads + agent tools, via `laravel/ai`)
+A chat with threads users can return to, at `/chat` (`ThreadsController` + the
+`App\Livewire\ThreadChat` component) and `POST /api/chat` (`Api\ChatController`, Sanctum).
+Both go through `App\Services\ConversationService`:
+- `receive()` files the message into a thread via `Services\Conversation\ThreadResolver`.
+  - The web chat is explicit: it continues the thread on screen or asks for a new one.
+  - A message with no thread (API without `thread_id`) is placed automatically: idle
+    timeout, rapid/short replies, reset words ("new: ..."), then a fast-model
+    `ThreadRelevance` check.
+  - One thread per user is open at a time; continuing an old one reopens it.
+- `respond()` runs `App\Ai\Agents\Assistant` on everything unanswered and records the
+  reply, with tool calls, provider and usage in `meta`.
+  - History is the last `conversation.context_messages` turns plus the thread summary.
+  - Summaries come from `ThreadSummarizer` (via the `SummarizeThread` job).
+  - A provider failure becomes an apology reply, not an exception.
+- Livewire sends in two round trips (`send` then `respond`), so no queue or broadcasting is needed.
+
+Settings are in `config/conversation.php` (provider→model failover for the `agent` and `fast`
+tiers, thread boundaries, tools). Provider keys are in `config/ai.php`.
+
+**Adding a tool:** extend `App\Ai\Tools\AppTool`, put the logic in a service and call it from
+`run()`, then add the class to `conversation.tools`. Tools are resolved from the container with
+`user` and `thread`. `AppTool` turns validation errors and exceptions into text the model can
+act on. `Tools/Users/*` are the examples; they reuse `UserService`/`UserResource` like the MCP
+tools do.
+
+**RAG goes in as a tool too.** `RecallThreads` (a keyword search over thread summaries) is the
+current retrieval. Add an embeddings or vector-store tool (`laravel/ai` `Embeddings`/`Stores`)
+to `conversation.tools`; no vector infrastructure ships yet (MySQL, SQLite in tests).
+
+**Tests** fake the agents and never call a provider:
+- `Assistant::fake([...])->preventStrayPrompts()`
+- `Assistant::fake([new ToolCall('id', 'ToolName', [...]), 'text'])` actually runs the tool
+- `ThreadRelevance::fake([['related' => false, 'reason' => '...']])` and `ThreadSummarizer::fake(...)`
+
+`resources/views/chat/index.blade.php` wraps the chat in `v-pre` because Vue mounts on `#app`
+and would otherwise compile chat content as a template.
+
+### API docs are generated, not hand-maintained
+`dedoc/scramble` auto-generates OpenAPI docs from `app/Http/Controllers/Api/*` and
+`app/Http/Resources/*` — don't write API doc comments/annotations by hand; ensure request/
+response types (FormRequests, API Resources) are correct instead.
+
+### Observability
+`grafite/mission-control-laravel` (config: `mission-control.php`) centrally logs errors, slow
+queries/pages, and queue activity to an external Mission Control instance — check this config
+before assuming Sentry/Bugsnag-style tooling is in play.

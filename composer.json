@@ -11,9 +11,9 @@
     "require": {
         "php": "^8.4",
         "aws/aws-sdk-php": "^3.192",
-        "bacon/bacon-qr-code": "^2.0",
+        "bacon/bacon-qr-code": "^3.0",
         "barryvdh/laravel-debugbar": "^4.0",
-        "bepsvpt/secure-headers": "^7.2",
+        "bepsvpt/secure-headers": "^9.0",
         "dedoc/scramble": "^0.13.0",
         "erag/laravel-disposable-email": "^5.2",
         "grafite/auth": "^1.0",
@@ -25,35 +25,36 @@
         "grafite/maintenance": "^0.7.0",
         "grafite/mission-control-laravel": "^3.4",
         "grafite/support": "^1.1",
-        "guzzlehttp/guzzle": "^7.2",
-        "hisorange/browser-detect": "^4.5",
-        "intervention/image": "^2.5",
-        "laravel/cashier": "^15.0",
+        "guzzlehttp/guzzle": "^7.8|^8.0",
+        "hisorange/browser-detect": "^5.0",
+        "intervention/image": "^4.0",
+        "laravel-notification-channels/webpush": "^13.0",
+        "laravel/ai": "^1.2",
+        "laravel/cashier": "^16.9",
         "laravel/framework": "^13.0",
         "laravel/helpers": "^1.1",
+        "laravel/mcp": "^1.0",
+        "laravel/passport": "^13.8",
         "laravel/sanctum": "^4.0",
         "laravel/socialite": "^5.24",
-        "lasserafn/php-initial-avatar-generator": "^4.0",
-        "livewire/livewire": "^3.0",
-        "pragmarx/google2fa-laravel": "^2.0",
+        "livewire/livewire": "^4.0",
+        "pragmarx/google2fa-laravel": "^3.0",
         "pragmarx/recovery": "^0.2.1",
         "pusher/pusher-php-server": "^7.2",
-        "shiftonelabs/laravel-sqs-fifo-queue": "^2.0",
+        "shiftonelabs/laravel-sqs-fifo-queue": "^3.0",
         "silviolleite/laravelpwa": "^2.0",
         "spatie/laravel-honeypot": "^4.0",
-        "symfony/http-client": "^7.4",
-        "tightenco/ziggy": "^1.0.4",
+        "symfony/http-client": "^8.0",
+        "tightenco/ziggy": "^2.0",
         "yorcreative/laravel-scrubber": "^3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^11.0",
         "fakerphp/faker": "^1.10",
-        "larastan/larastan": "^3.0",
         "laravel/dusk": "^8.0",
         "laravel/pint": "^1.10",
         "laravel/sail": "^1.14",
         "mockery/mockery": "^1.3",
-        "nunomaduro/phpinsights": "^2.13",
+        "phpunit/phpunit": "^13.0",
         "spatie/laravel-ignition": "^2.0"
     },
     "config": {
@@ -79,7 +80,8 @@
         },
         "files": [
             "app/Helpers/ActivityHelper.php",
-            "app/Helpers/NotificationHelper.php"
+            "app/Helpers/NotificationHelper.php",
+            "app/Helpers/BuildVersionHelper.php"
         ]
     },
     "autoload-dev": {
@@ -102,8 +104,7 @@
         ],
         "check-style": "vendor/bin/pint --test",
         "fix-style": "vendor/bin/pint",
-        "analyse": "vendor/bin/phpstan analyse",
-        "insights": "vendor/bin/phpinsights",
+        "analyse": "vendor/bin/phpcca analyse app --report-type json --report-file cognitive.json",
         "test": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover clover.xml && php coverage-checker.php clover.xml 50",
         "test-debug": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html test-html"
     }

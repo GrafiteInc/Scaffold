@@ -11,6 +11,7 @@ use App\Models\Concerns\HasPermissions;
 use App\Models\Concerns\HasRoles;
 use App\Models\Concerns\HasSubscription;
 use App\Models\Concerns\HasTeams;
+use App\Models\Concerns\HasThreads;
 use App\Models\Concerns\HasTwoFactor;
 use App\Notifications\ResetPassword;
 use App\View\Forms\UserForm;
@@ -24,6 +25,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -39,9 +41,11 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasForm;
     use HasJavascriptData;
     use HasPermissions;
+    use HasPushSubscriptions;
     use HasRoles;
     use HasSubscription;
     use HasTeams;
+    use HasThreads;
     use HasTwoFactor;
     use Notifiable;
 
@@ -53,6 +57,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'allow_email_based_notifications',
+        'allow_push_notifications',
         'email_verified_at',
         'billing_email',
         'stripe_id',
@@ -66,6 +71,15 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_expires_at',
         'two_factor_confirmed_at',
         'two_factor_recovery_codes',
+    ];
+
+    /**
+     * Mirrors column defaults so freshly created users behave like loaded ones.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'allow_push_notifications' => true,
     ];
 
     protected $hidden = [
@@ -82,6 +96,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'two_factor_expires_at' => 'datetime',
         'two_factor_confirmed_at' => 'datetime',
+        'allow_push_notifications' => 'boolean',
     ];
 
     public $appends = [

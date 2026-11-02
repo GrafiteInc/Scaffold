@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -51,6 +50,6 @@ class RecoveryController extends Controller
      */
     public function verified()
     {
-        return redirect(RouteServiceProvider::HOME)->withMessage('Two Factor reset.');
+        return redirect()->route('dashboard')->withMessage('Two Factor reset.');
     }
 }

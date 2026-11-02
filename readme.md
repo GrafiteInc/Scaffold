@@ -43,7 +43,87 @@ Scaffold is *intended* to be used to start a project and then be heavily altered
 
 ## Setup
 
-sail up
+### Local development (Sail)
+
+```
+cp .env.example .env    # then set DB_HOST=mysql, REDIS_HOST=valkey, MAIL_HOST=mailpit, MAIL_PORT=1025
+./vendor/bin/sail up -d
+./vendor/bin/sail artisan key:generate
+./vendor/bin/sail artisan migrate
+./vendor/bin/sail npm run dev
+```
+
+`compose.yaml` runs the app with MySQL, Valkey and Mailpit.
+
+### Production image
+
+The `Dockerfile` builds one image (PHP 8.4 on [serversideup/php](https://serversideup.net/open-source/docker-php/) fpm-nginx, with the Vite assets compiled in) that runs every part of the app: the web server by default, and `queue:work`, `schedule:work` or `migrate` when given that command. To try it locally the way production runs it:
+
+```
+docker compose -f compose.production.yaml up --build    # https://localhost:8443
+```
+
+Configuration comes only from environment variables (`.env` files are not copied into the image). The container filesystem is temporary, so production sends uploads to S3/Spaces (`FILESYSTEM_DISK=s3`), logs to stderr, and reads Passport keys from `PASSPORT_PRIVATE_KEY` / `PASSPORT_PUBLIC_KEY`.
+
+## Deploying to DigitalOcean App Platform
+
+After the Tests workflow passes on `main`, `.github/workflows/deploy.yml` builds the image, pushes it to DigitalOcean Container Registry, and deploys `.do/app.yaml`. You can also run the workflow by hand from the Actions tab. The app spec defines:
+
+- `web`: the HTTP service, health-checked at `/up`
+- `queue`: a `queue:work` worker
+- `scheduler`: a `schedule:work` worker. Keep it at one instance.
+- `migrate`: a pre-deploy job. A failed migration stops the deploy.
+- `db` and `cache`: managed MySQL and managed Valkey. Valkey handles cache, sessions, queues and scheduler locks.
+
+### One-time setup
+
+1. In DigitalOcean, create:
+   - a Container Registry
+   - a managed MySQL cluster, with a database and user for the app
+   - a managed Valkey cluster
+   - a Spaces bucket and a Spaces access key
+   - an API token with read/write access, for GitHub
+2. Generate the app and Passport keys locally. The Passport keys must be stored on a single line with `\n`:
+   ```
+   php artisan key:generate --show
+   php artisan passport:keys --force
+   awk '{printf "%s\\n", $0}' storage/oauth-private.key    # PASSPORT_PRIVATE_KEY
+   awk '{printf "%s\\n", $0}' storage/oauth-public.key     # PASSPORT_PUBLIC_KEY
+   ```
+3. In GitHub, go to Settings → Secrets and variables → Actions. You can add these to the `production` environment or to the repository.
+   - **Variables:**
+     - `DOCR_REGISTRY`, `DOCR_REPOSITORY`
+     - `DO_APP_NAME`, `DO_PROJECT_ID` (optional)
+     - `DO_MYSQL_CLUSTER`, `DO_MYSQL_DATABASE`, `DO_MYSQL_USER`, `DO_VALKEY_CLUSTER`
+     - `SPACES_REGION` (for example `tor1`), `SPACES_BUCKET`
+     - `MAIL_HOST`, `MAIL_PORT`, `MAIL_FROM_ADDRESS`
+     - `PUSHER_APP_ID`, `PUSHER_APP_KEY`, `PUSHER_APP_CLUSTER`
+     - `STRIPE_KEY`, `PLAN_MONTHLY`, `PLAN_YEARLY`
+     - `VAPID_SUBJECT`, `VAPID_PUBLIC_KEY`
+     - `MISSION_CONTROL_PROJECT_UUID`
+   - **Secrets:**
+     - `DIGITALOCEAN_ACCESS_TOKEN`
+     - `APP_KEY`, `PASSPORT_PRIVATE_KEY`, `PASSPORT_PUBLIC_KEY`
+     - `SPACES_ACCESS_KEY_ID`, `SPACES_SECRET_ACCESS_KEY`
+     - `MAIL_USERNAME`, `MAIL_PASSWORD`
+     - `PUSHER_APP_SECRET`
+     - `STRIPE_SECRET`, `STRIPE_WEBHOOK_SECRET`
+     - `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`
+     - `VAPID_PRIVATE_KEY`
+     - `MISSION_CONTROL_USER_TOKEN`, `MISSION_CONTROL_PROJECT_KEY`
+4. Push to `main`, or run the Deploy workflow by hand. The first run creates the app; later runs update it.
+5. To use a custom domain, uncomment `domains:` in `.do/app.yaml` and point a CNAME at the app's `ondigitalocean.app` address.
+
+Every deploy replaces the app's configuration with `.do/app.yaml`, so set secrets in GitHub, not in the DigitalOcean dashboard. A secret or variable that isn't set is sent as an empty value. To add a new setting, add it to `.do/app.yaml`, to the deploy step's `env:` in `deploy.yml`, and to GitHub.
+
+## Connecting Claude (MCP)
+
+The app ships with an MCP server for user accounts at `/mcp/users`, authorized with OAuth 2.1 via Laravel Passport.
+
+1. Run `php artisan migrate` and `php artisan passport:keys` once per environment (the keys are gitignored).
+2. In Claude, add a custom connector pointing at `https://{your-app}/mcp/users`. Claude registers itself, and you approve access on the app's authorize page.
+
+Add servers and tools in `routes/ai.php` and `app/Mcp/` (`php artisan make:mcp-server`, `php artisan make:mcp-tool`).
 
 ## Compatibility and Support
 

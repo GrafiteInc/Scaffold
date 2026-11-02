@@ -13,6 +13,7 @@ $color-mode-type: media-query;
 @import "app/avatar.scss";
 @import "app/primary_components.scss";
 @import "app/media_containers.scss";
+@import "app/chat.scss";
 @import "stripe.scss";
 
 $bmx-brand-primary: $primary !default;

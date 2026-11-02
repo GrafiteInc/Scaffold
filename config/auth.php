@@ -43,10 +43,11 @@ return [
             'remember' => '80640', // 8 weeks
         ],
 
+        // Passport-backed guard used by the MCP server (routes/ai.php). The REST API
+        // under routes/api.php keeps using Sanctum personal access tokens.
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
-            'hash' => true,
         ],
     ],
 

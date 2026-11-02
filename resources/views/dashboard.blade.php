@@ -75,7 +75,7 @@
                         'click' => 'window.app.pending()'
                     ]
                 ])
-                ->skin('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png')
+                // ->skin('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png')
                 ->center(43.981739, -80.735542)
                 ->marker(43.981739, -80.735542, 'This is my home')
                 ->render() !!}

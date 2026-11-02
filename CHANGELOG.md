@@ -3,6 +3,55 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v3.0.0] - 2026-11-02
+
+### Feat(deploy)
+- deploy to DigitalOcean App Platform with Docker
+
+### Refactor(routes)
+- replace debug dd() with explanatory comment
+
+### Refactor(auth)
+- declare controller middleware with HasMiddleware
+
+### Fix(chat)
+- wrap long thread titles and summaries in the sidebar
+
+### Docs
+- describe the Laravel 13 bootstrap layout and Livewire 4 in CLAUDE.md
+
+### Chore(deps)
+- upgrade Livewire to 4
+- upgrade Cashier to 16
+- upgrade Intervention Image to 4
+- upgrade sqs-fifo-queue to 3, Ziggy to 2, symfony/http-client to 8
+- upgrade browser-detect to 5
+- upgrade secure-headers to 9
+- upgrade bacon-qr-code to 3 and google2fa-laravel to 3
+- upgrade PHPUnit to 13
+- update packages within existing constraints
+
+### Chore(config)
+- sync config files with Laravel 13 defaults
+
+### Refactor
+- move to the Laravel 13 application skeleton
+
+### Feat(http)
+- enable stale database read prevention
+
+### Test(notifications)
+- set app name in web push payload test
+
+### Fix(register)
+- remove parentheses from DisposableEmailRule instantiation
+
+### Feature
+- AI chat thread
+- web push & caching
+- MCP integration system
+- adding a claude file
+
 ## [v2.23.0] - 2026-07-28
 
 ### Refactor

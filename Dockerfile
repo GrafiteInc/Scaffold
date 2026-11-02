@@ -1,22 +1,74 @@
-FROM composer:2.0 as build
-COPY . /app/
-RUN composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction
+# syntax=docker/dockerfile:1
 
-FROM php:8.1-apache-buster as production
+# One image runs every App Platform component (web, queue, scheduler, migrate job):
+# the web service uses the default command, the others override it (see .do/app.yaml).
+# https://serversideup.net/open-source/docker-php/docs
 
-ENV APP_ENV=production
-ENV APP_DEBUG=false
+ARG PHP_IMAGE=serversideup/php:8.4-fpm-nginx-v5.0.1
+ARG NODE_IMAGE=node:22-alpine
 
-RUN docker-php-ext-configure opcache --enable-opcache && \
-    docker-php-ext-install pdo pdo_mysql
-COPY docker/php/conf.d/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+############################################
+# Base: PHP + the extensions the app needs on top of the image defaults
+# (pdo_mysql, redis, zip, pcntl and opcache ship with it).
+############################################
+FROM ${PHP_IMAGE} AS base
 
-COPY --from=build /app /var/www/html
-COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY .env.prod /var/www/html/.env
+USER root
+# bcmath: moneyphp (Cashier), gd/exif: image handling, intl: number/locale formatting
+RUN install-php-extensions bcmath gd exif intl
+USER www-data
 
-RUN php artisan config:cache && \
-    php artisan route:cache && \
-    chmod 777 -R /var/www/html/storage/ && \
-    chown -R www-data:www-data /var/www/ && \
-    a2enmod rewrite
+############################################
+# Composer dependencies (throwaway stage, so it runs as root)
+############################################
+FROM base AS vendor
+
+USER root
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --no-interaction --no-progress
+
+COPY . .
+# Also runs package:discover, so bootstrap/cache only lists production packages.
+RUN composer dump-autoload --optimize --no-dev --no-interaction
+
+############################################
+# Frontend assets
+############################################
+FROM ${NODE_IMAGE} AS assets
+
+WORKDIR /app
+# puppeteer is a devDependency; the build never needs its Chrome download.
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+
+# VITE_* values are compiled into the JS bundle, so they are build args, not runtime env.
+ARG VITE_PUSHER_APP_KEY=""
+ARG VITE_PUSHER_APP_CLUSTER="mt1"
+ENV VITE_PUSHER_APP_KEY=${VITE_PUSHER_APP_KEY} \
+    VITE_PUSHER_APP_CLUSTER=${VITE_PUSHER_APP_CLUSTER}
+
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
+
+# PurgeCSS scans app/ and resources/views, so both have to be in the build context.
+COPY vite.config.js ./
+COPY resources ./resources
+COPY app ./app
+RUN npm run build
+
+############################################
+# Production
+############################################
+FROM base AS production
+
+ENV APP_ENV=production \
+    APP_DEBUG=false \
+    LOG_CHANNEL=stderr \
+    PHP_OPCACHE_ENABLE=1 \
+    AUTORUN_ENABLED=true \
+    AUTORUN_LARAVEL_MIGRATION=false
+
+COPY --chmod=755 docker/entrypoint.d/ /etc/entrypoint.d/
+COPY --from=vendor --chown=www-data:www-data /var/www/html /var/www/html
+COPY --from=assets --chown=www-data:www-data /app/public/build /var/www/html/public/build

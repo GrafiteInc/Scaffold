@@ -1,0 +1,103 @@
+# Smoke test the production image locally, the same way App Platform runs it:
+#   docker compose -f compose.production.yaml up --build
+# Then open https://localhost:8443 (self-signed certificate; the app forces https URLs).
+# APP_KEY is read from your .env. This is not for development, use compose.yaml (Sail) for that.
+
+x-app: &app
+    build:
+        context: .
+        target: production
+    image: scaffold:production
+    environment: &app-env
+        APP_KEY: '${APP_KEY:?Set APP_KEY in .env (php artisan key:generate)}'
+        APP_URL: 'https://localhost:8443'
+        DB_CONNECTION: mysql
+        DB_HOST: mysql
+        DB_PORT: 3306
+        DB_DATABASE: scaffold
+        DB_USERNAME: scaffold
+        DB_PASSWORD: secret
+        REDIS_HOST: valkey
+        CACHE_STORE: redis
+        SESSION_DRIVER: redis
+        QUEUE_CONNECTION: redis
+        MAIL_MAILER: log
+        SESSION_DOMAIN: localhost
+    depends_on:
+        mysql:
+            condition: service_healthy
+        valkey:
+            condition: service_healthy
+
+services:
+    migrate:
+        <<: *app
+        command: ['php', '/var/www/html/artisan', 'migrate', '--force']
+        environment:
+            <<: *app-env
+            AUTORUN_ENABLED: 'false'
+        restart: 'no'
+
+    web:
+        <<: *app
+        ports:
+            - '8443:8443'
+        environment:
+            <<: *app-env
+            SSL_MODE: full
+        depends_on:
+            migrate:
+                condition: service_completed_successfully
+
+    queue:
+        <<: *app
+        command: ['php', '/var/www/html/artisan', 'queue:work', '--tries=3', '--max-time=3600']
+        stop_signal: SIGTERM
+        environment:
+            <<: *app-env
+            AUTORUN_ENABLED: 'false'
+        healthcheck:
+            test: ['CMD', 'healthcheck-queue']
+            start_period: 10s
+        depends_on:
+            migrate:
+                condition: service_completed_successfully
+
+    scheduler:
+        <<: *app
+        command: ['php', '/var/www/html/artisan', 'schedule:work']
+        stop_signal: SIGTERM
+        environment:
+            <<: *app-env
+            AUTORUN_ENABLED: 'false'
+        healthcheck:
+            test: ['CMD', 'healthcheck-schedule']
+            start_period: 10s
+        depends_on:
+            migrate:
+                condition: service_completed_successfully
+
+    mysql:
+        image: 'mysql:8.4'
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_DATABASE: scaffold
+            MYSQL_USER: scaffold
+            MYSQL_PASSWORD: secret
+        volumes:
+            - 'production-mysql:/var/lib/mysql'
+        healthcheck:
+            test: ['CMD', 'mysqladmin', 'ping', '-psecret']
+            retries: 10
+            timeout: 5s
+
+    valkey:
+        image: 'valkey/valkey:8-alpine'
+        healthcheck:
+            test: ['CMD', 'valkey-cli', 'ping']
+            retries: 3
+            timeout: 5s
+
+volumes:
+    production-mysql:
+        driver: local
