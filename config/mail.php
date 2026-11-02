@@ -55,6 +55,10 @@ return [
             'transport' => 'postmark',
         ],
 
+        'resend' => [
+            'transport' => 'resend',
+        ],
+
         'sendmail' => [
             'transport' => 'sendmail',
             'path' => '/usr/sbin/sendmail -bs',
@@ -67,6 +71,24 @@ return [
 
         'array' => [
             'transport' => 'array',
+        ],
+
+        'failover' => [
+            'transport' => 'failover',
+            'mailers' => [
+                'smtp',
+                'log',
+            ],
+            'retry_after' => 60,
+        ],
+
+        'roundrobin' => [
+            'transport' => 'roundrobin',
+            'mailers' => [
+                'ses',
+                'postmark',
+            ],
+            'retry_after' => 60,
         ],
     ],
 
@@ -102,6 +124,10 @@ return [
 
         'paths' => [
             resource_path('views/vendor/mail'),
+        ],
+
+        'extensions' => [
+            // \League\CommonMark\Extension\Strikethrough\StrikethroughExtension::class,
         ],
     ],
 ];

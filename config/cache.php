@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'default' => env('CACHE_DRIVER', 'file'),
+    'default' => env('CACHE_STORE', env('CACHE_DRIVER', 'file')),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,6 +38,11 @@ return [
         'array' => [
             'driver' => 'array',
             'serialize' => false,
+        ],
+
+        'session' => [
+            'driver' => 'session',
+            'key' => env('SESSION_CACHE_KEY', '_cache'),
         ],
 
         'database' => [
@@ -82,6 +87,14 @@ return [
             'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
             'table' => env('DYNAMODB_CACHE_TABLE', 'cache'),
             'endpoint' => env('DYNAMODB_ENDPOINT'),
+        ],
+
+        'failover' => [
+            'driver' => 'failover',
+            'stores' => [
+                'database',
+                'array',
+            ],
         ],
     ],
 

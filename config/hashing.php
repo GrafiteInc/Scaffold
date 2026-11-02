@@ -29,6 +29,8 @@ return [
 
     'bcrypt' => [
         'rounds' => env('BCRYPT_ROUNDS', 10),
+        'verify' => env('HASH_VERIFY', true),
+        'limit' => env('BCRYPT_LIMIT', null),
     ],
 
     /*
@@ -46,5 +48,19 @@ return [
         'memory' => 1024,
         'threads' => 2,
         'time' => 2,
+        'verify' => env('HASH_VERIFY', true),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Automatically Rehash Passwords
+    |--------------------------------------------------------------------------
+    |
+    | When using Laravel's authentication features, user passwords will be
+    | automatically rehashed on login whenever the hashing algorithm or
+    | its work factor changes, keeping stored hashes up to date.
+    |
+    */
+
+    'rehash_on_login' => true,
 ];
