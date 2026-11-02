@@ -27,8 +27,8 @@
                         @php($last = $item->messages->first())
                         <div @class(['list-group-item', 'd-flex', 'gap-2', 'align-items-start', 'active' => $thread?->is($item)])>
                             <a class="flex-grow-1 text-decoration-none text-reset thread-list-link" href="{{ route('chat.show', $item->id) }}">
-                                <div class="fw-semibold text-truncate">{{ $item->title ?? 'Untitled chat' }}</div>
-                                <div class="small text-truncate opacity-75">
+                                <div class="fw-semibold">{{ $item->title ?? 'Untitled chat' }}</div>
+                                <div class="small opacity-75">
                                     {{ $item->summary ?? \Illuminate\Support\Str::limit($last?->content, 140) }}
                                 </div>
                                 <div class="small opacity-50">{{ $item->last_message_at?->diffForHumans() }}</div>
