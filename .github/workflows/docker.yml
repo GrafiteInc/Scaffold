@@ -1,0 +1,48 @@
+name: Docker
+
+# Builds the production image without pushing it, so Dockerfile or asset build
+# problems show up on the PR instead of during a deploy.
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+
+    - uses: docker/setup-buildx-action@v4
+
+    - name: Build production image
+      uses: docker/build-push-action@v7
+      with:
+        context: .
+        target: production
+        platforms: linux/amd64
+        push: false
+        load: true
+        tags: scaffold:ci
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    # Boots the web container (including the Laravel automations) and hits /up,
+    # which needs no database.
+    - name: Smoke test
+      run: |
+        docker run -d --name scaffold -p 8080:8080 \
+          -e APP_KEY="base64:$(openssl rand -base64 32)" \
+          -e APP_URL=http://localhost:8080 \
+          scaffold:ci
+        for i in $(seq 1 30); do
+          if curl -fsS http://localhost:8080/up > /dev/null; then
+            echo "App is up"
+            exit 0
+          fi
+          sleep 2
+        done
+        docker logs scaffold
+        exit 1

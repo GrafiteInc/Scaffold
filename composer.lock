@@ -2407,32 +2407,32 @@
         },
         {
             "name": "grafite/mission-control",
-            "version": "v3.4.0",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Mission-Control-Package.git",
-                "reference": "eb81da8c8656852032c72bfec7396d1f287cfd86"
+                "reference": "09171e8bae26cfa9aaf69dcaa3e8a076819700d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Mission-Control-Package/zipball/eb81da8c8656852032c72bfec7396d1f287cfd86",
-                "reference": "eb81da8c8656852032c72bfec7396d1f287cfd86",
+                "url": "https://api.github.com/repos/GrafiteInc/Mission-Control-Package/zipball/09171e8bae26cfa9aaf69dcaa3e8a076819700d8",
+                "reference": "09171e8bae26cfa9aaf69dcaa3e8a076819700d8",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/guzzle": "^7.5",
-                "illuminate/collections": "^11.0|^12.0|^13.0",
-                "illuminate/support": "^11.0|^12.0|^13.0",
+                "guzzlehttp/guzzle": "^7.5|^8.0",
+                "illuminate/collections": "^12.0|^13.0",
+                "illuminate/support": "^12.0|^13.0",
                 "kassner/log-parser": "^1.5",
-                "nesbot/carbon": "^1.25|^2.72.6|3.x",
-                "php": ">=8.2"
+                "nesbot/carbon": "^2.72.6|3.x",
+                "php": ">=8.3"
             },
             "require-dev": {
                 "fakerphp/faker": "^1.10",
                 "mikey179/vfsstream": "^1.6",
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^9.0|^10.0|^11.0",
-                "phpunit/phpunit": "^10.0"
+                "orchestra/testbench": "^9.0|^10.0",
+                "phpunit/phpunit": "^11.0"
             },
             "bin": [
                 "bin/performance",
@@ -2457,22 +2457,22 @@
             "description": "The PHP agnostic package for Mission Control (Grafite Inc)",
             "support": {
                 "issues": "https://github.com/GrafiteInc/Mission-Control-Package/issues",
-                "source": "https://github.com/GrafiteInc/Mission-Control-Package/tree/v3.4.0"
+                "source": "https://github.com/GrafiteInc/Mission-Control-Package/tree/v3.5.0"
             },
-            "time": "2026-04-07T18:06:52+00:00"
+            "time": "2026-11-02T15:04:37+00:00"
         },
         {
             "name": "grafite/mission-control-laravel",
-            "version": "v3.12.0",
+            "version": "v3.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrafiteInc/Mission-Control-Laravel-Package.git",
-                "reference": "97fa64aed6c7bed04c960e141576c034a05b9811"
+                "reference": "ee335f47cfc03fed42e04c527d1f18a1d05e2703"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrafiteInc/Mission-Control-Laravel-Package/zipball/97fa64aed6c7bed04c960e141576c034a05b9811",
-                "reference": "97fa64aed6c7bed04c960e141576c034a05b9811",
+                "url": "https://api.github.com/repos/GrafiteInc/Mission-Control-Laravel-Package/zipball/ee335f47cfc03fed42e04c527d1f18a1d05e2703",
+                "reference": "ee335f47cfc03fed42e04c527d1f18a1d05e2703",
                 "shasum": ""
             },
             "require": {
@@ -2520,9 +2520,9 @@
             "description": "The Laravel package for Mission Control (Grafite Inc)",
             "support": {
                 "issues": "https://github.com/GrafiteInc/Mission-Control-Laravel-Package/issues",
-                "source": "https://github.com/GrafiteInc/Mission-Control-Laravel-Package/tree/v3.12.0"
+                "source": "https://github.com/GrafiteInc/Mission-Control-Laravel-Package/tree/v3.13.0"
             },
-            "time": "2026-10-30T14:34:57+00:00"
+            "time": "2026-11-02T16:09:43+00:00"
         },
         {
             "name": "grafite/support",

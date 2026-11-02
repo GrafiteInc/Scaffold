@@ -50,12 +50,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo(fn () => route('login'));
         $middleware->redirectUsersTo(fn () => route('dashboard'));
 
-        // Behind a load balancer (e.g. AWS ELB), trust its forwarded headers:
-        // $middleware->trustProxies(at: '*', headers: Request::HEADER_X_FORWARDED_FOR |
-        //     Request::HEADER_X_FORWARDED_HOST |
-        //     Request::HEADER_X_FORWARDED_PORT |
-        //     Request::HEADER_X_FORWARDED_PROTO |
-        //     Request::HEADER_X_FORWARDED_AWS_ELB);
+        // TLS ends at the load balancer (App Platform, ELB, ...), so trust its forwarded
+        // headers for the client IP and https detection. Only safe while the app is
+        // reachable solely through that proxy.
+        $middleware->trustProxies(at: '*');
         // $middleware->trustHosts();
 
         $middleware->alias([

@@ -38,8 +38,34 @@ npm run fix-style     # ESLint --fix
 ```
 
 ### Environment
-`sail up` is the documented way to run the app locally (README). CI (`.github/workflows/`)
-runs on PHP 8.4 against `.env.example`, so keep that file's keys in sync with any new config.
+`sail up` (`compose.yaml`: MySQL, Valkey, Mailpit) is the documented way to run the app
+locally (README). CI (`.github/workflows/`) runs on PHP 8.4 against `.env.example`, so keep
+that file's keys in sync with any new config.
+
+### Deployment (Docker → DigitalOcean App Platform)
+- **One image for everything.** The `Dockerfile` (`serversideup/php` fpm-nginx, port 8080,
+  non-root) builds the `production` target. App Platform runs it as:
+  - the `web` service
+  - the `queue` and `scheduler` workers, via `run_command`
+  - the PRE_DEPLOY `migrate` job
+- **Startup and migrations.** At boot the web container caches config, routes, views and
+  events (`AUTORUN_*`). It never migrates: the `migrate` job does that. Anything that breaks
+  `php artisan optimize`, such as an uncacheable route, breaks the deploy.
+- **Temporary filesystem.**
+  - Uploads must go through the default disk, which is Spaces (`FILESYSTEM_DISK=s3`).
+  - Logs go to stderr.
+  - Passport keys come from `PASSPORT_PRIVATE_KEY` / `PASSPORT_PUBLIC_KEY`.
+  - Cache, sessions and queue use Valkey.
+  - `docker/entrypoint.d/20-mysql-ca.sh` writes the managed MySQL CA from `DB_CA_CERT`.
+- **The deploy pipeline.** `.github/workflows/deploy.yml` runs after Tests pass on `main`. It
+  builds and pushes to DOCR, then deploys `.do/app.yaml` with `digitalocean/app_action`,
+  which substitutes `${VARS}` from the workflow env. `docker.yml` builds and smoke-tests the
+  image on PRs.
+- **Adding a setting.** Put it in `.do/app.yaml` and in the deploy step's `env:` in
+  `deploy.yml`, then add the GitHub secret or variable and the `.env.example` key. A deploy
+  overwrites anything set only in the DO dashboard.
+- **`VITE_*` values** are compiled into the JS, so they are Docker build args, not runtime env.
+- `compose.production.yaml` runs the production image locally for a smoke test.
 
 ## Architecture
 

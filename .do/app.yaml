@@ -1,0 +1,250 @@
+# DigitalOcean App Platform spec, deployed by .github/workflows/deploy.yml.
+# https://docs.digitalocean.com/products/app-platform/reference/app-spec/
+#
+# `${NAME}` values are filled in by digitalocean/app_action from the workflow's env
+# (GitHub secrets and variables). `${db.*}`, `${cache.*}`, `${APP_URL}` and
+# `${APP_DOMAIN}` are App Platform bindables and are left for DigitalOcean to resolve.
+# Every deploy replaces the app's config with this file, so set secrets in GitHub,
+# not in the DigitalOcean dashboard.
+
+name: ${DO_APP_NAME}
+region: tor
+
+# Uncomment once DNS points at the app (CNAME to the app's ondigitalocean.app domain).
+# domains:
+#   - domain: app.example.com
+#     type: PRIMARY
+
+alerts:
+  - rule: DEPLOYMENT_FAILED
+  - rule: DOMAIN_FAILED
+
+ingress:
+  rules:
+    - component:
+        name: web
+      match:
+        path:
+          prefix: /
+
+services:
+  - name: web
+    image:
+      registry_type: DOCR
+      repository: ${DOCR_REPOSITORY}
+      digest: ${IMAGE_DIGEST}
+    http_port: 8080
+    instance_size_slug: apps-s-1vcpu-1gb
+    instance_count: 1
+    health_check:
+      http_path: /up
+      initial_delay_seconds: 10
+      period_seconds: 10
+      timeout_seconds: 3
+      failure_threshold: 6
+
+workers:
+  - name: queue
+    image:
+      registry_type: DOCR
+      repository: ${DOCR_REPOSITORY}
+      digest: ${IMAGE_DIGEST}
+    run_command: php /var/www/html/artisan queue:work --tries=3 --max-time=3600
+    instance_size_slug: apps-s-1vcpu-0.5gb
+    instance_count: 1
+    envs:
+      - key: AUTORUN_ENABLED
+        value: "false"
+
+  # Exactly one instance: the schedule runs here and nowhere else.
+  - name: scheduler
+    image:
+      registry_type: DOCR
+      repository: ${DOCR_REPOSITORY}
+      digest: ${IMAGE_DIGEST}
+    run_command: php /var/www/html/artisan schedule:work
+    instance_size_slug: apps-s-1vcpu-0.5gb
+    instance_count: 1
+    envs:
+      - key: AUTORUN_ENABLED
+        value: "false"
+
+jobs:
+  # Runs before the new version takes traffic; a failed migration fails the deploy.
+  - name: migrate
+    kind: PRE_DEPLOY
+    image:
+      registry_type: DOCR
+      repository: ${DOCR_REPOSITORY}
+      digest: ${IMAGE_DIGEST}
+    run_command: php /var/www/html/artisan migrate --force
+    instance_size_slug: apps-s-1vcpu-0.5gb
+    instance_count: 1
+    envs:
+      - key: AUTORUN_ENABLED
+        value: "false"
+
+# Managed clusters, created once in DigitalOcean (App Platform dev databases are Postgres only).
+databases:
+  - name: db
+    engine: MYSQL
+    production: true
+    cluster_name: ${DO_MYSQL_CLUSTER}
+    db_name: ${DO_MYSQL_DATABASE}
+    db_user: ${DO_MYSQL_USER}
+  - name: cache
+    engine: VALKEY
+    production: true
+    cluster_name: ${DO_VALKEY_CLUSTER}
+
+# App-wide: every component above gets these.
+envs:
+  - key: APP_NAME
+    value: "Grafite Scaffold"
+  - key: APP_ENV
+    value: production
+  - key: APP_DEBUG
+    value: "false"
+  - key: APP_URL
+    value: ${APP_URL}
+  - key: APP_KEY
+    type: SECRET
+    value: "${APP_KEY}"
+  - key: REGISTRATION
+    value: "true"
+
+  - key: LOG_CHANNEL
+    value: stderr
+  - key: LOG_LEVEL
+    value: info
+
+  # Database (managed MySQL requires TLS; docker/entrypoint.d/20-mysql-ca.sh writes the CA file)
+  - key: DB_CONNECTION
+    value: mysql
+  - key: DB_HOST
+    value: ${db.HOSTNAME}
+  - key: DB_PORT
+    value: ${db.PORT}
+  - key: DB_DATABASE
+    value: ${db.DATABASE}
+  - key: DB_USERNAME
+    value: ${db.USERNAME}
+  - key: DB_PASSWORD
+    type: SECRET
+    value: ${db.PASSWORD}
+  - key: DB_CA_CERT
+    value: ${db.CA_CERT}
+  - key: MYSQL_ATTR_SSL_CA
+    value: /tmp/mysql-ca.pem
+
+  # Valkey backs cache, sessions, queues and scheduler locks, shared by every instance.
+  - key: REDIS_URL
+    type: SECRET
+    value: ${cache.DATABASE_URL}
+  - key: CACHE_STORE
+    value: redis
+  - key: SESSION_DRIVER
+    value: redis
+  - key: QUEUE_CONNECTION
+    value: redis
+  - key: SESSION_SECURE_COOKIE
+    value: "true"
+  - key: SANCTUM_STATEFUL_DOMAINS
+    value: ${APP_DOMAIN}
+
+  # Files: the container filesystem is wiped on every deploy, so uploads go to Spaces.
+  - key: FILESYSTEM_DISK
+    value: s3
+  - key: AWS_DEFAULT_REGION
+    value: ${SPACES_REGION}
+  - key: AWS_BUCKET
+    value: ${SPACES_BUCKET}
+  - key: AWS_ENDPOINT
+    value: https://${SPACES_REGION}.digitaloceanspaces.com
+  # With the Spaces CDN enabled, use https://${SPACES_BUCKET}.${SPACES_REGION}.cdn.digitaloceanspaces.com
+  - key: AWS_URL
+    value: https://${SPACES_BUCKET}.${SPACES_REGION}.digitaloceanspaces.com
+  - key: AWS_ACCESS_KEY_ID
+    type: SECRET
+    value: "${SPACES_ACCESS_KEY_ID}"
+  - key: AWS_SECRET_ACCESS_KEY
+    type: SECRET
+    value: "${SPACES_SECRET_ACCESS_KEY}"
+
+  # Passport (MCP OAuth) keys: stored in GitHub as single lines with literal \n.
+  - key: PASSPORT_PRIVATE_KEY
+    type: SECRET
+    value: "${PASSPORT_PRIVATE_KEY}"
+  - key: PASSPORT_PUBLIC_KEY
+    type: SECRET
+    value: "${PASSPORT_PUBLIC_KEY}"
+
+  - key: MAIL_MAILER
+    value: smtp
+  - key: MAIL_HOST
+    value: ${MAIL_HOST}
+  - key: MAIL_PORT
+    value: "${MAIL_PORT}"
+  - key: MAIL_ENCRYPTION
+    value: tls
+  - key: MAIL_FROM_ADDRESS
+    value: ${MAIL_FROM_ADDRESS}
+  - key: MAIL_FROM_NAME
+    value: "Grafite Scaffold"
+  - key: MAIL_USERNAME
+    type: SECRET
+    value: "${MAIL_USERNAME}"
+  - key: MAIL_PASSWORD
+    type: SECRET
+    value: "${MAIL_PASSWORD}"
+
+  - key: BROADCAST_DRIVER
+    value: pusher
+  - key: PUSHER_APP_ID
+    value: "${PUSHER_APP_ID}"
+  - key: PUSHER_APP_KEY
+    value: "${PUSHER_APP_KEY}"
+  - key: PUSHER_APP_CLUSTER
+    value: "${PUSHER_APP_CLUSTER}"
+  - key: PUSHER_APP_SECRET
+    type: SECRET
+    value: "${PUSHER_APP_SECRET}"
+
+  - key: STRIPE_KEY
+    value: "${STRIPE_KEY}"
+  - key: STRIPE_SECRET
+    type: SECRET
+    value: "${STRIPE_SECRET}"
+  - key: STRIPE_WEBHOOK_SECRET
+    type: SECRET
+    value: "${STRIPE_WEBHOOK_SECRET}"
+  - key: CASHIER_PAYMENT_NOTIFICATION
+    value: Laravel\Cashier\Notifications\ConfirmPayment
+  - key: PLAN_MONTHLY
+    value: "${PLAN_MONTHLY}"
+  - key: PLAN_YEARLY
+    value: "${PLAN_YEARLY}"
+
+  - key: ANTHROPIC_API_KEY
+    type: SECRET
+    value: "${ANTHROPIC_API_KEY}"
+  - key: OPENAI_API_KEY
+    type: SECRET
+    value: "${OPENAI_API_KEY}"
+
+  - key: VAPID_SUBJECT
+    value: "${VAPID_SUBJECT}"
+  - key: VAPID_PUBLIC_KEY
+    value: "${VAPID_PUBLIC_KEY}"
+  - key: VAPID_PRIVATE_KEY
+    type: SECRET
+    value: "${VAPID_PRIVATE_KEY}"
+
+  - key: MISSION_CONTROL_USER_TOKEN
+    type: SECRET
+    value: "${MISSION_CONTROL_USER_TOKEN}"
+  - key: MISSION_CONTROL_PROJECT_KEY
+    type: SECRET
+    value: "${MISSION_CONTROL_PROJECT_KEY}"
+  - key: MISSION_CONTROL_PROJECT_UUID
+    value: "${MISSION_CONTROL_PROJECT_UUID}"
