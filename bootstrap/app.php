@@ -1,60 +1,80 @@
 <?php
 
-use App\Exceptions\Handler;
-use App\Http\Kernel;
-use Illuminate\Contracts\Debug\ExceptionHandler;
+use App\Http\Middleware\Activity;
+use App\Http\Middleware\Admin;
+use App\Http\Middleware\Permissions;
+use App\Http\Middleware\Roles;
+use App\Http\Middleware\TwoFactor;
+use Bepsvpt\SecureHeaders\SecureHeadersMiddleware;
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Foundation\Http\Middleware\PreventStaleDatabaseReads;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-/*
-|--------------------------------------------------------------------------
-| Create The Application
-|--------------------------------------------------------------------------
-|
-| The first thing we will do is create a new Laravel application instance
-| which serves as the "glue" for all the components of Laravel, and is
-| the IoC container for the system binding all of the various parts.
-|
-*/
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        web: [
+            __DIR__.'/../routes/public_facing.php',
+            __DIR__.'/../routes/web.php',
+        ],
+        api: __DIR__.'/../routes/api.php',
+        commands: __DIR__.'/../routes/console.php',
+        channels: __DIR__.'/../routes/channels.php',
+        health: '/up',
+        then: function () {
+            // Served without the web group so the service worker never gets a session cookie.
+            Route::group([], base_path('routes/scripts.php'));
+        },
+    )
+    ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->append(SecureHeadersMiddleware::class);
 
-$app = new Application(
-    $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
-);
+        $middleware->authenticateSessions();
+        $middleware->appendToGroup('web', PreventStaleDatabaseReads::class);
 
-/*
-|--------------------------------------------------------------------------
-| Bind Important Interfaces
-|--------------------------------------------------------------------------
-|
-| Next, we need to bind some important interfaces into the container so
-| we will be able to resolve them when needed. The kernels serve the
-| incoming requests to this application from both the web and CLI.
-|
-*/
+        $middleware->statefulApi();
+        $middleware->throttleApi('60,1');
 
-$app->singleton(
-    Illuminate\Contracts\Http\Kernel::class,
-    Kernel::class
-);
+        $middleware->trimStrings(except: [
+            'password',
+            'password_confirmation',
+        ]);
 
-$app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
-);
+        $middleware->preventRequestForgery(except: [
+            'stripe/*',
+        ]);
 
-$app->singleton(
-    ExceptionHandler::class,
-    Handler::class
-);
+        $middleware->redirectGuestsTo(fn () => route('login'));
+        $middleware->redirectUsersTo(fn () => route('dashboard'));
 
-/*
-|--------------------------------------------------------------------------
-| Return The Application
-|--------------------------------------------------------------------------
-|
-| This script returns the application instance. The instance is given to
-| the calling script so we can separate the building of the instances
-| from the actual running of the application and sending responses.
-|
-*/
+        // Behind a load balancer (e.g. AWS ELB), trust its forwarded headers:
+        // $middleware->trustProxies(at: '*', headers: Request::HEADER_X_FORWARDED_FOR |
+        //     Request::HEADER_X_FORWARDED_HOST |
+        //     Request::HEADER_X_FORWARDED_PORT |
+        //     Request::HEADER_X_FORWARDED_PROTO |
+        //     Request::HEADER_X_FORWARDED_AWS_ELB);
+        // $middleware->trustHosts();
 
-return $app;
+        $middleware->alias([
+            'two-factor' => TwoFactor::class,
+            'admin' => Admin::class,
+            'activity' => Activity::class,
+            'permissions' => Permissions::class,
+            'roles' => Roles::class,
+        ]);
+    })
+    ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->shouldRenderJsonWhen(
+            fn (Request $request) => $request->is('api/*', 'ajax/*') || $request->expectsJson()
+        );
+
+        $exceptions->render(function (NotFoundHttpException $e, Request $request) {
+            if ($request->is('api/*', 'ajax/*')) {
+                return response()->json(['message' => 'Page not found'], 404);
+            }
+        });
+    })
+    ->create();

@@ -6,7 +6,6 @@ use App\Http\Controllers\Auth\Concerns\RegisterViaInvites;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use EragLaravelDisposableEmail\Rules\DisposableEmailRule;
 use Grafite\Auth\Foundation\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -33,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
