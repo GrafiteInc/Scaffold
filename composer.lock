@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7dd5c145f8005988f888f6dd73f32eba",
+    "content-hash": "a26404cdf7e2ac88e89576752e8ff54a",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -159,28 +159,29 @@
         },
         {
             "name": "bacon/bacon-qr-code",
-            "version": "2.0.8",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Bacon/BaconQrCode.git",
-                "reference": "8674e51bb65af933a5ffaf1c308a660387c35c22"
+                "reference": "4da2233e72eeecd9be3b62e0dc2cc9ed8e2e31c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/8674e51bb65af933a5ffaf1c308a660387c35c22",
-                "reference": "8674e51bb65af933a5ffaf1c308a660387c35c22",
+                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/4da2233e72eeecd9be3b62e0dc2cc9ed8e2e31c2",
+                "reference": "4da2233e72eeecd9be3b62e0dc2cc9ed8e2e31c2",
                 "shasum": ""
             },
             "require": {
                 "dasprid/enum": "^1.0.3",
                 "ext-iconv": "*",
-                "php": "^7.1 || ^8.0"
+                "php": "^8.1"
             },
             "require-dev": {
-                "phly/keep-a-changelog": "^2.1",
-                "phpunit/phpunit": "^7 | ^8 | ^9",
-                "spatie/phpunit-snapshot-assertions": "^4.2.9",
-                "squizlabs/php_codesniffer": "^3.4"
+                "phly/keep-a-changelog": "^2.12",
+                "phpunit/phpunit": "^10.5.11 || ^11.0.4",
+                "spatie/phpunit-snapshot-assertions": "^5.1.5",
+                "spatie/pixelmatch-php": "^1.2.0",
+                "squizlabs/php_codesniffer": "^3.9"
             },
             "suggest": {
                 "ext-imagick": "to generate QR code images"
@@ -207,9 +208,9 @@
             "homepage": "https://github.com/Bacon/BaconQrCode",
             "support": {
                 "issues": "https://github.com/Bacon/BaconQrCode/issues",
-                "source": "https://github.com/Bacon/BaconQrCode/tree/2.0.8"
+                "source": "https://github.com/Bacon/BaconQrCode/tree/v3.1.1"
             },
-            "time": "2022-12-07T17:46:57+00:00"
+            "time": "2026-04-05T21:06:35+00:00"
         },
         {
             "name": "badges/poser",
@@ -7906,27 +7907,27 @@
         },
         {
             "name": "pragmarx/google2fa-laravel",
-            "version": "v2.0.2",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/antonioribeiro/google2fa-laravel.git",
-                "reference": "d8243b8f812472f1112716c5462157e0ec128fce"
+                "reference": "d885bb5bca8be03b226d040aa80250402760a67c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/antonioribeiro/google2fa-laravel/zipball/d8243b8f812472f1112716c5462157e0ec128fce",
-                "reference": "d8243b8f812472f1112716c5462157e0ec128fce",
+                "url": "https://api.github.com/repos/antonioribeiro/google2fa-laravel/zipball/d885bb5bca8be03b226d040aa80250402760a67c",
+                "reference": "d885bb5bca8be03b226d040aa80250402760a67c",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": ">=5.4.36|^8.0|^9.0",
+                "laravel/framework": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
                 "php": ">=7.0",
                 "pragmarx/google2fa-qrcode": "^1.0|^2.0|^3.0"
             },
             "require-dev": {
                 "bacon/bacon-qr-code": "^2.0",
-                "orchestra/testbench": "3.4.*|3.5.*|3.6.*|3.7.*|4.*|5.*|6.*",
-                "phpunit/phpunit": "~5|~6|~7|~8|~9"
+                "orchestra/testbench": "3.4.*|3.5.*|3.6.*|3.7.*|4.*|5.*|6.*|7.*|8.*|9.*|10.*|11.*",
+                "phpunit/phpunit": "~5|~6|~7|~8|~9|~10|~11|~12"
             },
             "suggest": {
                 "bacon/bacon-qr-code": "Required to generate inline QR Codes.",
@@ -7976,9 +7977,9 @@
             ],
             "support": {
                 "issues": "https://github.com/antonioribeiro/google2fa-laravel/issues",
-                "source": "https://github.com/antonioribeiro/google2fa-laravel/tree/v2.0.2"
+                "source": "https://github.com/antonioribeiro/google2fa-laravel/tree/v3.0.1"
             },
-            "time": "2022-03-08T18:03:04+00:00"
+            "time": "2026-03-17T20:54:53+00:00"
         },
         {
             "name": "pragmarx/google2fa-qrcode",
