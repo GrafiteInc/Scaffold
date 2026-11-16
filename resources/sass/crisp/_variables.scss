@@ -1,0 +1,281 @@
+// Crisp: a Tailwind-style theme on Bootstrap 5.3.
+//
+// Tailwind-style tokens: a zinc gray scale, a light page under white cards,
+// 1px borders, soft shadows, focus rings and Inter. Loaded before
+// bootstrap/scss/bootstrap, so only plain Sass works here (no tint-color()
+// or shade-color() yet, so use mix()). mix() and map-remove() print Sass
+// deprecation warnings, as Bootstrap's own code does.
+//
+// Runtime colours that must flip with the colour scheme (input borders,
+// accent tints, the page background) are CSS variables set in
+// scheme.scss and referenced here as var(--app-*).
+
+//
+// Color system
+//
+
+// Tailwind zinc
+$white:    #fff !default;
+$gray-50:  #fafafa !default;
+$gray-100: #f4f4f5 !default;
+$gray-200: #e4e4e7 !default;
+$gray-300: #d4d4d8 !default;
+$gray-400: #a1a1aa !default;
+$gray-500: #71717a !default;
+$gray-600: #52525b !default;
+$gray-700: #3f3f46 !default;
+$gray-800: #27272a !default;
+$gray-900: #18181b !default;
+$gray-950: #09090b !default;
+$black:    #000 !default;
+
+// Tailwind 600s
+$blue:    #2563eb !default;
+$indigo:  #4f46e5 !default;
+$purple:  #7c3aed !default;
+$pink:    #db2777 !default;
+$red:     #dc2626 !default;
+$orange:  #ea580c !default;
+$yellow:  #f59e0b !default;
+$green:   #16a34a !default;
+$teal:    #0d9488 !default;
+$cyan:    #0284c7 !default;
+
+// Theme colours. Success and info use the 700 shades so white text on a
+// solid button stays above 4.5:1; warning keeps dark text.
+$primary:       $indigo !default;
+$secondary:     $gray-500 !default;
+$success:       #15803d !default;
+$info:          #0369a1 !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+$min-contrast-ratio:   4.5 !default;
+$color-contrast-dark:  $gray-900 !default;
+
+// The soft "subtle" shades behind alerts, list-group variants, the soft
+// badges and status tiles: a Tailwind 50 background, 200 border and 700-800
+// text, instead of Bootstrap's very dark 60% shade. (mix() because
+// tint-color() isn't defined yet.) Dark-mode shades stay Bootstrap's.
+$primary-text-emphasis:   mix($black, $primary, 30%) !default;
+$secondary-text-emphasis: $gray-700 !default;
+$success-text-emphasis:   mix($black, $success, 20%) !default;
+$info-text-emphasis:      mix($black, $info, 20%) !default;
+$warning-text-emphasis:   mix($black, $warning, 55%) !default;
+$danger-text-emphasis:    mix($black, $danger, 30%) !default;
+
+$primary-bg-subtle:       mix($white, $primary, 92%) !default;
+$secondary-bg-subtle:     $gray-100 !default;
+$success-bg-subtle:       mix($white, $success, 92%) !default;
+$info-bg-subtle:          mix($white, $info, 92%) !default;
+$warning-bg-subtle:       mix($white, $warning, 88%) !default;
+$danger-bg-subtle:        mix($white, $danger, 92%) !default;
+
+$primary-border-subtle:   mix($white, $primary, 70%) !default;
+$secondary-border-subtle: $gray-200 !default;
+$success-border-subtle:   mix($white, $success, 70%) !default;
+$info-border-subtle:      mix($white, $info, 70%) !default;
+$warning-border-subtle:   mix($white, $warning, 60%) !default;
+$danger-border-subtle:    mix($white, $danger, 70%) !default;
+
+//
+// Body, links, borders
+//
+
+$body-bg:                   $white !default;
+$body-color:                $gray-900 !default;
+$body-emphasis-color:       $gray-950 !default;
+
+$link-color:                $primary !default;
+$link-shade-percentage:     20% !default;
+
+$border-color:              $gray-200 !default;
+$border-color-translucent:  rgba($black, .1) !default;
+
+$border-radius:             .5rem !default;
+$border-radius-sm:          .375rem !default;
+$border-radius-lg:          .75rem !default;
+$border-radius-xl:          1rem !default;
+
+$box-shadow-sm:             0 1px 2px 0 rgba($black, .05) !default;
+$box-shadow:                0 1px 3px 0 rgba($black, .1), 0 1px 2px -1px rgba($black, .1) !default;
+$box-shadow-lg:             0 10px 15px -3px rgba($black, .1), 0 4px 6px -4px rgba($black, .1) !default;
+
+$component-active-bg:       $primary !default;
+
+$focus-ring-width:          3px !default;
+$focus-ring-opacity:        .2 !default;
+$input-btn-focus-color-opacity: .2 !default;
+
+//
+// Dark mode (Bootstrap's own media-query variables)
+//
+
+$body-color-dark:               $gray-300 !default;
+$body-bg-dark:                  $gray-900 !default;
+$body-emphasis-color-dark:      $white !default;
+$body-secondary-color-dark:     $gray-400 !default;
+$body-secondary-bg-dark:        $gray-800 !default;
+$body-tertiary-color-dark:      $gray-500 !default;
+$body-tertiary-bg-dark:         #1f1f23 !default;
+$border-color-dark:             #2e2e33 !default;
+$border-color-translucent-dark: rgba($white, .1) !default;
+
+//
+// Typography
+//
+
+// stylelint-disable value-keyword-case
+$font-family-sans-serif:      "Inter Variable", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-monospace:       "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+// stylelint-enable value-keyword-case
+
+$font-size-base:              .9375rem !default;
+$font-size-sm:                .8125rem !default;
+$font-size-lg:                1.0625rem !default;
+
+$h1-font-size:                2.25rem !default;
+$h2-font-size:                1.875rem !default;
+$h3-font-size:                1.5rem !default;
+$h4-font-size:                1.25rem !default;
+$h5-font-size:                1.0625rem !default;
+$h6-font-size:                .9375rem !default;
+
+$headings-font-weight:        600 !default;
+$headings-line-height:        1.25 !default;
+$lead-font-weight:            400 !default;
+
+//
+// Buttons and inputs
+//
+
+$input-btn-padding-y:         .4375rem !default;
+$input-btn-padding-x:         .875rem !default;
+$input-btn-padding-y-sm:      .3125rem !default;
+$input-btn-padding-x-sm:      .625rem !default;
+$input-btn-font-size-sm:      $font-size-sm !default;
+
+$btn-font-weight:             500 !default;
+$btn-border-radius-sm:        $border-radius-sm !default;
+
+$input-border-color:          var(--app-input-border) !default;
+$input-placeholder-color:     $gray-400 !default;
+$input-focus-border-color:    mix($white, $primary, 20%) !default;
+$form-check-input-border:     1px solid var(--app-input-border) !default;
+
+$form-label-font-size:        .875rem !default;
+$form-label-font-weight:      500 !default;
+$form-text-font-size:         .8125rem !default;
+$form-feedback-font-size:     .8125rem !default;
+
+//
+// Navs
+//
+
+$nav-link-padding-y:                .4375rem !default;
+$nav-link-padding-x:                .875rem !default;
+$nav-link-font-weight:              500 !default;
+$nav-link-color:                    var(--bs-secondary-color) !default;
+$nav-link-hover-color:              var(--bs-emphasis-color) !default;
+$nav-link-disabled-color:           $gray-400 !default;
+$nav-pills-link-active-color:       var(--app-accent-ink) !default;
+$nav-pills-link-active-bg:          var(--app-accent-soft) !default;
+
+//
+// Dropdowns
+//
+
+$dropdown-font-size:                .875rem !default;
+$dropdown-padding-x:                .25rem !default;
+$dropdown-padding-y:                .25rem !default;
+$dropdown-border-radius:            .625rem !default;
+$dropdown-border-color:             var(--bs-border-color) !default;
+$dropdown-divider-margin-y:         .25rem !default;
+$dropdown-item-padding-x:           .625rem !default;
+$dropdown-item-padding-y:           .4375rem !default;
+$dropdown-header-padding-x:         .625rem !default;
+$dropdown-header-padding-y:         .5rem !default;
+
+//
+// Pagination
+//
+
+$pagination-padding-y:              .4375rem !default;
+$pagination-padding-x:              .875rem !default;
+$pagination-font-size:              .875rem !default;
+$pagination-color:                  var(--bs-body-color) !default;
+$pagination-bg:                     var(--bs-body-bg) !default;
+$pagination-border-color:           var(--app-input-border) !default;
+$pagination-hover-color:            var(--bs-emphasis-color) !default;
+$pagination-hover-bg:               var(--bs-tertiary-bg) !default;
+$pagination-hover-border-color:     var(--app-input-border) !default;
+$pagination-disabled-color:         var(--bs-tertiary-color) !default;
+$pagination-disabled-bg:            var(--bs-body-bg) !default;
+$pagination-disabled-border-color:  var(--app-input-border) !default;
+
+//
+// Cards
+//
+
+$card-spacer-y:                     1rem !default;
+$card-spacer-x:                     1.25rem !default;
+$card-cap-padding-y:                .875rem !default;
+$card-cap-padding-x:                1.25rem !default;
+$card-cap-bg:                       transparent !default;
+$card-border-color:                 var(--bs-border-color) !default;
+$card-border-radius:                .75rem !default;
+
+//
+// Tables
+//
+
+$table-cell-padding-y:              .625rem !default;
+$table-cell-padding-x:              .75rem !default;
+$table-th-font-weight:              600 !default;
+
+//
+// Badges
+//
+
+$badge-font-size:                   .75em !default;
+$badge-font-weight:                 500 !default;
+$badge-padding-y:                   .25em !default;
+$badge-padding-x:                   .5em !default;
+$badge-border-radius:               .375rem !default;
+
+//
+// Toasts, modals, tooltips, breadcrumbs
+//
+
+$toast-font-size:                   .875rem !default;
+$toast-padding-x:                   .875rem !default;
+$toast-padding-y:                   .75rem !default;
+$toast-background-color:            var(--bs-body-bg) !default;
+$toast-border-color:                var(--bs-border-color) !default;
+$toast-border-radius:               .625rem !default;
+$toast-box-shadow:                  $box-shadow-lg !default;
+
+$modal-content-border-color:        var(--bs-border-color) !default;
+$modal-content-border-radius:       .75rem !default;
+
+$tooltip-font-size:                 .75rem !default;
+$tooltip-padding-y:                 .3125rem !default;
+$tooltip-padding-x:                 .5rem !default;
+$tooltip-border-radius:             .375rem !default;
+
+$breadcrumb-padding-y:              .375rem !default;
+$breadcrumb-padding-x:              .75rem !default;
+$breadcrumb-font-size:              .875rem !default;
+$breadcrumb-border-radius:          $border-radius !default;
+
+//
+// Navbar, offcanvas, list group
+//
+
+$navbar-padding-y:                  .5rem !default;
+$offcanvas-border-color:            var(--bs-border-color) !default;
+$list-group-border-color:           var(--bs-border-color) !default;
+$list-group-item-padding-y:         .625rem !default;
+$list-group-item-padding-x:         1.25rem !default;

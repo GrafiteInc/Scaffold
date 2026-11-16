@@ -136,6 +136,20 @@ opts into a form by setting `public $form = SomeForm::class;` and using `HasForm
 hand-roll a `<form>` in Blade for model CRUD — check `app/View/Forms/` and the Grafite Forms
 docs/fields list first.
 
+### Theme: Tailwind-style Bootstrap ("crisp")
+Bootstrap 5.3 with Tailwind tokens (zinc grays, indigo-600 primary, Inter, soft shadows and
+subtle-shade alerts/badges), ported from Grafene. `resources/sass/app.scss` sets the load order.
+- `crisp/_variables.scss` holds the tokens. It loads before Bootstrap, so only plain Sass works
+  there (`mix()`, not `tint-color()`).
+- `crisp/_overrides.scss` holds component rules. It loads after Bootstrap and bmx, so it can
+  use their functions and beat their rules.
+- Colours that flip with light/dark are `--app-*` vars in `scheme.scss`. Use those, or `--bs-*`,
+  instead of hex values in partials.
+- Prefer soft variants: `badge bg-*` (tinted), `alert-*`, `bg-*-subtle text-*-emphasis`.
+  Keep `text-bg-*` for solid emphasis.
+- Toasts take `app-toast-*`. Linked section strips use `.status-tile .status-tile-{color}`.
+- Charts set `borderColor` in PHP, so match it to `$primary` when the primary changes.
+
 ### Charts are declarative classes too
 `app/View/Charts/*` extends the shared `CanChart` base and produces `grafite/charts` chart
 config; paired Blade-facing wrappers live in `app/View/Components/Charts/`.

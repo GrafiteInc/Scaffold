@@ -1,0 +1,330 @@
+// Crisp overrides — loaded after Bootstrap and Bootstrap Magic Extras, so
+// Bootstrap's functions (tint-color, shade-color, contrast-ratio) and the
+// color-mode() mixin are available, and rules here beat bmx's.
+
+//
+// Type
+//
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+    letter-spacing: -.025em;
+}
+
+h4, .h4, h5, .h5 {
+    letter-spacing: -.01em;
+}
+
+a {
+    text-underline-offset: .2em;
+}
+
+//
+// Buttons
+//
+
+@each $color, $value in $theme-colors {
+    .btn-#{$color} {
+        box-shadow: $box-shadow-sm;
+    }
+}
+
+// Outline buttons: a white button with a tinted border and coloured text,
+// tinting on hover, instead of Bootstrap's fill-on-hover. bmx-btn-outline-*
+// (the dashboard quick links) get the same treatment.
+@each $color, $value in map-remove($theme-colors, "secondary", "light", "dark") {
+    $ink: if(contrast-ratio($value, $white) >= 4.5, $value, shade-color($value, 55%));
+
+    .btn-outline-#{$color},
+    .bmx-btn-outline-#{$color} {
+        --bs-btn-color: #{$ink};
+        --bs-btn-bg: var(--bs-body-bg);
+        --bs-btn-border-color: #{tint-color($value, 62%)};
+        --bs-btn-hover-color: #{shade-color($ink, 15%)};
+        --bs-btn-hover-bg: #{tint-color($value, 92%)};
+        --bs-btn-hover-border-color: #{tint-color($value, 45%)};
+        --bs-btn-active-color: #{shade-color($ink, 15%)};
+        --bs-btn-active-bg: #{tint-color($value, 86%)};
+        --bs-btn-active-border-color: #{tint-color($value, 45%)};
+        --bs-btn-disabled-color: #{$ink};
+        --bs-btn-disabled-bg: transparent;
+        --bs-btn-disabled-border-color: #{tint-color($value, 62%)};
+        box-shadow: $box-shadow-sm;
+    }
+
+    @include color-mode(dark) {
+        .btn-outline-#{$color},
+        .bmx-btn-outline-#{$color} {
+            --bs-btn-color: #{tint-color($value, 40%)};
+            --bs-btn-bg: transparent;
+            --bs-btn-border-color: #{rgba($value, .5)};
+            --bs-btn-hover-color: #{tint-color($value, 55%)};
+            --bs-btn-hover-bg: #{rgba($value, .15)};
+            --bs-btn-hover-border-color: #{rgba($value, .65)};
+            --bs-btn-active-color: #{tint-color($value, 55%)};
+            --bs-btn-active-bg: #{rgba($value, .22)};
+            --bs-btn-active-border-color: #{rgba($value, .65)};
+            --bs-btn-disabled-color: #{tint-color($value, 40%)};
+            --bs-btn-disabled-border-color: #{rgba($value, .5)};
+        }
+    }
+}
+
+// Secondary outline: the neutral Tailwind "white" button used for toolbars.
+.btn-outline-secondary,
+.bmx-btn-outline-secondary {
+    --bs-btn-color: var(--bs-body-color);
+    --bs-btn-bg: var(--bs-body-bg);
+    --bs-btn-border-color: var(--app-input-border);
+    --bs-btn-hover-color: var(--bs-emphasis-color);
+    --bs-btn-hover-bg: var(--bs-tertiary-bg);
+    --bs-btn-hover-border-color: var(--app-input-border);
+    --bs-btn-active-color: var(--bs-emphasis-color);
+    --bs-btn-active-bg: var(--bs-secondary-bg);
+    --bs-btn-active-border-color: var(--app-input-border);
+    --bs-btn-disabled-color: var(--bs-secondary-color);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--app-input-border);
+    box-shadow: $box-shadow-sm;
+}
+
+//
+// Badges: soft tint with an inset ring. text-bg-* badges stay solid.
+//
+
+@each $color, $value in map-remove($theme-colors, "light", "dark") {
+    .badge.bg-#{$color} {
+        background-color: var(--bs-#{$color}-bg-subtle) !important;
+        color: var(--bs-#{$color}-text-emphasis) !important;
+        box-shadow: inset 0 0 0 1px var(--bs-#{$color}-border-subtle);
+    }
+}
+
+.badge.bg-light {
+    color: var(--bs-body-color) !important;
+    box-shadow: inset 0 0 0 1px var(--bs-border-color);
+}
+
+//
+// Forms
+//
+
+.form-control,
+.form-select {
+    box-shadow: $box-shadow-sm;
+}
+
+//
+// Cards
+//
+
+.card-header {
+    font-weight: 600;
+    border-bottom-color: var(--app-line-soft);
+
+    h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: -.01em;
+    }
+}
+
+.card-footer {
+    border-top-color: var(--app-line-soft);
+}
+
+// Many cards wrap their header in a link; keep the heading ink-coloured and
+// un-underlined, tinting on hover.
+.card > a {
+    text-decoration: none;
+
+    > .card-header {
+        color: var(--bs-emphasis-color);
+    }
+
+    &:hover > .card-header {
+        color: var(--bs-link-hover-color);
+    }
+}
+
+//
+// Dropdowns, modals
+//
+
+.dropdown-menu {
+    box-shadow: $box-shadow-lg;
+}
+
+.dropdown-item {
+    border-radius: $border-radius-sm;
+}
+
+.dropdown-header {
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+.dropdown-divider {
+    margin-left: calc(-1 * var(--bs-dropdown-padding-x));
+    margin-right: calc(-1 * var(--bs-dropdown-padding-x));
+}
+
+.modal-content {
+    box-shadow: $box-shadow-lg;
+}
+
+.modal-header,
+.modal-footer {
+    border-color: var(--app-line-soft);
+}
+
+//
+// Toasts (App\View\Components\Global\Notifications): a white toast with a
+// status dot, instead of a solid coloured one.
+//
+
+.app-toast {
+    --app-toast-accent: var(--bs-secondary);
+
+    .toast-body {
+        position: relative;
+        padding-left: 2.25rem;
+        font-weight: 500;
+        color: var(--bs-emphasis-color);
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: var(--bs-toast-padding-x);
+            top: calc(var(--bs-toast-padding-x) + .40625rem);
+            width: .5rem;
+            height: .5rem;
+            border-radius: 50%;
+            background-color: var(--app-toast-accent);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--app-toast-accent) 20%, transparent);
+        }
+    }
+}
+
+@each $color in (success, info, warning, danger) {
+    .app-toast-#{$color} {
+        --app-toast-accent: var(--bs-#{$color});
+    }
+}
+
+//
+// Status tiles: a linked section strip ("Tasks: Due Today") with a soft
+// tint, a border and an optional count pill. Markup:
+//   <a class="status-tile status-tile-warning" href="...">
+//       <h5>Label</h5><span class="status-tile-count">3</span>
+//   </a>
+//
+
+.status-tile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    padding: .75rem 1rem;
+    border: 1px solid var(--app-tile-border);
+    border-radius: .625rem;
+    background-color: var(--app-tile-bg);
+    color: var(--app-tile-color);
+    font-size: .875rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+        color: var(--app-tile-color);
+        border-color: var(--app-tile-color);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+        font-size: inherit;
+        font-weight: inherit;
+        letter-spacing: normal;
+        color: inherit;
+    }
+}
+
+.status-tile-count {
+    min-width: 1.75rem;
+    padding: .125rem .5rem;
+    border: 1px solid var(--app-tile-border);
+    border-radius: $border-radius-sm;
+    background-color: var(--bs-body-bg);
+    font-size: .75rem;
+    text-align: center;
+}
+
+@each $color in (primary, secondary, success, info, warning, danger) {
+    .status-tile-#{$color} {
+        --app-tile-bg: var(--bs-#{$color}-bg-subtle);
+        --app-tile-border: var(--bs-#{$color}-border-subtle);
+        --app-tile-color: var(--bs-#{$color}-text-emphasis);
+    }
+}
+
+//
+// Carded tables (bmx .table-carded): tighter rows,
+// token radius and borders, and status borders softened to the subtle shade.
+//
+
+.table-carded {
+    border-spacing: 0 .5rem;
+
+    tr {
+        box-shadow: $box-shadow-sm;
+        border-radius: $border-radius;
+
+        td {
+            border-top-color: var(--bs-border-color);
+            border-bottom-color: var(--bs-border-color);
+        }
+
+        td:first-child {
+            padding-left: .875rem;
+            border-left-color: var(--bs-border-color);
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
+        }
+
+        td:last-child {
+            border-right-color: var(--bs-border-color);
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+        }
+    }
+
+    // Plain rows are white cards on the gray page; status rows keep their
+    // bmx-bg-* tint (painted on the tr, so the cells stay transparent).
+    tr:not([class*="bmx-bg-"]) > td {
+        background-color: var(--bs-body-bg);
+    }
+
+    tr:not([class*="bmx-bg-"]):hover > td {
+        background-color: var(--bs-tertiary-bg);
+    }
+
+    $status-borders: (
+        "blue": "primary",
+        "purple": "primary",
+        "cyan": "info",
+        "green": "success",
+        "yellow": "warning",
+        "red": "danger",
+        "secondary": "secondary",
+    );
+
+    @each $bmx, $theme in $status-borders {
+        .bmx-border-#{$bmx} {
+            border-color: var(--bs-#{$theme}-border-subtle) !important;
+        }
+    }
+}

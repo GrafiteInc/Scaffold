@@ -1,46 +1,89 @@
+// App-level colours that flip with the colour scheme. Bootstrap's own
+// --bs-* values come from crisp/_variables.scss (light and *-dark).
 @media (prefers-color-scheme: light) {
     :root {
-        --app-html-bg: #FFF;
-        --bs-body-bg: var(--bs-white);
-        --app-navbar-bg: #FFF;
-        --app-navbar-header: #222;
-        --app-navbar-link-color: #222;
-        --app-navbar-bottom-border: #EEE;
-        --app-sidebar-bg: var(--bs-tertiary-bg);
-        --app-sidebar-header: #8c8b94;
-        --app-sidebar-link: #222;
-        --app-footer-bg: #FFF;
-        --app-footer-text-color: #222;
+        --app-html-bg: #fafafa;
+        --app-input-bg: #fff;
+        --app-input-color: #18181b;
+        --app-input-border: #d4d4d8;
+        --app-input-disabled-bg: #f4f4f5;
+        --app-input-disabled-color: #52525b;
+
+        --app-line-soft: #f4f4f5;
+        --app-accent-soft: color-mix(in srgb, var(--bs-primary) 9%, #fff);
+        --app-accent-line: color-mix(in srgb, var(--bs-primary) 32%, #fff);
+        --app-accent-ink: color-mix(in srgb, var(--bs-primary) 82%, #000);
+
+        --app-navbar-bg: rgba(255, 255, 255, .85);
+        --app-navbar-header: #18181b;
+        --app-navbar-link-color: #3f3f46;
+        --app-navbar-bottom-border: #e4e4e7;
+
+        --app-sidebar-bg: #fff;
+        --app-sidebar-header: #71717a;
+        --app-sidebar-border: #e4e4e7;
+        --app-sidebar-shadow: rgba(0, 0, 0, .08);
+        --app-sidebar-link: #3f3f46;
+        --app-sidebar-link-hover: #18181b;
+        --app-sidebar-link-hover-bg: #f4f4f5;
+
+        --bs-breadcrumb-bg: var(--bs-tertiary-bg);
+
+        --app-footer-bg: var(--bs-tertiary-bg);
+        --app-footer-text-color: var(--bs-body-color);
     }
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --app-html-bg: #000;
-        --app-navbar-bg: #222;
-        --app-navbar-header: #222;
-        --app-navbar-link-color: #FFF;
-        --app-navbar-bottom-border: #333;
-        --app-sidebar-bg: #303030;
-        --app-sidebar-header: #8c8b94;
-        --app-sidebar-link: #fff;
-        --bs-body-bg: #222;
-        --bs-dark-rgb: 0,0,0;
-        --bs-border-color: #444;
+        --app-html-bg: #09090b;
+        --app-input-bg: #111113;
+        --app-input-color: #f4f4f5;
+        --app-input-border: #3f3f46;
+        --app-input-disabled-bg: #27272a;
+        --app-input-disabled-color: #a1a1aa;
 
-        .table-carded tr td:first-child {
-            border-left-color: var(--bs-border-color);
-        }
-        .table-carded tr td {
-            border-top-color: var(--bs-border-color);
-            border-bottom-color: var(--bs-border-color);
-        }
-        .table-carded tr td:last-child {
-            border-right-color: var(--bs-border-color);
-        }
+        --app-line-soft: rgba(255, 255, 255, .06);
+        --app-accent-soft: color-mix(in srgb, var(--bs-primary) 20%, transparent);
+        --app-accent-line: color-mix(in srgb, var(--bs-primary) 50%, transparent);
+        --app-accent-ink: color-mix(in srgb, var(--bs-primary) 40%, #fff);
+
+        --app-navbar-bg: rgba(24, 24, 27, .85);
+        --app-navbar-header: #fafafa;
+        --app-navbar-link-color: #d4d4d8;
+        --app-navbar-bottom-border: #27272a;
+
+        --app-sidebar-bg: #18181b;
+        --app-sidebar-header: #a1a1aa;
+        --app-sidebar-border: #27272a;
+        --app-sidebar-shadow: rgba(0, 0, 0, .5);
+        --app-sidebar-link: #a1a1aa;
+        --app-sidebar-link-hover: #fafafa;
+        --app-sidebar-link-hover-bg: #27272a;
+
+        --bs-dark-rgb: 0,0,0;
+        --bs-breadcrumb-bg: var(--bs-tertiary-bg);
+
+        --app-footer-bg: var(--bs-tertiary-bg);
+        --app-footer-text-color: var(--bs-body-color);
     }
 
     .btn-text {
-        color: #fff;
+        color: var(--bs-emphasis-color);
+    }
+}
+
+.table {
+    --bs-table-bg: transparent;
+}
+
+.breadcrumb {
+    background-color: var(--bs-tertiary-bg);
+}
+
+.table-carded tr {
+    &:hover {
+        background-color: var(--bs-tertiary-bg);
+        box-shadow: none;
     }
 }
