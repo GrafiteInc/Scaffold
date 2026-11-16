@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminUserUpdateRequest;
 use App\Models\Invite;
 use App\Models\User;
-use App\Notifications\UserInviteEmail;
+use App\Services\InviteService;
 use App\View\Forms\AdminUserForm;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Throwable;
@@ -74,25 +73,8 @@ class UserController extends Controller
      */
     public function postInvite(Request $request)
     {
-        $message = trans('general.user.invite');
-        $token = Str::uuid();
-
         try {
-            Invite::firstOrCreate([
-                'user_id' => auth()->id(),
-                'email' => $request->email,
-            ], [
-                'message' => $message,
-                'token' => $token,
-            ]);
-
-            Notification::route('mail', $request->email)
-                ->notify(new UserInviteEmail(
-                    $request->email,
-                    $request->user(),
-                    $message,
-                    $token
-                ));
+            app(InviteService::class)->inviteToApp($request->email, $request->user());
 
             return redirect()->back()->with('message', 'Invitation was sent');
         } catch (Throwable $th) {
