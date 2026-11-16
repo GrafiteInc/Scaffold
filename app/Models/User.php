@@ -14,6 +14,7 @@ use App\Models\Concerns\HasSubscription;
 use App\Models\Concerns\HasTeams;
 use App\Models\Concerns\HasThreads;
 use App\Models\Concerns\HasTwoFactor;
+use App\Models\Concerns\RequiresPasswordReset;
 use App\Notifications\ResetPassword;
 use App\View\Forms\UserForm;
 use Grafite\Forms\Traits\HasForm;
@@ -50,6 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasThreads;
     use HasTwoFactor;
     use Notifiable;
+    use RequiresPasswordReset;
 
     public $form = UserForm::class;
 
@@ -82,6 +84,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $attributes = [
         'allow_push_notifications' => true,
+        'needs_password_reset' => false,
     ];
 
     protected $hidden = [

@@ -118,6 +118,31 @@ class UserService
     }
 
     /**
+     * Force the user to change their password on their next web request
+     * (EnsurePasswordIsChanged). Cleared automatically once they do.
+     */
+    public function requirePasswordReset(User $user, ?User $by = null): User
+    {
+        $user->forceFill(['needs_password_reset' => true])->save();
+
+        activity("Required password reset for {$user->email}.");
+
+        return $user->refresh();
+    }
+
+    /**
+     * Withdraw a password reset requirement without a password change.
+     */
+    public function clearPasswordReset(User $user, ?User $by = null): User
+    {
+        $user->forceFill(['needs_password_reset' => false])->save();
+
+        activity("Cleared password reset requirement for {$user->email}.");
+
+        return $user->refresh();
+    }
+
+    /**
      * User deliberately lacks Passport's HasApiTokens trait (it conflicts with
      * Sanctum's), so revoke the MCP OAuth tokens by query.
      */
