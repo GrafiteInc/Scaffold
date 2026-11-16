@@ -33,6 +33,13 @@ COPY . .
 # Also runs package:discover, so bootstrap/cache only lists production packages.
 RUN composer dump-autoload --optimize --no-dev --no-interaction
 
+# Ship the full disposable-email list (storage/app/blacklist_file, ~150k domains) in the image.
+# It is gitignored, and a runtime sync would only reach the container that ran it. If the
+# fetch fails the build continues on the package's built-in list (~4k domains).
+# CACHE_STORE=array: the command clears the cache, and the build has no Valkey or database.
+RUN CACHE_STORE=array php artisan erag:sync-disposable-email-list \
+    || echo "Disposable email sync failed; falling back to the built-in list."
+
 ############################################
 # Frontend assets
 ############################################

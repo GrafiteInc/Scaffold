@@ -101,6 +101,7 @@ After the Tests workflow passes on `main`, `.github/workflows/deploy.yml` builds
      - `STRIPE_KEY`, `PLAN_MONTHLY`, `PLAN_YEARLY`
      - `VAPID_SUBJECT`, `VAPID_PUBLIC_KEY`
      - `MISSION_CONTROL_PROJECT_UUID`
+     - `REGISTRATION_ALLOWED_DOMAINS`, `REGISTRATION_BLOCKED_DOMAINS`, `DISPOSABLE_EMAIL_WHITELIST` (optional, comma-separated)
    - **Secrets:**
      - `DIGITALOCEAN_ACCESS_TOKEN`
      - `APP_KEY`, `PASSPORT_PRIVATE_KEY`, `PASSPORT_PUBLIC_KEY`
