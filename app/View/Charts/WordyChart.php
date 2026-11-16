@@ -37,7 +37,7 @@ class WordyChart extends WordCloud
     {
         $dataset = $this->makeDataset('Words', $this->data->values())
             ->options([
-                'borderColor' => '#6f42c1',
+                'borderColor' => '#4f46e5',
             ]);
 
         return [

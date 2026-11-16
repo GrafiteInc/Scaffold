@@ -4,7 +4,15 @@
 |--------------------------------------------------------------------------
 */
 
-input.form-control, textarea.form-control, select.form-control {
+input.form-control:disabled, textarea.form-control:disabled, select.form-select:disabled {
+    background-color: var(--app-input-disabled-bg) !important;
+    color: var(--app-input-disabled-color) !important;
+}
+
+input.form-control, textarea.form-control, select.form-select, input.form-select {
+    background-color: var(--app-input-bg) !important;
+    border-color: var(--app-input-border);
+    color: var(--app-input-color) !important;
     &:focus {
         outline: 0 !important;
     }
@@ -13,10 +21,23 @@ input.form-control, textarea.form-control, select.form-control {
 pre {
     font-size: 1rem;
     padding: 24px;
-    background-color: var(--bs-form-control-bg);
-    border-radius: 8px;
+    background-color: var(--app-input-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-lg);
 }
 
 input[type="file"].form-control {
     line-height: 1.2;
+}
+
+@media (prefers-color-scheme: light) {
+    input[type=datetime-local] {
+        color-scheme: light;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    input[type=datetime-local] {
+        color-scheme: dark;
+    }
 }
