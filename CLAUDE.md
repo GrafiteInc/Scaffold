@@ -119,6 +119,27 @@ A landing page with an email signup, for collecting interest while registration 
 - `RegisterController::create()` sets `registered_at`, covering both standard and invite
   registration.
 
+### User disabling
+An account-level switch, built natively rather than with a prohibitions package.
+- `users.disabled_at` / `disabled_until` / `disabled_reason` / `disabled_by`, read through
+  the `CanBeDisabled` concern. `isDisabled()` treats a passed `disabled_until` as active, so
+  timed disables lift themselves without a job. The columns are not fillable.
+- Only `UserService::disable()` / `enable()` change it. `disable()` also rotates
+  `remember_token`, deletes Sanctum tokens, and revokes Passport tokens by query.
+  They dispatch `UserDisabled` / `UserEnabled`.
+- `EnsureUserIsActive` (alias `active`) is in the `web` and `api` groups and is sorted
+  after `auth:*`. It logs out the session and redirects, or returns a 403 for JSON. The MCP
+  route has no group, so `routes/ai.php` lists `active` itself. Add it to any new
+  group-less authenticated route.
+- Login (`attemptWhen`) and device login refuse disabled users. Admin "Login as" refuses them too.
+- Admin > Users > Edit has Disable (with reason and optional end time) and Enable, behind
+  `permissions:users.disable`.
+- `App\Http\Middleware\ThrottleRequests` replaces the `throttle` alias and dispatches
+  `RateLimitExceeded` on every 429. Login lockouts are re-dispatched with `user: null`.
+- `DisableUserOnRepeatedRateLimiting` is opt-in (`general.auto_disable`, `AUTO_DISABLE_*`).
+  It counts one strike per throttle episode and exempts admins. Login lockouts never count,
+  because they're keyed by a typed email and would let anyone disable a victim.
+
 ### Models: capability via `Concerns` traits, not inheritance
 `app/Models/Concerns/*` holds single-purpose traits (`HasRoles`, `HasPermissions`, `HasTeams`,
 `HasSubscription`, `HasTwoFactor`, `HasActivity`, `HasAvatar`, `HasDevices`,
