@@ -3,6 +3,15 @@
 @section('page-title', 'Security')
 
 @section('user_content')
+    @if (request()->user()->needsPasswordReset())
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card card-body bg-warning-subtle text-warning-emphasis border-warning-subtle shadow-sm text-center">
+                    {{ \App\Http\Middleware\EnsurePasswordIsChanged::MESSAGE }}
+                </div>
+            </div>
+        </div>
+    @endif
     @if (request()->user()->hasUnconfirmedTwoFactor())
         <div class="row mb-4">
             <div class="col-md-12">

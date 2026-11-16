@@ -31,6 +31,7 @@ class UserPasswordUpdateRequest extends FormRequest
             'new_password' => [
                 'required',
                 'confirmed',
+                'different:old_password',
                 Password::defaults(),
             ],
             'new_password_confirmation' => [

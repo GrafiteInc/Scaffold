@@ -38,9 +38,17 @@ class SecurityController extends Controller
         $password = $request->new_password;
 
         if (Hash::check($request->old_password, $request->user()->password)) {
+            // Read before resetting: the PasswordReset listener clears it.
+            $wasRequired = $request->user()->needsPasswordReset();
+
             $this->resetPassword($request->user(), $password);
 
             activity('Password updated');
+
+            if ($wasRequired) {
+                return redirect()->intended(route('dashboard'))
+                    ->withMessage('Password updated successfully');
+            }
 
             return redirect()->route('user.security')
                 ->withMessage('Password updated successfully');

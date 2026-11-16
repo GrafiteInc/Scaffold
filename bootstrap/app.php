@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\Activity;
 use App\Http\Middleware\Admin;
+use App\Http\Middleware\EnsurePasswordIsChanged;
 use App\Http\Middleware\EnsureUserIsActive;
 use App\Http\Middleware\Permissions;
 use App\Http\Middleware\Roles;
@@ -72,6 +73,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'permissions' => Permissions::class,
             'roles' => Roles::class,
             'active' => EnsureUserIsActive::class,
+            'password.change' => EnsurePasswordIsChanged::class,
             // Laravel's throttle plus a RateLimitExceeded event.
             'throttle' => ThrottleRequests::class,
         ]);
