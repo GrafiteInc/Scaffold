@@ -112,6 +112,8 @@ envs:
     value: "${APP_KEY}"
   - key: REGISTRATION
     value: "true"
+  - key: WAITLIST
+    value: "${WAITLIST}"
   - key: REGISTRATION_ALLOWED_DOMAINS
     value: "${REGISTRATION_ALLOWED_DOMAINS}"
   - key: REGISTRATION_BLOCKED_DOMAINS

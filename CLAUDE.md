@@ -107,6 +107,18 @@ invite register, web settings, the API, and the MCP `UpdateProfileTool`.
 - Admin edits are unrestricted.
 - Add the rule to any new email-entry path.
 
+### Waitlist (early access)
+A landing page with an email signup, for collecting interest while registration is closed.
+- `WAITLIST=true` (`general.waitlist_enabled`) makes `/` render `pages.waitlist`. It is always at `/waitlist`.
+- `WaitlistService` holds the logic. `join()` is idempotent: a repeat email is a silent
+  no-op, with no `unique` error, so the list can't be probed. Only a new signup gets the
+  queued `WaitlistConfirmation`. Referrer, landing path and UTM params go in `meta`.
+- Admin > Waitlist (`permissions:waitlist.*`) lists, searches, exports CSV and invites.
+  Invites go through `InviteService::inviteToApp()`, the same path as Admin > Users > Invite,
+  so they work while `REGISTRATION=false`.
+- `RegisterController::create()` sets `registered_at`, covering both standard and invite
+  registration.
+
 ### Models: capability via `Concerns` traits, not inheritance
 `app/Models/Concerns/*` holds single-purpose traits (`HasRoles`, `HasPermissions`, `HasTeams`,
 `HasSubscription`, `HasTwoFactor`, `HasActivity`, `HasAvatar`, `HasDevices`,

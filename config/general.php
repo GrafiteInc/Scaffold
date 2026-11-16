@@ -18,6 +18,12 @@ return [
     'registration_available' => env('REGISTRATION', false),
 
     /*
+     * When on, the home page is the early-access landing page with a waitlist signup.
+     * The page is always reachable at /waitlist; signups are managed in Admin > Waitlist.
+     */
+    'waitlist_enabled' => env('WAITLIST', false),
+
+    /*
      * Comma-separated domains, enforced by App\Rules\RegistrableEmail on sign-up and
      * self-service email changes. Subdomains match too. When the allow list is set,
      * only those domains may register. Invite registration skips both lists.
