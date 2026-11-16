@@ -50,6 +50,19 @@ class UsersControllerTest extends ApiTestCase
         $this->assertEquals($this->user->email, $content->data->email);
     }
 
+    public function test_update_rejects_disposable_email()
+    {
+        Sanctum::actingAs($this->user);
+
+        $response = $this->putJson(route('api.users.update'), [
+            'name' => 'Burt Cooper',
+            'email' => 'burt@10minutemail.com',
+        ]);
+
+        $response->assertUnprocessable()->assertJsonValidationErrors('email');
+        $this->assertNotEquals('burt@10minutemail.com', $this->user->fresh()->email);
+    }
+
     public function test_destroy()
     {
         Sanctum::actingAs($this->user);
