@@ -46,7 +46,17 @@
     @endif
 
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-end">
+        <div class="col-md-12 d-flex flex-wrap justify-content-end gap-2">
+            <button
+                class="btn btn-outline-secondary"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#userActivity"
+                aria-controls="userActivity"
+            >
+                <span class="fas fa-fw fa-clock-rotate-left"></span>
+                Activity <span class="badge bg-secondary ms-1">{{ $activities->count() }}</span>
+            </button>
             @if (! session('original_user') && ! $user->isDisabled())
                 {!! form()->action('post', ['admin.users.switch', $user->id], 'Login as this User', [ 'class' => 'btn btn-outline-secondary' ]) !!}
             @endif
@@ -74,35 +84,6 @@
         </div>
     </div>
 
-    <div class="row mt-4">
-        <div class="col-md-12">
-            @if ($activities->isEmpty())
-                <div class="card text-center shadow-sm">
-                    <div class="card-body">
-                        No known activities
-                    </div>
-                </div>
-            @else
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h4 class="m-0">Activities <small>(Last 25)</small></h4>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-borderless table-hover p-0 m-0">
-                            @foreach($activities as $activity)
-                                <tr onclick="window.app.modal('Activity', '{{ $activity->forModal() }}')">
-                                    <td>{{ $activity->description }}</td>
-                                    <td width="250px" class="d-none d-sm-table-cell">
-                                        <b>{{ $activity->request['method'] }}:</b> {{ Str::limit(str_replace(url('/'), '', $activity->request['url']), 20) }}
-                                    </td>
-                                    <td width="180px" class="text-end">{{ $activity->created_at->format('M d, Y') }}</td>
-                                </tr>
-                            @endforeach
-                        </table>
-                    </div>
-                </div>
-            @endif
-        </div>
-    </div>
+    @include('admin.users.partials.activity-offcanvas')
 
 @stop

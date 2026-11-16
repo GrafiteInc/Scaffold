@@ -4,6 +4,7 @@ namespace Tests\Feature\Controllers\Admin;
 
 use App\Events\UserDisabled;
 use App\Events\UserEnabled;
+use App\Models\Activity;
 use App\Models\Invite;
 use App\Models\Role;
 use App\Models\User;
@@ -95,6 +96,46 @@ class UserControllerTest extends TestCase
         $response->assertSee('No known activities');
         $response->assertSee('Name');
         $response->assertSee('Joe');
+    }
+
+    public function test_edit_shows_activity_offcanvas()
+    {
+        $user = User::factory()->create(['name' => 'Joe']);
+        $user->roles()->attach(Role::factory()->create());
+
+        Activity::factory()->create([
+            'user_id' => $user->id,
+            'description' => 'Settings updated.',
+            'request' => [
+                'url' => 'https://example.test/user/settings',
+                'method' => 'PATCH',
+                'query' => 'https://example.test/user/settings?tab=profile',
+                'secure' => true,
+                'client_ip' => '10.0.0.1',
+                'payload' => [
+                    '_token' => 'csrf-token-value',
+                    'name' => 'Joe Smith',
+                    'password' => 'hunter2-secret',
+                    'bio' => '<script>alert(1)</script>',
+                    'meta' => ['timezone' => 'UTC'],
+                ],
+            ],
+        ]);
+
+        $response = $this->get(route('admin.users.edit', [$user->id]));
+
+        $response->assertOk();
+        $response->assertSee('id="userActivity"', false);
+        $response->assertSee('Settings updated.');
+        $response->assertSee('PATCH');
+        $response->assertSee('/user/settings?tab=profile');
+        $response->assertSee('10.0.0.1');
+        $response->assertSee('Joe Smith');
+        $response->assertSee('timezone');
+        $response->assertDontSee('hunter2-secret');
+        $response->assertDontSee('csrf-token-value');
+        $response->assertDontSee('<script>alert(1)</script>', false);
+        $response->assertSee('&lt;script&gt;alert(1)&lt;/script&gt;', false);
     }
 
     public function test_update()
