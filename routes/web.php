@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('users/return-switch', [UserController::class, 'switchBack'])->name('users.return-switch');
 
-    Route::middleware(['verified', 'two-factor'])->group(function () {
+    Route::middleware(['verified', 'two-factor', 'password.change'])->group(function () {
         Route::get('subscribed', function () {
             // This route can be used to check if the user is subscribed to a service.
         });
@@ -205,6 +205,14 @@ Route::middleware('auth')->group(function () {
             Route::post('users/{user}/enable', [UserController::class, 'enable'])
                 ->middleware(['permissions:users.disable'])
                 ->name('admin.users.enable');
+
+            Route::post('users/{user}/require-password-reset', [UserController::class, 'requirePasswordReset'])
+                ->middleware(['permissions:users.password-reset'])
+                ->name('admin.users.require-password-reset');
+
+            Route::post('users/{user}/clear-password-reset', [UserController::class, 'clearPasswordReset'])
+                ->middleware(['permissions:users.password-reset'])
+                ->name('admin.users.clear-password-reset');
 
             /*
             |--------------------------------------------------------------------------

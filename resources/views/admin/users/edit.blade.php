@@ -29,10 +29,31 @@
         </div>
     @endif
 
+    @if ($user->needsPasswordReset())
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
+                    <div>
+                        <span class="fas fa-fw fa-key"></span>
+                        <strong>Password change required</strong> on their next visit.
+                    </div>
+                    @can('has-permissions', 'users.password-reset')
+                        {!! form()->action('post', ['admin.users.clear-password-reset', $user->id], 'Cancel Requirement', ['class' => 'btn btn-outline-secondary btn-sm']) !!}
+                    @endcan
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-md-12 d-flex justify-content-end">
             @if (! session('original_user') && ! $user->isDisabled())
                 {!! form()->action('post', ['admin.users.switch', $user->id], 'Login as this User', [ 'class' => 'btn btn-outline-secondary' ]) !!}
+            @endif
+            @if (! $user->needsPasswordReset() && ! $user->is(auth()->user()))
+                @can('has-permissions', 'users.password-reset')
+                    {!! form()->action('post', ['admin.users.require-password-reset', $user->id], 'Require Password Reset', ['class' => 'btn btn-outline-warning ms-2']) !!}
+                @endcan
             @endif
             @if (! $user->isDisabled() && ! $user->is(auth()->user()))
                 @can('has-permissions', 'users.disable')

@@ -28,6 +28,7 @@ return [
         'update' => 'Update Users',
         'delete' => 'Delete Users',
         'disable' => 'Disable Users',
+        'password-reset' => 'Require Password Resets',
     ],
 
     'waitlist' => [

@@ -239,4 +239,42 @@ class UserController extends Controller
             return redirect()->back()->withErrors(['Failed to enable user']);
         }
     }
+
+    /**
+     * Make the User change their password on their next request.
+     *
+     * @return RedirectResponse
+     */
+    public function requirePasswordReset(Request $request, User $user, UserService $service)
+    {
+        abort_if($user->is($request->user()), 422, 'Change your own password from your Security settings.');
+
+        try {
+            $service->requirePasswordReset($user, $request->user());
+
+            return redirect()->back()->with('message', 'User must change their password');
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return redirect()->back()->withErrors(['Failed to require a password reset']);
+        }
+    }
+
+    /**
+     * Withdraw the User's password reset requirement.
+     *
+     * @return RedirectResponse
+     */
+    public function clearPasswordReset(Request $request, User $user, UserService $service)
+    {
+        try {
+            $service->clearPasswordReset($user, $request->user());
+
+            return redirect()->back()->with('message', 'Password reset requirement cleared');
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return redirect()->back()->withErrors(['Failed to clear the password reset requirement']);
+        }
+    }
 }
