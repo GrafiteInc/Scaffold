@@ -66,6 +66,9 @@ that file's keys in sync with any new config.
   overwrites anything set only in the DO dashboard.
 - **`VITE_*` values** are compiled into the JS, so they are Docker build args, not runtime env.
 - `compose.production.yaml` runs the production image locally for a smoke test.
+- **Disposable email list.** The Docker build runs `erag:sync-disposable-email-list` so the
+  image ships the full list in `storage/app/blacklist_file/` (gitignored). It is not scheduled,
+  because a runtime sync would only update one container's temporary filesystem.
 
 ## Architecture
 
@@ -92,6 +95,17 @@ business logic that don't warrant a full service live in `app/Actions/` as invok
 (e.g. `UpdateUserAvatar`, `ProcessUserTwoFactorSettings`). Controllers wrap service calls in
 try/catch and use `abort_unless`/`Gate::allows` for authorization, not FormRequest-embedded
 authorization — request validation lives in `app/Http/Requests/`.
+
+### Registration restrictions
+`App\Rules\RegistrableEmail` guards every path where users choose their own email: register,
+invite register, web settings, the API, and the MCP `UpdateProfileTool`.
+- It applies the allow/block lists in `config/general.php` (`REGISTRATION_ALLOWED_DOMAINS`,
+  `REGISTRATION_BLOCKED_DOMAINS`), then `erag/laravel-disposable-email`
+  (`config/disposable-email.php`).
+- Pass `current:` on email changes, so an unchanged address always passes.
+- Invite registration passes `domainLists: false`.
+- Admin edits are unrestricted.
+- Add the rule to any new email-entry path.
 
 ### Models: capability via `Concerns` traits, not inheritance
 `app/Models/Concerns/*` holds single-purpose traits (`HasRoles`, `HasPermissions`, `HasTeams`,
