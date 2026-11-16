@@ -4,8 +4,8 @@ namespace App\View\Forms;
 
 use App\Models\Role;
 use App\Models\User;
-use Grafite\Forms\Fields\Bootstrap\HasOne;
 use Grafite\Forms\Fields\Email;
+use Grafite\Forms\Fields\HasOne;
 use Grafite\Forms\Fields\Text;
 use Grafite\Forms\Forms\ModelForm;
 
@@ -55,6 +55,7 @@ class AdminUserForm extends ModelForm
                 'table_class' => 'd-none d-sm-table-cell',
             ]),
             HasOne::make('role', [
+                'multiple' => false,
                 'required' => true,
                 'visible' => false,
                 'table_class' => 'd-none d-sm-table-cell',
