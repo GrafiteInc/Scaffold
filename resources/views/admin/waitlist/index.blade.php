@@ -4,7 +4,7 @@
 
 @section('admin_content')
     @php
-        $badges = ['pending' => 'text-bg-secondary', 'invited' => 'text-bg-info', 'registered' => 'text-bg-success'];
+        $badges = ['pending' => 'bg-secondary', 'invited' => 'bg-info', 'registered' => 'bg-success'];
     @endphp
 
     <div class="row">

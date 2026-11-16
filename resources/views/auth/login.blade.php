@@ -11,7 +11,7 @@
         @endif
 
         <div class="card mt-5 mb-4 border-0 bmx-tada">
-            <div class="card-body bg-body-tertiary border-start bmx-border-purple bmx-border-3">
+            <div class="card-body bg-body-tertiary border-start border-primary bmx-border-3">
                 <p class="lead m-0">After all it's way more fun on the inside!</p>
             </div>
         </div>

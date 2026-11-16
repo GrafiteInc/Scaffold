@@ -5,7 +5,7 @@
 @section('panel')
     @if (auth()->user()->hasRole('admin'))
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-header text-center bmx-bg-indigo-light">
                         <h4 class="m-0">New User</h4>
@@ -16,7 +16,9 @@
         </div>
     @endif
 
-    <x-forms.image-upload></x-forms.image-upload>
+    <div class="mb-4">
+        <x-forms.image-upload></x-forms.image-upload>
+    </div>
 
     <copy-button message="Ok so we have Vue!">Test Button</copy-button>
 
