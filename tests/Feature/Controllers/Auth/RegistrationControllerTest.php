@@ -5,6 +5,7 @@ namespace Tests\Feature\Controllers\Auth;
 use App\Models\Invite;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\WaitlistSignup;
 use Illuminate\Support\Str;
 use Tests\GuestTestCase;
 
@@ -80,6 +81,27 @@ class RegistrationControllerTest extends GuestTestCase
 
         $response->assertSessionHasNoErrors();
         $this->assertDatabaseHas('users', ['email' => 'joan@gmail.com']);
+    }
+
+    public function test_registration_marks_waitlist_signup_registered()
+    {
+        $signup = WaitlistSignup::factory()->create(['email' => 'peggy@sterlingcooper.com']);
+
+        $this->register('peggy@sterlingcooper.com')->assertSessionHasNoErrors();
+
+        $this->assertNotNull($signup->fresh()->registered_at);
+    }
+
+    public function test_invite_registration_marks_waitlist_signup_registered()
+    {
+        $inviter = User::factory()->create();
+        $signup = WaitlistSignup::factory()->invited()->create(['email' => 'joan@sterlingcooper.com']);
+        $invite = Invite::factory()->create(['user_id' => $inviter->id, 'email' => 'joan@sterlingcooper.com']);
+
+        $this->register('joan@sterlingcooper.com', 'register.invite', ['activation_token' => $invite->token])
+            ->assertSessionHasNoErrors();
+
+        $this->assertSame('registered', $signup->fresh()->status);
     }
 
     public function test_invite_registration_rejects_disposable_email()
