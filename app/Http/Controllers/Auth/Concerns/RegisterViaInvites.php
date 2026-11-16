@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth\Concerns;
 
+use App\Rules\RegistrableEmail;
 use App\Services\InviteService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -62,7 +63,8 @@ trait RegisterViaInvites
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255',
+            // The invite authorizes the domain, so only the disposable check applies.
+            'email' => ['required', 'email', 'max:255', new RegistrableEmail(domainLists: false)],
             'password' => [
                 'required',
                 'confirmed',

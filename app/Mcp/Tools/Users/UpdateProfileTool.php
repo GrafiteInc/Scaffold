@@ -3,6 +3,7 @@
 namespace App\Mcp\Tools\Users;
 
 use App\Mcp\Tools\Users\Concerns\FormatsUsers;
+use App\Rules\RegistrableEmail;
 use App\Services\UserService;
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Illuminate\JsonSchema\Types\Type;
@@ -30,7 +31,14 @@ class UpdateProfileTool extends Tool
     {
         $data = $request->validate([
             'name' => ['sometimes', 'required', 'string', 'max:255'],
-            'email' => ['sometimes', 'required', 'email', 'max:255', Rule::unique('users')->ignore($request->user()->id)],
+            'email' => [
+                'sometimes',
+                'required',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($request->user()->id),
+                new RegistrableEmail(current: $request->user()->email),
+            ],
         ]);
 
         if (empty($data)) {
