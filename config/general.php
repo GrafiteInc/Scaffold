@@ -31,4 +31,18 @@ return [
     'registration_allowed_domains' => $domains(env('REGISTRATION_ALLOWED_DOMAINS')),
 
     'registration_blocked_domains' => $domains(env('REGISTRATION_BLOCKED_DOMAINS')),
+
+    /*
+     * Temporarily disable a signed-in user after `strikes` separate throttle
+     * episodes within `window` minutes, for `duration` minutes. Login lockouts
+     * never count (they're keyed by a typed email, so they could target anyone).
+     * See App\Listeners\DisableUserOnRepeatedRateLimiting.
+     */
+    'auto_disable' => [
+        'enabled' => (bool) env('AUTO_DISABLE_ENABLED', false),
+        'strikes' => (int) env('AUTO_DISABLE_STRIKES', 5),
+        'window' => (int) env('AUTO_DISABLE_WINDOW', 60),
+        'duration' => (int) env('AUTO_DISABLE_DURATION', 1440),
+        'exempt_roles' => ['admin'],
+    ],
 ];
