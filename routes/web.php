@@ -198,6 +198,14 @@ Route::middleware('auth')->group(function () {
                 ->middleware(['permissions:users'])
                 ->name('admin.users.switch');
 
+            Route::post('users/{user}/disable', [UserController::class, 'disable'])
+                ->middleware(['permissions:users.disable'])
+                ->name('admin.users.disable');
+
+            Route::post('users/{user}/enable', [UserController::class, 'enable'])
+                ->middleware(['permissions:users.disable'])
+                ->name('admin.users.enable');
+
             /*
             |--------------------------------------------------------------------------
             | Waitlist

@@ -27,6 +27,7 @@ return [
         'activity' => 'View User Activity',
         'update' => 'Update Users',
         'delete' => 'Delete Users',
+        'disable' => 'Disable Users',
     ],
 
     'waitlist' => [

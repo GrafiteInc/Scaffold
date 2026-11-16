@@ -4,10 +4,40 @@
 
 @section('admin_content')
 
+    @if ($user->isDisabled())
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
+                    <div>
+                        <span class="fas fa-fw fa-ban"></span>
+                        <strong>Disabled</strong>
+                        {{ $user->disabled_until ? 'until '.$user->disabled_until->format('M d, Y g:i A') : 'permanently' }}
+                        @if ($user->disabledBy)
+                            by {{ $user->disabledBy->name }}
+                        @elseif (! $user->disabled_by)
+                            (automatically)
+                        @endif
+                        @if ($user->disabled_reason)
+                            <div class="small mt-1">{{ $user->disabled_reason }}</div>
+                        @endif
+                    </div>
+                    @can('has-permissions', 'users.disable')
+                        {!! form()->action('post', ['admin.users.enable', $user->id], 'Enable User', ['class' => 'btn btn-outline-success btn-sm']) !!}
+                    @endcan
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="row">
-        <div class="col-md-12 text-end">
-            @if (! session('original_user'))
+        <div class="col-md-12 d-flex justify-content-end">
+            @if (! session('original_user') && ! $user->isDisabled())
                 {!! form()->action('post', ['admin.users.switch', $user->id], 'Login as this User', [ 'class' => 'btn btn-outline-secondary' ]) !!}
+            @endif
+            @if (! $user->isDisabled() && ! $user->is(auth()->user()))
+                @can('has-permissions', 'users.disable')
+                    {!! app(\App\View\Forms\DisableUserForm::class)->setRoute('admin.users.disable', [$user->id])->make() !!}
+                @endcan
             @endif
         </div>
     </div>

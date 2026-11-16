@@ -2,9 +2,12 @@
 
 namespace Tests\Feature\Controllers\Admin;
 
+use App\Events\UserDisabled;
+use App\Events\UserEnabled;
 use App\Models\Invite;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
@@ -167,5 +170,102 @@ class UserControllerTest extends TestCase
 
         $response->assertStatus(302);
         $response->assertRedirect(route('admin.users.index'));
+    }
+
+    public function test_disable_user()
+    {
+        Event::fake([UserDisabled::class]);
+
+        $user = User::factory()->create();
+        $user->createToken('device');
+
+        $this->post(route('admin.users.disable', $user), [
+            'reason' => 'Abuse',
+            'until' => now()->addDay()->format('Y-m-d\\TH:i'),
+        ])->assertSessionHas('message', 'User disabled');
+
+        $user->refresh();
+        $this->assertTrue($user->isDisabled());
+        $this->assertSame('Abuse', $user->disabled_reason);
+        $this->assertSame($this->user->id, $user->disabled_by);
+        $this->assertNotNull($user->disabled_until);
+        $this->assertCount(0, $user->tokens()->get());
+        Event::assertDispatched(UserDisabled::class);
+    }
+
+    public function test_disable_user_permanently()
+    {
+        $user = User::factory()->create();
+
+        $this->post(route('admin.users.disable', $user))->assertSessionHas('message', 'User disabled');
+
+        $user->refresh();
+        $this->assertTrue($user->isDisabled());
+        $this->assertNull($user->disabled_until);
+    }
+
+    public function test_disable_rejects_past_until()
+    {
+        $user = User::factory()->create();
+
+        $this->post(route('admin.users.disable', $user), ['until' => now()->subDay()->toDateTimeString()])
+            ->assertSessionHasErrors('until');
+
+        $this->assertFalse($user->fresh()->isDisabled());
+    }
+
+    public function test_cannot_disable_yourself()
+    {
+        $this->post(route('admin.users.disable', $this->user))->assertStatus(422);
+
+        $this->assertFalse($this->user->fresh()->isDisabled());
+    }
+
+    public function test_enable_user()
+    {
+        Event::fake([UserEnabled::class]);
+
+        $user = User::factory()->create();
+        $user->forceFill(['disabled_at' => now()])->save();
+
+        $this->post(route('admin.users.enable', $user))->assertSessionHas('message', 'User enabled');
+
+        $this->assertFalse($user->fresh()->isDisabled());
+        Event::assertDispatched(UserEnabled::class);
+    }
+
+    public function test_edit_shows_disabled_state()
+    {
+        $user = User::factory()->create();
+        $user->forceFill(['disabled_at' => now(), 'disabled_reason' => 'Chargebacks', 'disabled_by' => $this->user->id])->save();
+        $user->roles()->attach(Role::factory()->create());
+
+        $this->get(route('admin.users.edit', $user))
+            ->assertOk()
+            ->assertSee('permanently')
+            ->assertSee('Chargebacks')
+            ->assertSee('Enable User')
+            ->assertDontSee('Login as this User');
+    }
+
+    public function test_edit_shows_disable_form_for_active_user()
+    {
+        $user = User::factory()->create();
+        $user->roles()->attach(Role::factory()->create());
+
+        $this->get(route('admin.users.edit', $user))
+            ->assertOk()
+            ->assertSee('Disable User')
+            ->assertSee(route('admin.users.disable', $user));
+    }
+
+    public function test_cannot_switch_to_disabled_user()
+    {
+        $user = User::factory()->create();
+        $user->forceFill(['disabled_at' => now()])->save();
+
+        $this->post(route('admin.users.switch', $user))->assertSessionHasErrors();
+
+        $this->assertAuthenticatedAs($this->user);
     }
 }

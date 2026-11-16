@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminUserDisableRequest;
 use App\Http\Requests\AdminUserUpdateRequest;
 use App\Models\Invite;
 use App\Models\User;
 use App\Services\InviteService;
+use App\Services\UserService;
 use App\View\Forms\AdminUserForm;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -89,6 +92,10 @@ class UserController extends Controller
      */
     public function switchToUser(Request $request, User $user)
     {
+        if ($user->isDisabled()) {
+            return redirect()->back()->withErrors(['This user is disabled.']);
+        }
+
         $request->session()->put('original_user', auth()->id());
 
         Auth::login($user);
@@ -191,5 +198,45 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('admin.users.index');
+    }
+
+    /**
+     * Disable the User's access, permanently or until a given time.
+     *
+     * @return RedirectResponse
+     */
+    public function disable(AdminUserDisableRequest $request, User $user, UserService $service)
+    {
+        abort_if($user->is($request->user()), 422, 'You cannot disable your own account.');
+
+        try {
+            $until = $request->filled('until') ? Carbon::parse($request->until) : null;
+
+            $service->disable($user, $request->reason, $until, $request->user());
+
+            return redirect()->back()->with('message', 'User disabled');
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return redirect()->back()->withErrors(['Failed to disable user']);
+        }
+    }
+
+    /**
+     * Restore the User's access.
+     *
+     * @return RedirectResponse
+     */
+    public function enable(Request $request, User $user, UserService $service)
+    {
+        try {
+            $service->enable($user, $request->user());
+
+            return redirect()->back()->with('message', 'User enabled');
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return redirect()->back()->withErrors(['Failed to enable user']);
+        }
     }
 }
