@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\QueueController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WaitlistController as AdminWaitlistController;
 use App\Http\Controllers\Ajax\FileUploadController;
 use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\DashboardController;
@@ -196,6 +197,26 @@ Route::middleware('auth')->group(function () {
             Route::post('users/switch/{user}', [UserController::class, 'switchToUser'])
                 ->middleware(['permissions:users'])
                 ->name('admin.users.switch');
+
+            /*
+            |--------------------------------------------------------------------------
+            | Waitlist
+            |--------------------------------------------------------------------------
+            */
+            Route::prefix('waitlist')->name('admin.waitlist.')->group(function () {
+                Route::get('/', [AdminWaitlistController::class, 'index'])
+                    ->middleware(['permissions:waitlist'])
+                    ->name('index');
+                Route::get('export', [AdminWaitlistController::class, 'export'])
+                    ->middleware(['permissions:waitlist.export'])
+                    ->name('export');
+                Route::post('{signup}/invite', [AdminWaitlistController::class, 'invite'])
+                    ->middleware(['permissions:waitlist.invite'])
+                    ->name('invite');
+                Route::delete('{signup}', [AdminWaitlistController::class, 'destroy'])
+                    ->middleware(['permissions:waitlist.delete'])
+                    ->name('destroy');
+            });
 
             Route::resource('users', UserController::class, ['as' => 'admin', 'middleware' => ['permissions:users']]);
             Route::resource('roles', RoleController::class, ['as' => 'admin', 'middleware' => ['permissions:roles']]);

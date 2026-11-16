@@ -29,6 +29,12 @@ return [
         'delete' => 'Delete Users',
     ],
 
+    'waitlist' => [
+        'invite' => 'Invite Waitlist Signups',
+        'export' => 'Export Waitlist',
+        'delete' => 'Delete Waitlist Signups',
+    ],
+
     'teams' => [
         'create' => 'Create Teams',
         'update' => 'Update Teams',
