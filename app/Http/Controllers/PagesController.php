@@ -13,7 +13,21 @@ class PagesController extends Controller
      */
     public function home()
     {
+        if (config('general.waitlist_enabled')) {
+            return $this->waitlist();
+        }
+
         return view('pages.home');
+    }
+
+    /**
+     * Early-access landing page with the waitlist signup.
+     *
+     * @return View
+     */
+    public function waitlist()
+    {
+        return view('pages.waitlist');
     }
 
     /**

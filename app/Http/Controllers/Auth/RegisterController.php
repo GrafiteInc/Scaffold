@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
 use App\Rules\RegistrableEmail;
+use App\Services\WaitlistService;
 use Grafite\Auth\Foundation\RegistersUsers;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\Hash;
@@ -78,6 +79,8 @@ class RegisterController extends Controller implements HasMiddleware
         ]);
 
         $user->roles()->attach(Role::where('name', '=', 'member')->first()->id);
+
+        app(WaitlistService::class)->markRegistered($user->email);
 
         return $user;
     }

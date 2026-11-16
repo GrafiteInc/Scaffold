@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth;
 use App\Http\Controllers\Auth\RecoveryController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\WaitlistController;
 use Grafite\Auth\Facades\GrafiteAuth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -32,6 +33,16 @@ Route::get('terms-of-service', [PagesController::class, 'termsOfService'])->name
 Route::get('privacy-policy', [PagesController::class, 'privacyPolicy'])->name('privacy-policy');
 
 Route::post('accept-cookie-policy', [CookiePolicyController::class, 'accept'])->name('ajax.accept-cookie-policy');
+
+/*
+|--------------------------------------------------------------------------
+| Waitlist (early access) - `/` shows it too when WAITLIST=true
+|--------------------------------------------------------------------------
+*/
+Route::get('waitlist', [PagesController::class, 'waitlist'])->name('waitlist');
+Route::post('waitlist', [WaitlistController::class, 'store'])
+    ->middleware([ProtectAgainstSpam::class, 'throttle:5,1'])
+    ->name('waitlist.store');
 
 /*
 |--------------------------------------------------------------------------
