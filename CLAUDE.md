@@ -140,6 +140,19 @@ An account-level switch, built natively rather than with a prohibitions package.
   It counts one strike per throttle episode and exempts admins. Login lockouts never count,
   because they're keyed by a typed email and would let anyone disable a victim.
 
+### Forced password change
+`users.needs_password_reset` makes a user change their password before using the web app.
+- Read through the `RequiresPasswordReset` concern (`needsPasswordReset()`). The column is not
+  fillable; only `UserService::requirePasswordReset()` / `clearPasswordReset()` set it, from
+  Admin > Users > Edit behind `permissions:users.password-reset`.
+- `EnsurePasswordIsChanged` (alias `password.change`) sits on the `verified`/`two-factor` route
+  group, so it runs after 2FA. It redirects to `user.security` (with the intended URL kept) or
+  returns a 403 for JSON. It exempts the Security page, `user.logout` and impersonation
+  (`original_user`). Add it to any new authenticated web route group.
+- Web only: Sanctum API and MCP tokens are not blocked.
+- The `ClearPasswordResetRequirement` listener clears the flag on `PasswordReset`, which both the
+  Security page and the forgot-password flow fire.
+
 ### Models: capability via `Concerns` traits, not inheritance
 `app/Models/Concerns/*` holds single-purpose traits (`HasRoles`, `HasPermissions`, `HasTeams`,
 `HasSubscription`, `HasTwoFactor`, `HasActivity`, `HasAvatar`, `HasDevices`,
