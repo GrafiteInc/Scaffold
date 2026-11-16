@@ -32,4 +32,16 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
         ];
     }
+
+    /**
+     * A user who must change their password before using the app.
+     *
+     * @return $this
+     */
+    public function needsPasswordReset()
+    {
+        return $this->state(fn () => [
+            'needs_password_reset' => true,
+        ]);
+    }
 }
