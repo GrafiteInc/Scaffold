@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\QueueController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WaitlistController as AdminWaitlistController;
 use App\Http\Controllers\Ajax\FileUploadController;
 use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\DashboardController;
@@ -50,7 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('users/return-switch', [UserController::class, 'switchBack'])->name('users.return-switch');
 
-    Route::middleware(['verified', 'two-factor'])->group(function () {
+    Route::middleware(['verified', 'two-factor', 'password.change'])->group(function () {
         Route::get('subscribed', function () {
             // This route can be used to check if the user is subscribed to a service.
         });
@@ -196,6 +197,42 @@ Route::middleware('auth')->group(function () {
             Route::post('users/switch/{user}', [UserController::class, 'switchToUser'])
                 ->middleware(['permissions:users'])
                 ->name('admin.users.switch');
+
+            Route::post('users/{user}/disable', [UserController::class, 'disable'])
+                ->middleware(['permissions:users.disable'])
+                ->name('admin.users.disable');
+
+            Route::post('users/{user}/enable', [UserController::class, 'enable'])
+                ->middleware(['permissions:users.disable'])
+                ->name('admin.users.enable');
+
+            Route::post('users/{user}/require-password-reset', [UserController::class, 'requirePasswordReset'])
+                ->middleware(['permissions:users.password-reset'])
+                ->name('admin.users.require-password-reset');
+
+            Route::post('users/{user}/clear-password-reset', [UserController::class, 'clearPasswordReset'])
+                ->middleware(['permissions:users.password-reset'])
+                ->name('admin.users.clear-password-reset');
+
+            /*
+            |--------------------------------------------------------------------------
+            | Waitlist
+            |--------------------------------------------------------------------------
+            */
+            Route::prefix('waitlist')->name('admin.waitlist.')->group(function () {
+                Route::get('/', [AdminWaitlistController::class, 'index'])
+                    ->middleware(['permissions:waitlist'])
+                    ->name('index');
+                Route::get('export', [AdminWaitlistController::class, 'export'])
+                    ->middleware(['permissions:waitlist.export'])
+                    ->name('export');
+                Route::post('{signup}/invite', [AdminWaitlistController::class, 'invite'])
+                    ->middleware(['permissions:waitlist.invite'])
+                    ->name('invite');
+                Route::delete('{signup}', [AdminWaitlistController::class, 'destroy'])
+                    ->middleware(['permissions:waitlist.delete'])
+                    ->name('destroy');
+            });
 
             Route::resource('users', UserController::class, ['as' => 'admin', 'middleware' => ['permissions:users']]);
             Route::resource('roles', RoleController::class, ['as' => 'admin', 'middleware' => ['permissions:roles']]);

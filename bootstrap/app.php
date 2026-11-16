@@ -2,10 +2,14 @@
 
 use App\Http\Middleware\Activity;
 use App\Http\Middleware\Admin;
+use App\Http\Middleware\EnsurePasswordIsChanged;
+use App\Http\Middleware\EnsureUserIsActive;
 use App\Http\Middleware\Permissions;
 use App\Http\Middleware\Roles;
+use App\Http\Middleware\ThrottleRequests;
 use App\Http\Middleware\TwoFactor;
 use Bepsvpt\SecureHeaders\SecureHeadersMiddleware;
+use Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -35,6 +39,12 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->authenticateSessions();
         $middleware->appendToGroup('web', PreventStaleDatabaseReads::class);
 
+        // Disabled users lose access on every guard. Sorted after auth:* so
+        // $request->user() resolves on the route's guard.
+        $middleware->appendToGroup('web', EnsureUserIsActive::class);
+        $middleware->appendToGroup('api', EnsureUserIsActive::class);
+        $middleware->appendToPriorityList(AuthenticatesRequests::class, EnsureUserIsActive::class);
+
         $middleware->statefulApi();
         $middleware->throttleApi('60,1');
 
@@ -62,6 +72,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'activity' => Activity::class,
             'permissions' => Permissions::class,
             'roles' => Roles::class,
+            'active' => EnsureUserIsActive::class,
+            'password.change' => EnsurePasswordIsChanged::class,
+            // Laravel's throttle plus a RateLimitExceeded event.
+            'throttle' => ThrottleRequests::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

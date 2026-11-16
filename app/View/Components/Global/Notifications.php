@@ -10,9 +10,9 @@ class Notifications extends HtmlTagComponent
     {
         return <<<'HTML'
             <div class="position-fixed bottom-0 start-0 ms-4 mb-4 bmx-z-4">
-                <div id="toaster" class="toast border-0 align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+                <div id="toaster" class="toast app-toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="d-flex">
-                        <div id="_componentNotification" class="toast-body text-white"></div>
+                        <div id="_componentNotification" class="toast-body"></div>
                         <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                 </div>
@@ -38,20 +38,20 @@ class Notifications extends HtmlTagComponent
                         el.className = newClassList.join(' ');
                     },
                     success: function (message, delay = 2000) {
-                        this.notify(message, 'bg-success', 'Success', delay);
+                        this.notify(message, 'app-toast-success', 'Success', delay);
                     },
                     info: function (message, delay = 2000) {
-                        this.notify(message, 'bg-info', 'Info', delay);
+                        this.notify(message, 'app-toast-info', 'Info', delay);
                     },
                     warning: function (message, delay = 2000) {
-                        this.notify(message, 'bg-warning', 'Warning', delay);
+                        this.notify(message, 'app-toast-warning', 'Warning', delay);
                     },
                     error: function (message, delay = 2000) {
-                        this.notify(message, 'bg-danger', 'Error', delay);
+                        this.notify(message, 'app-toast-danger', 'Error', delay);
                     },
                     notify: function (message, variant, title, delay = 2000) {
                         let _toaster = document.getElementById('toaster');
-                        window.app.notify.removeClassByPrefix(_toaster, 'bg-');
+                        window.app.notify.removeClassByPrefix(_toaster, 'app-toast-');
                         _toaster.classList.add(variant);
                         document.getElementById('_componentNotification').innerHTML = message;
 

@@ -34,6 +34,10 @@ Schedule::command('mission-control:stats')->dailyAt('9:00')
 //     })
 //     ->onOneServer();
 
+// No erag:sync-disposable-email-list here: the Docker build syncs the list, so each
+// deploy ships a fresh one. On App Platform a scheduled sync would only update the
+// scheduler container's temporary filesystem. Locally, run the command by hand.
+
 Schedule::command('maintenance:gzip-purge')->monthlyOn(4, '4:45')
     ->runInBackground()
     ->after(function () {

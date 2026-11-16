@@ -39,19 +39,17 @@ class ActivityService
     }
 
     /**
-     * We sort any objects as they can
-     * invalidate the storage.
+     * Objects (uploads) are dropped as they can invalidate the
+     * storage, and secrets such as passwords are masked.
      *
      * @return Collection
      */
     public function inputs()
     {
-        return collect(request()->all())->filter(function ($item, $key) {
-            if (is_object($item)) {
-                return false;
-            }
+        $inputs = collect(request()->all())
+            ->reject(fn ($item) => is_object($item))
+            ->all();
 
-            return true;
-        });
+        return collect(Activity::redact($inputs));
     }
 }

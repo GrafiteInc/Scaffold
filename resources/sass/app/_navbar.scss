@@ -1,6 +1,8 @@
 .navbar-header {
     background-color: var(--app-navbar-bg);
     color: var(--app-navbar-header);
+    -webkit-backdrop-filter: saturate(180%) blur(8px);
+    backdrop-filter: saturate(180%) blur(8px);
 
     .navbar-nav {
         .nav-item {
@@ -44,6 +46,7 @@
     line-height: 45px;
     margin-bottom: -8px;
     margin-right: 10px;
+    box-shadow: 0 0 0 2px var(--bs-body-bg), 0 0 0 3px var(--bs-border-color);
 }
 
 .navbar-nav {

@@ -20,7 +20,7 @@
     @if (auth()->user())
         <div class="dropdown">
             <a class="nav-link nav-user-dropdown dropdown-toggle" href="#" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <div class="nav-avatar border border-primary shadow-sm" style="background-image: url({{ auth()->user()->avatar_url }});"></div>
+                <div class="nav-avatar" style="background-image: url({{ auth()->user()->avatar_url }});"></div>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="{{ route('user.settings') }}">Settings</a>

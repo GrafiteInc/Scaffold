@@ -40,6 +40,7 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="https://kit.fontawesome.com/e46847d218.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.2.8/index.min.css">
 
         @stack('styles')
         <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>

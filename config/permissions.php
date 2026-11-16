@@ -27,6 +27,14 @@ return [
         'activity' => 'View User Activity',
         'update' => 'Update Users',
         'delete' => 'Delete Users',
+        'disable' => 'Disable Users',
+        'password-reset' => 'Require Password Resets',
+    ],
+
+    'waitlist' => [
+        'invite' => 'Invite Waitlist Signups',
+        'export' => 'Export Waitlist',
+        'delete' => 'Delete Waitlist Signups',
     ],
 
     'teams' => [

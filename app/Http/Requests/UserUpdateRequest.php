@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\RegistrableEmail;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserUpdateRequest extends FormRequest
 {
@@ -23,9 +25,15 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $user = auth()->user();
+
         return [
             'email' => [
                 'required',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user->id),
+                new RegistrableEmail(current: $user->email),
             ],
             'name' => [
                 'required',

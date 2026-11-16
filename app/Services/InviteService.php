@@ -63,6 +63,37 @@ class InviteService
     }
 
     /**
+     * Invite someone to register for the app itself (not a team). Registration
+     * via invite works even while open registration is turned off.
+     *
+     * Re-inviting the same email reuses the stored invite, so every email sent
+     * carries a token that still validates.
+     */
+    public function inviteToApp(string $email, User $from, ?string $message = null): Invite
+    {
+        $message ??= trans('general.user.invite');
+
+        $invite = Invite::firstOrCreate([
+            'user_id' => $from->id,
+            'email' => $email,
+            'model_id' => null,
+        ], [
+            'message' => $message,
+            'token' => (string) Str::uuid(),
+        ]);
+
+        Notification::route('mail', $email)
+            ->notify(new UserInviteEmail(
+                $email,
+                $from,
+                $message,
+                $invite->token
+            ));
+
+        return $invite;
+    }
+
+    /**
      * Delete all invites that match this since their
      * tokens will now be invalid.
      *

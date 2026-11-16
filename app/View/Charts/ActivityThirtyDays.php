@@ -53,7 +53,7 @@ class ActivityThirtyDays extends Chart
 
         $dataset = $this->makeDataset('Activity Count', $counts)
             ->options([
-                'borderColor' => '#6f42c1',
+                'borderColor' => '#4f46e5',
             ]);
 
         return [

@@ -6,20 +6,39 @@
 
 .sidebar {
     background-color: var(--app-sidebar-bg);
+    border-right: 1px solid var(--app-sidebar-border);
 
+    // Full-width rows with an icon and label: a gray hover and a soft
+    // primary tint for the active page, instead of a solid fill.
     .nav-link {
-        margin: 2px 8px;
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        margin: 0 .75rem .125rem;
+        padding: .5rem .875rem;
+        border-radius: .625rem;
+        color: var(--app-sidebar-link);
+        font-size: .875rem;
+        font-weight: 500;
+        line-height: 1.25rem;
+        transition: background-color .15s, color .15s;
+
+        &:hover,
+        &:focus-visible {
+            background-color: var(--app-sidebar-link-hover-bg);
+            color: var(--app-sidebar-link-hover);
+        }
+
         &.active {
-            color: var(--bs-white);
-            background-color: var(--bs-primary);
-            border-radius: 6px;
+            background-color: var(--app-accent-soft);
+            color: var(--app-accent-ink);
         }
     }
 
-    .nav-item {
-        a {
-            color: var(--app-sidebar-link)
-        }
+    hr {
+        margin: .5rem 1.5rem;
+        border-top-color: var(--app-sidebar-border);
+        opacity: 1;
     }
 }
 
@@ -49,10 +68,7 @@
 }
 
 .sidebar .nav-item {
-    font-weight: bold;
     width: 100%;
-    line-height: 32px;
-    font-size: 16px;
 }
 
 .sidebar-heading {

@@ -1,20 +1,11 @@
 /*! purgecss start ignore */
 $color-mode-type: media-query;
 
-@import "theme/variables";
+// Crisp: Tailwind-style tokens on Bootstrap (crisp/). Variables load before
+// Bootstrap; overrides load after Bootstrap and Bootstrap Magic Extras so
+// they can use its functions and beat its rules.
+@import "crisp/variables";
 @import 'bootstrap/scss/bootstrap';
-@import 'theme/bootswatch';
-
-@import "scheme.scss";
-@import "app/window.scss";
-@import "app/forms.scss";
-@import "app/sidebar.scss";
-@import "app/navbar.scss";
-@import "app/avatar.scss";
-@import "app/primary_components.scss";
-@import "app/media_containers.scss";
-@import "app/chat.scss";
-@import "stripe.scss";
 
 $bmx-brand-primary: $primary !default;
 $bmx-brand-secondary: $secondary !default;
@@ -72,4 +63,21 @@ $bmx-colors: (
 
 /*! purgecss end ignore */
 
+// Bootstrap Magic Extras stays outside the ignore blocks so its unused
+// utilities are purged.
 @import "@grafite/bootstrap-magic-extras";
+
+/*! purgecss start ignore */
+@import "crisp/overrides";
+
+@import "scheme.scss";
+@import "app/window.scss";
+@import "app/forms.scss";
+@import "app/sidebar.scss";
+@import "app/navbar.scss";
+@import "app/avatar.scss";
+@import "app/primary_components.scss";
+@import "app/media_containers.scss";
+@import "app/chat.scss";
+@import "stripe.scss";
+/*! purgecss end ignore */

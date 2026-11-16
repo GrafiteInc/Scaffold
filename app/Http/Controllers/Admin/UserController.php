@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminUserDisableRequest;
 use App\Http\Requests\AdminUserUpdateRequest;
 use App\Models\Invite;
 use App\Models\User;
-use App\Notifications\UserInviteEmail;
+use App\Services\InviteService;
+use App\Services\UserService;
 use App\View\Forms\AdminUserForm;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Throwable;
@@ -74,25 +76,8 @@ class UserController extends Controller
      */
     public function postInvite(Request $request)
     {
-        $message = trans('general.user.invite');
-        $token = Str::uuid();
-
         try {
-            Invite::firstOrCreate([
-                'user_id' => auth()->id(),
-                'email' => $request->email,
-            ], [
-                'message' => $message,
-                'token' => $token,
-            ]);
-
-            Notification::route('mail', $request->email)
-                ->notify(new UserInviteEmail(
-                    $request->email,
-                    $request->user(),
-                    $message,
-                    $token
-                ));
+            app(InviteService::class)->inviteToApp($request->email, $request->user());
 
             return redirect()->back()->with('message', 'Invitation was sent');
         } catch (Throwable $th) {
@@ -107,6 +92,10 @@ class UserController extends Controller
      */
     public function switchToUser(Request $request, User $user)
     {
+        if ($user->isDisabled()) {
+            return redirect()->back()->withErrors(['This user is disabled.']);
+        }
+
         $request->session()->put('original_user', auth()->id());
 
         Auth::login($user);
@@ -209,5 +198,83 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('admin.users.index');
+    }
+
+    /**
+     * Disable the User's access, permanently or until a given time.
+     *
+     * @return RedirectResponse
+     */
+    public function disable(AdminUserDisableRequest $request, User $user, UserService $service)
+    {
+        abort_if($user->is($request->user()), 422, 'You cannot disable your own account.');
+
+        try {
+            $until = $request->filled('until') ? Carbon::parse($request->until) : null;
+
+            $service->disable($user, $request->reason, $until, $request->user());
+
+            return redirect()->back()->with('message', 'User disabled');
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return redirect()->back()->withErrors(['Failed to disable user']);
+        }
+    }
+
+    /**
+     * Restore the User's access.
+     *
+     * @return RedirectResponse
+     */
+    public function enable(Request $request, User $user, UserService $service)
+    {
+        try {
+            $service->enable($user, $request->user());
+
+            return redirect()->back()->with('message', 'User enabled');
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return redirect()->back()->withErrors(['Failed to enable user']);
+        }
+    }
+
+    /**
+     * Make the User change their password on their next request.
+     *
+     * @return RedirectResponse
+     */
+    public function requirePasswordReset(Request $request, User $user, UserService $service)
+    {
+        abort_if($user->is($request->user()), 422, 'Change your own password from your Security settings.');
+
+        try {
+            $service->requirePasswordReset($user, $request->user());
+
+            return redirect()->back()->with('message', 'User must change their password');
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return redirect()->back()->withErrors(['Failed to require a password reset']);
+        }
+    }
+
+    /**
+     * Withdraw the User's password reset requirement.
+     *
+     * @return RedirectResponse
+     */
+    public function clearPasswordReset(Request $request, User $user, UserService $service)
+    {
+        try {
+            $service->clearPasswordReset($user, $request->user());
+
+            return redirect()->back()->with('message', 'Password reset requirement cleared');
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return redirect()->back()->withErrors(['Failed to clear the password reset requirement']);
+        }
     }
 }

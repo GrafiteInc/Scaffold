@@ -77,6 +77,14 @@ class UsersServerTest extends ApiTestCase
         $this->assertNotSame($other->email, $this->user->fresh()->email);
     }
 
+    public function test_update_profile_rejects_disposable_email()
+    {
+        $response = UsersServer::actingAs($this->user)->tool(UpdateProfileTool::class, ['email' => 'burt@10minutemail.com']);
+
+        $response->assertHasErrors();
+        $this->assertNotSame('burt@10minutemail.com', $this->user->fresh()->email);
+    }
+
     public function test_update_profile_requires_a_field()
     {
         $response = UsersServer::actingAs($this->user)->tool(UpdateProfileTool::class, []);

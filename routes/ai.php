@@ -11,4 +11,4 @@ use Laravel\Mcp\Facades\Mcp;
 Route::middleware('throttle:30,1')->group(fn () => Mcp::oauthRoutes());
 
 Mcp::web('/mcp/users', UsersServer::class)
-    ->middleware(['auth:api', 'throttle:120,1']);
+    ->middleware(['auth:api', 'active', 'throttle:120,1']);

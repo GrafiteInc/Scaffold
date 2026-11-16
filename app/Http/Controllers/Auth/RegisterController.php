@@ -6,7 +6,8 @@ use App\Http\Controllers\Auth\Concerns\RegisterViaInvites;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
-use EragLaravelDisposableEmail\Rules\DisposableEmailRule;
+use App\Rules\RegistrableEmail;
+use App\Services\WaitlistService;
 use Grafite\Auth\Foundation\RegistersUsers;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\Hash;
@@ -54,7 +55,7 @@ class RegisterController extends Controller implements HasMiddleware
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', new DisposableEmailRule],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', new RegistrableEmail],
             'password' => [
                 'required',
                 'confirmed',
@@ -78,6 +79,8 @@ class RegisterController extends Controller implements HasMiddleware
         ]);
 
         $user->roles()->attach(Role::where('name', '=', 'member')->first()->id);
+
+        app(WaitlistService::class)->markRegistered($user->email);
 
         return $user;
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\EnsureUserIsActive;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -34,6 +35,12 @@ class ApiDeviceLoginController extends Controller
                 'email' => [
                     'The provided credentials are incorrect.',
                 ],
+            ]);
+        }
+
+        if ($user->isDisabled()) {
+            throw ValidationException::withMessages([
+                'email' => [EnsureUserIsActive::MESSAGE],
             ]);
         }
 

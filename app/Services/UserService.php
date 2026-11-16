@@ -2,8 +2,14 @@
 
 namespace App\Services;
 
+use App\Events\UserDisabled;
+use App\Events\UserEnabled;
 use App\Models\User;
+use Carbon\CarbonInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Laravel\Passport\Passport;
 
 class UserService
 {
@@ -57,5 +63,101 @@ class UserService
         activity('Settings updated.');
 
         return $user->refresh();
+    }
+
+    /**
+     * Disable a user's access, permanently or until a given time.
+     *
+     * Their API and MCP tokens are revoked and remember-me cookies stop working
+     * here. Open web sessions end on their next request (EnsureUserIsActive).
+     *
+     * @param  User|null  $by  the admin acting, or null when disabled automatically
+     */
+    public function disable(User $user, ?string $reason = null, ?CarbonInterface $until = null, ?User $by = null): User
+    {
+        DB::transaction(function () use ($user, $reason, $until, $by) {
+            $user->forceFill([
+                'disabled_at' => now(),
+                'disabled_until' => $until,
+                'disabled_reason' => $reason,
+                'disabled_by' => $by?->getKey(),
+                'remember_token' => Str::random(60),
+            ])->save();
+
+            $user->tokens()->delete();
+
+            $this->revokePassportTokens($user);
+        });
+
+        activity($by
+            ? "Disabled user {$user->email}."
+            : "Account {$user->email} disabled automatically.");
+
+        UserDisabled::dispatch($user, $by, $reason, $until);
+
+        return $user->refresh();
+    }
+
+    /**
+     * Restore a disabled user's access.
+     */
+    public function enable(User $user, ?User $by = null): User
+    {
+        $user->forceFill([
+            'disabled_at' => null,
+            'disabled_until' => null,
+            'disabled_reason' => null,
+            'disabled_by' => null,
+        ])->save();
+
+        activity("Enabled user {$user->email}.");
+
+        UserEnabled::dispatch($user, $by);
+
+        return $user->refresh();
+    }
+
+    /**
+     * Force the user to change their password on their next web request
+     * (EnsurePasswordIsChanged). Cleared automatically once they do.
+     */
+    public function requirePasswordReset(User $user, ?User $by = null): User
+    {
+        $user->forceFill(['needs_password_reset' => true])->save();
+
+        activity("Required password reset for {$user->email}.");
+
+        return $user->refresh();
+    }
+
+    /**
+     * Withdraw a password reset requirement without a password change.
+     */
+    public function clearPasswordReset(User $user, ?User $by = null): User
+    {
+        $user->forceFill(['needs_password_reset' => false])->save();
+
+        activity("Cleared password reset requirement for {$user->email}.");
+
+        return $user->refresh();
+    }
+
+    /**
+     * User deliberately lacks Passport's HasApiTokens trait (it conflicts with
+     * Sanctum's), so revoke the MCP OAuth tokens by query.
+     */
+    protected function revokePassportTokens(User $user): void
+    {
+        $tokenIds = Passport::token()->newQuery()
+            ->where('user_id', $user->getKey())
+            ->where('revoked', false)
+            ->pluck('id');
+
+        if ($tokenIds->isEmpty()) {
+            return;
+        }
+
+        Passport::token()->newQuery()->whereIn('id', $tokenIds)->update(['revoked' => true]);
+        Passport::refreshToken()->newQuery()->whereIn('access_token_id', $tokenIds)->update(['revoked' => true]);
     }
 }

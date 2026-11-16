@@ -3,6 +3,77 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ----
 
+## [v3.1.0] - 2026-11-16
+
+### Feat(admin)
+- add offcanvas activity log with redaction
+- add admin password reset controls
+- add user disable and enable controls
+- add waitlist management screens and routes
+
+### Chore(build)
+- stop tracking the Vite manifest
+
+### Docs(password-reset)
+- document forced password reset behavior
+
+### Test(password-reset)
+- cover forced password reset flows
+
+### Feat(users)
+- enforce forced password changes
+- add needs_password_reset model and service
+- add account disabling and throttle events
+- enforce registrable email on self-service email paths
+
+### Docs
+- document user disabling and auto-disable behavior
+
+### Style(ui)
+- remove fixed alert positioning
+
+### Feat(ratelimiting)
+- auto-disable users after repeated throttle episodes
+
+### Refactor(views)
+- adopt crisp theme classes
+
+### Refactor(theme)
+- migrate app styles to crisp tokens
+
+### Feat(theme)
+- replace Bootswatch with crisp theme
+
+### Fix(forms)
+- switch role fields to core HasOne selectors
+
+### Test(waitlist)
+- cover public, admin, and registration flows
+
+### Feat(waitlist)
+- add early-access signup and landing page
+
+### Chore(waitlist)
+- configure WAITLIST env and document feature
+
+### Refactor(invites)
+- extract app invite flow into InviteService
+
+### Chore(deps)
+- update package lockfile
+
+### Feat(deploy)
+- sync disposable email list and pass registration env vars
+
+### Test(registration)
+- cover RegistrableEmail validation paths
+
+### Feat(validation)
+- add RegistrableEmail rule and config
+
+### Refactor(subscription)
+- rename gate ability to 'subscribed'
+
 ## [v3.0.0] - 2026-11-02
 
 ### Feat(deploy)

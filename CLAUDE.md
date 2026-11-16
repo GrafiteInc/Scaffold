@@ -66,6 +66,9 @@ that file's keys in sync with any new config.
   overwrites anything set only in the DO dashboard.
 - **`VITE_*` values** are compiled into the JS, so they are Docker build args, not runtime env.
 - `compose.production.yaml` runs the production image locally for a smoke test.
+- **Disposable email list.** The Docker build runs `erag:sync-disposable-email-list` so the
+  image ships the full list in `storage/app/blacklist_file/` (gitignored). It is not scheduled,
+  because a runtime sync would only update one container's temporary filesystem.
 
 ## Architecture
 
@@ -93,6 +96,63 @@ business logic that don't warrant a full service live in `app/Actions/` as invok
 try/catch and use `abort_unless`/`Gate::allows` for authorization, not FormRequest-embedded
 authorization — request validation lives in `app/Http/Requests/`.
 
+### Registration restrictions
+`App\Rules\RegistrableEmail` guards every path where users choose their own email: register,
+invite register, web settings, the API, and the MCP `UpdateProfileTool`.
+- It applies the allow/block lists in `config/general.php` (`REGISTRATION_ALLOWED_DOMAINS`,
+  `REGISTRATION_BLOCKED_DOMAINS`), then `erag/laravel-disposable-email`
+  (`config/disposable-email.php`).
+- Pass `current:` on email changes, so an unchanged address always passes.
+- Invite registration passes `domainLists: false`.
+- Admin edits are unrestricted.
+- Add the rule to any new email-entry path.
+
+### Waitlist (early access)
+A landing page with an email signup, for collecting interest while registration is closed.
+- `WAITLIST=true` (`general.waitlist_enabled`) makes `/` render `pages.waitlist`. It is always at `/waitlist`.
+- `WaitlistService` holds the logic. `join()` is idempotent: a repeat email is a silent
+  no-op, with no `unique` error, so the list can't be probed. Only a new signup gets the
+  queued `WaitlistConfirmation`. Referrer, landing path and UTM params go in `meta`.
+- Admin > Waitlist (`permissions:waitlist.*`) lists, searches, exports CSV and invites.
+  Invites go through `InviteService::inviteToApp()`, the same path as Admin > Users > Invite,
+  so they work while `REGISTRATION=false`.
+- `RegisterController::create()` sets `registered_at`, covering both standard and invite
+  registration.
+
+### User disabling
+An account-level switch, built natively rather than with a prohibitions package.
+- `users.disabled_at` / `disabled_until` / `disabled_reason` / `disabled_by`, read through
+  the `CanBeDisabled` concern. `isDisabled()` treats a passed `disabled_until` as active, so
+  timed disables lift themselves without a job. The columns are not fillable.
+- Only `UserService::disable()` / `enable()` change it. `disable()` also rotates
+  `remember_token`, deletes Sanctum tokens, and revokes Passport tokens by query.
+  They dispatch `UserDisabled` / `UserEnabled`.
+- `EnsureUserIsActive` (alias `active`) is in the `web` and `api` groups and is sorted
+  after `auth:*`. It logs out the session and redirects, or returns a 403 for JSON. The MCP
+  route has no group, so `routes/ai.php` lists `active` itself. Add it to any new
+  group-less authenticated route.
+- Login (`attemptWhen`) and device login refuse disabled users. Admin "Login as" refuses them too.
+- Admin > Users > Edit has Disable (with reason and optional end time) and Enable, behind
+  `permissions:users.disable`.
+- `App\Http\Middleware\ThrottleRequests` replaces the `throttle` alias and dispatches
+  `RateLimitExceeded` on every 429. Login lockouts are re-dispatched with `user: null`.
+- `DisableUserOnRepeatedRateLimiting` is opt-in (`general.auto_disable`, `AUTO_DISABLE_*`).
+  It counts one strike per throttle episode and exempts admins. Login lockouts never count,
+  because they're keyed by a typed email and would let anyone disable a victim.
+
+### Forced password change
+`users.needs_password_reset` makes a user change their password before using the web app.
+- Read through the `RequiresPasswordReset` concern (`needsPasswordReset()`). The column is not
+  fillable; only `UserService::requirePasswordReset()` / `clearPasswordReset()` set it, from
+  Admin > Users > Edit behind `permissions:users.password-reset`.
+- `EnsurePasswordIsChanged` (alias `password.change`) sits on the `verified`/`two-factor` route
+  group, so it runs after 2FA. It redirects to `user.security` (with the intended URL kept) or
+  returns a 403 for JSON. It exempts the Security page, `user.logout` and impersonation
+  (`original_user`). Add it to any new authenticated web route group.
+- Web only: Sanctum API and MCP tokens are not blocked.
+- The `ClearPasswordResetRequirement` listener clears the flag on `PasswordReset`, which both the
+  Security page and the forgot-password flow fire.
+
 ### Models: capability via `Concerns` traits, not inheritance
 `app/Models/Concerns/*` holds single-purpose traits (`HasRoles`, `HasPermissions`, `HasTeams`,
 `HasSubscription`, `HasTwoFactor`, `HasActivity`, `HasAvatar`, `HasDevices`,
@@ -109,6 +169,20 @@ plus config properties (`$columns`, `$orientation`, `$buttons`, `$withJsValidati
 opts into a form by setting `public $form = SomeForm::class;` and using `HasForm`. Never
 hand-roll a `<form>` in Blade for model CRUD — check `app/View/Forms/` and the Grafite Forms
 docs/fields list first.
+
+### Theme: Tailwind-style Bootstrap ("crisp")
+Bootstrap 5.3 with Tailwind tokens (zinc grays, indigo-600 primary, Inter, soft shadows and
+subtle-shade alerts/badges), ported from Grafene. `resources/sass/app.scss` sets the load order.
+- `crisp/_variables.scss` holds the tokens. It loads before Bootstrap, so only plain Sass works
+  there (`mix()`, not `tint-color()`).
+- `crisp/_overrides.scss` holds component rules. It loads after Bootstrap and bmx, so it can
+  use their functions and beat their rules.
+- Colours that flip with light/dark are `--app-*` vars in `scheme.scss`. Use those, or `--bs-*`,
+  instead of hex values in partials.
+- Prefer soft variants: `badge bg-*` (tinted), `alert-*`, `bg-*-subtle text-*-emphasis`.
+  Keep `text-bg-*` for solid emphasis.
+- Toasts take `app-toast-*`. Linked section strips use `.status-tile .status-tile-{color}`.
+- Charts set `borderColor` in PHP, so match it to `$primary` when the primary changes.
 
 ### Charts are declarative classes too
 `app/View/Charts/*` extends the shared `CanChart` base and produces `grafite/charts` chart
