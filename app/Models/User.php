@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\CanBeDisabled;
 use App\Models\Concerns\DatabaseSearchable;
 use App\Models\Concerns\HasActivity;
 use App\Models\Concerns\HasAvatar;
@@ -31,6 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Billable;
     use CanAccessFeatures;
+    use CanBeDisabled;
     use DatabaseSearchable;
     use HasActivity;
     use HasApiTokens;
